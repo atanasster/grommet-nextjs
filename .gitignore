@@ -1,0 +1,9 @@
+/.idea/
+/node_modules/
+/.next/
+.eslintcache
+coverage
+.vscode
+npm-debug.log
+yarn-error.log
+.DS_Store
