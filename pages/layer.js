@@ -7,7 +7,7 @@ import Doc from '../components/Doc';
 
 const desc = doc(Layer).toJSON();
 
-export default class LayerDoc extends Component {
+export default class LayerDoc extends React.Component {
   state = {
     align: undefined,
     showConfirmLayer: false,

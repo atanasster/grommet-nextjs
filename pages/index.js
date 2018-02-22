@@ -1,5 +1,5 @@
 import {
-  Anchor, Box, Button, Chart, CheckBox, Grid, Heading, Image, Markdown,
+  Box, Button, Chart, CheckBox, Heading, Image, Markdown,
   Menu, Meter, Paragraph, RadioButton, Stack, Text, TextInput, Video,
 } from 'grommet';
 
