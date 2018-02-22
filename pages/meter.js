@@ -1,4 +1,4 @@
-import { Box, Meter, Stack, Text } from 'grommet';
+import { Box, Meter } from 'grommet';
 import doc from 'grommet/components/Meter/doc';
 
 import Doc from '../components/Doc';
@@ -34,149 +34,85 @@ export default class MeterDoc extends React.Component {
       highlight: (index === highlight),
       onHover: this.onHover(index),
     }));
-    const highlightValue =
-      (multipleValues.filter(v => v.highlight)[0] || { value: 100 });
     return (
-      <Doc name='Meter' desc={desc}>
-        <Box pad='large'>
-          <Box margin={{ vertical: 'medium' }}>
-            <Meter values={SINGLE_VALUE} aria-label='Single value meter' />
-          </Box>
-          <Box margin={{ vertical: 'medium' }}>
-            <Meter values={multipleValues} aria-label='Multiple value meter' />
-          </Box>
-          <Box margin={{ vertical: 'medium' }}>
+      <Doc
+        name='Meter'
+        desc={desc}
+        examples={{
+          background: (
             <Meter
-              round={true}
-              size='xsmall'
-              thickness='xsmall'
-              values={multipleValues}
-              aria-label='Extra small multiple value meter'
+              background={{ color: 'light-4', opacity: 'medium' }}
+              size='small'
+              values={SINGLE_VALUE}
+              aria-label='rounded meter'
             />
-          </Box>
-          <Box margin={{ vertical: 'medium' }}>
+          ),
+          round: (
             <Meter
               round={true}
               size='small'
-              thickness='small'
-              values={multipleValues}
-              aria-label='Small multiple value meter'
+              values={SINGLE_VALUE}
+              aria-label='rounded meter'
             />
-          </Box>
-          <Box margin={{ vertical: 'medium' }}>
-            <Meter
-              round={true}
-              size='large'
-              thickness='large'
-              values={multipleValues}
-              aria-label='Large multiple value meter'
-            />
-          </Box>
-          <Box margin={{ vertical: 'medium' }}>
-            <Meter
-              round={true}
-              size='xlarge'
-              thickness='xlarge'
-              values={multipleValues}
-              aria-label='Extra large multiple value meter'
-            />
-          </Box>
-          <Box margin={{ vertical: 'medium' }}>
-            <Meter
-              size='full'
-              values={multipleValues}
-              aria-label='Full width value meter'
-            />
-          </Box>
-          <Box margin={{ vertical: 'medium' }}>
-            <Meter type='circle' values={SINGLE_VALUE} aria-label='Circle meter' />
-          </Box>
-          <Box margin={{ vertical: 'medium' }}>
-            <Meter
-              type='circle'
-              values={multipleValues}
-              aria-label='Multiple value circle meter'
-            />
-          </Box>
-          <Box margin={{ vertical: 'medium' }}>
-            <Meter
-              type='circle'
-              round={true}
-              values={multipleValues}
-              aria-label='Rounded multiple value circle meter'
-            />
-          </Box>
-          <Box margin={{ vertical: 'medium' }}>
-            <Meter
-              type='circle'
-              round={true}
-              size='xsmall'
-              thickness='xsmall'
-              values={multipleValues}
-              aria-label='Extra small rounded multiple value circle meter'
-            />
-          </Box>
-          <Box margin={{ vertical: 'medium' }}>
-            <Meter
-              type='circle'
-              round={true}
-              size='small'
-              thickness='small'
-              values={multipleValues}
-              aria-label='Small rounded multiple value circle meter'
-            />
-          </Box>
-          <Box margin={{ vertical: 'medium' }}>
-            <Meter
-              type='circle'
-              round={true}
-              size='large'
-              thickness='large'
-              values={multipleValues}
-              aria-label='Large rounded multiple value circle meter'
-            />
-          </Box>
-          <Box margin={{ vertical: 'medium' }}>
-            <Meter
-              type='circle'
-              round={true}
-              size='xlarge'
-              thickness='xlarge'
-              values={multipleValues}
-              aria-label='Extra large rounded multiple value circle meter'
-            />
-          </Box>
-          <Box margin={{ vertical: 'medium' }}>
-            <Meter
-              type='circle'
-              round={true}
-              size='full'
-              values={multipleValues}
-              aria-label='Full width multiple value circle meter'
-            />
-          </Box>
-          <Box margin={{ vertical: 'medium' }} alignSelf='start'>
-            <Stack>
-              <Meter
-                type='circle'
-                round={true}
-                size='medium'
-                values={multipleValues}
-                aria-label='Multipel value circle meter'
-              />
-              <Box
-                justify='center'
-                align='center'
-                pad='small'
-                round='small'
-                background={highlightValue.color}
-              >
-                <Text size='xxlarge'>{highlightValue.value}</Text>
+          ),
+          thickness: (
+            <Box>
+              {['xsmall', 'small', 'medium', 'large', 'xlarge'].map(thickness => (
+                <Box key={thickness} margin={{ bottom: 'xsmall' }} align='end'>
+                  <Meter
+                    thickness={thickness}
+                    size='small'
+                    values={SINGLE_VALUE}
+                    aria-label={`${thickness} thickness meter`}
+                  />
+                </Box>
+              ))}
+            </Box>
+          ),
+          type: (
+            <Box>
+              {['bar', 'circle'].map(type => (
+                <Box key={type} margin={{ bottom: 'xsmall' }} align='end'>
+                  <Meter
+                    type={type}
+                    size='small'
+                    values={SINGLE_VALUE}
+                    aria-label={`${type} meter`}
+                  />
+                </Box>
+              ))}
+            </Box>
+          ),
+          values: (
+            <Box>
+              <Box margin={{ bottom: 'xsmall' }} align='end'>
+                <Meter
+                  size='small'
+                  values={multipleValues}
+                  aria-label='multiple value meter'
+                />
               </Box>
-            </Stack>
-          </Box>
-        </Box>
-      </Doc>
+              <Box margin={{ bottom: 'xsmall' }} align='end'>
+                <Meter
+                  round={true}
+                  size='small'
+                  values={multipleValues}
+                  aria-label='multiple value meter'
+                />
+              </Box>
+              <Box margin={{ bottom: 'xsmall' }} align='end'>
+                <Meter
+                  round={true}
+                  type='circle'
+                  size='small'
+                  values={multipleValues}
+                  aria-label='multiple value meter'
+                />
+              </Box>
+            </Box>
+          ),
+        }}
+      />
     );
   }
 }

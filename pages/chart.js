@@ -1,4 +1,4 @@
-import { Box, Chart, Stack, Text } from 'grommet';
+import { Box, Chart } from 'grommet';
 import doc from 'grommet/components/Chart/doc';
 
 import Doc from '../components/Doc';
@@ -29,138 +29,115 @@ const VALUES2 = [
   { value: [0, 20, 60], label: 'sixty' },
 ];
 
-const REVERSE_VALUES =
-  VALUES.map((v, i) => ({ ...v, value: [i, v.value[1]] }));
-
 export default () => (
-  <Doc name='Chart' desc={desc}>
-    <Box pad='large'>
-      <Box margin={{ vertical: 'medium' }}>
+  <Doc
+    name='Chart'
+    desc={desc}
+    examples={{
+      color: (
         <Chart
+          color='brand'
           bounds={BOUNDS}
           values={VALUES}
-          size={{ width: 'medium', height: 'xsmall' }}
-          aria-label='Bar chart'
+          size={{ width: 'small', height: 'xsmall' }}
+          aria-label='colored chart'
         />
-      </Box>
-      <Box margin={{ vertical: 'medium' }}>
-        <Chart
-          bounds={BOUNDS}
-          values={VALUES}
-          size={{ width: 'medium', height: 'xsmall' }}
-          type='line'
-          aria-label='Line chart'
-        />
-      </Box>
-      <Box margin={{ vertical: 'medium' }}>
-        <Chart
-          bounds={BOUNDS}
-          values={VALUES}
-          size={{ width: 'medium', height: 'xsmall' }}
-          type='area'
-          aria-label='Area chart'
-        />
-      </Box>
-      <Box margin={{ vertical: 'medium' }}>
-        <Chart
-          bounds={BOUNDS}
-          values={VALUES}
-          size={{ width: 'medium', height: 'xsmall' }}
-          round={true}
-          aria-label='Rounded bar chart'
-        />
-      </Box>
-      <Box margin={{ vertical: 'medium' }}>
-        <Chart
-          bounds={BOUNDS}
-          values={VALUES}
-          size={{ width: 'medium', height: 'xsmall' }}
-          type='line'
-          round={true}
-          aria-label='Rounded line chart'
-        />
-      </Box>
-      <Box margin={{ vertical: 'medium' }}>
-        <Chart
-          bounds={BOUNDS}
-          values={VALUES}
-          size={{ width: 'medium', height: 'xsmall' }}
-          type='area'
-          round={true}
-          aria-label='Rounded area chart'
-        />
-      </Box>
-      <Box margin={{ vertical: 'medium' }}>
-        <Chart
-          bounds={BOUNDS}
-          values={VALUES}
-          size={{ width: 'xsmall', height: 'xxsmall' }}
-          thickness='xsmall'
-          aria-label='Extra small bar chart'
-        />
-      </Box>
-      <Box margin={{ vertical: 'medium' }}>
-        <Chart
-          bounds={BOUNDS}
-          values={VALUES}
-          size={{ width: 'small', height: 'xxsmall' }}
-          thickness='small'
-          aria-label='Small bar chart'
-        />
-      </Box>
-      <Box margin={{ vertical: 'medium' }}>
-        <Chart
-          bounds={BOUNDS}
-          values={VALUES}
-          size={{ width: 'xlarge', height: 'medium' }}
-          thickness='xlarge'
-          aria-label='Extra large bar chart'
-        />
-      </Box>
-      <Box margin={{ vertical: 'medium' }} alignSelf='start'>
-        <Stack>
-          <Chart
-            bounds={BOUNDS}
-            values={VALUES}
-            size={{ width: 'medium', height: 'xsmall' }}
-            type='area'
-            round={true}
-            aria-label='Rounded area chart'
-          />
-          <Chart
-            bounds={BOUNDS}
-            values={REVERSE_VALUES}
-            size={{ width: 'medium', height: 'xsmall' }}
-            color='accent-2'
-            type='line'
-            round={true}
-            thickness='small'
-            aria-label='Small rounded line chart'
-          />
-        </Stack>
-        <Box direction='row' responsive={false} justify='between'>
-          <Text>then</Text>
-          <Text>now</Text>
+      ),
+      onClick: (
+        <Box>
+          {['line', 'area'].map(type => (
+            <Box key={type} margin={{ bottom: 'xsmall' }}>
+              <Chart
+                type={type}
+                round={true}
+                bounds={BOUNDS}
+                onClick={() => alert(`Clicked ${type}`)}
+                values={VALUES}
+                size={{ width: 'small', height: 'xsmall' }}
+                aria-label={`${type} rounded chart`}
+              />
+            </Box>
+          ))}
         </Box>
-      </Box>
-      <Box margin={{ vertical: 'medium' }}>
-        <Chart
-          bounds={BOUNDS}
-          values={VALUES2}
-          size={{ width: 'medium', height: 'xsmall' }}
-          aria-label='Small rounded line chart'
-        />
-      </Box>
-      <Box margin={{ vertical: 'medium' }}>
-        <Chart
-          bounds={BOUNDS}
-          values={VALUES2}
-          size={{ width: 'medium', height: 'xsmall' }}
-          thickness='xsmall'
-          type='area'
-          aria-label='Extra small ranged area chart'
-        />
-      </Box>
-    </Box>
-  </Doc>
+      ),
+      onHover: (
+        <Box>
+          {['line', 'area'].map(type => (
+            <Box key={type} margin={{ bottom: 'xsmall' }}>
+              <Chart
+                type={type}
+                round={true}
+                bounds={BOUNDS}
+                onHover={over => console.log(`over ${type} ${over}`)}
+                values={VALUES}
+                size={{ width: 'small', height: 'xsmall' }}
+                aria-label={`${type} rounded chart`}
+              />
+            </Box>
+          ))}
+        </Box>
+      ),
+      round: (
+        <Box>
+          {['bar', 'line', 'area'].map(type => (
+            <Box key={type} margin={{ bottom: 'xsmall' }}>
+              <Chart
+                type={type}
+                round={true}
+                bounds={BOUNDS}
+                values={VALUES}
+                size={{ width: 'small', height: 'xsmall' }}
+                aria-label={`${type} rounded chart`}
+              />
+            </Box>
+          ))}
+        </Box>
+      ),
+      thickness: (
+        <Box>
+          {['xsmall', 'small', 'medium', 'large'].map(thickness => (
+            <Box key={thickness} margin={{ bottom: 'xsmall' }}>
+              <Chart
+                thickness={thickness}
+                bounds={BOUNDS}
+                values={VALUES}
+                size={{ width: 'small', height: 'xsmall' }}
+                aria-label={`${thickness} thickness chart`}
+              />
+            </Box>
+          ))}
+        </Box>
+      ),
+      type: (
+        <Box>
+          {['bar', 'line', 'area'].map(type => (
+            <Box key={type} margin={{ bottom: 'xsmall' }}>
+              <Chart
+                type={type}
+                bounds={BOUNDS}
+                values={VALUES}
+                size={{ width: 'small', height: 'xsmall' }}
+                aria-label={`${type} chart`}
+              />
+            </Box>
+          ))}
+        </Box>
+      ),
+      values: (
+        <Box>
+          {['bar', 'area'].map(type => (
+            <Box key={type} margin={{ bottom: 'xsmall' }}>
+              <Chart
+                type={type}
+                bounds={BOUNDS}
+                values={VALUES2}
+                size={{ width: 'small', height: 'xsmall' }}
+                aria-label={`ranged ${type} chart`}
+              />
+            </Box>
+          ))}
+        </Box>
+      ),
+    }}
+  />
 );

@@ -1,5 +1,4 @@
-import { Box, Button, Heading, Stack, Video } from 'grommet';
-import { PlayFill as Play, Revert, Share } from 'grommet-icons';
+import { Box, Video } from 'grommet';
 import doc from 'grommet/components/Video/doc';
 
 import Doc from '../components/Doc';
@@ -7,13 +6,13 @@ import Doc from '../components/Doc';
 const desc = doc(Video).toJSON();
 
 const CONTENT = [
-  <source key='video' src='/assets/small.mp4' type='video/mp4' />,
+  <source key='video' src='//v2.grommet.io/assets/small.mp4' type='video/mp4' />,
   <track
     key='cc'
     label='English'
     kind='subtitles'
     srcLang='en'
-    src='/assets/small-en.vtt'
+    src='//v2.grommet.io/assets/small-en.vtt'
     default={true}
   />,
 ];
@@ -24,105 +23,44 @@ const CONTENT2 = [...CONTENT,
     label='French'
     kind='subtitles'
     srcLang='fr'
-    src='/assets/small-fr.vtt'
+    src='//v2.grommet.io/assets/small-fr.vtt'
   />,
 ];
 
-class Stacked extends React.Component {
-  constructor() {
-    super();
-    this.state = { state: 'before' };
-  }
-  render() {
-    const { state } = this.state;
-    let over;
-    if (state === 'before') {
-      over = (
-        <Box justify='center' align='center'>
-          <Button onClick={() => this.setState({ state: 'during' })}>
-            <Box
-              pad='large'
-              round='medium'
-              background={{ color: 'light-4', opacity: 'weak' }}
-            >
-              <Play size='large' color='brand' />
-            </Box>
-          </Button>
-        </Box>
-      );
-    } else if (state === 'after') {
-      over = (
-        <Box direction='row' justify='center' align='center'>
-          <Button onClick={() => this.setState({ state: 'during' })}>
-            <Box
-              margin='small'
-              pad='medium'
-              round='medium'
-              background={{ color: 'light-4', opacity: 'weak' }}
-            >
-              <Revert size='large' />
-            </Box>
-          </Button>
-          <Button onClick={() => {}}>
-            <Box
-              margin='small'
-              pad='medium'
-              round='medium'
-              background={{ color: 'light-4', opacity: 'weak' }}
-            >
-              <Share size='large' color='brand' />
-            </Box>
-          </Button>
-        </Box>
-      );
-    }
-
-    return (
-      <Stack>
-        <Video
-          controls={state === 'during' ? 'over' : false}
-          autoPlay={state === 'during'}
-          onEnded={() => this.setState({ state: 'after' })}
-        >
-          {CONTENT}
-        </Video>
-        {over}
-      </Stack>
-    );
-  }
-}
-
 export default () => (
-  <Doc name='Video' desc={desc}>
-    <Box pad='large'>
-      <Heading level={2} textAlign='center'>Controls below</Heading>
-      <Box align='center' margin={{ vertical: 'medium' }}>
-        <Video controls='below'>
-          {CONTENT}
-        </Video>
-      </Box>
-      <Heading level={2} textAlign='center'>Controls over</Heading>
-      <Box align='center' margin={{ vertical: 'medium' }}>
-        <Video controls='over'>
+  <Doc
+    name='Video'
+    desc={desc}
+    example={(
+      <Box pad='large'>
+        <Video controls='over' fit='cover'>
           {CONTENT2}
         </Video>
       </Box>
-      <Heading level={2} textAlign='center'>Fit contain</Heading>
-      <Box align='center' margin={{ vertical: 'medium' }} basis='medium'>
-        <Video controls='over' fit='contain'>
-          {CONTENT}
-        </Video>
-      </Box>
-      <Heading level={2} textAlign='center'>Fit cover, autoplay, loop, mute, no controls</Heading>
-      <Box margin={{ vertical: 'medium' }} basis='medium'>
-        <Video fit='cover' controls={false} autoPlay={true} loop={true} mute={true}>
-          {CONTENT}
-        </Video>
-      </Box>
-      <Heading level={2} textAlign='center'>Before and after content with Stack</Heading>
-      <Box align='center' margin={{ vertical: 'medium' }}>
-        <Stacked />
-      </Box>
-    </Box>
-  </Doc>
+    )}
+    examples={{
+      controls: (
+        <Box>
+          {[false, 'over', 'below'].map(controls => (
+            <Box key={controls} basis='small' margin={{ bottom: 'xsmall' }}>
+              <Video controls={controls} fit='cover'>
+                {CONTENT2}
+              </Video>
+            </Box>
+          ))}
+        </Box>
+      ),
+      fit: (
+        <Box>
+          {['contain', 'cover'].map(fit => (
+            <Box key={fit} basis='small' border='all' margin={{ bottom: 'xsmall' }}>
+              <Video controls='over' fit={fit}>
+                {CONTENT}
+              </Video>
+            </Box>
+          ))}
+        </Box>
+      ),
+    }}
+  />
 );

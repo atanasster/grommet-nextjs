@@ -6,15 +6,21 @@ import Doc from '../components/Doc';
 const desc = doc(Text).toJSON();
 
 export default () => (
-  <Doc name='Text' desc={desc}>
-    <Box pad='large'>
-      <Text size='xsmall'>Text XSmall</Text>
-      <Text size='small'>Text Small</Text>
-      <Text size='medium'>Text Medium</Text>
-      <Text size='large'>Text Large</Text>
-      <Text size='xlarge'>Text XLarge</Text>
-      <Text size='xxlarge'>Text XXLarge</Text>
-      <Text color='status-critical'>status-critical</Text>
-    </Box>
-  </Doc>
+  <Doc
+    name='Text'
+    desc={desc}
+    examples={{
+      color: <Text color='status-critical'>status-critical</Text>,
+      size: (
+        <Box>
+          <Text size='xsmall' margin='none'>Aaaaa Bbbbb Ccccc</Text>
+          <Text size='small' margin='none'>Ddddd Eeeee Fffff</Text>
+          <Text size='medium' margin='none'>Ggggg Hhhhh Iiiii</Text>
+          <Text size='large' margin='none'>Jjjjj Kkkkk</Text>
+          <Text size='xlarge' margin='none'>Lllll</Text>
+          <Text size='xxlarge' margin='none'>Mmmmm</Text>
+        </Box>
+      ),
+    }}
+  />
 );

@@ -7,55 +7,20 @@ import Doc from '../components/Doc';
 
 const desc = doc(Anchor).toJSON();
 
-function onClick(event) {
-  event.preventDefault();
-  alert('hi');
-}
-
 export default () => (
-  <Doc name='Anchor' desc={desc}>
-    <Box pad='large' align='start'>
-      <Box margin='small'>
-        <Anchor href='#' onClick={onClick}>
-          Child text
-        </Anchor>
+  <Doc
+    name='Anchor'
+    desc={desc}
+    example={(
+      <Box flex={true} justify='center' align='center'>
+        <Anchor href='#' primary={true} label='For Example' />
       </Box>
-      <Box margin='small'>
-        <Anchor href='#' label='Label' primary={true} onClick={onClick} />
-      </Box>
-      <Box margin='small'>
-        <Anchor
-          href='#'
-          icon={<Edit />}
-          label='Label'
-          onClick={onClick}
-        />
-      </Box>
-      <Box margin='small'>
-        <Anchor
-          href='#'
-          icon={<Edit />}
-          label='Reverse'
-          reverse={true}
-          onClick={onClick}
-        />
-      </Box>
-      <Box margin='small'>
-        <Anchor
-          href='#'
-          icon={<Edit />}
-          label='Disabled'
-          disabled={true}
-          onClick={onClick}
-        />
-      </Box>
-      <Box margin='small'>
-        <Anchor
-          href='#'
-          icon={<Edit />}
-          onClick={onClick}
-        />
-      </Box>
-    </Box>
-  </Doc>
+    )}
+    examples={{
+      icon: <Anchor href='#' icon={<Edit />} />,
+      label: <Anchor href='#' label='Edit' />,
+      primary: <Anchor href='#' primary={true} label='Edit' />,
+      reverse: <Anchor href='#' icon={<Edit />} label='Edit' reverse={true} />,
+    }}
+  />
 );

@@ -10,16 +10,22 @@ const desc = doc(DropButton).toJSON();
 export default class DropButtonDoc extends React.Component {
   render() {
     return (
-      <Doc name='DropButton' desc={desc}>
-        <Box pad='large'>
-          <Box direction='row'>
-            <AirlineMultiSelect />
+      <Doc
+        name='DropButton'
+        desc={desc}
+        example={(
+          <Box flex={true} justify='center' align='center'>
+            <Box align='start'>
+              <Box direction='row' margin={{ vertical: 'medium' }}>
+                <AirlineMultiSelect />
+              </Box>
+              <Box direction='row' margin={{ vertical: 'medium' }}>
+                <LabelMultiSelect />
+              </Box>
+            </Box>
           </Box>
-          <Box direction='row' margin={{ vertical: 'small' }}>
-            <LabelMultiSelect />
-          </Box>
-        </Box>
-      </Doc>
+        )}
+      />
     );
   }
 }

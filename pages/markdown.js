@@ -1,4 +1,4 @@
-import { Box, Markdown } from 'grommet';
+import { Markdown } from 'grommet';
 import doc from 'grommet/components/Markdown/doc';
 
 import Doc from '../components/Doc';
@@ -6,19 +6,18 @@ import Doc from '../components/Doc';
 const desc = doc(Markdown).toJSON();
 
 const CONTENT = `
-# Heading 1
-Paragraph
-## Heading 2
-### Heading 3
-#### Heading 4
+# Grommet **heart**s markdown
+Favorite thing, [link](https://www.instagram.com/explore/tags/grommetux/)
 `;
 
 export default () => (
-  <Doc name='Markdown' desc={desc}>
-    <Box pad={{ horizontal: 'large' }}>
+  <Doc
+    name='Markdown'
+    desc={desc}
+    example={(
       <Markdown>
         {CONTENT}
       </Markdown>
-    </Box>
-  </Doc>
+    )}
+  />
 );

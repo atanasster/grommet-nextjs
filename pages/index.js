@@ -1,13 +1,15 @@
 import {
-  Box, Button, Chart, CheckBox, Heading, Image, Markdown,
-  Menu, Meter, Paragraph, RadioButton, Stack, Text, TextInput, Video,
+  Anchor, Box, Button, Calendar, Chart, CheckBox, Clock,
+  Diagram, Distribution, DropButton,
+  Heading, Image,
+  Menu, Meter, Paragraph, RadioButton, RangeInput,
+  Select, Stack,
+  Table, TableBody, TableCell, TableHeader, TableRow,
+  Text, TextArea, TextInput, Video, WorldMap,
 } from 'grommet';
-
-import { Actions } from 'grommet-icons';
-
-import Page from '../components/Page';
+import { Actions, Grommet as GrommetIcon, TopCorner, BottomCorner } from 'grommet-icons';
 import RoutedButton from '../components/RoutedButton';
-import RoutedAnchor from '../components/RoutedAnchor';
+import Page from '../components/Page';
 
 const CHART_VALUES = [
   { value: [7, 90], label: 'ninety' },
@@ -17,234 +19,369 @@ const CHART_VALUES = [
   { value: [3, 60], label: 'sixty' },
   { value: [2, 40], label: 'forty' },
   { value: [1, 30], label: 'thirty' },
-  { value: [0, 0], label: 'zero' },
+  { value: [0, 10], label: 'ten' },
 ];
 
-const Section = ({
-  children, align, basis, index, label,
-}) => (
+const Section = ({ children, index, name }) => (
   <Box
-    align={align || 'start'}
-    pad='medium'
-    basis={basis || 'medium'}
+    pad={{ vertical: 'medium' }}
     animation={[
       { type: 'zoomIn', duration: 500, delay: 100 + (100 * index) },
       { type: 'fadeIn', duration: 500, delay: (100 * index) },
     ]}
   >
     <Heading level={2} margin={{ top: 'none' }}>
-      <strong>{label.toUpperCase()}</strong>
+      {name}
     </Heading>
-    {children}
+    <Box direction='row' wrap={true}>
+      {children}
+    </Box>
   </Box>
 );
 
-const Item = ({ children, path }) => (
-  <Box margin={{ vertical: 'small' }}>
+const Item = ({
+  name, path, children, center,
+}) => (
+  <Box basis='medium' margin={{ right: 'medium', bottom: 'medium' }}>
     <RoutedButton path={path}>
-      {children}
+      <Box>
+        <Heading level={3} size='small' margin={{ top: 'none', bottom: 'xsmall' }}>
+          <strong>{name}</strong>
+        </Heading>
+      </Box>
+      <Box>
+        <Box
+          basis='small'
+          background='rgba(255, 255, 255, 0.3)'
+          justify={center ? 'center' : undefined}
+          align={center ? 'center' : undefined}
+          pad={center ? 'medium' : undefined}
+          style={{ overflow: 'hidden' }}
+        >
+          {children}
+        </Box>
+      </Box>
     </RoutedButton>
   </Box>
 );
 
-export default class Home extends React.Component {
-  state = {}
-
-  selectColor(color) {
-    return (event) => {
-      event.stopPropagation();
-      this.setState({
-        activeColor: (color === this.state.activeColor ? undefined : color),
-      });
-    };
-  }
-
+export default class Components extends React.Component {
   render() {
-    const { activeColor } = this.state;
-
     return (
       <Page title='Explore Grommet 2'>
-        <Box direction='row' wrap={true} >
-          <Section align='stretch' label='Layout' index={0}>
-            <Item path='/box'>
-              <Box direction='row'>
-                <Box border={{ color: 'light-3' }} basis='medium' pad='medium'>
-                  Box
-                </Box>
+        <Box pad='large'>
+          <Box direction='row'>
+            <Box margin={{ top: 'large' }} basis='medium' overflow='hidden'>
+              <Heading level={1}>
+                <strong>Read our documentation</strong>
+              </Heading>
+              <Paragraph size='large' margin='none'>
+                These are the building blocks of the grommet libray, master
+                them, and become a l33t.
+              </Paragraph>
+            </Box>
+          </Box>
+        </Box>
+
+        <Box pad={{ horizontal: 'large' }}>
+          <Section align='stretch' name='Layout' index={0}>
+            <Item name='Box' path='/box'>
+              <Box flex={true} border={{ color: 'brand', size: 'large' }} />
+            </Item>
+
+            <Item name='Grid' path='/grid'>
+              <Box flex={true} direction='row'>
+                <Box basis='1/4' background='brand' margin={{ right: 'xsmall' }} />
+                <Box flex={true} background='brand' margin={{ right: 'xsmall' }} />
+                <Box basis='1/4' background='brand' />
               </Box>
             </Item>
 
-            <Item path='/grid'>
-              <Box direction='column'>
-                <Box pad='small' background='light-3' />
-                <Box direction='row'>
-                  <Box border={{ color: 'light-3' }} pad='medium' flex='grow'>
-                    Grid
+            <Item name='Layer' path='/layer'>
+              <Box flex={true} direction='row'>
+                <Box basis='1/3' background='light-5' />
+                <Box flex={true} background='brand' />
+              </Box>
+            </Item>
+
+            <Item name='Stack' path='/stack'>
+              <Box flex={true} border={{ color: 'brand', size: 'large' }}>
+                <Box flex={true} background='brand' margin='large' />
+              </Box>
+            </Item>
+          </Section>
+
+          <Section name='Type' index={1}>
+            <Item name='Heading' path='/heading' center={true}>
+              <Heading level={2} margin='none'>Player 1 has entered the game</Heading>
+            </Item>
+            <Item name='Markdown' path='/markdown' center={true}>
+              <code>
+  # Grommet **heart**s markdown.
+
+  Favorite thing,
+  [link](https://www.instagram.com/p/I6h5u/)
+              </code>
+            </Item>
+            <Item name='Paragraph' path='/paragraph' center={true}>
+              <Paragraph>
+                OASIS was much more than a game or an entertainment
+                platform. {"It's"} a new way of life. People stay connected to it
+                for the majority of a day...
+              </Paragraph>
+            </Item>
+            <Item name='Text' path='/text' center={true}>
+              <Text>Hello there!</Text>
+            </Item>
+          </Section>
+
+          <Section basis='full' align='stretch' name='Color' index={2}>
+            <Box flex={true}>
+              <RoutedButton path='/color'>
+                <Box>
+                  <Box flex={true} basis='small' direction='row' wrap={true}>
+                    {['brand', 'accent-1', 'accent-2',
+                      'neutral-1', 'neutral-2', 'neutral-3',
+                      'status-ok', 'status-warning', 'status-critical',
+                      'status-disabled',
+                    ].map(color => (
+                      <Box key={color} flex={true} background={color} />
+                    ))}
                   </Box>
-                  <Box pad='medium' background='light-2' />
                 </Box>
-              </Box>
-            </Item>
+              </RoutedButton>
+            </Box>
+          </Section>
 
-            <Item path='/stack'>
-              <Stack>
-                <Box pad='medium'>
-                  <Heading level={3} margin='none' textAlign='center'>
-                    Stack
-                  </Heading>
-                </Box>
-                <Box
-                  pad={{ top: 'medium', left: 'small', right: 'small' }}
-                  border={{ color: 'light-3' }}
-                >
-                  <Heading level={2} margin='small' textAlign='center'>Stack</Heading>
-                </Box>
-              </Stack>
+          <Section name='Controls' index={3}>
+            <Item name='Anchor' path='/anchor' center={true}>
+              <Anchor label={"Don't press me"} primary={true} />
             </Item>
-
-            <Item path='/layer'>
-              <Box direction='row'>
+            <Item name='Button' path='/button' center={true}>
+              <Button label='Panic' primary={true} onClick={() => {}} />
+            </Item>
+            <Item name='Drop' path='/drop' center={true}>
+              <Box pad='xsmall' border={true}>
                 <Box
-                  flex={true}
-                  background='dark-5'
-                  pad={{ horizontal: 'large', vertical: 'small' }}
-                >
-                  - - -
-                </Box>
-                <Box
-                  border={{ color: 'light-3' }}
-                  basis='small'
+                  background='brand'
+                  margin='xsmall'
                   pad={{ horizontal: 'medium', vertical: 'small' }}
-                >
-                  Layer
-                </Box>
+                />
               </Box>
             </Item>
-          </Section>
-
-          <Section label='Text' index={1}>
-            <Item path='/heading'>
-              <Heading level={2} margin='none'>Heading</Heading>
-            </Item>
-            <Item path='/paragraph'>
-              <Paragraph>Paragraph of text.</Paragraph>
-            </Item>
-            <Item path='/text'>
-              <Text>Text</Text>
-            </Item>
-            <Item path='/markdown'>
-              <Markdown>
-                ### *Markdown* `code`
-              </Markdown>
-            </Item>
-          </Section>
-
-          <Section label='Controls' index={2}>
-            <Box margin={{ vertical: 'small' }}>
-              <RoutedButton path='/button' label='Button' />
-            </Box>
-            <Box margin={{ vertical: 'small' }}>
-              <RoutedAnchor primary={true} path='/anchor' label='Anchor' />
-            </Box>
-            <Item path='/menu'>
-              <Menu tabIndex='-1' label='Menu' items={[]} />
-            </Item>
-            <Item path='/drop-button'>
-              <Box direction='row' align='center'>
-                <Box margin={{ right: 'small' }}>Drop Button</Box>
-                <Actions color='brand' />
-              </Box>
-            </Item>
-            <Item path='/text-input'>
-              <TextInput placeholder='TextInput' disabled={true} />
-            </Item>
-            <Item path='/check-box'>
-              <CheckBox label='CheckBox' disabled={true} />
-            </Item>
-            <Item path='/radio-button'>
-              <RadioButton label='RadioButton' disabled={true} />
-            </Item>
-            <Box margin={{ vertical: 'small' }}>
-              <RoutedAnchor path='/form' label='Form' />
-            </Box>
-          </Section>
-
-          <Section align='stretch' label='Visualizations' index={3}>
-            <Item path='/meter'>
-              <Stack anchor='top-right'>
-                <Meter
-                  aria-label='Meter example'
-                  values={[{ value: 60, label: 'sixty' }]}
-                />
-                <Text margin={{ horizontal: 'small' }}>Meter</Text>
-              </Stack>
-            </Item>
-
-            <Item path='/chart'>
-              <Stack anchor='top-left'>
-                <Chart
-                  aria-label='Chart example'
-                  bounds={[[0, 7], [0, 100]]}
-                  size={{ width: 'medium', height: 'xsmall' }}
-                  values={CHART_VALUES}
-                />
-                <Text>Chart</Text>
-              </Stack>
-            </Item>
-          </Section>
-
-          <Section align='stretch'label='Media' index={4}>
-            <Item path='/image'>
+            <Item name='DropButton' path='/dropbutton' center={true}>
               <Box>
-                <Text margin='none'>Image</Text>
-                <Box basis='xsmall'>
-                  <Image
-                    fit='contain'
-                    src='/assets/Wilderpeople_Ricky.jpg'
+                <DropButton
+                  control={(
+                    <Box direction='row'>
+                      <Box margin={{ right: 'small' }}>Actions</Box>
+                      <Actions color='brand' />
+                    </Box>
+                  )}
+                />
+                <Box margin={{ top: 'xsmall' }} pad='xsmall' border={true}>
+                  <Box
+                    background='brand'
+                    margin='xsmall'
+                    pad={{ horizontal: 'medium', vertical: 'small' }}
                   />
                 </Box>
               </Box>
             </Item>
+            <Item name='Menu' path='/menu' center={true}>
+              <Menu tabIndex='-1' label='Actions' items={[]} />
+            </Item>
+          </Section>
 
-            <Item path='/video'>
-              <Box>
-                <Text margin='none'>Video</Text>
-                <Box basis='xsmall'>
-                  <Video fit='contain'>
-                    <source src='/assets/small.mp4' type='video/mp4' />
-                  </Video>
+          <Section name='Input' index={4}>
+            <Item name='CheckBox' path='/checkbox' center={true}>
+              <CheckBox checked={true} label='Option one' disabled={true} />
+            </Item>
+            <Item name='RadioButton' path='/radiobutton' center={true}>
+              <RadioButton checked={true} label='Option one' disabled={true} />
+            </Item>
+            <Item name='RangeInput' path='/rangeinput' center={true}>
+              <RangeInput />
+            </Item>
+            <Item name='Select' path='/select' center={true}>
+              <Select options={[]} placeholder='Choices' tabIndex='-1' />
+            </Item>
+            <Item name='TextArea' path='/textarea' center={true}>
+              <TextArea placeholder='Placeholder' disabled={true} />
+            </Item>
+            <Item name='TextInput' path='/textinput' center={true}>
+              <TextInput placeholder='Placeholder' disabled={true} />
+            </Item>
+          </Section>
+
+          <Section name='Visualizations' index={3}>
+            <Item name='Calendar' path='/calendar'>
+              <Box align='center' margin={{ top: 'xsmall' }}>
+                <Calendar size='small' />
+              </Box>
+            </Item>
+            <Item name='Chart' path='/chart'>
+              <Chart
+                aria-label='Chart example'
+                bounds={[[0, 7], [0, 100]]}
+                size={{ width: 'medium', height: 'small' }}
+                round={true}
+                values={CHART_VALUES}
+              />
+            </Item>
+            <Item name='Clock' path='/clock' center={true}>
+              <Clock />
+            </Item>
+            <Item name='Meter' path='/meter' center={true}>
+              <Meter
+                aria-label='Meter example'
+                type='circle'
+                size='full'
+                thickness='large'
+                round={true}
+                values={[{ value: 60, label: 'sixty' }]}
+              />
+            </Item>
+            <Item name='Diagram' path='/diagram' center={true}>
+              <Stack>
+                <Box>
+                  <Box direction='row'>
+                    {[1, 2].map(id => (
+                      <Box
+                        key={id}
+                        id={id}
+                        basis='xxsmall'
+                        margin='small'
+                        pad='medium'
+                        round='small'
+                        background='light-2'
+                      />
+                    ))}
+                  </Box>
+                  <Box direction='row'>
+                    {[3, 4].map(id => (
+                      <Box
+                        key={id}
+                        id={id}
+                        basis='xxsmall'
+                        margin='small'
+                        pad='medium'
+                        round='small'
+                        background='light-2'
+                      />
+                    ))}
+                  </Box>
                 </Box>
+                <Diagram
+                  connections={[
+                    {
+                      fromId: '1',
+                      toId: '2',
+                      color: 'accent-1',
+                      thickness: 'xsmall',
+                      round: true,
+                    },
+                    {
+                      fromId: '1',
+                      toId: '4',
+                      color: 'accent-1',
+                      thickness: 'xsmall',
+                      round: true,
+                    },
+                  ]}
+                />
+              </Stack>
+            </Item>
+            <Item name='Distribution' path='/distribution'>
+              <Distribution
+                values={[
+                  { value: 70, color: 'light-3' },
+                  { value: 50, color: 'light-3' },
+                  { value: 30, color: 'brand' },
+                  { value: 10, color: 'light-3' },
+                ]}
+              >
+                {value => (
+                  <Box pad='xsmall' background={value.color} fill={true}>
+                    <Text>{value.value}</Text>
+                  </Box>
+                )}
+              </Distribution>
+            </Item>
+            <Item name='WorldMap' path='/worldmap' center={true}>
+              <WorldMap color='brand' />
+            </Item>
+          </Section>
+
+          <Section name='Media' index={4}>
+            <Item name='Image' path='/image'>
+              <Image
+                fit='cover'
+                src='//v2.grommet.io/assets/Wilderpeople_Ricky.jpg'
+              />
+            </Item>
+
+            <Item name='Video' path='/video'>
+              <Video fit='cover'>
+                <source src='//v2.grommet.io/assets/small.mp4' type='video/mp4' />
+              </Video>
+            </Item>
+          </Section>
+
+          <Section name='Accessibility' index={5}>
+            <Item name='SkipLinks' path='/skiplinks' center={true}>
+              <Anchor path='' label='SkipLinks' />
+            </Item>
+          </Section>
+
+          <Section name='Utilities' index={4}>
+            <Item name='Grommet' path='/grommet' center={true}>
+              <GrommetIcon color='brand' />
+            </Item>
+            <Item name='Keyboard' path='/keyboard' center={true}>
+              <Text>ESC</Text>
+            </Item>
+            <Item name='Responsive' path='/responsive' center={true}>
+              <Box direction='row'>
+                <TopCorner />
+                <BottomCorner />
               </Box>
             </Item>
           </Section>
-          <Section align='stretch' label='Color' index={5}>
-            <Box
-              direction='row'
-              align='start'
-              basis='full'
-              wrap={true}
-              margin={{ vertical: 'small' }}
-            >
-              {['brand', 'accent-1', 'accent-2',
-                'neutral-1', 'neutral-2', 'neutral-3',
-                'light-1', 'light-2', 'light-3', 'light-4', 'light-5',
-                'dark-1', 'dark-2', 'dark-3', 'dark-4', 'dark-5',
-                'status-ok', 'status-warning', 'status-critical',
-                'status-disabled',
-              ].map(color => (
-                <Box key={color} flex='grow'>
-                  <Button a11yTitle={`${color} color`} onClick={this.selectColor(color)}>
-                    <Box background={color} pad='xsmall'>
-                      {activeColor === color ? color : <span>&nbsp;</span>}
-                    </Box>
-                  </Button>
-                </Box>
-              ))}
-            </Box>
+
+          <Section name='Old School' index={6}>
+            <Item name='Table' path='/table' center={true}>
+              <Table>
+                <TableHeader>
+                  <TableRow>
+                    <TableCell scope='col' border='bottom'>Name</TableCell>
+                    <TableCell scope='col' border='bottom'>Flavor</TableCell>
+                  </TableRow>
+                </TableHeader>
+                <TableBody>
+                  <TableRow>
+                    <TableCell scope='row'><strong>Eric</strong></TableCell>
+                    <TableCell>Coconut</TableCell>
+                  </TableRow>
+                  <TableRow>
+                    <TableCell scope='row'><strong>Chris</strong></TableCell>
+                    <TableCell>Watermelon</TableCell>
+                  </TableRow>
+                </TableBody>
+              </Table>
+            </Item>
+
+            <Item name='Tabs' path='/tabs'>
+              <Box flex={true} direction='row'>
+                <Box flex={true} background='brand' margin={{ top: 'large' }} />
+                <Box flex={true} background='brand' margin={{ top: 'medium' }} />
+                <Box flex={true} background='brand' margin={{ top: 'large' }} />
+              </Box>
+            </Item>
           </Section>
+
         </Box>
       </Page>
     );
   }
 }
-

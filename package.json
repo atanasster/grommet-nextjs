@@ -9,13 +9,14 @@
     "start": "next start -p $PORT"
   },
   "dependencies": {
-    "babel-plugin-styled-components": "^1.1.5",
     "babel-plugin-grommet": "^0.5.1",
+    "babel-plugin-styled-components": "^1.1.5",
     "grommet": "https://github.com/grommet/grommet/tarball/NEXT-stable",
     "grommet-icons": "^0.15.0",
     "next": "5.0.0",
     "react": "16.2.0",
     "react-dom": "16.2.0",
+    "react-formify": "^0.10.2",
     "styled-components": "^2.1.0"
   },
   "devDependencies": {

@@ -6,29 +6,21 @@ import Doc from '../components/Doc';
 const desc = doc(CheckBox).toJSON();
 
 export default () => (
-  <Doc name='CheckBox' desc={desc}>
-    <Box pad='large' align='start'>
-      <Box margin='small'>
-        <CheckBox label='default' onChange={() => {}} />
-      </Box>
-      <Box margin='small'>
-        <CheckBox label='disabled, checked' disabled={true} checked={true} onChange={() => {}} />
-      </Box>
-      <Box margin='small'>
-        <CheckBox label='reverse' reverse={true} onChange={() => {}} />
-      </Box>
-      <Box margin='small'>
-        <CheckBox label='toggle' toggle={true} onChange={() => {}} />
-      </Box>
-
-      <Box margin='small' background='dark-2'>
-        <Box margin='medium'>
-          <CheckBox label='dark check' onChange={() => {}} />
+  <Doc
+    name='CheckBox'
+    desc={desc}
+    examples={{
+      checked: <CheckBox label='A' checked={true} onChange={() => {}} />,
+      disabled: <CheckBox label='A' disabled={true} />,
+      reverse: <CheckBox label='A' reverse={true} onChange={() => {}} />,
+      toggle: (
+        <Box>
+          <Box margin={{ bottom: 'xsmall' }}>
+            <CheckBox label='A' toggle={true} onChange={() => {}} />
+          </Box>
+          <CheckBox label='B' toggle={true} checked={true} onChange={() => {}} />
         </Box>
-        <Box margin='medium'>
-          <CheckBox label='dark toggle' toggle={true} onChange={() => {}} />
-        </Box>
-      </Box>
-    </Box>
-  </Doc>
+      ),
+    }}
+  />
 );

@@ -6,20 +6,58 @@ import Doc from '../components/Doc';
 const desc = doc(Heading).toJSON();
 
 export default () => (
-  <Doc name='Heading' desc={desc}>
-    <Box pad={{ horizontal: 'large' }}>
-      <Heading level={1}>Heading 1</Heading>
-      <Heading level={2}>Heading 2</Heading>
-      <Heading level={3}>Heading 3</Heading>
-      <Heading level={4}>Heading 4</Heading>
-      <Heading level={1} size='large'>Heading 1 Large</Heading>
-      <Heading level={2} size='large'>Heading 2 Large</Heading>
-      <Heading level={3} size='large'>Heading 3 Large</Heading>
-      <Heading level={4} size='large'>Heading 4 Large</Heading>
-      <Heading level={1} size='small'>Heading 1 Small</Heading>
-      <Heading level={2} size='small'>Heading 2 Small</Heading>
-      <Heading level={3} size='small'>Heading 3 Small</Heading>
-      <Heading level={4} size='small'>Heading 4 Small</Heading>
-    </Box>
-  </Doc>
+  <Doc
+    name='Heading'
+    desc={desc}
+    examples={{
+      level: (
+        <Box>
+          <Heading level={1} margin='none'>A</Heading>
+          <Heading level={2} margin='none'>B</Heading>
+          <Heading level={3} margin='none'>C</Heading>
+          <Heading level={4} margin='none'>D</Heading>
+        </Box>
+      ),
+      margin: (
+        <Box>
+          <Box border='horizontal' pad={{ horizontal: 'small' }}>
+            <Heading level={2} margin='none'>A</Heading>
+          </Box>
+          <Box border='horizontal' pad={{ horizontal: 'small' }}>
+            <Heading level={2} margin='small'>B</Heading>
+          </Box>
+          <Box border='horizontal' pad={{ horizontal: 'small' }}>
+            <Heading level={2} margin='medium'>C</Heading>
+          </Box>
+          <Box border='horizontal' pad={{ horizontal: 'small' }}>
+            <Heading level={2} margin='large'>D</Heading>
+          </Box>
+        </Box>
+      ),
+      size: (
+        <Box>
+          <Box direction='row' responsive={false}>
+            <Heading level={1} margin='none' size='small'>A</Heading>
+            <Heading level={1} margin='none' size='medium'>B</Heading>
+            <Heading level={1} margin='none' size='large'>C</Heading>
+          </Box>
+          <Box direction='row' responsive={false}>
+            <Heading level={2} margin='none' size='small'>D</Heading>
+            <Heading level={2} margin='none' size='medium'>E</Heading>
+            <Heading level={2} margin='none' size='large'>F</Heading>
+          </Box>
+          <Box direction='row' responsive={false}>
+            <Heading level={3} margin='none' size='small'>G</Heading>
+            <Heading level={3} margin='none' size='medium'>H</Heading>
+            <Heading level={3} margin='none' size='large'>I</Heading>
+          </Box>
+          <Box direction='row' responsive={false}>
+            <Heading level={4} margin='none' size='small'>J</Heading>
+            <Heading level={4} margin='none' size='medium'>K</Heading>
+            <Heading level={4} margin='none' size='large'>L</Heading>
+          </Box>
+        </Box>
+      ),
+    }}
+  />
 );

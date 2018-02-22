@@ -1,6 +1,5 @@
-import Head from 'next/head';
-import Router from 'next/router'
-import { Grommet, Box, Grid, Anchor, Heading, Select } from 'grommet';
+import { Head } from 'next/document';
+import { Grommet, Box, Anchor, Heading, Select } from 'grommet';
 import { hpe } from 'grommet/themes';
 import RoutedButton from './RoutedButton';
 
@@ -15,43 +14,26 @@ export default class Page extends React.Component {
     theme: 'grommet',
   };
 
-  constructor(props, context) {
-    super(props, context);
-    Router.onRouteChangeStart = this.onRouteChange;
-  }
-  onRouteChange = (url) => {
-    console.log(url);
-  };
-
   onThemeChange = ({ option: theme }) => {
     this.setState({ theme });
   };
 
   render() {
     const { theme } = this.state;
-    console.log(this.props);
-    const { title: PageTitle, children } = this.props;
+    const { children, title: pageTitle } = this.props;
     return (
       <div>
         <Head>
-          <title>{PageTitle}</title>
+          <title>{pageTitle}</title>
         </Head>
         <Grommet theme={theme ? THEMES[theme] : undefined}>
-          <Grid
-            rows={['xsmall', 'flex']}
-            columns={['full']}
-            areas={[
-              { name: 'header', start: [0, 0], end: [0, 0] },
-              { name: 'main', start: [0, 1], end: [0, 1] },
-            ]}
-          >
+          <Box >
             <Box
-              gridArea='header'
               direction='row'
               justify='between'
               align='center'
               background='brand'
-              pad={{ horizontal: 'medium' }}
+              pad={{ horizontal: 'medium', vertical: 'medium' }}
               animation='fadeIn'
             >
               <Heading margin='none'>
@@ -74,10 +56,10 @@ export default class Page extends React.Component {
                 />
               </Box>
             </Box>
-            <Box gridArea='main'>
+            <Box >
               {children}
             </Box>
-          </Grid>
+          </Box>
         </Grommet>
       </div>
     );
