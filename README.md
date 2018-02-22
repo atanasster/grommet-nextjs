@@ -9,7 +9,7 @@
 
   * Move to your local folder
   ```
-  $ cd grommet-nextjst
+  $ cd grommet-nextjs
   ```
 
   * Install dependencies
