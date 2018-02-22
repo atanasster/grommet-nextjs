@@ -1,5 +1,7 @@
 # Example app with nextjs and grommet v 2
 
+####Adapted from  [Grommet Next React](https://github.com/grommet/next-sample)
+
 ## Install
   
   * Get sources in local folder
