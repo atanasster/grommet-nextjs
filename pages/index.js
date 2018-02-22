@@ -193,7 +193,7 @@ export default class Home extends React.Component {
             </Item>
           </Section>
 
-          <Section align='stretch' label='Media' index={4}>
+          <Section align='stretch'label='Media' index={4}>
             <Item path='/image'>
               <Box>
                 <Text margin='none'>Image</Text>
@@ -217,13 +217,13 @@ export default class Home extends React.Component {
               </Box>
             </Item>
           </Section>
-
-          <Section basis='full' align='stretch' label='Color' index={5}>
+          <Section align='stretch' label='Color' index={5}>
             <Box
               direction='row'
               align='start'
               basis='full'
               wrap={true}
+              margin={{ vertical: 'small' }}
             >
               {['brand', 'accent-1', 'accent-2',
                 'neutral-1', 'neutral-2', 'neutral-3',
