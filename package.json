@@ -6,7 +6,7 @@
     "build": "next build",
     "check": "./node_modules/.bin/eslint .",
     "heroku-postbuild": "npm run build",
-    "start": "next start -p 8080"
+    "start": "next start -p $PORT"
   },
   "dependencies": {
     "babel-plugin-styled-components": "^1.1.5",
