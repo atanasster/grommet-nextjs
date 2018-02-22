@@ -5,6 +5,7 @@
     "dev": "next -p 8444",
     "build": "next build",
     "check": "./node_modules/.bin/eslint .",
+    "heroku-postbuild": "npm run build",
     "start": "next start"
   },
   "dependencies": {

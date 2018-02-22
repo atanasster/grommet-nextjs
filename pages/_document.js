@@ -14,7 +14,6 @@ export default class MyDocument extends Document {
     return (
       <html lang='en-US'>
         <Head>
-          <title>Grommet Next</title>
           {this.props.styleTags}
         </Head>
         <body>

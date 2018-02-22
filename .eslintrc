@@ -21,7 +21,8 @@
     "fetch": true,
     "WebSocket": true,
     "alert": true,
-    "URLSearchParams": true
+    "URLSearchParams": true,
+    "React": true
   },
   "rules": {
     "comma-dangle": ["error", "always-multiline"],
@@ -37,6 +38,7 @@
     "react/prefer-stateless-function": 0,  // Soft requirement now, try hard requ in future
     "react/no-find-dom-node": 0,
     "react/prop-types": 0,
+    "react/react-in-jsx-scope":0,
     "react/sort-comp": 0,
     "react/no-array-index-key": 0,
     "import/no-extraneous-dependencies": 0,
