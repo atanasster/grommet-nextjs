@@ -62,7 +62,7 @@ export default class Home extends React.Component {
 
     return (
       <Page title='Explore Grommet 2'>
-        <Box  direction='row' wrap={true} >
+        <Box direction='row' wrap={true} >
           <Section align='stretch' label='Layout' index={0}>
             <Item path='/box'>
               <Box direction='row'>
