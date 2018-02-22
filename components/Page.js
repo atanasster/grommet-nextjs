@@ -1,6 +1,7 @@
 import Head from 'next/head';
 import { Grommet, Box, Grid, Anchor, Heading } from 'grommet';
 import { hpe } from 'grommet/themes';
+import RoutedButton from './RoutedButton';
 
 const THEMES = {
   grommet: undefined,
@@ -38,7 +39,11 @@ export default class Page extends React.Component {
               pad={{ horizontal: 'medium' }}
               animation='fadeIn'
             >
-              <Heading margin='none'>Grommet 2.0</Heading>
+              <Heading margin='none'>
+                <RoutedButton path='/' >
+                  Grommet 2.0 + Next.js
+                </RoutedButton>
+              </Heading>
               <Anchor
                 href='https://github.com/grommet/grommet/wiki/Why-Grommet-2.0%3F'
                 label='Why?'
