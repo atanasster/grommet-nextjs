@@ -68,7 +68,7 @@ const Item = ({
 export default class Components extends React.Component {
   render() {
     return (
-      <Page title='Explore Grommet 2'>
+      <Page title='Explore'>
         <Box pad='large'>
           <Box direction='row'>
             <Box margin={{ top: 'large' }} basis='medium' overflow='hidden'>

@@ -1,4 +1,4 @@
-import { Head } from 'next/document';
+import Head from 'next/head';
 import { Grommet, Box, Anchor, Heading, Select } from 'grommet';
 import { hpe } from 'grommet/themes';
 import RoutedButton from './RoutedButton';
@@ -23,9 +23,12 @@ export default class Page extends React.Component {
     const { children, title: pageTitle } = this.props;
     return (
       <div>
-        <Head>
-          <title>{pageTitle}</title>
-        </Head>
+        {pageTitle ? (
+          <Head>
+            <title>{`Grommet - ${pageTitle}`}</title>
+          </Head>
+          ) : null
+        }
         <Grommet theme={theme ? THEMES[theme] : undefined}>
           <Box >
             <Box
