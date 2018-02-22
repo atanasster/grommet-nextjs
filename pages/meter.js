@@ -9,8 +9,12 @@ const SINGLE_VALUE = [
   { value: 60, label: 'sixty', onClick: () => alert('60') },
 ];
 const MULTIPLE_VALUES = [
-  { value: 60, label: 'sixty', color: 'neutral-1', onClick: () => alert('60') },
-  { value: 10, label: 'ten', color: 'accent-1', onClick: () => alert('10') },
+  {
+    value: 60, label: 'sixty', color: 'neutral-1', onClick: () => alert('60'),
+  },
+  {
+    value: 10, label: 'ten', color: 'accent-1', onClick: () => alert('10'),
+  },
 ];
 
 export default class MeterDoc extends React.Component {

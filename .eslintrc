@@ -26,6 +26,7 @@
   },
   "rules": {
     "comma-dangle": ["error", "always-multiline"],
+    "function-paren-newline": ["error", "consistent"],
     "jsx-quotes": ["error", "prefer-single"],
     "no-console": 0,
     "quote-props": ["error", "consistent"],

@@ -99,7 +99,9 @@ export default class MultiSelect extends React.Component {
   }
 
   render() {
-    const { basis, category, children, onClose, items, onSearch, onKeyDown } = this.props;
+    const {
+      basis, category, children, onClose, items, onSearch, onKeyDown,
+    } = this.props;
     const { activeItemIndex, search } = this.state;
     return (
       <Keyboard

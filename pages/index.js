@@ -20,7 +20,9 @@ const CHART_VALUES = [
   { value: [0, 0], label: 'zero' },
 ];
 
-const Section = ({ children, align, basis, index, label }) => (
+const Section = ({
+  children, align, basis, index, label,
+}) => (
   <Box
     align={align || 'start'}
     pad='medium'

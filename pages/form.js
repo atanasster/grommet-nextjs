@@ -5,7 +5,9 @@ import {
 
 import Doc from '../components/Doc';
 
-const Field = ({ children, error, label, help }) => {
+const Field = ({
+  children, error, label, help,
+}) => {
   let header;
   if (label || help || error) {
     header = (
@@ -34,9 +36,9 @@ const Field = ({ children, error, label, help }) => {
 export default () => (
   <Doc
     name='Form'
-    text={`Currently, Grommet 2.0 does not provide Form or FormField components.
+    text='Currently, Grommet 2.0 does not provide Form or FormField components.
       Instead, we have a reference on how to build a form
-      using the basic Box, Text, and control components.`}
+      using the basic Box, Text, and control components.'
   >
     <Box direction='row' justify='center'>
       <Box basis='medium' margin='large'>

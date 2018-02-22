@@ -61,10 +61,10 @@ export default class LabelMultiSelect extends React.Component {
         open: false,
         available: labels.filter(value => newSelected.indexOf(value) === -1),
       }, () => {
-      setTimeout(() => {
-        this.setState({ selected: newSelected });
-      }, 200);
-    }
+        setTimeout(() => {
+          this.setState({ selected: newSelected });
+        }, 200);
+      }
     );
   }
 
@@ -81,16 +81,16 @@ export default class LabelMultiSelect extends React.Component {
         },
         available: labels,
       }, () => {
-      setTimeout(() => {
-        this.setState({
-          animation: {
-            ...this.state.animation,
-            all: undefined,
-          },
-          selected: [],
-        });
-      }, 200);
-    }
+        setTimeout(() => {
+          this.setState({
+            animation: {
+              ...this.state.animation,
+              all: undefined,
+            },
+            selected: [],
+          });
+        }, 200);
+      }
     );
   }
 
