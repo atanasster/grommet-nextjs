@@ -1,7 +1,7 @@
 import { Box, Table, TableBody, TableCell, TableHeader, TableRow } from 'grommet';
 import doc, { docTableCell } from 'grommet/components/Table/doc';
 
-import Doc, { DocContent } from '../components/Doc';
+import Doc from '../components/Doc';
 
 const desc = doc(Table).toJSON();
 const descTableCell = docTableCell(TableCell).toJSON();
@@ -33,6 +33,6 @@ export default () => (
       )}
     />
 
-    <DocContent name='TableCell' nav={false} desc={descTableCell} />
+    <Doc name='TableCell' nav={false} desc={descTableCell} />
   </Box>
 );

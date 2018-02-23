@@ -49,7 +49,7 @@ const Item = ({
           <strong>{name}</strong>
         </Heading>
       </Box>
-    </RoutedButton>  
+    </RoutedButton>
     <Box>
       <Box
         basis='small'

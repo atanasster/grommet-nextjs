@@ -1,4 +1,5 @@
 import Head from 'next/head';
+import PropTypes from 'prop-types';
 import { Grommet, Box, Anchor, Heading, Select } from 'grommet';
 import { hpe } from 'grommet/themes';
 import RoutedButton from './RoutedButton';
@@ -20,17 +21,18 @@ export default class Page extends React.Component {
 
   render() {
     const { theme } = this.state;
-    const { children, title: pageTitle } = this.props;
+    const { children, title: pageTitle, nav } = this.props;
     return (
       <div>
-        {pageTitle ? (
+        {pageTitle && (
           <Head>
             <title>{`Grommet - ${pageTitle}`}</title>
           </Head>
-          ) : null
+          )
         }
         <Grommet theme={theme ? THEMES[theme] : undefined}>
           <Box >
+            {nav && (
             <Box
               direction='row'
               justify='between'
@@ -41,7 +43,7 @@ export default class Page extends React.Component {
             >
               <Heading margin='none'>
                 <RoutedButton path='/' >
-                  Grommet 2.0 + Next.js
+                    Grommet 2.0 + Next.js
                 </RoutedButton>
               </Heading>
               <Box direction='row' align='center' gap='small'>
@@ -59,6 +61,7 @@ export default class Page extends React.Component {
                 />
               </Box>
             </Box>
+             ) }
             <Box >
               {children}
             </Box>
@@ -68,3 +71,12 @@ export default class Page extends React.Component {
     );
   }
 }
+
+Page.propTypes = {
+  title: PropTypes.string.isRequired,
+  nav: PropTypes.bool,
+};
+
+Page.defaultProps = {
+  nav: true,
+};
