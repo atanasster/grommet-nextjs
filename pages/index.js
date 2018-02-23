@@ -137,7 +137,7 @@ export default class Components extends React.Component {
 
           <Section basis='full' align='stretch' name='Color' index={2}>
             <Box flex={true}>
-              <RoutedButton path='/color'>
+              <RoutedButton path='/color' preserveParams='theme'>
                 <Box>
                   <Box flex={true} basis='small' direction='row' wrap={true}>
                     {['brand', 'accent-1', 'accent-2',
