@@ -17,7 +17,8 @@
     "react": "16.2.0",
     "react-dom": "16.2.0",
     "react-formify": "^0.10.2",
-    "styled-components": "^2.1.0"
+    "styled-components": "^2.1.0",
+    "url-search-params": "^0.10.0"
   },
   "devDependencies": {
     "babel-eslint": "^8.2.2",

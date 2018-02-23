@@ -43,7 +43,7 @@ const Item = ({
   name, path, children, center,
 }) => (
   <Box basis='medium' margin={{ right: 'medium', bottom: 'medium' }}>
-    <RoutedButton path={path}>
+    <RoutedButton path={path} preserveParams='theme'>
       <Box>
         <Heading level={3} size='small' margin={{ top: 'none', bottom: 'xsmall' }}>
           <strong>{name}</strong>

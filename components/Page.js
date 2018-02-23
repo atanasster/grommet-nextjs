@@ -1,4 +1,5 @@
 import Head from 'next/head';
+import { withRouter } from 'next/router';
 import PropTypes from 'prop-types';
 import { Grommet, Box, Anchor, Heading, Select } from 'grommet';
 import { hpe } from 'grommet/themes';
@@ -9,14 +10,21 @@ const THEMES = {
   hpe,
 };
 
+const themeState = (theme = 'grommet') => ({ theme });
 
-export default class Page extends React.Component {
-  state = {
-    theme: 'grommet',
-  };
+class Page extends React.Component {
+  constructor(props, context) {
+    super(props, context);
+    this.state = themeState(props.router.query.theme);
+  }
 
+  componentWillReceiveProps(props) {
+    this.setState(themeState(props.router.query.theme));
+  }
   onThemeChange = ({ option: theme }) => {
-    this.setState({ theme });
+    const { router } = this.props;
+    const path = { pathname: router.pathname, query: { ...router.query, theme } };
+    router.replace(path, path, { shallow: true });
   };
 
   render() {
@@ -42,7 +50,7 @@ export default class Page extends React.Component {
               animation='fadeIn'
             >
               <Heading margin='none'>
-                <RoutedButton path='/' >
+                <RoutedButton path='/' preserveParams='theme'>
                     Grommet 2.0 + Next.js
                 </RoutedButton>
               </Heading>
@@ -80,3 +88,5 @@ Page.propTypes = {
 Page.defaultProps = {
   nav: true,
 };
+
+export default withRouter(Page);
