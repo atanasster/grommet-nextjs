@@ -49,19 +49,19 @@ const Item = ({
           <strong>{name}</strong>
         </Heading>
       </Box>
-      <Box>
-        <Box
-          basis='small'
-          background='rgba(255, 255, 255, 0.3)'
-          justify={center ? 'center' : undefined}
-          align={center ? 'center' : undefined}
-          pad={center ? 'medium' : undefined}
-          style={{ overflow: 'hidden' }}
-        >
-          {children}
-        </Box>
+    </RoutedButton>  
+    <Box>
+      <Box
+        basis='small'
+        background='rgba(255, 255, 255, 0.3)'
+        justify={center ? 'center' : undefined}
+        align={center ? 'center' : undefined}
+        pad={center ? 'medium' : undefined}
+        style={{ overflow: 'hidden' }}
+      >
+        {children}
       </Box>
-    </RoutedButton>
+    </Box>
   </Box>
 );
 
