@@ -1,7 +1,7 @@
 import Head from 'next/head';
 import { withRouter } from 'next/router';
 import PropTypes from 'prop-types';
-import { Grommet, Box, Heading, Select } from 'grommet';
+import { Grommet, Box, Heading, Select, Anchor } from 'grommet';
 import { System } from 'grommet-icons';
 import black from '../themes/black';
 import RoutedButton from './RoutedButton';
@@ -43,6 +43,7 @@ class Page extends React.Component {
           <Box >
             {nav && (
             <Box
+              tag='header'
               direction='row'
               justify='between'
               align='center'
@@ -70,6 +71,34 @@ class Page extends React.Component {
              ) }
             <Box >
               {children}
+            </Box>
+            <Box
+              tag='footer'
+              direction='row'
+              justify='center'
+              pad={{ top: 'large' }}
+            >
+              <Box
+                basis='large'
+                border='top'
+                direction='row'
+                justify='center'
+                pad='medium'
+                gap='medium'
+              >
+                <Anchor
+                  href='https://github.com/grommet/grommet/tree/NEXT'
+                  target='_blank'
+                  label='grommet'
+                  a11yTitle='Go to the github page for Grommet 2'
+                />
+                <Anchor
+                  href='https://github.com/atanasster/grommet-nextjs'
+                  target='_blank'
+                  label='git'
+                  a11yTitle='Go to the github page for this project'
+                />
+              </Box>
             </Box>
           </Box>
         </Grommet>
