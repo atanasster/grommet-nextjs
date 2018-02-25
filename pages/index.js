@@ -53,7 +53,7 @@ const Item = ({
     <Box>
       <Box
         basis='small'
-        background='rgba(255, 255, 255, 0.3)'
+        border={{ color: 'brand', size: 'medium' }}
         justify={center ? 'center' : undefined}
         align={center ? 'center' : undefined}
         pad={center ? 'medium' : undefined}
@@ -140,8 +140,8 @@ export default class Components extends React.Component {
               <RoutedButton path='/color' preserveParams='theme'>
                 <Box>
                   <Box flex={true} basis='small' direction='row' wrap={true}>
-                    {['brand', 'accent-1', 'accent-2',
-                      'neutral-1', 'neutral-2', 'neutral-3',
+                    {['brand', 'accent-1', 'accent-2', 'accent-3',
+                      'neutral-1', 'neutral-2', 'neutral-3', 'neutral-4',
                       'status-ok', 'status-warning', 'status-critical',
                       'status-disabled',
                     ].map(color => (

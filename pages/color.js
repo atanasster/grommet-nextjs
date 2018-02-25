@@ -9,20 +9,20 @@ export default () => (
         <Box basis='small' pad='small' background='brand'>brand</Box>
       </Box>
       <Box flex={true} basis='small' direction='row' wrap={true}>
-        {['accent-1', 'accent-2',
+        {['accent-1', 'accent-2', 'accent-3',
         ].map(color => (
           <Box key={color} basis='small' pad='small' background={color}>{color}</Box>
         ))}
       </Box>
       <Box flex={true} basis='small' direction='row' wrap={true}>
-        {['neutral-1', 'neutral-2', 'neutral-3',
+        {['neutral-1', 'neutral-2', 'neutral-3', 'neutral-4',
         ].map(color => (
           <Box key={color} basis='small' pad='small' background={color}>{color}</Box>
         ))}
       </Box>
       <Box flex={true} basis='small' direction='row' wrap={true}>
         {['status-ok', 'status-warning', 'status-critical',
-          'status-disabled',
+          'status-unknown', 'status-disabled',
         ].map(color => (
           <Box key={color} basis='small' pad='small' background={color}>{color}</Box>
         ))}

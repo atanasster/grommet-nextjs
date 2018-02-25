@@ -1,13 +1,14 @@
 import Head from 'next/head';
 import { withRouter } from 'next/router';
 import PropTypes from 'prop-types';
-import { Grommet, Box, Anchor, Heading, Select } from 'grommet';
-import { hpe } from 'grommet/themes';
+import { Grommet, Box, Heading, Select } from 'grommet';
+import { System } from 'grommet-icons';
+import black from '../themes/black';
 import RoutedButton from './RoutedButton';
 
 const THEMES = {
   grommet: undefined,
-  hpe,
+  black,
 };
 
 const themeState = (theme = 'grommet') => ({ theme });
@@ -54,19 +55,16 @@ class Page extends React.Component {
                     Grommet 2.0 + Next.js
                 </RoutedButton>
               </Heading>
-              <Box direction='row' align='center' gap='small'>
+              <Box direction='row' align='center' gap='small' justify='end'>
                 <Box basis='small' >
                   <Select
                     a11yTitle='Change theme'
                     value={theme}
-                    options={['grommet', 'hpe']}
+                    options={Object.keys(THEMES)}
                     onChange={this.onThemeChange}
                   />
                 </Box>
-                <Anchor
-                  href='https://github.com/grommet/grommet/wiki/Why-Grommet-2.0%3F'
-                  label='Why?'
-                />
+                <RoutedButton icon={<System />} path='/theme' preserveParams='theme' />
               </Box>
             </Box>
              ) }
