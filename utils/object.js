@@ -81,4 +81,6 @@ export function getRGBA(color, opacity) {
 }
 
 
-export default { deepFreeze, deepMerge, isObject, colorForName, colorIsDark, getRGBA };
+export default {
+  deepFreeze, deepMerge, isObject, colorForName, colorIsDark, getRGBA,
+};
