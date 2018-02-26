@@ -1,36 +1,42 @@
-import Head from 'next/head';
 import { withRouter } from 'next/router';
 import PropTypes from 'prop-types';
+import { bindActionCreators } from 'redux';
+import Head from 'next/head';
 import { Grommet, Box, Heading, Select, Anchor } from 'grommet';
 import { System } from 'grommet-icons';
-import black from '../themes/black';
+import connect from '../redux';
 import RoutedButton from './RoutedButton';
-
-const THEMES = {
-  grommet: undefined,
-  black,
-};
-
-const themeState = (theme = 'grommet') => ({ theme });
+import { selectTheme } from '../redux/themes/actions';
 
 class Page extends React.Component {
   constructor(props, context) {
     super(props, context);
-    this.state = themeState(props.router.query.theme);
+    this.state = { theme: props.router.query.theme };
   }
 
-  componentWillReceiveProps(props) {
-    this.setState(themeState(props.router.query.theme));
+  changeTheme(themeName) {
+    this.props.selectTheme(themeName);
   }
+
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.router.query.theme !== this.state.theme) {
+      this.setState({ theme: nextProps.router.query.theme });
+    }
+  }
+
+
   onThemeChange = ({ option: theme }) => {
     const { router } = this.props;
     const path = { pathname: router.pathname, query: { ...router.query, theme } };
+    this.changeTheme(theme);
     router.replace(path, path, { shallow: true });
   };
 
   render() {
-    const { theme } = this.state;
-    const { children, title: pageTitle, nav } = this.props;
+    const {
+      children, title: pageTitle, nav, themes: { themes },
+    } = this.props;
+    const { theme = 'grommet' } = this.state;
     return (
       <div>
         {pageTitle && (
@@ -39,7 +45,7 @@ class Page extends React.Component {
           </Head>
           )
         }
-        <Grommet theme={theme ? THEMES[theme] : undefined}>
+        <Grommet theme={themes[theme] || {}}>
           <Box >
             {nav && (
             <Box
@@ -61,7 +67,7 @@ class Page extends React.Component {
                   <Select
                     a11yTitle='Change theme'
                     value={theme}
-                    options={Object.keys(THEMES)}
+                    options={Object.keys(themes)}
                     onChange={this.onThemeChange}
                   />
                 </Box>
@@ -116,4 +122,11 @@ Page.defaultProps = {
   nav: true,
 };
 
-export default withRouter(Page);
+const mapDispatchToProps = dispatch => bindActionCreators({ selectTheme }, dispatch);
+
+const mapStateToProps = state => ({
+  themes: state.themes,
+});
+
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Page));
+

@@ -13,17 +13,17 @@ const statusColors = {
 };
 const lightColors = ['#333333', '#444444', '#555555', '#666666', '#777777', '#999999'];
 const darkColors = ['#F6F6F6', '#EEEEEE', '#DDDDDD', '#CCCCCC', '#BBBBBB', '#AAAAAA'];
-const backgroundColor = '#FFFFFF';
+const backgroundColor = '#808080';
 const textColor = '#dddddd';
 const borderColor = 'rgba(255, 255, 255, 0.15)';
 const activeColor = 'rgba(35, 35, 35, 0.15)';// 'rgba('#DDDDDD', 0.5)';
+const shadowColor = 'rgba(200, 200, 200, 0.50)';
 
 export default deepFreeze({
   global: {
     colors: {
       active: activeColor,
       accent: accentColors,
-      black: '#000000',
       background: '#444444',
       border: borderColor,
       brand: brandColor,
@@ -36,23 +36,22 @@ export default deepFreeze({
       placeholder: '#AAAAAA',
       status: statusColors,
       text: textColor,
-      white: '#FFFFFF',
     },
     drop: {
-      backgroundColor: '#808080',
+      backgroundColor,
       border: {
         width: '0px',
         radius: '0px',
       },
-      shadow: '0px 3px 8px rgba(200, 200, 200, 0.50)',
+      shadow: `0px 3px 8px ${shadowColor}`,
     },
     elevation: {
       none: 'none',
-      xsmall: '0px 1px 2px rgba(200, 200, 200, 0.50)',
-      small: '0px 2px 4px rgba(200, 200, 200, 0.50)',
-      medium: '0px 3px 8px rgba(200, 200, 200, 0.50)',
-      large: '0px 6px 12px rgba(200, 200, 200, 0.50)',
-      xlarge: '0px 8px 16px rgba(200, 200, 200, 0.50)',
+      xsmall: `0px 1px 2px ${shadowColor}`,
+      small: `0px 2px 4px ${shadowColor}`,
+      medium: `0px 3px 8px ${shadowColor}`,
+      large: `0px 6px 12px ${shadowColor}`,
+      xlarge: `0px 8px 16px ${shadowColor}`,
     },
     font: {
       family: "'Inconsolata', monospace",
@@ -108,9 +107,9 @@ export default deepFreeze({
   layer: {
     backgroundColor,
     border: {
-      radius: '2px',
+      radius: '0px',
     },
-    overlayBackgroundColor: 'rgba(0, 0, 0, 0.5)',
+    overlayBackgroundColor: 'rgba(255, 255, 255, 0.5)',
   },
   radioButton: {
     border: {

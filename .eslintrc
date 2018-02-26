@@ -5,6 +5,7 @@
     "node": true,
     "es6": true
   },
+  "plugins": ["async-await"],
   "parserOptions": {
     "sourceType": "module",
     "allowImportExportEverywhere": false,
@@ -25,6 +26,8 @@
     "React": true
   },
   "rules": {
+    "async-await/space-after-async": 2,
+    "async-await/space-after-await": 2,
     "comma-dangle": ["error", "always-multiline"],
     "function-paren-newline": ["error", "consistent"],
     "jsx-quotes": ["error", "prefer-single"],

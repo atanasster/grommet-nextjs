@@ -7,9 +7,11 @@ import {
   Table, TableBody, TableCell, TableHeader, TableRow,
   Text, TextArea, TextInput, Video, WorldMap,
 } from 'grommet';
+import { withTheme } from 'grommet/components/hocs';
 import { Actions, Grommet as GrommetIcon, TopCorner, BottomCorner } from 'grommet-icons';
 import RoutedButton from '../components/RoutedButton';
 import Page from '../components/Page';
+import { themeColors } from '../utils/theme';
 
 const CHART_VALUES = [
   { value: [7, 90], label: 'ninety' },
@@ -65,8 +67,9 @@ const Item = ({
   </Box>
 );
 
-export default class Components extends React.Component {
+class Home extends React.Component {
   render() {
+    const { theme } = this.props;
     return (
       <Page title='Explore'>
         <Box pad='large'>
@@ -140,11 +143,7 @@ export default class Components extends React.Component {
               <RoutedButton path='/color' preserveParams='theme'>
                 <Box>
                   <Box flex={true} basis='small' direction='row' wrap={true}>
-                    {['brand', 'accent-1', 'accent-2', 'accent-3',
-                      'neutral-1', 'neutral-2', 'neutral-3', 'neutral-4',
-                      'status-ok', 'status-warning', 'status-critical',
-                      'status-disabled',
-                    ].map(color => (
+                    {themeColors(theme).map(color => (
                       <Box key={color} flex={true} background={color} />
                     ))}
                   </Box>
@@ -385,3 +384,5 @@ export default class Components extends React.Component {
     );
   }
 }
+
+export default withTheme(Home);

@@ -1,82 +1,21 @@
-import { Anchor, Box, Button, Grommet, Heading, Image, Paragraph, Select, Text, TextInput } from 'grommet';
+import { bindActionCreators } from 'redux';
+import 'isomorphic-unfetch';
+import JSONPretty from 'react-json-pretty';
+import {
+  Anchor, Box, Button, Grommet, Heading, Layer, Paragraph, Select, Text,
+  TextInput, TextArea, CheckBox, RadioButton, Menu,
+} from 'grommet';
 import { Menu as MenuIcon } from 'grommet-icons';
-import { hslToRgb, parseRGBString, rgbToHsl, toRGBString } from '../utils/color';
-import { deepMerge } from '../utils/object';
 import Page from '../components/Page';
+import createTheme, { MOODS, SCHEMES, SHARPNESSES, themeFromFont, themeColors } from '../utils/theme';
+import { updateTheme } from '../redux/themes/actions';
+import connect from '../redux';
 
-const SHARPNESSES = [
-  'soft',
-  'medium',
-  'hard',
-];
-
-const SHARPNESS_ROUND_SIZE = {
-  soft: 'large',
-  medium: 'medium',
-  hard: 'none',
-};
-
-const SHARPNESS = {
-  soft: {
-    global: { input: { border: { radius: '24px' } } },
-    button: { border: { radius: '24px' } },
-    checkBox: { border: { radius: '24px' } },
-    layer: { border: { radius: '24px' } },
-  },
-  medium: {
-    global: { input: { border: { radius: '4px' } } },
-    button: { border: { radius: '4px' } },
-    checkBox: { border: { radius: '4px' } },
-    layer: { border: { radius: '4px' } },
-  },
-  hard: {
-    global: { input: { border: { radius: '0px' } } },
-    button: { border: { radius: '0px' } },
-    checkBox: { border: { radius: '0px' } },
-    layer: { border: { radius: '0px' } },
-  },
-};
-
-const MOODS = [
-  'happy',
-  'even',
-  'serious',
-];
-
-const MOOD = {
-  happy: { saturationBoost: 0.1, luminenceBoost: 0.2 },
-  even: { saturationBoost: 0, luminenceBoost: 0 },
-  serious: { saturationBoost: -0.1, luminenceBoost: -0.2 },
-};
-
-const deriveHues = (h, count) => {
-  const degH = h * 360;
-  const offset = 360 / (count + 1);
-  const result = [];
-  for (let i = 1; i <= count; i += 1) {
-    result.push(((degH + (offset * i)) % 360) / 360.0);
-  }
-  return result;
-};
-
-const between = (value, min, max) =>
-  Math.min(max, Math.max(min, value));
-
-const colorsForMood = (color, mood) => {
-  let result;
-  const array = parseRGBString(color);
-  if (array) {
-    result = { global: { colors: { brand: color } } };
-    const [r, g, b] = array;
-    const [h, s, l] = rgbToHsl(r, g, b);
-    const accentHues = deriveHues(h, 2);
-    const accentSat = between(s + MOOD[mood].saturationBoost, 0.2, 0.8);
-    const accentLum = between(1.0 - (l - MOOD[mood].luminenceBoost), 0.2, 0.8);
-    result.global.colors.accent = accentHues.map(ah =>
-      `#${toRGBString(hslToRgb(ah, accentSat, accentLum))}`);
-  }
-  return result;
-};
+const defaultFont = 'Roboto';
+const defaultColor = '#99cc33';
+const defaultMood = 'pastel';
+const defaultScheme = 'triade';
+const defaultSharpness = 'medium';
 
 const Field = ({
   children, error, focused, label, help,
@@ -114,48 +53,54 @@ const Field = ({
   );
 };
 
-export default class Theme extends React.Component {
-  constructor() {
-    super();
-    const font = 'Fira Sans';
-    const color = '#99cc33';
-    const mood = 'even';
-    const sharpness = 'medium';
-    let theme = {};
-    theme = deepMerge(theme, colorsForMood(color, mood) || {});
-    theme = deepMerge(theme, SHARPNESS[sharpness]);
+class Theme extends React.Component {
+  constructor(props) {
+    super(props);
+    const color = defaultColor;
+    const mood = defaultMood;
+    const scheme = defaultScheme;
+    const sharpness = defaultSharpness;
+    const { font } = props;
+    const theme = createTheme({
+      color, mood, scheme, sharpness, font,
+    });
     this.state = {
       color,
       errors: {},
       font,
+      fontFamily: defaultFont,
+      viewTheme: false,
       key: 1,
-      loading: {},
       mood,
-      name: 'My Theme',
+      scheme,
+      fontSearch: '',
+      name: 'custom',
       sharpness,
       theme,
     };
   }
-
-  componentDidMount() {
-    const { font } = this.state;
-    // eslint-disable-next-line global-require
-    this.WebFont = require('webfontloader');
-    this.onChangeFont({ target: { value: font } });
+  static async getInitialProps() {
+    const res = await fetch(`https://www.googleapis.com/webfonts/v1/webfonts?key=${process.env.GOOGLE_FONTS_API_KEY}&sort=popularity`);
+    const json = await res.json();
+    const fonts = json.items.filter(item => item.subsets.indexOf('latin') !== -1);
+    const font = await themeFromFont(fonts.find(f => f.family === defaultFont));
+    return { fonts, font };
   }
 
   onChangeColor = (event) => {
     const {
-      errors, key, mood, theme,
+      errors, key, mood, scheme, sharpness, font,
     } = this.state;
     const color = event.target.value;
-    const colors = colorsForMood(color, mood);
-    if (colors) {
+    const theme = createTheme({
+      color, mood, scheme, sharpness, font,
+    });
+    if (theme) {
       this.setState({
         color,
         errors: { ...errors, color: undefined },
         key: key + 1,
-        theme: deepMerge(theme, colors),
+        theme,
       });
     } else {
       this.setState({
@@ -163,222 +108,250 @@ export default class Theme extends React.Component {
         errors: { ...errors, color: 'must be #RRGGBB' },
       });
     }
-  }
+  };
 
-  onFontLoaded = name => () => {
-    const { key, loading, theme } = this.state;
+  onChangeSharpness = ({ option: sharpness }) => {
+    const {
+      key, color, mood, scheme, font,
+    } = this.state;
     this.setState({
       key: key + 1,
-      loading: { ...loading, font: undefined },
-      theme: deepMerge(theme, {
-        global: {
-          font: {
-            name,
-            family: `'${name}', Arial, sans-serif`,
-            face: undefined,
-          },
-        },
+      sharpness,
+      theme: createTheme({
+        color, mood, scheme, sharpness, font,
       }),
     });
   };
 
-  onFontError = () => () => {
-    const { errors, loading } = this.state;
-    this.setState({
-      errors: { ...errors, font: 'unavailable' },
-      loading: { ...loading, font: undefined },
-    });
-  }
-
-  onChangeFont = (event) => {
-    const { errors, loading } = this.state;
-    const name = event.target.value;
-    // remove all previously loaded fonts
-    // <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Rob" media="all">
-    const links = document.querySelectorAll('link[href^="http://fonts.googleapis.com"]');
-    for (let i = 0; i < links.length; i += 1) {
-      links[i].remove();
-    }
-
-    this.setState({
-      font: name,
-      errors: { ...errors, font: undefined },
-      loading: { ...loading, font: true },
-    });
-    this.WebFont.load({
-      classes: false,
-      inactive: this.onFontError(name),
-      active: this.onFontLoaded(name),
-      google: { families: [name] },
-    });
-  }
-
-  onChangeSharpness = ({ option: sharpness }) => {
-    const { key, theme } = this.state;
-    this.setState({
-      key: key + 1,
-      sharpness,
-      theme: deepMerge(theme, SHARPNESS[sharpness]),
-    });
-  }
-
   onChangeMood = ({ option: mood }) => {
-    const { key, theme } = this.state;
+    const {
+      key, color, sharpness, font, scheme,
+    } = this.state;
     this.setState({
       key: key + 1,
       mood,
-      theme: deepMerge(
-        theme,
-        colorsForMood(theme.global.colors.brand, mood) || {}
-      ),
+      theme: createTheme({
+        color, mood, scheme, sharpness, font,
+      }),
     });
-  }
+  };
 
-  onDownload = () => {
-    const { name, theme } = this.state;
-    // extract font-face from link in header
-    const fontLink = document.querySelector('link[href*="fonts.googleapis.com"]');
-    fetch(fontLink.getAttribute('href'))
-      .then(response => response.text())
-      .then((face) => {
-        const downloadTheme = deepMerge(theme, { global: { font: { face } } });
-        const jsonString = encodeURIComponent(JSON.stringify(downloadTheme));
-        const data = `data:text/json;charset=utf-8,${jsonString}`;
-        const element = document.createElement('a');
-        element.setAttribute('href', data);
-        element.setAttribute('download', `${name}.json`);
-        element.click();
-        element.remove();
-      });
-  }
-
-  render() {
+  onChangeScheme = ({ option: scheme }) => {
     const {
-      color, errors, focused, font, key, loading, mood, name, sharpness, theme,
+      key, color, sharpness, font, mood,
     } = this.state;
-    return (
-      <Page title='Theme'>
-        <Box pad='large'>
-          <Box direction='row'>
-            <Box margin={{ vertical: 'large' }} basis='medium'>
-              <Heading level={1}>
-                <strong>Try us without writing a single line of code</strong>
-              </Heading>
-              <Paragraph size='large'>
+    this.setState({
+      key: key + 1,
+      scheme,
+      theme: createTheme({
+        color, mood, scheme, sharpness, font,
+      }),
+    });
+  };
+
+
+  onChangeFont = ({ option: { family } }) => {
+    const {
+      color, mood, scheme, sharpness,
+    } = this.state;
+    const { fonts } = this.props;
+    themeFromFont(fonts.find(f => f.family === family))
+      .then((font) => {
+        this.setState({
+          theme: createTheme({
+            color, mood, scheme, sharpness, font,
+          }),
+          fontFamily: family,
+        });
+      });
+  };
+
+  onFontSearch = (search) => {
+    this.setState({ fontSearch: search });
+  };
+
+ onApply = () => {
+   const { name, theme } = this.state;
+   this.props.updateTheme(name, theme);
+ };
+
+
+ render() {
+   const {
+     color, errors, focused, fontFamily, key, mood, scheme, name, sharpness,
+     theme, fontSearch, viewTheme,
+   } = this.state;
+   const { fonts } = this.props;
+   let layer;
+   if (viewTheme) {
+     const closeLayer = () => this.setState({ viewTheme: false });
+     layer = (
+       <Layer onEsc={closeLayer} onClickOutside={closeLayer}>
+         <JSONPretty json={theme} />
+       </Layer>
+     );
+   }
+   return (
+     <Page title='Theme'>
+       <Box pad='large'>
+         <Box direction='row'>
+           <Box margin={{ vertical: 'large' }} basis='medium'>
+             <Heading level={1}>
+               <strong>Try us without writing a single line of code</strong>
+             </Heading>
+             <Paragraph size='large'>
                 Learn more about how you can theme using the grommet library.
-              </Paragraph>
-            </Box>
-          </Box>
-        </Box>
+             </Paragraph>
+           </Box>
+         </Box>
+       </Box>
 
-        <Box direction='row' wrap={true}>
-          <Box basis='medium' margin={{ bottom: 'large' }}>
-            <Box pad='medium'>
-              <Field label='Name' focused={focused === 'name'}>
-                <TextInput
-                  plain={true}
-                  value={name}
-                  onChange={event => this.setState({ name: event.target.value })}
-                  onFocus={() => this.setState({ focused: 'name' })}
-                  onBlur={() => this.setState({ focused: undefined })}
-                />
-              </Field>
-              <Field
-                label='Brand Color'
-                help='hex RGB'
-                error={errors.color}
-                focused={focused === 'color'}
-              >
-                <Box direction='row' align='center' justify='between'>
-                  <TextInput
-                    plain={true}
-                    value={color}
-                    onChange={this.onChangeColor}
-                    onFocus={() => this.setState({ focused: 'color' })}
-                    onBlur={() => this.setState({ focused: undefined })}
-                  />
-                  <Box background={theme.global.colors.brand} pad='small' round='small' />
-                </Box>
-              </Field>
-              <Field
-                label='Font Name'
-                help={loading.font ? 'loading ...' : (
-                  <Anchor
-                    href='https://fonts.google.com/'
-                    label='google fonts'
-                  />
-                )}
-                error={errors.font}
-                focused={focused === 'font'}
-              >
-                <TextInput
-                  plain={true}
-                  value={font}
-                  onChange={this.onChangeFont}
-                  onFocus={() => this.setState({ focused: 'font' })}
-                  onBlur={() => this.setState({ focused: undefined })}
-                />
-              </Field>
-              <Field label='Sharpness' focused={focused === 'sharpness'}>
-                <Select
-                  plain={true}
-                  value={sharpness}
-                  options={SHARPNESSES}
-                  onChange={this.onChangeSharpness}
-                  onFocus={() => this.setState({ focused: 'sharpness' })}
-                  onBlur={() => this.setState({ focused: undefined })}
-                />
-              </Field>
-              <Field label='Mood' focused={focused === 'mood'}>
-                <Select
-                  plain={true}
-                  value={mood}
-                  options={MOODS}
-                  onChange={this.onChangeMood}
-                  onFocus={() => this.setState({ focused: 'mood' })}
-                  onBlur={() => this.setState({ focused: undefined })}
-                />
-              </Field>
-            </Box>
-            <Box pad={{ horizontal: 'medium' }}>
-              <Button label='Download' primary={true} onClick={this.onDownload} />
-            </Box>
-          </Box>
+       <Box direction='row' wrap={true}>
+         <Box basis='medium' margin={{ bottom: 'large' }}>
+           <Box pad='medium'>
+             <Field label='Name' focused={focused === 'name'}>
+               <TextInput
+                 plain={true}
+                 value={name}
+                 onChange={event => this.setState({ name: event.target.value })}
+                 onFocus={() => this.setState({ focused: 'name' })}
+                 onBlur={() => this.setState({ focused: undefined })}
+               />
+             </Field>
+             <Field
+               label='Brand Color'
+               help='hex RGB'
+               error={errors.color}
+               focused={focused === 'color'}
+             >
+               <Box direction='row' align='center' justify='between'>
+                 <TextInput
+                   plain={true}
+                   value={color}
+                   onChange={this.onChangeColor}
+                   onFocus={() => this.setState({ focused: 'color' })}
+                   onBlur={() => this.setState({ focused: undefined })}
+                 />
+                 <Box background={theme.global.colors.brand} pad='small' round='small' />
+               </Box>
+             </Field>
+             <Field
+               label='Font Name'
+               help={<Anchor href='https://fonts.google.com/' label='google fonts' />}
+               focused={focused === 'font'}
+             >
+               <Select
+                 options={fonts.filter(
+                    f => (f.family.toUpperCase().startsWith(fontSearch.toUpperCase()) ||
+                      f.category.toUpperCase().startsWith(fontSearch.toUpperCase()))
+                  )}
+                 onClose={() => this.setState({ fontSearch: '' })}
+                 value={fontFamily}
+                 plain={true}
+                 onSearch={this.onFontSearch}
+                 onChange={this.onChangeFont}
+                 onFocus={() => this.setState({ focused: 'font' })}
+                 onBlur={() => this.setState({ focused: undefined })}
+               >
+                 {item => (
+                   <Box border='botton' pad='small'>
+                     <Text>{`${item.family} (${item.category})`}</Text>
+                   </Box>
+                 )}
+               </Select>
+             </Field>
+             <Field label='Border sharpness' focused={focused === 'sharpness'}>
+               <Select
+                 plain={true}
+                 value={sharpness}
+                 options={SHARPNESSES}
+                 onChange={this.onChangeSharpness}
+                 onFocus={() => this.setState({ focused: 'sharpness' })}
+                 onBlur={() => this.setState({ focused: undefined })}
+               />
+             </Field>
+             <Field label='Color scheme' focused={focused === 'scheme'}>
+               <Select
+                 plain={true}
+                 value={scheme}
+                 options={SCHEMES}
+                 onChange={this.onChangeScheme}
+                 onFocus={() => this.setState({ focused: 'scheme' })}
+                 onBlur={() => this.setState({ focused: undefined })}
+               />
+             </Field>
+             <Field label='Color variation' focused={focused === 'mood'}>
+               <Select
+                 plain={true}
+                 value={mood}
+                 options={MOODS}
+                 onChange={this.onChangeMood}
+                 onFocus={() => this.setState({ focused: 'mood' })}
+                 onBlur={() => this.setState({ focused: undefined })}
+               />
+             </Field>
+           </Box>
+           <Box pad={{ horizontal: 'medium' }}>
+             <Button label='Apply' primary={true} onClick={this.onApply} />
+           </Box>
+         </Box>
 
-          <Box flex='grow' margin={{ bottom: 'large' }} align='center'>
-            <Grommet key={key} theme={theme}>
-              <Box
-                direction='column'
-                round={SHARPNESS_ROUND_SIZE[sharpness]}
-                animation='fadeIn'
-                background='white'
-                style={{
-                  overflow: 'hidden',
-                  boxShadow: '0px 5px 20px 10px rgba(0, 0, 0, 0.1)',
-                }}
-              >
-                <Box pad='medium' background='accent-1' direction='row' justify='between' align='center'>
-                  <Button icon={<MenuIcon />} label='menu' onClick={() => {}} />
-                  <Button primary={true} label='Subscribe' onClick={() => {}} />
-                </Box>
-                <Box direction='row' justify='center'>
-                  <Box basis='large' pad='large' align='start'>
-                    <Heading level={1} margin={{ top: 'none' }}>Bring it on!</Heading>
-                    <Text>January</Text>
-                    <Paragraph>
-                      Biodiesel small batch blue bottle you probably have not
-                      heard of them cornhole taiyaki thundercats celiac
-                      messenger bag. Prism cred, poutine bespoke tumeric tofu
-                      helvetica put a bird on it.
-                    </Paragraph>
-                    <Image src='https://myjourneytosixmillion.files.wordpress.com/2018/01/park-dasol-146056.jpg?w=300' />
-                  </Box>
-                </Box>
-              </Box>
-            </Grommet>
-          </Box>
-        </Box>
-      </Page>
-    );
-  }
+         <Box flex='grow' margin={{ bottom: 'large' }} align='center'>
+           <Grommet key={key} theme={theme}>
+             <Box
+               direction='column'
+               animation='fadeIn'
+               background='white'
+               elevation='xlarge'
+             >
+               <Box pad='medium' background='accent-1' direction='row' justify='between' align='center'>
+
+                 <Menu
+                   icon={<MenuIcon />}
+                   label='menu'
+                   dropAlign={{ top: 'top', right: 'right' }}
+                   items={[{ label: 'Item 1' }, { label: 'Item 2' }, { label: 'Item 3' }]}
+                 />
+                 <Button primary={true} label='Subscribe' onClick={() => {}} />
+               </Box>
+               <Box direction='row' justify='center'>
+                 <Box basis='large' pad='large' align='start'>
+                   <Heading level={1} margin={{ top: 'none' }}>Bring it on!</Heading>
+                   <Text>Get your creativity going !</Text>
+                   <Box direction='row' gap='medium' pad={{ vertical: 'medium' }} justify='between' align='end' fill='horizontal'>
+                     <TextInput placeholder='TextInput' />
+                     <TextArea placeholder='<TextArea />' disabled={true} />
+                   </Box>
+                   <Box direction='row' pad={{ vertical: 'medium' }} justify='between' align='center' fill='horizontal'>
+                     <CheckBox checked={true} label='Option one' disabled={true} />
+                     <RadioButton checked={true} label='Option one' disabled={true} />
+                   </Box>
+                   <Box pad={{ vertical: 'medium' }} fill='horizontal' basis='xsmall' direction='row'>
+                     {themeColors(theme).map(c => (
+                       <Box key={`color_${c}`} flex={true} background={c} />
+                      ))}
+                   </Box>
+                   <Box margin={{ top: 'medium' }} border='top'>
+                     <Button label='View theme' onClick={() => this.setState({ viewTheme: true })} />
+                   </Box>
+                 </Box>
+               </Box>
+             </Box>
+             {layer}
+           </Grommet>
+         </Box>
+       </Box>
+     </Page>
+   );
+ }
 }
+
+const mapDispatchToProps = dispatch => bindActionCreators({ updateTheme }, dispatch);
+
+
+const mapStateToProps = state => ({
+  themes: state.themes,
+});
+
+
+export default connect(mapStateToProps, mapDispatchToProps)(Theme);
