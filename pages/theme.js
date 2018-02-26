@@ -3,16 +3,19 @@ import 'isomorphic-unfetch';
 import JSONPretty from 'react-json-pretty';
 import {
   Anchor, Box, Button, Grommet, Heading, Layer, Paragraph, Select, Text,
-  TextInput, TextArea, CheckBox, RadioButton, Menu,
+  TextInput, CheckBox, RadioButton, Menu,
 } from 'grommet';
-import { Menu as MenuIcon } from 'grommet-icons';
+import { Menu as MenuIcon, Edit } from 'grommet-icons';
 import Page from '../components/Page';
+import AirlineMultiSelect from '../components/drop-button/AirlineMultiSelect';
+import LabelMultiSelect from '../components/drop-button/LabelMultiSelect';
 import createTheme, { MOODS, SCHEMES, SHARPNESSES, themeFromFont, themeColors } from '../utils/theme';
 import { updateTheme } from '../redux/themes/actions';
 import connect from '../redux';
 
 const defaultFont = 'Roboto';
 const defaultColor = '#99cc33';
+const defaultBackground = '#ffffff';
 const defaultMood = 'pastel';
 const defaultScheme = 'triade';
 const defaultSharpness = 'medium';
@@ -57,15 +60,17 @@ class Theme extends React.Component {
   constructor(props) {
     super(props);
     const color = defaultColor;
+    const background = defaultBackground;
     const mood = defaultMood;
     const scheme = defaultScheme;
     const sharpness = defaultSharpness;
     const { font } = props;
     const theme = createTheme({
-      color, mood, scheme, sharpness, font,
+      color, background, mood, scheme, sharpness, font,
     });
     this.state = {
       color,
+      background,
       errors: {},
       font,
       fontFamily: defaultFont,
@@ -89,11 +94,11 @@ class Theme extends React.Component {
 
   onChangeColor = (event) => {
     const {
-      errors, key, mood, scheme, sharpness, font,
+      errors, key, background, mood, scheme, sharpness, font,
     } = this.state;
     const color = event.target.value;
     const theme = createTheme({
-      color, mood, scheme, sharpness, font,
+      color, background, mood, scheme, sharpness, font,
     });
     if (theme) {
       this.setState({
@@ -109,42 +114,64 @@ class Theme extends React.Component {
       });
     }
   };
+    onChangeBackground = (event) => {
+      const {
+        errors, key, color, mood, scheme, sharpness, font,
+      } = this.state;
+      const background = event.target.value;
+      const theme = createTheme({
+        color, background, mood, scheme, sharpness, font,
+      });
+      if (theme) {
+        this.setState({
+          background,
+          errors: { ...errors, background: undefined },
+          key: key + 1,
+          theme,
+        });
+      } else {
+        this.setState({
+          background,
+          errors: { ...errors, background: 'must be #RRGGBB' },
+        });
+      }
+    };
 
   onChangeSharpness = ({ option: sharpness }) => {
     const {
-      key, color, mood, scheme, font,
+      key, color, background, mood, scheme, font,
     } = this.state;
     this.setState({
       key: key + 1,
       sharpness,
       theme: createTheme({
-        color, mood, scheme, sharpness, font,
+        color, background, mood, scheme, sharpness, font,
       }),
     });
   };
 
   onChangeMood = ({ option: mood }) => {
     const {
-      key, color, sharpness, font, scheme,
+      key, color, background, sharpness, font, scheme,
     } = this.state;
     this.setState({
       key: key + 1,
       mood,
       theme: createTheme({
-        color, mood, scheme, sharpness, font,
+        color, background, mood, scheme, sharpness, font,
       }),
     });
   };
 
   onChangeScheme = ({ option: scheme }) => {
     const {
-      key, color, sharpness, font, mood,
+      key, color, background, sharpness, font, mood,
     } = this.state;
     this.setState({
       key: key + 1,
       scheme,
       theme: createTheme({
-        color, mood, scheme, sharpness, font,
+        color, background, mood, scheme, sharpness, font,
       }),
     });
   };
@@ -152,14 +179,14 @@ class Theme extends React.Component {
 
   onChangeFont = ({ option: { family } }) => {
     const {
-      color, mood, scheme, sharpness,
+      color, background, mood, scheme, sharpness,
     } = this.state;
     const { fonts } = this.props;
     themeFromFont(fonts.find(f => f.family === family))
       .then((font) => {
         this.setState({
           theme: createTheme({
-            color, mood, scheme, sharpness, font,
+            color, background, mood, scheme, sharpness, font,
           }),
           fontFamily: family,
         });
@@ -178,7 +205,7 @@ class Theme extends React.Component {
 
  render() {
    const {
-     color, errors, focused, fontFamily, key, mood, scheme, name, sharpness,
+     color, background, errors, focused, fontFamily, key, mood, scheme, name, sharpness,
      theme, fontSearch, viewTheme,
    } = this.state;
    const { fonts } = this.props;
@@ -232,7 +259,24 @@ class Theme extends React.Component {
                    onFocus={() => this.setState({ focused: 'color' })}
                    onBlur={() => this.setState({ focused: undefined })}
                  />
-                 <Box background={theme.global.colors.brand} pad='small' round='small' />
+                 <Box background={theme.global.colors.brand} pad='small' round='small' border='all' />
+               </Box>
+             </Field>
+             <Field
+               label='Background Color'
+               help='hex RGB'
+               error={errors.background}
+               focused={focused === 'background'}
+             >
+               <Box direction='row' align='center' justify='between'>
+                 <TextInput
+                   plain={true}
+                   value={background}
+                   onChange={this.onChangeBackground}
+                   onFocus={() => this.setState({ focused: 'background' })}
+                   onBlur={() => this.setState({ focused: undefined })}
+                 />
+                 <Box background={theme.global.colors.background} pad='small' round='small' border='all' />
                </Box>
              </Field>
              <Field
@@ -301,7 +345,6 @@ class Theme extends React.Component {
              <Box
                direction='column'
                animation='fadeIn'
-               background='white'
                elevation='xlarge'
              >
                <Box pad='medium' background='accent-1' direction='row' justify='between' align='center'>
@@ -315,23 +358,55 @@ class Theme extends React.Component {
                  <Button primary={true} label='Subscribe' onClick={() => {}} />
                </Box>
                <Box direction='row' justify='center'>
-                 <Box basis='large' pad='large' align='start'>
-                   <Heading level={1} margin={{ top: 'none' }}>Bring it on!</Heading>
-                   <Text>Get your creativity going !</Text>
-                   <Box direction='row' gap='medium' pad={{ vertical: 'medium' }} justify='between' align='end' fill='horizontal'>
-                     <TextInput placeholder='TextInput' />
-                     <TextArea placeholder='<TextArea />' disabled={true} />
+                 <Box pad='large' align='start'>
+                   <Heading level={1} margin={{ top: 'none' }}>Heading H1</Heading>
+                   <Text>Text</Text>
+                   <Box direction='row' gap='medium' pad={{ vertical: 'medium' }} justify='between' align='center'>
+                     <Field
+                       label='TextInput'
+                       error='error'
+                     >
+                       <TextInput plain={true} placeholder='TextInput' />
+                     </Field>
+                     <Field
+                       label='Select'
+                       help='select an option'
+                     >
+                       <Select
+                         plain={true}
+                         placeholder='slect an option'
+                         options={['Option 1', 'Option 2', 'Option 3']}
+                       />
+                     </Field>
                    </Box>
-                   <Box direction='row' pad={{ vertical: 'medium' }} justify='between' align='center' fill='horizontal'>
-                     <CheckBox checked={true} label='Option one' disabled={true} />
-                     <RadioButton checked={true} label='Option one' disabled={true} />
+                   <Box direction='row' pad={{ vertical: 'medium' }} gap='medium' fill='horizontal'>
+                     <Box gap='small' margin={{ right: 'medium' }}>
+                       <Button active={true} label='Active' onClick={() => {}} />
+                       <Button color='status-critical' label='Critical' onClick={() => {}} />
+                       <Button primary={true} label='Primary' onClick={() => {}} />
+                       <Button icon={<Edit />} label='Disabled' />
+                     </Box>
+                     <Box gap='small' margin={{ horizontal: 'medium' }}>
+                       <CheckBox checked={true} label='Option one' disabled={true} />
+                       <RadioButton checked={true} label='Option one' disabled={true} />
+                     </Box>
+                     <Box gap='small' margin={{ right: 'medium' }} align='start' >
+                       <Box direction='row' margin={{ vertical: 'medium' }}>
+                         <AirlineMultiSelect />
+                       </Box>
+                       <Box direction='row' margin={{ vertical: 'medium' }}>
+                         <LabelMultiSelect />
+                       </Box>
+                     </Box>
                    </Box>
-                   <Box pad={{ vertical: 'medium' }} fill='horizontal' basis='xsmall' direction='row'>
-                     {themeColors(theme).map(c => (
-                       <Box key={`color_${c}`} flex={true} background={c} />
-                      ))}
+                   <Box fill='horizontal'>
+                     <Box fill='horizontal' basis='xsmall' direction='row'>
+                       {themeColors(theme).map(c => (
+                         <Box key={`color_${c}`} flex={true} background={c} />
+                        ))}
+                     </Box>
                    </Box>
-                   <Box margin={{ top: 'medium' }} border='top'>
+                   <Box direction='row' margin={{ top: 'medium' }} pad={{ vertical: 'medium' }} border='top' fill='horizontal'>
                      <Button label='View theme' onClick={() => this.setState({ viewTheme: true })} />
                    </Box>
                  </Box>
