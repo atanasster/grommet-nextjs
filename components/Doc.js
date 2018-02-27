@@ -12,7 +12,7 @@ export default class Doc extends React.Component {
       children, desc, name, example, examples, text, nav,
     } = this.props;
     return (
-      <Page title={this.props.name} description={desc.description} nav={nav}>
+      <Page title={this.props.name} description={desc && desc.description} nav={nav}>
         <Box pad={{ horizontal: 'large', top: 'large' }}>
           <Box direction='row' responsive={true}>
             <Box margin={{ vertical: 'large' }} basis='large' align='start'>
