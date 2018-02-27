@@ -136,7 +136,6 @@ export default deepFreeze({
       radius: '0px',
     },
   },
-  grommet: {},
   layer: {
     backgroundColor,
     border: {

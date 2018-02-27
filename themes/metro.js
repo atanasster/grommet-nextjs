@@ -1,17 +1,19 @@
 import { deepFreeze } from '../utils/object';
 
-const brandColor = '#00ABD4';
-const accentColors = ['#FFC107', '#9C27B0', '#673AB7', '#3F51B5', '#2196F3', '#795548'];
-const neutralColors = ['#03A9F4', '#009688', '#8BC34A', '#CDDC39', '#FF9800', '#FF5722', '#607D8B'];
+const brandColor = '#0072c6';
+const accentColors = ['#128023', '#fa6800', '#0050ef', '#d80073', '#008a00', '#00aff0', '#f0a30a', '#825a2c', '#63362f', '#81003c', '#4b0096'];
+const neutralColors = ['#a4c400', '#00aba9', '#6d8764', '#647687', '#76608a', '#87794e',
+  '#607D8B', '640024', '#1b6eae', '#00356a', '#004050', '#003e00', '#bf5a15', '#9a1616',
+  '#57169a', '#4390df', '#da5a53', '#7ad61d', '#00ccff', '#45fffd', '#78aa1c', '#ffc194', '#f472d0'];
 const statusColors = {
-  critical: '#FF4081',
-  error: '#F44336',
-  warning: '#FFEB3B',
-  ok: '#4CAF50',
-  unknown: '#9E9E9E',
-  disabled: '#9E9E9E',
+  critical: '#ce352c',
+  error: '#a20025',
+  warning: '#e3c800',
+  ok: '#60a917',
+  unknown: '#eeeeee',
+  disabled: '#999999',
 };
-const shadowColor = 'rgba(50, 50, 50, 0.50)';
+const shadowColor = 'rgba(0, 86, 150, 0.50)';
 
 export default deepFreeze({
   global: {
@@ -23,6 +25,7 @@ export default deepFreeze({
       black: brandColor,
     },
     drop: {
+      backgroundColor: '#005696',
       border: {
         width: '0px',
         radius: '0px',
@@ -43,54 +46,46 @@ export default deepFreeze({
       xlarge: `0px 8px 16px ${shadowColor}`,
     },
     font: {
-      family: "'Roboto', sans-serif",
+      family: "'Open Sans', sans-serif",
       face: `
         /* latin */
         @font-face {
-          font-family: 'Roboto';
-          font-style: normal;
-          font-weight: 100;
-          src: local('Roboto Thin'), local('Roboto-Thin'), url(https://fonts.gstatic.com/s/roboto/v18/KFOkCnqEu92Fr1MmgVxIIzIXKMny.woff2) format('woff2');
-          unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
-        }
-        /* latin */
-        @font-face {
-          font-family: 'Roboto';
+          font-family: 'Open Sans';
           font-style: normal;
           font-weight: 300;
-          src: local('Roboto Light'), local('Roboto-Light'), url(https://fonts.gstatic.com/s/roboto/v18/KFOlCnqEu92Fr1MmSU5fBBc4AMP6lQ.woff2) format('woff2');
+          src: local('Open Sans Light'), local('OpenSans-Light'), url(https://fonts.gstatic.com/s/opensans/v15/mem5YaGs126MiZpBA-UN_r8OUuhpKKSTjw.woff2) format('woff2');
           unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
         }
         /* latin */
         @font-face {
-          font-family: 'Roboto';
+          font-family: 'Open Sans';
           font-style: normal;
           font-weight: 400;
-          src: local('Roboto'), local('Roboto-Regular'), url(https://fonts.gstatic.com/s/roboto/v18/KFOmCnqEu92Fr1Mu4mxKKTU1Kg.woff2) format('woff2');
+          src: local('Open Sans Regular'), local('OpenSans-Regular'), url(https://fonts.gstatic.com/s/opensans/v15/mem8YaGs126MiZpBA-UFVZ0bf8pkAg.woff2) format('woff2');
           unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
         }
         /* latin */
         @font-face {
-          font-family: 'Roboto';
+          font-family: 'Open Sans';
           font-style: normal;
-          font-weight: 500;
-          src: local('Roboto Medium'), local('Roboto-Medium'), url(https://fonts.gstatic.com/s/roboto/v18/KFOlCnqEu92Fr1MmEU9fBBc4AMP6lQ.woff2) format('woff2');
+          font-weight: 600;
+          src: local('Open Sans SemiBold'), local('OpenSans-SemiBold'), url(https://fonts.gstatic.com/s/opensans/v15/mem5YaGs126MiZpBA-UNirkOUuhpKKSTjw.woff2) format('woff2');
           unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
         }
         /* latin */
         @font-face {
-          font-family: 'Roboto';
+          font-family: 'Open Sans';
           font-style: normal;
           font-weight: 700;
-          src: local('Roboto Bold'), local('Roboto-Bold'), url(https://fonts.gstatic.com/s/roboto/v18/KFOlCnqEu92Fr1MmWUlfBBc4AMP6lQ.woff2) format('woff2');
+          src: local('Open Sans Bold'), local('OpenSans-Bold'), url(https://fonts.gstatic.com/s/opensans/v15/mem5YaGs126MiZpBA-UN7rgOUuhpKKSTjw.woff2) format('woff2');
           unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
         }
         /* latin */
         @font-face {
-          font-family: 'Roboto';
+          font-family: 'Open Sans';
           font-style: normal;
-          font-weight: 900;
-          src: local('Roboto Black'), local('Roboto-Black'), url(https://fonts.gstatic.com/s/roboto/v18/KFOlCnqEu92Fr1MmYUtfBBc4AMP6lQ.woff2) format('woff2');
+          font-weight: 800;
+          src: local('Open Sans ExtraBold'), local('OpenSans-ExtraBold'), url(https://fonts.gstatic.com/s/opensans/v15/mem5YaGs126MiZpBA-UN8rsOUuhpKKSTjw.woff2) format('woff2');
           unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
         }
       `,
@@ -123,6 +118,7 @@ export default deepFreeze({
     },
   },
   layer: {
+    backgroundColor: '#005696',
     border: {
       radius: '0px',
     },
