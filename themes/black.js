@@ -16,7 +16,7 @@ const darkColors = ['#F6F6F6', '#EEEEEE', '#DDDDDD', '#CCCCCC', '#BBBBBB', '#AAA
 const backgroundColor = '#808080';
 const textColor = '#dddddd';
 const borderColor = 'rgba(255, 255, 255, 0.15)';
-const activeColor = 'rgba(35, 35, 35, 0.15)';// 'rgba('#DDDDDD', 0.5)';
+const activeColor = 'rgba(35, 35, 35, 0.15)';
 const shadowColor = 'rgba(200, 200, 200, 0.50)';
 
 export default deepFreeze({
@@ -28,9 +28,6 @@ export default deepFreeze({
       border: borderColor,
       brand: brandColor,
       dark: darkColors,
-      darkBackground: {
-        text: '#ffffff',
-      },
       light: lightColors,
       neutral: neutralColors,
       placeholder: '#AAAAAA',

@@ -2,6 +2,8 @@ import * as ActionTypes from './constants';
 import black from '../../themes/black';
 // eslint-disable-next-line camelcase
 import material_light from '../../themes/material-light';
+// eslint-disable-next-line camelcase
+import material_dark from '../../themes/material-dark';
 
 const defaultTheme = 'grommet';
 const custom = {
@@ -56,6 +58,7 @@ const initialState = {
     grommet: {},
     black,
     material_light,
+    material_dark,
     custom,
   },
   selected: defaultTheme,

@@ -1,7 +1,7 @@
 import { css } from 'styled-components';
 import { deepFreeze } from '../utils/object';
 
-const brandColor = '#00ABD4';
+const brandColor = '#000000';
 const accentColors = ['#FFC107', '#9C27B0', '#673AB7', '#3F51B5', '#2196F3', '#795548'];
 const neutralColors = ['#03A9F4', '#009688', '#8BC34A', '#CDDC39', '#FF9800', '#FF5722', '#607D8B'];
 const statusColors = {
@@ -12,28 +12,37 @@ const statusColors = {
   unknown: '#9E9E9E',
   disabled: '#9E9E9E',
 };
-const shadowColor = 'rgba(50, 50, 50, 0.50)';
+const lightColors = ['#333333', '#444444', '#555555', '#666666', '#777777', '#999999'];
+const darkColors = ['#F6F6F6', '#EEEEEE', '#DDDDDD', '#CCCCCC', '#BBBBBB', '#AAAAAA'];
+const backgroundColor = '#808080';
+const textColor = '#dddddd';
+const borderColor = 'rgba(255, 255, 255, 0.15)';
+const activeColor = 'rgba(35, 35, 35, 0.15)';
+const shadowColor = 'rgba(200, 200, 200, 0.50)';
+
 
 export default deepFreeze({
   global: {
-    colors: {
+        colors: {
+      active: activeColor,
       accent: accentColors,
+      background: '#444444',
+      border: borderColor,
       brand: brandColor,
+      dark: darkColors,
+      light: lightColors,
       neutral: neutralColors,
+      placeholder: '#AAAAAA',
       status: statusColors,
-      black: brandColor,
+      text: textColor,
     },
     drop: {
+      backgroundColor,
       border: {
         width: '0px',
         radius: '0px',
       },
       shadow: `0px 3px 8px ${shadowColor}`,
-    },
-    focus: {
-      border: {
-        color: brandColor,
-      },
     },
     elevation: {
       none: 'none',
@@ -97,11 +106,17 @@ export default deepFreeze({
       `,
       size: '16px',
     },
+    hover: {
+      textColor: '#ffffff',
+    },
     input: {
       border: {
         radius: '0px',
       },
     },
+  },
+  anchor: {
+    color: '#ffffff',
   },
   button: {
     border: {
@@ -111,28 +126,29 @@ export default deepFreeze({
   checkBox: {
     border: {
       color: {
-        light: 'rgba(0, 188, 212, 0.5)',
-        dark: 'rgba(255, 255, 255, 0.5)',
+        light: 'rgba(255, 255, 255, 0.5)',
+        dark: 'rgba(0, 0, 0, 0.15)',
       },
       radius: '0px',
     },
-    check: {
-      color: brandColor,
-    },
     toggle: {
-      color: '#9E9E9E',
+      color: '#d9d9d9',
+      radius: '0px',
     },
   },
+  grommet: {},
   layer: {
+    backgroundColor,
     border: {
       radius: '0px',
     },
+    overlayBackgroundColor: 'rgba(255, 255, 255, 0.5)',
   },
   radioButton: {
     border: {
       color: {
-        light: 'rgba(0, 188, 212, 0.5)',
-        dark: 'rgba(255, 255, 255, 0.5)',
+        light: 'rgba(255, 255, 255, 0.5)',
+        dark: 'rgba(0, 0, 0, 0.15)',
       },
     },
   },
