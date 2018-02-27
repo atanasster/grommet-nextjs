@@ -1,5 +1,6 @@
 import Color from 'color';
 import ColorScheme from 'color-scheme';
+import { colorIsDark } from 'grommet/utils/colors';
 import { deepMerge } from './object';
 
 export const SHARPNESSES = [
@@ -71,6 +72,7 @@ export const parseRGBString = (str) => {
   return undefined;
 };
 
+
 const colorsForMood = (color, backgroundColor, mood, scheme) => {
   let result;
   const brandRGB = parseRGBString(color);
@@ -83,13 +85,13 @@ const colorsForMood = (color, backgroundColor, mood, scheme) => {
     let softerBackground;
     const border = textColor.fade(0.4);
     const colorStep = 0.2;
-
-    if (textColor.isDark()) {
-      shadow = textColor.lighten(0.3);
-      softerBackground = bgColor.blacken(colorStep);
-    } else {
+    const isDarkBackground = colorIsDark(backgroundColor);
+    if (isDarkBackground) {
       shadow = textColor.darken(0.3);
       softerBackground = bgColor.whiten(colorStep);
+    } else {
+      shadow = textColor.lighten(0.3);
+      softerBackground = bgColor.blacken(colorStep);
     }
     const colorSteps = (Array.from(Array(6).keys()));
     const light = colorSteps.map(index =>
