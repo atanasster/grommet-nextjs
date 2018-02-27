@@ -34,17 +34,26 @@ class Page extends React.Component {
 
   render() {
     const {
-      children, title: pageTitle, nav, themes: { themes },
+      children, title: pageTitle, description, nav, themes: { themes },
     } = this.props;
     const { theme = 'grommet' } = this.state;
+    const keywords = ['grommet', 'grommet 2', 'react', 'next-js', 'next.js', 'ui library'];
+    if (pageTitle) {
+      keywords.push(pageTitle);
+    }
     return (
       <div>
-        {pageTitle && (
-          <Head>
+        <Head>
+          {pageTitle && (
             <title>{`Grommet - ${pageTitle}`}</title>
-          </Head>
-          )
-        }
+            )
+          }
+          {description && (
+            <meta name='description' content={description} />
+            )
+          }
+          <meta name='keywords' content={keywords.join(',')} />
+        </Head>
         <Grommet theme={themes[theme] || {}}>
           <Box >
             {nav && (
