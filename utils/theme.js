@@ -21,7 +21,7 @@ const SHARPNESS = {
   rounded: {
     global: { input: { border: { radius: '24px' } }, drop: { border: { radius: '4px' } } },
     button: { border: { radius: '24px' } },
-    checkBox: { border: { radius: '24px' }, toggle: { radius: '100%' } },
+    checkBox: { border: { radius: '24px' } },
     layer: { border: { radius: '24px' } },
   },
   soft: {
