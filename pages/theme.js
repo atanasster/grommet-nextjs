@@ -3,6 +3,8 @@ import { bindActionCreators } from 'redux';
 import 'isomorphic-unfetch';
 import JSONPretty from 'react-json-pretty';
 import { Anchor, Box, Button, Grommet, Heading, Layer, Select, Text, TextInput, DropButton } from 'grommet';
+import { withTheme } from 'grommet/components/hocs';
+import { deepMerge } from 'grommet/utils/object'
 import Page from '../components/Page';
 import Field from '../components/grommet/Field';
 import createTheme, { MOODS, SCHEMES, SHARPNESSES, themeFromFont } from '../utils/theme';
@@ -45,6 +47,7 @@ class Fonts extends React.Component {
 
  render() {
    const { fonts } = this.state;
+   const { theme } = this.props;
    return (
      <Fragment >
        {fonts.map(font => (
@@ -53,7 +56,7 @@ class Fonts extends React.Component {
            hoverIndicator={true}
            onClick={() => this.props.onSelect(font)}
          >
-           <Grommet theme={{ global: { font: font.theme } }} >
+           <Grommet theme={deepMerge(theme, { global: { font: font.theme } })} >
              <Box
                direction='row'
                justify='between'
@@ -70,6 +73,8 @@ class Fonts extends React.Component {
    );
  }
 }
+
+const ThemeFonts = withTheme(Fonts);
 
 class Theme extends React.Component {
   constructor(props) {
@@ -295,7 +300,7 @@ class Theme extends React.Component {
                  dropContent={
                    <Box>
                      <TextInput placeholder='Search' onChange={this.onFontSearch} />
-                     <Fonts fonts={fonts} search={fontSearch} onSelect={this.onSelectFont} />
+                     <ThemeFonts fonts={fonts} search={fontSearch} onSelect={this.onSelectFont} />
                    </Box>
                 }
                />
