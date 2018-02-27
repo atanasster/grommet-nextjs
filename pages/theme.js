@@ -1,17 +1,14 @@
+import { Fragment } from 'react';
 import { bindActionCreators } from 'redux';
 import 'isomorphic-unfetch';
 import JSONPretty from 'react-json-pretty';
-import {
-  Anchor, Box, Button, Grommet, Heading, Layer, Paragraph, Select, Text,
-  TextInput, CheckBox, RadioButton, Menu,
-} from 'grommet';
-import { Menu as MenuIcon, Edit } from 'grommet-icons';
+import { Anchor, Box, Button, Grommet, Heading, Layer, Select, Text, TextInput, DropButton } from 'grommet';
 import Page from '../components/Page';
-import AirlineMultiSelect from '../components/drop-button/AirlineMultiSelect';
-import LabelMultiSelect from '../components/drop-button/LabelMultiSelect';
-import createTheme, { MOODS, SCHEMES, SHARPNESSES, themeFromFont, themeColors } from '../utils/theme';
+import Field from '../components/grommet/Field';
+import createTheme, { MOODS, SCHEMES, SHARPNESSES, themeFromFont } from '../utils/theme';
 import { updateTheme } from '../redux/themes/actions';
 import connect from '../redux';
+import Preview from '../components/Preview';
 
 const defaultFont = 'Roboto';
 const defaultColor = '#99cc33';
@@ -20,41 +17,59 @@ const defaultMood = 'pastel';
 const defaultScheme = 'triade';
 const defaultSharpness = 'medium';
 
-const Field = ({
-  children, error, focused, label, help,
-}) => {
-  let header;
-  if (label || help || error) {
-    header = (
-      <Box
-        direction='row'
-        justify='between'
-        pad={{ horizontal: 'small', top: 'xsmall' }}
-      >
-        <Text>{label}</Text>
-        <Text color={error ? 'status-critical' : 'dark-5'}>{error || help}</Text>
-      </Box>
-    );
-  }
-  let borderColor;
-  if (error) {
-    borderColor = 'status-critical';
-  } else if (focused) {
-    borderColor = 'brand';
-  } else {
-    borderColor = 'light-3';
-  }
-  return (
-    <Box
-      direction='column'
-      border={{ color: borderColor, side: 'bottom', size: 'small' }}
-      margin={{ vertical: 'xsmall' }}
-    >
-      {header}
-      {children}
-    </Box>
-  );
-};
+class Fonts extends React.Component {
+ state = { fonts: [] };
+
+ loadFontThemes(props) {
+   const { fonts, search } = props;
+   this.setState({ fonts: [] });
+   const filtered =
+      fonts.filter(f => (f.family.toUpperCase().startsWith(search.toUpperCase()) ||
+        f.category.toUpperCase().startsWith(search.toUpperCase()))).slice(0, 10);
+   const self = this;
+   filtered.map(font => (
+     themeFromFont(font).then(theme => self.setState({
+       fonts: [...this.state.fonts, { ...font, theme }],
+     }))
+   ));
+ }
+
+ componentDidMount() {
+   this.loadFontThemes(this.props);
+ }
+ componentWillReceiveProps(nextProps) {
+   if (nextProps.search !== this.props.search) {
+     this.loadFontThemes(nextProps);
+   }
+ }
+
+ render() {
+   const { fonts } = this.state;
+   return (
+     <Fragment >
+       {fonts.map(font => (
+         <Button
+           key={font.family}
+           hoverIndicator={true}
+           onClick={() => this.props.onSelect(font)}
+         >
+           <Grommet theme={{ global: { font: font.theme } }} >
+             <Box
+               direction='row'
+               justify='between'
+               align='center'
+               pad={{ horizontal: 'small', vertical: 'xsmall' }}
+             >
+               <Text>{font.family}</Text>
+               <Text>{font.category}</Text>
+             </Box>
+           </Grommet>
+         </Button>))
+        }
+     </Fragment>
+   );
+ }
+}
 
 class Theme extends React.Component {
   constructor(props) {
@@ -69,11 +84,11 @@ class Theme extends React.Component {
       color, background, mood, scheme, sharpness, font,
     });
     this.state = {
+      open: undefined,
       color,
       background,
       errors: {},
       font,
-      fontFamily: defaultFont,
       viewTheme: false,
       key: 1,
       mood,
@@ -88,9 +103,11 @@ class Theme extends React.Component {
     const res = await fetch(`https://www.googleapis.com/webfonts/v1/webfonts?key=${process.env.GOOGLE_FONTS_API_KEY}&sort=popularity`);
     const json = await res.json();
     const fonts = json.items.filter(item => item.subsets.indexOf('latin') !== -1);
-    const font = await themeFromFont(fonts.find(f => f.family === defaultFont));
-    return { fonts, font };
+    const font = fonts.find(f => f.family === defaultFont);
+    const theme = await themeFromFont(font);
+    return { fonts, font: { ...font, theme } };
   }
+
 
   onChangeColor = (event) => {
     const {
@@ -176,25 +193,23 @@ class Theme extends React.Component {
     });
   };
 
-
-  onChangeFont = ({ option: { family } }) => {
+  onSelectFont = (font) => {
     const {
-      color, background, mood, scheme, sharpness,
+      color, background, mood, scheme, sharpness, key,
     } = this.state;
-    const { fonts } = this.props;
-    themeFromFont(fonts.find(f => f.family === family))
-      .then((font) => {
-        this.setState({
-          theme: createTheme({
-            color, background, mood, scheme, sharpness, font,
-          }),
-          fontFamily: family,
-        });
-      });
+    console.log(font);
+    this.setState({
+      key: key + 1,
+      font,
+      open: undefined,
+      theme: createTheme({
+        color, background, mood, scheme, sharpness, font,
+      }),
+    });
   };
 
-  onFontSearch = (search) => {
-    this.setState({ fontSearch: search });
+  onFontSearch = ({ target: { value: search } }) => {
+    this.setState({ fontSearch: search, open: true });
   };
 
  onApply = () => {
@@ -205,8 +220,8 @@ class Theme extends React.Component {
 
  render() {
    const {
-     color, background, errors, focused, fontFamily, key, mood, scheme, name, sharpness,
-     theme, fontSearch, viewTheme,
+     color, background, errors, font, key, mood, scheme, name, sharpness,
+     theme, fontSearch, viewTheme, open,
    } = this.state;
    const { fonts } = this.props;
    let layer;
@@ -222,13 +237,10 @@ class Theme extends React.Component {
      <Page title='Theme'>
        <Box pad='large'>
          <Box direction='row'>
-           <Box margin={{ vertical: 'large' }} basis='medium'>
+           <Box >
              <Heading level={1}>
-               <strong>Try us without writing a single line of code</strong>
+               <strong>{`Theme "${name}"`}</strong>
              </Heading>
-             <Paragraph size='large'>
-                Learn more about how you can theme using the grommet library.
-             </Paragraph>
            </Box>
          </Box>
        </Box>
@@ -236,28 +248,23 @@ class Theme extends React.Component {
        <Box direction='row' wrap={true}>
          <Box basis='medium' margin={{ bottom: 'large' }}>
            <Box pad='medium'>
-             <Field label='Name' focused={focused === 'name'}>
+             <Field label='Name'>
                <TextInput
                  plain={true}
                  value={name}
                  onChange={event => this.setState({ name: event.target.value })}
-                 onFocus={() => this.setState({ focused: 'name' })}
-                 onBlur={() => this.setState({ focused: undefined })}
                />
              </Field>
              <Field
                label='Brand Color'
                help='hex RGB'
                error={errors.color}
-               focused={focused === 'color'}
              >
                <Box direction='row' align='center' justify='between'>
                  <TextInput
                    plain={true}
                    value={color}
                    onChange={this.onChangeColor}
-                   onFocus={() => this.setState({ focused: 'color' })}
-                   onBlur={() => this.setState({ focused: undefined })}
                  />
                  <Box background={theme.global.colors.brand} pad='small' round='small' border='all' />
                </Box>
@@ -266,15 +273,12 @@ class Theme extends React.Component {
                label='Background Color'
                help='hex RGB'
                error={errors.background}
-               focused={focused === 'background'}
              >
                <Box direction='row' align='center' justify='between'>
                  <TextInput
                    plain={true}
                    value={background}
                    onChange={this.onChangeBackground}
-                   onFocus={() => this.setState({ focused: 'background' })}
-                   onBlur={() => this.setState({ focused: undefined })}
                  />
                  <Box background={theme.global.colors.background} pad='small' round='small' border='all' />
                </Box>
@@ -282,139 +286,62 @@ class Theme extends React.Component {
              <Field
                label='Font Name'
                help={<Anchor href='https://fonts.google.com/' label='google fonts' />}
-               focused={focused === 'font'}
              >
-               <Select
-                 options={fonts.filter(
-                    f => (f.family.toUpperCase().startsWith(fontSearch.toUpperCase()) ||
-                      f.category.toUpperCase().startsWith(fontSearch.toUpperCase()))
-                  )}
-                 onClose={() => this.setState({ fontSearch: '' })}
-                 value={fontFamily}
+               <DropButton
                  plain={true}
-                 onSearch={this.onFontSearch}
-                 onChange={this.onChangeFont}
-                 onFocus={() => this.setState({ focused: 'font' })}
-                 onBlur={() => this.setState({ focused: undefined })}
-               >
-                 {item => (
-                   <Box border='botton' pad='small'>
-                     <Text>{`${item.family} (${item.category})`}</Text>
+                 label={font.family}
+                 open={open}
+                 dropAlign={{ top: 'bottom', right: 'right' }}
+                 dropContent={
+                   <Box>
+                     <TextInput placeholder='Search' onChange={this.onFontSearch} />
+                     <Fonts fonts={fonts} search={fontSearch} onSelect={this.onSelectFont} />
                    </Box>
-                 )}
-               </Select>
+                }
+               />
              </Field>
-             <Field label='Border sharpness' focused={focused === 'sharpness'}>
+             <Field label='Border sharpness'>
                <Select
                  plain={true}
                  value={sharpness}
                  options={SHARPNESSES}
                  onChange={this.onChangeSharpness}
-                 onFocus={() => this.setState({ focused: 'sharpness' })}
-                 onBlur={() => this.setState({ focused: undefined })}
                />
              </Field>
-             <Field label='Color scheme' focused={focused === 'scheme'}>
+             <Field label='Color scheme'>
                <Select
                  plain={true}
                  value={scheme}
                  options={SCHEMES}
                  onChange={this.onChangeScheme}
-                 onFocus={() => this.setState({ focused: 'scheme' })}
-                 onBlur={() => this.setState({ focused: undefined })}
                />
              </Field>
-             <Field label='Color variation' focused={focused === 'mood'}>
+             <Field label='Color variation'>
                <Select
                  plain={true}
                  value={mood}
                  options={MOODS}
                  onChange={this.onChangeMood}
-                 onFocus={() => this.setState({ focused: 'mood' })}
-                 onBlur={() => this.setState({ focused: undefined })}
                />
              </Field>
            </Box>
-           <Box pad={{ horizontal: 'medium' }}>
+           <Box pad={{ horizontal: 'medium' }} justify='between'>
              <Button label='Apply' primary={true} onClick={this.onApply} />
+             <Button label='View theme' onClick={() => this.setState({ viewTheme: true })} />
            </Box>
          </Box>
 
-         <Box flex='grow' margin={{ bottom: 'large' }} align='center'>
+         <Box
+           pad={{ horizontal: 'medium' }}
+           flex='grow'
+           margin={{ bottom: 'large' }}
+           align='center'
+         >
            <Grommet key={key} theme={theme}>
-             <Box
-               direction='column'
-               animation='fadeIn'
-               elevation='xlarge'
-             >
-               <Box pad='medium' background='accent-1' direction='row' justify='between' align='center'>
-
-                 <Menu
-                   icon={<MenuIcon />}
-                   label='menu'
-                   dropAlign={{ top: 'top', right: 'right' }}
-                   items={[{ label: 'Item 1' }, { label: 'Item 2' }, { label: 'Item 3' }]}
-                 />
-                 <Button primary={true} label='Subscribe' onClick={() => {}} />
-               </Box>
-               <Box direction='row' justify='center'>
-                 <Box pad='large' align='start'>
-                   <Heading level={1} margin={{ top: 'none' }}>Heading H1</Heading>
-                   <Text>Text</Text>
-                   <Box direction='row' gap='medium' pad={{ vertical: 'medium' }} justify='between' align='center'>
-                     <Field
-                       label='TextInput'
-                       error='error'
-                     >
-                       <TextInput plain={true} placeholder='TextInput' />
-                     </Field>
-                     <Field
-                       label='Select'
-                       help='select an option'
-                     >
-                       <Select
-                         plain={true}
-                         placeholder='slect an option'
-                         options={['Option 1', 'Option 2', 'Option 3']}
-                       />
-                     </Field>
-                   </Box>
-                   <Box direction='row' pad={{ vertical: 'medium' }} gap='medium' fill='horizontal'>
-                     <Box gap='small' margin={{ right: 'medium' }}>
-                       <Button active={true} label='Active' onClick={() => {}} />
-                       <Button color='status-critical' label='Critical' onClick={() => {}} />
-                       <Button primary={true} label='Primary' onClick={() => {}} />
-                       <Button icon={<Edit />} label='Disabled' />
-                     </Box>
-                     <Box gap='small' margin={{ horizontal: 'medium' }}>
-                       <CheckBox checked={true} label='Option one' disabled={true} />
-                       <RadioButton checked={true} label='Option one' disabled={true} />
-                     </Box>
-                     <Box gap='small' margin={{ right: 'medium' }} align='start' >
-                       <Box direction='row' margin={{ vertical: 'medium' }}>
-                         <AirlineMultiSelect />
-                       </Box>
-                       <Box direction='row' margin={{ vertical: 'medium' }}>
-                         <LabelMultiSelect />
-                       </Box>
-                     </Box>
-                   </Box>
-                   <Box fill='horizontal'>
-                     <Box fill='horizontal' basis='xsmall' direction='row'>
-                       {themeColors(theme).map(c => (
-                         <Box key={`color_${c}`} flex={true} background={c} />
-                        ))}
-                     </Box>
-                   </Box>
-                   <Box direction='row' margin={{ top: 'medium' }} pad={{ vertical: 'medium' }} border='top' fill='horizontal'>
-                     <Button label='View theme' onClick={() => this.setState({ viewTheme: true })} />
-                   </Box>
-                 </Box>
-               </Box>
-             </Box>
-             {layer}
+             <Preview />
            </Grommet>
          </Box>
+         {layer}
        </Box>
      </Page>
    );

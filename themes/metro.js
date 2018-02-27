@@ -1,4 +1,4 @@
-import { deepFreeze } from '../utils/object';
+import { deepFreeze } from 'grommet/utils/object';
 
 const brandColor = '#0072c6';
 const accentColors = ['#128023', '#fa6800', '#0050ef', '#d80073', '#008a00', '#00aff0', '#f0a30a', '#825a2c', '#63362f', '#81003c', '#4b0096'];
@@ -115,6 +115,7 @@ export default deepFreeze({
     },
     toggle: {
       color: '#9E9E9E',
+      radius: '0px',
     },
   },
   layer: {

@@ -1,5 +1,5 @@
 import {
-  Anchor, Box, Button, Calendar, Chart, CheckBox, Clock,
+  Box, Button, Calendar, Chart, CheckBox, Clock,
   Diagram, Distribution, DropButton,
   Heading, Image,
   Menu, Meter, Paragraph, RadioButton, RangeInput,
@@ -7,11 +7,11 @@ import {
   Table, TableBody, TableCell, TableHeader, TableRow,
   Text, TextArea, TextInput, Video, WorldMap,
 } from 'grommet';
-import { withTheme } from 'grommet/components/hocs';
-import { Actions, Grommet as GrommetIcon, TopCorner, BottomCorner } from 'grommet-icons';
+import { Add, LinkNext, Grommet as GrommetIcon, TopCorner, BottomCorner } from 'grommet-icons';
 import RoutedButton from '../components/RoutedButton';
+import RoutedAnchor from '../components/RoutedAnchor';
 import Page from '../components/Page';
-import { themeColors } from '../utils/theme';
+import ColorRoll from '../components/ColorRoll';
 
 const CHART_VALUES = [
   { value: [7, 90], label: 'ninety' },
@@ -45,7 +45,7 @@ const Item = ({
   name, path, children, center,
 }) => (
   <Box basis='medium' margin={{ right: 'medium', bottom: 'medium' }}>
-    <RoutedButton path={path} preserveParams='theme'>
+    <RoutedButton path={path} >
       <Box>
         <Heading level={3} size='small' margin={{ top: 'none', bottom: 'xsmall' }}>
           <strong>{name}</strong>
@@ -67,13 +67,12 @@ const Item = ({
   </Box>
 );
 
-class Home extends React.Component {
+export default class Home extends React.Component {
   render() {
-    const { theme } = this.props;
     return (
       <Page title='Explore'>
         <Box pad='large'>
-          <Box direction='row'>
+          <Box direction='row' gap='xlarge'>
             <Box margin={{ top: 'large' }} basis='medium' overflow='hidden'>
               <Heading level={1}>
                 <strong>Read our documentation</strong>
@@ -83,9 +82,15 @@ class Home extends React.Component {
                 them, and become a l33t.
               </Paragraph>
             </Box>
+            <Box margin={{ top: 'large' }} basis='medium' overflow='hidden'>
+              <Heading level={1}>
+                <RoutedAnchor path='preview'>
+                  <strong>View in action</strong>
+                </RoutedAnchor>
+              </Heading>
+            </Box>
           </Box>
         </Box>
-
         <Box pad={{ horizontal: 'large' }}>
           <Section align='stretch' name='Layout' index={0}>
             <Item name='Box' path='/box'>
@@ -140,13 +145,9 @@ class Home extends React.Component {
 
           <Section basis='full' align='stretch' name='Color' index={2}>
             <Box flex={true}>
-              <RoutedButton path='/color' preserveParams='theme'>
+              <RoutedButton path='/color'>
                 <Box>
-                  <Box flex={true} basis='small' direction='row' wrap={true}>
-                    {themeColors(theme).map(color => (
-                      <Box key={color} flex={true} background={color} />
-                    ))}
-                  </Box>
+                  <ColorRoll basis='small' />
                 </Box>
               </RoutedButton>
             </Box>
@@ -154,7 +155,10 @@ class Home extends React.Component {
 
           <Section name='Controls' index={3}>
             <Item name='Anchor' path='/anchor' center={true}>
-              <Anchor label={"Don't press me"} primary={true} />
+              <Box direction='row' align='center' gap='small'>
+                <Text color='brand'>Don&quot;t press me</Text>
+                <LinkNext />
+              </Box>
             </Item>
             <Item name='Button' path='/button' center={true}>
               <Button label='Panic' primary={true} onClick={() => {}} />
@@ -169,23 +173,20 @@ class Home extends React.Component {
               </Box>
             </Item>
             <Item name='DropButton' path='/dropbutton' center={true}>
-              <Box>
-                <DropButton
-                  control={(
-                    <Box direction='row'>
-                      <Box margin={{ right: 'small' }}>Actions</Box>
-                      <Actions color='brand' />
-                    </Box>
-                  )}
-                />
-                <Box margin={{ top: 'xsmall' }} pad='xsmall' border={true}>
+              <DropButton
+                label='Add'
+                icon={<Add />}
+                reverse={true}
+                open={true}
+                dropAlign={{ top: 'bottom', left: 'left' }}
+                dropContent={
                   <Box
                     background='brand'
-                    margin='xsmall'
+                    margin='small'
                     pad={{ horizontal: 'medium', vertical: 'small' }}
                   />
-                </Box>
-              </Box>
+                }
+              />
             </Item>
             <Item name='Menu' path='/menu' center={true}>
               <Menu tabIndex='-1' label='Actions' items={[]} />
@@ -329,7 +330,7 @@ class Home extends React.Component {
 
           <Section name='Accessibility' index={5}>
             <Item name='SkipLinks' path='/skiplinks' center={true}>
-              <Anchor path='' label='SkipLinks' />
+              <Text color='brand'>SkipLinks</Text>
             </Item>
           </Section>
 
@@ -384,5 +385,3 @@ class Home extends React.Component {
     );
   }
 }
-
-export default withTheme(Home);

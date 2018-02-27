@@ -1,7 +1,7 @@
 import Color from 'color';
 import ColorScheme from 'color-scheme';
 import { colorIsDark } from 'grommet/utils/colors';
-import { deepMerge } from './object';
+import { deepMerge } from 'grommet/utils/object';
 
 export const SHARPNESSES = [
   'rounded',
@@ -21,26 +21,26 @@ const SHARPNESS = {
   rounded: {
     global: { input: { border: { radius: '24px' } }, drop: { border: { radius: '4px' } } },
     button: { border: { radius: '24px' } },
-    checkBox: { border: { radius: '24px' } },
+    checkBox: { border: { radius: '24px' }, toggle: { radius: '100%' } },
     layer: { border: { radius: '24px' } },
   },
   soft: {
     global: { input: { border: { radius: '16px' } }, drop: { border: { radius: '3px' } } },
     button: { border: { radius: '16px' } },
-    checkBox: { border: { radius: '16px' } },
+    checkBox: { border: { radius: '16px' }, toggle: { radius: '4px' } },
     layer: { border: { radius: '16px' } },
   },
 
   medium: {
     global: { input: { border: { radius: '4px' } }, drop: { border: { radius: '2px' } } },
     button: { border: { radius: '4px' } },
-    checkBox: { border: { radius: '4px' } },
+    checkBox: { border: { radius: '4px' }, toggle: { radius: '2px' } },
     layer: { border: { radius: '4px' } },
   },
   hard: {
     global: { input: { border: { radius: '0px' } }, drop: { border: { radius: '0px' } } },
     button: { border: { radius: '0px' } },
-    checkBox: { border: { radius: '0px' } },
+    checkBox: { border: { radius: '0px' }, toggle: { radius: '0px' } },
     layer: { border: { radius: '0px' } },
   },
 };
@@ -81,23 +81,22 @@ const colorsForMood = (color, backgroundColor, mood, scheme) => {
   if (brandRGB && backgroundRGB) {
     const bgColor = Color.rgb(backgroundRGB[0], backgroundRGB[1], backgroundRGB[2]);
     const textColor = bgColor.negate();
-    let shadow;
-    let softerBackground;
+
     const border = textColor.fade(0.4);
-    const colorStep = 0.2;
-    const isDarkBackground = colorIsDark(backgroundColor);
-    if (isDarkBackground) {
-      shadow = textColor.darken(0.3);
-      softerBackground = bgColor.whiten(colorStep);
-    } else {
-      shadow = textColor.lighten(0.3);
-      softerBackground = bgColor.blacken(colorStep);
+    let isDarkBackground;
+    try {
+      isDarkBackground = colorIsDark(backgroundColor);
+    } catch (e) {
+      return result;
     }
-    const colorSteps = (Array.from(Array(6).keys()));
-    const light = colorSteps.map(index =>
-      softerBackground.whiten((index + 1) * colorStep).rgb().string());
-    const dark = colorSteps.map(index =>
-      softerBackground.blacken((index + 1) * colorStep).rgb().string());
+    let softerBackground;
+    if (isDarkBackground) {
+      softerBackground = bgColor.lighten(0.05);
+    } else {
+      softerBackground = bgColor.darken(0.05);
+    }
+    const shadowColor = textColor.fade(0.5).rgb().string();
+
     const cs = new ColorScheme();
     cs.from_hex(color.replace('#', ''));
     // create default controls colors
@@ -108,19 +107,46 @@ const colorsForMood = (color, backgroundColor, mood, scheme) => {
           border: border.rgb().string(),
           background: bgColor.rgb().string(),
           text: textColor.rgb().string(),
-          placeholder: shadow.rgb().string(),
+          placeholder: shadowColor,
           darkBackground: {
             text: textColor.rgb().string(),
           },
-          light: textColor.isDark() ? dark : light,
-          dark: textColor.isDark() ? light : dark,
+        },
+        elevation: {
+          none: 'none',
+          xsmall: `0px 1px 2px ${shadowColor}`,
+          small: `0px 2px 4px ${shadowColor}`,
+          medium: `0px 3px 8px ${shadowColor}`,
+          large: `0px 6px 12px ${shadowColor}`,
+          xlarge: `0px 8px 16px ${shadowColor}`,
         },
         drop: {
           backgroundColor: softerBackground.rgb().string(),
+          shadow: `0px 3px 8px ${shadowColor}`,
         },
       },
       layer: {
         backgroundColor,
+        overlayBackgroundColor: shadowColor,
+      },
+      icon: {
+        color: textColor.rgb().string(),
+      },
+      checkBox: {
+        border: {
+          color: {
+            light: border.rgb().string(),
+            dark: border.rgb().string(),
+          },
+        },
+      },
+      radioButton: {
+        border: {
+          color: {
+            light: border.rgb().string(),
+            dark: border.rgb().string(),
+          },
+        },
       },
     };
     // create theme palette
@@ -158,16 +184,6 @@ export const themeFromFont = async (font) => {
   return {};
 };
 
-export const themeColors = (theme) => {
-  const colors = ['brand'];
-  theme.global.colors.accent.forEach((_, index) => colors.push(`accent-${index + 1}`));
-  theme.global.colors.neutral.forEach((_, index) => colors.push(`neutral-${index + 1}`));
-  if (theme.global.colors.status) {
-    Object.keys(theme.global.colors.status).forEach(key => colors.push(`status-${key}`));
-  }
-  return colors;
-};
-
 export default ({
   color, background, mood, scheme, sharpness, font,
 }) => {
@@ -176,8 +192,7 @@ export default ({
   if (colors) {
     theme = { ...colors };
     theme = deepMerge(theme, SHARPNESS[sharpness]);
-    theme = { ...theme, global: { ...theme.global, ...{ font: { ...font } } } };
-    // console.log(theme);
+    theme = { ...theme, global: { ...theme.global, ...{ font: { ...font.theme } } } };
   }
   return theme;
 };

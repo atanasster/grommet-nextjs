@@ -1,16 +1,13 @@
 import { Box } from 'grommet';
-import { withTheme } from 'grommet/components/hocs';
 import Doc from '../components/Doc';
-import { themeColors } from '../utils/theme';
+import ColorRoll from '../components/ColorRoll';
 
-export default withTheme(({ theme }) => (
+export default () => (
   <Doc name='Color'>
     <Box pad='large'>
       <Box flex={true} basis='medium' direction='row' wrap={true}>
-        {themeColors(theme).map(color => (
-          <Box key={color} basis='small' pad='small' background={color}>{color}</Box>
-        ))}
+        <ColorRoll basis='small' />
       </Box>
     </Box>
   </Doc>
-));
+);

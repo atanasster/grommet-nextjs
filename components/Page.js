@@ -58,7 +58,7 @@ class Page extends React.Component {
               animation='fadeIn'
             >
               <Heading margin='none'>
-                <RoutedButton path='/' preserveParams='theme'>
+                <RoutedButton path='/'>
                     Grommet 2.0 + Next.js
                 </RoutedButton>
               </Heading>

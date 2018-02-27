@@ -1,20 +1,18 @@
-import { deepFreeze } from '../utils/object';
+import { deepFreeze } from 'grommet/utils/object';
 
 const brandColor = '#000000';
-const accentColors = ['#4eadeb', '#56cf98', '#8e6ee1'];
+const accentColors = ['#FF4081', '#4eadeb', '#56cf98', '#8e6ee1'];
 const neutralColors = ['#b23d07', '#ce4709', '#e74f09', '#f7540a'];
 const statusColors = {
   critical: '#d2293f',
   error: '#d2293f',
   warning: '#c5a502',
   ok: '#78ab00',
-  unknown: '#b0b0b0',
-  disabled: '#868686',
+  unknown: '#868686',
+  disabled: '#b0b0b0',
 };
-const lightColors = ['#333333', '#444444', '#555555', '#666666', '#777777', '#999999'];
-const darkColors = ['#F6F6F6', '#EEEEEE', '#DDDDDD', '#CCCCCC', '#BBBBBB', '#AAAAAA'];
-const backgroundColor = '#808080';
-const textColor = '#dddddd';
+const backgroundColor = '#5e5e5e';
+const textColor = '#ebebeb';
 const borderColor = 'rgba(255, 255, 255, 0.15)';
 const activeColor = 'rgba(35, 35, 35, 0.15)';
 const shadowColor = 'rgba(200, 200, 200, 0.50)';
@@ -27,12 +25,13 @@ export default deepFreeze({
       background: '#444444',
       border: borderColor,
       brand: brandColor,
-      dark: darkColors,
-      light: lightColors,
       neutral: neutralColors,
       placeholder: '#AAAAAA',
       status: statusColors,
       text: textColor,
+      darkBackground: {
+        text: '#ffffff',
+      },
     },
     drop: {
       backgroundColor,
@@ -80,7 +79,7 @@ export default deepFreeze({
     },
   },
   anchor: {
-    color: '#ffffff',
+    color: '#4eadeb',
   },
   button: {
     border: {
@@ -114,5 +113,13 @@ export default deepFreeze({
         dark: 'rgba(0, 0, 0, 0.15)',
       },
     },
+  },
+  rangeInput: {
+    track: {
+      color: '#4eadeb',
+    },
+  },
+  icon: {
+    color: textColor,
   },
 });

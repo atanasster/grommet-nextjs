@@ -1,8 +1,7 @@
-import { css } from 'styled-components';
-import { deepFreeze } from '../utils/object';
+import { deepFreeze } from 'grommet/utils/object';
 
 const brandColor = '#000000';
-const accentColors = ['#FFC107', '#9C27B0', '#673AB7', '#3F51B5', '#2196F3', '#795548'];
+const accentColors = ['#FF4081', '#9C27B0', '#673AB7', '#3F51B5', '#2196F3', '#795548'];
 const neutralColors = ['#03A9F4', '#009688', '#8BC34A', '#CDDC39', '#FF9800', '#FF5722', '#607D8B'];
 const statusColors = {
   critical: '#FF4081',
@@ -14,16 +13,15 @@ const statusColors = {
 };
 const lightColors = ['#333333', '#444444', '#555555', '#666666', '#777777', '#999999'];
 const darkColors = ['#F6F6F6', '#EEEEEE', '#DDDDDD', '#CCCCCC', '#BBBBBB', '#AAAAAA'];
-const backgroundColor = '#808080';
-const textColor = '#dddddd';
+const backgroundColor = '#5e5e5e';
+const textColor = '#ebebeb';
 const borderColor = 'rgba(255, 255, 255, 0.15)';
 const activeColor = 'rgba(35, 35, 35, 0.15)';
 const shadowColor = 'rgba(200, 200, 200, 0.50)';
 
-
 export default deepFreeze({
   global: {
-        colors: {
+    colors: {
       active: activeColor,
       accent: accentColors,
       background: '#444444',
@@ -133,7 +131,6 @@ export default deepFreeze({
     },
     toggle: {
       color: '#d9d9d9',
-      radius: '0px',
     },
   },
   layer: {
@@ -150,5 +147,8 @@ export default deepFreeze({
         dark: 'rgba(0, 0, 0, 0.15)',
       },
     },
+  },
+  icon: {
+    color: textColor,
   },
 });

@@ -79,7 +79,6 @@ export default (state = initialState, action) => {
       return { ...state, themes: rest };
     }
     case ActionTypes.SELECT_THEME:
-      console.log(action);
       return { ...state, selected: state.themes[action.name] ? action.name : defaultTheme };
     default:
       return state;
