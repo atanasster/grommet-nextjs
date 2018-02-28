@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
 import ReactTable from 'react-table';
-import { Box } from 'grommet';
+import { Box, Button } from 'grommet';
 import ReactTableDOM from './ReactTableDOM';
 
 
@@ -116,6 +116,7 @@ export const StyledThComponent = styled(Box)`
 
 
 export const StyledTrGroupComponent = styled(Box)`
+  align-items: stretch;
   ${props => props.tableContext === 'body' && `border-bottom: 1px solid ${props.theme.global.colors.border};`}
 `;
 export const StyledTrComponent = styled(Box)`
@@ -127,6 +128,16 @@ export const StyledTdComponent = styled(Box)`
   text-overflow: ellipsis;
   overflow: hidden;
   display:  block; 
+  white-space: nowrap;
+`;
+
+export const StyledExpander = styled(Button)`
+  display: inline-block;
+  position: relative;
+  margin: 0;
+  padding: 0;
+  color: transparent;
+  cursor: pointer;
 `;
 
 
@@ -170,60 +181,6 @@ const StyledTable = styled(GrommetTable)`
     margin-top: -10px
   }
 
-  & .rt-tbody .rt-tr-group {
-    border-bottom: solid 1px rgba(0, 0, 0, 0.05);
-  }
-
-  & .rt-tbody .rt-tr-group:last-child {
-    border-bottom: 0
-  }
-
-  & .rt-tbody .rt-td {
-    text-align: left;
-    padding: 10px;
-  }
-
-  & .rt-tbody .rt-td:last-child {
-    border-right: 0
-  }
-
-  & .rt-tbody .rt-expandable {
-    cursor: pointer
-  }
-
-  & .rt-tr-group {
-    -webkit-box-flex: 1;
-    -ms-flex: 1 0 auto;
-    flex: 1 0 auto;
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-box-orient: vertical;
-    -webkit-box-direction: normal;
-    -ms-flex-direction: column;
-    flex-direction: column;
-    -webkit-box-align: stretch;
-    -ms-flex-align: stretch;
-    align-items: stretch
-  }
-
-  & .rt-tr {
-    -webkit-box-flex: 1;
-    -ms-flex: 1 0 auto;
-    flex: 1 0 auto;
-    display: -webkit-inline-box;
-    display: -ms-inline-flexbox;
-    display: inline-flex;
-    align-items: center;
-  }
-
-  & .rt-th, .rt-td {
-    white-space: nowrap;
-    text-overflow: ellipsis;
-    padding: 7px 5px;
-    overflow: hidden;
-  }
-
   & .rt-th.-hidden, .rt-td.-hidden {
     width: 0 !important;
     min-width: 0 !important;
@@ -232,13 +189,6 @@ const StyledTable = styled(GrommetTable)`
     opacity: 0 !important
   }
 
-  & .rt-expander {
-    display: inline-block;
-    position: relative;
-    margin: 0;
-    color: transparent;
-    margin: 0 10px;
-  }
 
   & .rt-expander:after {
     content: '';
@@ -253,7 +203,7 @@ const StyledTable = styled(GrommetTable)`
     border-right: 5.04px solid transparent;
     border-top: 7px solid rgba(0, 0, 0, 0.8);
     transition: all .3s cubic-bezier(.175, .885, .32, 1.275);
-    cursor: pointer
+    
   }
 
   & .rt-expander.-open:after {

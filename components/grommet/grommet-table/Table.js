@@ -13,6 +13,7 @@ import TdComponent from './TdComponent';
 import TfootComponent from './TfootComponent';
 import TbodyComponent from './TbodyComponent';
 import TrGroupComponent from './TrGroupComponent';
+import ExpanderComponent from './ExpanderComponent';
 
 const NoDataComponent = ({ children, ...rest }) => (
   <Box {...rest} align='center' pad='small'>
@@ -64,6 +65,7 @@ class GrommetTable extends Component {
       TrGroupComponent,
       TrComponent,
       TfootComponent,
+      ExpanderComponent,
     };
     const props = { ...defaults, ...rest };
     return (
