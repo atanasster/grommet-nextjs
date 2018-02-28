@@ -105,10 +105,6 @@ export const StyledThComponent = styled(Box)`
     overflow: hidden;
     text-overflow: ellipsis
   }
-  &:last-child {
-    border-right: 0
-  }
-
   color: ${props =>
     (props.grommet && props.grommet.dark ? props.theme.global.colors.darkBackground.text
       : (props.theme.grommettable && props.theme.grommettable.th.color))};  
