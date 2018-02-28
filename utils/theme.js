@@ -90,10 +90,17 @@ const colorsForMood = (color, backgroundColor, mood, scheme) => {
       return result;
     }
     let softerBackground;
+    let light;
+    let dark;
     if (isDarkBackground) {
       softerBackground = bgColor.lighten(0.05);
+      light = ['#333333', '#444444', '#555555', '#666666', '#777777', '#999999'];
+      dark = ['#F6F6F6', '#EEEEEE', '#DDDDDD', '#CCCCCC', '#BBBBBB', '#AAAAAA'];
+
     } else {
       softerBackground = bgColor.darken(0.05);
+      dark = ['#333333', '#444444', '#555555', '#666666', '#777777', '#999999'];
+      light = ['#F6F6F6', '#EEEEEE', '#DDDDDD', '#CCCCCC', '#BBBBBB', '#AAAAAA'];
     }
     const shadowColor = textColor.fade(0.5).rgb().string();
 
@@ -104,6 +111,8 @@ const colorsForMood = (color, backgroundColor, mood, scheme) => {
       global: {
         colors: {
           brand: color,
+          light,
+          dark,
           border: border.rgb().string(),
           background: bgColor.rgb().string(),
           text: textColor.rgb().string(),

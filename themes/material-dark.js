@@ -11,8 +11,8 @@ const statusColors = {
   unknown: '#9E9E9E',
   disabled: '#9E9E9E',
 };
-const lightColors = ['#333333', '#444444', '#555555', '#666666', '#777777', '#999999'];
-const darkColors = ['#F6F6F6', '#EEEEEE', '#DDDDDD', '#CCCCCC', '#BBBBBB', '#AAAAAA'];
+const light = ['#333333', '#444444', '#555555', '#666666', '#777777', '#999999'];
+const dark = ['#F6F6F6', '#EEEEEE', '#DDDDDD', '#CCCCCC', '#BBBBBB', '#AAAAAA'];
 const backgroundColor = '#5e5e5e';
 const textColor = '#ebebeb';
 const borderColor = 'rgba(255, 255, 255, 0.15)';
@@ -27,8 +27,8 @@ export default deepFreeze({
       background: '#444444',
       border: borderColor,
       brand: brandColor,
-      dark: darkColors,
-      light: lightColors,
+      dark,
+      light,
       neutral: neutralColors,
       placeholder: '#AAAAAA',
       status: statusColors,
