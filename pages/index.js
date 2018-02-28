@@ -1,6 +1,6 @@
 import {
   Box, Button, Calendar, Chart, CheckBox, Clock,
-  Diagram, Distribution, DropButton,
+  Diagram, Distribution, DropButton, Anchor,
   Heading, Image,
   Menu, Meter, Paragraph, RadioButton, RangeInput,
   Select, Stack,
@@ -37,8 +37,8 @@ export default class Home extends React.Component {
                 <strong>Grommet 2.0 core</strong>
               </Heading>
               <Paragraph size='large' margin='none'>
-                Below are the building blocks of the grommet libray, master
-                them, and become a l33t.
+This is an experimental site built with <strong>Grommet 2</strong> and <strong>Next.js</strong>.
+Visit the official <Anchor href='https://v2.grommet.io/' target='_blank'>Grommet site</Anchor> for the latest updates.
               </Paragraph>
             </Box>
             <Box basis='1/3' overflow='hidden'>
