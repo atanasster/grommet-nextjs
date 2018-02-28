@@ -11,6 +11,8 @@ import { Add, LinkNext, Grommet as GrommetIcon, TopCorner, BottomCorner } from '
 import RoutedButton from '../components/RoutedButton';
 import RoutedAnchor from '../components/RoutedAnchor';
 import Page from '../components/Page';
+import Section from '../components/Section';
+import Item from '../components/Item';
 import ColorRoll from '../components/ColorRoll';
 
 const CHART_VALUES = [
@@ -24,56 +26,13 @@ const CHART_VALUES = [
   { value: [0, 10], label: 'ten' },
 ];
 
-const Section = ({ children, index, name }) => (
-  <Box
-    pad={{ vertical: 'medium' }}
-    animation={[
-      { type: 'zoomIn', duration: 500, delay: 100 + (100 * index) },
-      { type: 'fadeIn', duration: 500, delay: (100 * index) },
-    ]}
-  >
-    <Heading level={2} margin={{ top: 'none' }}>
-      {name}
-    </Heading>
-    <Box direction='row' wrap={true}>
-      {children}
-    </Box>
-  </Box>
-);
-
-const Item = ({
-  name, path, children, center,
-}) => (
-  <Box basis='medium' margin={{ right: 'medium', bottom: 'medium' }}>
-    <RoutedButton path={path} >
-      <Box>
-        <Heading level={3} size='small' margin={{ top: 'none', bottom: 'xsmall' }}>
-          <strong>{name}</strong>
-        </Heading>
-      </Box>
-    </RoutedButton>
-    <Box>
-      <Box
-        basis='small'
-        border={{ color: 'brand', size: 'medium' }}
-        justify={center ? 'center' : undefined}
-        align={center ? 'center' : undefined}
-        pad={center ? 'medium' : undefined}
-        style={{ overflow: 'hidden' }}
-      >
-        {children}
-      </Box>
-    </Box>
-  </Box>
-);
-
 export default class Home extends React.Component {
   render() {
     return (
       <Page title='Explore'>
         <Box pad='large'>
-          <Box direction='row' gap='xlarge'>
-            <Box margin={{ top: 'large' }} basis='medium' overflow='hidden'>
+          <Box direction='row' gap='xlarge' margin={{ bottom: 'large' }}>
+            <Box basis='1/3' overflow='hidden'>
               <Heading level={1}>
                 <strong>Read our documentation</strong>
               </Heading>
@@ -82,12 +41,21 @@ export default class Home extends React.Component {
                 them, and become a l33t.
               </Paragraph>
             </Box>
-            <Box margin={{ top: 'large' }} basis='medium' overflow='hidden'>
+            <Box basis='1/3' overflow='hidden'>
               <Heading level={1}>
-                <RoutedAnchor path='preview'>
-                  <strong>View in action</strong>
-                </RoutedAnchor>
+                Get started quickly
               </Heading>
+              <Paragraph size='large' margin='none'>
+                <RoutedAnchor path='preview'>View in action</RoutedAnchor> a selected collection of Grommet components and select your favorite theme.
+              </Paragraph>
+            </Box>
+            <Box basis='1/3' overflow='hidden'>
+              <Heading level={1}>
+                A great community
+              </Heading>
+              <Paragraph size='large' margin='none'>
+                <RoutedAnchor path='add-ons'>Add ons</RoutedAnchor> library created by the community, if the core Grommet components are not enough.
+              </Paragraph>
             </Box>
           </Box>
         </Box>
