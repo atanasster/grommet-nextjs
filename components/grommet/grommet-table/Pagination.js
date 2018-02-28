@@ -4,7 +4,9 @@ import styled from 'styled-components';
 import { Box, Button, Select, TextInput, Text } from 'grommet';
 import { Previous, Next } from 'grommet-icons';
 
-const defaultButton = ({ disabled, Icon, onClick, label, ...other }) => (
+const defaultButton = ({
+  disabled, Icon, onClick, label, ...other
+}) => (
   <Button
     icon={<Icon />}
     onClick={disabled ? undefined : onClick}
@@ -37,13 +39,13 @@ export default class ReactTablePagination extends Component {
   }
 
   getSafePage = (page) => {
-    const pg = isNaN(page) ? this.props.page : page;
+    const pg = Number.isNaN(page) ? this.props.page : page;
     return Math.min(Math.max(pg, 0), this.props.pages - 1);
   };
 
   changePage = (page) => {
     const pg = this.getSafePage(page);
-    this.setState({ pg });
+    this.setState({ page: pg });
     if (this.props.page !== pg) {
       this.props.onPageChange(pg);
     }
@@ -53,11 +55,13 @@ export default class ReactTablePagination extends Component {
     if (e) {
       e.preventDefault();
     }
-    const page = this.state.page;
+    const { page } = this.state;
     this.changePage(page === '' ? this.props.page : page);
   };
   renderPaging() {
-    const { page, showPageJump, pageText, ofText, pages } = this.props;
+    const {
+      page, showPageJump, pageText, ofText, pages,
+    } = this.props;
     let pageJump;
     if (showPageJump) {
       pageJump = (
@@ -95,7 +99,9 @@ export default class ReactTablePagination extends Component {
   }
 
   renderPageSize() {
-    const { showPageSizeOptions, onPageSizeChange, pageSizeOptions, pageSize } = this.props;
+    const {
+      showPageSizeOptions, onPageSizeChange, pageSizeOptions, pageSize,
+    } = this.props;
     if (showPageSizeOptions) {
       return (
         <Box direction='row'>

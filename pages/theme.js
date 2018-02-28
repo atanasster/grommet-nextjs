@@ -4,7 +4,7 @@ import 'isomorphic-unfetch';
 import JSONPretty from 'react-json-pretty';
 import { Anchor, Box, Button, Grommet, Heading, Layer, Select, Text, TextInput, DropButton } from 'grommet';
 import { withTheme } from 'grommet/components/hocs';
-import { deepMerge } from 'grommet/utils/object'
+import { deepMerge } from 'grommet/utils/object';
 import Page from '../components/Page';
 import Field from '../components/grommet/Field';
 import createTheme, { MOODS, SCHEMES, SHARPNESSES, themeFromFont } from '../utils/theme';

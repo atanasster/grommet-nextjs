@@ -5,7 +5,6 @@ import { Box } from 'grommet';
 import ReactTableDOM from './ReactTableDOM';
 
 
-
 class GrommetTable extends Component {
   onKeyDown = (event) => {
     let handled;
