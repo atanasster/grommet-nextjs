@@ -11,7 +11,7 @@ const statusColors = {
   unknown: '#9E9E9E',
   disabled: '#9E9E9E',
 };
-const light = ['#333333', '#444444', '#555555', '#666666', '#777777', '#999999'];
+const light = ['#333333', '#555555', '#666666', '#777777', '#999999', '#AAAAAA'];
 const dark = ['#F6F6F6', '#EEEEEE', '#DDDDDD', '#CCCCCC', '#BBBBBB', '#AAAAAA'];
 const backgroundColor = '#5e5e5e';
 const textColor = '#ebebeb';

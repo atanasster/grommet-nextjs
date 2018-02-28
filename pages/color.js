@@ -6,7 +6,7 @@ export default () => (
   <Doc name='Color'>
     <Box pad='large'>
       <Box flex={true} basis='medium' direction='row' wrap={true}>
-        <ColorRoll basis='small' />
+        <ColorRoll basis='small' extended={true} />
       </Box>
     </Box>
   </Doc>

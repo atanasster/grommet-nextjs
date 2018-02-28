@@ -28,10 +28,12 @@ export const docGrommetTableCell = (TableCell) => {
 export default (Table) => {
   const DocumentedTable = describe(Table)
     .availableAt(getAvailableAtGitHub({ url: 'https://github.com/atanasster/grommet-nextjs' }))
-    .description('A table with pagination, filtering, footer, child rows. Derived from https://github.com/react-tools/react-table. ').usage(
-      `import { Table } from 'grommet-table';
-<Table />`
-    );
+    .description('A table with pagination, filtering, footer, child rows. Derived from https://github.com/react-tools/react-table. ')
+    .usage(`
+    $ npm install grommet-table 
+    import { Table } from 'grommet-table';
+    <Table columns={...} data={...} />
+`);
 
   DocumentedTable.propTypes = {
     columns: PropTypes.arrayOf(PropTypes.shape({

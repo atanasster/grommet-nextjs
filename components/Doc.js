@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import { Box, Button, Heading, Paragraph, Text } from 'grommet';
+import { Box, Button, Heading, Paragraph, Text, Markdown } from 'grommet';
 import Page from './Page';
 
 export default class Doc extends React.Component {
@@ -43,6 +43,14 @@ export default class Doc extends React.Component {
 
         {desc ? (
           <Box pad={{ horizontal: 'large', bottom: 'large' }}>
+            { desc.usage && (
+              <Box pad='large' round='large' margin='small' background='light-2'>
+                <Heading margin='none' level={3}><strong>Usage</strong></Heading>
+                <Markdown>
+                  {desc.usage}
+                </Markdown>
+              </Box>
+            )}
             <Box pad='large' round='large' background='light-1'>
               {(desc.properties || []).map(property => (
                 <Box

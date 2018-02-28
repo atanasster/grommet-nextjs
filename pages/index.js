@@ -34,27 +34,27 @@ export default class Home extends React.Component {
           <Box direction='row' gap='xlarge' margin={{ bottom: 'large' }}>
             <Box basis='1/3' overflow='hidden'>
               <Heading level={1}>
-                <strong>Read our documentation</strong>
+                <strong>Grommet 2.0 core</strong>
               </Heading>
               <Paragraph size='large' margin='none'>
-                These are the building blocks of the grommet libray, master
+                Below are the building blocks of the grommet libray, master
                 them, and become a l33t.
               </Paragraph>
             </Box>
             <Box basis='1/3' overflow='hidden'>
               <Heading level={1}>
-                Get started quickly
+                <strong>Get started quickly</strong>
               </Heading>
               <Paragraph size='large' margin='none'>
-                <RoutedAnchor path='preview'>View in action</RoutedAnchor> a selected collection of Grommet components and select your favorite theme.
+                <RoutedAnchor path='preview'>View in action</RoutedAnchor> together the Grommet components and color palettes.
               </Paragraph>
             </Box>
             <Box basis='1/3' overflow='hidden'>
               <Heading level={1}>
-                A great community
+                <strong>A great community</strong>
               </Heading>
               <Paragraph size='large' margin='none'>
-                <RoutedAnchor path='add-ons'>Add ons</RoutedAnchor> library created by the community, if the core Grommet components are not enough.
+                Open source <RoutedAnchor path='add-ons'>add on</RoutedAnchor> components created by the community, if the core Grommet components are not enough.
               </Paragraph>
             </Box>
           </Box>

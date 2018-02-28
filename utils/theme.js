@@ -94,7 +94,7 @@ const colorsForMood = (color, backgroundColor, mood, scheme) => {
     let dark;
     if (isDarkBackground) {
       softerBackground = bgColor.lighten(0.05);
-      light = ['#333333', '#444444', '#555555', '#666666', '#777777', '#999999'];
+      light = ['#333333', '#555555', '#666666', '#777777', '#999999', '#AAAAAA'];
       dark = ['#F6F6F6', '#EEEEEE', '#DDDDDD', '#CCCCCC', '#BBBBBB', '#AAAAAA'];
     } else {
       softerBackground = bgColor.darken(0.05);

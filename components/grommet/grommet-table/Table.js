@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { compose } from 'recompose';
-import { Box } from 'grommet';
 import { withTheme } from 'grommet/components/hocs';
 import StyledTable from './StyledTable';
 import PaginationComponent from './components/Pagination';

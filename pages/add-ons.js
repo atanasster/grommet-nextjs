@@ -12,7 +12,7 @@ export default class Home extends React.Component {
           <Box direction='row' gap='xlarge'>
             <Box margin={{ top: 'large' }} basis='medium' overflow='hidden'>
               <Heading level={1}>
-                <strong>Contributed by the community</strong>
+                <strong>Add-ons</strong>
               </Heading>
               <Paragraph size='large' margin='none'>
                 Various components and code, created by grommet users just like you.

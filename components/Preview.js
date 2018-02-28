@@ -152,10 +152,10 @@ export default class Preview extends React.Component {
               />
             </Box>
           </Box>
-          <Box fill='horizontal' align='center' pad={{ vertical: 'small' }}>
-            <ColorRoll basis='xsmall' />
+          <Box fill='horizontal' border='top' align='center' pad={{ vertical: 'medium' }} margin={{ top: 'medium' }}>
+            <ColorRoll basis='xsmall' extended={true} />
           </Box>
-          <Box direction='row' margin={{ top: 'medium' }} pad={{ top: 'medium' }} gap='small' border='top' fill='horizontal'>
+          <Box direction='row' pad={{ top: 'medium' }} gap='small' border='top' fill='horizontal'>
             <Button label='Dialog' onClick={() => this.setState({ layer: false })} />
             <Button label='Layer' onClick={() => this.setState({ layer: 'vertical' })} />
           </Box>
