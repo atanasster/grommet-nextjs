@@ -1,6 +1,6 @@
 import { LinkDown, LinkUp } from 'grommet-icons';
 import { Box } from 'grommet';
-import { StyledThComponent } from './StyledTable';
+import { StyledThComponent } from '../StyledTable';
 
 
 export default ({

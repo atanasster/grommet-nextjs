@@ -2,21 +2,22 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { compose } from 'recompose';
 import { withTheme } from 'grommet/components/hocs';
-import { StyledTfootComponent } from './StyledTable';
+import { StyledTableBodyComponent } from '../StyledTable';
 
-class TfootComponent extends Component {
+
+class TbodyComponent extends Component {
   static childContextTypes = {
     grommet: PropTypes.object,
   }
 
   getChildContext() {
     const { grommet } = this.context;
-    return { grommet: { ...grommet, tableContext: 'footer' } };
+    return { grommet: { ...grommet, tableContext: 'body' } };
   }
 
   render() {
-    return <StyledTfootComponent {...this.props} />;
+    return <StyledTableBodyComponent {...this.props} />;
   }
 }
 
-export default compose(withTheme)(TfootComponent);
+export default compose(withTheme)(TbodyComponent);

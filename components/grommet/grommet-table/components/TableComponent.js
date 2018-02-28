@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { compose } from 'recompose';
 import { withTheme } from 'grommet/components/hocs';
-import { StyledTableComponent } from './StyledTable';
+import { StyledTableComponent } from '../StyledTable';
 
 class TableComponent extends Component {
   static contextTypes = {

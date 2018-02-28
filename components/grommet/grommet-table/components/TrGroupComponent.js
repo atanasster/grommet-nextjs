@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { StyledTrGroupComponent } from './StyledTable';
+import { StyledTrGroupComponent } from '../StyledTable';
 
 const TrGroupComponent = props => <StyledTrGroupComponent role='rowgroup' {...props} />;
 

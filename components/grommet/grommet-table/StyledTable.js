@@ -84,12 +84,14 @@ export const StyledTableHeaderComponent = styled(Box)`
   &.-filters {
     border-bottom: ${props => (`1px solid ${props.theme.global.colors.border}`)};
   }
+  &.-header { 
+    font-weight:${props => (props.theme.grommettable && props.theme.grommettable.th && props.theme.grommettable && props.theme.grommettable.th.fontWeight) || 300};
+    font-size:${props => (props.theme.grommettable && props.theme.grommettable.th && props.theme.grommettable && props.theme.grommettable.th.fontSize) || '1.2em'};
+  }
 `;
 
 export const StyledThComponent = styled(Box)`
   position: relative;
-  font-weight:${props => (props.theme.grommettable && props.theme.grommettable.th && props.theme.grommettable && props.theme.grommettable.th.fontWeight) || 300};
-  font-size:${props => (props.theme.grommettable && props.theme.grommettable.th && props.theme.grommettable && props.theme.grommettable.th.fontSize) || '1.2em'};
   &.-cursor-pointer {
     cursor: pointer;
   }

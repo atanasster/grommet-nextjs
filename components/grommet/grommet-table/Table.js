@@ -1,35 +1,21 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { compose } from 'recompose';
-import { Box, TextInput } from 'grommet';
+import { Box } from 'grommet';
 import { withTheme } from 'grommet/components/hocs';
 import StyledTable from './StyledTable';
-import PaginationComponent from './Pagination';
-import TableComponent from './TableComponent';
-import TheadComponent from './TheadComponent';
-import TrComponent from './TrComponent';
-import ThComponent from './ThComponent';
-import TdComponent from './TdComponent';
-import TfootComponent from './TfootComponent';
-import TbodyComponent from './TbodyComponent';
-import TrGroupComponent from './TrGroupComponent';
-import ExpanderComponent from './ExpanderComponent';
-
-const NoDataComponent = ({ children, ...rest }) => (
-  <Box {...rest} align='center' pad='small'>
-    {children}
-  </Box>
-);
-
-const FilterComponent = (props) => {
-  const { filter, onChange, column } = props;
-  return (
-    <TextInput
-      aria-label={`Filter data by ${typeof column.Header === 'string' ? column.Header : column.id}`}
-      value={filter ? filter.value : ''}
-      onChange={event => onChange(event.target.value)}
-    />);
-};
+import PaginationComponent from './components/Pagination';
+import TableComponent from './components/TableComponent';
+import TheadComponent from './components/TheadComponent';
+import FilterComponent from './components/FilterComponent';
+import TrComponent from './components/TrComponent';
+import ThComponent from './components/ThComponent';
+import TdComponent from './components/TdComponent';
+import TfootComponent from './components/TfootComponent';
+import TbodyComponent from './components/TbodyComponent';
+import TrGroupComponent from './components/TrGroupComponent';
+import ExpanderComponent from './components/ExpanderComponent';
+import NoDataComponent from './components/NoDataComponent';
 
 class GrommetTable extends Component {
   static contextTypes = {
