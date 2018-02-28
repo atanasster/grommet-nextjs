@@ -31,7 +31,7 @@ export default class Doc extends React.Component {
               ) : null}
               {(desc && desc.availableAt) ? (
                 <Button href={desc.availableAt.url} target='_blank' >
-                  <img alt='Example badge' src={desc.availableAt.badge} />
+                  {typeof desc.availableAt.badge === 'string' ? <img alt='Example badge' src={desc.availableAt.badge} /> : desc.availableAt.badge}
                 </Button>
               ) : null}
             </Box>

@@ -1,5 +1,5 @@
 import { describe, PropTypes } from 'react-desc';
-import { getAvailableAtBadge } from 'grommet/utils';
+import getAvailableAtGitHub from '../utils/doc';
 
 export const docGrommetTableCell = (TableCell) => {
   const DocumentedTableCell = describe(TableCell)
@@ -27,7 +27,7 @@ export const docGrommetTableCell = (TableCell) => {
 
 export default (Table) => {
   const DocumentedTable = describe(Table)
-    .availableAt(getAvailableAtBadge('Table'))
+    .availableAt(getAvailableAtGitHub({ url: 'https://github.com/atanasster/grommet-nextjs' }))
     .description('A table with pagination, filtering, footer, child rows. Derived from https://github.com/react-tools/react-table. ').usage(
       `import { Table } from 'grommet-table';
 <Table />`
