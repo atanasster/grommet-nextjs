@@ -132,12 +132,12 @@ export const StyledTdComponent = styled(Box)`
 `;
 
 export const StyledExpander = styled(Button)`
-  display: inline-block;
   position: relative;
   margin: 0;
   padding: 0;
+  left: -2px;
   color: transparent;
-  cursor: pointer;
+  cursor: pointer; 
 `;
 
 
@@ -187,28 +187,6 @@ const StyledTable = styled(GrommetTable)`
     padding: 0 !important;
     border: 0 !important;
     opacity: 0 !important
-  }
-
-
-  & .rt-expander:after {
-    content: '';
-    position: absolute;
-    width: 0;
-    height: 0;
-    top: 50%;
-    left: 50%;
-    -webkit-transform: translate(-50%, -50%) rotate(-90deg);
-    transform: translate(-50%, -50%) rotate(-90deg);
-    border-left: 5.04px solid transparent;
-    border-right: 5.04px solid transparent;
-    border-top: 7px solid rgba(0, 0, 0, 0.8);
-    transition: all .3s cubic-bezier(.175, .885, .32, 1.275);
-    
-  }
-
-  & .rt-expander.-open:after {
-    -webkit-transform: translate(-50%, -50%) rotate(0);
-    transform: translate(-50%, -50%) rotate(0)
   }
 
   & .rt-resizer {
