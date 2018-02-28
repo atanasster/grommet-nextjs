@@ -9,6 +9,9 @@ class TableComponent extends Component {
     grommet: PropTypes.object,
   };
 
+  static childContextTypes = {
+    grommet: PropTypes.object,
+  };
   render() {
     return (
       <StyledTableComponent

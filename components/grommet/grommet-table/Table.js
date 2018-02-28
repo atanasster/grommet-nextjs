@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { compose } from 'recompose';
-import classnames from 'classnames';
 import { Box, TextInput } from 'grommet';
 import { withTheme } from 'grommet/components/hocs';
 import StyledTable from './StyledTable';
@@ -11,14 +10,9 @@ import TheadComponent from './TheadComponent';
 import TrComponent from './TrComponent';
 import ThComponent from './ThComponent';
 import TdComponent from './TdComponent';
-
-const TbodyComponent = ({ children, className, ...rest }) => (
-  <Box
-    {...rest}
-  >
-    {children}
-  </Box>
-);
+import TfootComponent from './TfootComponent';
+import TbodyComponent from './TbodyComponent';
+import TrGroupComponent from './TrGroupComponent';
 
 const NoDataComponent = ({ children, ...rest }) => (
   <Box {...rest} align='center' pad='small'>
@@ -35,17 +29,6 @@ const FilterComponent = (props) => {
       onChange={event => onChange(event.target.value)}
     />);
 };
-
-const TrGroupComponent = ({ children, className, ...rest }) => (
-  <Box
-    direction='row'
-    className={classnames('rt-tr-group', className)}
-    role='rowgroup'
-    {...rest}
-  >
-    {children}
-  </Box>
-);
 
 class GrommetTable extends Component {
   static contextTypes = {
@@ -80,6 +63,7 @@ class GrommetTable extends Component {
       TbodyComponent,
       TrGroupComponent,
       TrComponent,
+      TfootComponent,
     };
     const props = { ...defaults, ...rest };
     return (

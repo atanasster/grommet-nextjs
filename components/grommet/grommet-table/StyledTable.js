@@ -73,6 +73,9 @@ export const StyledTableComponent = styled(Box)`
   overflow: auto
 `;
 
+export const StyledTableBodyComponent = styled(Box)`
+`;
+
 export const StyledTableHeaderComponent = styled(Box)`
   -webkit-user-select: none;
   -moz-user-select: none;
@@ -112,6 +115,9 @@ export const StyledThComponent = styled(Box)`
 `;
 
 
+export const StyledTrGroupComponent = styled(Box)`
+  ${props => props.tableContext === 'body' && `border-bottom: 1px solid ${props.theme.global.colors.border};`}
+`;
 export const StyledTrComponent = styled(Box)`
   ${props => props.tableContext === 'header' && `border-bottom: 1px solid ${props.theme.global.colors.border};`}
 `;
@@ -123,6 +129,10 @@ export const StyledTdComponent = styled(Box)`
   display:  block; 
 `;
 
+
+export const StyledTfootComponent = styled(Box)`
+`;
+
 const StyledTable = styled(GrommetTable)`
   max-width: 100%;
   width: 100%;
@@ -130,24 +140,6 @@ const StyledTable = styled(GrommetTable)`
   color: ${props =>
     (props.grommet && props.grommet.dark ? props.theme.global.colors.darkBackground.text
       : (props.theme.grommettable && props.theme.grommettable.color))};
-  
-  & .rt-thead.-headerGroups {
-    font-weight: 500;
-  }
-
-  & .rt-thead.-filters input, .rt-thead.-filters select {
-    border: 1px solid rgba(0, 0, 0, 0.1);
-    background: #fff;
-    padding: 5px 7px;
-    font-size: inherit;
-    border-radius: 3px;
-    font-weight: normal;
-    outline: none;
-  }
-
-  & .rt-thead.-filters .rt-th {
-    border-right: 1px solid rgba(0, 0, 0, 0.02);
-  }
 
   & .rt-thead .rt-header-pivot {
     border-right-color: #f7f7f7
@@ -278,27 +270,6 @@ const StyledTable = styled(GrommetTable)`
     right: -18px;
     cursor: col-resize;
     z-index: 10
-  }
-
-  & .rt-tfoot {
-    -webkit-box-flex: 1;
-    -ms-flex: 1 0 auto;
-    flex: 1 0 auto;
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-box-orient: vertical;
-    -webkit-box-direction: normal;
-    -ms-flex-direction: column;
-    flex-direction: column;
-  }
-
-  & .rt-tfoot .rt-td {
-    border-right: 1px solid rgba(0, 0, 0, 0.05);
-  }
-
-  & .rt-tfoot .rt-td:last-child {
-    border-right: 0
   }
 
   &.-striped .rt-tr.-odd {
