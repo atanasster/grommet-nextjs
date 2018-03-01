@@ -861,6 +861,7 @@ export default class ReactTable extends Component {
       getTheadFilterProps,
       getTheadFilterTrProps,
       getTheadFilterThProps,
+      getFilterInputProps,
       getTbodyProps,
       getTrGroupProps,
       getTrProps,
@@ -1154,6 +1155,7 @@ export default class ReactTable extends Component {
         column.maxWidth,
       );
       const theadFilterThProps = getTheadFilterThProps(finalState, undefined, column, this);
+      const filterInputProps = getFilterInputProps(finalState, undefined, column, this);
       const columnHeaderProps = column.getHeaderProps(finalState, undefined, column, this);
 
       const rest = {
@@ -1185,9 +1187,11 @@ export default class ReactTable extends Component {
             ? _.normalizeComponent(
               ResolvedFilterComponent,
               {
+                ...filterInputProps,
                 column,
                 filter,
                 onChange: value => this.filterColumn(column, value),
+
               },
               undefined,
             )

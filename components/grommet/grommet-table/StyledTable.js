@@ -17,9 +17,6 @@ export const StyledTHeadComponent = styled(Box)`
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
-  ${props => props.filters && `
-    border-bottom: ${`1px solid ${props.theme.global.colors.border}`};
-  `}
   ${props => props.header && `
     font-weight:${(props.theme.grommettable && props.theme.grommettable.th && props.theme.grommettable && props.theme.grommettable.th.fontWeight) || 300};
     font-size:${(props.theme.grommettable && props.theme.grommettable.th && props.theme.grommettable && props.theme.grommettable.th.fontSize) || '1.2em'};
@@ -50,7 +47,6 @@ export const StyledThComponent = styled(Box)`
     opacity: 0 !important;
   `}
   ${props => props.pivot && `
-    border-right-color: #f7f7f7;
     &:after,:before {
       left: 100%;
       top: 50%;

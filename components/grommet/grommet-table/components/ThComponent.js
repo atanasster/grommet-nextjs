@@ -12,9 +12,9 @@ export default ({
   if (sortAsc || sortDesc) {
     const Sort = sortAsc ? LinkUp : LinkDown;
     content = (
-      <Box direction='row' align='center' justify='start' style={{ width: '100%' }}>
+      <Box direction='row' justify='start' fill='horizontal' gap='xsmall'>
         <span>{children}</span>
-        <Sort style={{ marginLeft: '5px' }} />
+        <Sort />
       </Box>
     );
   } else {

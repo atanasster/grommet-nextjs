@@ -36,12 +36,14 @@ export default () => (
           table={{ elevation: 'large', border: 'all' }}
           headerGroup={{ background: 'brand', border: 'all' }}
           header={{ border: 'all' }}
-          theadTh={{ border: 'vertical' }}
+          headRow={{ border: 'vertical' }}
           filter={{ background: 'light-2', border: 'all' }}
           filterTh={{ border: 'vertical' }}
+          filterInput={{ size: 'small', placeholder: 'Filter...' }}
           body={{ animation: { type: 'fadeIn', duration: 2000, size: 'large' } }}
-          rowOdd={{ background: { color: 'light-1', opacity: 'medium' },
-            animation: { type: 'fadeIn', duration: 2000, size: 'large' }
+          rowOdd={{
+            background: { color: 'light-1', opacity: 'medium' },
+            animation: { type: 'fadeIn', duration: 2000, size: 'large' },
           }}
           footer={{ background: 'light-1' }}
           pagination={{ pad: { top: 'medium' } }}
