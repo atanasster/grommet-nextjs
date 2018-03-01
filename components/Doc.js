@@ -65,7 +65,7 @@ export default class Doc extends React.Component {
                     <Heading level={3} size='small'>
                       <strong>{property.name}</strong>
                     </Heading>
-                    <Paragraph>{property.description}</Paragraph>
+                    <Markdown>{property.description}</Markdown>
                   </Box>
                   <Box flex={true} align='start'>
                     <Text><pre>{property.format}</pre></Text>

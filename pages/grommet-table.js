@@ -1,4 +1,4 @@
-import { Box, Text } from 'grommet';
+import { Box, Text, Image } from 'grommet';
 import { Add, Subtract } from 'grommet-icons';
 import doc from '../components/grommet/grommet-table/doc';
 import Doc from '../components/Doc';
@@ -7,12 +7,24 @@ import Table from '../components/grommet/grommet-table/Table';
 const desc = doc(Table).toJSON();
 
 const data = [
-  { item: 'Fork', qty: 4, price: 5.50 },
-  { item: 'Fork', qty: 1, price: 5.20 },
-  { item: 'Knife', qty: 3, price: 2.50 },
-  { item: 'Spoon', qty: 2, price: 6.50 },
-  { item: 'Plate', qty: 1, price: 12.49 },
-  { item: 'Glass', qty: 2, price: 8.25 },
+  {
+    item: 'Fork', qty: 4, price: 5.50, image: 'http://lorempixel.com/output/food-q-c-264-260-2.jpg',
+  },
+  {
+    item: 'Fork', qty: 1, price: 5.20, image: 'http://lorempixel.com/output/nightlife-q-c-264-260-4.jpg',
+  },
+  {
+    item: 'Knife', qty: 3, price: 2.50, image: 'http://lorempixel.com/output/nature-q-c-264-260-7.jpg',
+  },
+  {
+    item: 'Spoon', qty: 2, price: 6.50, image: 'http://lorempixel.com/output/sports-q-c-264-260-1.jpg',
+  },
+  {
+    item: 'Plate', qty: 1, price: 12.49, image: 'http://lorempixel.com/output/people-q-c-264-260-2.jpg',
+  },
+  {
+    item: 'Glass', qty: 2, price: 8.25, image: 'http://lorempixel.com/output/abstract-q-c-264-260-7.jpg',
+  },
 ];
 export default () => (
   <Box>
@@ -28,10 +40,13 @@ export default () => (
           pagination={{ pad: { top: 'medium' } }}
           expander={{ CloseIcon: <Subtract color='brand' />, OpenIcon: <Add color='brand' /> }}
           SubComponent={row => (
-            <Box pad='small' background='light-1'>
-              <div><strong>Item: </strong>{row.original.item}</div>
-              <div><strong>Qty: </strong>{row.original.qty}</div>
-              <div><strong>Price: </strong>{row.original.price}</div>
+            <Box direction='row' pad='small' gap='medium' round='medium' border={{ color: 'brand', size: 'large' }} background='light-1'>
+              <Image src={row.original.image} />
+              <Box>
+                <div><strong>Item: </strong>{row.original.item}</div>
+                <div><strong>Qty: </strong>{row.original.qty}</div>
+                <div><strong>Price: </strong>{row.original.price}</div>
+              </Box>
             </Box>
               )}
           defaultPageSize={4}

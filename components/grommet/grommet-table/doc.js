@@ -36,6 +36,12 @@ export default (Table) => {
 `);
 
   DocumentedTable.propTypes = {
+    table: PropTypes.object.description('Table styling, all **`<Box />`** properties are valid. Example: **`table={{ elevation: \'large\', border: \'all\' }}`**.'),
+    header: PropTypes.object.description('Header styling, all **`<Box />`** properties are valid. Example: **`header={{ background: \'brand\', border: \'all\' }}`**.'),
+    filter: PropTypes.object.description('Filter row styling, all **`<Box />`** properties are valid. Example: **`filter={{ background: \'light-2\', border: \'all\' }}`**.'),
+    footer: PropTypes.object.description('Footer row styling, all **`<Box />`** properties are valid. Example: **`footer={{ background: \'light-1\' }}`**.'),
+    pagination: PropTypes.object.description('Pagination box styling, all **`<Box />`** properties are valid. Example: **`pagination={{ pad: { top: \'medium\' } }}`**.'),
+    expander: PropTypes.object.description('Expander button styling, all **`<Button />`** properties are valid, as well as icons OpenIcon and CloseIcon. Example: **`expander={{ CloseIcon: <Subtract color=\'brand\' />, OpenIcon: <Add color=\'brand\' /> }}`**.'),
     columns: PropTypes.arrayOf(PropTypes.shape({
       Cell: PropTypes.oneOfType([
         PropTypes.element,

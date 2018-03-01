@@ -42,11 +42,14 @@ export default {
   defaultResized: [],
   defaultExpanded: {},
   // eslint-disable-next-line no-unused-vars
-  defaultFilterMethod: (filter, row, column) => {
+  defaultFilter: (filter, row, column) => {
     const id = filter.pivotId || filter.id;
-    return row[id] !== undefined
-      ? String(row[id]).startsWith(filter.value)
-      : true;
+    if (row[id] !== undefined && filter.value !== undefined) {
+      return String(row[id])
+        .toUpperCase()
+        .startsWith(filter.value.toUpperCase());
+    }
+    return true;
   },
   // eslint-disable-next-line no-unused-vars
   defaultSortMethod: (a, b, desc) => {
