@@ -929,7 +929,6 @@ export default class ReactTable extends Component {
       hasHeaderGroups,
       // Sorted Data
       sortedData,
-      currentlyResizing,
     } = resolvedState;
 
     // Pagination
