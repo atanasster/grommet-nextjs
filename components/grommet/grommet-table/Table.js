@@ -15,6 +15,7 @@ import TbodyComponent from './components/TbodyComponent';
 import TrGroupComponent from './components/TrGroupComponent';
 import ExpanderComponent from './components/ExpanderComponent';
 import NoDataComponent from './components/NoDataComponent';
+import LoadingComponent from './components/LoadingComponent';
 
 class GrommetTable extends Component {
   static contextTypes = {
@@ -51,6 +52,7 @@ class GrommetTable extends Component {
       TrComponent,
       TfootComponent,
       ExpanderComponent,
+      LoadingComponent,
     };
     const props = { ...defaults, ...rest };
     return (
