@@ -115,7 +115,7 @@ export const StyledExpander = styled(Button)`
   position: relative;
   margin: 0;
   padding: 0;
-  left: -2px;
+  left: -5px;
   color: transparent;
   cursor: pointer;
 `;

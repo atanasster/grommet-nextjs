@@ -947,7 +947,7 @@ export default class ReactTable extends Component {
         index += 1;
         const rowWithViewIndex = {
           ...row,
-          _viewIndex: index,
+          viewIndex: index,
         };
         const newPath = path.concat([i]);
         if (rowWithViewIndex[subRowsKey] && _.get(expanded, newPath)) {
@@ -1299,13 +1299,11 @@ export default class ReactTable extends Component {
       const trGroupProps = getTrGroupProps(finalState, rowInfo, undefined, this);
       const expanderProps = getExpanderProps(finalState);
       const trProps = _.splitProps(
-        getTrProps(finalState, rowInfo, undefined, this),
+        getTrProps(row.viewIndex % 2, finalState, rowInfo, undefined, this),
       );
       return (
         <TrGroupComponent key={rowInfo.nestingPath.join('_')} {...trGroupProps}>
           <TrComponent
-            // eslint-disable-next-line no-underscore-dangle
-            even={row._viewIndex % 2}
             style={trProps.style}
             {...trProps.rest}
           >
@@ -1584,7 +1582,7 @@ export default class ReactTable extends Component {
         this,
       );
       const trProps = _.splitProps(
-        getTrProps(finalState, undefined, undefined, this),
+        getTrProps(row.viewIndex % 2, finalState, undefined, undefined, this),
       );
       return (
         <TrGroupComponent key={i} {...trGroupProps}>

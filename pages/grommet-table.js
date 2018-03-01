@@ -39,6 +39,10 @@ export default () => (
           theadTh={{ border: 'vertical' }}
           filter={{ background: 'light-2', border: 'all' }}
           filterTh={{ border: 'vertical' }}
+          body={{ animation: { type: 'fadeIn', duration: 2000, size: 'large' } }}
+          rowOdd={{ background: { color: 'light-1', opacity: 'medium' },
+            animation: { type: 'fadeIn', duration: 2000, size: 'large' }
+          }}
           footer={{ background: 'light-1' }}
           pagination={{ pad: { top: 'medium' } }}
           expander={{ CloseIcon: <Subtract color='brand' />, OpenIcon: <Add color='brand' /> }}
