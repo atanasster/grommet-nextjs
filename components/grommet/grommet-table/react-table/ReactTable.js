@@ -1069,6 +1069,7 @@ export default class ReactTable extends Component {
       );
       return (
         <TheadComponent
+          header={true}
           style={{
             ...theadGroupProps.style,
             minWidth: `${rowMinWidth}px`,
@@ -1709,7 +1710,6 @@ export default class ReactTable extends Component {
             </div>)
             : null}
           <TableComponent
-            className={currentlyResizing ? 'rt-resizing' : ''}
             style={tableProps.style}
             {...tableProps.rest}
           >

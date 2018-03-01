@@ -20,6 +20,11 @@ export default () => (
       desc={desc}
       example={(
         <Table
+          table={{ elevation: 'large', border: 'all' }}
+          header={{ background: 'brand', border: 'all' }}
+          filter={{ background: 'light-2', border: 'all' }}
+          footer={{ background: 'light-1' }}
+          pagination={{ pad: { top: 'medium' } }}
           SubComponent={row => (
             <Box pad='small' background='light-1'>
               <div><strong>Item: </strong>{row.original.item}</div>

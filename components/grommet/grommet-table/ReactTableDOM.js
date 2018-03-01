@@ -42,7 +42,7 @@ export default class ReactTableDOM {
   get cell() {
     if (this.cellDOM === undefined) {
       this.cellDOM = document.activeElement;
-      this.tableDOM = this.cellDOM.closest('.rt-table');
+      this.tableDOM = this.tableRef;
     }
     return this.cellDOM;
   }

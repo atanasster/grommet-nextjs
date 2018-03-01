@@ -1,70 +1,6 @@
-import React, { Component } from 'react';
 import styled from 'styled-components';
 import { Box, Button } from 'grommet';
 import ReactTable from './react-table/ReactTable';
-import ReactTableDOM from './ReactTableDOM';
-
-
-class GrommetTable extends Component {
-  onKeyDown = (event) => {
-    let handled;
-    switch (event.key) {
-      case 'PageUp': {
-        const dom = new ReactTableDOM(this.tableRef);
-        handled = dom.previousPage();
-        break;
-      }
-      case 'PageDown': {
-        const dom = new ReactTableDOM(this.tableRef);
-        handled = dom.nextPage();
-        break;
-      }
-      case 'Home': {
-        const dom = new ReactTableDOM(this.tableRef);
-        handled = dom.firstPage();
-        break;
-      }
-      case 'End': {
-        const dom = new ReactTableDOM(this.tableRef);
-        handled = dom.lastPage();
-        break;
-      }
-      case 'ArrowRight':
-      case 'ArrowLeft': {
-        const dom = new ReactTableDOM(this.tableRef);
-        handled = event.key === 'ArrowRight' ? dom.focusNextCell() : dom.focusPreviousCell();
-        break;
-      }
-      case 'ArrowDown':
-      case 'ArrowUp': {
-        const dom = new ReactTableDOM(this.tableRef);
-        handled = event.key === 'ArrowDown' ? dom.focusNextRow() : dom.focusPreviousRow();
-        break;
-      }
-      default:
-        handled = false;
-    }
-    if (handled) {
-      event.preventDefault();
-      return false;
-    }
-    return true;
-  };
-
-
-  getTableProps = () => ({ onKeyDown: this.onKeyDown });
-
-  render() {
-    return (
-      <ReactTable
-        // eslint-disable-next-line no-return-assign
-        ref={ref => this.tableRef = ref}
-        getTableProps={this.getTableProps}
-        {...this.props}
-      />
-    );
-  }
-}
 
 export const StyledTableComponent = styled(Box)`
   align-items: stretch;
@@ -156,11 +92,9 @@ export const StyledThComponent = styled(Box)`
 
 export const StyledTrGroupComponent = styled(Box)`
   align-items: stretch;
-  ${props => props.tableContext === 'body' && `border-bottom: 1px solid ${props.theme.global.colors.border};`}
 `;
 
 export const StyledTrComponent = styled(Box)`
-  ${props => props.tableContext === 'header' && `border-bottom: 1px solid ${props.theme.global.colors.border};`}
 `;
 
 export const StyledTdComponent = styled(Box)`
@@ -190,14 +124,10 @@ export const StyledExpander = styled(Button)`
 export const StyledTfootComponent = styled(Box)`
 `;
 
-const StyledTable = styled(GrommetTable)`
+const StyledTable = styled(ReactTable)`
   max-width: 100%;
   width: 100%;
   overflow: hidden;
-  color: ${props =>
-    (props.grommet && props.grommet.dark ? props.theme.global.colors.darkBackground.text
-      : (props.theme.grommettable && props.theme.grommettable.color))};
-
   &.-striped .rt-tr.-odd {
     background: rgba(0, 0, 0, 0.03)
   }

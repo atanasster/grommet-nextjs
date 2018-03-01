@@ -148,8 +148,9 @@ export default class ReactTablePagination extends Component {
   }
 
   render() {
+    const props = this.props.getPaginationProps(this.props);
     return (
-      <Box align='center' pad='small'>
+      <Box {...{ ...{ align: 'center', pad: 'small' }, ...props }}>
         <Box direction='row' align='center' style={this.props.style} gap='large'>
           {this.renderPrevious()}
           {this.renderPaging()}

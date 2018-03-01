@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { compose } from 'recompose';
 import { withTheme } from 'grommet/components/hocs';
 import { StyledTableComponent } from '../StyledTable';
+import ReactTableDOM from '../ReactTableDOM';
 
 class TableComponent extends Component {
   static contextTypes = {
@@ -15,9 +16,55 @@ class TableComponent extends Component {
   getChildContext() {
     return { grommet: this.context.grommet };
   }
+  onKeyDown = (event) => {
+    let handled;
+    switch (event.key) {
+      case 'PageUp': {
+        const dom = new ReactTableDOM(this);
+        handled = dom.previousPage();
+        break;
+      }
+      case 'PageDown': {
+        const dom = new ReactTableDOM(this);
+        handled = dom.nextPage();
+        break;
+      }
+      case 'Home': {
+        const dom = new ReactTableDOM(this);
+        handled = dom.firstPage();
+        break;
+      }
+      case 'End': {
+        const dom = new ReactTableDOM(this);
+        handled = dom.lastPage();
+        break;
+      }
+      case 'ArrowRight':
+      case 'ArrowLeft': {
+        const dom = new ReactTableDOM(this);
+        handled = event.key === 'ArrowRight' ? dom.focusNextCell() : dom.focusPreviousCell();
+        break;
+      }
+      case 'ArrowDown':
+      case 'ArrowUp': {
+        const dom = new ReactTableDOM(this.tableRef);
+        handled = event.key === 'ArrowDown' ? dom.focusNextRow() : dom.focusPreviousRow();
+        break;
+      }
+      default:
+        handled = false;
+    }
+    if (handled) {
+      event.preventDefault();
+      return false;
+    }
+    return true;
+  };
+
   render() {
     return (
       <StyledTableComponent
+        onKeyDown={this.onKeyDown}
         role='grid'
         {...this.props}
       />
