@@ -17,10 +17,6 @@ export const StyledTHeadComponent = styled(Box)`
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
-  ${props => props.header && `
-    font-weight:${(props.theme.grommettable && props.theme.grommettable.th && props.theme.grommettable && props.theme.grommettable.th.fontWeight) || 300};
-    font-size:${(props.theme.grommettable && props.theme.grommettable.th && props.theme.grommettable && props.theme.grommettable.th.fontSize) || '1.2em'};
-  `}
 `;
 
 export const StyledResizerComponent = styled(Box)`
@@ -80,9 +76,6 @@ export const StyledThComponent = styled(Box)`
       overflow: hidden
     }
   `}  
-  color: ${props =>
-    (props.grommet && props.grommet.dark ? props.theme.global.colors.darkBackground.text
-      : (props.theme.grommettable && props.theme.grommettable.th.color))};  
 `;
 
 
@@ -120,7 +113,7 @@ export const StyledExpander = styled(Button)`
 export const StyledTfootComponent = styled(Box)`
 `;
 
-const StyledTable = styled(ReactTable)`
+export default styled(ReactTable)`
   max-width: 100%;
   width: 100%;
   overflow: hidden;
@@ -131,8 +124,4 @@ const StyledTable = styled(ReactTable)`
   &.-highlight .rt-tbody .rt-tr:not(.-padRow):hover {
     background: rgba(0, 0, 0, 0.05)
   }
-`;
-
-export default StyledTable.extend`
-  ${props => (props.theme.grommettable ? props.theme.grommettable.extend : {})}
 `;

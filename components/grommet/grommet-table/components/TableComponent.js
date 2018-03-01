@@ -1,21 +1,8 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
-import { compose } from 'recompose';
-import { withTheme } from 'grommet/components/hocs';
 import { StyledTableComponent } from '../StyledTable';
 import ReactTableDOM from '../ReactTableDOM';
 
-class TableComponent extends Component {
-  static contextTypes = {
-    grommet: PropTypes.object,
-  };
-
-  static childContextTypes = {
-    grommet: PropTypes.object,
-  };
-  getChildContext() {
-    return { grommet: this.context.grommet };
-  }
+export default class TableComponent extends Component {
   onKeyDown = (event) => {
     let handled;
     switch (event.key) {
@@ -72,4 +59,3 @@ class TableComponent extends Component {
   }
 }
 
-export default compose(withTheme)(TableComponent);
