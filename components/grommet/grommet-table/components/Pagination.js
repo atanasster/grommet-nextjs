@@ -24,7 +24,7 @@ const StyledPageInput = styled(TextInput)`
 `;
 
 const StyledSelect = styled(Select)`
-  max-width: 90px;
+  max-width: 130px;
 `;
 
 export default class ReactTablePagination extends Component {
@@ -150,13 +150,18 @@ export default class ReactTablePagination extends Component {
   render() {
     const props = this.props.getPaginationProps(this.props);
     return (
-      <Box {...{ ...{ align: 'center', pad: 'small' }, ...props }}>
-        <Box direction='row' align='center' style={this.props.style} gap='large'>
-          {this.renderPrevious()}
-          {this.renderPaging()}
-          {this.renderPageSize()}
-          {this.renderNext()}
-        </Box>
+      <Box
+        {...{
+       ...{
+       direction: 'row', align: 'center', justify: 'between', fill: 'horizontal',
+      },
+      ...props,
+      }}
+      >
+        {this.renderPrevious()}
+        {this.renderPaging()}
+        {this.renderPageSize()}
+        {this.renderNext()}
       </Box>
     );
   }
