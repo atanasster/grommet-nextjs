@@ -34,8 +34,11 @@ export default () => (
       example={(
         <Table
           table={{ elevation: 'large', border: 'all' }}
-          header={{ background: 'brand', border: 'all' }}
+          headerGroup={{ background: 'brand', border: 'all' }}
+          header={{ border: 'all' }}
+          theadTh={{ border: 'vertical' }}
           filter={{ background: 'light-2', border: 'all' }}
+          filterTh={{ border: 'vertical' }}
           footer={{ background: 'light-1' }}
           pagination={{ pad: { top: 'medium' } }}
           expander={{ CloseIcon: <Subtract color='brand' />, OpenIcon: <Add color='brand' /> }}
@@ -70,6 +73,7 @@ export default () => (
                     aggregate: vals => `Sum ${vals.reduce((a, b) => a + b, 0)}`,
                   }, {
                     Header: 'Total',
+                    id: 'total',
                     Cell: props => (
                       props.original ? props.original.price * props.original.qty : ''
                     ),

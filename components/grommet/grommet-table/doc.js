@@ -28,7 +28,7 @@ export const docGrommetTableCell = (TableCell) => {
 export default (Table) => {
   const DocumentedTable = describe(Table)
     .availableAt(getAvailableAtGitHub({ url: 'https://github.com/atanasster/grommet-nextjs' }))
-    .description('A table with pagination, filtering, footer, child rows and grouping. Derived from https://github.com/react-tools/react-table. ')
+    .description('A Grommet 2 table component with pagination, filtering, footer, child rows and grouping. Derived from https://github.com/react-tools/react-table. ')
     .usage(`
     $ npm install grommet-table 
     import { Table } from 'grommet-table';
@@ -37,8 +37,11 @@ export default (Table) => {
 
   DocumentedTable.propTypes = {
     table: PropTypes.object.description('Table styling, all **`<Box />`** properties are valid. Example: **`table={{ elevation: \'large\', border: \'all\' }}`**.'),
-    header: PropTypes.object.description('Header styling, all **`<Box />`** properties are valid. Example: **`header={{ background: \'brand\', border: \'all\' }}`**.'),
+    headerGroup: PropTypes.object.description('Grouped columns header styling, all **`<Box />`** properties are valid. Example: **`headerGroup={{ background: \'brand\', border: \'all\' }}`**.'),
+    header: PropTypes.object.description('Header styling, all **`<Box />`** properties are valid. Example: **`header={{ border: \'all\' }}`**.'),
+    theadTh: PropTypes.object.description('Header cell styling, all **`<Box />`** properties are valid. Example: **`theadTh={{ border: \'vertical\' }}`**.'),
     filter: PropTypes.object.description('Filter row styling, all **`<Box />`** properties are valid. Example: **`filter={{ background: \'light-2\', border: \'all\' }}`**.'),
+    filterTh: PropTypes.object.description('Filter cell styling, all **`<Box />`** properties are valid. Example: **`filterTh={{ border: \'vertical\' }}`**.'),
     footer: PropTypes.object.description('Footer row styling, all **`<Box />`** properties are valid. Example: **`footer={{ background: \'light-1\' }}`**.'),
     pagination: PropTypes.object.description('Pagination box styling, all **`<Box />`** properties are valid. Example: **`pagination={{ pad: { top: \'medium\' } }}`**.'),
     expander: PropTypes.object.description('Expander button styling, all **`<Button />`** properties are valid, as well as icons OpenIcon and CloseIcon. Example: **`expander={{ CloseIcon: <Subtract color=\'brand\' />, OpenIcon: <Add color=\'brand\' /> }}`**.'),

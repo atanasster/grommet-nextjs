@@ -42,7 +42,7 @@ export default {
   defaultResized: [],
   defaultExpanded: {},
   // eslint-disable-next-line no-unused-vars
-  defaultFilter: (filter, row, column) => {
+  defaultFilterMethod: (filter, row, column) => {
     const id = filter.pivotId || filter.id;
     if (row[id] !== undefined && filter.value !== undefined) {
       return String(row[id])
@@ -110,15 +110,15 @@ export default {
   // Component decorators
   getProps: emptyObj,
   getTableProps: ({ table }) => (table || {}),
-  getTheadGroupProps: ({ header }) => (header || {}),
+  getTheadGroupProps: ({ headerGroup, header }) => (headerGroup || header || {}),
   getTheadGroupTrProps: emptyObj,
   getTheadGroupThProps: emptyObj,
-  getTheadProps: emptyObj,
+  getTheadProps: ({ header }) => (header || {}),
   getTheadTrProps: emptyObj,
-  getTheadThProps: emptyObj,
+  getTheadThProps: ({ theadTh }) => (theadTh || {}),
   getTheadFilterProps: ({ filter }) => (filter || {}),
   getTheadFilterTrProps: emptyObj,
-  getTheadFilterThProps: emptyObj,
+  getTheadFilterThProps: ({ filterTh }) => (filterTh || {}),
   getTbodyProps: emptyObj,
   getTrGroupProps: emptyObj,
   getTrProps: emptyObj,
