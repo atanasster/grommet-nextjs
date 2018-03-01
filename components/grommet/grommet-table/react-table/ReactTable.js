@@ -866,6 +866,7 @@ export default class ReactTable extends Component {
       getTrGroupProps,
       getTrProps,
       getTdProps,
+      getExpanderProps,
       getTfootProps,
       getTfootTrProps,
       getTfootTdProps,
@@ -1296,6 +1297,7 @@ export default class ReactTable extends Component {
       };
       const isExpanded = _.get(expanded, rowInfo.nestingPath);
       const trGroupProps = getTrGroupProps(finalState, rowInfo, undefined, this);
+      const expanderProps = getExpanderProps(finalState);
       const trProps = _.splitProps(
         getTrProps(finalState, rowInfo, undefined, this),
       );
@@ -1401,7 +1403,7 @@ export default class ReactTable extends Component {
                 PivotComponent ||
                 (props => (
                   <div>
-                    <ResolvedExpanderComponent {...props} />
+                    <ResolvedExpanderComponent {...{ ...props, expanderProps }} />
                     <ResolvedPivotValueComponent {...props} />
                   </div>
                 ));
@@ -1460,7 +1462,7 @@ export default class ReactTable extends Component {
               if (cellInfo.expander) {
                 resolvedCell = _.normalizeComponent(
                   ResolvedExpanderComponent,
-                  cellInfo,
+                  { ...cellInfo, expanderProps },
                   row[pivotValKey],
                 );
                 if (pivotBy) {

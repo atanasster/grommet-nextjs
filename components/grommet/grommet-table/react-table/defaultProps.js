@@ -120,6 +120,7 @@ export default {
   getTrGroupProps: emptyObj,
   getTrProps: emptyObj,
   getTdProps: emptyObj,
+  getExpanderProps: ({ expander }) => (expander || {}),
   getTfootProps: emptyObj,
   getTfootTrProps: ({ footer }) => (footer || {}),
   getTfootTdProps: emptyObj,

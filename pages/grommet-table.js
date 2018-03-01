@@ -1,4 +1,5 @@
 import { Box, Text } from 'grommet';
+import { Add, Subtract } from 'grommet-icons';
 import doc from '../components/grommet/grommet-table/doc';
 import Doc from '../components/Doc';
 import Table from '../components/grommet/grommet-table/Table';
@@ -25,6 +26,7 @@ export default () => (
           filter={{ background: 'light-2', border: 'all' }}
           footer={{ background: 'light-1' }}
           pagination={{ pad: { top: 'medium' } }}
+          expander={{ CloseIcon: <Subtract color='brand' />, OpenIcon: <Add color='brand' /> }}
           SubComponent={row => (
             <Box pad='small' background='light-1'>
               <div><strong>Item: </strong>{row.original.item}</div>
@@ -57,7 +59,7 @@ export default () => (
                       props.original ? props.original.price * props.original.qty : ''
                     ),
                     Footer: cell => (
-                      <Text >{`${cell.data.length}`}</Text>
+                      <Text >{`Sum ${cell.data.reduce((a, b) => (a + b.price), 0)}`}</Text>
                     ),
                   },
                 ],
