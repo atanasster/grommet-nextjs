@@ -140,15 +140,6 @@ function asPx(value) {
   return Number.isNaN(value) ? null : `${value}px`;
 }
 
-
-function splitProps({ className, style, ...rest }) {
-  return {
-    className,
-    style,
-    rest: rest || {},
-  };
-}
-
 function compactObject(obj) {
   const newObj = {};
   if (obj) {
@@ -189,7 +180,6 @@ export default {
   sum,
   groupBy,
   isArray,
-  splitProps,
   compactObject,
   isSortingDesc,
   normalizeComponent,

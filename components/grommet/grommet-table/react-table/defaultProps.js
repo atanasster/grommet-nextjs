@@ -103,10 +103,6 @@ export default {
   // Server-side Callbacks
   onFetchData: () => null,
 
-  // Classes
-  className: '',
-  style: {},
-
   // Component decorators
   getProps: emptyObj,
   getTableProps: ({ table }) => (table || {}),
@@ -150,18 +146,12 @@ export default {
     show: true,
     minWidth: 100,
     // Cells only
-    className: '',
-    style: {},
     getProps: emptyObj,
     // Pivot only
     aggregate: undefined,
     // Headers only
-    headerClassName: '',
-    headerStyle: {},
     getHeaderProps: emptyObj,
     // Footers only
-    footerClassName: '',
-    footerStyle: {},
     getFooterProps: emptyObj,
     filterMethod: undefined,
     filterAll: false,

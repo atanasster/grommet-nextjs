@@ -850,7 +850,6 @@ export default class ReactTable extends Component {
     const resolvedState = this.getResolvedState();
     const {
       children,
-      style,
       getProps,
       getTableProps,
       getTheadGroupProps,
@@ -988,15 +987,9 @@ export default class ReactTable extends Component {
       rowMinWidth,
     };
 
-    const rootProps = _.splitProps(
-      getProps(finalState, undefined, undefined, this),
-    );
-    const tableProps = _.splitProps(
-      getTableProps(finalState, undefined, undefined, this),
-    );
-    const tBodyProps = _.splitProps(
-      getTbodyProps(finalState, undefined, undefined, this),
-    );
+    const rootProps = getProps(finalState, undefined, undefined, this);
+    const tableProps = getTableProps(finalState, undefined, undefined, this);
+    const tBodyProps = getTbodyProps(finalState, undefined, undefined, this);
     const loadingProps = getLoadingProps(finalState, undefined, undefined, this);
     const noDataProps = getNoDataProps(finalState, undefined, undefined, this);
 
@@ -1019,22 +1012,12 @@ export default class ReactTable extends Component {
           _.getFirstDefined(resizedValue(col), col.width, col.maxWidth)),
       );
 
-      const theadGroupThProps = _.splitProps(
-        getTheadGroupThProps(finalState, undefined, column, this),
-      );
-      const columnHeaderProps = _.splitProps(
-        column.getHeaderProps(finalState, undefined, column, this),
-      );
-
-      const styles = {
-        ...column.headerStyle,
-        ...theadGroupThProps.style,
-        ...columnHeaderProps.style,
-      };
+      const theadGroupThProps = getTheadGroupThProps(finalState, undefined, column, this);
+      const columnHeaderProps = column.getHeaderProps(finalState, undefined, column, this);
 
       const rest = {
-        ...theadGroupThProps.rest,
-        ...columnHeaderProps.rest,
+        ...theadGroupThProps,
+        ...columnHeaderProps,
       };
 
       const flexStyles = {
@@ -1046,10 +1029,7 @@ export default class ReactTable extends Component {
       return (
         <ThComponent
           key={`${i}-${column.id}`}
-          style={{
-            ...styles,
-            ...flexStyles,
-          }}
+          style={flexStyles}
           {...rest}
         >
           {_.normalizeComponent(column.Header, {
@@ -1061,24 +1041,16 @@ export default class ReactTable extends Component {
     };
 
     const makeHeaderGroups = () => {
-      const theadGroupProps = _.splitProps(
-        getTheadGroupProps(finalState, undefined, undefined, this),
-      );
-      const theadGroupTrProps = _.splitProps(
-        getTheadGroupTrProps(finalState, undefined, undefined, this),
-      );
+      const theadGroupProps = getTheadGroupProps(finalState, undefined, undefined, this);
+      const theadGroupTrProps = getTheadGroupTrProps(finalState, undefined, undefined, this);
       return (
         <TheadComponent
           header={true}
-          style={{
-            ...theadGroupProps.style,
-            minWidth: `${rowMinWidth}px`,
-          }}
-          {...theadGroupProps.rest}
+          style={{ minWidth: `${rowMinWidth}px` }}
+          {...theadGroupProps}
         >
           <TrComponent
-            style={theadGroupTrProps.style}
-            {...theadGroupTrProps.rest}
+            {...theadGroupTrProps}
           >
             {headerGroups.map(makeHeaderGroup)}
           </TrComponent>
@@ -1101,23 +1073,12 @@ export default class ReactTable extends Component {
         column.width,
         column.maxWidth,
       );
-      const theadThProps = _.splitProps(
-        getTheadThProps(finalState, undefined, column, this),
-      );
-      const columnHeaderProps = _.splitProps(
-        column.getHeaderProps(finalState, undefined, column, this),
-      );
-
-
-      const styles = {
-        ...column.headerStyle,
-        ...theadThProps.style,
-        ...columnHeaderProps.style,
-      };
+      const theadThProps = getTheadThProps(finalState, undefined, column, this);
+      const columnHeaderProps = column.getHeaderProps(finalState, undefined, column, this);
 
       const rest = {
-        ...theadThProps.rest,
-        ...columnHeaderProps.rest,
+        ...theadThProps,
+        ...columnHeaderProps,
       };
 
       const isResizable = _.getFirstDefined(column.resizable, resizable, false);
@@ -1140,7 +1101,6 @@ export default class ReactTable extends Component {
           hidden={!show}
           pivot={pivotBy && pivotBy.slice(0, -1).includes(column.id)}
           style={{
-            ...styles,
             flex: `${width} 0 auto`,
             width: _.asPx(width),
             maxWidth: _.asPx(maxWidth),
@@ -1162,25 +1122,18 @@ export default class ReactTable extends Component {
     };
 
     const makeHeaders = () => {
-      const theadProps = _.splitProps(
-        getTheadProps(finalState, undefined, undefined, this),
-      );
-      const theadTrProps = _.splitProps(
-        getTheadTrProps(finalState, undefined, undefined, this),
-      );
+      const theadProps = getTheadProps(finalState, undefined, undefined, this);
+      const theadTrProps = getTheadTrProps(finalState, undefined, undefined, this);
       return (
         <TheadComponent
           header={true}
           style={{
-            ...theadProps.style,
             minWidth: `${rowMinWidth}px`,
           }}
-          {...theadProps.rest}
+          {...theadProps}
         >
           <TrComponent
-            className={theadTrProps.className}
-            style={theadTrProps.style}
-            {...theadTrProps.rest}
+            {...theadTrProps}
           >
             {allVisibleColumns.map(makeHeader)}
           </TrComponent>
@@ -1200,22 +1153,12 @@ export default class ReactTable extends Component {
         column.width,
         column.maxWidth,
       );
-      const theadFilterThProps = _.splitProps(
-        getTheadFilterThProps(finalState, undefined, column, this),
-      );
-      const columnHeaderProps = _.splitProps(
-        column.getHeaderProps(finalState, undefined, column, this),
-      );
-
-      const styles = {
-        ...column.headerStyle,
-        ...theadFilterThProps.style,
-        ...columnHeaderProps.style,
-      };
+      const theadFilterThProps = getTheadFilterThProps(finalState, undefined, column, this);
+      const columnHeaderProps = column.getHeaderProps(finalState, undefined, column, this);
 
       const rest = {
-        ...theadFilterThProps.rest,
-        ...columnHeaderProps.rest,
+        ...theadFilterThProps,
+        ...columnHeaderProps,
       };
 
       const filter = filtered.find(filter => filter.id === column.id);
@@ -1232,7 +1175,6 @@ export default class ReactTable extends Component {
         <ThComponent
           key={`${i}-${column.id}`}
           style={{
-            ...styles,
             flex: `${width} 0 auto`,
             width: _.asPx(width),
             maxWidth: _.asPx(maxWidth),
@@ -1255,25 +1197,18 @@ export default class ReactTable extends Component {
     };
 
     const makeFilters = () => {
-      const theadFilterProps = _.splitProps(
-        getTheadFilterProps(finalState, undefined, undefined, this),
-      );
-      const theadFilterTrProps = _.splitProps(
-        getTheadFilterTrProps(finalState, undefined, undefined, this),
-      );
+      const theadFilterProps = getTheadFilterProps(finalState, undefined, undefined, this);
+      const theadFilterTrProps = getTheadFilterTrProps(finalState, undefined, undefined, this);
       return (
         <TheadComponent
           filters={true}
           style={{
-            ...theadFilterProps.style,
             minWidth: `${rowMinWidth}px`,
           }}
-          {...theadFilterProps.rest}
+          {...theadFilterProps}
         >
           <TrComponent
-            className={theadFilterTrProps.className}
-            style={theadFilterTrProps.style}
-            {...theadFilterTrProps.rest}
+            {...theadFilterTrProps}
           >
             {allVisibleColumns.map(makeFilter)}
           </TrComponent>
@@ -1298,14 +1233,11 @@ export default class ReactTable extends Component {
       const isExpanded = _.get(expanded, rowInfo.nestingPath);
       const trGroupProps = getTrGroupProps(finalState, rowInfo, undefined, this);
       const expanderProps = getExpanderProps(finalState);
-      const trProps = _.splitProps(
-        getTrProps(row.viewIndex % 2, finalState, rowInfo, undefined, this),
-      );
+      const trProps = getTrProps(row.viewIndex % 2, finalState, rowInfo, undefined, this);
       return (
         <TrGroupComponent key={rowInfo.nestingPath.join('_')} {...trGroupProps}>
           <TrComponent
-            style={trProps.style}
-            {...trProps.rest}
+            {...trProps}
           >
             {allVisibleColumns.map((column, i2) => {
               const resizedCol = resized.find(x => x.id === column.id) || {};
@@ -1321,24 +1253,8 @@ export default class ReactTable extends Component {
                 column.width,
                 column.maxWidth,
               );
-              const tdProps = _.splitProps(
-                getTdProps(finalState, rowInfo, column, this),
-              );
-              const columnProps = _.splitProps(
-                column.getProps(finalState, rowInfo, column, this),
-              );
-
-              const classes = [
-                tdProps.className,
-                column.className,
-                columnProps.className,
-              ];
-
-              const styles = {
-                ...tdProps.style,
-                ...column.style,
-                ...columnProps.style,
-              };
+              const tdProps = getTdProps(finalState, rowInfo, column, this);
+              const columnProps = column.getProps(finalState, rowInfo, column, this);
 
               const cellInfo = {
                 ...rowInfo,
@@ -1353,8 +1269,6 @@ export default class ReactTable extends Component {
                 maxWidth,
                 tdProps,
                 columnProps,
-                classes,
-                styles,
               };
 
               const value = cellInfo.value;
@@ -1484,15 +1398,15 @@ export default class ReactTable extends Component {
                 onClick: resolvedOnExpanderClick,
               };
 
-              if (tdProps.rest.onClick) {
+              if (tdProps.onClick) {
                 interactionProps.onClick = (e) => {
-                  tdProps.rest.onClick(e, () => resolvedOnExpanderClick(e));
+                  tdProps.onClick(e, () => resolvedOnExpanderClick(e));
                 };
               }
 
-              if (columnProps.rest.onClick) {
+              if (columnProps.onClick) {
                 interactionProps.onClick = (e) => {
-                  columnProps.rest.onClick(e, () => resolvedOnExpanderClick(e));
+                  columnProps.onClick(e, () => resolvedOnExpanderClick(e));
                 };
               }
 
@@ -1503,13 +1417,12 @@ export default class ReactTable extends Component {
                   key={`${i2}-${column.id}`}
                   hidden={!show}
                   style={{
-                    ...styles,
                     flex: `${width} 0 auto`,
                     width: _.asPx(width),
                     maxWidth: _.asPx(maxWidth),
                   }}
-                  {...tdProps.rest}
-                  {...columnProps.rest}
+                  {...tdProps}
+                  {...columnProps}
                   {...interactionProps}
                 >
                   {resolvedCell}
@@ -1544,30 +1457,17 @@ export default class ReactTable extends Component {
         column.width,
         column.maxWidth,
       );
-      const tdProps = _.splitProps(
-        getTdProps(finalState, undefined, column, this),
-      );
-      const columnProps = _.splitProps(
-        column.getProps(finalState, undefined, column, this),
-      );
-
-      const styles = {
-        ...tdProps.style,
-        ...column.style,
-        ...columnProps.style,
-      };
-
+      const tdProps = getTdProps(finalState, undefined, column, this);
       return (
         <TdComponent
           key={`${i}-${column.id}`}
           hidden={!show}
           style={{
-            ...styles,
             flex: `${flex} 0 auto`,
             width: _.asPx(width),
             maxWidth: _.asPx(maxWidth),
           }}
-          {...tdProps.rest}
+          {...tdProps}
         >
           {_.normalizeComponent(PadRowComponent)}
         </TdComponent>
@@ -1581,15 +1481,13 @@ export default class ReactTable extends Component {
         undefined,
         this,
       );
-      const trProps = _.splitProps(
-        getTrProps(row.viewIndex % 2, finalState, undefined, undefined, this),
-      );
+      const trProps = getTrProps(row.viewIndex % 2, finalState, undefined, undefined, this);
       return (
         <TrGroupComponent key={i} {...trGroupProps}>
           <TrComponent
             padrow={true}
             even={(pageRows.length + i) % 2}
-            style={trProps.style || {}}
+            {...trProps}
           >
             {allVisibleColumns.map(makePadColumn)}
           </TrComponent>
@@ -1611,37 +1509,23 @@ export default class ReactTable extends Component {
         column.width,
         column.maxWidth,
       );
-      const tFootTdProps = _.splitProps(
-        getTfootTdProps(finalState, undefined, undefined, this),
-      );
-      const columnProps = _.splitProps(
-        column.getProps(finalState, undefined, column, this),
-      );
-      const columnFooterProps = _.splitProps(
-        column.getFooterProps(finalState, undefined, column, this),
-      );
+      const tFootTdProps = getTfootTdProps(finalState, undefined, undefined, this);
+      const columnProps = column.getProps(finalState, undefined, column, this);
+      const columnFooterProps = column.getFooterProps(finalState, undefined, column, this);
 
-
-      const styles = {
-        ...tFootTdProps.style,
-        ...column.style,
-        ...columnProps.style,
-        ...columnFooterProps.style,
-      };
 
       return (
         <TdComponent
           key={`${i}-${column.id}`}
           hidden={!show}
           style={{
-            ...styles,
             flex: `${width} 0 auto`,
             width: _.asPx(width),
             maxWidth: _.asPx(maxWidth),
           }}
-          {...columnProps.rest}
-          {...tFootTdProps.rest}
-          {...columnFooterProps.rest}
+          {...columnProps}
+          {...tFootTdProps}
+          {...columnFooterProps}
         >
           {_.normalizeComponent(column.Footer, {
             data: sortedData,
@@ -1653,20 +1537,16 @@ export default class ReactTable extends Component {
 
     const makeColumnFooters = () => {
       const tFootProps = getTfootProps(finalState, undefined, undefined, this);
-      const tFootTrProps = _.splitProps(
-        getTfootTrProps(finalState, undefined, undefined, this),
-      );
+      const tFootTrProps = getTfootTrProps(finalState, undefined, undefined, this);
       return (
         <TfootComponent
           style={{
-            ...tFootProps.style,
             minWidth: `${rowMinWidth}px`,
           }}
-          {...tFootProps.rest}
+          {...tFootProps}
         >
           <TrComponent
-            style={tFootTrProps.style}
-            {...tFootTrProps.rest}
+            {...tFootTrProps}
           >
             {allVisibleColumns.map(makeColumnFooter)}
           </TrComponent>
@@ -1675,9 +1555,7 @@ export default class ReactTable extends Component {
     };
 
     const makePagination = () => {
-      const paginationProps = _.splitProps(
-        getPaginationProps(finalState, undefined, undefined, this),
-      );
+      const paginationProps = getPaginationProps(finalState, undefined, undefined, this);
       return (
         <PaginationComponent
           {...resolvedState}
@@ -1686,9 +1564,7 @@ export default class ReactTable extends Component {
           canNext={canNext}
           onPageChange={this.onPageChange}
           onPageSizeChange={this.onPageSizeChange}
-          className={paginationProps.className}
-          style={paginationProps.style}
-          {...paginationProps.rest}
+          {...paginationProps}
         />
       );
     };
@@ -1696,31 +1572,23 @@ export default class ReactTable extends Component {
     const makeTable = () => {
       const pagination = makePagination();
       return (
-        <div
-          style={{
-            ...style,
-            ...rootProps.style,
-          }}
-          {...rootProps.rest}
-        >
+        <div {...rootProps} >
           {showPagination && showPaginationTop ? (
-            <div className='pagination-top'>
+            <div>
               {pagination}
             </div>)
             : null}
           <TableComponent
-            style={tableProps.style}
-            {...tableProps.rest}
+            {...tableProps}
           >
             {hasHeaderGroups ? makeHeaderGroups() : null}
             {makeHeaders()}
             {hasFilters ? makeFilters() : null}
             <TbodyComponent
               style={{
-                ...tBodyProps.style,
                 minWidth: `${rowMinWidth}px`,
               }}
-              {...tBodyProps.rest}
+              {...tBodyProps}
             >
               {pageRows.map((d, i) => makePageRow(d, i))}
               {padRows.map(makePadRow)}
@@ -1728,7 +1596,7 @@ export default class ReactTable extends Component {
             {hasColumnFooter ? makeColumnFooters() : null}
           </TableComponent>
           {showPagination && showPaginationBottom ? (
-            <div className='pagination-bottom'>
+            <div>
               {pagination}
             </div>)
             : null}
