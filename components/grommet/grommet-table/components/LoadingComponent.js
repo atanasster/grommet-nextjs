@@ -9,7 +9,7 @@ export default ({ loading, loadingText }) => (
         model={true}
 
       >
-        <Box margin={{ horizontal: 'xlarge', vertical: 'small'}} >
+        <Box margin={{ horizontal: 'xlarge', vertical: 'small' }} >
           <Text>{loadingText}</Text>
         </Box>
       </Layer>

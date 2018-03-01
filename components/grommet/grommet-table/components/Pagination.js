@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import classnames from 'classnames';
 import styled from 'styled-components';
 import { Box, Button, Select, TextInput, Text } from 'grommet';
 import { Previous, Next } from 'grommet-icons';
@@ -149,9 +148,8 @@ export default class ReactTablePagination extends Component {
   }
 
   render() {
-    const { className } = this.props;
     return (
-      <Box align='center' className={classnames(className, '-pagination')} pad='small'>
+      <Box align='center' pad='small'>
         <Box direction='row' align='center' style={this.props.style} gap='large'>
           {this.renderPrevious()}
           {this.renderPaging()}

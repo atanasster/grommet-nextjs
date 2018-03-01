@@ -4,10 +4,10 @@ import { StyledThComponent } from '../StyledTable';
 
 
 export default ({
-  toggleSort, className, children, ...rest
+  toggleSort, sort, resizable, children, ...rest
 }) => {
-  const sortAsc = className.indexOf('-sort-asc') !== -1;
-  const sortDesc = className.indexOf('-sort-desc') !== -1;
+  const sortAsc = sort === '-sort-asc';
+  const sortDesc = sort === '-sort-desc';
   let content;
   if (sortAsc || sortDesc) {
     const Sort = sortAsc ? LinkUp : LinkDown;
@@ -27,7 +27,7 @@ export default ({
       role='columnheader'
       direction='row'
       pad='xsmall'
-      className={className}
+      resizable={resizable}
       {...rest}
     >
       {content}

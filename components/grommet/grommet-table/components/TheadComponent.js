@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { compose } from 'recompose';
 import { withTheme } from 'grommet/components/hocs';
-import { StyledTableHeaderComponent } from '../StyledTable';
+import { StyledTHeadComponent } from '../StyledTable';
 
 class TableHeaderComponent extends Component {
   static childContextTypes = {
@@ -15,7 +15,7 @@ class TableHeaderComponent extends Component {
   }
 
   render() {
-    return <StyledTableHeaderComponent {...this.props} />;
+    return <StyledTHeadComponent {...this.props} />;
   }
 }
 
