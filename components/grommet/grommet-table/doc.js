@@ -50,7 +50,7 @@ export default (Table) => {
       footer: PropTypes.object.description('Footer row styling, all **`<Box />`** properties are valid.'),
       pagination: PropTypes.object.description('Pagination box styling, all **`<Box />`** properties are valid.'),
       expander: PropTypes.object.description('Expander button styling, all **`<Button />`** properties are valid, as well as icons OpenIcon and CloseIcon.'),
-    }).description(`Visual styling of the various Grommet Table elements. Example:
+    }).description(`Visual styling of the various Grommet Table elements. Where applicable, those settings can be overriden at the column level. Example:
 \`\`\`
   <Table
     decorations={{
