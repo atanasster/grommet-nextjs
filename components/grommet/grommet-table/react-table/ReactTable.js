@@ -1046,7 +1046,6 @@ export default class ReactTable extends Component {
       const theadGroupTrProps = getTheadGroupTrProps(finalState, undefined, undefined, this);
       return (
         <TheadComponent
-          header={true}
           style={{ minWidth: `${rowMinWidth}px` }}
           {...theadGroupProps}
         >

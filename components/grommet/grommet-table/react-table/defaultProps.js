@@ -105,26 +105,32 @@ export default {
 
   // Component decorators
   getProps: emptyObj,
-  getTableProps: ({ table }) => (table || {}),
-  getTheadGroupProps: ({ headerGroup, header }) => (headerGroup || header || {}),
+  getTableProps: ({ decorations }) => ((decorations && decorations.table) || {}),
+  getTheadGroupProps: ({ decorations }) =>
+    ((decorations && (decorations.headerGroup || decorations.header)) || {}),
   getTheadGroupTrProps: emptyObj,
   getTheadGroupThProps: emptyObj,
-  getTheadProps: ({ header }) => (header || {}),
+  getTheadProps: ({ decorations }) => ((decorations && decorations.header) || {}),
   getTheadTrProps: emptyObj,
-  getTheadThProps: ({ headRow }) => (headRow || {}),
-  getTheadFilterProps: ({ filter }) => (filter || {}),
-  getTheadFilterTrProps: ({ filterRow }) => (filterRow || {}),
-  getFilterInputProps: ({ filterInput }) => (filterInput || {}),
-  getTheadFilterThProps: ({ filterTh }) => (filterTh || {}),
-  getTbodyProps: ({ body }) => (body || {}),
+  getTheadThProps: ({ decorations }) => ((decorations && decorations.headRow) || {}),
+  getTheadFilterProps: ({ decorations }) => ((decorations && decorations.filter) || {}),
+  getTheadFilterTrProps: ({ decorations }) => ((decorations && decorations.filterRow) || {}),
+  getFilterInputProps: ({ decorations }) => ((decorations && decorations.filterInput) || {}),
+  getTheadFilterThProps: ({ decorations }) => ((decorations && decorations.filterTh) || {}),
+  getTbodyProps: ({ decorations }) => ((decorations && decorations.body) || {}),
   getTrGroupProps: emptyObj,
-  getTrProps: (even, { row, rowEven, rowOdd }) => ((even ? rowEven : rowOdd) || row || {}),
-  getTdProps: ({ cell }) => (cell || {}),
-  getExpanderProps: ({ expander }) => (expander || {}),
+  getTrProps: (even, { decorations }) => {
+    if (decorations) {
+      return (even ? decorations.rowEven : decorations.rowOdd) || decorations.row || {};
+    }
+    return {};
+  },
+  getTdProps: ({ decorations }) => ((decorations && decorations.cell) || {}),
+  getExpanderProps: ({ decorations }) => ((decorations && decorations.expander) || {}),
   getTfootProps: emptyObj,
-  getTfootTrProps: ({ footer }) => (footer || {}),
+  getTfootTrProps: ({ decorations }) => ((decorations && decorations.footer) || {}),
   getTfootTdProps: emptyObj,
-  getPaginationProps: ({ pagination }) => (pagination || {}),
+  getPaginationProps: ({ decorations }) => ((decorations && decorations.pagination) || {}),
   getLoadingProps: emptyObj,
   getNoDataProps: emptyObj,
   getResizerProps: emptyObj,

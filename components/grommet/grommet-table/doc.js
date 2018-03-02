@@ -36,21 +36,51 @@ export default (Table) => {
 `);
 
   DocumentedTable.propTypes = {
-    table: PropTypes.object.description('Table styling, all **`<Box />`** properties are valid. Example: **`table={{ elevation: \'large\', border: \'all\' }}`**.'),
-    headerGroup: PropTypes.object.description('Grouped columns header styling, all **`<Box />`** properties are valid. Example: **`headerGroup={{ background: \'brand\', border: \'all\' }}`**.'),
-    header: PropTypes.object.description('Header styling, all **`<Box />`** properties are valid. Example: **`header={{ border: \'all\' }}`**.'),
-    headRow: PropTypes.object.description('Header cell styling, all **`<Box />`** properties are valid. Example: **`headRow={{ border: \'vertical\' }}`**.'),
-    filter: PropTypes.object.description('Filter row styling, all **`<Box />`** properties are valid. Example: **`filter={{ background: \'light-2\', border: \'all\' }}`**.'),
-    filterTh: PropTypes.object.description('Filter cell styling, all **`<Box />`** properties are valid. Example: **`filterTh={{ border: \'vertical\' }}`**.'),
-    filterInput: PropTypes.object.description('Filter input control styling, all **`<TextInput />`** properties are valid. Example: **`filterInput={{ size: \'small\', placeholder: \'Filter...\' }}`**.'),
-    body: PropTypes.object.description('Body styling, all **`<Box />`** properties are valid. Example: **`body={{ animation: { type: \'fadeIn\', duration: 2000, size: \'large\' } }}`**.'),
-    row: PropTypes.object.description('Row of data styling, all **`<Box />`** properties are valid. Example: **`row={{ border: \'bottom\' }}`**.'),
-    rowOdd: PropTypes.object.description('Odd row for striped styling, all **`<Box />`** properties are valid. Example: **`rowOdd={{ background: { color: \'light-1\', opacity: \'medium\' }, animation: { type: \'fadeIn\', duration: 2000, size: \'large\' }}}`**.'),
-    rowEven: PropTypes.object.description('Even row for striped styling, all **`<Box />`** properties are valid. Example: **`rowEven={{ background: { color: \'light-1\' } }`**.'),
-    cell: PropTypes.object.description('Cell of data styling, all **`<Box />`** properties are valid. Example: **`cell={{ border: \'vertical\' }}`**.'),
-    footer: PropTypes.object.description('Footer row styling, all **`<Box />`** properties are valid. Example: **`footer={{ background: \'light-1\' }}`**.'),
-    pagination: PropTypes.object.description('Pagination box styling, all **`<Box />`** properties are valid. Example: **`pagination={{ pad: { top: \'medium\' } }}`**.'),
-    expander: PropTypes.object.description('Expander button styling, all **`<Button />`** properties are valid, as well as icons OpenIcon and CloseIcon. Example: **`expander={{ CloseIcon: <Subtract color=\'brand\' />, OpenIcon: <Add color=\'brand\' /> }}`**.'),
+    decorations: PropTypes.shape({
+      table: PropTypes.object.description('Table styling, all **`<Box />`** properties are valid.'),
+      headerGroup: PropTypes.object.description('Grouped columns header styling, all **`<Box />`** properties are valid.'),
+      header: PropTypes.object.description('Header styling, all **`<Box />`** properties are valid.'),
+      headRow: PropTypes.object.description('Header cell styling, all **`<Box />`** properties are valid'),
+      filter: PropTypes.object.description('Filter row styling, all **`<Box />`** properties are valid.'),
+      filterTh: PropTypes.object.description('Filter cell styling, all **`<Box />`** properties are valid.'),
+      filterInput: PropTypes.object.description('Filter input control styling, all **`<TextInput />`** properties are valid.'),
+      body: PropTypes.object.description('Body styling, all **`<Box />`** properties are valid.'),
+      row: PropTypes.object.description('Row of data styling, all **`<Box />`** properties are valid.'),
+      rowOdd: PropTypes.object.description('Odd row for striped styling, all **`<Box />`** properties are valid.'),
+      rowEven: PropTypes.object.description('Even row for striped styling, all **`<Box />`** properties are valid.'),
+      cell: PropTypes.object.description('Cell of data styling, all **`<Box />`** properties are valid.'),
+      footer: PropTypes.object.description('Footer row styling, all **`<Box />`** properties are valid.'),
+      pagination: PropTypes.object.description('Pagination box styling, all **`<Box />`** properties are valid.'),
+      expander: PropTypes.object.description('Expander button styling, all **`<Button />`** properties are valid, as well as icons OpenIcon and CloseIcon.'),
+    }).description(`Visual styling of the various Grommet Table elements. Example:
+\`\`\`
+  <Table
+    decorations={{
+      table: { elevation: 'large', border: 'all' },
+      headerGroup: { background: 'brand', border: 'all' },
+      header: { border: 'all' },
+      headRow: { border: 'vertical' },
+      filter: { background: 'light-2', border: 'all' },
+      filterTh: { border: 'vertical' },
+      filterInput: { size: 'small', placeholder: 'Filter...' },
+      body: { animation: { type: 'fadeIn', duration: 2000 } },
+      rowOdd: {
+        background: { color: 'light-1', opacity: 'medium' },
+        animation: { type: 'fadeIn', duration: 2000 },
+      },
+      rowEven={{ background: { color: 'light-2' } },
+      cell={{ border: 'vertical' }},
+      footer: { background: 'light-1' },
+      pagination: { pad: { top: 'medium' } },
+      expander: { 
+        CloseIcon: <Subtract color='brand'/>, 
+        OpenIcon: <Add color='brand'/>, 
+      },
+    }}
+...
+  </Table>
+\`\`\`       
+    `),
     columns: PropTypes.arrayOf(PropTypes.shape({
       Cell: PropTypes.oneOfType([
         PropTypes.element,

@@ -33,21 +33,22 @@ export default () => (
       desc={desc}
       example={(
         <Table
-          table={{ elevation: 'large', border: 'all' }}
-          headerGroup={{ background: 'brand', border: 'all' }}
-          header={{ border: 'all' }}
-          headRow={{ border: 'vertical' }}
-          filter={{ background: 'light-2', border: 'all' }}
-          filterTh={{ border: 'vertical' }}
-          filterInput={{ size: 'small', placeholder: 'Filter...' }}
-          body={{ animation: { type: 'fadeIn', duration: 2000, size: 'large' } }}
-          rowOdd={{
-            background: { color: 'light-1', opacity: 'medium' },
-            animation: { type: 'fadeIn', duration: 2000, size: 'large' },
+          decorations={{
+            table: { elevation: 'large', border: 'all' },
+            headerGroup: { background: 'brand', border: 'all' },
+            header: { border: 'all' },
+            headRow: { border: 'vertical' },
+            filter: { background: 'light-2', border: 'all' },
+            filterTh: { border: 'vertical' },
+            filterInput: { size: 'small', placeholder: 'Filter...' },
+            body: { animation: { type: 'fadeIn', duration: 2000, size: 'large' } },
+            rowOdd: {
+              background: { color: 'light-1', opacity: 'medium' },
+            },
+            footer: { background: 'light-1' },
+            pagination: { pad: { top: 'medium' } },
+            expander: { CloseIcon: <Subtract color='brand'/>, OpenIcon: <Add color='brand'/> },
           }}
-          footer={{ background: 'light-1' }}
-          pagination={{ pad: { top: 'medium' } }}
-          expander={{ CloseIcon: <Subtract color='brand' />, OpenIcon: <Add color='brand' /> }}
           SubComponent={row => (
             <Box direction='row' pad='small' gap='medium' round='medium' border={{ color: 'brand', size: 'large' }} background='light-1'>
               <Image src={row.original.image} />

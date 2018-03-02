@@ -63,7 +63,7 @@ export default class Doc extends React.Component {
                 >
                   <Box basis='1/2' margin={{ right: 'large' }}>
                     <Heading level={3} size='small'>
-                      <strong>{property.name}</strong>
+                      <strong>{`${property.name}${property.required ? ' *' : ''}`}</strong>
                     </Heading>
                     <Markdown>{property.description}</Markdown>
                   </Box>
