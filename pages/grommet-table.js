@@ -12,6 +12,7 @@ class GrommetTable extends React.Component {
     grouping: false,
     filterable: true,
     sortable: true,
+    paging: false,
     data: [
       {
         item: 'Fork', qty: 4, price: 5.50, image: 'http://lorempixel.com/output/food-q-c-264-260-2.jpg',
@@ -35,7 +36,7 @@ class GrommetTable extends React.Component {
   };
   render() {
     const {
-      data, grouping, sortable, filterable,
+      data, grouping, sortable, filterable, paging,
     } = this.state;
     return (
       <Box>
@@ -48,6 +49,7 @@ class GrommetTable extends React.Component {
                 <CheckBox checked={grouping} label='Group rows' onClick={() => this.setState({ grouping: !grouping })} />
                 <CheckBox checked={sortable} label='Sortable' onClick={() => this.setState({ sortable: !sortable })} />
                 <CheckBox checked={filterable} label='Filter' onClick={() => this.setState({ filterable: !filterable })} />
+                <CheckBox checked={paging} label='Paging' onClick={() => this.setState({ paging: !paging })} />
               </Box>
               <Table
                 key={grouping}
@@ -55,6 +57,7 @@ class GrommetTable extends React.Component {
                 defaultPageSize={4}
                 filterable={filterable}
                 sortable={sortable}
+                showPagination={paging}
                 pageSizeOptions={[2, 4, 6]}
                 decorations={{
                   table: { elevation: 'large', border: 'all' },
