@@ -9,6 +9,7 @@ import NoDataComponent from '../components/NoDataComponent';
 import ResizerComponent from '../components/ResizerComponent';
 import ThComponent from '../components/ThComponent';
 import TdComponent from '../components/TdComponent';
+import CellTextComponent from '../components/CellTextComponent';
 import FilterComponent from '../components/FilterComponent';
 import ExpanderComponent from '../components/ExpanderComponent';
 import LoadingComponent from '../components/LoadingComponent';
@@ -16,6 +17,7 @@ import TrGroupComponent from '../components/TrGroupComponent';
 import TrComponent from '../components/TrComponent';
 
 const emptyObj = () => ({});
+export const expanderTdDefaultProps = { pad: undefined };
 
 export default {
   // General
@@ -109,7 +111,7 @@ export default {
   getTheadGroupProps: ({ decorations }) =>
     ((decorations && (decorations.headerGroup || decorations.header)) || {}),
   getTheadGroupTrProps: emptyObj,
-  getTheadGroupThProps: emptyObj,
+  getTheadGroupThProps: ({ decorations }) => ((decorations && decorations.headerCell) || {}),
   getTheadProps: ({ decorations }) => ((decorations && decorations.header) || {}),
   getTheadTrProps: emptyObj,
   getTheadThProps: ({ decorations }) => ((decorations && decorations.headRow) || {}),
@@ -153,7 +155,12 @@ export default {
     show: true,
     minWidth: 100,
     // Cells only
-    getProps: emptyObj,
+    getProps: (state, rowInfo, column) => {
+      if (column && column.decorations) {
+        return column.decorations.cell || {};
+      }
+      return {};
+    },
     // Pivot only
     aggregate: undefined,
     // Headers only
@@ -170,7 +177,7 @@ export default {
     sortable: false,
     resizable: false,
     filterable: false,
-    width: 35,
+    width: 46,
   },
 
   pivotDefaults: {
@@ -194,6 +201,7 @@ export default {
   TrComponent,
   ThComponent,
   TdComponent,
+  CellTextComponent,
   TfootComponent,
   FilterComponent,
   ExpanderComponent,

@@ -1,7 +1,16 @@
 import React from 'react';
-
+import { Box } from 'grommet';
 import { StyledTdComponent } from '../StyledTable';
+import { extractTextProps } from './CellTextComponent';
 
-const TdComponent = props => <StyledTdComponent pad='small' role='gridcell' {...props} />;
-
-export default TdComponent;
+export default ({ children, ...props }) => {
+  const { style, ...rest } = props;
+  const boxProps = { ...{ pad: 'small' }, ...extractTextProps(rest) };
+  return (
+    <StyledTdComponent style={style} role='gridcell' align='center'>
+      <Box fill={true} {...boxProps}>
+        {children}
+      </Box>
+    </StyledTdComponent>
+  );
+};

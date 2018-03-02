@@ -37,7 +37,8 @@ export default () => (
             table: { elevation: 'large', border: 'all' },
             headerGroup: { background: 'brand', border: 'all' },
             header: { border: 'all' },
-            headRow: { border: 'vertical' },
+            headRow: { border: 'vertical', align: 'center' },
+            headerCell: { size: 'large', align: 'center' },
             filter: { background: 'light-2', border: 'all' },
             filterTh: { border: 'vertical' },
             filterInput: { size: 'small', placeholder: 'Filter...' },
@@ -47,7 +48,7 @@ export default () => (
             },
             footer: { background: 'light-1' },
             pagination: { pad: { top: 'medium' } },
-            expander: { CloseIcon: <Subtract color='brand'/>, OpenIcon: <Add color='brand'/> },
+            expander: { CloseIcon: <Subtract color='brand' />, OpenIcon: <Add color='brand' /> },
           }}
           SubComponent={row => (
             <Box direction='row' pad='small' gap='medium' round='medium' border={{ color: 'brand', size: 'large' }} background='light-1'>
@@ -69,28 +70,46 @@ export default () => (
             },
             {
               Header: 'Inventory',
-                columns: [
-                  {
-                    Header: 'Qty',
-                    accessor: 'qty',
-                    aggregate: vals => `Total ${vals.reduce((a, b) => a + b, 0)}`,
-                  }, {
-                    Header: 'Price',
-                    accessor: 'price',
-                    aggregate: vals => `Sum ${vals.reduce((a, b) => a + b, 0)}`,
-                  }, {
-                    Header: 'Total',
-                    id: 'total',
-                    Cell: props => (
-                      props.original ? props.original.price * props.original.qty : ''
-                    ),
-                    Footer: cell => (
-                      <Text >{`Sum ${cell.data.reduce((a, b) => (a + b.price), 0)}`}</Text>
-                    ),
+              columns: [
+                {
+                  Header: 'Qty',
+                  accessor: 'qty',
+                  decorations: {
+                    cell: {
+                      align: 'end',
+                    },
                   },
-                ],
-              },
-            ]}
+                  // aggregate: vals => `Total ${vals.reduce((a, b) => a + b, 0)}`,
+                }, {
+                  Header: 'Price',
+                  accessor: 'price',
+                  decorations: {
+                    cell: {
+                      align: 'end',
+                    },
+                  },
+                  // aggregate: vals => `Sum ${vals.reduce((a, b) => a + b, 0)}`,
+                }, {
+                  Header: 'Total',
+                  id: 'total',
+                  decorations: {
+                    cell: {
+                      background: { color: 'light-1' },
+                      align: 'end',
+                      color: 'brand',
+                      size: 'large',
+                    },
+                  },
+                  Cell: props => (
+                    props.original ? props.original.price * props.original.qty : 0
+                  ),
+                  Footer: cell => (
+                    <Text >{`Sum ${cell.data.reduce((a, b) => (a + b.price), 0)}`}</Text>
+                  ),
+                },
+              ],
+            },
+          ]}
           data={data}
         />
       )}

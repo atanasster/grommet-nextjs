@@ -893,6 +893,7 @@ export default class ReactTable extends Component {
       originalKey,
       indexKey,
       groupedByPivotKey,
+      expanderTdDefaultProps,
       // State
       loading,
       pageSize,
@@ -911,6 +912,7 @@ export default class ReactTable extends Component {
       TrComponent,
       ThComponent,
       TdComponent,
+      CellTextComponent,
       TfootComponent,
       PaginationComponent,
       LoadingComponent,
@@ -1019,8 +1021,8 @@ export default class ReactTable extends Component {
       const rest = {
         ...theadGroupThProps,
         ...columnHeaderProps,
+        CellTextComponent,
       };
-
       const flexStyles = {
         flex: `${flex} 0 auto`,
         width: _.asPx(width),
@@ -1079,6 +1081,7 @@ export default class ReactTable extends Component {
       const rest = {
         ...theadThProps,
         ...columnHeaderProps,
+        CellTextComponent,
       };
 
       const isResizable = _.getFirstDefined(column.resizable, resizable, false);
@@ -1100,6 +1103,7 @@ export default class ReactTable extends Component {
           sortable={isSortable}
           hidden={!show}
           pivot={pivotBy && pivotBy.slice(0, -1).includes(column.id)}
+
           style={{
             flex: `${width} 0 auto`,
             width: _.asPx(width),
@@ -1110,12 +1114,10 @@ export default class ReactTable extends Component {
           }}
           {...rest}
         >
-          <div>
-            {_.normalizeComponent(column.Header, {
-              data: sortedData,
-              column,
-            })}
-          </div>
+          {_.normalizeComponent(column.Header, {
+            data: sortedData,
+            column,
+          })}
           {resizer}
         </ThComponent>
       );
@@ -1160,6 +1162,7 @@ export default class ReactTable extends Component {
       const rest = {
         ...theadFilterThProps,
         ...columnHeaderProps,
+        CellTextComponent,
       };
 
       const filter = filtered.find(filter => filter.id === column.id);
@@ -1233,6 +1236,7 @@ export default class ReactTable extends Component {
         groupedByPivot: row[groupedByPivotKey],
         subRows: row[subRowsKey],
       };
+
       const isExpanded = _.get(expanded, rowInfo.nestingPath);
       const trGroupProps = getTrGroupProps(finalState, rowInfo, undefined, this);
       const expanderProps = getExpanderProps(finalState);
@@ -1243,6 +1247,7 @@ export default class ReactTable extends Component {
             {...trProps}
           >
             {allVisibleColumns.map((column, i2) => {
+              let defaultTdProps = {};
               const resizedCol = resized.find(x => x.id === column.id) || {};
               const show =
                 typeof column.show === 'function' ? column.show() : column.show;
@@ -1274,7 +1279,7 @@ export default class ReactTable extends Component {
                 columnProps,
               };
 
-              const value = cellInfo.value;
+              let value = cellInfo.value;
 
               let useOnExpanderClick;
               let isBranch;
@@ -1300,11 +1305,15 @@ export default class ReactTable extends Component {
               };
 
               // Default to a standard cell
-              let resolvedCell = _.normalizeComponent(
-                column.Cell,
-                cellInfo,
-                value,
-              );
+              if (column.Cell) {
+                value = _.normalizeComponent(
+                  column.Cell,
+                  cellInfo,
+                  value,
+                );
+              }
+              const cellProps = { ...tdProps, ...columnProps };
+              let resolvedCell = <CellTextComponent value={value} {...cellProps} />;
 
               // Resolve Renderers
               const ResolvedAggregatedComponent =
@@ -1375,6 +1384,7 @@ export default class ReactTable extends Component {
               }
 
               if (cellInfo.expander) {
+                defaultTdProps = expanderTdDefaultProps;
                 resolvedCell = _.normalizeComponent(
                   ResolvedExpanderComponent,
                   { ...cellInfo, expanderProps },
@@ -1427,6 +1437,7 @@ export default class ReactTable extends Component {
                   {...tdProps}
                   {...columnProps}
                   {...interactionProps}
+                  {...defaultTdProps}
                 >
                   {resolvedCell}
                 </TdComponent>
