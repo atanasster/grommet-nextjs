@@ -35,12 +35,11 @@ export default () => (
         <Table
           decorations={{
             table: { elevation: 'large', border: 'all' },
-            headerGroup: { background: 'brand', border: 'all' },
-            header: { border: 'all' },
-            headRow: { border: 'vertical', align: 'center' },
-            headerCell: { size: 'large', align: 'center' },
+            headerGroup: {
+             background: 'brand', border: 'horizontal', size: 'large', align: 'center',
+            },
+            header: { border: 'all', align: 'center' },
             filter: { background: 'light-2', border: 'all' },
-            filterTh: { border: 'vertical' },
             filterInput: { size: 'small', placeholder: 'Filter...' },
             body: { animation: { type: 'fadeIn', duration: 2000, size: 'large' } },
             rowOdd: {
@@ -67,6 +66,11 @@ export default () => (
             {
               Header: 'Item',
               accessor: 'item',
+              decorations: {
+                header: {
+                  align: 'start',
+                },
+              },
             },
             {
               Header: 'Inventory',

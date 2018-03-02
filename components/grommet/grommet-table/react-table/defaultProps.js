@@ -108,17 +108,17 @@ export default {
   // Component decorators
   getProps: emptyObj,
   getTableProps: ({ decorations }) => ((decorations && decorations.table) || {}),
-  getTheadGroupProps: ({ decorations }) =>
-    ((decorations && (decorations.headerGroup || decorations.header)) || {}),
+  getTheadGroupProps: ({ decorations }) => (
+    (decorations && (decorations.headerGroup || decorations.header)) || {}
+  ),
   getTheadGroupTrProps: emptyObj,
-  getTheadGroupThProps: ({ decorations }) => ((decorations && decorations.headerCell) || {}),
-  getTheadProps: ({ decorations }) => ((decorations && decorations.header) || {}),
+  getTheadProps: emptyObj,
   getTheadTrProps: emptyObj,
-  getTheadThProps: ({ decorations }) => ((decorations && decorations.headRow) || {}),
-  getTheadFilterProps: ({ decorations }) => ((decorations && decorations.filter) || {}),
+  getTheadThProps: ({ decorations }) => ((decorations && decorations.header) || {}),
+  getTheadFilterProps: emptyObj,
   getTheadFilterTrProps: ({ decorations }) => ((decorations && decorations.filterRow) || {}),
   getFilterInputProps: ({ decorations }) => ((decorations && decorations.filterInput) || {}),
-  getTheadFilterThProps: ({ decorations }) => ((decorations && decorations.filterTh) || {}),
+  getTheadFilterThProps: ({ decorations }) => ((decorations && decorations.filter) || {}),
   getTbodyProps: ({ decorations }) => ((decorations && decorations.body) || {}),
   getTrGroupProps: emptyObj,
   getTrProps: (even, { decorations }) => {
@@ -164,9 +164,16 @@ export default {
     // Pivot only
     aggregate: undefined,
     // Headers only
-    getHeaderProps: emptyObj,
+    getHeaderProps: (state, rowInfo, column) => (
+      (column && column.decorations && column.decorations.header) || {}
+    ),
+    getFilterProps: (state, rowInfo, column) => (
+      (column && column.decorations && column.decorations.filter) || {}
+    ),
     // Footers only
-    getFooterProps: emptyObj,
+    getFooterProps: (state, rowInfo, column) => (
+      (column && column.decorations && column.decorations.footer) || {}
+    ),
     filterMethod: undefined,
     filterAll: false,
     sortMethod: undefined,

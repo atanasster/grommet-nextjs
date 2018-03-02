@@ -854,7 +854,6 @@ export default class ReactTable extends Component {
       getTableProps,
       getTheadGroupProps,
       getTheadGroupTrProps,
-      getTheadGroupThProps,
       getTheadProps,
       getTheadTrProps,
       getTheadThProps,
@@ -1015,7 +1014,7 @@ export default class ReactTable extends Component {
           _.getFirstDefined(resizedValue(col), col.width, col.maxWidth)),
       );
 
-      const theadGroupThProps = getTheadGroupThProps(finalState, undefined, column, this);
+      const theadGroupThProps = getTheadGroupProps(finalState, undefined, column, this);
       const columnHeaderProps = column.getHeaderProps(finalState, undefined, column, this);
 
       const rest = {
@@ -1157,7 +1156,7 @@ export default class ReactTable extends Component {
       );
       const theadFilterThProps = getTheadFilterThProps(finalState, undefined, column, this);
       const filterInputProps = getFilterInputProps(finalState, undefined, column, this);
-      const columnHeaderProps = column.getHeaderProps(finalState, undefined, column, this);
+      const columnHeaderProps = column.getFilterProps(finalState, undefined, column, this);
 
       const rest = {
         ...theadFilterThProps,

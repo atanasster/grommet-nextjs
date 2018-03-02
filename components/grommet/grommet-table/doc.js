@@ -38,11 +38,9 @@ export default (Table) => {
   DocumentedTable.propTypes = {
     decorations: PropTypes.shape({
       table: PropTypes.object.description('Table styling, all **`<Box />`** properties are valid.'),
+      header: PropTypes.object.description('Header cell styling, all **`<Box />`** properties are valid'),
       headerGroup: PropTypes.object.description('Grouped columns header styling, all **`<Box />`** properties are valid.'),
-      header: PropTypes.object.description('Header styling, all **`<Box />`** properties are valid.'),
-      headRow: PropTypes.object.description('Header cell styling, all **`<Box />`** properties are valid'),
       filter: PropTypes.object.description('Filter row styling, all **`<Box />`** properties are valid.'),
-      filterTh: PropTypes.object.description('Filter cell styling, all **`<Box />`** properties are valid.'),
       filterInput: PropTypes.object.description('Filter input control styling, all **`<TextInput />`** properties are valid.'),
       body: PropTypes.object.description('Body styling, all **`<Box />`** properties are valid.'),
       row: PropTypes.object.description('Row of data styling, all **`<Box />`** properties are valid.'),
@@ -57,25 +55,19 @@ export default (Table) => {
   <Table
     decorations={{
       table: { elevation: 'large', border: 'all' },
-      headerGroup: { background: 'brand', border: 'all' },
-      header: { border: 'all' },
-      headRow: { border: 'vertical' },
+      headerGroup: {
+       background: 'brand', border: 'horizontal', size: 'large', align: 'center',
+      },
+      header: { border: 'all', align: 'center' },
       filter: { background: 'light-2', border: 'all' },
-      filterTh: { border: 'vertical' },
       filterInput: { size: 'small', placeholder: 'Filter...' },
-      body: { animation: { type: 'fadeIn', duration: 2000 } },
+      body: { animation: { type: 'fadeIn', duration: 2000, size: 'large' } },
       rowOdd: {
         background: { color: 'light-1', opacity: 'medium' },
-        animation: { type: 'fadeIn', duration: 2000 },
       },
-      rowEven={{ background: { color: 'light-2' } },
-      cell={{ border: 'vertical' }},
       footer: { background: 'light-1' },
       pagination: { pad: { top: 'medium' } },
-      expander: { 
-        CloseIcon: <Subtract color='brand'/>, 
-        OpenIcon: <Add color='brand'/>, 
-      },
+      expander: { CloseIcon: <Subtract color='brand' />, OpenIcon: <Add color='brand' /> },
     }}
 ...
   </Table>
