@@ -52,6 +52,7 @@ class GrommetTable extends React.Component {
               <Table
                 key={grouping}
                 pivotBy={grouping ? ['item'] : undefined}
+                showPaginationTop={true}
                 decorations={{
                   table: { elevation: 'large', border: 'all' },
                   headerGroup: {
@@ -65,7 +66,7 @@ class GrommetTable extends React.Component {
                     background: { color: 'light-1', opacity: 'medium' },
                   },
                   footer: { background: 'light-1' },
-                  pagination: { pad: { top: 'medium' } },
+                  pagination: { pad: { vertical: 'medium' } },
                   expander: { CloseIcon: <Subtract color='brand' />, OpenIcon: <Add color='brand' /> },
                 }}
                 SubComponent={row => (
@@ -85,7 +86,7 @@ class GrommetTable extends React.Component {
                     </Box>
                   </Box>
                 )}
-                defaultPageSize={4}
+                pageSize={4}
                 filterable={filterable}
                 sortable={sortable}
                 pageSizeOptions={[2, 4, 6]}
@@ -123,6 +124,7 @@ class GrommetTable extends React.Component {
                       }, {
                         Header: 'Total',
                         id: 'total',
+                        show: !grouping,
                         decorations: {
                           cell: {
                             background: { color: 'light-1' },
