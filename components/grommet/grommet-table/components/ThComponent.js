@@ -3,7 +3,7 @@ import { Box } from 'grommet';
 import { StyledThComponent } from '../StyledTable';
 
 export default ({
-  toggleSort, sort, resizable, children, pivot, hidden, CellTextComponent, ...props
+  toggleSort, sort, resizable, children, pivot, hidden, sortable, CellTextComponent, ...props
 }) => {
   const sortAsc = sort === '-sort-asc';
   const sortDesc = sort === '-sort-desc';
@@ -32,6 +32,7 @@ export default ({
       direction='row'
       pivot={pivot}
       hidden={hidden}
+      sortable={sortable}
       style={style}
       resizable={resizable}
     >
