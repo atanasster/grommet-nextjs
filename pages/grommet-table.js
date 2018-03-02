@@ -10,6 +10,8 @@ const desc = doc(Table).toJSON();
 class GrommetTable extends React.Component {
   state = {
     grouping: false,
+    filterable: true,
+    sortable: true,
     data: [
       {
         item: 'Fork', qty: 4, price: 5.50, image: 'http://lorempixel.com/output/food-q-c-264-260-2.jpg',
@@ -32,7 +34,9 @@ class GrommetTable extends React.Component {
     ],
   };
   render() {
-    const { data, grouping } = this.state;
+    const {
+      data, grouping, sortable, filterable,
+    } = this.state;
     return (
       <Box>
         <Doc
@@ -40,7 +44,11 @@ class GrommetTable extends React.Component {
           desc={desc}
           example={(
             <Box gap='small'>
-              <CheckBox label='Group rows' onClick={() => this.setState({ grouping: !grouping })} />
+              <Box direction='row' justify='between'>
+                <CheckBox checked={grouping} label='Group rows' onClick={() => this.setState({ grouping: !grouping })} />
+                <CheckBox checked={sortable} label='Sortable' onClick={() => this.setState({ sortable: !sortable })} />
+                <CheckBox checked={filterable} label='Filter' onClick={() => this.setState({ filterable: !filterable })} />
+              </Box>
               <Table
                 key={grouping}
                 pivotBy={grouping ? ['item'] : undefined}
@@ -78,19 +86,18 @@ class GrommetTable extends React.Component {
                   </Box>
                 )}
                 defaultPageSize={4}
-                filterable={true}
+                filterable={filterable}
+                sortable={sortable}
                 pageSizeOptions={[2, 4, 6]}
                 columns={[
                   {
-                    columns: [{
-                      Header: 'Item',
-                      accessor: 'item',
-                      decorations: {
-                        header: {
-                          align: 'start',
-                        },
+                    Header: 'Item',
+                    decorations: {
+                      header: {
+                        align: 'start',
                       },
-                    }],
+                    },
+                    accessor: 'item',
                   },
                   {
                     Header: 'Inventory',

@@ -318,7 +318,11 @@ export default class ReactTable extends Component {
         pivotColumns[0].parentColumn,
       );
 
-      const PivotGroupHeader = hasHeaderGroups && PivotParentColumn.Header;
+      const PivotGroupHeader = hasHeaderGroups && (
+        PivotParentColumn ? PivotParentColumn.Header :
+          (pivotColumns[0].PivotHeader || pivotColumns[0].Header)
+      );
+
       let pivotColumnGroup = {
         Header: PivotGroupHeader,
         columns: pivotColumns.map(col => ({

@@ -133,7 +133,7 @@ export default (Table) => {
       filterAll: PropTypes.bool,
       sortMethod: PropTypes.func,
     })).isRequired.description('Array of column descriptors.'),
-    data: PropTypes.array.description('Array of data objects.'),
+    data: PropTypes.array.description('Array of data objects.').isRequired,
     defaultPageSize: PropTypes.number.description('Default page size (default 20).'),
     filterable: PropTypes.bool.description('Wheter it should display a filtering row.'),
     pageSizeOptions: PropTypes.arrayOf(PropTypes.number.description('Page size')).description('Array of available page size options ([5, 10, 20, 25, 50, 100]).'),
