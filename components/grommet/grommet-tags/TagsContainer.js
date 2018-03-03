@@ -127,7 +127,7 @@ class TagsContainer extends Component {
                   <div
                     role='button'
                     onKeyUp={e => this.onCloseClick(e, option)}
-                    style={{ height: '24px', backgroundColor: 'transparent' }}
+                    style={{ height: '24px', backgroundColor: 'transparent', cursor: 'pointer' }}
                     active={
                         selectedOptionIndex === index ||
                         (option &&
