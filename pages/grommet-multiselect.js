@@ -1,18 +1,26 @@
 import { Box, CheckBox } from 'grommet';
 import { MultiSelect } from '../components/grommet/grommet-multiselect';
 import doc from '../components/grommet/grommet-multiselect/doc';
-
 import Doc from '../components/Doc';
+import { GrommetTags } from '../components/grommet/grommet-tags';
 
 const desc = doc(MultiSelect).toJSON();
 
 const stringOptions = ['small', 'medium', 'large', 'xlarge', 'huge'];
 
+const TagsLabel = ({ placeholder, value, onChange }) => (
+  <GrommetTags
+    placeholder={placeholder}
+    value={value}
+    onChange={onChange}
+    tagProps={{ onClick: (e) => { e.stopPropagation(); } }}
+  />);
+
 export default class SelectDoc extends React.Component {
-  state = { size: stringOptions[0], multi: [stringOptions[0], stringOptions[2]], tags: true }
+  state = { size: stringOptions[0], multi: [stringOptions[0], stringOptions[2]], label: TagsLabel }
 
   render() {
-    const { size, multi, tags } = this.state;
+    const { size, multi, label } = this.state;
     return (
       <Doc
         name='Grommet Select'
@@ -21,13 +29,13 @@ export default class SelectDoc extends React.Component {
           <Box direction='row'>
             <Box basis='medium' gap='small'>
               <Box direction='row' justify='between'>
-                <CheckBox checked={tags} label='Use tags' onChange={() => this.setState({ tags: !tags })} />
+                <CheckBox checked={label} label='Use tags' onChange={() => this.setState({ label: label ? undefined : TagsLabel })} />
               </Box>
 
               <MultiSelect
                 options={stringOptions}
                 value={multi}
-                multiple={{ tags }}
+                multiple={{ label }}
                 placeholder='Add sizes'
                 onChange={({ option }) => this.setState({ multi: option })}
               />

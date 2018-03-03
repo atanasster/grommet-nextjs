@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { findDOMNode } from 'react-dom';
-import { Box, Button, Keyboard, Text } from 'grommet';
+import { Box, Keyboard, Text } from 'grommet';
 import { FormClose } from 'grommet-icons';
 
 class TagsContainer extends Component {
@@ -107,7 +107,8 @@ class TagsContainer extends Component {
               key={`tag_${name || ''}_${index}`}
               tabIndex='-1'
               ref={(ref) => { this.tagRefs[index] = ref; }}
-              role='option'
+              role='checkbox'
+              ariaChecked={true}
               onFocus={() => this.setState({ selectedOptionIndex: index })}
               onClick={onClick ? e => onClick(e, option) : undefined}
               {...rest}
@@ -123,7 +124,9 @@ class TagsContainer extends Component {
                   >
                     {option ? option.toString() : undefined}
                   </Text>
-                  <Button
+                  <div
+                    role='button'
+                    onKeyUp={e => this.onCloseClick(e, option)}
                     style={{ height: '24px', backgroundColor: 'transparent' }}
                     active={
                         selectedOptionIndex === index ||
@@ -135,7 +138,7 @@ class TagsContainer extends Component {
                     tabIndex='-1'
                   >
                     <FormClose />
-                  </Button>
+                  </div>
                 </Box>
                 )}
             </Box>

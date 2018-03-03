@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { FormDown } from 'grommet-icons';
 import { Box, DropButton, Keyboard, TextInput } from 'grommet';
-import { GrommetTags } from '../grommet-tags';
 
 import MultiSelectContainer from './SelectContainer';
 import doc from './doc';
@@ -40,13 +39,8 @@ class MultiSelect extends Component {
     const val = multiple && Array.isArray(value) && value.length === 1 ? value[0] : value;
     let selectText = val;
     if (multiple) {
-      if (multiple.tags) {
-        selectText = (<GrommetTags
-          placeholder={placeholder}
-          value={value}
-          onChange={onChange}
-          tagProps={{ onClick: (e) => { e.stopPropagation(); } }}
-        />);
+      if (typeof multiple.label === 'function') {
+        selectText = multiple.label({ placeholder, value, onChange });
       } else if (Array.isArray(val)) {
         selectText = val.join(', ');
       }

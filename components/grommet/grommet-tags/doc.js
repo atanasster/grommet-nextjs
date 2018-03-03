@@ -22,8 +22,12 @@ export default (Tags) => {
     children: PropTypes.func.description(
       'Function that will be called when each option is rendered.'
     ),
-    tagProps: PropTypes.object.description('Tag elements <Box /> and <Text /> properties'),
-
+    tagProps: PropTypes.oneOfType([
+      PropTypes.bool,
+      PropTypes.shape({
+        label: PropTypes.func.description('Function to render the labels.'),
+      }),
+    ]).description('Tag elements <Box /> and <Text /> properties'),
     focusIndicator: PropTypes.bool.description(
       'Whether when \'plain\' it should receive a focus outline.'
     ),
