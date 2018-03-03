@@ -50,6 +50,7 @@ class MultiSelect extends Component {
         <DropButton
           dropAlign={{ top: 'bottom', left: 'left' }}
           {...rest}
+          onChange={onChange}
           open={open}
           onOpen={this.onOpen}
           onClose={this.onClose}
