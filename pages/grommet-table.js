@@ -3,9 +3,35 @@ import { Add, Subtract } from 'grommet-icons';
 import doc from '../components/grommet/grommet-table/doc';
 import Doc from '../components/Doc';
 import Table from '../components/grommet/grommet-table/Table';
+import { MultiSelect } from '../components/grommet/grommet-multiselect';
 
 const desc = doc(Table).toJSON();
 
+const getColumn = (columns, header) => (
+  columns.reduce((_, column) => (
+    column.columns ? getColumn(column.columns, header) : column.Header === 'header'
+
+  ), null)
+);
+
+const getAllColumns = (columns) => {
+  let allColumns = [];
+  columns.forEach((column) => {
+    if (column.columns) {
+      allColumns = [...allColumns, ...getAllColumns(column.columns)];
+    } else {
+      allColumns.push(column);
+    }
+  });
+  return allColumns;
+};
+
+const updateColumnShow = (allColumns, visible) => (
+  allColumns.map(column => (
+    column.columns ? { ...column, columns: updateColumnShow(column.columns, visible) } :
+      { ...column, show: visible.indexOf(column.Header) !== -1 }
+  ))
+);
 
 class GrommetTable extends React.Component {
   state = {
@@ -33,11 +59,72 @@ class GrommetTable extends React.Component {
         item: 'Glass', qty: 2, price: 8.25, image: 'http://lorempixel.com/output/abstract-q-c-264-260-7.jpg',
       },
     ],
+    columns: [
+      {
+        Header: 'Item',
+        decorations: {
+          header: {
+            align: 'start',
+          },
+        },
+        accessor: 'item',
+      },
+      {
+        Header: 'Inventory',
+        columns: [
+          {
+            Header: 'Qty',
+            accessor: 'qty',
+            decorations: {
+              cell: {
+                align: 'end',
+              },
+            },
+            // aggregate: vals => `Total ${vals.reduce((a, b) => a + b, 0)}`,
+          }, {
+            Header: 'Price',
+            accessor: 'price',
+            decorations: {
+              cell: {
+                align: 'end',
+              },
+            },
+            // aggregate: vals => `Sum ${vals.reduce((a, b) => a + b, 0)}`,
+          }, {
+            Header: 'Total',
+            id: 'total',
+            decorations: {
+              cell: {
+                background: { color: 'light-1' },
+                align: 'end',
+                color: 'brand',
+                size: 'large',
+              },
+            },
+            Cell: props => (
+              props.original ? props.original.price * props.original.qty : 0
+            ),
+            Footer: cell => (
+              <Text>{`Sum ${cell.data.reduce((a, b) => (a + b.price), 0)}`}</Text>
+            ),
+          },
+        ],
+      },
+    ],
   };
+
+
+  onChangeFields = ({ option }) => {
+    const { columns } = this.state;
+    this.setState({ columns: updateColumnShow(columns, option) });
+  };
+
   render() {
     const {
-      data, grouping, sortable, filterable, paging,
+      data, grouping, sortable, filterable, paging, columns,
     } = this.state;
+    const allColumns = getAllColumns(columns);
+    const visibleColumns = allColumns.filter(column => !(column.show === false));
     return (
       <Box>
         <Doc
@@ -46,10 +133,16 @@ class GrommetTable extends React.Component {
           example={(
             <Box gap='small'>
               <Box direction='row' justify='between'>
-                <CheckBox checked={grouping} label='Group rows' onClick={() => this.setState({ grouping: !grouping })} />
-                <CheckBox checked={sortable} label='Sortable' onClick={() => this.setState({ sortable: !sortable })} />
-                <CheckBox checked={filterable} label='Filter' onClick={() => this.setState({ filterable: !filterable })} />
-                <CheckBox checked={paging} label='Paging' onClick={() => this.setState({ paging: !paging })} />
+                <CheckBox checked={grouping} label='Group rows' onChange={() => this.setState({ grouping: !grouping })} />
+                <CheckBox checked={sortable} label='Sortable' onChange={() => this.setState({ sortable: !sortable })} />
+                <CheckBox checked={filterable} label='Filter' onChange={() => this.setState({ filterable: !filterable })} />
+                <CheckBox checked={paging} label='Paging' onChange={() => this.setState({ paging: !paging })} />
+                <MultiSelect
+                  options={allColumns.map(column => column.Header)}
+                  multiple={true}
+                  value={visibleColumns.map(column => column.Header)}
+                  onChange={this.onChangeFields}
+                />
               </Box>
               <Table
                 key={grouping}
@@ -92,59 +185,7 @@ class GrommetTable extends React.Component {
                     </Box>
                   </Box>
                 )}
-                columns={[
-                  {
-                    Header: 'Item',
-                    decorations: {
-                      header: {
-                        align: 'start',
-                      },
-                    },
-                    accessor: 'item',
-                  },
-                  {
-                    Header: 'Inventory',
-                    columns: [
-                      {
-                        Header: 'Qty',
-                        accessor: 'qty',
-                        decorations: {
-                          cell: {
-                            align: 'end',
-                          },
-                        },
-                        // aggregate: vals => `Total ${vals.reduce((a, b) => a + b, 0)}`,
-                      }, {
-                        Header: 'Price',
-                        accessor: 'price',
-                        decorations: {
-                          cell: {
-                            align: 'end',
-                          },
-                        },
-                        // aggregate: vals => `Sum ${vals.reduce((a, b) => a + b, 0)}`,
-                      }, {
-                        Header: 'Total',
-                        id: 'total',
-                        show: !grouping,
-                        decorations: {
-                          cell: {
-                            background: { color: 'light-1' },
-                            align: 'end',
-                            color: 'brand',
-                            size: 'large',
-                          },
-                        },
-                        Cell: props => (
-                          props.original ? props.original.price * props.original.qty : 0
-                        ),
-                        Footer: cell => (
-                          <Text>{`Sum ${cell.data.reduce((a, b) => (a + b.price), 0)}`}</Text>
-                        ),
-                      },
-                    ],
-                  },
-                ]}
+                columns={columns}
                 data={data}
               />
             </Box>

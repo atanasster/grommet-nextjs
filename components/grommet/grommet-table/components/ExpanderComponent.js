@@ -15,6 +15,7 @@ export default ({ isExpanded, children, expanderProps }) => {
   const { OpenIcon, CloseIcon, ...rest } = props;
   return (
     <StyledExpander
+      a11yTitle='Press Enter to expand this row for more information'
       icon={isExpanded ? CloseIcon : OpenIcon}
       {...rest}
     >
