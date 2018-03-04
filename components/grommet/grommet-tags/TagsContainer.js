@@ -48,17 +48,22 @@ class TagsContainer extends Component {
     const { value } = this.props;
     const { selectedTagIndex } = this.state;
     event.preventDefault();
-    const index = Math.min(selectedTagIndex + 1, value.length - 1);
+    let index = selectedTagIndex + 1;
+    if (index >= value.length) {
+      index = 0;
+    }
     this.focusTag(index);
   }
-
   onPreviousTag = (event) => {
     const { selectedTagIndex } = this.state;
+    const { value } = this.props;
     event.preventDefault();
-    const index = Math.max(selectedTagIndex - 1, 0);
+    let index = selectedTagIndex - 1;
+    if (index < 0) {
+      index = value.length - 1;
+    }
     this.focusTag(index);
   }
-
   onSelectTag = (event) => {
     const { value } = this.props;
     const { selectedTagIndex } = this.state;
