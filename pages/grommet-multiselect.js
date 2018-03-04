@@ -1,101 +1,59 @@
-import { Box, CheckBox } from 'grommet';
+import { Box, Select } from 'grommet';
+import docSelect from 'grommet/components/Select/doc';
 import { MultiSelect } from '../components/grommet/grommet-multiselect';
 import doc from '../components/grommet/grommet-multiselect/doc';
+
 import Doc from '../components/Doc';
-import { GrommetTags } from '../components/grommet/grommet-tags';
+import { TagsSelect } from '../components/grommet/grommet-tags';
 
 const desc = doc(MultiSelect).toJSON();
+const descSelect = docSelect(Select).toJSON();
 
 const stringOptions = ['small', 'medium', 'large', 'xlarge', 'huge'];
 
-const TagsLabel = ({ placeholder, value, onChange }) => (
-  <GrommetTags
-    placeholder={placeholder}
-    value={value}
-    onChange={onChange}
-    tagProps={{ onClick: (e) => { e.stopPropagation(); } }}
-  />);
 
 export default class SelectDoc extends React.Component {
-  state = { size: stringOptions[0], multi: [stringOptions[0], stringOptions[2]], label: TagsLabel }
+  state = { selected: [stringOptions[0], stringOptions[2]] }
 
   render() {
-    const { size, multi, label } = this.state;
+    const { selected } = this.state;
     return (
-      <Doc
-        name='Grommet Select'
-        desc={desc}
-        example={
-          <Box direction='row'>
-            <Box basis='medium' gap='small'>
-              <Box direction='row' justify='between'>
-                <CheckBox checked={label} label='Use tags' onChange={() => this.setState({ label: label ? undefined : TagsLabel })} />
-              </Box>
+      <Box>
+        <Doc
+          name='Grommet Select'
+          desc={desc}
+          footer={false}
+          example={
+            <Box direction='row'>
+              <Box basis='medium' gap='small'>
 
-              <MultiSelect
-                options={stringOptions}
-                value={multi}
-                multiple={{ label }}
-                placeholder='Add sizes'
-                onChange={({ option }) => this.setState({ multi: option })}
-              />
+                <MultiSelect
+                  options={stringOptions}
+                  value={selected}
+                  multiple={true}
+                  placeholder='Add sizes'
+                  onChange={({ option }) => this.setState({ selected: option })}
+                />
+              </Box>
             </Box>
-          </Box>
-        }
-        examples={{
-          dropAlign: (
-            <MultiSelect
-              dropAlign={{ bottom: 'top', right: 'right' }}
-              options={stringOptions}
-              onChange={({ option }) => this.setState({ size: option })}
-            />
-          ),
-          dropBackground: (
-            <MultiSelect
-              dropBackground='dark-3'
-              options={stringOptions}
-              onChange={({ option }) => this.setState({ size: option })}
-            />
-          ),
-          onSearch: (
-            <MultiSelect
-              options={stringOptions}
-              onSearch={() => {}}
-              onChange={({ option }) => this.setState({ size: option })}
-            />
-          ),
-          placeholder: (
-            <MultiSelect
-              placeholder='Choose one'
-              options={stringOptions}
-              onChange={({ option }) => this.setState({ size: option })}
-            />
-          ),
-          plain: (
-            <MultiSelect
-              plain={true}
-              options={stringOptions}
-              value={size}
-              onChange={({ option }) => this.setState({ size: option })}
-            />
-          ),
-          searchPlaceholder: (
-            <MultiSelect
-              options={stringOptions}
-              searchPlaceholder='Type something here'
-              onSearch={() => {}}
-              onChange={({ option }) => this.setState({ size: option })}
-            />
-          ),
-          value: (
-            <MultiSelect
-              options={stringOptions}
-              value={size}
-              onChange={({ option }) => this.setState({ size: option })}
-            />
-          ),
-        }}
-      />
+          }
+          examples={{
+            multiple: (
+              <Box direction='row' flex={true}>
+                <Box basis='medium'>
+                  <MultiSelect
+                    options={stringOptions}
+                    value={selected}
+                    multiple={{ label: TagsSelect }}
+                    onChange={({ option }) => this.setState({ selected: option })}
+                  />
+                </Box>
+              </Box>
+            ),
+          }}
+        />
+        <Doc name='Select' nav={false} desc={descSelect} />
+      </Box>
     );
   }
 }

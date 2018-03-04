@@ -11,6 +11,7 @@ export default () => (
     <Doc
       name='Table'
       desc={desc}
+      footer={false}
       example={(
         <Table>
           <TableHeader>

@@ -67,6 +67,7 @@ export default class AddOns extends React.Component {
             <Item name='Tags' path='/grommet-tags' center={true}>
               <GrommetTags
                 value={value}
+                onChange={({ option }) => this.setState({ value: option })}
                 placeholder='Multiselect'
                 tabIndex='-1'
               />

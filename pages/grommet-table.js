@@ -2,10 +2,11 @@ import { Box, Text, Image, CheckBox } from 'grommet';
 import { Add, Subtract } from 'grommet-icons';
 import doc from '../components/grommet/grommet-table/doc';
 import Doc from '../components/Doc';
-import Table from '../components/grommet/grommet-table/Table';
+import { GrommetTable } from '../components/grommet/grommet-table';
+import { GrommetTags } from '../components/grommet/grommet-tags';
 import { MultiSelect } from '../components/grommet/grommet-multiselect';
 
-const desc = doc(Table).toJSON();
+const desc = doc(GrommetTable).toJSON();
 
 const getColumn = (columns, header) => (
   columns.reduce((_, column) => (
@@ -33,7 +34,15 @@ const updateColumnShow = (allColumns, visible) => (
   ))
 );
 
-class GrommetTable extends React.Component {
+const TagsLabel = ({ placeholder, value, onChange }) => (
+  <GrommetTags
+    placeholder={placeholder}
+    value={value}
+    onChange={onChange}
+    tagProps={{ onClick: (e) => { e.stopPropagation(); } }}
+  />);
+
+class TablePage extends React.Component {
   state = {
     grouping: false,
     filterable: true,
@@ -137,14 +146,17 @@ class GrommetTable extends React.Component {
                 <CheckBox checked={sortable} label='Sortable' onChange={() => this.setState({ sortable: !sortable })} />
                 <CheckBox checked={filterable} label='Filter' onChange={() => this.setState({ filterable: !filterable })} />
                 <CheckBox checked={paging} label='Paging' onChange={() => this.setState({ paging: !paging })} />
-                <MultiSelect
-                  options={allColumns.map(column => column.Header)}
-                  multiple={true}
-                  value={visibleColumns.map(column => column.Header)}
-                  onChange={this.onChangeFields}
-                />
+                <Box basis='small'>
+                  <MultiSelect
+
+                    options={allColumns.map(column => column.Header)}
+                    multiple={{ label: TagsLabel }}
+                    value={visibleColumns.map(column => column.Header)}
+                    onChange={this.onChangeFields}
+                  />
+                </Box>
               </Box>
-              <Table
+              <GrommetTable
                 key={grouping}
                 pivotBy={grouping ? ['item'] : undefined}
                 defaultPageSize={4}
@@ -196,4 +208,4 @@ class GrommetTable extends React.Component {
   }
 }
 
-export default GrommetTable;
+export default TablePage;

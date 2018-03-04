@@ -16,29 +16,22 @@ export default (Tags) => {
 
   DocumentedTags.propTypes = {
     a11yTitle: a11yTitlePropType,
-    activeOptionIndex: PropTypes.number.description(
-      'Highlight a given option at the provided index.'
-    ),
     children: PropTypes.func.description(
       'Function that will be called when each option is rendered.'
     ),
-    tagProps: PropTypes.oneOfType([
-      PropTypes.bool,
-      PropTypes.shape({
-        label: PropTypes.func.description('Function to render the labels.'),
-      }),
-    ]).description('Tag elements <Box /> and <Text /> properties'),
-    focusIndicator: PropTypes.bool.description(
-      'Whether when \'plain\' it should receive a focus outline.'
-    ),
+    icon: PropTypes.element.description('Icon element to remove the tag.'),
+    tagProps: PropTypes.object.description('Tag elements `<Box />` and `<Text />` properties'),
     onChange: PropTypes.func.description(
-      'Function that will be called when the user selects an option.'
+      'Function that will be called when the user removes a tag.'
     ),
+    onClick: PropTypes.func.description(
+      'Function that will be called when the user clicks on a tag.'
+    ),
+    direction: PropTypes.oneOf(['row', 'column']).description(
+      'The orientation to layout the child tags in.'
+    ).defaultValue('column'),
     placeholder: PropTypes.string.description(
       'Placeholder text to use when no value is provided.'
-    ),
-    plain: PropTypes.bool.description(
-      'Whether this is a plain Select input with no border or padding.'
     ),
     value: PropTypes.oneOfType([
       PropTypes.string, PropTypes.element, PropTypes.object,

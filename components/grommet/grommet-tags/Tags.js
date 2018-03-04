@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 
 import { Box, Text } from 'grommet';
+import { compose } from 'recompose';
+import { withTheme } from 'grommet/components/hocs';
 
 import TagsContainer from './TagsContainer';
 import doc from './doc';
@@ -8,19 +10,22 @@ import doc from './doc';
 class Tags extends Component {
   render() {
     const {
-      placeholder, tagProps, onChange, value, ...rest
+      placeholder, tagProps, direction, onChange, value, margin,
+      icon, onClick, theme, children, ...rest
     } = this.props;
     let noValues;
-    if (placeholder && (!value || (Array.isArray(value) && value.length === 0))) {
+    if ((!value || (Array.isArray(value) && value.length === 0))) {
       noValues = React.isValidElement(placeholder) ? placeholder : (
-        <Text color='placeholder' style={{ minHeight: '24px' }}>
-          {placeholder}
+        // placeholder. minimum height of icon to keep size
+        <Text color='placeholder' margin={margin} style={{ minHeight: '24px' }}>
+          {placeholder || 'No selection'}
         </Text>
       );
     }
     return (
       <Box
         direction='row'
+        overflow='scroll'
         style={{ minWidth: 'auto' }}
         {...rest}
       >
@@ -28,8 +33,15 @@ class Tags extends Component {
         <TagsContainer
           value={value}
           onChange={onChange}
+          direction={direction}
+          margin={margin}
+          theme={theme}
+          icon={icon}
+          onClick={onClick}
           {...tagProps}
-        />
+        >
+          {children}
+        </TagsContainer>
       </Box>
     );
   }
@@ -40,7 +52,10 @@ if (process.env.NODE_ENV !== 'production') {
 }
 
 Tags.defaultProps = {
-  pad: 'small',
+  pad: { horizontal: 'small' },
+  margin: { horizontal: 'xsmall', vertical: 'small' },
 };
 
-export default Tags;
+export default compose(
+  withTheme,
+)(Tags);

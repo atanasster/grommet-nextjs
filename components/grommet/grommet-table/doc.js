@@ -7,8 +7,8 @@ export default (Table) => {
     .description('A Grommet 2 table component with pagination, filtering, footer, child rows and grouping. Derived from https://github.com/react-tools/react-table. ')
     .usage(`
     $ npm install grommet-table 
-    import { Table } from 'grommet-table';
-    <Table columns={...} data={...} />
+    import { GrommetTable } from 'grommet-table';
+    <GrommetTable columns={...} data={...} />
 `);
 
   DocumentedTable.propTypes = {

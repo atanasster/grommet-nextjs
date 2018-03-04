@@ -34,7 +34,7 @@ class Page extends React.Component {
 
   render() {
     const {
-      children, title: pageTitle, description, nav, themes: { themes },
+      children, title: pageTitle, description, nav, themes: { themes }, footer,
     } = this.props;
     const { theme = 'grommet' } = this.state;
     const keywords = ['grommet', 'grommet 2', 'react', 'next-js', 'next.js', 'ui library'];
@@ -87,34 +87,36 @@ class Page extends React.Component {
             <Box >
               {children}
             </Box>
-            <Box
-              tag='footer'
-              direction='row'
-              justify='center'
-              pad={{ top: 'large' }}
-            >
+            {footer && (
               <Box
-                basis='large'
-                border='top'
+                tag='footer'
                 direction='row'
                 justify='center'
-                pad='medium'
-                gap='medium'
+                pad={{ top: 'large' }}
               >
-                <Anchor
-                  href='https://github.com/grommet/grommet/tree/NEXT'
-                  target='_blank'
-                  label='grommet'
-                  a11yTitle='Go to the github page for Grommet 2'
-                />
-                <Anchor
-                  href='https://github.com/atanasster/grommet-nextjs'
-                  target='_blank'
-                  label='git'
-                  a11yTitle='Go to the github page for this project'
-                />
-              </Box>
-            </Box>
+                <Box
+                  basis='large'
+                  border='top'
+                  direction='row'
+                  justify='center'
+                  pad='medium'
+                  gap='medium'
+                >
+                  <Anchor
+                    href='https://github.com/grommet/grommet/tree/NEXT'
+                    target='_blank'
+                    label='grommet'
+                    a11yTitle='Go to the github page for Grommet 2'
+                  />
+                  <Anchor
+                    href='https://github.com/atanasster/grommet-nextjs'
+                    target='_blank'
+                    label='git'
+                    a11yTitle='Go to the github page for this project'
+                  />
+                </Box>
+              </Box>)
+            }
           </Box>
         </Grommet>
       </div>
@@ -125,10 +127,12 @@ class Page extends React.Component {
 Page.propTypes = {
   title: PropTypes.string.isRequired,
   nav: PropTypes.bool,
+  footer: PropTypes.bool,
 };
 
 Page.defaultProps = {
   nav: true,
+  footer: true,
 };
 
 const mapDispatchToProps = dispatch => bindActionCreators({ selectTheme }, dispatch);

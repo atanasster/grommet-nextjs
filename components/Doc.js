@@ -9,10 +9,15 @@ export default class Doc extends React.Component {
 
   render() {
     const {
-      children, desc, name, example, examples, text, nav,
+      children, desc, name, example, examples, text, nav, footer,
     } = this.props;
     return (
-      <Page title={this.props.name} description={desc && desc.description} nav={nav}>
+      <Page
+        title={this.props.name}
+        description={desc && desc.description}
+        nav={nav}
+        footer={footer}
+      >
         <Box pad={{ horizontal: 'large', top: 'large' }}>
           <Box direction='row' responsive={true}>
             <Box margin={{ vertical: 'large' }} basis='large' align='start'>
@@ -93,6 +98,7 @@ Doc.propTypes = {
   name: PropTypes.string.isRequired,
   text: PropTypes.string,
   nav: PropTypes.bool,
+  footer: PropTypes.bool,
 };
 
 Doc.defaultProps = {
@@ -101,4 +107,5 @@ Doc.defaultProps = {
   examples: {},
   text: undefined,
   nav: true,
+  footer: true,
 };

@@ -1,73 +1,77 @@
 import React, { Component } from 'react';
 import { findDOMNode } from 'react-dom';
 import { Box, Keyboard, Text } from 'grommet';
+import FocusedContainer from 'grommet/components/FocusedContainer';
+
+import { StyledIcon } from 'grommet/components/Button/StyledButton';
 import { FormClose } from 'grommet-icons';
 
 class TagsContainer extends Component {
   state = {
-    selectedOptionIndex: -1,
+    selectedTagIndex: -1,
   };
   static defaultProps = {
     value: [],
     background: 'brand',
-    margin: { horizontal: 'xsmall' },
-    pad: { horizontal: 'xsmall' },
     gap: 'xsmall',
+    direction: 'row',
+    pad: { horizontal: 'xsmall' },
+    icon: <FormClose />,
   };
 
   tagRefs = [];
-  selectOption = (selected) => {
+  selectTag = (selected) => {
     const { onChange, value } = this.props;
     if (onChange) {
-      let option = selected;
+      let tags = selected;
       if (Array.isArray(value)) {
-        const index = value.indexOf(option);
+        const index = value.indexOf(tags);
         if (index !== -1) {
-          option = value.filter(item => item !== selected);
+          tags = value.filter(item => item !== selected);
         } else {
-          option = [...value, option];
+          tags = [...value, tags];
         }
       } else {
-        option = [option];
+        tags = [tags];
       }
-      onChange({ target: findDOMNode(this.inputRef), option });
+      onChange({ target: findDOMNode(this.inputRef), option: tags });
     }
   }
 
   focusTag(index) {
     if (index >= 0 && index < this.tagRefs.length) {
       findDOMNode(this.tagRefs[index]).focus();
-      this.setState({ selectedOptionIndex: index });
+      this.setState({ selectedTagIndex: index });
     }
   }
-  onNextOption = (event) => {
+  onNextTag = (event) => {
     const { value } = this.props;
-    const { selectedOptionIndex } = this.state;
+    const { selectedTagIndex } = this.state;
     event.preventDefault();
-    const index = Math.min(selectedOptionIndex + 1, value.length - 1);
+    const index = Math.min(selectedTagIndex + 1, value.length - 1);
     this.focusTag(index);
   }
 
-  onPreviousOption = (event) => {
-    const { selectedOptionIndex } = this.state;
+  onPreviousTag = (event) => {
+    const { selectedTagIndex } = this.state;
     event.preventDefault();
-    const index = Math.max(selectedOptionIndex - 1, 0);
+    const index = Math.max(selectedTagIndex - 1, 0);
     this.focusTag(index);
   }
 
-  onSelectOption = (event) => {
+  onSelectTag = (event) => {
     const { value } = this.props;
-    const { selectedOptionIndex } = this.state;
-    if (selectedOptionIndex >= 0 && selectedOptionIndex < value.length) {
+    const { selectedTagIndex } = this.state;
+    if (selectedTagIndex >= 0 && selectedTagIndex < value.length) {
       event.preventDefault(); // prevent submitting forms
       event.stopPropagation();
-      this.selectOption(value[selectedOptionIndex]);
+      this.selectTag(value[selectedTagIndex]);
     }
   }
 
   onCloseClick = (e, tag) => {
     e.stopPropagation();
-    this.selectOption(tag);
+    this.selectTag(tag);
   }
 
   render() {
@@ -80,70 +84,75 @@ class TagsContainer extends Component {
       size,
       truncate,
       onClick,
+      direction,
+      icon,
+      theme,
+      onChange,
       ...rest
     } = this.props;
 
-    const { selectedOptionIndex } = this.state;
     let values;
     if (Array.isArray(value)) {
       values = value;
     } else {
       values = value ? [value] : [];
     }
+    let closeIcon;
+    if (icon && onChange) {
+      closeIcon = (
+        <StyledIcon aria-hidden={true} key='tag-icon' theme={theme}>{icon}</StyledIcon>
+      );
+    }
 
     return (
       <Keyboard
-        onEnter={this.onSelectOption}
-        onLeft={this.onPreviousOption}
-        onRight={this.onNextOption}
+        onEnter={this.onSelectTag}
+        onSpace={this.onSelectTag}
+        onLeft={this.onPreviousTag}
+        onRight={this.onNextTag}
       >
-        <Box
-          id={id ? `${id}__tag-container` : undefined}
-          direction='row'
-          overflow='auto'
-        >
-          {values.map((option, index) => (
-            <Box
-              key={`tag_${name || ''}_${index}`}
-              tabIndex='-1'
-              ref={(ref) => { this.tagRefs[index] = ref; }}
-              role='checkbox'
-              ariaChecked={true}
-              onFocus={() => this.setState({ selectedOptionIndex: index })}
-              onClick={onClick ? e => onClick(e, option) : undefined}
-              {...rest}
-            >
-              {children ? children(option, index, value) : (
-                <Box direction='row' align='center'>
+        <FocusedContainer >
+          <Box
+            id={id ? `${id}__tag-container` : undefined}
+            direction={direction}
+          >
+            {values.map((tag, index) =>
+              (children ? children(tag, index, value) : (
+                <Box
+                  direction='row'
+                  align='center'
+                  key={`tag_${name || ''}_${index}`}
+                  tabIndex='-1'
+                  ref={(ref) => { this.tagRefs[index] = ref; }}
+                  ariaChecked={true}
+                  onFocus={() => this.setState({ selectedTagIndex: index })}
+                  onClick={onClick ? e => onClick(e, tag) : undefined}
+                  justify={closeIcon ? 'between' : 'center'}
+                  {...rest}
+                >
                   <Text
-                    margin='none'
+                    key='tag-label'
                     color={color}
                     size={size}
                     truncate={truncate}
                     textAlign='center'
                   >
-                    {option ? option.toString() : undefined}
+                    {tag && tag.toString()}
                   </Text>
                   <div
                     role='button'
-                    onKeyUp={e => this.onCloseClick(e, option)}
-                    style={{ height: '24px', backgroundColor: 'transparent', cursor: 'pointer' }}
-                    active={
-                        selectedOptionIndex === index ||
-                        (option &&
-                          (Array.isArray(value) ? value.indexOf(option) !== -1 : option === value))
-                      }
-                    onClick={e => this.onCloseClick(e, option)}
-                    hoverIndicator='background'
+                    aria-label={tag && tag.toString()}
+                    onKeyUp={e => this.onCloseClick(e, tag)}
+                    style={{ cursor: 'pointer' }}
+                    onClick={e => this.onCloseClick(e, tag)}
                     tabIndex='-1'
                   >
-                    <FormClose />
+                    {closeIcon}
                   </div>
                 </Box>
-                )}
-            </Box>
-            ))}
-        </Box>
+                )))}
+          </Box>
+        </FocusedContainer>
       </Keyboard>
     );
   }
