@@ -14,7 +14,7 @@ export default (Select) => {
 
   DocumentedSelect.propTypes = {
     multiple: PropTypes.bool.description('Whether to allow multiple options to be selected.'),
-    label: PropTypes.func.description('A function to render the selected items.'),
+    label: PropTypes.func.description('A function to render the selected items. `({ placeholder, value, onChange }) => {}`'),
   };
 
   return DocumentedSelect;
