@@ -38,7 +38,7 @@ export default class SelectDoc extends React.Component {
             </Box>
           }
           examples={{
-            multiple: (
+            label: (
               <Box direction='row' flex={true}>
                 <Box basis='medium'>
                   <MultiSelect
