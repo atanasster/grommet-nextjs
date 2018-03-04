@@ -4,7 +4,7 @@ import doc from '../components/grommet/grommet-table/doc';
 import Doc from '../components/Doc';
 import { GrommetTable } from '../components/grommet/grommet-table';
 import { TagsSelect } from '../components/grommet/grommet-tags';
-import { MultiSelect } from '../components/grommet/grommet-multiselect';
+import { GrommetSelect } from '../components/grommet/grommet-multiselect';
 
 const desc = doc(GrommetTable).toJSON();
 
@@ -139,9 +139,9 @@ class TablePage extends React.Component {
                 <CheckBox checked={filterable} label='Filter' onChange={() => this.setState({ filterable: !filterable })} />
                 <CheckBox checked={paging} label='Paging' onChange={() => this.setState({ paging: !paging })} />
                 <Box basis='small'>
-                  <MultiSelect
+                  <GrommetSelect
                     options={allColumns.map(column => column.Header)}
-                    label={TagsSelect}
+                    label={TagsSelect()}
                     multiple={true}
                     value={visibleColumns.map(column => column.Header)}
                     onChange={this.onChangeFields}

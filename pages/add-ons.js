@@ -3,7 +3,7 @@ import Page from '../components/Page';
 import Section from '../components/Section';
 import Item from '../components/Item';
 import Table from '../components/grommet/grommet-table/Table';
-import { MultiSelect } from '../components/grommet/grommet-multiselect';
+import { GrommetSelect } from '../components/grommet/grommet-multiselect';
 import { GrommetTags } from '../components/grommet/grommet-tags';
 
 export default class AddOns extends React.Component {
@@ -55,7 +55,7 @@ export default class AddOns extends React.Component {
           </Section>
           <Section align='stretch' name='Controls' index={0}>
             <Item name='Select' path='/grommet-multiselect' center={true}>
-              <MultiSelect
+              <GrommetSelect
                 options={options}
                 onChange={({ option }) => this.setState({ value: option })}
                 placeholder='Multiselect'

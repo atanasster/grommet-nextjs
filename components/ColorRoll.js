@@ -22,9 +22,11 @@ export default withTheme(({ theme, basis = 'small', extended = false }) => {
     const textColor = colorIsDark(rgb) ? lightColor : darkColor;
     return (
       <Box key={color} basis={basis} pad='small' background={color}>
-        <Text color={textColor}>
-          {color}
-        </Text>
+        {basis === 'small' && (
+          <Text color={textColor}>
+            {color}
+          </Text>
+        )}
       </Box>
     );
   });

@@ -1,12 +1,12 @@
 import { Box, Select } from 'grommet';
 import docSelect from 'grommet/components/Select/doc';
-import { MultiSelect } from '../components/grommet/grommet-multiselect';
+import { GrommetSelect } from '../components/grommet/grommet-multiselect';
 import doc from '../components/grommet/grommet-multiselect/doc';
 
 import Doc from '../components/Doc';
 import { TagsSelect } from '../components/grommet/grommet-tags';
 
-const desc = doc(MultiSelect).toJSON();
+const desc = doc(GrommetSelect).toJSON();
 const descSelect = docSelect(Select).toJSON();
 
 const stringOptions = ['small', 'medium', 'large', 'xlarge', 'huge'];
@@ -27,7 +27,7 @@ export default class SelectDoc extends React.Component {
             <Box direction='row'>
               <Box basis='medium' gap='small'>
 
-                <MultiSelect
+                <GrommetSelect
                   options={stringOptions}
                   value={selected}
                   multiple={true}
@@ -41,10 +41,10 @@ export default class SelectDoc extends React.Component {
             label: (
               <Box direction='row' flex={true}>
                 <Box basis='medium'>
-                  <MultiSelect
+                  <GrommetSelect
                     options={stringOptions}
                     value={selected}
-                    label={TagsSelect}
+                    label={TagsSelect()}
                     multiple={true}
                     onChange={({ option }) => this.setState({ selected: option })}
                   />

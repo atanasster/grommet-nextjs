@@ -6,11 +6,15 @@ import {
 import { Menu as MenuIcon, Edit, Grommet } from 'grommet-icons';
 import ColorRoll from './ColorRoll';
 import Field from './grommet/Field';
+import { GrommetSelect } from './grommet/grommet-multiselect';
+import { TagsSelect } from './grommet/grommet-tags';
+
+const stringOptions = ['small', 'medium', 'large', 'xlarge', 'huge'];
 
 export default class Preview extends React.Component {
-  state = { layer: undefined, open: undefined };
+  state = { layer: undefined, open: undefined, selected: [stringOptions[0], stringOptions[2]] };
   render() {
-    const { layer, open } = this.state;
+    const { layer, open, selected } = this.state;
     let modal;
     if (layer !== undefined) {
       const close = () => { this.setState({ layer: undefined }); };
@@ -46,7 +50,7 @@ export default class Preview extends React.Component {
             icon={<MenuIcon />}
             label='menu'
             dropAlign={{ top: 'top', right: 'right' }}
-            items={[{ label: 'Item 1' }, { label: 'Item 2' }, { label: 'Item 3' }]}
+            items={stringOptions.map(item => ({ item }))}
           />
           <Anchor
             label='Anchor'
@@ -70,7 +74,7 @@ export default class Preview extends React.Component {
               <Select
                 plain={true}
                 placeholder='Select an option'
-                options={['Option 1', 'Option 2', 'Option 3']}
+                options={stringOptions}
               />
             </Field>
             <Field
@@ -130,7 +134,7 @@ export default class Preview extends React.Component {
                 dropContent={
                   <Box>
                     <TextInput placeholder='Search' />
-                    {['one', 'two', 'three', 'four', 'five'].map((label, index) => (
+                    {stringOptions.map((label, index) => (
                       <Button
                         key={label}
                         hoverIndicator={true}
@@ -152,6 +156,18 @@ export default class Preview extends React.Component {
               />
             </Box>
           </Box>
+          <Box fill='horizontal'align='center' pad={{ vertical: 'medium' }} margin={{ top: 'medium' }}>
+            <Box basis='1/3'>
+              <GrommetSelect
+                options={stringOptions}
+                value={selected}
+                label={TagsSelect()}
+                multiple={true}
+                onChange={({ option }) => this.setState({ selected: option })}
+              />
+            </Box>
+          </Box>
+
           <Box fill='horizontal' border='top' align='center' pad={{ vertical: 'medium' }} margin={{ top: 'medium' }}>
             <ColorRoll basis='xsmall' extended={true} />
           </Box>
