@@ -3,7 +3,7 @@ import { Add, Subtract } from 'grommet-icons';
 import doc from '../components/grommet/grommet-table/doc';
 import Doc from '../components/Doc';
 import { GrommetTable } from '../components/grommet/grommet-table';
-import { GrommetTags } from '../components/grommet/grommet-tags';
+import { TagsSelect } from '../components/grommet/grommet-tags';
 import { MultiSelect } from '../components/grommet/grommet-multiselect';
 
 const desc = doc(GrommetTable).toJSON();
@@ -33,14 +33,6 @@ const updateColumnShow = (allColumns, visible) => (
       { ...column, show: visible.indexOf(column.Header) !== -1 }
   ))
 );
-
-const TagsLabel = ({ placeholder, value, onChange }) => (
-  <GrommetTags
-    placeholder={placeholder}
-    value={value}
-    onChange={onChange}
-    tagProps={{ onClick: (e) => { e.stopPropagation(); } }}
-  />);
 
 class TablePage extends React.Component {
   state = {
@@ -148,9 +140,9 @@ class TablePage extends React.Component {
                 <CheckBox checked={paging} label='Paging' onChange={() => this.setState({ paging: !paging })} />
                 <Box basis='small'>
                   <MultiSelect
-
                     options={allColumns.map(column => column.Header)}
-                    multiple={{ label: TagsLabel }}
+                    label={TagsSelect}
+                    multiple={true}
                     value={visibleColumns.map(column => column.Header)}
                     onChange={this.onChangeFields}
                   />

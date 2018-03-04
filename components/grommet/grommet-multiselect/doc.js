@@ -13,12 +13,8 @@ export default (Select) => {
     `);
 
   DocumentedSelect.propTypes = {
-    multiple: PropTypes.oneOfType([
-      PropTypes.bool,
-      PropTypes.shape({
-        label: PropTypes.func.description('A function to render the selected items.'),
-      }),
-    ]).description('Whether to allow multiple options to be selected, and optional settings.'),
+    multiple: PropTypes.bool.description('Whether to allow multiple options to be selected.'),
+    label: PropTypes.func.description('A function to render the selected items.'),
   };
 
   return DocumentedSelect;

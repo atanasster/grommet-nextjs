@@ -33,17 +33,15 @@ class MultiSelect extends Component {
 
   render() {
     const {
-      a11yTitle, children, multiple, onClose, onChange, placeholder, plain, value, ...rest
+      a11yTitle, children, multiple, label, onClose, onChange, placeholder, plain, value, ...rest
     } = this.props;
     const { open } = this.state;
     const val = multiple && Array.isArray(value) && value.length === 1 ? value[0] : value;
-    let selectText = val;
-    if (multiple) {
-      if (typeof multiple.label === 'function') {
-        selectText = multiple.label({ placeholder, value, onChange });
-      } else if (Array.isArray(val)) {
-        selectText = val.join(', ');
-      }
+    let selectLabel;
+    if (typeof label === 'function') {
+      selectLabel = label({ placeholder, value, onChange });
+    } else {
+      selectLabel = Array.isArray(val) ? val.join(', ') : val;
     }
     return (
       <Keyboard onDown={this.onOpen} onUp={this.onOpen}>
@@ -54,7 +52,7 @@ class MultiSelect extends Component {
           open={open}
           onOpen={this.onOpen}
           onClose={this.onClose}
-          a11yTitle={`${a11yTitle}${typeof selectText === 'string' ? `, ${selectText}` : ''}`}
+          a11yTitle={`${a11yTitle}${typeof selectLabel === 'string' ? `, ${selectLabel}` : ''}`}
           dropContent={<MultiSelectContainer {...this.props} />}
         >
           <Box
@@ -64,7 +62,7 @@ class MultiSelect extends Component {
             direction='row'
             justify='between'
           >
-            {React.isValidElement(selectText) ? selectText : (
+            {React.isValidElement(selectLabel) ? selectLabel : (
               <TextInput
                 style={{ cursor: 'pointer' }}
                 ref={(ref) => { this.inputRef = ref; }}
@@ -74,7 +72,7 @@ class MultiSelect extends Component {
                 placeholder={placeholder}
                 plain={true}
                 readOnly={true}
-                value={selectText}
+                value={selectLabel}
               />
             )}
             <Box

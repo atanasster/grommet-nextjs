@@ -44,7 +44,8 @@ export default class SelectDoc extends React.Component {
                   <MultiSelect
                     options={stringOptions}
                     value={selected}
-                    multiple={{ label: TagsSelect }}
+                    label={TagsSelect}
+                    multiple={true}
                     onChange={({ option }) => this.setState({ selected: option })}
                   />
                 </Box>
