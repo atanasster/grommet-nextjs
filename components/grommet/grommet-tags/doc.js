@@ -7,7 +7,7 @@ export default (Tags) => {
   const DocumentedTags = describe(Tags)
     .availableAt(getAvailableAtGitHub({ url: 'https://github.com/atanasster/grommet-nextjs' }))
     .description(
-      'An select-like field with optional search capability.'
+      'A list of tags that can be removed.'
     ).usage(`
     $ npm install grommet-controls 
     import { GrommetTags } from 'grommet-controls';
