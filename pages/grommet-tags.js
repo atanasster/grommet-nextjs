@@ -54,6 +54,7 @@ export default class SelectDoc extends React.Component {
           children: (
             <GrommetTags
               value={tags}
+              focusable={false}
               onChange={this.onChangeTags}
             >
               {(tag, index) => (
@@ -92,6 +93,13 @@ export default class SelectDoc extends React.Component {
           onClick: (
             <GrommetTags
               onClick={(e, option) => alert(`Clicked on ${option}`)}
+              onChange={this.onChangeTags}
+              value={tags}
+            />
+          ),
+          focusable: (
+            <GrommetTags
+              focusable={false}
               onChange={this.onChangeTags}
               value={tags}
             />

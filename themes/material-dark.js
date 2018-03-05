@@ -140,6 +140,11 @@ export default deepFreeze({
     },
     overlayBackgroundColor: 'rgba(255, 255, 255, 0.5)',
   },
+  tag: {
+    border: {
+      round: 'small',
+    },
+  },
   radioButton: {
     border: {
       color: {

@@ -23,12 +23,14 @@ const SHARPNESS = {
     button: { border: { radius: '24px' } },
     checkBox: { border: { radius: '24px' } },
     layer: { border: { radius: '24px' } },
+    tag: { border: { round: 'medium' } },
   },
   soft: {
     global: { input: { border: { radius: '16px' } }, drop: { border: { radius: '3px' } } },
     button: { border: { radius: '16px' } },
     checkBox: { border: { radius: '16px' }, toggle: { radius: '4px' } },
     layer: { border: { radius: '16px' } },
+    tag: { border: { round: 'small' } },
   },
 
   medium: {

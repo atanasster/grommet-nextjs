@@ -5,6 +5,7 @@ import Item from '../components/Item';
 import Table from '../components/grommet/grommet-table/Table';
 import { GrommetSelect } from '../components/grommet/grommet-multiselect';
 import { GrommetTags } from '../components/grommet/grommet-tags';
+import { GrommetTag } from '../components/grommet/grommet-tag';
 
 export default class AddOns extends React.Component {
   state = { options: ['one', 'two', 'three', 'four', 'five'], value: ['one', 'five'] };
@@ -72,6 +73,14 @@ export default class AddOns extends React.Component {
                 tabIndex='-1'
               />
             </Item>
+            <Item name='Tag' path='/grommet-tag' center={true}>
+              <GrommetTag
+                label='Tag'
+                background='accent-1'
+                onChange={({ option }) => this.setState({ value: option })}
+              />
+            </Item>
+
           </Section>
         </Box>
       </Page>

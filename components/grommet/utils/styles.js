@@ -3,8 +3,7 @@ import { css } from 'styled-components';
 import { parseMetricToNum } from 'grommet/utils/mixins';
 import { colorForName, colorIsDark, getRGBA } from 'grommet/utils/colors';
 
-export const colorCss = (color) => {
-  return css`
+export const colorCss = color => css`
     color: ${color};
     svg {
       stroke: ${color};
@@ -12,7 +11,6 @@ export const colorCss = (color) => {
       transition: none;
     };
   `;
-};
 
 
 export const activeStyle = css`
@@ -51,7 +49,7 @@ export const backgroundStyle = (background, theme) => {
         return css`
           background-color: ${rgba};
           ${colorCss(colorIsDark(rgba) ?
-            theme.global.colors.darkBackground.text : theme.global.colors.text)}
+    theme.global.colors.darkBackground.text : theme.global.colors.text)}
         `;
       }
     } else if (background.dark === false) {

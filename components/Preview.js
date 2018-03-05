@@ -8,6 +8,7 @@ import ColorRoll from './ColorRoll';
 import Field from './grommet/Field';
 import { GrommetSelect } from './grommet/grommet-multiselect';
 import { TagsSelect } from './grommet/grommet-tags';
+import { GrommetTag } from './grommet/grommet-tag';
 
 const stringOptions = ['small', 'medium', 'large', 'xlarge', 'huge'];
 
@@ -156,8 +157,8 @@ export default class Preview extends React.Component {
               />
             </Box>
           </Box>
-          <Box fill='horizontal'align='center' pad={{ vertical: 'medium' }} margin={{ top: 'medium' }}>
-            <Box basis='1/3'>
+          <Box direction='row' fill='horizontal'justify='between' pad={{ vertical: 'medium' }} margin={{ top: 'medium' }}>
+            <Box basis='medium'>
               <GrommetSelect
                 options={stringOptions}
                 value={selected}
@@ -165,6 +166,9 @@ export default class Preview extends React.Component {
                 multiple={true}
                 onChange={({ option }) => this.setState({ selected: option })}
               />
+            </Box>
+            <Box>
+              <GrommetTag size='large' pad='small' />
             </Box>
           </Box>
 

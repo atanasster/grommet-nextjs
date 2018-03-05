@@ -19,6 +19,9 @@ export default (Tags) => {
     children: PropTypes.func.description(
       'Function that will be called when each option is rendered.'
     ),
+    focusable: PropTypes.bool.description(
+      'Whether the tag list is focusable',
+    ),
     icon: PropTypes.element.description('Icon element to remove the tag.'),
     tagProps: PropTypes.object.description('Tag elements `<Box />` and `<Text />` properties'),
     onChange: PropTypes.func.description(

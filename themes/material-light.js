@@ -127,6 +127,11 @@ export default deepFreeze({
       radius: '0px',
     },
   },
+  tag: {
+    border: {
+      round: 'small',
+    },
+  },
   radioButton: {
     border: {
       color: {
