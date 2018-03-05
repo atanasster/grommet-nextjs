@@ -8,7 +8,7 @@ export const colorCss = (color) => {
     color: ${color};
     svg {
       stroke: ${color};
-      stroke: ${color};
+      fill: ${color};
       transition: none;
     };
   `;
