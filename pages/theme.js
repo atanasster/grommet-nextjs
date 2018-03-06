@@ -107,7 +107,7 @@ class Theme extends React.Component {
   static async getInitialProps() {
     const res = await fetch(`https://www.googleapis.com/webfonts/v1/webfonts?key=${process.env.GOOGLE_FONTS_API_KEY}&sort=popularity`);
     const json = await res.json();
-    const fonts = json.items.filter(item => item.subsets.indexOf('latin') !== -1);
+    const fonts = json.items ? json.items.filter(item => item.subsets.indexOf('latin') !== -1) : [];
     const font = fonts.find(f => f.family === defaultFont);
     const theme = await themeFromFont(font);
     return { fonts, font: { ...font, theme } };
