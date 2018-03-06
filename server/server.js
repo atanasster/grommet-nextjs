@@ -11,7 +11,7 @@ const handle = app.getRequestHandler();
 app.prepare()
   .then(() => {
     const server = express();
-    server.use('/', staticFiles())
+    server.use('/', staticFiles());
     server.get('*', (req, res) => handle(req, res));
 
     server.listen(port, (err) => {
