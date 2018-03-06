@@ -1,5 +1,5 @@
 const express = require('express');
-const compression = require('compression');
+// const compression = require('compression');
 const LRUCache = require('lru-cache');
 const next = require('next');
 const path = require('path');
