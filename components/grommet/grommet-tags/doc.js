@@ -3,8 +3,8 @@ import { describe, PropTypes } from 'react-desc';
 import { a11yTitlePropType } from 'grommet/utils';
 import getAvailableAtGitHub from '../utils/doc';
 
-export default (Tags) => {
-  const DocumentedTags = describe(Tags)
+export default (Element) => {
+  const DocumentedElement = describe(Element)
     .availableAt(getAvailableAtGitHub({ url: 'https://github.com/atanasster/grommet-nextjs' }))
     .description(
       'A list of tags that can be removed.'
@@ -14,7 +14,7 @@ export default (Tags) => {
     <Tags />
     `);
 
-  DocumentedTags.propTypes = {
+  DocumentedElement.propTypes = {
     a11yTitle: a11yTitlePropType,
     children: PropTypes.func.description(
       'Function that will be called when each option is rendered.'
@@ -44,5 +44,5 @@ export default (Tags) => {
     ]).description('List of tag items to display.'),
   };
 
-  return DocumentedTags;
+  return DocumentedElement;
 };

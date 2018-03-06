@@ -1,8 +1,8 @@
 import { describe, PropTypes } from 'react-desc';
 import getAvailableAtGitHub from '../utils/doc';
 
-export default (Table) => {
-  const DocumentedTable = describe(Table)
+export default (Element) => {
+  const DocumentedElement = describe(Element)
     .availableAt(getAvailableAtGitHub({ url: 'https://github.com/atanasster/grommet-nextjs' }))
     .description('A Grommet 2 table component with pagination, filtering, footer, child rows and grouping. Derived from https://github.com/react-tools/react-table. ')
     .usage(`
@@ -11,7 +11,7 @@ export default (Table) => {
     <GrommetTable columns={...} data={...} />
 `);
 
-  DocumentedTable.propTypes = {
+  DocumentedElement.propTypes = {
     decorations: PropTypes.shape({
       table: PropTypes.object.description('Table styling, all **`<Box />`** properties are valid.'),
       header: PropTypes.object.description('Header cell styling, all **`<Box />`** properties are valid'),
@@ -116,5 +116,5 @@ export default (Table) => {
     sortable: PropTypes.bool.description('Wheter the table headers will allow sorting of the of the data.'),
   };
 
-  return DocumentedTable;
+  return DocumentedElement;
 };

@@ -6,6 +6,7 @@ import Table from '../components/grommet/grommet-table/Table';
 import { GrommetSelect } from '../components/grommet/grommet-multiselect';
 import { GrommetTags } from '../components/grommet/grommet-tags';
 import { GrommetTag } from '../components/grommet/grommet-tag';
+import { GrommetNotification } from '../components/grommet/grommet-notification';
 
 export default class AddOns extends React.Component {
   state = { options: ['one', 'two', 'three', 'four', 'five'], value: ['one', 'five'] };
@@ -53,6 +54,23 @@ export default class AddOns extends React.Component {
                 ]}
               />
             </Item>
+            <Item name='Tag' path='/grommet-tag' center={true}>
+              <GrommetTag
+                label='Tag'
+                background='accent-1'
+                onChange={({ option }) => this.setState({ value: option })}
+              />
+            </Item>
+            <Item name='Notification' path='/grommet-notification' center={true}>
+              <GrommetNotification
+                message='Notification'
+                onClose={() => {}}
+                timestamp={new Date()}
+                percentComplete={30}
+                strong={true}
+                status='warning'
+              />
+            </Item>
           </Section>
           <Section align='stretch' name='Controls' index={0}>
             <Item name='Select' path='/grommet-multiselect' center={true}>
@@ -73,14 +91,6 @@ export default class AddOns extends React.Component {
                 tabIndex='-1'
               />
             </Item>
-            <Item name='Tag' path='/grommet-tag' center={true}>
-              <GrommetTag
-                label='Tag'
-                background='accent-1'
-                onChange={({ option }) => this.setState({ value: option })}
-              />
-            </Item>
-
           </Section>
         </Box>
       </Page>

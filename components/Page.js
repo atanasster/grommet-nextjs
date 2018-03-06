@@ -6,6 +6,7 @@ import { Grommet, Box, Heading, Select, Anchor } from 'grommet';
 import { System } from 'grommet-icons';
 import connect from '../redux';
 import RoutedButton from './RoutedButton';
+import RoutedAnchor from './RoutedAnchor';
 import { selectTheme } from '../redux/themes/actions';
 
 class Page extends React.Component {
@@ -72,6 +73,9 @@ class Page extends React.Component {
                 </RoutedButton>
               </Heading>
               <Box direction='row' align='center' gap='small' justify='end'>
+                <RoutedAnchor path='/crypto-grommet'>use-case</RoutedAnchor>
+                <RoutedAnchor path='/theme'>view</RoutedAnchor>
+                <RoutedAnchor path='/add-ons'>add-ons</RoutedAnchor>
                 <Box basis='small' >
                   <Select
                     a11yTitle='Change theme'

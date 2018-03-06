@@ -9,7 +9,7 @@ const desc = doc(GrommetTags).toJSON();
 const stringOptions = ['small', 'medium', 'large', 'xlarge', 'huge'];
 const defaultTags = [stringOptions[0], stringOptions[2]];
 
-export default class SelectDoc extends React.Component {
+export default class TagsDoc extends React.Component {
   state = { tags: defaultTags };
 
   onChangeTags = ({ option }) => {

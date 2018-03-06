@@ -34,7 +34,7 @@ const updateColumnShow = (allColumns, visible) => (
   ))
 );
 
-class TablePage extends React.Component {
+export default class TableDoc extends React.Component {
   state = {
     grouping: false,
     filterable: true,
@@ -199,5 +199,3 @@ class TablePage extends React.Component {
     );
   }
 }
-
-export default TablePage;

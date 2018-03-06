@@ -7,7 +7,7 @@ import Doc from '../components/Doc';
 const desc = doc(GrommetTag).toJSON();
 const tagIcons = [<Github />, <Grommet />];
 
-export default class SelectDoc extends React.Component {
+export default class TagDoc extends React.Component {
   state = { iconIndex: 0 };
 
   onToggle = () => {

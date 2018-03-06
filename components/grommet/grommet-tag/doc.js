@@ -2,8 +2,8 @@ import { describe, PropTypes } from 'react-desc';
 import { a11yTitlePropType } from 'grommet/utils';
 import getAvailableAtGitHub from '../utils/doc';
 
-export default (CheckBox) => {
-  const DocumentedCheckBox = describe(CheckBox)
+export default (Element) => {
+  const DocumentedElement = describe(Element)
     .availableAt(getAvailableAtGitHub({ url: 'https://github.com/atanasster/grommet-nextjs' }))
     .description('A tag control with a label and icon.')
     .usage(
@@ -12,7 +12,7 @@ export default (CheckBox) => {
     <GrommetTag label={...} icon={...} />`
     );
 
-  DocumentedCheckBox.propTypes = {
+  DocumentedElement.propTypes = {
     a11yTitle: a11yTitlePropType,
     border: PropTypes.oneOfType([
       PropTypes.oneOf(['top', 'left', 'bottom', 'right',
@@ -52,5 +52,5 @@ export default (CheckBox) => {
       .description('The font size of the label.'),
   };
 
-  return DocumentedCheckBox;
+  return DocumentedElement;
 };

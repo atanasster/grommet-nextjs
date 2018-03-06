@@ -9,7 +9,6 @@ import {
 } from 'grommet';
 import { Add, LinkNext, Grommet as GrommetIcon, TopCorner, BottomCorner } from 'grommet-icons';
 import RoutedButton from '../components/RoutedButton';
-import RoutedAnchor from '../components/RoutedAnchor';
 import Page from '../components/Page';
 import Section from '../components/Section';
 import Item from '../components/Item';
@@ -32,29 +31,13 @@ export default class Home extends React.Component {
       <Page title='Explore'>
         <Box pad='large'>
           <Box direction='row' gap='xlarge' margin={{ bottom: 'large' }}>
-            <Box basis='1/3' overflow='hidden'>
+            <Box basis='medium' overflow='hidden'>
               <Heading level={1}>
                 <strong>Grommet 2.0 core</strong>
               </Heading>
               <Paragraph size='large' margin='none'>
 This is an experimental site built with <strong>Grommet 2</strong> and <strong>Next.js</strong>.
 Visit the official <Anchor href='https://v2.grommet.io/' target='_blank'>Grommet site</Anchor> for the latest updates.
-              </Paragraph>
-            </Box>
-            <Box basis='1/3' overflow='hidden'>
-              <Heading level={1}>
-                <strong>Get started quickly</strong>
-              </Heading>
-              <Paragraph size='large' margin='none'>
-                <RoutedAnchor path='preview'>View in action</RoutedAnchor> together the Grommet components and color palettes.
-              </Paragraph>
-            </Box>
-            <Box basis='1/3' overflow='hidden'>
-              <Heading level={1}>
-                <strong>A great community</strong>
-              </Heading>
-              <Paragraph size='large' margin='none'>
-                Open source <RoutedAnchor path='add-ons'>add on</RoutedAnchor> components created by the community, if the core Grommet components are not enough.
               </Paragraph>
             </Box>
           </Box>
