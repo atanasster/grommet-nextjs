@@ -130,6 +130,7 @@ class Page extends React.Component {
 
 Page.propTypes = {
   title: PropTypes.string.isRequired,
+  description: PropTypes.string,
   nav: PropTypes.bool,
   footer: PropTypes.bool,
 };
@@ -137,6 +138,7 @@ Page.propTypes = {
 Page.defaultProps = {
   nav: true,
   footer: true,
+  description: undefined,
 };
 
 const mapDispatchToProps = dispatch => bindActionCreators({ selectTheme }, dispatch);

@@ -7,11 +7,11 @@ import urlParams from '../../utils/urlParams';
 class RoutedAnchor extends React.Component {
   render() {
     const {
-      path, preserveParams, router, ...rest
+      path, preserveParams, router, as, ...rest
     } = this.props;
     const href = urlParams(path, router, preserveParams);
     return (
-      <Link href={href}>
+      <Link href={href} as={as}>
         <Anchor href={href} {...rest} />
       </Link>
     );

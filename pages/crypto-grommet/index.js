@@ -1,5 +1,5 @@
 import { Box, Heading, WorldMap } from 'grommet';
-import Page from '../../components/Page';
+import App from '../../components/App';
 
 const continents = [
   {
@@ -91,7 +91,7 @@ export default class Home extends React.Component {
       `${worldExchanges} exchanges in ${worldContinent}, click to see more...`
     ) : null;
     return (
-      <Page title='crypto-grommet'>
+      <App title='crypto-grommet'>
         <Box align='center' style={{ height: responsive ? '430px' : undefined }}>
           <Heading level={1}>
             <strong>Exchanges by continent</strong>
@@ -119,7 +119,7 @@ export default class Home extends React.Component {
             <strong>Prices</strong>
           </Heading>
         </Box>
-      </Page>
+      </App>
     );
   }
 }

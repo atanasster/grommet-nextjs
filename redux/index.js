@@ -6,9 +6,13 @@ import { storeShape } from 'react-redux/lib/utils/PropTypes';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import thunkMiddleware from 'redux-thunk';
 import themes from './themes/reducer';
+import notifications from './notifications/reducer';
+import nav from './nav/reducer';
 
 const makeStore = combineReducers({
   themes,
+  notifications,
+  nav,
 });
 
 const initialState = {};
