@@ -45,3 +45,9 @@
   ```
   $ npm run check
   ```
+ 
+ * Analyze packages:
+
+  ```
+  $ npm run analyze
+  ```

@@ -16,7 +16,7 @@ export const StyledIcon = styled.span`
 
 export const StyledTagContainer = styled(Box)`
   ${props => backgroundStyle(props.background || 'brand', props.theme)}
-  ${props => props.focusable && 'cursor: pointer;'}
+  ${props => props.canFocus && 'cursor: pointer;'}
   user-select: none;
   ${props => props.disabled && disabledStyle}
 `;

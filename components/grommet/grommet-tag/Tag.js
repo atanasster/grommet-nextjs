@@ -67,7 +67,7 @@ class Tag extends Component {
           round={tagRound}
           onClick={this.clickTag}
           role='checkbox'
-          focusable={focusable}
+          canFocus={focusable}
           tabIndex={disabled || !focusable ? undefined : '-1'}
           background={background}
           disabled={disabled}
