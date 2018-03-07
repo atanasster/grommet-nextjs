@@ -10,13 +10,17 @@ const desc = doc(GrommetSelect).toJSON();
 const descSelect = docSelect(Select).toJSON();
 
 const stringOptions = ['small', 'medium', 'large', 'xlarge', 'huge'];
+const objectOptions = [{ id: 1, label: 'small' }, { id: 2, label: 'medium' }, { id: 3, label: 'large' }, { id: 4, label: 'xlarge' }, { id: 5, label: 'huge' }];
 
 
 export default class SelectDoc extends React.Component {
-  state = { selected: [stringOptions[0], stringOptions[2]] }
+  state = {
+    selected: [stringOptions[0], stringOptions[2]],
+    selectedObj: [objectOptions[0], objectOptions[2]],
+  };
 
   render() {
-    const { selected } = this.state;
+    const { selected, selectedObj } = this.state;
     return (
       <Box>
         <Doc
@@ -28,12 +32,18 @@ export default class SelectDoc extends React.Component {
               <Box basis='medium' gap='small'>
 
                 <GrommetSelect
-                  options={stringOptions}
-                  value={selected}
+                  options={objectOptions}
+                  value={selectedObj}
                   multiple={true}
+                  label={({ value }) => (value.reduce((c, item) => (`${c ? `${c}, ` : ''}${item.label}`), null))}
                   placeholder='Add sizes'
-                  onChange={({ option }) => this.setState({ selected: option })}
-                />
+                  onChange={({ option }) => this.setState({ selectedObj: option })}
+                >{ item => (
+                  <Box key={`option_${item.id}`} pad='small'>
+                    {`${item.id}. ${item.label}`}
+                  </Box>
+                  )}
+                </GrommetSelect>
               </Box>
             </Box>
           }
