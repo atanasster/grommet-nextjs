@@ -226,15 +226,15 @@ Visit the official <Anchor href='https://v2.grommet.io/' target='_blank'>Grommet
                 <Diagram
                   connections={[
                     {
-                      fromId: '1',
-                      toId: '2',
+                      fromTarget: '1',
+                      toTarget: '2',
                       color: 'accent-1',
                       thickness: 'xsmall',
                       round: true,
                     },
                     {
-                      fromId: '1',
-                      toId: '4',
+                      fromTarget: '1',
+                      toTarget: '4',
                       color: 'accent-1',
                       thickness: 'xsmall',
                       round: true,

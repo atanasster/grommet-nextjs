@@ -1,8 +1,8 @@
 import { Box } from 'grommet';
 import { Github, Grommet, FormSubtract } from 'grommet-icons';
-import { GrommetTag } from '../components/grommet/grommet-tag';
-import doc from '../components/grommet/grommet-tag/doc';
-import Doc from '../components/Doc';
+import { GrommetTag } from '../../components/grommet/grommet-tag/index';
+import doc from '../../components/grommet/grommet-tag/doc';
+import Doc from '../../components/Doc';
 
 const desc = doc(GrommetTag).toJSON();
 const tagIcons = [<Github />, <Grommet />];

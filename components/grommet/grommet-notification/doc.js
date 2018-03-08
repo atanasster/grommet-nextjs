@@ -37,6 +37,7 @@ export default (Element) => {
     percentComplete: PropTypes.number.description('Percent complete Meter for task notifications.'),
     timestamp: PropTypes.object.description('timestamp for the notification (Date).'),
     locale: PropTypes.string.description('The locale to use for timestamp, if provided.'),
+    reverse: PropTypes.bool.description('If true, reverse the order of the Notification elements.'),
   };
   return DocumentedElement;
 };

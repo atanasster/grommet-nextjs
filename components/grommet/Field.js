@@ -7,7 +7,7 @@ export default ({
   if (label || help || error) {
     header = (
       <Box
-        direction='row'
+        direction='row-responsive'
         justify='between'
         pad={{ horizontal: 'small', top: 'xsmall' }}
       >

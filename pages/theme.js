@@ -58,7 +58,7 @@ class Fonts extends React.Component {
          >
            <Grommet theme={deepMerge(theme, { global: { font: font.theme } })} >
              <Box
-               direction='row'
+               direction='row-responsive'
                justify='between'
                align='center'
                pad={{ horizontal: 'small', vertical: 'xsmall' }}
@@ -241,16 +241,12 @@ class Theme extends React.Component {
    return (
      <Page title='Theme'>
        <Box pad='large'>
-         <Box direction='row'>
-           <Box >
-             <Heading level={1}>
-               <strong>{`Theme "${name}"`}</strong>
-             </Heading>
-           </Box>
-         </Box>
+         <Heading level={1}>
+           <strong>{`Theme "${name}"`}</strong>
+         </Heading>
        </Box>
 
-       <Box direction='row' wrap={true}>
+       <Box direction='row-responsive'>
          <Box basis='medium' margin={{ bottom: 'large' }}>
            <Box pad='medium'>
              <Field label='Name'>
@@ -330,7 +326,7 @@ class Theme extends React.Component {
                />
              </Field>
            </Box>
-           <Box pad={{ horizontal: 'medium' }} justify='between'>
+           <Box pad={{ horizontal: 'medium' }} >
              <Button label='Apply' primary={true} onClick={this.onApply} />
              <Button label='View theme' onClick={() => this.setState({ viewTheme: true })} />
            </Box>

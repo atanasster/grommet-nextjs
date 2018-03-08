@@ -1,10 +1,10 @@
 import { Box, Text, Image, CheckBox } from 'grommet';
 import { Add, Subtract } from 'grommet-icons';
-import doc from '../components/grommet/grommet-table/doc';
-import Doc from '../components/Doc';
-import { GrommetTable } from '../components/grommet/grommet-table';
-import { TagsSelect } from '../components/grommet/grommet-tags';
-import { GrommetSelect } from '../components/grommet/grommet-multiselect';
+import doc from '../../components/grommet/grommet-table/doc';
+import Doc from '../../components/Doc';
+import { GrommetTable } from '../../components/grommet/grommet-table/index';
+import { TagsSelect } from '../../components/grommet/grommet-tags/index';
+import { GrommetSelect } from '../../components/grommet/grommet-multiselect/index';
 
 const desc = doc(GrommetTable).toJSON();
 

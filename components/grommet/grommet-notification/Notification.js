@@ -41,7 +41,7 @@ class Notification extends Component {
     grommet: PropTypes.object,
   };
   static defaultProps = {
-    status: 'unknown',
+    status: 'info',
     size: 'medium',
     message: 'Notification...',
     icon: true,
@@ -66,7 +66,7 @@ class Notification extends Component {
     let closeBtn;
     if (onClose && closer) {
       closeBtn = (
-        <Box align='center' direction='row' fill='vertical' pad={pad}>
+        <Box pad={pad}>
           <Button
             a11yTitle={a11yTitle}
             icon={closer}

@@ -1,8 +1,8 @@
 import { Box } from 'grommet';
 import { Grommet, CircleQuestion } from 'grommet-icons';
-import { GrommetNotification } from '../components/grommet/grommet-notification';
-import doc from '../components/grommet/grommet-notification/doc';
-import Doc from '../components/Doc';
+import { GrommetNotification } from '../../components/grommet/grommet-notification/index';
+import doc from '../../components/grommet/grommet-notification/doc';
+import Doc from '../../components/Doc';
 
 const desc = doc(GrommetNotification).toJSON();
 console.log(doc(GrommetNotification), desc);
@@ -108,6 +108,14 @@ export default class NotificationDoc extends React.Component {
             <GrommetNotification
               message='Large'
               size='large'
+              onClose={onClose}
+            />
+          ),
+          reverse: (
+            <GrommetNotification
+              message='reversed'
+              size='small'
+              reverse={true}
               onClose={onClose}
             />
           ),

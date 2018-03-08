@@ -19,8 +19,8 @@ export default class Doc extends React.Component {
         footer={footer}
       >
         <Box pad={{ horizontal: 'large', top: 'large' }}>
-          <Box direction='row' responsive={true}>
-            <Box margin={{ vertical: 'large' }} basis='large' align='start'>
+          <Box direction='row-responsive'>
+            <Box margin={{ vertical: 'large' }} basis='2/3' align='start'>
               <Heading level={1}>
                 <strong>{name}</strong>
               </Heading>
@@ -57,11 +57,10 @@ export default class Doc extends React.Component {
               </Box>
             )}
             <Box pad='large' round='large' background='light-1'>
-              {(desc.properties || []).map(property => (
+              {desc.properties ? desc.properties.map(property => (
                 <Box
                   key={property.name}
-                  direction='row'
-                  responsive={true}
+                  direction='row-responsive'
                   justify='between'
                   align='start'
                   border='bottom'
@@ -81,7 +80,8 @@ export default class Doc extends React.Component {
                     </Box>
                   ) : null}
                 </Box>
-              ))}
+              )) :
+              <Text color='light-5'>No properties</Text>}
             </Box>
           </Box>
         ) : null}

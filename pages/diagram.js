@@ -17,8 +17,8 @@ const Node = ({ id, ...rest }) => (
   />
 );
 
-const connection = (fromId, toId, { color, ...rest } = {}) => ({
-  fromId, toId, color: (color || 'accent-1'), thickness: 'xsmall', round: true, type: 'rectilinear', ...rest,
+const connection = (fromTarget, toTarget, { color, ...rest } = {}) => ({
+  fromTarget, toTarget, color: (color || 'accent-1'), thickness: 'xsmall', round: true, type: 'rectilinear', ...rest,
 });
 
 const Example = () => (

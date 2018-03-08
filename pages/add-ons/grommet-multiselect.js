@@ -1,10 +1,10 @@
 import { Box, Select } from 'grommet';
 import docSelect from 'grommet/components/Select/doc';
-import { GrommetSelect } from '../components/grommet/grommet-multiselect';
-import doc from '../components/grommet/grommet-multiselect/doc';
+import { GrommetSelect } from '../../components/grommet/grommet-multiselect/index';
+import doc from '../../components/grommet/grommet-multiselect/doc';
 
-import Doc from '../components/Doc';
-import { TagsSelect } from '../components/grommet/grommet-tags';
+import Doc from '../../components/Doc';
+import { TagsSelect } from '../../components/grommet/grommet-tags/index';
 
 const desc = doc(GrommetSelect).toJSON();
 const descSelect = docSelect(Select).toJSON();

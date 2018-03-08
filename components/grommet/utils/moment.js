@@ -1,4 +1,12 @@
 
+export const smallDate = (date, locale = 'en-us') => (
+  (new Date(date)).toLocaleDateString(locale, {
+    year: 'numeric',
+    month: '2-digit',
+    day: '2-digit',
+  })
+);
+
 export const shortDate = (date, locale = 'en-us') => (
   (new Date(date)).toLocaleDateString(locale, {
     year: 'numeric',

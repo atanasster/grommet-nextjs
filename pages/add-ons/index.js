@@ -1,17 +1,26 @@
 import { Box, Heading, Paragraph } from 'grommet';
-import Page from '../components/Page';
-import Section from '../components/Section';
-import Item from '../components/Item';
-import Table from '../components/grommet/grommet-table/Table';
-import { GrommetSelect } from '../components/grommet/grommet-multiselect';
-import { GrommetTags } from '../components/grommet/grommet-tags';
-import { GrommetTag } from '../components/grommet/grommet-tag';
-import { GrommetNotification } from '../components/grommet/grommet-notification';
+import Page from '../../components/Page';
+import Section from '../../components/Section';
+import Item from '../../components/Item';
+import Table from '../../components/grommet/grommet-table/Table';
+import { GrommetSelect } from '../../components/grommet/grommet-multiselect/index';
+import { GrommetTags } from '../../components/grommet/grommet-tags/index';
+import { GrommetTag } from '../../components/grommet/grommet-tag/index';
+import { GrommetNotification } from '../../components/grommet/grommet-notification/index';
+import { DateInput } from '../../components/grommet/DateInput';
+import { MaskedInput } from '../../components/grommet/MaskedInput';
 
 export default class AddOns extends React.Component {
-  state = { options: ['one', 'two', 'three', 'four', 'five'], value: ['one', 'five'] };
+  state = {
+    options: ['one', 'two', 'three', 'four', 'five'],
+    selected: ['one', 'five'],
+    date: new Date(),
+    phone: '3047245566',
+  };
   render() {
-    const { options, value } = this.state;
+    const {
+      options, selected, date, phone,
+    } = this.state;
     return (
       <Page title='Add ons'>
         <Box pad='large'>
@@ -28,7 +37,7 @@ export default class AddOns extends React.Component {
         </Box>
         <Box pad={{ horizontal: 'large' }}>
           <Section align='stretch' name='Presentation' index={0}>
-            <Item name='grommet-table' path='/grommet-table'>
+            <Item name='grommet-table' path='/add-ons/grommet-table'>
               <Table
                 columns={[
                   {
@@ -54,14 +63,14 @@ export default class AddOns extends React.Component {
                 ]}
               />
             </Item>
-            <Item name='Tag' path='/grommet-tag' center={true}>
+            <Item name='Tag' path='/add-ons/grommet-tag' center={true}>
               <GrommetTag
                 label='Tag'
                 background='accent-1'
-                onChange={({ option }) => this.setState({ value: option })}
+                onChange={({ option }) => this.setState({ selected: option })}
               />
             </Item>
-            <Item name='Notification' path='/grommet-notification' center={true}>
+            <Item name='Notification' path='/add-ons/grommet-notification' center={true}>
               <GrommetNotification
                 message='Notification'
                 onClose={() => {}}
@@ -73,22 +82,38 @@ export default class AddOns extends React.Component {
             </Item>
           </Section>
           <Section align='stretch' name='Controls' index={0}>
-            <Item name='Select' path='/grommet-multiselect' center={true}>
+            <Item name='Select' path='/add-ons/grommet-multiselect' center={true}>
               <GrommetSelect
                 options={options}
-                onChange={({ option }) => this.setState({ value: option })}
+                onChange={({ option }) => this.setState({ selected: option })}
                 placeholder='Multiselect'
                 tabIndex='-1'
                 multiple={true}
-                value={value}
+                value={selected}
               />
             </Item>
-            <Item name='Tags' path='/grommet-tags' center={true}>
+            <Item name='Tags' path='/add-ons/grommet-tags' center={true}>
               <GrommetTags
-                value={value}
-                onChange={({ option }) => this.setState({ value: option })}
+                value={selected}
+                onChange={({ option }) => this.setState({ selected: option })}
                 placeholder='Multiselect'
                 tabIndex='-1'
+              />
+            </Item>
+            <Item name='MaskedInput' path='/add-ons/maskedinput' center={true}>
+              <MaskedInput
+                mask={['(', /[1-9]/, /\d/, /\d/, ')', ' ', /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/]}
+                placeholder='US Phone'
+                value={phone}
+                onChange={({ value }) => this.setState({ phone: value })}
+                showMask={false}
+              />
+            </Item>
+            <Item name='DateInput' path='/add-ons/dateinput' center={true}>
+              <DateInput
+                value={date}
+                onChange={({ value }) => this.setState({ date: value })}
+                placeholder='DD/MM/YYYY'
               />
             </Item>
           </Section>
