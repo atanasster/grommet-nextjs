@@ -14,7 +14,7 @@ const desc = doc(MaskedInput).toJSON();
 export default class MaskedInputDoc extends React.Component {
   state = {
     phone: '8024442131',
-    number: 33,
+    number: 18933,
     date: smallDate(new Date()),
   };
 
