@@ -40,7 +40,7 @@ export default class MaskedInputDoc extends React.Component {
             a11yTitle: (
               <MaskedInput
                 a11yTitle='Dollars'
-                mask={createNumberMask({ allowDecimal: true })}
+                mask={createNumberMask()}
                 value={number}
                 onChange={({ target: { value } }) => this.setState({ number: value })}
               />
@@ -73,7 +73,7 @@ export default class MaskedInputDoc extends React.Component {
             ),
             children: (
               <MaskedInput
-                mask={createNumberMask()}
+                mask={createNumberMask({ allowDecimal: true })}
                 value={number}
                 onChange={({ target: { value } }) => this.setState({ number: value })}
               >
