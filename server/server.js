@@ -35,13 +35,6 @@ try {
 } catch (err) {
   // silence is golden
 }
-const buildStats = !dev
-  ? JSON.parse(fs.readFileSync('./.next/build-stats.json', 'utf8').toString())
-  : null;
-
-const buildId = !dev
-  ? fs.readFileSync('./.next/BUILD_ID', 'utf8').toString()
-  : null;
 const getCacheKey = function getCacheKey(req) {
   return `${req.url}`;
 };
@@ -103,11 +96,6 @@ app.prepare()
 
     if (!dev) {
       server.get('/_next/-/app.js', (req, res) =>
-        app.serveStatic(req, res, path.resolve('./.next/app.js')));
-
-      const hash = buildStats['app.js'] ? buildStats['app.js'].hash : buildId;
-
-      server.get(`/_next/${hash}/app.js`, (req, res) =>
         app.serveStatic(req, res, path.resolve('./.next/app.js')));
     }
     server.get('*', (req, res) => handle(req, res));
