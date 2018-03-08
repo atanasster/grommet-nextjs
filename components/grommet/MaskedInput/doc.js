@@ -5,12 +5,7 @@ import getAvailableAtGitHub from '../utils/doc';
 export default (Element) => {
   const DocumentedElement = describe(Element)
     .availableAt(getAvailableAtGitHub({ url: 'https://github.com/atanasster/grommet-nextjs' }))
-    .description(
-      `A masked Input control with a drop button with the specified 'dropContent'.
-       When opened, the drop will control the focus so that the contents behind
-       it are not focusable.
-      `
-    ).usage(`
+    .description('A masked Input control with an optional drop button with the specified \'dropContent\'.').usage(`
     $ npm install grommet-controls 
     import { DropInput } from 'grommet-controls';
     <DropInput dropContent={...} />
