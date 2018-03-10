@@ -107,7 +107,6 @@ class MaskedInput extends Component {
     } = this.props;
     const { open } = this.state;
     const numWidgets = (dropContent ? 1 : 0) + (widgets ? widgets.length : 0);
-    console.log(numWidgets);
     let decorations;
     if (numWidgets > 0) {
       let drop;
