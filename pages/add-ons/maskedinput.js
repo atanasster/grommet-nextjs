@@ -1,4 +1,4 @@
-import { Box, Calendar, Button } from 'grommet';
+import { Box, Calendar } from 'grommet';
 import { Calendar as CalendarIcon, Add, Subtract } from 'grommet-icons';
 import {
   MaskedInput, StyledWidget, placeholderChars,
@@ -71,10 +71,10 @@ export default class MaskedInputDoc extends React.Component {
                 onChange={({ target: { value } }) => this.setState({ phone: value })}
               />
             ),
-            icon: (
+            dropIcon: (
               <MaskedInput
                 mask={[/\d/, /\d/, '/', /\d/, /\d/, '/', /\d/, /\d/, /\d/, /\d/]}
-                icon={<CalendarIcon />}
+                dropIcon={<CalendarIcon />}
                 dropContent={(
                   <StyledWidget>
                     <Calendar size='small' date={date} onSelect={isoDate => this.setState({ date: smallDate(new Date(isoDate)) })} />
@@ -84,28 +84,16 @@ export default class MaskedInputDoc extends React.Component {
                 onChange={({ target: { value } }) => this.setState({ phone: value })}
               />
             ),
-            children: (
+            widgets: (
               <MaskedInput
                 mask={createNumberMask({ allowDecimal: true })}
                 value={number}
                 onChange={({ target: { value } }) => this.setState({ number: value })}
-              >
-                <Box direction='row'>
-                  <Button
-                    tabIndex='-1'
-                    plain={true}
-                    onClick={() => this.setState({ number: number + 1 })}
-                  >
-                    <StyledWidget><Add /></StyledWidget>
-                  </Button>
-                  <Button
-                    tabIndex='-1'
-                    onClick={() => this.setState({ number: number - 1 })}
-                  >
-                    <StyledWidget><Subtract /></StyledWidget>
-                  </Button>
-                </Box>
-              </MaskedInput>
+                widgets={[
+                  <Add onClick={() => this.setState({ number: number + 1 })} />,
+                  <Subtract onClick={() => this.setState({ number: number - 1 })} />,
+                ]}
+              />
 
             ),
             plain: (

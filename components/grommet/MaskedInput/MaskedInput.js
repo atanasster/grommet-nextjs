@@ -3,7 +3,7 @@ import { findDOMNode } from 'react-dom';
 import { FormDown } from 'grommet-icons';
 import { compose } from 'recompose';
 import { createTextMaskInputElement } from 'text-mask-core';
-import { Box, DropButton, Keyboard, TextInput } from 'grommet';
+import { Box, DropButton, Keyboard } from 'grommet';
 import { withTheme } from 'grommet/components/hocs';
 import StyledMaskedInput, { StyledMaskedInputContainer, StyledWidget } from './StyledMaskedInput';
 import { transformMaskedValue } from './utils';
@@ -23,16 +23,17 @@ export const digit = /\d/;
 class MaskedInput extends Component {
   static defaultProps = {
     dropAlign: { top: 'bottom', right: 'left' },
-    icon: <FormDown />,
+    dropIcon: <FormDown />,
     plain: false,
     type: 'text',
     guide: true,
     showMask: false,
     focusIndicator: false,
+    widgets: [],
     placeholderChar: placeholderChars.whitespace,
   }
 
-  state = { open: false, inputFocused: false };
+  state = { open: false };
   onInput= (event) => {
     const { onInput } = this.props;
     if (this.textMaskInputElement) {
@@ -98,76 +99,67 @@ class MaskedInput extends Component {
 
   render() {
     const {
-      a11yTitle, a11yDropTitle, children, dropAlign, dropTarget,
+      a11yTitle, a11yDropTitle, dropAlign, dropTarget, widgets,
       // eslint-disable-next-line no-unused-vars,max-len
       onOpen, onClose, mask, guide, showMask, pipe, placeholderChar, keepCharPositions, onMaskedValue,
-      name, type, value, placeholder, plain, focusIndicator, dropContent,
-      readOnly, icon, onChange, theme, disabled, ...rest
+      value, dropContent,
+      dropIcon, theme, disabled, ...rest
     } = this.props;
-    const { open, inputFocused } = this.state;
-    let drop;
-    if (dropContent) {
-      const dropIcon = <StyledWidget disabled={disabled}>{icon}</StyledWidget>;
-      drop = (
-        <DropButton
-          a11yTitle={a11yDropTitle}
-          dropAlign={dropAlign}
-          dropTarget={dropTarget}
-          open={open}
-          tabIndex='-1'
-          focusIndicator={false}
-          onOpen={this.onOpen}
-          onClose={this.onClose}
-          dropContent={!disabled && dropContent}
-        >
-          {dropIcon}
-        </DropButton>
-      );
-    }
+    const { open } = this.state;
+    const numWidgets = (dropContent ? 1 : 0) + (widgets ? widgets.length : 0);
+    console.log(numWidgets);
     let decorations;
-    if (children) {
-      decorations = children;
-    }
-    let formInput;
-    if (name !== undefined) {
-      formInput = <input type={type} name={name} hidden={true} value={value} />;
+    if (numWidgets > 0) {
+      let drop;
+      if (dropContent) {
+        const icon = <StyledWidget disabled={disabled}>{dropIcon}</StyledWidget>;
+        drop = (
+          <DropButton
+            a11yTitle={a11yDropTitle}
+            dropAlign={dropAlign}
+            dropTarget={dropTarget}
+            open={open}
+            tabIndex='-1'
+            focusIndicator={false}
+            onOpen={this.onOpen}
+            onClose={this.onClose}
+            dropContent={!disabled && dropContent}
+          >
+            {icon}
+          </DropButton>
+        );
+      }
+      decorations = (
+        <Box
+          style={{ position: 'absolute', right: 0, top: 0 }}
+          align='center'
+          direction='row'
+        >
+          {widgets.map((widget, index) => (
+            <StyledWidget key={`widget_${index}`} theme={theme} disabled={disabled} >
+              {widget}
+            </StyledWidget>
+          ))}
+          {drop}
+        </Box>
+      );
     }
     return (
       <Keyboard onDown={this.onOpen} onUp={this.onClose}>
         <StyledMaskedInputContainer >
           <StyledMaskedInput
-            plain={plain}
-            focusIndicator={focusIndicator}
-            focus={inputFocused}
             theme={theme}
-          >
-            <Box
-              align='center'
-              direction='row'
-            >
-              <TextInput
-                type={type}
-                aria-label={a11yTitle}
-                ref={(ref) => {
-                    this.inputControlRef = ref && findDOMNode(ref).getElementsByTagName('input')[0];
-                  }}
-                onFocus={() => { this.setState({ inputFocused: true }); }}
-                onBlur={() => { this.setState({ inputFocused: false }); }}
-                placeholder={placeholder}
-                plain={true}
-                focusIndicator={false}
-                readOnly={readOnly}
-                defaultValue={this.maskedValue(value)}
-                onInput={this.onInput}
-                disabled={disabled}
-                onChange={onChange}
-                {...rest}
-              />
-              {formInput}
-              {decorations}
-              {drop}
-            </Box>
-          </StyledMaskedInput>
+            disabled={disabled}
+            numWidgets={numWidgets}
+            aria-label={a11yTitle}
+            ref={(ref) => {
+                this.inputControlRef = ref && findDOMNode(ref).getElementsByTagName('input')[0];
+              }}
+            defaultValue={this.maskedValue(value)}
+            onInput={this.onInput}
+            {...rest}
+          />
+          {decorations}
         </StyledMaskedInputContainer>
       </Keyboard>
     );

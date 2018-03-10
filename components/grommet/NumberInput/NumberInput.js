@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
 import { findDOMNode } from 'react-dom';
-import { Box } from 'grommet';
 import { Add, Subtract } from 'grommet-icons';
 import {
-  createNumberMask, MaskedInput, StyledWidget, maskedNumberValue,
+  createNumberMask, MaskedInput, maskedNumberValue,
   createMinMaxInputPipe,
 } from '../MaskedInput';
 import doc from './doc';
@@ -86,7 +85,7 @@ class NumberInput extends Component {
 
   render() {
     const {
-      onChange, min, max, step, pipe: userPipe,
+      onChange, min, max, step, pipe: userPipe, updateToString,
       prefix, suffix, thousandsSeparatorSymbol, allowDecimal,
       decimalSymbol, decimalLimit, integerLimit, requireDecimal,
       allowLeadingZeroes, mask: userMask, addIcon, subtractIcon, disabled, ...rest
@@ -120,17 +119,13 @@ class NumberInput extends Component {
         onChange={this.onChange}
         pipe={pipe}
         mask={mask}
+        widgets={[
+          <Add onClick={disabled ? undefined : this.addStep} />,
+          <Subtract onClick={disabled ? undefined : this.subtractStep} />,
+
+        ]}
         {...rest}
-      >
-        <Box direction='row'>
-          <StyledWidget disabled={disabled} onClick={disabled ? undefined : this.addStep}>
-            {addIcon}
-          </StyledWidget>
-          <StyledWidget disabled={disabled} onClick={disabled ? undefined : this.subtractStep}>
-            {subtractIcon}
-          </StyledWidget>
-        </Box>
-      </MaskedInput>
+      />
     );
   }
 }

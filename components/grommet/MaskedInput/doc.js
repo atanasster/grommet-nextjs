@@ -47,8 +47,8 @@ Only use this when the containing context provides sufficient affordance`
     ),
     showMask: PropTypes.bool.description('When masked, displays the mask as a placeholder in place of the regular placeholder.'),
     dropContent: PropTypes.element.description('Content to put inside the Drop.'),
-    icon: PropTypes.element.description('Icon for drop content.'),
-    children: PropTypes.element.description('Additional elements to be placed next to the input.'),
+    dropIcon: PropTypes.element.description('Icon for drop content.'),
+    widgets: PropTypes.arrayOf(PropTypes.element).description('Additional widgets to be placed next to the input.'),
     onClose: PropTypes.func.description('Callback for when the drop is closed'),
   };
 

@@ -1,5 +1,6 @@
-import styled, { css } from 'styled-components';
-import { focusStyle } from 'grommet/utils';
+import styled from 'styled-components';
+import { TextInput } from 'grommet';
+import { parseMetricToNum } from 'grommet/utils/mixins';
 import { withTheme } from 'grommet/components/hocs';
 
 const disabledStyle = `
@@ -18,26 +19,21 @@ export const StyledWidget = withTheme(styled.span`
   }
 `);
 
-const plainStyle = css`
-  border: none;
-  -webkit-appearance: none;
+
+const StyledMaskedInput = styled(TextInput)`
+  padding-right: ${(props) => {
+    const widgetsBox = props.numWidgets *
+      (24 + (2 * parseMetricToNum(props.theme.global.edgeSize.small)));
+
+    // eslint-disable-next-line no-mixed-operators
+    return widgetsBox + (parseMetricToNum(props.theme.global.spacing) / 2) -
+    parseMetricToNum(props.theme.global.input.border.width);
+  }}px;
 `;
 
-const StyledMaskedInput = styled.div`
-  box-sizing: border-box;
-  border: ${props => props.theme.global.input.border.width} solid ${props => props.theme.global.input.border.color};
-  border-radius: ${props => props.theme.global.input.border.radius};
-  outline: none;
-  background-color: transparent;
-  color: inherit;
-  font: inherit;
-  margin: 0;
-  width: 100%;
-  ${props => props.plain && plainStyle}
-  ${props => props.focus && (!props.plain || props.focusIndicator) && focusStyle}
-`;
 
 export const StyledMaskedInputContainer = styled.div`
+  position: relative;
   width: 100%;
 `;
 
