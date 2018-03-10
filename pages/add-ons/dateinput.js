@@ -38,6 +38,13 @@ export default class DateInputDoc extends React.Component {
                 onChange={({ target: { value } }) => this.setState({ dateAuto: value })}
               />
             ),
+            disabled: (
+              <DateInput
+                disabled={true}
+                value={date}
+                onChange={({ target: { value } }) => this.setState({ date: value })}
+              />
+            ),
             bounds: (
               <DateInput
                 value={date}
@@ -48,10 +55,10 @@ export default class DateInputDoc extends React.Component {
                 onChange={({ target: { value } }) => this.setState({ date: value })}
               />
             ),
-            disabled: (
+            disabledDates: (
               <DateInput
                 value={date}
-                disabled={[
+                disabledDates={[
                   smallDate(yesterday),
                   smallDate(today),
                 ]}

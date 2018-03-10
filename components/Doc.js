@@ -1,6 +1,7 @@
 import PropTypes from 'prop-types';
 import { Box, Button, Heading, Paragraph, Text, Markdown } from 'grommet';
 import Page from './Page';
+import DocProperty from './DocProperty';
 
 export default class Doc extends React.Component {
   componentDidMount() {
@@ -51,35 +52,16 @@ export default class Doc extends React.Component {
             { desc.usage && (
               <Box pad='large' round='large' margin='small' background='light-2'>
                 <Heading margin='none' level={3}><strong>Usage</strong></Heading>
-                <Paragraph>
-                  {desc.usage}
-                </Paragraph>
+                <Markdown>{`\`\`${desc.usage}\`\``}</Markdown>
               </Box>
             )}
             <Box pad='large' round='large' background='light-1'>
               {desc.properties ? desc.properties.map(property => (
-                <Box
+                <DocProperty
                   key={property.name}
-                  direction='row-responsive'
-                  justify='between'
-                  align='start'
-                  border='bottom'
-                >
-                  <Box basis='1/2' margin={{ right: 'large' }}>
-                    <Heading level={3} size='small'>
-                      <strong>{`${property.name}${property.required ? ' *' : ''}`}</strong>
-                    </Heading>
-                    <Markdown>{property.description}</Markdown>
-                  </Box>
-                  <Box flex={true} align='start'>
-                    <Text><pre>{property.format}</pre></Text>
-                  </Box>
-                  {examples[property.name] ? (
-                    <Box flex={true} align='end' margin={{ vertical: 'medium' }}>
-                      {examples[property.name] || null}
-                    </Box>
-                  ) : null}
-                </Box>
+                  property={property}
+                  examples={examples[property.name]}
+                />
               )) :
               <Text color='light-5'>No properties</Text>}
             </Box>

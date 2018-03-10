@@ -46,6 +46,19 @@ export default class MaskedInputDoc extends React.Component {
               />
 
             ),
+            disabled: (
+              <MaskedInput
+                mask={[/\d/, /\d/, '/', /\d/, /\d/, '/', /\d/, /\d/, /\d/, /\d/]}
+                disabled={true}
+                dropContent={(
+                  <Box pad='small'>
+                    <Calendar size='small' date={date} onSelect={isoDate => this.setState({ date: smallDate(new Date(isoDate)) })} />
+                  </Box>
+                )}
+                value={date}
+                onChange={({ target: { value } }) => this.setState({ phone: value })}
+              />
+            ),
             dropContent: (
               <MaskedInput
                 mask={[/\d/, /\d/, '/', /\d/, /\d/, '/', /\d/, /\d/, /\d/, /\d/]}

@@ -16,10 +16,11 @@ export default (Element) => {
 
   DocumentedElement.propTypes = {
     autocorrect: PropTypes.bool.description('Use mask that wil attempt to auto-correct the entry as the user types'),
+    disabled: PropTypes.bool.description('Setting to true causes the input to be disabled.'),
     bounds: PropTypes.arrayOf(PropTypes.string)
       .description(`An array of two numbers indicating the limits on
         navigation in ISO8601 format`),
-    disabled: PropTypes.arrayOf(PropTypes.oneOfType([
+    disabledDates: PropTypes.arrayOf(PropTypes.oneOfType([
       PropTypes.string,
       PropTypes.arrayOf(PropTypes.string),
     ]))

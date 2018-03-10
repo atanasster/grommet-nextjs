@@ -7,19 +7,22 @@ import { GrommetSelect } from '../../components/grommet/grommet-multiselect/inde
 import { GrommetTags } from '../../components/grommet/grommet-tags/index';
 import { GrommetTag } from '../../components/grommet/grommet-tag/index';
 import { GrommetNotification } from '../../components/grommet/grommet-notification/index';
-import { DateInput } from '../../components/grommet/DateInput';
 import { MaskedInput } from '../../components/grommet/MaskedInput';
+import { DateInput } from '../../components/grommet/DateInput';
+import { NumberInput } from '../../components/grommet/NumberInput';
+
 
 export default class AddOns extends React.Component {
   state = {
     options: ['one', 'two', 'three', 'four', 'five'],
     selected: ['one', 'five'],
-    date: new Date(),
+    date: undefined,
     phone: '3047245566',
+    number: 12345.23,
   };
   render() {
     const {
-      options, selected, date, phone,
+      options, selected, date, phone, number,
     } = this.state;
     return (
       <Page title='Add ons'>
@@ -114,6 +117,12 @@ export default class AddOns extends React.Component {
                 value={date}
                 onChange={({ value }) => this.setState({ date: value })}
                 placeholder='DD/MM/YYYY'
+              />
+            </Item>
+            <Item name='NumberInput' path='/add-ons/numberinput' center={true}>
+              <NumberInput
+                value={number}
+                onChange={({ value }) => this.setState({ number: value })}
               />
             </Item>
           </Section>

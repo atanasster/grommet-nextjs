@@ -2,10 +2,12 @@ import React, { Component } from 'react';
 import { findDOMNode } from 'react-dom';
 import { FormDown } from 'grommet-icons';
 import { compose } from 'recompose';
-import { createTextMaskInputElement, conformToMask } from 'text-mask-core';
+import { createTextMaskInputElement } from 'text-mask-core';
 import { Box, DropButton, Keyboard, TextInput } from 'grommet';
 import { withTheme } from 'grommet/components/hocs';
 import StyledMaskedInput, { StyledMaskedInputContainer, StyledWidget } from './StyledMaskedInput';
+import { transformMaskedValue } from './utils';
+
 import doc from './doc';
 
 export const placeholderChars = {
@@ -67,51 +69,45 @@ class MaskedInput extends Component {
   }
 
   onOpen = (e) => {
-    const { onOpen } = this.props;
+    const { onOpen, disabled } = this.props;
     this.setState({ open: !this.state.open });
     if (e) {
       e.preventDefault();
     }
-    if (onOpen) {
+    if (onOpen && !disabled) {
       onOpen(e);
     }
   }
 
   onClose = (e) => {
-    const { onClose } = this.props;
+    const { onClose, disabled } = this.props;
     this.setState({ open: false });
-    if (onClose) {
+    if (onClose && !disabled) {
       onClose(e);
     }
   }
 
   maskedValue(value) {
-    const {
-      mask, guide, placeholderChar,
-    } = this.props;
-    if (typeof mask === 'object' && value) {
-      const conformed = conformToMask(value, mask, {
-        guide, placeholderChar,
-      });
-
-      if (conformed.meta.someCharsRejected === false) {
-        return conformed.conformedValue;
-      }
+    const { mask } = this.props;
+    if (value) {
+      const conformed = transformMaskedValue(value, mask, this.props);
+      return conformed;
     }
     return value;
   }
 
   render() {
     const {
-      a11yTitle, a11yDropTitle, children, dropAlign, dropTarget, type,
-      // eslint-disable-next-line no-unused-vars
-      onOpen, onClose, value, placeholder, plain, focusIndicator, dropContent,
-      readOnly, icon, name, id, onChange, theme,
+      a11yTitle, a11yDropTitle, children, dropAlign, dropTarget,
+      // eslint-disable-next-line no-unused-vars,max-len
+      onOpen, onClose, mask, guide, showMask, pipe, placeholderChar, keepCharPositions, onMaskedValue,
+      name, type, value, placeholder, plain, focusIndicator, dropContent,
+      readOnly, icon, onChange, theme, disabled, ...rest
     } = this.props;
     const { open, inputFocused } = this.state;
     let drop;
     if (dropContent) {
-      const dropIcon = <StyledWidget >{icon}</StyledWidget>;
+      const dropIcon = <StyledWidget disabled={disabled}>{icon}</StyledWidget>;
       drop = (
         <DropButton
           a11yTitle={a11yDropTitle}
@@ -122,7 +118,7 @@ class MaskedInput extends Component {
           focusIndicator={false}
           onOpen={this.onOpen}
           onClose={this.onClose}
-          dropContent={dropContent}
+          dropContent={!disabled && dropContent}
         >
           {dropIcon}
         </DropButton>
@@ -132,8 +128,12 @@ class MaskedInput extends Component {
     if (children) {
       decorations = children;
     }
+    let formInput;
+    if (name !== undefined) {
+      formInput = <input type={type} name={name} hidden={true} value={value} />;
+    }
     return (
-      <Keyboard onDown={this.onOpen} onUp={this.onOpen}>
+      <Keyboard onDown={this.onOpen} onUp={this.onClose}>
         <StyledMaskedInputContainer >
           <StyledMaskedInput
             plain={plain}
@@ -146,12 +146,11 @@ class MaskedInput extends Component {
               direction='row'
             >
               <TextInput
+                type={type}
                 aria-label={a11yTitle}
                 ref={(ref) => {
-                    this.inputRef = ref;
                     this.inputControlRef = ref && findDOMNode(ref).getElementsByTagName('input')[0];
                   }}
-                type={type}
                 onFocus={() => { this.setState({ inputFocused: true }); }}
                 onBlur={() => { this.setState({ inputFocused: false }); }}
                 placeholder={placeholder}
@@ -160,10 +159,11 @@ class MaskedInput extends Component {
                 readOnly={readOnly}
                 defaultValue={this.maskedValue(value)}
                 onInput={this.onInput}
-                name={name}
-                id={id}
+                disabled={disabled}
                 onChange={onChange}
+                {...rest}
               />
+              {formInput}
               {decorations}
               {drop}
             </Box>

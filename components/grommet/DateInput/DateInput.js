@@ -38,7 +38,8 @@ class DateInput extends Component {
 
   render() {
     const {
-      bounds, dates, disabled, autocorrect, firstDayOfWeek, locale, size, mask: userMask, ...rest
+      bounds, dates, disabledDates, autocorrect,
+      firstDayOfWeek, locale, size, mask: userMask, ...rest
     } = this.props;
     const { value } = this.state;
     delete rest.value;
@@ -64,7 +65,7 @@ class DateInput extends Component {
               onSelect={this.onSelect}
               bounds={bounds}
               dates={dates}
-              disabled={disabled}
+              disabled={disabledDates}
               firstDayOfWeek={firstDayOfWeek}
               locale={locale}
               size={size}

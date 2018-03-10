@@ -2,10 +2,16 @@ import styled, { css } from 'styled-components';
 import { focusStyle } from 'grommet/utils';
 import { withTheme } from 'grommet/components/hocs';
 
+const disabledStyle = `
+  opacity: 0.3;
+  cursor: default;
+`;
+
 export const StyledWidget = withTheme(styled.span`
   display: inline-block;
-
-   margin: ${props => props.theme.global.edgeSize.small};
+  ${props => props.disabled && disabledStyle}
+  margin: ${props => props.theme.global.edgeSize.small};
+  cursor: pointer;
 
   > * {
     vertical-align: bottom;
