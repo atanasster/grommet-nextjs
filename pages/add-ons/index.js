@@ -122,6 +122,7 @@ export default class AddOns extends React.Component {
             <Item name='NumberInput' path='/add-ons/numberinput' center={true}>
               <NumberInput
                 value={number}
+                thousandsSeparatorSymbol=','
                 onChange={({ value }) => this.setState({ number: value })}
               />
             </Item>

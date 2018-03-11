@@ -24,11 +24,11 @@ export default class DocProperty extends React.Component {
       ) : null;
       example = (
         <Box flex={true} align='end' margin={{ vertical: 'medium' }}>
-          <Button
+          {/* <Button
             plain={true}
             icon={codeMode ? <Close /> : <Reactjs color='plain' />}
             onClick={() => this.setState({ codeMode: !codeMode })}
-          />
+          /> */}
           {markDown}
           {examples}
         </Box>

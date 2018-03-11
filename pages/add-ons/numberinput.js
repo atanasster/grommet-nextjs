@@ -25,6 +25,7 @@ export default class NumberInputDoc extends React.Component {
               <Box basis='medium' gap='small'>
                 <NumberInput
                   value={largeNumber}
+                  thousandsSeparatorSymbol=','
                   onChange={({ target: { value } }) => this.setState({ largeNumber: value })}
                 />
               </Box>
@@ -80,7 +81,6 @@ export default class NumberInputDoc extends React.Component {
                 value={integerNumber}
                 min={5}
                 prefix='$'
-                suffix=' USD'
                 onChange={({ target: { value } }) => this.setState({ integerNumber: value })}
               />
             ),
@@ -88,14 +88,14 @@ export default class NumberInputDoc extends React.Component {
               <NumberInput
                 value={integerNumber}
                 min={5}
-                prefix='$'
+                suffix=' USD'
                 onChange={({ target: { value } }) => this.setState({ integerNumber: value })}
               />
             ),
             thousandsSeparatorSymbol: (
               <NumberInput
                 value={misedSepValue}
-                thousandsSeparatorSymbol='.'
+                thousandsSeparatorSymbol=' '
                 decimalSymbol=','
                 updateToString={true}
                 onChange={({ target: { value } }) => this.setState({ misedSepValue: value })}

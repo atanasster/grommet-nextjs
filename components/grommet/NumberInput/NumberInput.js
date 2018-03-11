@@ -15,7 +15,7 @@ class NumberInput extends Component {
     subtractIcon: <Subtract />,
     prefix: '',
     suffix: '',
-    thousandsSeparatorSymbol: ',',
+    thousandsSeparatorSymbol: '',
     allowDecimal: true,
     decimalSymbol: '.',
     decimalLimit: 2,

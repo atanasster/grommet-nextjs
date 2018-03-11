@@ -1,12 +1,12 @@
 import { transformMaskedValue } from './utils';
 
 export const maskedNumberValue = ({
-  value, prefix, suffix, thousandsSeparatorSymbol, decimalSymbol,
+  value, prefix, suffix, thousandsSeparatorSymbol,
 }) => {
   let val = value;
   if (typeof val === 'string') {
     val = val.replace(new RegExp(`[${prefix}${suffix}${thousandsSeparatorSymbol}]`, 'g'), '');
-    val = parseFloat(val.replace(decimalSymbol, '.'));
+    val = parseFloat(val);
     if (Number.isNaN(val)) {
       val = undefined;
     }
