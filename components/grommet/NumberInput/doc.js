@@ -15,6 +15,8 @@ export default (Element) => {
     `);
 
   DocumentedElement.propTypes = {
+    a11yIncrement: PropTypes.string.description('Custom increment button title to be used by screen readers..'),
+    a11yDecrement: PropTypes.string.description('Custom increment button title to be used by screen readers..'),
     min: PropTypes.number.description('Minimum value.'),
     max: PropTypes.number.description('Maximum value.'),
     step: PropTypes.number.description('Steps to increase and decrease by.').defaultValue('1'),

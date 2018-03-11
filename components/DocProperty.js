@@ -1,7 +1,5 @@
 import PropTypes from 'prop-types';
-import { Box, Button, Heading, Markdown, Text } from 'grommet';
-import { Reactjs, Close } from 'grommet-icons';
-import jsxToString from 'jsx-to-string';
+import { Box, Heading, Markdown, Text } from 'grommet';
 
 export default class DocProperty extends React.Component {
   static defaultProps = {
@@ -12,16 +10,10 @@ export default class DocProperty extends React.Component {
     property: PropTypes.object.isRequired,
     examples: PropTypes.object,
   }
-  state = { codeMode: false };
   render() {
     const { property, examples } = this.props;
-    const { codeMode } = this.state;
     let example;
     if (examples) {
-      const markDown = codeMode ? (
-        <Markdown>{`\`\`${jsxToString(examples)}\`\``}
-        </Markdown>
-      ) : null;
       example = (
         <Box flex={true} align='end' margin={{ vertical: 'medium' }}>
           {/* <Button
@@ -29,7 +21,6 @@ export default class DocProperty extends React.Component {
             icon={codeMode ? <Close /> : <Reactjs color='plain' />}
             onClick={() => this.setState({ codeMode: !codeMode })}
           /> */}
-          {markDown}
           {examples}
         </Box>
       );

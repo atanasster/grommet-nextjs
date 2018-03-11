@@ -1,4 +1,4 @@
-import { Box, Heading, Paragraph } from 'grommet';
+import { Box, Heading, Paragraph, Chart } from 'grommet';
 import Page from '../../components/Page';
 import Section from '../../components/Section';
 import Item from '../../components/Item';
@@ -7,10 +7,22 @@ import { GrommetSelect } from '../../components/grommet/grommet-multiselect/inde
 import { GrommetTags } from '../../components/grommet/grommet-tags/index';
 import { GrommetTag } from '../../components/grommet/grommet-tag/index';
 import { GrommetNotification } from '../../components/grommet/grommet-notification/index';
-import { MaskedInput } from '../../components/grommet/MaskedInput';
+import { DropInput } from '../../components/grommet/DropInput';
+import { MaskedInput, placeholderChars } from '../../components/grommet/MaskedInput';
 import { DateInput } from '../../components/grommet/DateInput';
 import { NumberInput } from '../../components/grommet/NumberInput';
+import { PasswordInput } from '../../components/grommet/PasswordInput';
 
+const CHART_VALUES = [
+  { value: [7, 90], label: 'ninety' },
+  { value: [6, 80], label: 'eighty' },
+  { value: [5, 60], label: 'sixty' },
+  { value: [4, 70], label: 'seventy' },
+  { value: [3, 60], label: 'sixty' },
+  { value: [2, 40], label: 'forty' },
+  { value: [1, 30], label: 'thirty' },
+  { value: [0, 10], label: 'ten' },
+];
 
 export default class AddOns extends React.Component {
   state = {
@@ -90,7 +102,6 @@ export default class AddOns extends React.Component {
                 options={options}
                 onChange={({ option }) => this.setState({ selected: option })}
                 placeholder='Multiselect'
-                tabIndex='-1'
                 multiple={true}
                 value={selected}
               />
@@ -100,11 +111,28 @@ export default class AddOns extends React.Component {
                 value={selected}
                 onChange={({ option }) => this.setState({ selected: option })}
                 placeholder='Multiselect'
-                tabIndex='-1'
+              />
+            </Item>
+            <Item name='DropInput' path='/add-ons/dropinput' center={true}>
+              <DropInput
+                placeholder='annual sales'
+                dropContent={(
+                  <Box pad='small' align='center' gap='small'>
+                    <Heading margin='none' level={3}>Monthly sales</Heading>
+                    <Chart
+                      aria-label='Chart example'
+                      bounds={[[0, 7], [0, 100]]}
+                      size={{ width: 'medium', height: 'small' }}
+                      round={true}
+                      values={CHART_VALUES}
+                    />
+                  </Box>)
+                }
               />
             </Item>
             <Item name='MaskedInput' path='/add-ons/maskedinput' center={true}>
               <MaskedInput
+                placeholderChar={placeholderChars.underscore}
                 mask={['(', /[1-9]/, /\d/, /\d/, ')', ' ', /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/]}
                 placeholder='US Phone'
                 value={phone}
@@ -112,6 +140,7 @@ export default class AddOns extends React.Component {
                 showMask={false}
               />
             </Item>
+
             <Item name='DateInput' path='/add-ons/dateinput' center={true}>
               <DateInput
                 value={date}
@@ -124,6 +153,11 @@ export default class AddOns extends React.Component {
                 value={number}
                 thousandsSeparatorSymbol=','
                 onChange={({ value }) => this.setState({ number: value })}
+              />
+            </Item>
+            <Item name='PasswordInput' path='/add-ons/passwordinput' center={true}>
+              <PasswordInput
+                defaultValue='password'
               />
             </Item>
           </Section>

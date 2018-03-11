@@ -23,6 +23,9 @@ class NumberInput extends Component {
     requireDecimal: false,
     allowLeadingZeroes: false,
     updateToString: false,
+    a11yIncrement: 'Increment by',
+    a11yDecrement: 'Decrement by',
+
   }
 
   valueToNumber = (value) => {
@@ -88,6 +91,7 @@ class NumberInput extends Component {
       onChange, min, max, step, pipe: userPipe, updateToString,
       prefix, suffix, thousandsSeparatorSymbol, allowDecimal,
       decimalSymbol, decimalLimit, integerLimit, requireDecimal,
+      a11yIncrement, a11yDecrement,
       allowLeadingZeroes, mask: userMask, addIcon, subtractIcon, disabled, ...rest
     } = this.props;
     const allowNegative = typeof min !== 'number' || min < 0;
@@ -120,8 +124,16 @@ class NumberInput extends Component {
         pipe={pipe}
         mask={mask}
         widgets={[
-          <Add onClick={disabled ? undefined : this.addStep} />,
-          <Subtract onClick={disabled ? undefined : this.subtractStep} />,
+          {
+            'icon': addIcon,
+            'onClick': disabled ? undefined : this.addStep,
+            'aria-label': `${a11yIncrement} ${step}`,
+          },
+          {
+            'icon': subtractIcon,
+            'onClick': disabled ? undefined : this.subtractStep,
+            'aria-label': `${a11yDecrement} ${step}`,
+          },
 
         ]}
         {...rest}

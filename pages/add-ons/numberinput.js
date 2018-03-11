@@ -32,6 +32,16 @@ export default class NumberInputDoc extends React.Component {
             </Box>
           }
           examples={{
+            a11yIncrement: (
+              <NumberInput
+                value={largeNumber}
+                a11yIncrement='Add to entry'
+                step={10}
+                a11yDecrement='Remove from entry'
+                thousandsSeparatorSymbol=','
+                onChange={({ target: { value } }) => this.setState({ largeNumber: value })}
+              />
+            ),
             min: (
               <NumberInput
                 value={integerNumber}

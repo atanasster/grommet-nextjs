@@ -1,7 +1,7 @@
 import { Box, Calendar } from 'grommet';
 import { Calendar as CalendarIcon, Add, Subtract } from 'grommet-icons';
 import {
-  MaskedInput, StyledWidget, placeholderChars,
+  MaskedInput, placeholderChars,
   createAutoCorrectedDatePipe, createNumberMask,
   alphabetic, digit,
 } from '../../components/grommet/MaskedInput/index';
@@ -68,7 +68,7 @@ export default class MaskedInputDoc extends React.Component {
                   </Box>
                 )}
                 value={date}
-                onChange={({ target: { value } }) => this.setState({ phone: value })}
+                onChange={({ target: { value } }) => this.setState({ date: value })}
               />
             ),
             dropIcon: (
@@ -76,12 +76,12 @@ export default class MaskedInputDoc extends React.Component {
                 mask={[/\d/, /\d/, '/', /\d/, /\d/, '/', /\d/, /\d/, /\d/, /\d/]}
                 dropIcon={<CalendarIcon />}
                 dropContent={(
-                  <StyledWidget>
+                  <Box pad='small'>
                     <Calendar size='small' date={date} onSelect={isoDate => this.setState({ date: smallDate(new Date(isoDate)) })} />
-                  </StyledWidget>
+                  </Box>
                 )}
                 value={date}
-                onChange={({ target: { value } }) => this.setState({ phone: value })}
+                onChange={({ target: { value } }) => this.setState({ date: value })}
               />
             ),
             widgets: (
@@ -90,8 +90,8 @@ export default class MaskedInputDoc extends React.Component {
                 value={number}
                 onChange={({ target: { value } }) => this.setState({ number: value })}
                 widgets={[
-                  <Add onClick={() => this.setState({ number: number + 1 })} />,
-                  <Subtract onClick={() => this.setState({ number: number - 1 })} />,
+                  { icon: <Add />, onClick: () => this.setState({ number: number + 1 }) },
+                  { icon: <Subtract />, onClick: () => this.setState({ number: number - 1 }) },
                 ]}
               />
 
