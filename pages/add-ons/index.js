@@ -12,6 +12,7 @@ import { MaskedInput, placeholderChars } from '../../components/grommet/MaskedIn
 import { DateInput } from '../../components/grommet/DateInput';
 import { NumberInput } from '../../components/grommet/NumberInput';
 import { PasswordInput } from '../../components/grommet/PasswordInput';
+import { EmailInput } from '../../components/grommet/EmailInput';
 
 const CHART_VALUES = [
   { value: [7, 90], label: 'ninety' },
@@ -158,6 +159,11 @@ export default class AddOns extends React.Component {
             <Item name='PasswordInput' path='/add-ons/passwordinput' center={true}>
               <PasswordInput
                 defaultValue='password'
+              />
+            </Item>
+            <Item name='EmailInput' path='/add-ons/emailinput' center={true}>
+              <EmailInput
+                defaultValue='john.smith@gmail.co.uk'
               />
             </Item>
           </Section>

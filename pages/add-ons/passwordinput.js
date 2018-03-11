@@ -13,7 +13,7 @@ export default class PasswordInputDoc extends React.Component {
     return (
       <Box>
         <Doc
-          name='MaskedInput'
+          name='PasswordInput'
           desc={desc}
           example={
             <Box direction='row'>
