@@ -10,6 +10,7 @@ class EmailInput extends Component {
   render() {
     return (
       <MaskedInput
+        inputMode='email'
         {...this.props}
       />
     );
