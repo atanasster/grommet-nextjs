@@ -1,4 +1,5 @@
 import styled, { css } from 'styled-components';
+import { Button } from 'grommet';
 
 const sizeStyle = (props) => {
   const data = props.theme.calendar[props.size];
@@ -36,7 +37,7 @@ const colorSizeStyle = (props) => {
   `;
 };
 
-export const StyledColor = styled.div`
+export const StyledColor = styled(Button)`
   top: 0;
   position: absolute;
   display: flex;

@@ -33,6 +33,7 @@ export default class ColorsDoc extends React.Component {
             colors: (
               <Colors
                 size='small'
+                defaultColor='#ff0000'
                 colors={uiColorPalette}
               />
             ),

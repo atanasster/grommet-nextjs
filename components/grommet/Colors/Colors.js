@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { findDOMNode } from 'react-dom';
 import { compose } from 'recompose';
 
-import { Box, Button, Keyboard } from 'grommet';
+import { Box, Keyboard } from 'grommet';
 import { withTheme } from 'grommet/components/hocs';
 import { colorIsDark } from 'grommet/utils/colors';
 import { parseMetricToNum } from 'grommet/utils';
@@ -14,20 +14,14 @@ const buildState = (props) => {
   const {
     colors, color, columns, wrap,
   } = props;
-  let activeRow = 0;
-  let activeColor = 0;
-  const colorRows = [];
+  let colorRows = [];
   let lastRow = null;
   if (colors) {
-    Object.keys(colors).forEach((item, rowIndex) => {
+    Object.keys(colors).forEach((item) => {
       if (typeof colors[item] === 'object') {
         const row = { name: item, colors: [] };
-        Object.keys(colors[item]).forEach((colorName, colorIndex) => {
+        Object.keys(colors[item]).forEach((colorName) => {
           const colorsColor = colors[item][colorName];
-          if (colorsColor === color) {
-            activeRow = rowIndex;
-            activeColor = colorIndex;
-          }
           row.colors.push({ name: colorName, color: colorsColor });
         });
         colorRows.push(row);
@@ -54,15 +48,23 @@ const buildState = (props) => {
         finalRows.push({ name: row.name, colors: row.colors.splice(0, colorsPerRow) });
       }
     });
-    return { colorRows: finalRows, activeRow, activeColor };
-  }
-  return {
-    colorRows: colorRows.map(row => (
+    colorRows = finalRows;
+  } else {
+    colorRows = colorRows.map(row => (
       { ...row, colors: row.colors.filter((_, index) => (index < colorsPerRow)) }
-    )),
-    activeRow,
-    activeColor,
-  };
+    ));
+  }
+  let activeRow = 0;
+  let activeColor = 0;
+  colorRows.find((row, rowIndex) => row.colors.find((item, colorIndex) => {
+    const found = item.color === color;
+    if (found) {
+      activeRow = rowIndex;
+      activeColor = colorIndex;
+    }
+    return found;
+  }));
+  return { colorRows, activeRow, activeColor };
 };
 
 class Colors extends Component {
@@ -81,9 +83,13 @@ class Colors extends Component {
 
   componentDidUpdate() {
     if (this.setFocus) {
+      const { activeRow, activeColor, colorRows } = this.state;
+
       this.setFocus = false;
-      if (this.activeRef) {
-        findDOMNode(this.activeRef).focus();
+      if (colorRows[activeRow] &&
+        colorRows[activeRow].colors[activeColor] &&
+        colorRows[activeRow].colors[activeColor].buttonRef) {
+        findDOMNode(colorRows[activeRow].colors[activeColor].buttonRef).focus();
       }
     }
   }
@@ -97,9 +103,10 @@ class Colors extends Component {
     this.setFocus = true;
     const activeRow = Math.min(Math.max(0, rowIndex), colorRows.length - 1);
     const color = Math.max(0, colorIndex);
+    const activeColor = Math.min(color, colorRows[activeRow].colors.length - 1);
     this.setState({
       activeRow,
-      activeColor: Math.min(color, colorRows[activeRow].colors[color].length - 1),
+      activeColor,
     });
   }
 
@@ -131,14 +138,17 @@ class Colors extends Component {
           };
           return (
             <StyledColorContainer key={`color_${colorIndex}`} size={size} theme={theme}>
-              <Button
-                ref={(ref) => {
-                  if (isActive) this.activeRef = ref;
-                }}
-                a11yTitle={`${row.name} ${color.name}`}
+              <StyledColor
+                // eslint-disable-next-line no-param-reassign
+                ref={(ref) => { color.buttonRef = ref; }}
+                style={colorStyle}
+                size={size}
+                theme={theme}
+                tabIndex={isActive ? '0' : '-1'}
+                a11yTitle={`${row.name !== undefined ? row.name : ''} ${color.name}`}
                 plain={true}
                 active={isActive}
-                hoverIndicator={true}
+                hoverIndicator='background'
                 onClick={this.onClickColor({
                   color: color.color,
                   rowIndex,
@@ -147,14 +157,8 @@ class Colors extends Component {
                   rowName: row.name,
                 })}
               >
-                <StyledColor
-                  style={colorStyle}
-                  size={size}
-                  theme={theme}
-                >
-                  <span>{color.color}</span>
-                </StyledColor>
-              </Button>
+                <span>{color.color}</span>
+              </StyledColor>
             </StyledColorContainer>
           );
         })
@@ -173,7 +177,7 @@ class Colors extends Component {
             this.setActive({ rowIndex: activeRow + 1, colorIndex: activeColor });
           }}
           onLeft={() => this.setActive({ rowIndex: activeRow, colorIndex: activeColor - 1 })}
-          onRight={() => this.setActive({ rowIndex: activeRow, colorIndex: activeColor - 1 })}
+          onRight={() => this.setActive({ rowIndex: activeRow, colorIndex: activeColor + 1 })}
         >
           <Box>
             <StyledRows style={{ height: `${cellSize * colorRows.length}px` }}>
