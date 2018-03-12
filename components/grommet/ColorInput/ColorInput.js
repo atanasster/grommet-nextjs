@@ -10,6 +10,7 @@ import { Colors } from '../Colors';
 
 
 const StyledColorButton = styled.span`
+  display:  inline-flex;
   svg {
     border: ${props => `${props.theme.button.border.width} solid ${props.theme.global.colors.border}`};
     fill: ${props => props.selectedColor};
