@@ -31,6 +31,8 @@ export default class EmailInputDoc extends React.Component {
              colors: (
                <ColorInput
                  value={color}
+                 columns={9}
+                 wrap={true}
                  onChange={({ target: { value } }) => this.setState({ color: value })}
                  colors={uiColorPalette}
                />

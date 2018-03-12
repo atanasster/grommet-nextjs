@@ -48,7 +48,7 @@ class ColorInput extends Component {
   }
   render() {
     const {
-      defaultValue, theme, colors, size, ...rest
+      columns, wrap, theme, colors, size, ...rest
     } = this.props;
     const { selectedColor } = this.state;
     return (
@@ -65,6 +65,8 @@ class ColorInput extends Component {
               color={selectedColor}
               colors={colors}
               onSelect={this.onSelect}
+              columns={columns}
+              wrap={wrap}
               size={size}
             />
           </Box>
