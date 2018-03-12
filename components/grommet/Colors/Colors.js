@@ -89,7 +89,11 @@ class Colors extends Component {
       if (colorRows[activeRow] &&
         colorRows[activeRow].colors[activeColor] &&
         colorRows[activeRow].colors[activeColor].buttonRef) {
-        findDOMNode(colorRows[activeRow].colors[activeColor].buttonRef).focus();
+        const buttonNode = findDOMNode(colorRows[activeRow].colors[activeColor].buttonRef);
+        if (buttonNode) {
+          buttonNode.scrollIntoView();
+          buttonNode.focus();
+        }
       }
     }
   }
