@@ -1,5 +1,5 @@
 import { Box } from 'grommet';
-import { DateInput } from '../../components/grommet/DateInput/index';
+import { DateInput } from '../../components/grommet/DateInput';
 import doc from '../../components/grommet/DateInput/doc';
 import Doc from '../../components/Doc';
 import { smallDate } from '../../components/grommet/utils/moment';
@@ -8,7 +8,7 @@ const desc = doc(DateInput).toJSON();
 
 export default class DateInputDoc extends React.Component {
   state = {
-    date: new Date(), dateAuto: new Date(), dateISO: smallDate(new Date()),
+    date: smallDate(new Date()), dateAuto: smallDate(new Date()), dateISO: undefined,
   };
 
   render() {
@@ -81,14 +81,14 @@ export default class DateInputDoc extends React.Component {
             ),
             size: (
               <DateInput
-                size='large'
+                size='medium'
                 value={date}
                 onChange={({ target: { value } }) => this.setState({ date: value })}
               />
             ),
             value: (
               <DateInput
-                value={dateISO}
+                value={dateISO || ''}
                 onChange={({ target: { value } }) => this.setState({ dateISO: value })}
               />
             ),

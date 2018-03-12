@@ -5,8 +5,8 @@ export default (Element) => {
   const DocumentedElement = describe(Element)
     .availableAt(getAvailableAtGitHub({ url: 'https://github.com/atanasster/grommet-nextjs' }))
     .description(
-      `A passord field with show/hide password toggle.
-      All properties of DropInput apply
+      `A masked color entry field, with a drop button to select a color.
+      All properties of MaskedInput apply
       `
     ).usage(`
       $ npm install grommet-controls \n 
@@ -15,10 +15,7 @@ export default (Element) => {
     `);
 
   DocumentedElement.propTypes = {
-    a11yViewPassword: PropTypes.string.description('Custom view password title to be used by screen readers.'),
-    a11yHidePassword: PropTypes.string.description('Custom view password title to be used by screen readers.'),
-    viewIcon: PropTypes.element.description('Icon to view the password.'),
-    hideIcon: PropTypes.element.description('Icon to hide the password.'),
+    colors: PropTypes.object.isRequired.description('Color palette for the user to choose a color from.'),
   };
 
   return DocumentedElement;

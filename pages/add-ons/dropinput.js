@@ -1,6 +1,6 @@
 import { Box, Calendar } from 'grommet';
 import { Calendar as CalendarIcon, Add, Subtract } from 'grommet-icons';
-import { DropInput } from '../../components/grommet/DropInput/index';
+import { DropInput } from '../../components/grommet/DropInput';
 import doc from '../../components/grommet/DropInput/doc';
 import Doc from '../../components/Doc';
 import { smallDate } from '../../components/grommet/utils/moment';
@@ -9,11 +9,11 @@ const desc = doc(DropInput).toJSON();
 
 export default class DropInputDoc extends React.Component {
   state = {
-    date: smallDate(new Date()),
+    date: smallDate(new Date()), number: '10',
   };
 
   render() {
-    const { phone, date, number } = this.state;
+    const { date, number } = this.state;
     return (
       <Box>
         <Doc
@@ -29,7 +29,7 @@ export default class DropInputDoc extends React.Component {
                     </Box>
                   )}
                   value={date}
-                  onChange={({ target: { value } }) => this.setState({ phone: value })}
+                  onChange={({ target: { value } }) => this.setState({ date: value })}
                 />
               </Box>
             </Box>
@@ -65,7 +65,7 @@ export default class DropInputDoc extends React.Component {
                   </Box>
                 )}
                 value={date}
-                onChange={({ target: { value } }) => this.setState({ phone: value })}
+                onChange={({ target: { value } }) => this.setState({ date: value })}
               />
             ),
             dropIcon: (
@@ -77,7 +77,7 @@ export default class DropInputDoc extends React.Component {
                   </Box>
                 )}
                 value={date}
-                onChange={({ target: { value } }) => this.setState({ phone: value })}
+                onChange={({ target: { value } }) => this.setState({ date: value })}
               />
             ),
             widgets: (
@@ -94,16 +94,14 @@ export default class DropInputDoc extends React.Component {
             plain: (
               <DropInput
                 plain={true}
-                value={phone}
-                onChange={({ target: { value } }) => this.setState({ phone: value })}
+                defaultValue='Plain no focus'
               />
             ),
             focusIndicator: (
               <DropInput
                 plain={true}
                 focusIndicator={true}
-                value={phone}
-                onChange={({ target: { value } }) => this.setState({ phone: value })}
+                defaultValue='Plain with focus'
               />
             ),
             placeholder: (

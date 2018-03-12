@@ -1,6 +1,6 @@
 import { Box } from 'grommet';
 import { AddCircle, SubtractCircle } from 'grommet-icons';
-import { NumberInput } from '../../components/grommet/NumberInput/index';
+import { NumberInput } from '../../components/grommet/NumberInput';
 import doc from '../../components/grommet/NumberInput/doc';
 import Doc from '../../components/Doc';
 
@@ -79,17 +79,9 @@ export default class NumberInputDoc extends React.Component {
                 onChange={({ target: { value } }) => this.setState({ integerNumber: value })}
               />
             ),
-            subtractIcon: (
-              <NumberInput
-                value={integerNumber}
-                step={10}
-                onChange={({ target: { value } }) => this.setState({ integerNumber: value })}
-              />
-            ),
             prefix: (
               <NumberInput
                 value={integerNumber}
-                min={5}
                 prefix='$'
                 onChange={({ target: { value } }) => this.setState({ integerNumber: value })}
               />
@@ -97,7 +89,6 @@ export default class NumberInputDoc extends React.Component {
             suffix: (
               <NumberInput
                 value={integerNumber}
-                min={5}
                 suffix=' USD'
                 onChange={({ target: { value } }) => this.setState({ integerNumber: value })}
               />
@@ -109,13 +100,6 @@ export default class NumberInputDoc extends React.Component {
                 decimalSymbol=','
                 updateToString={true}
                 onChange={({ target: { value } }) => this.setState({ misedSepValue: value })}
-              />
-            ),
-            allowDecimal: (
-              <NumberInput
-                value={largeNumber}
-                allowDecimal={false}
-                onChange={({ target: { value } }) => this.setState({ largeNumber: value })}
               />
             ),
             decimalSymbol: (
@@ -130,7 +114,7 @@ export default class NumberInputDoc extends React.Component {
             decimalLimit: (
               <NumberInput
                 value={largeNumber}
-                decimalLimit={1}
+                decimalLimit={4}
                 onChange={({ target: { value } }) => this.setState({ largeNumber: value })}
               />
             ),
@@ -138,20 +122,6 @@ export default class NumberInputDoc extends React.Component {
               <NumberInput
                 value={largeNumber}
                 integerLimit={4}
-                onChange={({ target: { value } }) => this.setState({ largeNumber: value })}
-              />
-            ),
-            requireDecimal: (
-              <NumberInput
-                value={largeNumber}
-                integerLimit={true}
-                onChange={({ target: { value } }) => this.setState({ largeNumber: value })}
-              />
-            ),
-            allowLeadingZeroes: (
-              <NumberInput
-                value={largeNumber}
-                allowLeadingZeroes={true}
                 onChange={({ target: { value } }) => this.setState({ largeNumber: value })}
               />
             ),

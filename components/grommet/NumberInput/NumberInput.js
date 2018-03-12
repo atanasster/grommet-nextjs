@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { findDOMNode } from 'react-dom';
 import { Add, Subtract } from 'grommet-icons';
 import {
   createNumberMask, MaskedInput, maskedNumberValue,
@@ -10,18 +9,16 @@ import doc from './doc';
 
 class NumberInput extends Component {
   static defaultProps = {
+    emptyValue: '',
     step: 1,
     addIcon: <Add />,
     subtractIcon: <Subtract />,
     prefix: '',
     suffix: '',
     thousandsSeparatorSymbol: '',
-    allowDecimal: true,
     decimalSymbol: '.',
     decimalLimit: 2,
     integerLimit: null,
-    requireDecimal: false,
-    allowLeadingZeroes: false,
     updateToString: false,
     a11yIncrement: 'Increment by',
     a11yDecrement: 'Decrement by',
@@ -37,13 +34,7 @@ class NumberInput extends Component {
     });
   }
 
-  notifyOnChange(e, value) {
-    const { onChange } = this.props;
-    if (onChange) {
-      onChange({ ...e, value, target: { ...this.inputControlRef, value } });
-    }
-  }
-  addStep = (e) => {
+  addStep = () => {
     const {
       max, min, step, value,
     } = this.props;
@@ -57,10 +48,10 @@ class NumberInput extends Component {
     } else if (max !== undefined) {
       val = Math.min(val, max);
     }
-    this.notifyOnChange(e, val);
+    this.upDateValue(val);
   }
 
-  subtractStep = (e) => {
+  subtractStep = () => {
     const { min, step, value } = this.props;
     let val = this.valueToNumber(value) - step;
     if (Number.isNaN(val)) {
@@ -72,14 +63,17 @@ class NumberInput extends Component {
     } else if (min !== undefined) {
       val = Math.max(val, min);
     }
-    this.notifyOnChange(e, val);
+    this.upDateValue(val);
   }
 
   onChange = (e) => {
-    const { onChange, updateToString } = this.props;
+    const { onChange, updateToString, emptyValue } = this.props;
     if (onChange) {
-      const value = updateToString ? e.target.value : this.valueToNumber(e.target.value);
+      let value = updateToString ? e.target.value : this.valueToNumber(e.target.value);
       if (this.value !== value) {
+        if (value === undefined) {
+          value = emptyValue;
+        }
         this.value = value;
         onChange({ ...e, target: { ...e.target, value } });
       }
@@ -89,13 +83,14 @@ class NumberInput extends Component {
   render() {
     const {
       onChange, min, max, step, pipe: userPipe, updateToString,
-      prefix, suffix, thousandsSeparatorSymbol, allowDecimal,
-      decimalSymbol, decimalLimit, integerLimit, requireDecimal,
+      prefix, suffix, thousandsSeparatorSymbol,
+      decimalSymbol, decimalLimit, integerLimit,
       a11yIncrement, a11yDecrement,
-      allowLeadingZeroes, mask: userMask, addIcon, subtractIcon, disabled, ...rest
+      mask: userMask, addIcon, subtractIcon, disabled, ...rest
     } = this.props;
     const allowNegative = typeof min !== 'number' || min < 0;
     const includeThousandsSeparator = !!thousandsSeparatorSymbol;
+    const allowDecimal = typeof decimalLimit === 'number' && decimalLimit > 0;
     const mask = userMask || createNumberMask({
       prefix,
       suffix,
@@ -105,20 +100,18 @@ class NumberInput extends Component {
       decimalSymbol,
       decimalLimit,
       integerLimit,
-      requireDecimal,
       allowNegative,
-      allowLeadingZeroes,
     });
     const pipe = userPipe || createMinMaxInputPipe({
       mask, prefix, suffix, thousandsSeparatorSymbol, decimalSymbol, min, max, ...rest,
     });
     return (
       <MaskedInput
-        ref={(ref) => { this.inputControlRef = ref && findDOMNode(ref).getElementsByTagName('input')[0]; }}
+        update={(update) => { this.upDateValue = update; }}
         pattern='[0-9]*'
         inputMode='numeric'
-        onOpen={this.subtractStep}
-        onClose={this.addStep}
+        onKeyDown={this.subtractStep}
+        onKeyUp={this.addStep}
         disabled={disabled}
         onChange={this.onChange}
         pipe={pipe}

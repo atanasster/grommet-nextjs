@@ -11,6 +11,8 @@ import createTheme, { MOODS, SCHEMES, SHARPNESSES, themeFromFont } from '../util
 import { updateTheme } from '../redux/themes/actions';
 import connect from '../redux';
 import Preview from '../components/Preview';
+import { ColorInput } from '../components/grommet/ColorInput';
+import materialUIPalette from '../components/grommet/Colors/palettes/materialColors';
 
 const defaultFont = 'Roboto';
 const defaultColor = '#99cc33';
@@ -261,28 +263,24 @@ class Theme extends React.Component {
                help='hex RGB'
                error={errors.color}
              >
-               <Box direction='row' align='center' justify='between'>
-                 <TextInput
-                   plain={true}
-                   value={color}
-                   onChange={this.onChangeColor}
-                 />
-                 <Box background={theme.global.colors.brand} pad='small' round='small' border='all' />
-               </Box>
+               <ColorInput
+                 plain={true}
+                 colors={materialUIPalette}
+                 value={color}
+                 onChange={this.onChangeColor}
+               />
              </Field>
              <Field
                label='Background Color'
                help='hex RGB'
                error={errors.background}
              >
-               <Box direction='row' align='center' justify='between'>
-                 <TextInput
-                   plain={true}
-                   value={background}
-                   onChange={this.onChangeBackground}
-                 />
-                 <Box background={theme.global.colors.background} pad='small' round='small' border='all' />
-               </Box>
+               <ColorInput
+                 plain={true}
+                 colors={materialUIPalette}
+                 value={background}
+                 onChange={this.onChangeBackground}
+               />
              </Field>
              <Field
                label='Font Name'

@@ -24,7 +24,7 @@ class MaskedInput extends Component {
     placeholderChar: placeholderChars.whitespace,
   }
 
-  onInput= (event) => {
+  onInput = (event) => {
     const { onInput } = this.props;
     if (this.textMaskInputElement) {
       this.textMaskInputElement.update(event.target.value);
@@ -54,6 +54,9 @@ class MaskedInput extends Component {
   }
 
   maskedValue(value) {
+    if (value === undefined) {
+      return undefined;
+    }
     const { mask } = this.props;
     if (value) {
       const conformed = transformMaskedValue(value, mask, this.props);
@@ -66,15 +69,16 @@ class MaskedInput extends Component {
     const {
       defaultValue,
       // eslint-disable-next-line no-unused-vars,max-len
-      mask, guide, showMask, pipe, placeholderChar, keepCharPositions, onMaskedValue,
-      value, ...rest
+      value, mask, guide, showMask, pipe, placeholderChar, keepCharPositions, onMaskedValue,
+      ...rest
     } = this.props;
     return (
       <DropInput
         ref={(ref) => {
             this.inputControlRef = ref && findDOMNode(ref).getElementsByTagName('input')[0];
           }}
-        defaultValue={defaultValue || this.maskedValue(value)}
+        value={this.maskedValue(value)}
+        defaultValue={this.maskedValue(defaultValue)}
         onInput={this.onInput}
         {...rest}
       />

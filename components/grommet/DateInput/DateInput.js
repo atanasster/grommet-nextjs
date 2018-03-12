@@ -5,44 +5,24 @@ import { MaskedInput, createAutoCorrectedDatePipe } from '../MaskedInput';
 import { smallDate } from '../utils/moment';
 import doc from './doc';
 
+
 class DateInput extends Component {
   static defaultProps = {
-    icon: <CalendarIcon />,
+    dropIcon: <CalendarIcon />,
     size: 'small',
     a11yDropTitle: 'Open calendar',
-  }
-  constructor(props) {
-    super(props);
-    this.state = this.valueToState(props.value);
-  }
-  componentWillReceiveProps(nextProps) {
-    const { value } = nextProps;
-    if (value !== this.props.value) {
-      this.setState(this.valueToState(value));
-    }
-  }
-  valueToState = (isoDate) => {
-    const timeStamp = Date.parse(isoDate);
-    if (!Number.isNaN(timeStamp)) {
-      const date = new Date(timeStamp);
-      return { value: smallDate(date) };
-    }
-    return { value: isoDate };
   }
 
   onSelect = (isoDate) => {
     const date = new Date(isoDate);
-    const value = `${date.getMonth() + 1}/${date.getDate()}/${date.getFullYear()}`;
-    this.setState(this.valueToState(value));
+    this.upDateValue(smallDate(date));
   }
 
   render() {
     const {
-      bounds, dates, disabledDates, autocorrect,
+      value, bounds, dates, disabledDates, autocorrect,
       firstDayOfWeek, locale, size, mask: userMask, ...rest
     } = this.props;
-    const { value } = this.state;
-    delete rest.value;
     let mask;
     if (userMask) {
       mask = { mask: userMask };
@@ -57,6 +37,7 @@ class DateInput extends Component {
     }
     return (
       <MaskedInput
+        update={(update) => { this.upDateValue = update; }}
         value={value}
         dropContent={(
           <Box pad='small'>

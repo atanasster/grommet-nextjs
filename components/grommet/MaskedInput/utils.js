@@ -18,6 +18,7 @@ export const transformMaskedValue = (value, providedMask, props = {}) => {
   if (!providedMask) {
     return value;
   }
+  let { pipe } = props;
   let safeValue;
   if (value === undefined || value === null) {
     safeValue = '';
@@ -25,8 +26,13 @@ export const transformMaskedValue = (value, providedMask, props = {}) => {
     safeValue = value.toString();
   }
   let mask;
+  if (typeof providedMask === 'object' && providedMask.pipe !== undefined && providedMask.mask !== undefined) {
+    // eslint-disable-next-line no-param-reassign
+    providedMask = providedMask.mask;
+    ({ pipe } = providedMask);
+  }
   if (typeof providedMask === 'function') {
-    mask = providedMask(safeValue, props);
+    mask = providedMask(safeValue, { ...props, pipe });
 
     // disable masking if `mask` is `false`
     if (mask === false) { return safeValue; }
@@ -38,7 +44,7 @@ export const transformMaskedValue = (value, providedMask, props = {}) => {
   }
   let conformedValue = value;
   const {
-    guide, placeholderChar, pipe, placeholder, currentCaretPosition,
+    guide, placeholderChar, placeholder, currentCaretPosition,
     showMask, keepCharPositions,
   } = props;
 

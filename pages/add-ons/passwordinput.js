@@ -1,6 +1,6 @@
 import { Box } from 'grommet';
 import { Lock, Unlock } from 'grommet-icons';
-import { PasswordInput } from '../../components/grommet/PasswordInput/index';
+import { PasswordInput } from '../../components/grommet/PasswordInput';
 import doc from '../../components/grommet/PasswordInput/doc';
 import Doc from '../../components/Doc';
 

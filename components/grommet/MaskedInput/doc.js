@@ -14,7 +14,7 @@ export default (Element) => {
   DocumentedElement.propTypes = {
     a11yTitle: a11yTitlePropType,
     a11yDropTitle: PropTypes.string.description(
-      'Custom drop button title to be used by screen readers..'
+      'Custom drop button title to be used by screen readers.'
     ),
     placeholder: PropTypes.string.description(
       'Placeholder text to use when no value is provided.'

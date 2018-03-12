@@ -1,6 +1,6 @@
 import { Box, Button } from 'grommet';
 import { FormSubtract, Trash } from 'grommet-icons';
-import { GrommetTags } from '../../components/grommet/grommet-tags/index';
+import { GrommetTags } from '../../components/grommet/grommet-tags';
 import doc from '../../components/grommet/grommet-tags/doc';
 import Doc from '../../components/Doc';
 

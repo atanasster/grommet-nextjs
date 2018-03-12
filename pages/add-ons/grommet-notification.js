@@ -1,6 +1,6 @@
 import { Box } from 'grommet';
 import { Grommet, CircleQuestion } from 'grommet-icons';
-import { GrommetNotification } from '../../components/grommet/grommet-notification/index';
+import { GrommetNotification } from '../../components/grommet/grommet-notification';
 import doc from '../../components/grommet/grommet-notification/doc';
 import Doc from '../../components/Doc';
 

@@ -1,21 +1,6 @@
 import styled from 'styled-components';
-import { TextInput } from 'grommet';
+import { Box, TextInput } from 'grommet';
 import { parseMetricToNum } from 'grommet/utils/mixins';
-
-const disabledStyle = `
-  opacity: 0.3;
-  cursor: default;
-`;
-
-export const StyledWidget = styled.span`
-  display: inline-block;
-  ${props => props.disabled && disabledStyle}
-  margin: ${props => props.theme.global.edgeSize.small};
-  > * {
-    vertical-align: bottom;
-  }
-`;
-
 
 const StyledDropInput = styled(TextInput)`
   padding-right: ${(props) => {
@@ -33,9 +18,14 @@ export const StyledDropInputContainer = styled.div`
   position: relative;
   width: 100%;
   cursor: pointer;
-  overflow: hidden;
 `;
 
+export const StyledWidgetsContainer = styled(Box)`
+  position: absolute;
+  right: 0;
+  top: 0;
+  height: 100%;
+`;
 
 export default StyledDropInput.extend`
   ${props => props.theme.dropInput && props.theme.dropInput.extend}

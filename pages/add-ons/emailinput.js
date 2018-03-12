@@ -1,5 +1,5 @@
 import { Box } from 'grommet';
-import { EmailInput } from '../../components/grommet/EmailInput/index';
+import { EmailInput } from '../../components/grommet/EmailInput';
 import doc from '../../components/grommet/EmailInput/doc';
 import Doc from '../../components/Doc';
 

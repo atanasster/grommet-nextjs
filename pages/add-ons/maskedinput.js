@@ -4,7 +4,7 @@ import {
   MaskedInput, placeholderChars,
   createAutoCorrectedDatePipe, createNumberMask,
   alphabetic, digit,
-} from '../../components/grommet/MaskedInput/index';
+} from '../../components/grommet/MaskedInput';
 import doc from '../../components/grommet/MaskedInput/doc';
 import Doc from '../../components/Doc';
 import { smallDate } from '../../components/grommet/utils/moment';
@@ -56,7 +56,7 @@ export default class MaskedInputDoc extends React.Component {
                   </Box>
                 )}
                 value={date}
-                onChange={({ target: { value } }) => this.setState({ phone: value })}
+                onChange={({ target: { value } }) => this.setState({ date: value })}
               />
             ),
             dropContent: (

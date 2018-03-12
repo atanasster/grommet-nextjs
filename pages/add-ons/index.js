@@ -13,6 +13,10 @@ import { DateInput } from '../../components/grommet/DateInput';
 import { NumberInput } from '../../components/grommet/NumberInput';
 import { PasswordInput } from '../../components/grommet/PasswordInput';
 import { EmailInput } from '../../components/grommet/EmailInput';
+import { ColorInput } from '../../components/grommet/ColorInput';
+import { Colors } from '../../components/grommet/Colors';
+
+import materialUIPalette from '../../components/grommet/Colors/palettes/materialColors';
 
 const CHART_VALUES = [
   { value: [7, 90], label: 'ninety' },
@@ -96,6 +100,13 @@ export default class AddOns extends React.Component {
                 status='warning'
               />
             </Item>
+            <Item name='Colors' path='/add-ons/colors' center={true}>
+              <Colors
+                size='small'
+                onSelect={({ color }) => { alert(color); }}
+                colors={materialUIPalette}
+              />
+            </Item>
           </Section>
           <Section align='stretch' name='Controls' index={0}>
             <Item name='Select' path='/add-ons/grommet-multiselect' center={true}>
@@ -137,23 +148,23 @@ export default class AddOns extends React.Component {
                 mask={['(', /[1-9]/, /\d/, /\d/, ')', ' ', /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/]}
                 placeholder='US Phone'
                 value={phone}
-                onChange={({ value }) => this.setState({ phone: value })}
+                onChange={({ target: { value } }) => this.setState({ phone: value })}
                 showMask={false}
               />
             </Item>
 
             <Item name='DateInput' path='/add-ons/dateinput' center={true}>
               <DateInput
-                value={date}
-                onChange={({ value }) => this.setState({ date: value })}
+                defaultValue={date}
                 placeholder='DD/MM/YYYY'
+                onChange={({ target: { value } }) => alert(value)}
               />
             </Item>
             <Item name='NumberInput' path='/add-ons/numberinput' center={true}>
               <NumberInput
                 value={number}
                 thousandsSeparatorSymbol=','
-                onChange={({ value }) => this.setState({ number: value })}
+                onChange={({ target: { value } }) => this.setState({ number: value })}
               />
             </Item>
             <Item name='PasswordInput' path='/add-ons/passwordinput' center={true}>
@@ -164,6 +175,12 @@ export default class AddOns extends React.Component {
             <Item name='EmailInput' path='/add-ons/emailinput' center={true}>
               <EmailInput
                 defaultValue='john.smith@gmail.co.uk'
+              />
+            </Item>
+            <Item name='ColorInput' path='/add-ons/colorinput' center={true}>
+              <ColorInput
+                colors={materialUIPalette}
+                defaultValue='#ff00aa'
               />
             </Item>
           </Section>
