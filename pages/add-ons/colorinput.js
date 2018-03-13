@@ -7,39 +7,37 @@ import Doc from '../../components/Doc';
 
 const desc = doc(ColorInput).toJSON();
 
-export default class EmailInputDoc extends React.Component {
+export default class ColorInputDoc extends React.Component {
   state = { color: '#ff0000' };
   render() {
     const { color } = this.state;
     return (
-      <Box>
-        <Doc
-          name='ColorInput'
-          desc={desc}
-          example={
-            <Box direction='row'>
-              <Box basis='medium'>
-                <ColorInput
-                  colors={materialUIPalette}
-                  value={color}
-                  onChange={({ target: { value } }) => this.setState({ color: value })}
-                />
-              </Box>
+      <Doc
+        name='ColorInput'
+        desc={desc}
+        example={
+          <Box direction='row'>
+            <Box basis='medium'>
+              <ColorInput
+                colors={materialUIPalette}
+                value={color}
+                onChange={({ target: { value } }) => this.setState({ color: value })}
+              />
             </Box>
-          }
-          examples={{
-             colors: (
-               <ColorInput
-                 value={color}
-                 columns={9}
-                 wrap={true}
-                 onChange={({ target: { value } }) => this.setState({ color: value })}
-                 colors={uiColorPalette}
-               />
-             ),
-          }}
-        />
-      </Box>
+          </Box>
+        }
+        examples={{
+           colors: (
+             <ColorInput
+               value={color}
+               columns={9}
+               wrap={true}
+               onChange={({ target: { value } }) => this.setState({ color: value })}
+               colors={uiColorPalette}
+             />
+           ),
+        }}
+      />
     );
   }
 }

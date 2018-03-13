@@ -10,25 +10,23 @@ export default class EmailInputDoc extends React.Component {
   render() {
     const { email } = this.state;
     return (
-      <Box>
-        <Doc
-          name='EmailInput'
-          desc={desc}
-          example={
-            <Box direction='row'>
-              <Box basis='medium'>
-                <EmailInput
-                  value={email}
-                  onChange={({ target: { value } }) => this.setState({ email: value })}
-                  defaultValue='john.smith@gmail.co.uk'
-                />
-              </Box>
+      <Doc
+        name='EmailInput'
+        desc={desc}
+        example={
+          <Box direction='row'>
+            <Box basis='medium'>
+              <EmailInput
+                value={email}
+                onChange={({ target: { value } }) => this.setState({ email: value })}
+                defaultValue='john.smith@gmail.co.uk'
+              />
             </Box>
-          }
-          examples={{
-          }}
-        />
-      </Box>
+          </Box>
+        }
+        examples={{
+        }}
+      />
     );
   }
 }

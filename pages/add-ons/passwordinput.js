@@ -11,33 +11,31 @@ export default class PasswordInputDoc extends React.Component {
   render() {
     const { password } = this.state;
     return (
-      <Box>
-        <Doc
-          name='PasswordInput'
-          desc={desc}
-          example={
-            <Box direction='row'>
-              <Box basis='medium'>
-                <PasswordInput
-                  value={password}
-                  onChange={({ target: { value } }) => this.setState({ password: value })}
-                />
-              </Box>
-            </Box>
-          }
-          examples={{
-            viewIcon: (
+      <Doc
+        name='PasswordInput'
+        desc={desc}
+        example={
+          <Box direction='row'>
+            <Box basis='medium'>
               <PasswordInput
-                viewIcon={<Unlock />}
-                hideIcon={<Lock />}
-                a11yTitle='enter password'
                 value={password}
                 onChange={({ target: { value } }) => this.setState({ password: value })}
               />
-            ),
-          }}
-        />
-      </Box>
+            </Box>
+          </Box>
+        }
+        examples={{
+          viewIcon: (
+            <PasswordInput
+              viewIcon={<Unlock />}
+              hideIcon={<Lock />}
+              a11yTitle='enter password'
+              value={password}
+              onChange={({ target: { value } }) => this.setState({ password: value })}
+            />
+          ),
+        }}
+      />
     );
   }
 }
