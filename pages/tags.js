@@ -1,9 +1,9 @@
-import { GrommetTags } from '../components/grommet/grommet-tags';
-import doc from '../components/grommet/grommet-tags/doc';
+import { Tags } from 'grommet-controls';
+import doc from 'grommet-controls/components/Tags/doc';
 
 import Doc from '../components/Doc';
 
-const desc = doc(GrommetTags).toJSON();
+const desc = doc(Tags).toJSON();
 
 const stringOptions = ['small', 'medium', 'large', 'xlarge', 'huge'];
 
@@ -17,7 +17,7 @@ export default class TagsDoc extends React.Component {
         name='Grommet Tags'
         desc={desc}
         example={
-          <GrommetTags
+          <Tags
             options={stringOptions}
             value={selected}
             onChange={({ option }) => this.setState({ selected: option })}
@@ -25,28 +25,28 @@ export default class TagsDoc extends React.Component {
         }
         examples={{
           tagBackground: (
-            <GrommetTags
+            <Tags
               tagBackground='dark-3'
               options={stringOptions}
               onChange={({ option }) => this.setState({ selected: option })}
             />
           ),
           onSearch: (
-            <GrommetTags
+            <Tags
               options={stringOptions}
               onSearch={() => {}}
               onChange={({ option }) => this.setState({ selected: option })}
             />
           ),
           placeholder: (
-            <GrommetTags
+            <Tags
               placeholder='Choose one'
               options={stringOptions}
               onChange={({ option }) => this.setState({ selected: option })}
             />
           ),
           plain: (
-            <GrommetTags
+            <Tags
               plain={true}
               options={stringOptions}
               value={selected}
@@ -54,7 +54,7 @@ export default class TagsDoc extends React.Component {
             />
           ),
           searchPlaceholder: (
-            <GrommetTags
+            <Tags
               options={stringOptions}
               searchPlaceholder='Type something here'
               onSearch={() => {}}
@@ -62,7 +62,7 @@ export default class TagsDoc extends React.Component {
             />
           ),
           value: (
-            <GrommetTags
+            <Tags
               options={stringOptions}
               value={selected}
               onChange={({ option }) => this.setState({ selected: option })}
