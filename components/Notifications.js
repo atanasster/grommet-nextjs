@@ -1,6 +1,6 @@
 import React, { Fragment } from 'react';
 import { bindActionCreators } from 'redux';
-import Notification from './grommet/grommet-notification';
+import { Notification } from 'grommet-controls';
 import { deleteNotification } from '../redux/notifications/actions';
 import connect from '../redux';
 
