@@ -1,9 +1,10 @@
 import { Box, Calendar } from 'grommet';
 import { Calendar as CalendarIcon, Add, Subtract } from 'grommet-icons';
-import { DropInput } from '../../components/grommet/DropInput';
-import doc from '../../components/grommet/DropInput/doc';
+import { DropInput } from 'grommet-controls';
+import doc from 'grommet-controls/components/DropInput/doc';
+import { smallDate } from 'grommet-controls/utils/moment';
 import Doc from '../../components/Doc';
-import { smallDate } from '../../components/grommet/utils/moment';
+
 
 const desc = doc(DropInput).toJSON();
 
@@ -17,7 +18,7 @@ export default class DropInputDoc extends React.Component {
     return (
       <Box>
         <Doc
-          name='MaskedInput'
+          name='DropInput'
           desc={desc}
           example={
             <Box direction='row'>

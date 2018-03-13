@@ -1,7 +1,7 @@
 import { Box } from 'grommet';
 import { Lock, Unlock } from 'grommet-icons';
-import { PasswordInput } from '../../components/grommet/PasswordInput';
-import doc from '../../components/grommet/PasswordInput/doc';
+import { PasswordInput } from 'grommet-controls';
+import doc from 'grommet-controls/components/PasswordInput/doc';
 import Doc from '../../components/Doc';
 
 const desc = doc(PasswordInput).toJSON();

@@ -1,10 +1,6 @@
+// eslint-disable-next-line camelcase
+import { black, material_light, material_dark, metro } from 'grommet-controls/themes';
 import * as ActionTypes from './constants';
-import black from '../../themes/black';
-// eslint-disable-next-line camelcase
-import material_light from '../../themes/material-light';
-// eslint-disable-next-line camelcase
-import material_dark from '../../themes/material-dark';
-import metro from '../../themes/metro';
 
 const defaultTheme = 'grommet';
 const custom = {

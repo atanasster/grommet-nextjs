@@ -1,9 +1,9 @@
 import { Box } from 'grommet';
-import { ColorInput } from '../../components/grommet/ColorInput';
-import materialUIPalette from '../../components/grommet/Colors/palettes/materialColors';
-import doc from '../../components/grommet/ColorInput/doc';
+import { ColorInput } from 'grommet-controls';
+import materialUIPalette from 'grommet-controls/components/Colors/palettes/materialColors';
+import doc from 'grommet-controls/components/ColorInput/doc';
+import uiColorPalette from 'grommet-controls/components/Colors/palettes/uiColors';
 import Doc from '../../components/Doc';
-import uiColorPalette from '../../components/grommet/Colors/palettes/uiColors';
 
 const desc = doc(ColorInput).toJSON();
 

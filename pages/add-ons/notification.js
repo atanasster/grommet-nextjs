@@ -1,11 +1,11 @@
 import { Box } from 'grommet';
 import { Grommet, CircleQuestion } from 'grommet-icons';
-import { GrommetNotification } from '../../components/grommet/grommet-notification';
-import doc from '../../components/grommet/grommet-notification/doc';
+import { Notification } from 'grommet-controls';
+import doc from 'grommet-controls/components/Notification/doc';
 import Doc from '../../components/Doc';
 
-const desc = doc(GrommetNotification).toJSON();
-console.log(doc(GrommetNotification), desc);
+const desc = doc(Notification).toJSON();
+
 export default class NotificationDoc extends React.Component {
   render() {
     const onClose = () => alert('Close clicked');
@@ -16,7 +16,7 @@ export default class NotificationDoc extends React.Component {
         example={
           <Box gap='large'>
             <Box direction='row'>
-              <GrommetNotification
+              <Notification
                 border={{ side: 'all', color: 'brand', size: 'medium' }}
                 message='Message heading'
                 state='state label'
@@ -31,20 +31,20 @@ export default class NotificationDoc extends React.Component {
         }
         examples={{
           a11yTitle: (
-            <GrommetNotification
+            <Notification
               a11yTitle='Close notification'
               onClose={onClose}
             />
           ),
           status: (
-            <GrommetNotification
+            <Notification
               message='Message heading'
               status='info'
               onClose={onClose}
             />
           ),
           state: (
-            <GrommetNotification
+            <Notification
               message='Message heading'
               state='state note'
               status='warning'
@@ -53,7 +53,7 @@ export default class NotificationDoc extends React.Component {
             />
           ),
           strong: (
-            <GrommetNotification
+            <Notification
               message='Bold message'
               strong={true}
               status='error'
@@ -62,7 +62,7 @@ export default class NotificationDoc extends React.Component {
             />
           ),
           icon: (
-            <GrommetNotification
+            <Notification
               message='Custom icon'
               icon={<Grommet />}
               size='small'
@@ -70,7 +70,7 @@ export default class NotificationDoc extends React.Component {
             />
           ),
           closer: (
-            <GrommetNotification
+            <Notification
               status='disabled'
               message='Custom closer'
               closer={<CircleQuestion />}
@@ -79,7 +79,7 @@ export default class NotificationDoc extends React.Component {
             />
           ),
           percentComplete: (
-            <GrommetNotification
+            <Notification
               status='info'
               message='Task percentage'
               percentComplete={80}
@@ -88,7 +88,7 @@ export default class NotificationDoc extends React.Component {
             />
           ),
           timestamp: (
-            <GrommetNotification
+            <Notification
               message='Time stamp'
               timestamp={new Date()}
               size='small'
@@ -96,7 +96,7 @@ export default class NotificationDoc extends React.Component {
             />
           ),
           locale: (
-            <GrommetNotification
+            <Notification
               message='Locale de-DE'
               timestamp={new Date()}
               locale='de-DE'
@@ -105,14 +105,14 @@ export default class NotificationDoc extends React.Component {
             />
           ),
           size: (
-            <GrommetNotification
+            <Notification
               message='Large'
               size='large'
               onClose={onClose}
             />
           ),
           reverse: (
-            <GrommetNotification
+            <Notification
               message='reversed'
               size='small'
               reverse={true}

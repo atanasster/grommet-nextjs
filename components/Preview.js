@@ -4,11 +4,10 @@ import {
   DropButton,
 } from 'grommet';
 import { Menu as MenuIcon, Edit, Grommet } from 'grommet-icons';
+import { MultiSelect, TagsSelect, Tag } from 'grommet-controls';
 import ColorRoll from './ColorRoll';
 import Field from './grommet/Field';
-import { GrommetSelect } from './grommet/grommet-multiselect';
-import { TagsSelect } from './grommet/grommet-tags';
-import { GrommetTag } from './grommet/grommet-tag';
+
 
 const stringOptions = ['small', 'medium', 'large', 'xlarge', 'huge'];
 
@@ -159,7 +158,7 @@ export default class Preview extends React.Component {
           </Box>
           <Box direction='row' fill='horizontal'justify='between' pad={{ vertical: 'medium' }} margin={{ top: 'medium' }}>
             <Box basis='medium'>
-              <GrommetSelect
+              <MultiSelect
                 options={stringOptions}
                 value={selected}
                 label={TagsSelect()}
@@ -168,7 +167,7 @@ export default class Preview extends React.Component {
               />
             </Box>
             <Box>
-              <GrommetTag size='large' pad='small' />
+              <Tag size='large' pad='small' />
             </Box>
           </Box>
 

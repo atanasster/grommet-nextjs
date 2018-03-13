@@ -7,5 +7,14 @@
       "styled-components", { "ssr": true, "displayName": true, "preprocess": false },
       "grommet"
     ]
-  ]
+  ],
+  "env": {
+    "alias": {
+      "plugins": [
+        [
+          "module-resolver", { "alias": {"grommet-controls": "../grommet-controls/src/js" } }
+        ]
+      ]
+    }
+  }
 }

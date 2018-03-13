@@ -1,7 +1,7 @@
 import { Box } from 'grommet';
 import { AddCircle, SubtractCircle } from 'grommet-icons';
-import { NumberInput } from '../../components/grommet/NumberInput';
-import doc from '../../components/grommet/NumberInput/doc';
+import { NumberInput } from 'grommet-controls';
+import doc from 'grommet-controls/components/NumberInput/doc';
 import Doc from '../../components/Doc';
 
 const desc = doc(NumberInput).toJSON();

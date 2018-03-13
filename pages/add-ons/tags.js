@@ -1,10 +1,10 @@
 import { Box, Button } from 'grommet';
 import { FormSubtract, Trash } from 'grommet-icons';
-import { GrommetTags } from '../../components/grommet/grommet-tags';
-import doc from '../../components/grommet/grommet-tags/doc';
+import { Tags } from 'grommet-controls';
+import doc from 'grommet-controls/components/Tags/doc';
 import Doc from '../../components/Doc';
 
-const desc = doc(GrommetTags).toJSON();
+const desc = doc(Tags).toJSON();
 
 const stringOptions = ['small', 'medium', 'large', 'xlarge', 'huge'];
 const defaultTags = [stringOptions[0], stringOptions[2]];
@@ -26,12 +26,12 @@ export default class TagsDoc extends React.Component {
     const { tags } = this.state;
     return (
       <Doc
-        name='Grommet Tags'
+        name='Tags'
         desc={desc}
         example={
           <Box gap='large'>
             <Box direction='row'>
-              <GrommetTags
+              <Tags
                 value={tags}
                 border='small'
                 basis='medium'
@@ -46,13 +46,13 @@ export default class TagsDoc extends React.Component {
         }
         examples={{
           a11yTitle: (
-            <GrommetTags
+            <Tags
               a11yTitle='Grommet tags'
               value={tags}
             />
           ),
           children: (
-            <GrommetTags
+            <Tags
               value={tags}
               focusable={false}
               onChange={this.onChangeTags}
@@ -62,10 +62,10 @@ export default class TagsDoc extends React.Component {
                   <Button label={tag} icon={<Trash />} onClick={() => this.removeTag(index)} />
                 </Box>
               )}
-            </GrommetTags>
+            </Tags>
           ),
           icon: (
-            <GrommetTags
+            <Tags
               icon={<FormSubtract />}
               onChange={this.onChangeTags}
               value={tags}
@@ -73,14 +73,14 @@ export default class TagsDoc extends React.Component {
           ),
 
           direction: (
-            <GrommetTags
+            <Tags
               direction='column'
               onChange={this.onChangeTags}
               value={tags}
             />
           ),
           tagProps: (
-            <GrommetTags
+            <Tags
               tagProps={{
                 background: 'status-critical',
                 size: 'large',
@@ -91,26 +91,26 @@ export default class TagsDoc extends React.Component {
             />
           ),
           onClick: (
-            <GrommetTags
+            <Tags
               onClick={(e, option) => alert(`Clicked on ${option}`)}
               onChange={this.onChangeTags}
               value={tags}
             />
           ),
           focusable: (
-            <GrommetTags
+            <Tags
               focusable={false}
               onChange={this.onChangeTags}
               value={tags}
             />
           ),
           placeholder: (
-            <GrommetTags
+            <Tags
               placeholder='No selection'
             />
           ),
           value: (
-            <GrommetTags
+            <Tags
               value='tag'
             />
           ),

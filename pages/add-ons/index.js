@@ -1,22 +1,14 @@
 import { Box, Heading, Paragraph, Chart } from 'grommet';
+import {
+  MultiSelect, Tags, Tag, Notification, DropInput, MaskedInput, placeholderChars,
+  DateInput, NumberInput, PasswordInput, EmailInput, ColorInput, Colors
+} from 'grommet-controls';
+import materialUIPalette from 'grommet-controls/components/Colors/palettes/materialColors';
 import Page from '../../components/Page';
 import Section from '../../components/Section';
 import Item from '../../components/Item';
-import Table from '../../components/grommet/grommet-table/Table';
-import { GrommetSelect } from '../../components/grommet/grommet-multiselect/index';
-import { GrommetTags } from '../../components/grommet/grommet-tags/index';
-import { GrommetTag } from '../../components/grommet/grommet-tag/index';
-import { GrommetNotification } from '../../components/grommet/grommet-notification/index';
-import { DropInput } from '../../components/grommet/DropInput';
-import { MaskedInput, placeholderChars } from '../../components/grommet/MaskedInput';
-import { DateInput } from '../../components/grommet/DateInput';
-import { NumberInput } from '../../components/grommet/NumberInput';
-import { PasswordInput } from '../../components/grommet/PasswordInput';
-import { EmailInput } from '../../components/grommet/EmailInput';
-import { ColorInput } from '../../components/grommet/ColorInput';
-import { Colors } from '../../components/grommet/Colors';
+import Table from '../../components/grommet-table/Table';
 
-import materialUIPalette from '../../components/grommet/Colors/palettes/materialColors';
 
 const CHART_VALUES = [
   { value: [7, 90], label: 'ninety' },
@@ -83,15 +75,15 @@ export default class AddOns extends React.Component {
                 ]}
               />
             </Item>
-            <Item name='Tag' path='/add-ons/grommet-tag' center={true}>
-              <GrommetTag
+            <Item name='Tag' path='/add-ons/tag' center={true}>
+              <Tag
                 label='Tag'
                 background='accent-1'
                 onChange={({ option }) => this.setState({ selected: option })}
               />
             </Item>
-            <Item name='Notification' path='/add-ons/grommet-notification' center={true}>
-              <GrommetNotification
+            <Item name='Notification' path='/add-ons/notification' center={true}>
+              <Notification
                 message='Notification'
                 onClose={() => {}}
                 timestamp={new Date()}
@@ -109,8 +101,8 @@ export default class AddOns extends React.Component {
             </Item>
           </Section>
           <Section align='stretch' name='Controls' index={0}>
-            <Item name='Select' path='/add-ons/grommet-multiselect' center={true}>
-              <GrommetSelect
+            <Item name='Multiselect' path='/add-ons/multiselect' center={true}>
+              <MultiSelect
                 options={options}
                 onChange={({ option }) => this.setState({ selected: option })}
                 placeholder='Multiselect'
@@ -118,8 +110,8 @@ export default class AddOns extends React.Component {
                 value={selected}
               />
             </Item>
-            <Item name='Tags' path='/add-ons/grommet-tags' center={true}>
-              <GrommetTags
+            <Item name='Tags' path='/add-ons/tags' center={true}>
+              <Tags
                 value={selected}
                 onChange={({ option }) => this.setState({ selected: option })}
                 placeholder='Multiselect'

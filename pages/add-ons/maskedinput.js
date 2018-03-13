@@ -4,10 +4,11 @@ import {
   MaskedInput, placeholderChars,
   createAutoCorrectedDatePipe, createNumberMask,
   alphabetic, digit,
-} from '../../components/grommet/MaskedInput';
-import doc from '../../components/grommet/MaskedInput/doc';
+} from 'grommet-controls';
+import doc from 'grommet-controls/components/MaskedInput/doc';
+import { smallDate } from 'grommet-controls/utils/moment';
 import Doc from '../../components/Doc';
-import { smallDate } from '../../components/grommet/utils/moment';
+
 
 const desc = doc(MaskedInput).toJSON();
 

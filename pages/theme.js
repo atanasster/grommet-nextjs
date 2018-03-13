@@ -4,15 +4,15 @@ import 'isomorphic-unfetch';
 import JSONPretty from 'react-json-pretty';
 import { Anchor, Box, Button, Grommet, Heading, Layer, Select, Text, TextInput, DropButton } from 'grommet';
 import { withTheme } from 'grommet/components/hocs';
-import { deepMerge } from 'grommet/utils/object';
+import { deepMerge } from 'grommet/utils/object'
+import { ColorInput } from 'grommet-controls';
+import materialUIPalette from 'grommet-controls/components//Colors/palettes/materialColors';
 import Page from '../components/Page';
 import Field from '../components/grommet/Field';
 import createTheme, { MOODS, SCHEMES, SHARPNESSES, themeFromFont } from '../utils/theme';
 import { updateTheme } from '../redux/themes/actions';
 import connect from '../redux';
 import Preview from '../components/Preview';
-import { ColorInput } from '../components/grommet/ColorInput';
-import materialUIPalette from '../components/grommet/Colors/palettes/materialColors';
 
 const defaultFont = 'Roboto';
 const defaultColor = '#99cc33';

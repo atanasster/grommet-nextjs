@@ -1,13 +1,13 @@
 import { Box } from 'grommet';
-import { Colors } from '../../components/grommet/Colors';
-import doc from '../../components/grommet/Colors/doc';
-import Doc from '../../components/Doc';
+import { Colors } from 'grommet-controls';
+import doc from 'grommet-controls/components/Colors/doc';
 import materialUIPalette, {
   blue, blueGrey, brown, cyan,
   deepOrange,
-} from '../../components/grommet/Colors/palettes/materialColors';
-import uiColorPalette from '../../components/grommet/Colors/palettes/uiColors';
-import basicColorPalette from '../../components/grommet/Colors/palettes/basicColors';
+} from 'grommet-controls/components/Colors/palettes/materialColors';
+import uiColorPalette from 'grommet-controls/components/Colors/palettes/uiColors';
+import basicColorPalette from 'grommet-controls/components/Colors/palettes/basicColors';
+import Doc from '../../components/Doc';
 
 const desc = doc(Colors).toJSON();
 

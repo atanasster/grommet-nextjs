@@ -1,10 +1,10 @@
 import { Box, Text, Image, CheckBox } from 'grommet';
 import { Add, Subtract } from 'grommet-icons';
-import doc from '../../components/grommet/grommet-table/doc';
+import { TagsSelect, MultiSelect } from 'grommet-controls';
+import doc from '../../components/grommet-table/doc';
 import Doc from '../../components/Doc';
-import { GrommetTable } from '../../components/grommet/grommet-table/index';
-import { TagsSelect } from '../../components/grommet/grommet-tags/index';
-import { GrommetSelect } from '../../components/grommet/grommet-multiselect/index';
+import { GrommetTable } from '../../components/grommet-table/index';
+
 
 const desc = doc(GrommetTable).toJSON();
 
@@ -139,7 +139,7 @@ export default class TableDoc extends React.Component {
                 <CheckBox checked={filterable} label='Filter' onChange={() => this.setState({ filterable: !filterable })} />
                 <CheckBox checked={paging} label='Paging' onChange={() => this.setState({ paging: !paging })} />
                 <Box basis='small'>
-                  <GrommetSelect
+                  <MultiSelect
                     options={allColumns.map(column => column.Header)}
                     label={TagsSelect()}
                     multiple={true}

@@ -1,9 +1,7 @@
 import { describe, PropTypes } from 'react-desc';
-import getAvailableAtGitHub from '../utils/doc';
 
 export default (Element) => {
   const DocumentedElement = describe(Element)
-    .availableAt(getAvailableAtGitHub({ url: 'https://github.com/atanasster/grommet-nextjs' }))
     .description('A Grommet 2 table component with pagination, filtering, footer, child rows and grouping. Derived from https://github.com/react-tools/react-table. ')
     .usage(`
     $ npm install grommet-table 

@@ -1,8 +1,9 @@
 import { Box } from 'grommet';
-import { DateInput } from '../../components/grommet/DateInput';
-import doc from '../../components/grommet/DateInput/doc';
+import { DateInput } from 'grommet-controls';
+import doc from 'grommet-controls/components/DateInput/doc';
+import { smallDate } from 'grommet-controls/utils/moment';
 import Doc from '../../components/Doc';
-import { smallDate } from '../../components/grommet/utils/moment';
+
 
 const desc = doc(DateInput).toJSON();
 

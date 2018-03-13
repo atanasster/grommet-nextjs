@@ -21,7 +21,7 @@ export default class Doc extends React.Component {
       >
         <Box pad={{ horizontal: 'large', top: 'large' }}>
           <Box direction='row-responsive'>
-            <Box margin={{ vertical: 'large' }} basis='2/3' align='start'>
+            <Box margin={{ vertical: 'large' }} basis='1/2' align='start'>
               <Heading level={1}>
                 <strong>{name}</strong>
               </Heading>
@@ -41,7 +41,7 @@ export default class Doc extends React.Component {
                 </Button>
               ) : null}
             </Box>
-            <Box flex={true} pad={{ vertical: 'large' }}>
+            <Box flex={true} pad={{ vertical: 'large' }} align='center'>
               {example}
             </Box>
           </Box>

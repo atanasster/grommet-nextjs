@@ -1,6 +1,6 @@
 import { Box } from 'grommet';
-import { EmailInput } from '../../components/grommet/EmailInput';
-import doc from '../../components/grommet/EmailInput/doc';
+import { EmailInput } from 'grommet-controls';
+import doc from 'grommet-controls/components/EmailInput/doc';
 import Doc from '../../components/Doc';
 
 const desc = doc(EmailInput).toJSON();
