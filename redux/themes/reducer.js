@@ -1,5 +1,5 @@
 // eslint-disable-next-line camelcase
-import { black, material_light, material_dark, metro } from 'grommet-controls/themes';
+import { black, materiallight, materialdark, metro } from 'grommet-controls/themes';
 import * as ActionTypes from './constants';
 
 const defaultTheme = 'grommet';
@@ -54,8 +54,8 @@ const initialState = {
   themes: {
     grommet: {},
     black,
-    material_light,
-    material_dark,
+    materiallight,
+    materialdark,
     metro,
     custom,
   },
