@@ -27,7 +27,7 @@
     "dotenv-webpack": "^1.5.5",
     "express": "^4.16.3",
     "grommet": "https://github.com/grommet/grommet/tarball/NEXT-stable",
-    "grommet-controls": "^0.14.0",
+    "grommet-controls": "^0.14.1",
     "grommet-icons": "^0.15.0",
     "install": "^0.10.4",
     "ip": "^1.1.5",
@@ -39,7 +39,7 @@
     "react": "16.2.0",
     "react-dom": "16.2.0",
     "react-formify": "^0.10.2",
-    "react-json-pretty": "^1.7.4",
+    "react-json-pretty": "^1.7.5",
     "react-redux": "^5.0.7",
     "redux": "^3.7.2",
     "redux-devtools-extension": "^2.13.2",
@@ -59,7 +59,8 @@
     "eslint-plugin-async-await": "0.0.0",
     "eslint-plugin-import": "^2.2.0",
     "eslint-plugin-jsx-a11y": "^6.0.3",
-    "eslint-plugin-react": "^7.7.0"
+    "eslint-plugin-react": "^7.7.0",
+    "pre-commit": "^1.2.2"
   },
   "pre-commit": [
     "check"

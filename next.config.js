@@ -1,11 +1,10 @@
 const { IgnorePlugin } = require('webpack');
-const router = require('./server/routes');
 const Dotenv = require('dotenv-webpack');
-
+const path = require('path');
 
 const initExport = {
   // eslint-disable-next-line no-unused-vars
-  webpack: (config, { dev }) => {
+  webpack: (config, env) => {
     config.plugins.push(new Dotenv({ path: './public.env' }));
     config.plugins.push(new IgnorePlugin(/^\.\/locale$/, /moment$/));
 
@@ -20,26 +19,15 @@ const initExport = {
         })
       );
     }
+    if (process.env.NODE_ENV === 'alias') {
+      config.module.rules.push({
+        loader: 'babel-loader',
+        test: /\.js(\?[^?]*)?$/,
+        include: [path.resolve(__dirname, '../grommet-controls/src/js')],
+      });
+    }
     return config;
   },
 };
-
-if (process.env.STATIC_EXPORT) {
-  initExport.exportPathMap = function exportPathMap() {
-    const routes = {};
-    routes['/'] = {
-      page: 'index',
-    };
-    router.routes.forEach((route) => {
-      if (!route.pattern.includes(':')) {
-        routes[route.pattern] = {
-          page: route.page,
-        };
-      }
-    });
-
-    return routes;
-  };
-}
 
 module.exports = initExport;

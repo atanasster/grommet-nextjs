@@ -1,8 +1,9 @@
-import { Box, Heading, Paragraph, Chart } from 'grommet';
+import { Box, Heading, Paragraph, Chart, Button } from 'grommet';
 import {
   MultiSelect, Tags, Tag, Notification, DropInput, MaskedInput, placeholderChars,
-  DateInput, NumberInput, PasswordInput, EmailInput, ColorInput, Colors
+  DateInput, NumberInput, PasswordInput, EmailInput, ColorInput, Colors,
 } from 'grommet-controls';
+import { Form } from 'grommet-controls/components/Form';
 import materialUIPalette from 'grommet-controls/components/Colors/palettes/materialColors';
 import Page from '../../components/Page';
 import Section from '../../components/Section';
@@ -48,7 +49,7 @@ export default class AddOns extends React.Component {
           </Box>
         </Box>
         <Box pad={{ horizontal: 'large' }}>
-          <Section align='stretch' name='Presentation' index={0}>
+          <Section align='stretch' name='Presentation' index={1}>
             <Item name='grommet-table' path='/add-ons/grommet-table'>
               <Table
                 columns={[
@@ -174,6 +175,13 @@ export default class AddOns extends React.Component {
                 colors={materialUIPalette}
                 defaultValue='#ff00aa'
               />
+            </Item>
+          </Section>
+          <Section align='stretch' name='Form' index={2}>
+            <Item name='Form' path='/add-ons/form' center={true}>
+              <Form border='all' onSubmit={() => alert('submit')}>
+                <Button type='submit' label='Submit' />
+              </Form>
             </Item>
           </Section>
         </Box>

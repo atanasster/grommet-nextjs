@@ -1,6 +1,6 @@
 import {
-  Box, Button, Calendar, Chart, CheckBox, Clock,
-  Diagram, Distribution, DropButton, Anchor,
+  Box, Button, Calendar, Carousel, Chart, CheckBox, Clock,
+  Diagram, Distribution, DropButton, Anchor, FormField,
   Heading, Image,
   Menu, Meter, Paragraph, RadioButton, RangeInput,
   Select, Stack,
@@ -301,6 +301,18 @@ Visit the official <Anchor href='https://v2.grommet.io/' target='_blank'>Grommet
           </Section>
 
           <Section name='Old School' index={6}>
+            <Item name='Carousel' path='/carousel'>
+              <Carousel fill={true}>
+                <Image fit='contain' src='//v2.grommet.io/assets/Wilderpeople_Ricky.jpg' />
+                <Image fit='contain' src='//v2.grommet.io/assets/IMG_4245.jpg' />
+                <Image fit='contain' src='//v2.grommet.io/assets/IMG_4210.jpg' />
+              </Carousel>
+            </Item>
+            <Item name='FormField' path='/formfield' center={true}>
+              <FormField label='Name'>
+                <TextInput />
+              </FormField>
+            </Item>
             <Item name='Table' path='/table' center={true}>
               <Table>
                 <TableHeader>
