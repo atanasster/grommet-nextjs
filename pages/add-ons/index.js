@@ -179,7 +179,7 @@ export default class AddOns extends React.Component {
           </Section>
           <Section align='stretch' name='Form' index={2}>
             <Item name='Form' path='/add-ons/form' center={true}>
-              <Form onSubmit={values => alert(JSON.stringify(values))}>
+              <Form focusFirstChild={false} onSubmit={values => alert(JSON.stringify(values))}>
                 <TextInputField label='Text' name='text' validation={[validators.required(), validators.minLength(8)]} />
               </Form>
             </Item>

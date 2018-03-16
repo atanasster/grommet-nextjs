@@ -34,13 +34,16 @@ export default class FormDoc extends Component {
         }
         examples={{
           onSubmit: (
-            <Form onSubmit={values => alert(JSON.stringify(values))}>
+            <Form focusFirstChild={false} onSubmit={values => alert(JSON.stringify(values))}>
               <TextInputField label='Text' name='fieldname' />
             </Form>
           ),
           onChange: (
             <Box pad='small' >
-              <Form onChange={({ target: { value } }) => this.setState({ changedValue: value })} >
+              <Form
+                focusFirstChild={false}
+                onChange={({ target: { value } }) => this.setState({ changedValue: value })}
+              >
                 <TextInputField label='Text' name='onchange' />
               </Form>
               <Text size='small'>
@@ -50,6 +53,7 @@ export default class FormDoc extends Component {
           ),
           onSubmitError: (
             <Form
+              focusFirstChild={false}
               onSubmit={values => alert(JSON.stringify(values))}
               onSubmitError={errors => alert(JSON.stringify(errors))}
             >
@@ -59,6 +63,7 @@ export default class FormDoc extends Component {
           onInvalidForm: (
             <Box pad='small' >
               <Form
+                focusFirstChild={false}
                 onSubmit={values => alert(JSON.stringify(values))}
                 onInvalidForm={error => this.setState({ invalid: error })}
               >
