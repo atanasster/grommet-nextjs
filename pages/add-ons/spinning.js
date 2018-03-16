@@ -6,7 +6,7 @@ import Doc from '../../components/Doc';
 
 const desc = doc(Spinning).toJSON();
 
-export default class FormDoc extends Component {
+export default class SpinningDoc extends Component {
   render() {
     return (
       <Doc
