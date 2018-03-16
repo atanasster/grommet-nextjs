@@ -1,3 +1,4 @@
+import React, { Component } from 'react';
 import { Box, Button, Text } from 'grommet';
 import { Form, TextInputField, PasswordInputField, SelectField, CheckBoxField, NumberInputField, validators } from 'grommet-controls';
 import doc from 'grommet-controls/components/Form/doc';
@@ -5,7 +6,7 @@ import Doc from '../../components/Doc';
 
 const desc = doc(Form).toJSON();
 
-export default class FormDoc extends React.Component {
+export default class FormDoc extends Component {
   state = {
     changedValue: '',
     invalid: false,
@@ -17,8 +18,8 @@ export default class FormDoc extends React.Component {
         name='Form'
         desc={desc}
         example={
-          <Box direction='row'>
-            <Form onSubmit={values => alert(JSON.stringify(values))}>
+          <Box direction='row' fill='horizontal'>
+            <Form onSubmit={values => alert(JSON.stringify(values))} pad={{ horizontal: 'small' }} basis='small' >
               <PasswordInputField label='Password' name='password' validation={[validators.required(), validators.minLength(8), validators.alphaNumeric()]} />
               <PasswordInputField label='Confirm Password' name='password1' validation={[validators.equalsField('password', 'the above password')]} />
               <TextInputField label='URL' name='url' validation={[validators.required(), validators.url()]} />
