@@ -1,7 +1,7 @@
 import {
   Box, Button, Calendar, Carousel, Chart, CheckBox, Clock,
   Diagram, Distribution, DropButton, Anchor, FormField,
-  Heading, Image,
+  Heading, Image, RangeSelector,
   Menu, Meter, Paragraph, RadioButton, RangeInput,
   Select, Stack,
   Table, TableBody, TableCell, TableHeader, TableRow,
@@ -26,7 +26,9 @@ const CHART_VALUES = [
 ];
 
 export default class Home extends React.Component {
+  state = { values: [3, 7] };
   render() {
+    const { values } = this.state;
     return (
       <Page title='Explore'>
         <Box pad='large'>
@@ -154,6 +156,28 @@ Visit the official <Anchor href='https://v2.grommet.io/' target='_blank'>Grommet
             <Item name='RangeInput' path='/rangeinput' center={true}>
               <RangeInput />
             </Item>
+            <Item name='RangeSelector' path='/rangeselector' center={true}>
+              <Stack>
+                <Box direction='row' justify='between'>
+                  {[0, 1, 2, 3, 4, 5, 6, 7, 8, 9].map(value => (
+                    <Box key={value} pad='small' border={false}>
+                      <Text style={{ fontFamily: 'monospace' }}>{value}</Text>
+                    </Box>
+                 ))}
+                </Box>
+                <RangeSelector
+                  direction='horizontal'
+                  invert={false}
+                  min={0}
+                  max={9}
+                  size='full'
+                  round='small'
+                  values={values}
+                  onChange={nextValues => this.setState({ values: nextValues })}
+                />
+              </Stack>
+            </Item>
+
             <Item name='Select' path='/select' center={true}>
               <Select options={[]} placeholder='Choices' tabIndex='-1' />
             </Item>
