@@ -187,6 +187,12 @@ Visit the official <Anchor href='https://v2.grommet.io/' target='_blank'>Grommet
             <Item name='TextInput' path='/textinput' center={true}>
               <TextInput placeholder='Placeholder' disabled={true} />
             </Item>
+            <Item name='FormField' path='/formfield' center={true}>
+              <FormField label='Name'>
+                <TextInput />
+              </FormField>
+            </Item>
+
           </Section>
 
           <Section name='Visualizations' index={3}>
@@ -331,11 +337,6 @@ Visit the official <Anchor href='https://v2.grommet.io/' target='_blank'>Grommet
                 <Image fit='contain' src='//v2.grommet.io/assets/IMG_4245.jpg' />
                 <Image fit='contain' src='//v2.grommet.io/assets/IMG_4210.jpg' />
               </Carousel>
-            </Item>
-            <Item name='FormField' path='/formfield' center={true}>
-              <FormField label='Name'>
-                <TextInput />
-              </FormField>
             </Item>
             <Item name='Table' path='/table' center={true}>
               <Table>

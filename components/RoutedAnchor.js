@@ -1,4 +1,4 @@
-import RoutedAnchor from './grommet/RoutedAnchor';
+import RoutedAnchor from './nextjs/RoutedAnchor';
 
 export default props => (
   <RoutedAnchor preserveParams='theme' {...props} />

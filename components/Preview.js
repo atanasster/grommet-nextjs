@@ -1,12 +1,11 @@
 import {
-  Box, Button, Anchor, Heading, Select, Text,
+  Box, Button, Anchor, Heading, Select, Text, FormField,
   TextInput, CheckBox, RadioButton, Menu, Layer, RangeInput,
   DropButton,
 } from 'grommet';
 import { Menu as MenuIcon, Edit, Grommet } from 'grommet-icons';
 import { MultiSelect, TagsSelect, Tag } from 'grommet-controls';
 import ColorRoll from './ColorRoll';
-import Field from './grommet/Field';
 
 
 const stringOptions = ['small', 'medium', 'large', 'xlarge', 'huge'];
@@ -61,13 +60,13 @@ export default class Preview extends React.Component {
           <Heading level={1} margin={{ top: 'none' }}>Heading H1</Heading>
           <Text>Text</Text>
           <Box direction='row' fill='horizontal' pad={{ vertical: 'medium' }} justify='between' align='center'>
-            <Field
+            <FormField
               label='TextInput'
               error='error'
             >
               <TextInput plain={true} placeholder='TextInput' />
-            </Field>
-            <Field
+            </FormField>
+            <FormField
               label='Select'
               help='select an option'
             >
@@ -76,15 +75,15 @@ export default class Preview extends React.Component {
                 placeholder='Select an option'
                 options={stringOptions}
               />
-            </Field>
-            <Field
+            </FormField>
+            <FormField
               label='RangeInput'
             >
               <RangeInput
                 onChange={() => {}}
               />
 
-            </Field>
+            </FormField>
 
           </Box>
           <Box direction='row' pad={{ vertical: 'medium' }} justify='between' fill='horizontal'>

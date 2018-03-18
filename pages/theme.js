@@ -2,13 +2,15 @@ import { Fragment } from 'react';
 import { bindActionCreators } from 'redux';
 import 'isomorphic-unfetch';
 import JSONPretty from 'react-json-pretty';
-import { Anchor, Box, Button, Grommet, Heading, Layer, Select, Text, TextInput, DropButton } from 'grommet';
+import {
+  Anchor, Box, Button, Grommet, Heading, Layer, Select, Text,
+  TextInput, DropButton, FormField,
+} from 'grommet';
 import { withTheme } from 'grommet/components/hocs';
 import { deepMerge } from 'grommet/utils/object';
 import { ColorInput } from 'grommet-controls';
 import materialUIPalette from 'grommet-controls/components//Colors/palettes/materialColors';
 import Page from '../components/Page';
-import Field from '../components/grommet/Field';
 import createTheme, { MOODS, SCHEMES, SHARPNESSES, themeFromFont } from '../utils/theme';
 import { updateTheme } from '../redux/themes/actions';
 import connect from '../redux';
@@ -251,14 +253,14 @@ class Theme extends React.Component {
        <Box direction='row-responsive'>
          <Box basis='medium' margin={{ bottom: 'large' }}>
            <Box pad='medium'>
-             <Field label='Name'>
+             <FormField label='Name'>
                <TextInput
                  plain={true}
                  value={name}
                  onChange={event => this.setState({ name: event.target.value })}
                />
-             </Field>
-             <Field
+             </FormField>
+             <FormField
                label='Brand Color'
                help='hex RGB'
                error={errors.color}
@@ -269,8 +271,8 @@ class Theme extends React.Component {
                  value={color}
                  onChange={this.onChangeColor}
                />
-             </Field>
-             <Field
+             </FormField>
+             <FormField
                label='Background Color'
                help='hex RGB'
                error={errors.background}
@@ -281,8 +283,8 @@ class Theme extends React.Component {
                  value={background}
                  onChange={this.onChangeBackground}
                />
-             </Field>
-             <Field
+             </FormField>
+             <FormField
                label='Font Name'
                help={<Anchor href='https://fonts.google.com/' label='google fonts' />}
              >
@@ -298,31 +300,31 @@ class Theme extends React.Component {
                    </Box>
                 }
                />
-             </Field>
-             <Field label='Border sharpness'>
+             </FormField>
+             <FormField label='Border sharpness'>
                <Select
                  plain={true}
                  value={sharpness}
                  options={SHARPNESSES}
                  onChange={this.onChangeSharpness}
                />
-             </Field>
-             <Field label='Color scheme'>
+             </FormField>
+             <FormField label='Color scheme'>
                <Select
                  plain={true}
                  value={scheme}
                  options={SCHEMES}
                  onChange={this.onChangeScheme}
                />
-             </Field>
-             <Field label='Color variation'>
+             </FormField>
+             <FormField label='Color variation'>
                <Select
                  plain={true}
                  value={mood}
                  options={MOODS}
                  onChange={this.onChangeMood}
                />
-             </Field>
+             </FormField>
            </Box>
            <Box pad={{ horizontal: 'medium' }} >
              <Button label='Apply' primary={true} onClick={this.onApply} />
