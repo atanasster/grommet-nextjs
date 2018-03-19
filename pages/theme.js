@@ -206,7 +206,6 @@ class Theme extends React.Component {
     const {
       color, background, mood, scheme, sharpness, key,
     } = this.state;
-    console.log(font);
     this.setState({
       key: key + 1,
       font,

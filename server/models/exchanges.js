@@ -1,7 +1,9 @@
 const ccxt = require('ccxt');
-const { sleep } = require('../api/utils');
+// const { sleep } = require('../api/utils');
 
-const exchanges = ccxt.exchanges.map((exchangeId) => {
+const exchanges = [];
+/*
+ccxt.exchanges.map((exchangeId) => {
   const exchange = new ccxt[exchangeId]();
   exchange.loadMarkets()
   // eslint-disable-next-line no-unused-vars
@@ -14,8 +16,8 @@ const exchanges = ccxt.exchanges.map((exchangeId) => {
     });
   return exchange;
 });
+*/
 
-module.exports.exchanges = ccxt.exchanges;
 
 const baseExchangeInfo = (exchange) => {
   const countries = typeof exchange.countries === 'string' ? [exchange.countries] : exchange.countries;
@@ -29,7 +31,9 @@ const baseExchangeInfo = (exchange) => {
   };
 };
 
-module.exports = exchanges.map(exchange => (baseExchangeInfo(exchange)));
+module.exports = ccxt.exchanges.map(exchangeId => baseExchangeInfo(new ccxt[exchangeId]()));
+
+module.exports.exchanges = exchanges.map(exchange => (baseExchangeInfo(exchange)));
 
 const findByName = exchangeName => (exchanges.find(exch => exch.name === exchangeName));
 

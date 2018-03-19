@@ -20,7 +20,6 @@ export default class LayerDoc extends React.Component {
     } = this.state;
     let layerNode;
     if (show) {
-      console.log(plain);
       const close = () => this.setState({ show: false });
       layerNode = (
         <Layer

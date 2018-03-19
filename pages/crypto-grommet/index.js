@@ -53,7 +53,7 @@ class Home extends React.Component {
   };
   static async getInitialProps() {
     const exchanges = exchangesList;
-    console.log(exchanges);
+    console.log(exchangesList);
     const uniqueCountries = [...new Set(exchanges.reduce((arr, ex) =>
       ([...arr, ...ex.countries]), [])),
     ];
