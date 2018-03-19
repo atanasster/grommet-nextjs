@@ -18,6 +18,7 @@
     "babel-plugin-grommet": "^0.5.2",
     "babel-plugin-module-resolver": "^3.1.0",
     "babel-plugin-styled-components": "^1.5.1",
+    "ccxt": "^1.11.137",
     "chalk": "^2.3.2",
     "color": "^3.0.0",
     "color-scheme": "^1.0.0",
@@ -47,8 +48,8 @@
     "styled-components": "^2.1.0",
     "text-mask-addons": "^3.7.2",
     "text-mask-core": "^5.0.1",
+    "turndown": "^4.0.1",
     "url-search-params": "^0.10.0",
-    "webfontloader": "^1.6.28",
     "webpack-bundle-analyzer": "^2.11.1"
   },
   "devDependencies": {

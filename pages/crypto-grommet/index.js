@@ -1,5 +1,12 @@
-import { Box, Heading, WorldMap } from 'grommet';
+import { Box, Heading, WorldMap, Image } from 'grommet';
 import App from '../../components/App';
+import exchangesList from '../../server/models/exchanges';
+import RoutedAnchor from '../../components/RoutedAnchor';
+import SideLayer from '../../components/SideLayer';
+import connect from '../../redux';
+import allCountries from '../../utils/countries';
+import Exchange from '../../components/crypto/Exchange';
+import { GrommetTable } from '../../components/grommet-table/index';
 
 const continents = [
   {
@@ -34,15 +41,28 @@ const continents = [
   },
 ];
 
-export default class Home extends React.Component {
+class Home extends React.Component {
   state = {
     worldContinent: undefined,
     worldExchanges: undefined,
+    continentExchanges: undefined,
+    continent: undefined,
   };
   static defaultProps = {
-    exchanges: [],
     countries: [],
   };
+  static async getInitialProps() {
+    const exchanges = exchangesList;
+    console.log(exchanges);
+    const uniqueCountries = [...new Set(exchanges.reduce((arr, ex) =>
+      ([...arr, ...ex.countries]), [])),
+    ];
+    return {
+      exchanges,
+      countries: Object.keys(allCountries).filter(c =>
+        (uniqueCountries.indexOf(c)) !== -1).map(c => ({ ...allCountries[c], code: c })),
+    };
+  }
 
   exchangesByName(name) {
     const { exchanges: allExchanges, countries } = this.props;
@@ -84,9 +104,45 @@ export default class Home extends React.Component {
   };
 
   render() {
-    const { worldContinent, worldExchanges } = this.state;
+    const {
+      worldContinent, worldExchanges, continentExchanges, continent,
+    } = this.state;
     const { responsive } = this.props;
     let layer;
+    if (continentExchanges) {
+      layer = (
+        <SideLayer
+          onClose={() => this.setState({ continentExchanges: undefined })}
+          heading={continent.name}
+        >
+          <Box basis='large'>
+            <GrommetTable
+              defaultPageSize={50}
+              data={continentExchanges}
+              columns={[
+                {
+                  Cell: props => (
+                    <RoutedAnchor path={`/crypto-grommet/exchanges/prices/${props.original.name}`}>
+                      <Image src={props.original.logo} />
+                    </RoutedAnchor>),
+                }, {
+                  accessor: 'name',
+                  Cell: props => (
+                    <RoutedAnchor path={`/crypto-grommet/exchanges/prices/${props.original.name}`}>
+                      {props.original.name}
+                    </RoutedAnchor>),
+                }, {
+                  Cell: props => (
+                    <Box direction='row'>
+                      <Exchange countries={props.original.countries} />
+                    </Box>),
+                },
+              ]}
+            />
+          </Box>
+        </SideLayer>
+      );
+    }
     const continentHover = worldContinent ? (
       `${worldExchanges} exchanges in ${worldContinent}, click to see more...`
     ) : null;
@@ -123,3 +179,10 @@ export default class Home extends React.Component {
     );
   }
 }
+
+const mapStateToProps = state => ({
+  aggregatedExchange: state.settings.aggregatedExchange,
+  defaultExchange: state.settings.defaultExchange,
+});
+
+export default connect(mapStateToProps)(Home);
