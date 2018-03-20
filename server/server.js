@@ -5,11 +5,14 @@ const next = require('next');
 const path = require('path');
 const fs = require('fs');
 const cors = require('cors');
+const { graphqlExpress, graphiqlExpress } = require('apollo-server-express');
+const bodyParser = require('body-parser');
 const staticFiles = require('./static');
 const routes = require('./routes');
 const logger = require('./logger');
 const dotenv = require('dotenv');
 const api = require('./api');
+const schema = require('./graphql/schema');
 
 const port = parseInt(process.env.PORT, 10) || 3000;
 const dev = process.env.NODE_ENV !== 'production';
@@ -83,6 +86,8 @@ app.prepare()
   .then(() => {
     const server = express();
     // server.use(compression({ threshold: 0 }));
+    server.use('/graphql', bodyParser.json(), graphqlExpress({ schema, cacheControl: true }));
+    server.use('/graphiql', graphiqlExpress({ endpointURL: '/graphql' }));
     server.use(cors());
     server.use(routerHandler);
     server.use('/', staticFiles());

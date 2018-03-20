@@ -74,7 +74,7 @@ Exchange.defaultProps = {
 };
 
 Exchange.propTypes = {
-  exchange: PropTypes.object,
+  exchange: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
   level: PropTypes.number,
   border: PropTypes.string,
 };
