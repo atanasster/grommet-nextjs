@@ -18,7 +18,7 @@ const resolvers = {
     },
     exchange(root, { id }) {
       const exchange = exchanges().find(item => item.id === id);
-      console.log(exchange);
+      // console.log(exchange);
       return exchange || { id };
     },
     priceHistory(root, {
