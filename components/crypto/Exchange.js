@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Box, Image, Heading } from 'grommet';
-import RoutedAnchor from '../RoutedAnchor';
+import RoutedAnchor from './RoutedAnchor';
 import connect from '../../redux';
 
 export const CountryFlag = ({ code }) => (
@@ -55,7 +55,7 @@ const Exchange = ({
       gap='xsmall'
     >
       {image}
-      <RoutedAnchor path={`/crypto-grommet/exchanges/prices/${exchange.code}`}>
+      <RoutedAnchor path={`/exchanges/prices/${exchange.code}`}>
         <Heading level={level} margin='none'><strong>{exchangeName}</strong></Heading>
       </RoutedAnchor>
     </Box>

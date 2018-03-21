@@ -5,14 +5,13 @@ import {
   Heading,
   Paragraph,
   Anchor,
-  RoutedAnchor,
   Markdown,
   Box,
 } from 'grommet';
-import { SITE_ROOT } from '../redux/nav/constants';
-import Page from './Page';
-import connect from '../redux';
+import Page from '../Page';
+import connect from '../../redux/index';
 import Notifications from './Notifications';
+import RoutedAnchor from './RoutedAnchor';
 import NavMenu from './NavMenu';
 
 const LargeParagraph = styled(Paragraph)`
@@ -67,7 +66,7 @@ class App extends Component {
               gap='medium'
             >
               <RoutedAnchor
-                path={`${SITE_ROOT}/about`}
+                path='/about'
                 label='about'
                 a11yTitle='About crypto-grommet'
               />

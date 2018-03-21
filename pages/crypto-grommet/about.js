@@ -1,5 +1,5 @@
 import { Box, Anchor, Paragraph, Heading } from 'grommet';
-import App from '../../components/App';
+import App from '../../components/crypto/App';
 
 export default () => (
   <App title='About'>

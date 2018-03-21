@@ -1,7 +1,7 @@
 import React from 'react';
 import { Box } from 'grommet';
 import connect from '../../redux';
-import CardScroll from '../CardScroll';
+import CardScroll from './CardScroll';
 import PriceCard from './PriceCard';
 
 const FavoritePrices = ({ favCoins, exchange, responsive }) => {

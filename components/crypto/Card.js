@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Box, Heading, Text } from 'grommet';
-import connect from '../redux';
+import connect from '../../redux/index';
 
 
 const Card = ({

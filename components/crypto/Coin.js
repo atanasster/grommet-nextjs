@@ -1,7 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Box, Image, Text, RoutedAnchor, Heading } from 'grommet';
+import { Box, Image, Text, Heading } from 'grommet';
 import numeral from 'numeral';
+import RoutedAnchor from './RoutedAnchor';
 import connect from '../../redux';
 
 export const FormattedCoinValue = ({

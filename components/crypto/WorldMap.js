@@ -2,7 +2,7 @@ import React from 'react';
 import { graphql, compose } from 'react-apollo';
 import gql from 'graphql-tag';
 import { Box, WorldMap as GrommetWordMap, Image } from 'grommet';
-import RoutedAnchor from '../../components/RoutedAnchor';
+import RoutedAnchor from './RoutedAnchor';
 import SideLayer from '../../components/SideLayer';
 import allCountries from '../../utils/countries';
 import { ExchangeCountries } from '../../components/crypto/Exchange';
@@ -126,13 +126,13 @@ class WorldMap extends React.Component {
               columns={[
                 {
                   Cell: props => (
-                    <RoutedAnchor path={`/crypto-grommet/exchanges/prices/${props.original.name}`}>
+                    <RoutedAnchor path={`/exchanges/prices/${props.original.name}`}>
                       <Image src={props.original.logo} />
                     </RoutedAnchor>),
                 }, {
                   accessor: 'name',
                   Cell: props => (
-                    <RoutedAnchor path={`/crypto-grommet/exchanges/prices/${props.original.name}`}>
+                    <RoutedAnchor path={`/exchanges/prices/${props.original.name}`}>
                       {props.original.name}
                     </RoutedAnchor>),
                 }, {

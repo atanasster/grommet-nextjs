@@ -2,13 +2,12 @@ import React, { Component } from 'react';
 import { Box, Anchor, Menu } from 'grommet';
 import { Bitcoin as AppIcon, Menu as MenuIcon, User } from 'grommet-icons';
 import { bindActionCreators } from 'redux';
-import connect from '../redux';
-import { SITE_ROOT } from '../redux/nav/constants';
+import connect from '../../redux/index';
 // import Login from '../screens/auth/Login';
 // import CurrencySelect from './currencies/CurrencySelect';
 import RoutedAnchor from './RoutedAnchor';
-import routerPush from './Router';
-import { navActivate } from '../redux/nav/actions';
+import routerPush from '../Router';
+import { navActivate } from '../../redux/nav/actions';
 
 class NavMenu extends Component {
   state = { loginForm: false };
@@ -62,7 +61,7 @@ class NavMenu extends Component {
       >
         <Box direction='row' align='center' gap='small'>
           <AppIcon color='plain' />
-          <RoutedAnchor path={`${SITE_ROOT}`} label='crypto-grommet' a11yTitle='Go to home page' />
+          <RoutedAnchor path='' label='crypto-grommet' a11yTitle='Go to home page' />
         </Box>
         {this.renderMenu()}
         {layer}

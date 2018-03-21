@@ -1,5 +1,5 @@
 import { Box, Heading } from 'grommet';
-import App from '../../components/App';
+import App from '../../components/crypto/App';
 import FavoritePrices from '../../components/crypto/FavoritePrices';
 import WorldMap from '../../components/crypto/WorldMap';
 import withData from '../../apollo/withData';

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import App from '../../../components/App';
+import App from '../../../components/crypto/App';
 
 export default class About extends Component {
   static getInitialProps({ query: { symbol } }) {
