@@ -2,13 +2,13 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Box, Image, Text, Heading } from 'grommet';
 import numeral from 'numeral';
-import RoutedAnchor from './RoutedAnchor';
-import connect from '../../redux';
+import RoutedAnchor from '../RoutedAnchor';
+import connect from '../../../redux/index';
 
 export const FormattedCoinValue = ({
   value, toSymbol, coin, large, justify, level,
 }) => {
-  let format = (coin.fullName && !large) ? '0,0.00000000' : '0,0.00';
+  let format = (coin.fullName && !large) ? '0,0.0000' : '0,0.00';
   if (large) {
     format = `${format}a`;
   }
@@ -51,10 +51,10 @@ export const valueToColor = (value) => {
 };
 
 
-export const ColoredPercentChange = ({ value, size = 'medium' }) => (
-  <Text size={size} color={valueToColor(value)} >
+export const ColoredPercentChange = ({ value, level = 4 }) => (
+  <Heading margin='none' level={level} color={valueToColor(value)} >
     {numeral(value).format('0,0.00%')}
-  </Text>
+  </Heading>
 );
 
 export const coinPath = ({ symbol, toSymbol, exchange }) => (
@@ -84,20 +84,20 @@ const Coin = (
   let image;
   if (coin.imageUrl && !short) {
     image = (
-      <Box margin={{ right: 'small' }}>
-        <Image
-          src={coin.imageUrl}
-          style={{ width: textLevel > 2 ? '24px' : '34px', height: textLevel > 2 ? '24px' : '34px' }}
-        />
-      </Box>
+      <Image
+        src={coin.imageUrl}
+        style={{ width: textLevel > 2 ? '24px' : '34px', height: textLevel > 2 ? '24px' : '34px' }}
+      />
     );
   }
   return (
     <Box
       a11yTitle={`View details of ${coinName} coin`}
       border={border}
+      gap='small'
       direction='row'
       align='center'
+      flex={false}
     >
       {image}
       {link}

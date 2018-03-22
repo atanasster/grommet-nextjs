@@ -1,7 +1,7 @@
 import { Box, Heading } from 'grommet';
 import App from '../../components/crypto/App';
-import FavoritePrices from '../../components/crypto/FavoritePrices';
-import WorldMap from '../../components/crypto/WorldMap';
+import FavoritePrices from '../../components/crypto/coins/FavoritePrices';
+import WorldMap from '../../components/crypto/exchanges/WorldMap';
 import withData from '../../apollo/withData';
 
 class Home extends React.Component {

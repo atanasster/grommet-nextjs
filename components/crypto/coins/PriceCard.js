@@ -1,14 +1,14 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { graphql, compose } from 'react-apollo';
-import gql from 'graphql-tag';
 import { Box, Menu } from 'grommet';
-import RoutedButton from './RoutedButton';
-import Card from './Card';
-import Exchange from './Exchange';
+import RoutedButton from '../RoutedButton';
+import Card from '../Card';
+import Exchange from '../exchanges/Exchange';
 import { CoinToCoin } from './Coin';
 import PriceTableStream from './PriceTableStream';
 import PriceChart from './PriceChart';
+import { coinInfoQuery } from '../graphql/coins';
 
 const optionDuration = [
   { label: 'Daily', value: 'day' },
@@ -112,28 +112,8 @@ PriceCard.propTypes = {
   color: PropTypes.string,
 };
 
-export const coinInfoQuery = gql`
-  query getCoin($symbol : String!) {
-    coin(symbol: $symbol) {
-      symbol,
-      imageUrl,
-      fullName
-    }
-  }
-`;
-
-export const toCoinInfoQuery = gql`
-  query getCoin($toSymbol : String!) {
-    coin(symbol: $toSymbol) {
-      symbol,
-      imageUrl,
-      fullName
-    }
-  }
-`;
-
 
 export default compose(
   graphql(coinInfoQuery, { options: props => ({ variables: { symbol: props.symbol } }) }),
-  graphql(toCoinInfoQuery, { name: 'toCoin', options: props => ({ variables: { toSymbol: props.toSymbol } }) }),
+  graphql(coinInfoQuery, { name: 'toCoin', options: props => ({ variables: { symbol: props.toSymbol } }) }),
 )(PriceCard);

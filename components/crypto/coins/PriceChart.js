@@ -1,8 +1,8 @@
 import React from 'react';
 import { graphql } from 'react-apollo';
-import gql from 'graphql-tag';
 import { Chart } from 'grommet';
 import { longDate } from 'grommet-controls/utils/moment';
+import { priceHistoryQuery } from '../graphql/coins';
 
 
 const PriceChart = ({ color, priceHistory: { priceHistory } }) => (
@@ -18,23 +18,8 @@ const PriceChart = ({ color, priceHistory: { priceHistory } }) => (
   />
 );
 
-export const priceHistoryQuery = gql`
-  query getPriceHistory($symbol : String!, $toSymbol : String!, $exchange: String!, $period: String, $limit: Int) {
-    priceHistory(symbol: $symbol, toSymbol: $toSymbol, exchange: $exchange, period: $period, limit: $limit) {
-      time
-      close
-      high
-      low
-      open
-      volumefrom
-      volumeto
-    }
-  }
-`;
 
-
-export default
-graphql(priceHistoryQuery, {
+export default graphql(priceHistoryQuery, {
   name: 'priceHistory',
   options: props => ({
     variables: {

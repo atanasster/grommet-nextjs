@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Box, Image, Heading } from 'grommet';
-import RoutedAnchor from './RoutedAnchor';
-import connect from '../../redux';
+import RoutedAnchor from '../RoutedAnchor';
+import connect from '../../../redux/index';
 
 export const CountryFlag = ({ code }) => (
   <div>{code}</div>

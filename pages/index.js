@@ -7,7 +7,7 @@ import {
   Table, TableBody, TableCell, TableHeader, TableRow,
   Text, TextArea, TextInput, Video, WorldMap,
 } from 'grommet';
-import { Add, LinkNext, Grommet as GrommetIcon, TopCorner, BottomCorner } from 'grommet-icons';
+import { Add, LinkNext, Grommet as GrommetIcon, TopCorner, BottomCorner, Descend } from 'grommet-icons';
 import RoutedButton from '../components/RoutedButton';
 import Page from '../components/Page';
 import Section from '../components/Section';
@@ -318,6 +318,9 @@ Visit the official <Anchor href='https://v2.grommet.io/' target='_blank'>Grommet
           <Section name='Utilities' index={4}>
             <Item name='Grommet' path='/grommet' center={true}>
               <GrommetIcon color='brand' />
+            </Item>
+            <Item name='InfiniteScroll' path='/infinitescroll' center={true}>
+              <Descend color='brand' size='xlarge' />
             </Item>
             <Item name='Keyboard' path='/keyboard' center={true}>
               <Text>ESC</Text>

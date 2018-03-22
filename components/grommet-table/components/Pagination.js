@@ -16,6 +16,7 @@ const defaultButton = ({
 
 const StyledButton = styled(defaultButton)`
   width: 150px;
+  padding: 10px 0;
 `;
 
 const StyledPageInput = styled(TextInput)`

@@ -2,9 +2,9 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import numeral from 'numeral';
 import { Box, Text } from 'grommet';
-import { subscribeLastPrices, unSubscribeLastPrices } from '../../sockets/price_stream/CryptoComparePrices';
-import Exchange from './Exchange';
-import Table from '../grommet-table';
+import { subscribeLastPrices, unSubscribeLastPrices } from '../../../sockets/price_stream/CryptoComparePrices';
+import Exchange from '../exchanges/Exchange';
+import Table from '../../grommet-table/index';
 import { FormattedCoinValue, valueToColor } from './Coin';
 
 
