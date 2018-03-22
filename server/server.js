@@ -11,7 +11,6 @@ const staticFiles = require('./static');
 const routes = require('./routes');
 const logger = require('./logger');
 const dotenv = require('dotenv');
-const api = require('./api');
 const schema = require('./graphql/schema');
 
 const port = parseInt(process.env.PORT, 10) || 3000;
@@ -105,7 +104,6 @@ app.prepare()
         app.serveStatic(req, res, path.resolve('./.next/app.js')));
     }
     server.get('*', (req, res) => handle(req, res));
-    server.use('/api', api(process.env));
     server.listen(port, (err) => {
       if (err) {
         return logger.error(err.message);

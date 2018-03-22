@@ -66,10 +66,15 @@ const Coin = (
     coin, exchange, defaultExchange, toCoin, level, border, aggregatedExchange, short,
   }
 ) => {
-  const coinName = (coin.fullName && !short) ? coin.fullName : coin.symbol;
+  let coinName;
+  if (coin) {
+    coinName = (coin.fullName && !short) ? coin.fullName : coin.symbol;
+  } else {
+    coinName = '';
+  }
   const textLevel = short ? 4 : level;
   const title = <Heading level={textLevel} margin='none'>{coinName}</Heading>;
-  const link = coin.fullName ? (
+  const link = coin && coin.fullName ? (
     <RoutedAnchor
       path={coinPath({
         symbol: coin.symbol,
@@ -82,7 +87,7 @@ const Coin = (
     </RoutedAnchor>
   ) : title;
   let image;
-  if (coin.imageUrl && !short) {
+  if (coin && coin.imageUrl && !short) {
     image = (
       <Image
         src={coin.imageUrl}

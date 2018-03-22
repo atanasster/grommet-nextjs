@@ -5,7 +5,7 @@ import { Box } from 'grommet';
 import Table from '../../grommet-table';
 import Coin, { FormattedCoinValue, ColoredPercentChange } from './Coin';
 import PriceCard from './PriceCard';
-// import OrderBookCard from './OrderBookCard';
+import OrderBookCard from './OrderBookCard';
 import { marketCapQuery } from '../graphql/coins';
 
 const ITEMS_PER_PAGE = 25;
@@ -29,15 +29,17 @@ class MarketCapList extends React.Component {
   onExpand = (row) => {
     const { exchange, currency } = this.props;
     return (
-      <Box direction='row' pad='small'>
+      <Box direction='row' pad='small' gap='medium'>
         <PriceCard
           symbol={row.original.symbol}
           toSymbol={currency}
           exchange={exchange}
-
         />
-        {/* <OrderBookCard symbol={row.original.symbol} /> */}
-
+        <OrderBookCard
+          symbol={row.original.symbol}
+          toSymbol={currency}
+          exchange={exchange}
+        />
       </Box>
     );
   }
@@ -54,7 +56,6 @@ class MarketCapList extends React.Component {
     const {
       data: { loading, marketCap }, currency, exchange,
     } = this.props;
-    console.log(this.props);
     if (!marketCap) {
       return null;
     }

@@ -48,6 +48,7 @@
     "react-apollo": "^2.0.4",
     "react-dom": "16.2.0",
     "react-formify": "^0.10.2",
+    "react-highcharts": "^16.0.2",
     "react-json-pretty": "^1.7.5",
     "react-redux": "^5.0.7",
     "redux": "^3.7.2",

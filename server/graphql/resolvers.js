@@ -1,16 +1,20 @@
 const fetch = require('isomorphic-unfetch');
-const allCoins = require('../models/coins');
-const { exchanges } = require('../models/exchanges');
+const { coins } = require('../models/coins');
+const { exchanges, exchangeObj } = require('../models/exchanges');
+const { symbolParities } = require('../api/utils');
 
 const coinSynonyms = {
   MIOTA: 'IOTA',
 };
 
 const findCoin = (symbol) => {
-  const coin = allCoins().find(item =>
+  const coin = coins().find(item =>
     item.symbol === symbol || item.symbol === coinSynonyms[symbol]);
   return coin || { symbol };
 };
+
+
+const findExchange = id => exchanges().find(item => item.id === id) || { id };
 
 const resolvers = {
   Query: {
@@ -19,15 +23,13 @@ const resolvers = {
       return findCoin(symbol);
     },
     allCoins() {
-      return allCoins();
+      return coins();
     },
     allExchanges() {
       return exchanges();
     },
     exchange(root, { id }) {
-      const exchange = exchanges().find(item => item.id === id);
-      // console.log(exchange);
-      return exchange || { id };
+      return findExchange(id);
     },
     priceHistory(root, {
       symbol, toSymbol, exchange, period = 'day', limit = 60,
@@ -59,6 +61,43 @@ const resolvers = {
           'total_supply': item.total_supply,
           'coin': findCoin(item.symbol),
         }))));
+    },
+    orderBook(root, {
+      exchange, symbol, toSymbol, start = 0, limit = 30,
+    }) {
+      const exch = exchangeObj(exchange);
+      if (!exchange) {
+        throw new Error(`Could not find exchange ${exchange}`);
+      }
+      if (!exch.has.fetchOrderBook) {
+        throw new Error(`Exchange ${exchange} has no fetchOrderBook`);
+      }
+      return exch.fetchOrderBook(`${symbol}/${toSymbol}`)
+        .then(orderBook => ({
+          last_updated: orderBook.timestamp,
+          asks: orderBook.asks.slice(start, limit).map(item => ({ price: item[0], qty: item[1] })),
+          bids: orderBook.bids.slice(start, limit).map(item => ({ price: item[0], qty: item[1] })),
+          symbol,
+          realToSymbol: toSymbol,
+        }))
+        .catch((e) => {
+          if (symbolParities[toSymbol]) {
+            return exch.fetchOrderBook(`${symbol}/${symbolParities[toSymbol]}`)
+              .then(orderBook => ({
+                last_updated: orderBook.timestamp,
+                asks: orderBook.asks.slice(start, limit)
+                  .map(item => ({ price: item[0], qty: item[1] })),
+                bids: orderBook.bids.slice(start, limit)
+                  .map(item => ({ price: item[0], qty: item[1] })),
+                symbol,
+                realToSymbol: symbolParities[toSymbol],
+              }))
+              .catch(() => {
+                throw new Error(`Could not fetch ${symbolParities[toSymbol]} Order Book for ${exchange}`);
+              });
+          }
+          return e;
+        });
     },
   },
 };

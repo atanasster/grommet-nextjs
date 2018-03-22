@@ -110,6 +110,6 @@ if (!process.browser) {
           .catch(() => (sleep()));
       });
     });
-  module.exports = () => (coins);
+  module.exports.coins = () => (coins);
 }
 

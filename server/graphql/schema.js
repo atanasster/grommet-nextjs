@@ -10,6 +10,7 @@ type Query {
   exchange(id: String): Exchange
   priceHistory(symbol: String, toSymbol: String, exchange: String, period: String, limit: Int): [PriceHistory]
   marketCap(currency: String, start: Int, limit: Int) : [MarketCap]
+  orderBook(exchange: String, symbol: String, toSymbol: String, start: Int, limit: Int) : OrderBook
 }
 type Coin {
   algorithm: String
@@ -75,7 +76,7 @@ type PriceHistory{
 type MarketCap {
   symbol: String
   rank: Int
-  last_updated: Int
+  last_updated: Float
   price_usd: Float
   volume_24h_usd: Float
   market_cap_usd: Float
@@ -89,6 +90,18 @@ type MarketCap {
   percent_change_7d: Float
   total_supply: Float
   coin: Coin
+}
+
+type Order {
+  price: Float
+  qty: Float
+}
+type OrderBook {
+  symbol: String
+  realToSymbol: String
+  last_updated: Float
+  asks: [Order]
+  bids: [Order]
 }
 `;
 

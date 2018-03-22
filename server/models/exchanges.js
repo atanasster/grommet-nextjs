@@ -30,6 +30,13 @@ if (!process.browser) {
       });
     return baseExchangeInfo(exchange);
   });
+  module.exports.exchangeObj = (exchange) => {
+    const exch = exchanges.find(item => item.name === exchange);
+    if (exch) {
+      return new ccxt[exch.id]();
+    }
+    return null;
+  };
   module.exports.exchanges = () => (exchanges);
 }
 
