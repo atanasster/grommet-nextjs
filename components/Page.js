@@ -8,6 +8,7 @@ import { System, Menu } from 'grommet-icons';
 import connect from '../redux';
 import RoutedButton from './RoutedButton';
 import RoutedAnchor from './RoutedAnchor';
+import NextJsAnchor from './Anchor';
 import { selectTheme } from '../redux/themes/actions';
 import { navActivate, updateResponsive } from '../redux/nav/actions';
 
@@ -61,7 +62,7 @@ class Page extends React.Component {
     }
     const menuItems = [
       { path: '/crypto-grommet', label: 'use-case' },
-      { path: '/theme', label: 'view' },
+      { path: '/preview', label: 'view' },
       { path: '/add-ons', label: 'add-ons' },
     ];
     const items = menuItems.map(item => (
@@ -78,7 +79,7 @@ class Page extends React.Component {
       </Box>
     );
     const themeDesigner = (
-      <RoutedAnchor
+      <NextJsAnchor
         icon={navMenu.responsive ? undefined : <System />}
         label={navMenu.responsive ? 'theme designer' : undefined}
         path='/theme'

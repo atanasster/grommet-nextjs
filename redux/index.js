@@ -26,7 +26,10 @@ export default (...args) => (WrappedComponent) => {
   const ConnectedWrapped = connect(...args)(WrappedComponent);
   class ContextProvider extends React.Component {
     static async getInitialProps(ctx) {
-      return WrappedComponent.getInitialProps(ctx);
+      if (WrappedComponent.getInitialProps) {
+        return WrappedComponent.getInitialProps(ctx);
+      }
+      return {};
     }
 
     getChildContext() {

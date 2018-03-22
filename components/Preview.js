@@ -1,19 +1,27 @@
 import {
-  Box, Button, Anchor, Heading, Select, Text, FormField,
+  Box, Button, Anchor, Heading, Select, Text,
   TextInput, CheckBox, RadioButton, Menu, Layer, RangeInput,
   DropButton,
 } from 'grommet';
 import { Menu as MenuIcon, Edit, Grommet } from 'grommet-icons';
 import { MultiSelect, TagsSelect, Tag } from 'grommet-controls';
 import ColorRoll from './ColorRoll';
+import { FormField } from './grommet/FormField';
 
 
 const stringOptions = ['small', 'medium', 'large', 'xlarge', 'huge'];
 
 export default class Preview extends React.Component {
-  state = { layer: undefined, open: undefined, selected: [stringOptions[0], stringOptions[2]] };
+  state = {
+    layer: undefined,
+    open: undefined,
+    selected: [stringOptions[0], stringOptions[2]],
+    size: stringOptions[0],
+  };
   render() {
-    const { layer, open, selected } = this.state;
+    const {
+      layer, open, selected, size,
+    } = this.state;
     let modal;
     if (layer !== undefined) {
       const close = () => { this.setState({ layer: undefined }); };
@@ -71,9 +79,9 @@ export default class Preview extends React.Component {
               help='select an option'
             >
               <Select
-                plain={true}
-                placeholder='Select an option'
                 options={stringOptions}
+                value={size}
+                onChange={({ option }) => this.setState({ size: option })}
               />
             </FormField>
             <FormField

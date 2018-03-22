@@ -23,7 +23,7 @@ const ssrCache = new LRUCache({
   max: 100,
   maxAge: 1000 * 60 * 60, // 1hour
 });
-const publicEnvFilename = 'public.env';
+const publicEnvFilename = '../public.env';
 
 try {
   if (fs.existsSync(path.resolve(__dirname, publicEnvFilename))) {
