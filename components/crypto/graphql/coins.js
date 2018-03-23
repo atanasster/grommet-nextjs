@@ -29,10 +29,15 @@ export const priceHistoryQuery = gql`
 export const allCoinsQuery = gql`
   query getCoins {
     allCoins {
-      id,
-      name,
-      logo,
-      countries
+      symbol
+      imageUrl
+      fullName
+      algorithm
+      proofType
+      fullyPremined
+      preMinedValue
+      totalCoinSupply
+      totalCoinsFreeFloat
     }
   }
 `;

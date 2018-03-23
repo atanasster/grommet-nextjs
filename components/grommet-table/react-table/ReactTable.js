@@ -1102,6 +1102,7 @@ export default class ReactTable extends Component {
           resizable={isResizable}
           sortable={isSortable}
           hidden={!show}
+          expander={column.expander}
           pivot={pivotBy && pivotBy.slice(0, -1).includes(column.id)}
 
           style={{

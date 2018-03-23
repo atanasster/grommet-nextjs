@@ -3,9 +3,10 @@ import { Box } from 'grommet';
 import { StyledThComponent } from '../StyledTable';
 
 export default ({
-  toggleSort, sort, resizable, children, pivot, hidden, sortable, CellTextComponent, ...props
+  toggleSort, sort, resizable, children, pivot, hidden,
+  sortable, expander, CellTextComponent, ...props
 }) => {
-  if (Array.isArray(children) && children.length > 1 && !children[0] && !children[1]) {
+  if (!expander && Array.isArray(children) && children.length > 1 && !children[0] && !children[1]) {
     return null;
   }
   const sortAsc = sort === '-sort-asc';
