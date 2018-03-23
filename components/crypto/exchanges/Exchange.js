@@ -33,7 +33,12 @@ const Exchange = ({
   if (!exchange) {
     return null;
   }
-  const exchangeName = exchange.code === aggregatedExchange ? 'Aggregated' : exchange;
+  let exchangeName;
+  if (typeof exchange === 'string') {
+    exchangeName = exchange === aggregatedExchange ? 'Aggregated' : exchange;
+  } else {
+    exchangeName = exchange.name;
+  }
   let image;
   if (exchange) {
     image = (

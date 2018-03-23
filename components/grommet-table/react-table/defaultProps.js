@@ -19,6 +19,29 @@ import TrComponent from '../components/TrComponent';
 const emptyObj = () => ({});
 export const expanderTdDefaultProps = { pad: undefined };
 
+const defaultTableProps = {
+};
+
+const defaultHeaderProps = {
+  background: 'brand', border: 'all', align: 'center',
+};
+
+const defaultBodyProps = {
+  animation: { type: 'fadeIn', duration: 2000, size: 'large' },
+};
+
+const defaultRowOddProps = {
+};
+
+const defaultRowEvenProps = {};
+const defaultRowProps = {};
+const defaultFooterProps = { background: 'light-1' };
+const defaultPaginationProps = { pad: { vertical: 'medium' } };
+
+
+const defaultFilterProps = { border: 'bottom' };
+const defaultFilterInputProps = { size: 'small', placeholder: 'Filter...' };
+
 export default {
   // General
   data: [],
@@ -107,32 +130,37 @@ export default {
 
   // Component decorators
   getProps: emptyObj,
-  getTableProps: ({ decorations }) => ((decorations && decorations.table) || {}),
+  getTableProps: ({ decorations }) => ((decorations && decorations.table) || defaultTableProps),
   getTheadGroupProps: ({ decorations }) => (
     (decorations && (decorations.headerGroup || decorations.header)) || {}
   ),
   getTheadGroupTrProps: emptyObj,
   getTheadProps: emptyObj,
   getTheadTrProps: emptyObj,
-  getTheadThProps: ({ decorations }) => ((decorations && decorations.header) || {}),
+  getTheadThProps: ({ decorations }) => ((decorations && decorations.header) || defaultHeaderProps),
   getTheadFilterProps: emptyObj,
   getTheadFilterTrProps: ({ decorations }) => ((decorations && decorations.filterRow) || {}),
-  getFilterInputProps: ({ decorations }) => ((decorations && decorations.filterInput) || {}),
-  getTheadFilterThProps: ({ decorations }) => ((decorations && decorations.filter) || {}),
-  getTbodyProps: ({ decorations }) => ((decorations && decorations.body) || {}),
+  getFilterInputProps: ({ decorations }) =>
+    ((decorations && decorations.filterInput) || defaultFilterInputProps),
+  getTheadFilterThProps: ({ decorations }) =>
+    ((decorations && decorations.filter) || defaultFilterProps),
+  getTbodyProps: ({ decorations }) => ((decorations && decorations.body) || defaultBodyProps),
   getTrGroupProps: emptyObj,
   getTrProps: (even, { decorations }) => {
     if (decorations) {
-      return (even ? decorations.rowEven : decorations.rowOdd) || decorations.row || {};
+      return (even ? decorations.rowEven || defaultRowEvenProps :
+        decorations.rowOdd || defaultRowOddProps) ||
+        decorations.row || defaultRowProps;
     }
-    return {};
+    return even ? defaultRowEvenProps : defaultRowOddProps;
   },
   getTdProps: ({ decorations }) => ((decorations && decorations.cell) || {}),
   getExpanderProps: ({ decorations }) => ((decorations && decorations.expander) || {}),
   getTfootProps: emptyObj,
-  getTfootTrProps: ({ decorations }) => ((decorations && decorations.footer) || {}),
+  getTfootTrProps: ({ decorations }) => ((decorations && decorations.footer) || defaultFooterProps),
   getTfootTdProps: emptyObj,
-  getPaginationProps: ({ decorations }) => ((decorations && decorations.pagination) || {}),
+  getPaginationProps: ({ decorations }) =>
+    ((decorations && decorations.pagination) || defaultPaginationProps),
   getLoadingProps: emptyObj,
   getNoDataProps: emptyObj,
   getResizerProps: emptyObj,

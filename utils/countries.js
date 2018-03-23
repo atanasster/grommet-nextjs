@@ -1,4 +1,4 @@
-export default {
+const allCountries = {
   'AD': {
     'name': 'Andorra',
     'native': 'Andorra',
@@ -2860,4 +2860,19 @@ export default {
       'nd',
     ],
   },
+};
+
+export default allCountries;
+
+let countries = null;
+
+export const uniqueCountries = (exchanges) => {
+  if (!countries && exchanges) {
+    const eCountries = [...new Set(exchanges.reduce((arr, ex) =>
+      ([...arr, ...ex.countries]), [])),
+    ];
+    countries = Object.keys(allCountries).filter(c =>
+      (eCountries.indexOf(c)) !== -1).map(c => ({ ...allCountries[c], code: c }));
+  }
+  return countries;
 };

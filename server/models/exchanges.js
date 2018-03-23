@@ -4,11 +4,19 @@ const { sleep } = require('../api/utils');
 if (!process.browser) {
   const baseExchangeInfo = (exchange) => {
     const countries = typeof exchange.countries === 'string' ? [exchange.countries] : exchange.countries;
+    let url;
+    if (exchange.urls && exchange.urls.www) {
+      if (typeof exchange.urls.www === 'string') {
+        url = [exchange.urls.www];
+      } else {
+        url = exchange.urls.www;
+      }
+    }
     return {
       id: exchange.id,
       name: exchange.name,
       logo: exchange.urls ? exchange.urls.logo : null,
-      url: exchange.urls ? exchange.urls.www : null,
+      url,
       hasOrderBook: exchange.has.fetchOrderBook,
       countries: countries.map(c => (c === 'UK' ? 'GB' : c)),
       fees: exchange.fees,

@@ -1,12 +1,11 @@
 import {
   Box, Button, Anchor, Heading, Select, Text,
   TextInput, CheckBox, RadioButton, Menu, Layer, RangeInput,
-  DropButton,
+  DropButton, FormField,
 } from 'grommet';
 import { Menu as MenuIcon, Edit, Grommet } from 'grommet-icons';
 import { MultiSelect, TagsSelect, Tag } from 'grommet-controls';
 import ColorRoll from './ColorRoll';
-import { FormField } from './grommet/FormField';
 
 
 const stringOptions = ['small', 'medium', 'large', 'xlarge', 'huge'];

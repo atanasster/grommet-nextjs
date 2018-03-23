@@ -55,7 +55,7 @@ type Exchange {
   id: String
   name: String
   logo: String
-  url: String
+  url: [String]
   hasOrderBook: Boolean
   countries: [String]
   fees: Fees

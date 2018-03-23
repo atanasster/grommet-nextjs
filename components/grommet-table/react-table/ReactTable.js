@@ -73,7 +73,6 @@ export default class ReactTable extends Component {
     // Props that trigger a data update
     if (
       oldState.data !== newState.data ||
-        oldState.columns !== newState.columns ||
         oldState.pivotBy !== newState.pivotBy ||
         oldState.sorted !== newState.sorted ||
         oldState.filtered !== newState.filtered
@@ -1605,6 +1604,11 @@ export default class ReactTable extends Component {
               }}
               {...tBodyProps}
             >
+              <LoadingComponent
+                loading={loading}
+                loadingText={loadingText}
+                {...loadingProps}
+              />
               {pageRows.map((d, i) => makePageRow(d, i))}
               {padRows.map(makePadRow)}
             </TbodyComponent>
@@ -1615,15 +1619,10 @@ export default class ReactTable extends Component {
               {pagination}
             </div>)
             : null}
-          {!pageRows.length &&
+          {!pageRows.length && !loading &&
             <NoDataComponent {...noDataProps}>
               {_.normalizeComponent(noDataText)}
             </NoDataComponent>}
-          <LoadingComponent
-            loading={loading}
-            loadingText={loadingText}
-            {...loadingProps}
-          />
         </div>
       );
     };

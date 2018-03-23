@@ -3,10 +3,11 @@ import gql from 'graphql-tag';
 export const allExchangesQuery = gql`
   query getExchanges {
     allExchanges {
-      id,
-      name,
-      logo,
+      id
+      name
+      logo
       countries
+      url
     }
   }
 `;

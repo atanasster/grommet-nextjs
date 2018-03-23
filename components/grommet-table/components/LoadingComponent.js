@@ -1,18 +1,13 @@
 import React from 'react';
-import { Box, Text, Layer } from 'grommet';
+import { Box } from 'grommet';
+import { Spinning } from 'grommet-controls';
 
-export default ({ loading, loadingText }) => (
+export default ({ loading }) => (
   <div>
     {loading && (
-      <Layer
-        position='center'
-        model={true}
-
-      >
-        <Box margin={{ horizontal: 'xlarge', vertical: 'small' }} >
-          <Text>{loadingText}</Text>
-        </Box>
-      </Layer>
+      <Box align='center' full='horizontal' pad={{ vertical: 'large' }} >
+        <Spinning />
+      </Box>
     )}
   </div>
 );

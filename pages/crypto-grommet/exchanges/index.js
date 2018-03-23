@@ -1,5 +1,11 @@
 import App from '../../../components/crypto/App';
+import ExchangesList from '../../../components/crypto/exchanges/ExchangesList';
+import withData from '../../../apollo/withData';
 
-export default () => (
-  <App title='Under construction...' />
+const Exchanges = () => (
+  <App title='Exchanges'>
+    <ExchangesList />
+  </App>
 );
+
+export default withData(Exchanges);

@@ -112,7 +112,7 @@ export default class PriceTableStream extends Component {
       ];
       priceTable = (
         <Box align='center'>
-          <Box margin={{ top: 'small' }}>
+          <Box margin={{ vertical: 'medium' }}>
             <strong>
               <Text size='xlarge' color={priceColor} >
                 {numeral(data.PRICE).format('0,0.00')}
@@ -124,6 +124,8 @@ export default class PriceTableStream extends Component {
           </Box>
           <Box fill={true}>
             <Table
+              sortable={false}
+              resizable={false}
               data={rows}
               columns={[
                 { accessor: 'label' },

@@ -16,6 +16,8 @@ import { coinInfoQuery } from '../graphql/coins';
 function renderAskBidTable(data) {
   return (
     <Table
+      sortable={false}
+      resizable={false}
       columns={[
         {
           Header: 'Price',
@@ -23,14 +25,24 @@ function renderAskBidTable(data) {
             numeral(props.original.price)
               .format('$0,0.00')
           ),
+          decorations: {
+            cell: {
+              align: 'end',
+            },
+          },
         }, {
           Header: 'Qty',
           Cell: props => (
-            numeral(props.original.qty).format('$0,0.00')
+            numeral(props.original.qty).format('0,0.0000')
           ),
+          decorations: {
+            cell: {
+              align: 'end',
+            },
+          },
         },
       ]}
-      data={data.slice(0, 10)}
+      data={data.slice(0, 12)}
     />
   );
 }
@@ -138,11 +150,11 @@ class OrderBookCard extends Component {
           {this.renderChart()}
         </Box>
         <Box direction='row' pad=' small'>
-          <Box basis='1/2' align='center'>
+          <Box basis='1/2' align='center' gap='small'>
             <Text size='medium'><strong>Bid</strong></Text>
             {renderAskBidTable(bids)}
           </Box>
-          <Box basis='1/2' align='center'>
+          <Box basis='1/2' align='center' gap='small'>
             <Text size='medium'><strong>Ask</strong></Text>
             {renderAskBidTable(asks)}
           </Box>

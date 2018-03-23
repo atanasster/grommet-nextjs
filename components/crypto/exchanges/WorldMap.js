@@ -3,7 +3,7 @@ import { graphql, compose } from 'react-apollo';
 import { Box, WorldMap as GrommetWordMap, Image } from 'grommet';
 import RoutedAnchor from '../RoutedAnchor';
 import SideLayer from '../../SideLayer';
-import allCountries from '../../../utils/countries';
+import { uniqueCountries } from '../../../utils/countries';
 import { ExchangeCountries } from './Exchange';
 import { GrommetTable } from '../../grommet-table/index';
 import { allExchangesQuery } from '../graphql/exchanges';
@@ -55,13 +55,7 @@ class WorldMap extends React.Component {
     if (allExchanges) {
       const exchanges = Object.keys(allExchanges).map(key => allExchanges[key]);
       const continentExchanges = [];
-      if (!this.countries) {
-        const uniqueCountries = [...new Set(exchanges.reduce((arr, ex) =>
-          ([...arr, ...ex.countries]), [])),
-        ];
-        this.countries = Object.keys(allCountries).filter(c =>
-          (uniqueCountries.indexOf(c)) !== -1).map(c => ({ ...allCountries[c], code: c }));
-      }
+      this.countries = uniqueCountries(allExchanges);
 
       this.countries.filter(c => (c.continent === continent.code))
         .forEach((c) => {
@@ -119,8 +113,12 @@ class WorldMap extends React.Component {
           onClose={() => this.setState({ continentExchanges: undefined })}
           heading={continent.name}
         >
-          <Box basis='large'>
+          <Box basis='large' margin={{ top: 'small' }}>
             <GrommetTable
+              resizable={false}
+              decorations={{
+                rowOdd: { background: { color: 'light-1' } },
+              }}
               defaultPageSize={50}
               data={continentExchanges}
               columns={[

@@ -11,11 +11,13 @@ import { marketCapQuery } from '../graphql/coins';
 const ITEMS_PER_PAGE = 25;
 class MarketCapList extends React.Component {
   start = 0;
+  pageSize = ITEMS_PER_PAGE;
   requestMarketCapTable(currency) {
     const { loadMoreEntries } = this.props;
     loadMoreEntries({
       currency,
       start: this.start,
+      pageSize: this.pageSize,
     });
   }
 
@@ -46,8 +48,9 @@ class MarketCapList extends React.Component {
 
   fetchData = ({ pageSize, page }) => {
     const { currency } = this.props;
-    if (pageSize * page !== this.start) {
+    if (pageSize * page !== this.start || this.pageSize !== pageSize) {
       this.start = pageSize * page;
+      this.pageSize = pageSize;
       this.requestMarketCapTable(currency);
     }
   };
@@ -56,9 +59,6 @@ class MarketCapList extends React.Component {
     const {
       data: { loading, marketCap }, currency, exchange,
     } = this.props;
-    if (!marketCap) {
-      return null;
-    }
     const columns = [
       {
         Header: 'Rank',
@@ -140,14 +140,8 @@ class MarketCapList extends React.Component {
       <Box fill='horizontal'>
         <Table
           decorations={{
-            table: { elevation: 'large' },
-            header: { background: 'brand', border: 'all', align: 'center' },
-            body: { animation: { type: 'fadeIn', duration: 2000, size: 'large' } },
-            rowOdd: {
-              background: { color: 'light-1', opacity: 'medium' },
-            },
-            footer: { background: 'light-1' },
-            pagination: { pad: { vertical: 'medium' } },
+            table: { elevation: 'medium' },
+            rowEven: { background: { color: 'light-1' } },
           }}
           sortable={false}
           manual={true}
@@ -181,11 +175,12 @@ export default graphql(marketCapQuery, {
   props({ data }) {
     return {
       data,
-      loadMoreEntries({ currency, start }) {
+      loadMoreEntries({ currency, start, pageSize }) {
         return data.fetchMore({
           variables: {
             currency: currency.toLowerCase(),
             start,
+            limit: pageSize,
           },
           updateQuery: (previousResult, { fetchMoreResult }) => {
             if (!fetchMoreResult) {
