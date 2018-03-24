@@ -1,3 +1,4 @@
+import React from 'react';
 import { Box } from 'grommet';
 import doc from 'grommet/components/Box/doc';
 import Doc from '../components/Doc';
@@ -17,48 +18,67 @@ export default () => (
     )}
     examples={{
       align: (
-        <Box align='end'>
+        <Box direction='row' justify='end' wrap={true}>
           {['start', 'center', 'end'].map(align => (
             <Box
               key={align}
               direction='row'
               align={align}
-              border={{ color: 'brand' }}
               margin='xsmall'
+              background={{ color: 'accent-2', opacity: 'weak' }}
             >
-              <Box pad='medium' background='light-2' />
-              <Box pad='small' background='light-3' />
+              <Box
+                pad='medium'
+                background={{ color: 'accent-2', opacity: 'weak' }}
+              />
+              <Box
+                pad='small'
+                background={{ color: 'accent-2', opacity: 'strong' }}
+              />
             </Box>
           ))}
         </Box>
       ),
-      animation: (
-        <Box align='end'>
-          <Box animation='pulse' pad='medium' background='light-3' />
-        </Box>
-      ),
+      // skip animation example so property values don't stretch long
+      // animation: (
+      //   <Box align='end'>
+      //     <Box
+      //       animation='pulse'
+      //       pad='medium'
+      //       background={{ color: 'accent-2', opacity: 'strong' }}
+      //     />
+      //   </Box>
+      // ),
       background: (
-        <Box background='brand' pad='medium' />
-      ),
-      border: (
-        <Box align='end'>
-          {['xsmall', 'small', 'medium', 'large'].map(size => (
+        <Box direction='row' justify='end' wrap={true}>
+          {[undefined, 'strong', 'medium', 'weak'].map(opacity => (
             <Box
-              key={size}
-              border={{ side: 'all', size, color: 'brand' }}
+              key={opacity || 'opacity'}
+              background={{ color: 'accent-2', opacity }}
               pad='medium'
               margin='xsmall'
             />
           ))}
         </Box>
       ),
+      border: (
+        <Box direction='row' justify='end' wrap={true} align='start'>
+          {['xsmall', 'small', 'medium', 'large'].map(size => (
+            <Box
+              key={size}
+              border={{ side: 'all', size, color: 'accent-2' }}
+              pad='small'
+              margin='xsmall'
+            />
+          ))}
+        </Box>
+      ),
       elevation: (
-        <Box align='end'>
+        <Box direction='row' justify='end' wrap={true} align='start'>
           {['none', 'xsmall', 'small', 'medium', 'large', 'xlarge'].map(elevation => (
             <Box
               key={elevation}
               elevation={elevation}
-              border={true}
               pad='medium'
               margin='xsmall'
             />
@@ -66,74 +86,87 @@ export default () => (
         </Box>
       ),
       gap: (
-        <Box align='end'>
+        <Box direction='row' justify='end' wrap={true} align='start'>
           {['xsmall', 'small', 'medium', 'large'].map(gap => (
             <Box
               key={gap}
               gap={gap}
               direction='row'
-              border={{ color: 'brand' }}
+              background={{ color: 'accent-2', opacity: 'weak' }}
               margin='xsmall'
             >
-              <Box background='light-3' pad='small' />
-              <Box background='light-3' pad='small' />
-            </Box>
-          ))}
-        </Box>
-      ),
-      justify: (
-        <Box fill={true}>
-          {['start', 'center', 'between', 'end'].map(justify => (
-            <Box
-              key={justify}
-              direction='row'
-              justify={justify}
-              border={{ color: 'brand' }}
-              margin='xsmall'
-            >
-              <Box pad='small' background='light-2' />
-              <Box pad='small' background='light-3' />
-            </Box>
-          ))}
-        </Box>
-      ),
-      margin: (
-        <Box align='start'>
-          {['none', 'xsmall', 'small', 'medium', 'large'].map(margin => (
-            <Box key={margin} border='bottom'>
               <Box
-                margin={margin}
+                background={{ color: 'accent-2', opacity: 'strong' }}
                 pad='small'
-                background='light-3'
-                border={{ color: 'brand' }}
+              />
+              <Box
+                background={{ color: 'accent-2', opacity: 'strong' }}
+                pad='small'
               />
             </Box>
           ))}
         </Box>
       ),
+      justify: (
+        <Box direction='row' justify='end' wrap={true} align='start'>
+          {['start', 'center', 'between', 'end'].map(justify => (
+            <Box
+              key={justify}
+              basis='xsmall'
+              direction='row'
+              justify={justify}
+              background={{ color: 'accent-2', opacity: 'weak' }}
+              margin='xsmall'
+            >
+              <Box
+                pad='small'
+                background={{ color: 'accent-2', opacity: 'medium' }}
+              />
+              <Box
+                pad='small'
+                background={{ color: 'accent-2', opacity: 'strong' }}
+              />
+            </Box>
+          ))}
+        </Box>
+      ),
+      margin: (
+        <Box direction='row' justify='end' wrap={true} align='start'>
+          {['none', 'xsmall', 'small', 'medium'].map(margin => (
+            <Box
+              key={margin}
+              margin={margin}
+              pad='small'
+              background={{ color: 'accent-2', opacity: 'strong' }}
+            />
+          ))}
+        </Box>
+      ),
       pad: (
-        <Box align='start'>
-          {['none', 'xsmall', 'small', 'medium', 'large'].map(pad => (
+        <Box direction='row' justify='end' wrap={true} align='start'>
+          {['none', 'xsmall', 'small', 'medium'].map(pad => (
             <Box
               key={pad}
               pad={pad}
-              background='light-2'
-              border={{ color: 'brand' }}
+              background={{ color: 'accent-2', opacity: 'weak' }}
               margin='xsmall'
             >
-              <Box pad='small' background='light-3' />
+              <Box
+                pad='small'
+                background={{ color: 'accent-2', opacity: 'strong' }}
+              />
             </Box>
           ))}
         </Box>
       ),
       round: (
-        <Box align='start'>
-          {['xsmall', 'small', 'medium', 'large'].map(round => (
+        <Box direction='row' justify='end' wrap={true} align='start'>
+          {['xsmall', 'small', 'medium'].map(round => (
             <Box
               key={round}
               round={round}
               pad='medium'
-              border={{ color: 'brand' }}
+              background={{ color: 'accent-2', opacity: 'strong' }}
               margin='xsmall'
             />
           ))}
@@ -142,17 +175,20 @@ export default () => (
       wrap: (
         <Box fill={true} direction='row' justify='end'>
           <Box
-            basis='xsmall'
+            basis='small'
             align='end'
             direction='row'
             wrap={true}
-            border={{ color: 'brand' }}
+            background={{ color: 'accent-2', opacity: 'weak' }}
           >
-            <Box pad='small' margin='xsmall' background='light-2' />
-            <Box pad='small' margin='xsmall' background='light-2' />
-            <Box pad='small' margin='xsmall' background='light-2' />
-            <Box pad='small' margin='xsmall' background='light-2' />
-            <Box pad='small' margin='xsmall' background='light-2' />
+            {[0, 1, 2, 3, 4, 5, 6].map(index => (
+              <Box
+                key={index * 10}
+                pad='small'
+                margin='xsmall'
+                background={{ color: 'accent-2', opacity: 'strong' }}
+              />
+            ))}
           </Box>
         </Box>
       ),

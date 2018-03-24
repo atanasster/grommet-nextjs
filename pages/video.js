@@ -1,3 +1,5 @@
+import React from 'react';
+
 import { Box, Video } from 'grommet';
 import doc from 'grommet/components/Video/doc';
 
@@ -32,7 +34,7 @@ export default () => (
     name='Video'
     desc={desc}
     example={(
-      <Box pad='large'>
+      <Box>
         <Video controls='over' fit='cover'>
           {CONTENT2}
         </Video>
@@ -40,9 +42,9 @@ export default () => (
     )}
     examples={{
       controls: (
-        <Box>
+        <Box direction='row' justify='end' wrap={true}>
           {[false, 'over', 'below'].map(controls => (
-            <Box key={controls} basis='small' margin={{ bottom: 'xsmall' }}>
+            <Box key={controls} basis='small' margin='xsmall'>
               <Video controls={controls} fit='cover'>
                 {CONTENT2}
               </Video>
@@ -51,12 +53,19 @@ export default () => (
         </Box>
       ),
       fit: (
-        <Box>
+        <Box direction='row' justify='end' wrap={true}>
           {['contain', 'cover'].map(fit => (
-            <Box key={fit} basis='small' border='all' margin={{ bottom: 'xsmall' }}>
-              <Video controls='over' fit={fit}>
-                {CONTENT}
-              </Video>
+            <Box
+              key={fit}
+              basis='small'
+              margin='xsmall'
+              background={{ color: 'accent-2', opacity: 'weak' }}
+            >
+              <Box basis='small'>
+                <Video controls='over' fit={fit}>
+                  {CONTENT}
+                </Video>
+              </Box>
             </Box>
           ))}
         </Box>
