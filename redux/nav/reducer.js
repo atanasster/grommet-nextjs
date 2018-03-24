@@ -12,14 +12,14 @@ const initialState = {
     { route: 'coins_list', label: 'coins', a11yTitle: 'List of coins' },
     { route: 'coins_icos', label: 'ICOs', a11yTitle: 'List of active and upcoming initial coin offerings' },
     {
-      route: 'coins',
+      route: 'coin_info',
       params: { symbol: 'BTC' },
       label: 'bitcoin',
       a11yTitle: 'Information about BitCoin',
     },
     {
-      route: 'coins',
-      params: { symbol: 'BTC' },
+      route: 'coin_info',
+      params: { symbol: 'ETH' },
       label: 'ethereum',
       a11yTitle: 'Information about Ethereum',
     },

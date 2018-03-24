@@ -1,8 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { graphql } from 'react-apollo';
 import { Box, Image, Heading } from 'grommet';
 import RoutedAnchor from '../RoutedAnchor';
-import connect from '../../../redux/index';
+import { exchangeInfoQuery } from '../graphql/exchanges';
 
 export const CountryFlag = ({ code }) => (
   <div>{code}</div>
@@ -27,20 +28,11 @@ export const ExchangeCountries = ({ countries }) => (
 );
 
 
-const Exchange = ({
-  level, exchange, aggregatedExchange, border, justify,
+export const ConnectedExchange = ({
+  level, exchange, aggregatedExchange, ...rest
 }) => {
   if (!exchange) {
     return null;
-  }
-  let exchangeName;
-  let exchangeCode;
-  if (typeof exchange === 'string') {
-    exchangeCode = exchange;
-    exchangeName = exchange === aggregatedExchange ? 'Aggregated' : exchange;
-  } else {
-    exchangeName = exchange.name;
-    exchangeCode = exchange.id;
   }
   let image;
   if (exchange) {
@@ -55,36 +47,43 @@ const Exchange = ({
   }
   return (
     <Box
-      a11yTitle={`View details of ${exchangeName} exchange`}
-      border={border}
+      a11yTitle={`View details of ${exchange.name} exchange`}
       direction='row'
       align='center'
-      justify={justify}
       gap='xsmall'
+      {...rest}
     >
       {image}
-      <RoutedAnchor route='exchange_prices' params={{ exchange: exchangeCode }} >
-        <Heading level={level} margin='none'><strong>{exchangeName}</strong></Heading>
+      <RoutedAnchor route='exchange_prices' params={{ exchange: exchange.name }} >
+        <Heading level={level} margin='none'><strong>{exchange.name}</strong></Heading>
       </RoutedAnchor>
     </Box>
   );
 };
 
-const mapStateToProps = state => ({
-  aggregatedExchange: state.settings.aggregatedExchange,
-});
-
-
-Exchange.defaultProps = {
+ConnectedExchange.defaultProps = {
   level: 4,
-  border: undefined,
   exchange: undefined,
 };
 
-Exchange.propTypes = {
-  exchange: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
+ConnectedExchange.propTypes = {
+  exchange: PropTypes.object,
   level: PropTypes.number,
-  border: PropTypes.string,
 };
 
-export default connect(mapStateToProps)(Exchange);
+
+// eslint-disable-next-line no-unused-vars
+const Exchange = ({ exchange: sExchange, data: { exchange }, rest }) => (
+  <ConnectedExchange exchange={exchange} {...rest} />
+);
+
+Exchange.propTypes = {
+  exchange: PropTypes.string.isRequired,
+};
+
+export default graphql(exchangeInfoQuery, {
+  options: props => ({ variables: { exchange: props.exchange } }),
+})(
+  Exchange
+);
+

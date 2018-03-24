@@ -14,8 +14,8 @@ export const allExchangesQuery = gql`
 
 
 export const exchangeInfoQuery = gql`
-  query getExchange($id : String!) {
-    coin(id: $id) {
+  query getExchange($exchange : String!) {
+    exchange(exchange: $exchange) {
       id
       name
       logo

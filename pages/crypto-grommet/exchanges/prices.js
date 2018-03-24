@@ -1,15 +1,21 @@
-import React, { Component } from 'react';
+import React from 'react';
 import App from '../../../components/crypto/App';
+import connect from '../../../redux';
+import Exchange from '../../../components/crypto/exchanges/Exchange';
+import FavoritePrices from '../../../components/crypto/coins/FavoritePrices';
+import withData from '../../../apollo/withData';
 
-export default class About extends Component {
-  static getInitialProps({ query: { symbol, toSymbol, exchange } }) {
-    return { symbol, toSymbol, exchange };
-  }
+const ExchancePrices = ({ exchange }) => (
+  <App title={exchange} visibleTitle={<Exchange exchange={exchange} />} >
+    <FavoritePrices exchange={exchange} />
+  </App>
+);
 
-  render() {
-    return (
-      <App title={`${this.props.exchange} - under construction...`} />
-    );
-  }
-}
+const mapStateToProps = (state, props) => {
+  const exchange = props.url.query.exchange || state.settings.defaultExchange;
+  return {
+    exchange,
+  };
+};
 
+export default withData(connect(mapStateToProps)(ExchancePrices));

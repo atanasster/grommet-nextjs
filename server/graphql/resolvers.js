@@ -14,7 +14,8 @@ const findCoin = (symbol) => {
 };
 
 
-const findExchange = id => exchanges().find(item => item.id === id) || { id };
+const findExchange = exchange => exchanges()
+  .find(item => item.id === exchange || item.name === exchange) || { id: exchange, name: exchange };
 
 const resolvers = {
   Query: {
@@ -28,8 +29,8 @@ const resolvers = {
     allExchanges() {
       return exchanges();
     },
-    exchange(root, { id }) {
-      return findExchange(id);
+    exchange(root, { exchange }) {
+      return findExchange(exchange);
     },
     priceHistory(root, {
       symbol, toSymbol, exchange, period = 'day', limit = 60,

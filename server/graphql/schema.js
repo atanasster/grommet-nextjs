@@ -7,7 +7,7 @@ type Query {
   coin(symbol: String): Coin
   allCoins: [Coin]
   allExchanges : [Exchange]
-  exchange(id: String): Exchange
+  exchange(exchange: String): Exchange
   priceHistory(symbol: String, toSymbol: String, exchange: String, period: String, limit: Int): [PriceHistory]
   marketCap(currency: String, start: Int, limit: Int) : [MarketCap]
   orderBook(exchange: String, symbol: String, toSymbol: String, start: Int, limit: Int) : OrderBook

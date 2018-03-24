@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { graphql } from 'react-apollo';
 import { Box, Text, Anchor, Select } from 'grommet';
 import Table from '../../grommet-table';
-import Exchange, { ExchangeCountries, Country } from './Exchange';
+import { ConnectedExchange, ExchangeCountries, Country } from './Exchange';
 import { uniqueCountries } from '../../../utils/countries';
 import { allExchangesQuery } from '../graphql/exchanges';
 
@@ -26,7 +26,7 @@ class ExchangesList extends Component {
         Header: 'Exchange',
         accessor: 'name',
         Cell: cell => (
-          <Exchange exchange={cell.original} />
+          <ConnectedExchange exchange={cell.original} />
         ),
         Footer: cell => (
           <Text >{`${cell.data.length} of ${allExchanges ? allExchanges.length : 0} exchanges`}</Text>

@@ -24,15 +24,19 @@ class App extends Component {
   }
 
   render() {
-    const { children, description, title } = this.props;
+    const {
+      children, description, title, visibleTitle,
+    } = this.props;
     let header;
     if (title) {
       header = (
         <Box direction='row' responsive={true} tag='header'>
           <Box margin={{ vertical: 'medium' }} align='start'>
-            <Heading level={1}>
-              <strong>{title}</strong>
-            </Heading>
+            {visibleTitle || (
+              <Heading margin='none' level={1}>
+                <strong>{title}</strong>
+              </Heading>)
+            }
             {description ? (
               <Markdown
                 components={{ p: { component: LargeParagraph, props: { size: 'medium' } } }}
@@ -86,12 +90,13 @@ class App extends Component {
 
 App.propTypes = {
   description: PropTypes.string,
-  title: PropTypes.oneOfType([PropTypes.string, PropTypes.element]),
+  title: PropTypes.string.isRequired,
+  visibleTitle: PropTypes.oneOfType([PropTypes.string, PropTypes.element]),
 };
 
 App.defaultProps = {
   description: undefined,
-  title: undefined,
+  visibleTitle: undefined,
 };
 
 const mapStateToProps = state => ({

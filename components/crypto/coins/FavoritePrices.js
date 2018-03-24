@@ -29,10 +29,10 @@ const FavoritePrices = ({ favCoins, exchange, responsive }) => {
   );
 };
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state, props) => ({
   favCoins: state.settings.favCoins,
   responsive: state.nav.responsive,
-  exchange: state.settings.aggregatedExchange,
+  exchange: props.exchange || state.settings.aggregatedExchange,
 });
 
 export default connect(mapStateToProps)(FavoritePrices);

@@ -38,6 +38,7 @@ if (!process.browser) {
       });
     return baseExchangeInfo(exchange);
   });
+  exchanges.push({ id: 'CCCAGG', name: 'Aggregated', countries: [] });
   module.exports.exchangeObj = (exchange) => {
     const exch = exchanges.find(item => item.name === exchange);
     if (exch) {

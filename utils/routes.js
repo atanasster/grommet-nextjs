@@ -3,7 +3,7 @@ const routes = require('next-routes')();
 const SITE_ROOT = '/crypto-grommet';
 module.exports.SITE_ROOT = SITE_ROOT;
 
-routes.add({ name: 'home', page: `${SITE_ROOT}` });
+routes.add({ name: 'home', pattern: `${SITE_ROOT}`, page: `${SITE_ROOT}` });
 routes.add('signin', `${SITE_ROOT}/sign_in`);
 routes.add('signup', `${SITE_ROOT}/sign_up`);
 routes.add('coin_info', '/coins/general/:symbol/:toSymbol?/:exchange?', `${SITE_ROOT}/coins/general`);
