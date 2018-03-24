@@ -61,7 +61,7 @@ class NavMenu extends Component {
       >
         <Box direction='row' align='center' gap='small'>
           <AppIcon color='plain' />
-          <RoutedAnchor path='' label='crypto-grommet' a11yTitle='Go to home page' />
+          <RoutedAnchor route='home' label='crypto-grommet' a11yTitle='Go to home page' />
         </Box>
         {this.renderMenu()}
         {layer}

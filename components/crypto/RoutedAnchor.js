@@ -1,5 +1,5 @@
 import RoutedAnchor from '../nextjs/RoutedAnchor';
 
-export default ({ path, ...rest }) => (
-  <RoutedAnchor path={`/crypto-grommet${path}`} preserveParams={['theme', 'currency']} {...rest} />
+export default props => (
+  <RoutedAnchor preserveParams={['theme', 'currency']} {...props} />
 );

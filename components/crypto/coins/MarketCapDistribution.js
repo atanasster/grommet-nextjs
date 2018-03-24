@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { graphql } from 'react-apollo';
 import { Box, Distribution } from 'grommet';
 import { Spinning } from 'grommet-controls';
-import Coin, { FormattedCoinValue, coinPath } from './Coin';
+import Coin, { FormattedCoinValue, pushCoinPath } from './Coin';
 import connect from '../../../redux';
 import { marketCapQuery } from '../graphql/coins';
 
@@ -11,16 +11,12 @@ import { marketCapQuery } from '../graphql/coins';
 class MarketCapDistribution extends Component {
   onClickBackground = (e, item) => {
     const { currency, exchange } = this.props;
-    const { router } = this.context;
-    if (router) {
-      e.preventDefault();
-      (router.history || router).push(coinPath({
-        symbol: item.symbol,
-        toSymbol: currency,
-        exchange,
-
-      }));
-    }
+    e.preventDefault();
+    pushCoinPath({
+      symbol: item.symbol,
+      toSymbol: currency,
+      exchange,
+    });
   };
 
   render() {

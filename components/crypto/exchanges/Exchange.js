@@ -34,10 +34,13 @@ const Exchange = ({
     return null;
   }
   let exchangeName;
+  let exchangeCode;
   if (typeof exchange === 'string') {
+    exchangeCode = exchange;
     exchangeName = exchange === aggregatedExchange ? 'Aggregated' : exchange;
   } else {
     exchangeName = exchange.name;
+    exchangeCode = exchange.id;
   }
   let image;
   if (exchange) {
@@ -60,7 +63,7 @@ const Exchange = ({
       gap='xsmall'
     >
       {image}
-      <RoutedAnchor path={`/exchanges/prices/${exchange.code}`}>
+      <RoutedAnchor route='exchange_prices' params={{ exchange: exchangeCode }} >
         <Heading level={level} margin='none'><strong>{exchangeName}</strong></Heading>
       </RoutedAnchor>
     </Box>

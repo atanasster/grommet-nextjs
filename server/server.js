@@ -8,7 +8,7 @@ const cors = require('cors');
 const { graphqlExpress, graphiqlExpress } = require('apollo-server-express');
 const bodyParser = require('body-parser');
 const staticFiles = require('./static');
-const routes = require('./routes');
+const routes = require('../utils/routes');
 const logger = require('./logger');
 const dotenv = require('dotenv');
 const schema = require('./graphql/schema');
@@ -55,11 +55,9 @@ const renderAndCache = function renderAndCache(
     res.send(ssrCache.get(key));
     return;
   }
-
   app
     .renderToHTML(req, res, pagePath, queryParams)
     .then((html) => {
-      // Let's cache this page
       if (!dev) {
         console.log(`CACHE MISS: ${key}`);
         ssrCache.set(key, html);
@@ -85,9 +83,9 @@ app.prepare()
   .then(() => {
     const server = express();
     // server.use(compression({ threshold: 0 }));
+    server.use(cors());
     server.use('/graphql', bodyParser.json(), graphqlExpress({ schema, cacheControl: true }));
     server.use('/graphiql', graphiqlExpress({ endpointURL: '/graphql' }));
-    server.use(cors());
     server.use(routerHandler);
     server.use('/', staticFiles());
     server.get('/sw.js', (req, res) =>

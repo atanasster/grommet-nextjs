@@ -8,7 +8,7 @@ export default class About extends Component {
 
   render() {
     return (
-      <App title={`${this.props.symbol}/${this.props.toSymbol}/${this.props.exchange} - under construction...`} />
+      <App title={`${this.props.exchange} - under construction...`} />
     );
   }
 }

@@ -4,6 +4,7 @@ import { Box, Image, Text, Heading } from 'grommet';
 import numeral from 'numeral';
 import RoutedAnchor from '../RoutedAnchor';
 import connect from '../../../redux/index';
+import { Router } from '../../../utils/routes';
 
 export const FormattedCoinValue = ({
   value, toSymbol, coin, large, justify, level,
@@ -57,10 +58,17 @@ export const ColoredPercentChange = ({ value, level = 4 }) => (
   </Heading>
 );
 
-export const coinPath = ({ symbol, toSymbol, exchange }) => (
-  `/coins/general/${symbol}/${toSymbol}/${exchange}`
+export const CoinPath = ({
+  symbol, toSymbol, exchange, children,
+}) => (
+  <RoutedAnchor route='coin_info' params={{ symbol, toSymbol, exchange }} >
+    {children}
+  </RoutedAnchor>
 );
 
+export const pushCoinPath = ({ symbol, toSymbol, exchange }) => {
+  Router.pushRoute('coin_info', { symbol, toSymbol, exchange });
+};
 const Coin = (
   {
     coin, exchange, defaultExchange, toCoin, level, border, aggregatedExchange, short,
@@ -75,16 +83,13 @@ const Coin = (
   const textLevel = short ? 4 : level;
   const title = <Heading level={textLevel} margin='none'>{coinName}</Heading>;
   const link = coin && coin.fullName ? (
-    <RoutedAnchor
-      path={coinPath({
-        symbol: coin.symbol,
-        toSymbol: toCoin.symbol,
-        exchange: exchange === aggregatedExchange ? defaultExchange : exchange,
-})
-      }
+    <CoinPath
+      symbol={coin.symbol}
+      toSymbol={toCoin.symbol}
+      exchange={exchange === aggregatedExchange ? defaultExchange : exchange}
     >
       {title}
-    </RoutedAnchor>
+    </CoinPath>
   ) : title;
   let image;
   if (coin && coin.imageUrl && !short) {
