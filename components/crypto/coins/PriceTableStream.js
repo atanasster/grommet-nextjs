@@ -91,7 +91,7 @@ export default class PriceTableStream extends Component {
           value: <FormattedCoinValue value={data.LOW24HOUR} coin={toCoin} />,
         }, {
           label: 'Last exchange',
-          value: <Exchange exchange={data.LASTMARKET} justify='end' />,
+          value: data.LASTMARKET && <Exchange exchange={data.LASTMARKET} justify='end' />,
         }, {
           label: 'Last trade volume',
           value: (<FormattedCoinValue value={data.LASTVOLUME} coin={coin} />),

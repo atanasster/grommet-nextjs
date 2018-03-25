@@ -9,6 +9,7 @@ routes.add('signup', `${SITE_ROOT}/sign_up`);
 routes.add('coin_info', '/coins/general/:symbol/:toSymbol?/:exchange?', `${SITE_ROOT}/coins/general`);
 routes.add('exchange_prices', '/exchanges/prices/:exchange', `${SITE_ROOT}/exchanges/prices`);
 routes.add({ name: 'markets', page: `${SITE_ROOT}/markets` });
+routes.add({ name: 'about', page: `${SITE_ROOT}/about` });
 routes.add({ name: 'markets_distribution', page: `${SITE_ROOT}/markets/distribution` });
 routes.add({ name: 'exchanges', page: `${SITE_ROOT}/exchanges` });
 routes.add({ name: 'coins_list', page: `${SITE_ROOT}/coins` });

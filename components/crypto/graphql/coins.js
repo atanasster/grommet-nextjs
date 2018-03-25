@@ -10,6 +10,18 @@ export const coinInfoQuery = gql`
   }
 `;
 
+export const coinDetailsQuery = gql`
+  query getCoin($symbol : String!) {
+    coin(symbol: $symbol) {
+      symbol
+      imageUrl
+      fullName
+      description
+      messages
+    }
+  }
+`;
+
 
 export const priceHistoryQuery = gql`
   query getPriceHistory($symbol : String!, $toSymbol : String!, $exchange: String!, $period: String, $limit: Int) {

@@ -25,7 +25,7 @@ const optionLimit = [
 ];
 
 
-class PriceCard extends Component {
+export class ConnectedPriceCard extends Component {
   constructor(props, context) {
     super(props, context);
     this.state = { period: props.period, points: props.points };
@@ -41,15 +41,7 @@ class PriceCard extends Component {
 
   render() {
     const {
-      exchange, color, symbol, toSymbol,
-    } = this.props;
-    const {
-      data: {
-        coin,
-      },
-      toCoin: {
-        coin: toCoin,
-      },
+      exchange, color, coin, toCoin,
     } = this.props;
     if (!coin || !toCoin) {
       return null;
@@ -81,8 +73,8 @@ class PriceCard extends Component {
             <RoutedButton path={`/coins/chart/${coin.symbol}/${toCoin.symbol}/${exchange}`}>
               <PriceChart
                 color={color}
-                symbol={symbol}
-                toSymbol={toSymbol}
+                symbol={coin.symbol}
+                toSymbol={toCoin.symbol}
                 exchange={exchange}
                 period={period}
                 points={points}
@@ -95,7 +87,27 @@ class PriceCard extends Component {
     );
   }
 }
+ConnectedPriceCard.defaultProps = {
+  color: undefined,
+  period: 'day',
+  points: 60,
+  coin: undefined,
+  toCoin: undefined,
 
+};
+
+ConnectedPriceCard.propTypes = {
+  coin: PropTypes.object,
+  toCoin: PropTypes.object,
+  exchange: PropTypes.string.isRequired,
+  period: PropTypes.string,
+  points: PropTypes.number,
+  color: PropTypes.string,
+};
+
+const PriceCard = ({ coin: { coin }, toCoin: { coin: toCoin }, ...rest }) => (
+  <ConnectedPriceCard coin={coin} toCoin={toCoin} {...rest} />
+);
 
 PriceCard.defaultProps = {
   color: undefined,
@@ -114,6 +126,6 @@ PriceCard.propTypes = {
 
 
 export default compose(
-  graphql(coinInfoQuery, { options: props => ({ variables: { symbol: props.symbol } }) }),
+  graphql(coinInfoQuery, { name: 'coin', options: props => ({ variables: { symbol: props.symbol } }) }),
   graphql(coinInfoQuery, { name: 'toCoin', options: props => ({ variables: { symbol: props.toSymbol } }) }),
 )(PriceCard);

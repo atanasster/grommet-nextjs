@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { graphql, compose } from 'react-apollo';
+import { graphql } from 'react-apollo';
 import ReactHighcharts from 'react-highcharts';
 import numeral from 'numeral';
 import { Box, Text } from 'grommet';
@@ -47,10 +47,10 @@ function renderAskBidTable(data) {
   );
 }
 
-class OrderBookCard extends Component {
+class ConnectedOrderBook extends Component {
   renderChart() {
-    const { data: { orderBook } } = this.props;
-    const { symbol, toSymbol } = this.props;
+    const { data: { orderBook }, coin } = this.props;
+    const { toSymbol } = this.props;
     const config = {
       chart: {
         type: 'area',
@@ -79,7 +79,7 @@ class OrderBookCard extends Component {
         valueDecimals: 8,
         useHTML: true,
         headerFormat: '<small style="font-size: 12px;color:{series.color}"><strong>{series.name}</strong></small>.',
-        pointFormat: `<table><tbody><tr><td>Sum ${symbol}</td><td style="text-align: right"><b>{point.y}</b></td></tr>` +
+        pointFormat: `<table><tbody><tr><td>Sum ${coin.symbol}</td><td style="text-align: right"><b>{point.y}</b></td></tr>` +
                       `<tr><td>Price ${toSymbol}</td><td style="text-align: right"><b>{point.x}</b></td></tr></tbody></table>`,
         crosshairs: [true, true],
       },
@@ -135,11 +135,10 @@ class OrderBookCard extends Component {
   }
 
   render() {
-    const { data: { orderBook }, exchange } = this.props;
-    if (!orderBook) {
+    const { data: { orderBook }, exchange, coin } = this.props;
+    if (!orderBook || !coin) {
       return null;
     }
-    const { coin: { coin } } = this.props;
     const { asks, bids, realToSymbol } = orderBook;
     return (
       <Card
@@ -164,23 +163,32 @@ class OrderBookCard extends Component {
   }
 }
 
+ConnectedOrderBook.propTypes = {
+  coin: PropTypes.object.isRequired,
+  toSymbol: PropTypes.string.isRequired,
+  exchange: PropTypes.string.isRequired,
+};
+
+export const ConnectedOrderBookCard = graphql(orderBookQuery, {
+  options: props => ({
+    variables: {
+      start: 10,
+      limit: 100,
+      symbol: props.coin.symbol,
+      toSymbol: props.toSymbol,
+      exchange: props.exchange,
+    },
+  }),
+})(ConnectedOrderBook);
+
+const OrderBookCard = ({ coin: { coin }, ...rest }) => (
+  coin && <ConnectedOrderBookCard coin={coin} {...rest} />
+);
+
 OrderBookCard.propTypes = {
   symbol: PropTypes.string.isRequired,
   toSymbol: PropTypes.string.isRequired,
   exchange: PropTypes.string.isRequired,
 };
 
-export default compose(
-  graphql(coinInfoQuery, { name: 'coin', options: props => ({ variables: { symbol: props.symbol } }) }),
-  graphql(orderBookQuery, {
-    options: props => ({
-      variables: {
-        start: 10,
-        limit: 100,
-        symbol: props.symbol,
-        toSymbol: props.toSymbol,
-        exchange: props.exchange,
-      },
-    }),
-  })
-)(OrderBookCard);
+export default graphql(coinInfoQuery, { name: 'coin', options: props => ({ variables: { symbol: props.symbol } }) })(OrderBookCard);

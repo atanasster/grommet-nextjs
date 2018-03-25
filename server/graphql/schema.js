@@ -28,6 +28,8 @@ type Coin {
   totalCoinSupply: String
   totalCoinsFreeFloat: String
   url: String
+  description: String
+  messages: [String]
 }
 
 type TradingFees {

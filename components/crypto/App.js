@@ -70,7 +70,7 @@ class App extends Component {
               gap='medium'
             >
               <RoutedAnchor
-                path='/about'
+                route='about'
                 label='about'
                 a11yTitle='About crypto-grommet'
               />

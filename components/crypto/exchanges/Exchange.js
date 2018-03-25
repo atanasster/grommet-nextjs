@@ -55,7 +55,7 @@ export const ConnectedExchange = ({
     >
       {image}
       <RoutedAnchor route='exchange_prices' params={{ exchange: exchange.name }} >
-        <Heading level={level} margin='none'><strong>{exchange.name}</strong></Heading>
+        <Heading level={level} margin='none'><strong>{exchange.name === 'CCCAGG' ? 'Aggregated' : exchange.name}</strong></Heading>
       </RoutedAnchor>
     </Box>
   );

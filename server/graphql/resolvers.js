@@ -67,7 +67,7 @@ const resolvers = {
       exchange, symbol, toSymbol, start = 0, limit = 30,
     }) {
       const exch = exchangeObj(exchange);
-      if (!exchange) {
+      if (!exch) {
         throw new Error(`Could not find exchange ${exchange}`);
       }
       if (!exch.has.fetchOrderBook) {
@@ -76,8 +76,10 @@ const resolvers = {
       return exch.fetchOrderBook(`${symbol}/${toSymbol}`)
         .then(orderBook => ({
           last_updated: orderBook.timestamp,
-          asks: orderBook.asks.slice(start, limit).map(item => ({ price: item[0], qty: item[1] })),
-          bids: orderBook.bids.slice(start, limit).map(item => ({ price: item[0], qty: item[1] })),
+          asks: orderBook.asks.slice(start, limit).map(item =>
+            ({ price: item[0], qty: item[1] })),
+          bids: orderBook.bids.slice(start, limit).map(item =>
+            ({ price: item[0], qty: item[1] })),
           symbol,
           realToSymbol: toSymbol,
         }))
