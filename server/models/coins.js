@@ -28,7 +28,9 @@ if (!process.browser) {
           url: `//www.cryptocompare.com${coin.Url}`,
         };
       });
-    }).then(() => {
+    })
+    .then(() => sleep())
+    .then(() => {
       coins.forEach((coin, idx) => {
         console.log('will fetch ', coin.symbol);
         fetch(`https://www.cryptocompare.com/api/data/coinsnapshotfullbyid/?id=${coin.id}`)
