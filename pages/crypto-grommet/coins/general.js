@@ -19,7 +19,7 @@ const CoinInfo = ({
       msg => ({ message: msg.message, status: msg.type })
     )}
     description={coin && coin.description}
-    visibleTitle={<Coin coin={coin} toCoin={toCoin} exchange={exchange} />}
+    visibleTitle={coin && <Coin coin={coin} toCoin={toCoin} exchange={exchange} />}
   >
     {coin && toCoin && (
     <CardScroll>
