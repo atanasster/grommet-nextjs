@@ -32,7 +32,7 @@ class App extends Component {
       header = (
         <Box direction='row' responsive={true} tag='header'>
           <Box margin={{ vertical: 'medium' }} align='start'>
-            {visibleTitle || (
+            {visibleTitle !== undefined ? visibleTitle : (
               <Heading margin='none' level={1}>
                 <strong>{title}</strong>
               </Heading>)

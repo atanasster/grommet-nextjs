@@ -36,7 +36,7 @@ class MarketCapDistribution extends Component {
       }
     ));
     return (
-      <Distribution values={values}>
+      <Distribution values={values} style={{ width: '100%' }}>
         {(item) => {
           const colors = [
             'brand', 'accent-1', 'accent-2', 'neutral-1', 'neutral-2', 'neutral-3', 'status-ok', 'status-warning',

@@ -7,7 +7,6 @@ const initialState = {
   manual_active: false,
   items: [
     { route: 'markets', label: 'markets', a11yTitle: 'Market cap table of crypto coins' },
-    { route: 'markets_distribution', label: 'distribution', a11yTitle: 'Market cap distribution of crypto coins' },
     { route: 'exchanges', label: 'exchanges', a11yTitle: 'List of exchanges' },
     { route: 'coins_list', label: 'coins', a11yTitle: 'List of coins' },
     { route: 'coins_icos', label: 'ICOs', a11yTitle: 'List of active and upcoming initial coin offerings' },

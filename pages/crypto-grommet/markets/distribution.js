@@ -6,18 +6,13 @@ import MarketCapDistribution from '../../../components/crypto/coins/MarketCapDis
 import connect from '../../../redux';
 
 
-class MarketCap extends React.Component {
-  render() {
-    const { defaultExchange, defaultCurrency } = this.props;
-    return (
-      <App title='Top coins distribution'>
-        <Box basis='xlarge'>
-          <MarketCapDistribution exchange={defaultExchange} currency={defaultCurrency} />
-        </Box>
-      </App>
-    );
-  }
-}
+const MarketCap = ({ defaultExchange, defaultCurrency }) => (
+  <App title='Top coins distribution'>
+    <Box basis='xlarge'>
+      <MarketCapDistribution exchange={defaultExchange} currency={defaultCurrency} />
+    </Box>
+  </App>
+);
 
 const mapStateToProps = state => ({
   defaultExchange: state.settings.defaultExchange,
