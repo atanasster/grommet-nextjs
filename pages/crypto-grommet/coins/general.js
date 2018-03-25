@@ -33,7 +33,7 @@ const CoinInfo = ({
 
 const mapStateToProps = (state, props) => {
   const exchange = props.url.query.exchange || state.settings.defaultExchange;
-  const symbol   = props.url.query || 'BTC';
+  const symbol = props.url.query.symbol || 'BTC';
   const toSymbol = props.url.query.toSymbol || state.settings.defaultCurrency;
   return {
     exchange,
