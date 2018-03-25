@@ -28,10 +28,13 @@ if (!process.browser) {
           url: `//www.cryptocompare.com${coin.Url}`,
         };
       });
+    }).then(() => {
       coins.forEach((coin, idx) => {
+        console.log('will fetch ', coin.symbol);
         fetch(`https://www.cryptocompare.com/api/data/coinsnapshotfullbyid/?id=${coin.id}`)
           .then(res => res.json())
           .then((data) => {
+            console.log('fetched ', coin.symbol, data);
             if (data.Data) {
               const newValue = { ...coin, messages: [] };
               if (data.Data.General) {
