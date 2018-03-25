@@ -9,11 +9,15 @@ import CardScroll from '../../../components/crypto/CardScroll';
 import { ConnectedPriceCard } from '../../../components/crypto/coins/PriceCard';
 import { ConnectedOrderBookCard } from '../../../components/crypto/coins/OrderBookCard';
 
+
 const CoinInfo = ({
   symbol, toSymbol, exchange, coin: { coin }, toCoin: { coin: toCoin },
 }) => (
   <App
     title={`${symbol}/${toSymbol}/${exchange}`}
+    notifications={coin && coin.messages && coin.messages.map(
+      msg => ({ message: msg.message, status: msg.type })
+    )}
     description={coin && coin.description}
     visibleTitle={<Coin coin={coin} toCoin={toCoin} exchange={exchange} />}
   >

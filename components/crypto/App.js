@@ -8,6 +8,7 @@ import {
   Markdown,
   Box,
 } from 'grommet';
+import { Notification } from 'grommet-controls';
 import Page from '../Page';
 import connect from '../../redux/index';
 import Notifications from './Notifications';
@@ -25,7 +26,7 @@ class App extends Component {
 
   render() {
     const {
-      children, description, title, visibleTitle,
+      children, description, title, visibleTitle, notifications,
     } = this.props;
     let header;
     if (title) {
@@ -49,10 +50,14 @@ class App extends Component {
       );
     }
     return (
-      <Page title={title} description={description} footer={false}>
+      <Page title={title} description={description} footer={false} >
         <Box pad={{ horizontal: 'large', top: 'medium' }}>
           <NavMenu />
           <Notifications />
+          {notifications && notifications.map(
+            (msg, index) => (<Notification key={`msg_${index}`} {...msg} />)
+          )}
+
           {header}
           {children}
           <Box
@@ -90,11 +95,13 @@ class App extends Component {
 
 App.propTypes = {
   description: PropTypes.string,
+  notifications: PropTypes.array,
   title: PropTypes.string.isRequired,
   visibleTitle: PropTypes.oneOfType([PropTypes.string, PropTypes.element]),
 };
 
 App.defaultProps = {
+  notifications: undefined,
   description: undefined,
   visibleTitle: undefined,
 };

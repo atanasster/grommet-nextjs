@@ -5,18 +5,16 @@ import { longDate } from 'grommet-controls/utils/moment';
 import { priceHistoryQuery } from '../graphql/coins';
 
 
-const PriceChart = ({ color, priceHistory: { priceHistory } }) => (
-  <Chart
-    thickness='xsmall'
-    type='line'
-    color={color}
-    style={{ cursor: 'pointer' }}
-    values={priceHistory ? priceHistory.map((price, index) => ({
+const PriceChart = ({ color, priceHistory: { priceHistory } }) => (priceHistory ? (<Chart
+  thickness='xsmall'
+  type='line'
+  color={color}
+  style={{ cursor: 'pointer' }}
+  values={priceHistory.map((price, index) => ({
       value: [index, price.close],
       label: longDate(price.time),
-    })) : []}
-  />
-);
+    }))}
+/>) : null);
 
 
 export default graphql(priceHistoryQuery, {

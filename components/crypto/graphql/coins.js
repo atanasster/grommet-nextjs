@@ -17,7 +17,10 @@ export const coinDetailsQuery = gql`
       imageUrl
       fullName
       description
-      messages
+      messages {
+        message
+        type
+      }
     }
   }
 `;

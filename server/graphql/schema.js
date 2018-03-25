@@ -12,6 +12,10 @@ type Query {
   marketCap(currency: String, start: Int, limit: Int) : [MarketCap]
   orderBook(exchange: String, symbol: String, toSymbol: String, start: Int, limit: Int) : OrderBook
 }
+type ErrorMessage {
+  message: String
+  type: String
+}
 type Coin {
   algorithm: String
   coinName: String
@@ -29,7 +33,7 @@ type Coin {
   totalCoinsFreeFloat: String
   url: String
   description: String
-  messages: [String]
+  messages: [ErrorMessage]
 }
 
 type TradingFees {
