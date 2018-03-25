@@ -2,9 +2,9 @@ const fetch = require('isomorphic-unfetch');
 const Turndown = require('turndown');
 const { sleep } = require('../api/utils');
 
-const turndown = new Turndown();
-let coins = [];
 if (!process.browser) {
+  const turndown = new Turndown();
+  let coins = [];
   fetch('https://min-api.cryptocompare.com/data/all/coinlist')
     .then(res => res.json())
     .then((json) => {
@@ -110,7 +110,7 @@ if (!process.browser) {
             // console.log(coins[idx]);
             return sleep();
           })
-          .catch(() => (sleep()));
+          .catch((e) => { console.log(e); return sleep(); });
       });
     });
   module.exports.coins = () => (coins);
