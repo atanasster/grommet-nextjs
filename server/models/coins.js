@@ -38,6 +38,7 @@ if (!process.browser) {
               if (data.Data.General) {
                 const GENERAL = data.Data.General;
                 if (GENERAL.DangerTop) {
+                  console.log(coin.symbol, ' ', GENERAL.DangerTop);
                   newValue.messages.push({
                     message: turndown.turndown(GENERAL.DangerTop),
                     type: 'error',
