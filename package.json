@@ -8,7 +8,7 @@
   "scripts": {
     "dev": "PORT=8444 node server/server.js ",
     "alias": "NODE_ENV=alias PORT=8444 node server/server.js ",
-    "build": "next build",
+    "build": "NODE_ENV=production next build",
     "check": "./node_modules/.bin/eslint .",
     "heroku-postbuild": "npm run build",
     "analyze": "ANALYZE_BUILD=true npm run build",
