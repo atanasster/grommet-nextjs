@@ -2,10 +2,12 @@ import React, { Component } from 'react';
 import { graphql } from 'react-apollo';
 import { connect } from 'react-redux';
 import { Box, Text, Markdown } from 'grommet';
+import { shortDate } from 'grommet-controls/utils/moment';
 import Table from '../../grommet-table';
 import Coin from './Coin';
 import ICOCard from './ICOCard';
 import { allICOQuery } from '../graphql/coins';
+
 
 class ICOList extends Component {
   // eslint-disable-next-line no-undef
@@ -46,8 +48,15 @@ class ICOList extends Component {
         Header: 'Status',
         accessor: 'ICO.status',
       }, {
-        Header: 'Features',
-        accessor: 'ICO.features',
+        Header: 'Start date',
+        accessor: 'ICO.date',
+        id: 'start_date',
+        Cell: cell => (shortDate(cell.value)),
+      }, {
+        Header: 'End date',
+        accessor: 'ICO.endDate',
+        id: 'end_date',
+        Cell: cell => (cell.value ? shortDate(cell.value) : 'N/A'),
       }, {
         Header: 'Token type',
         accessor: 'ICO.tokenType',
@@ -55,10 +64,6 @@ class ICOList extends Component {
         Header: 'Funding target',
         getProps: () => ({ textAlign: 'end' }),
         accessor: 'ICO.fundingTarget',
-      }, {
-        Header: 'Funding cap',
-        getProps: () => ({ textAlign: 'end' }),
-        accessor: 'ICO.fundingCap',
       },
     ];
     return (
@@ -72,7 +77,7 @@ class ICOList extends Component {
         data={allICO}
         SubComponent={this.onExpand}
         columns={columns}
-        defaultSorted={[{ id: 'symbol' }]}
+        defaultSorted={[{ id: 'start_date', desc: true }]}
       />
     );
   }

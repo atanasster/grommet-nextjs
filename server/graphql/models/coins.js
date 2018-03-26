@@ -76,9 +76,9 @@ if (!process.browser) {
 
                     ico.blog = turndown.turndown(ICO.Blog);
                     ico.blogLink = ICO.BlogLink;
-                    ico.date = ICO.Date;
+                    ico.date = ICO.Date * 1000;
                     ico.description = turndown.turndown(ICO.Description);
-                    ico.endDate = ICO.EndDate;
+                    ico.endDate = ICO.EndDate * 1000;
                     ico.features = ICO.Features.split(',');
                     ico.fundingCap = ICO.FundingCap;
                     ico.fundingTarget = ICO.FundingTarget;

@@ -11,10 +11,9 @@ import Coin from './Coin';
 export default class ICOCard extends Component {
   renderTable() {
     const { coin } = this.props;
-
     if (coin) {
-      console.log(coin);
       const { ICO } = coin;
+      console.log(ICO.date);
       const rows = [
         {
           label: 'Blog',
@@ -34,6 +33,9 @@ export default class ICOCard extends Component {
         }, {
           label: 'Date',
           value: shortDate(ICO.date),
+        }, {
+          label: 'End date',
+          value: ICO.endDate ? shortDate(ICO.endDate) : 'N/A',
         }, {
           label: 'Features',
           value: (

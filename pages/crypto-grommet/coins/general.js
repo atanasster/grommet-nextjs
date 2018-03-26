@@ -19,13 +19,13 @@ const CoinInfo = ({
     notifications={coin && coin.messages && coin.messages.map(
       msg => ({ message: msg.message, status: msg.type })
     )}
-    description={coin && (coin.ICO ? coin.ICO.description : coin.description)}
+    description={coin && (coin.ICO && coin.ICO.status !== 'Finished' ? coin.ICO.description : coin.description)}
     visibleTitle={coin && <Coin coin={coin} toCoin={toCoin} exchange={exchange} />}
     menu={<CoinsPageMenu activeItem={0} symbol={symbol} toSymbol={toSymbol} exchange={exchange} />}
   >
     {coin && toCoin && (
       <CardScroll>
-        {coin.ICO && <ICOCard coin={coin} />}
+        {coin.ICO && coin.ICO.status !== 'Finished' && <ICOCard coin={coin} />}
         <ConnectedPriceCard coin={coin} toCoin={toCoin} exchange='CCCAGG' />
         <ConnectedPriceCard coin={coin} toCoin={toCoin} exchange={exchange} />
         <ConnectedOrderBookCard coin={coin} toSymbol={toSymbol} exchange={exchange} />

@@ -12,6 +12,8 @@ export const coinInfoQuery = gql`
 
 const ICOFields = `
 ICO {
+  date
+  endDate
   description
   status
   blogLink

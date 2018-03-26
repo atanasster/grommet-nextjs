@@ -27,7 +27,7 @@ const resolvers = {
       return coins();
     },
     allICO() {
-      return coins().filter(coin => (coin.ICO && coin.ICO.status !== 'Finished'));
+      return coins().filter(coin => (coin.ICO && coin.ICO.status !== 'Finished' && coin.ICO.date !== 0));
     },
     allExchanges() {
       return exchanges();
