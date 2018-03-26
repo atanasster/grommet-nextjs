@@ -25,13 +25,10 @@ const custom = deepFreeze({
         '#777777',
         '#999999',
       ],
-      'border': 'rgba(0, 0, 0, 0.6)',
-      'background': 'rgb(255, 255, 255)',
-      'text': 'rgb(0, 0, 0)',
-      'placeholder': 'rgba(0, 0, 0, 0.5)',
-      'darkBackground': {
-        'text': 'rgb(255, 255, 255)',
-      },
+      'border': 'rgba(68, 68, 68, 0.6)',
+      'background': 'rgb(255, 248, 225)',
+      'text': 'rgb(68, 68, 68)',
+      'placeholder': 'rgba(68, 68, 68, 0.5)',
       'accent': [
         '#c7e673',
         '#6f8040',
@@ -51,15 +48,15 @@ const custom = deepFreeze({
     },
     'elevation': {
       'none': 'none',
-      'xsmall': '0px 1px 2px rgba(0, 0, 0, 0.5)',
-      'small': '0px 2px 4px rgba(0, 0, 0, 0.5)',
-      'medium': '0px 3px 8px rgba(0, 0, 0, 0.5)',
-      'large': '0px 6px 12px rgba(0, 0, 0, 0.5)',
-      'xlarge': '0px 8px 16px rgba(0, 0, 0, 0.5)',
+      'xsmall': '0px 1px 2px rgba(68, 68, 68, 0.5)',
+      'small': '0px 2px 4px rgba(68, 68, 68, 0.5)',
+      'medium': '0px 3px 8px rgba(68, 68, 68, 0.5)',
+      'large': '0px 6px 12px rgba(68, 68, 68, 0.5)',
+      'xlarge': '0px 8px 16px rgba(68, 68, 68, 0.5)',
     },
     'drop': {
-      'backgroundColor': 'rgb(242, 242, 242)',
-      'shadow': '0px 3px 8px rgba(0, 0, 0, 0.5)',
+      'backgroundColor': 'rgb(255, 242, 201)',
+      'shadow': '0px 3px 8px rgba(68, 68, 68, 0.5)',
       'border': {
         'radius': '2px',
       },
@@ -75,20 +72,20 @@ const custom = deepFreeze({
     },
   },
   'layer': {
-    'backgroundColor': '#ffffff',
-    'overlayBackgroundColor': 'rgba(0, 0, 0, 0.5)',
+    'backgroundColor': '#fff8e1',
+    'overlayBackgroundColor': 'rgba(68, 68, 68, 0.5)',
     'border': {
       'radius': '4px',
     },
   },
   'icon': {
-    'color': 'rgb(0, 0, 0)',
+    'color': 'rgb(68, 68, 68)',
   },
   'checkBox': {
     'border': {
       'color': {
-        'light': 'rgba(0, 0, 0, 0.6)',
-        'dark': 'rgba(0, 0, 0, 0.6)',
+        'light': 'rgba(68, 68, 68, 0.6)',
+        'dark': 'rgba(68, 68, 68, 0.6)',
       },
       'radius': '4px',
     },
@@ -96,21 +93,20 @@ const custom = deepFreeze({
       'radius': '2px',
     },
   },
+  'anchor': {
+    'color': 'rgb(102, 51, 204)',
+  },
   'radioButton': {
     'border': {
       'color': {
-        'light': 'rgba(0, 0, 0, 0.6)',
-        'dark': 'rgba(0, 0, 0, 0.6)',
+        'light': 'rgba(68, 68, 68, 0.6)',
+        'dark': 'rgba(68, 68, 68, 0.6)',
       },
     },
   },
   'button': {
     'border': {
       'radius': '4px',
-    },
-    'colors': {
-      accent: '#ff8d6d',
-      secondary: 'rgba(51,51,51,0.6)',
     },
   },
 });

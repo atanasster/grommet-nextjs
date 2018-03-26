@@ -18,7 +18,7 @@ import Preview from '../components/Preview';
 
 const defaultFont = 'Roboto';
 const defaultColor = '#99cc33';
-const defaultBackground = '#ffffff';
+const defaultBackground = '#fff8e1';
 const defaultMood = 'pastel';
 const defaultScheme = 'triade';
 const defaultSharpness = 'medium';
