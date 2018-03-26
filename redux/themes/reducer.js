@@ -1,5 +1,6 @@
 // eslint-disable-next-line camelcase
 import { deepFreeze } from 'grommet/utils/object';
+import dark from 'grommet/themes/dark';
 import { black, materiallight, materialdark, metro } from 'grommet-controls/themes';
 import * as ActionTypes from './constants';
 
@@ -116,6 +117,7 @@ const custom = deepFreeze({
 const initialState = {
   themes: {
     grommet: {},
+    dark,
     black,
     materiallight,
     materialdark,
