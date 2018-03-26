@@ -73,12 +73,13 @@ if (!process.browser) {
                   if (data.Data.ICO && data.Data.ICO.Status !== 'N/A') {
                     const { ICO } = data.Data;
                     const ico = {};
+
                     ico.blog = turndown.turndown(ICO.Blog);
                     ico.blogLink = ICO.BlogLink;
                     ico.date = ICO.Date;
                     ico.description = turndown.turndown(ICO.Description);
                     ico.endDate = ICO.EndDate;
-                    ico.features = ICO.Features;
+                    ico.features = ICO.Features.split(',');
                     ico.fundingCap = ICO.FundingCap;
                     ico.fundingTarget = ICO.FundingTarget;
                     ico.fundsRaisedList = ICO.FundsRaisedList;
@@ -87,7 +88,7 @@ if (!process.browser) {
                     ico.jurisdiction = ICO.Jurisdiction;
                     ico.legalAdvisers = ICO.LegalAdvisers;
                     ico.legalForm = ICO.LegalForm;
-                    ico.paymentMethod = ICO.PaymentMethod;
+                    ico.paymentMethod = ICO.PaymentMethod.split(',');
                     ico.publicPortfolioId = ICO.PublicPortfolioId;
                     ico.publicPortfolioUrl = ICO.PublicPortfolioUrl;
                     ico.securityAuditCompany = ICO.SecurityAuditCompany;
@@ -95,14 +96,13 @@ if (!process.browser) {
                     ico.startPriceCurrency = ICO.StartPriceCurrency;
                     ico.status = ICO.Status;
                     ico.tokenPercentageForInvestors = ICO.TokenPercentageForInvestors;
-                    ico.tokenReserveSplit = ICO.TokenReserveSplit;
+                    ico.tokenReserveSplit = ICO.TokenReserveSplit.split(',');
                     ico.tokenSupplyPostICO = ICO.TokenSupplyPostICO;
                     ico.tokenType = ICO.TokenType;
                     ico.website = turndown.turndown(ICO.Website);
                     ico.websiteURL = ICO.WebsiteLink;
                     ico.whitePaper = turndown.turndown(ICO.WhitePaper);
                     ico.whitePaperLink = ICO.WhitePaperLink;
-
                     newValue.ICO = ico;
                   }
                   coins[idx] = newValue;

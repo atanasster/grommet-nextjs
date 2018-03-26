@@ -116,7 +116,7 @@ class Page extends React.Component {
             <title>{`Grommet - ${pageTitle}`}</title>
             )
           }
-          {description && (
+          {typeof description === 'string' && (
             <meta name='description' content={description} />
             )
           }

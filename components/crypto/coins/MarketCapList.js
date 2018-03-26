@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { graphql } from 'react-apollo';
 import { Box } from 'grommet';
 import Table from '../../grommet-table';
+import CardScroll from '../CardScroll';
 import Coin, { FormattedCoinValue, ColoredPercentChange } from './Coin';
 import PriceCard from './PriceCard';
 import OrderBookCard from './OrderBookCard';
@@ -31,7 +32,7 @@ class MarketCapList extends React.Component {
   onExpand = (row) => {
     const { exchange, currency } = this.props;
     return (
-      <Box direction='row' pad='small' gap='medium'>
+      <CardScroll>
         <PriceCard
           symbol={row.original.symbol}
           toSymbol={currency}
@@ -42,7 +43,7 @@ class MarketCapList extends React.Component {
           toSymbol={currency}
           exchange={exchange}
         />
-      </Box>
+      </CardScroll>
     );
   }
 

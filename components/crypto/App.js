@@ -39,11 +39,13 @@ class App extends Component {
               </Heading>)
             }
             {description ? (
-              <Markdown
-                components={{ p: { component: LargeParagraph, props: { size: 'medium' } } }}
-              >
-                {description}
-              </Markdown>
+              <Box pad={{ vertical: 'medium' }}>
+                <Markdown
+                  components={{ p: { component: LargeParagraph, props: { size: 'medium' } } }}
+                >
+                  {description}
+                </Markdown>
+              </Box>
             ) : null}
           </Box>
         </Box>

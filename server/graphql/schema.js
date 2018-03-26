@@ -6,6 +6,7 @@ const typeDefs = `
 type Query {
   coin(symbol: String): Coin
   allCoins: [Coin]
+  allICO: [Coin]
   allExchanges : [Exchange]
   exchange(exchange: String): Exchange
   priceHistory(symbol: String, toSymbol: String, exchange: String, period: String, limit: Int): [PriceHistory]
@@ -16,6 +17,43 @@ type ErrorMessage {
   message: String
   type: String
 }
+
+
+type Symbol {
+  symbol: String
+}
+
+type ICO {
+  blog: String
+  blogLink: String
+  date: Float
+  description: String
+  endDate: Float
+  features: [String]
+  fundingCap: String
+  fundingTarget: String
+  fundsRaisedList: String
+  fundsRaisedUSD: String
+  tokenSupply: String
+  jurisdiction: String
+  legalAdvisers: String
+  legalForm: String
+  paymentMethod: [Symbol]
+  publicPortfolioId: String
+  publicPortfolioUrl: String
+  securityAuditCompany: String
+  startPrice: String
+  startPriceCurrency: String
+  status: String
+  tokenPercentageForInvestors: String
+  tokenReserveSplit: [String]
+  tokenSupplyPostICO: String
+  tokenType: String
+  website: String
+  websiteURL: String
+  whitePaper: String
+  whitePaperLink: String
+} 
 type Coin {
   algorithm: String
   coinName: String
@@ -34,6 +72,7 @@ type Coin {
   url: String
   description: String
   messages: [ErrorMessage]
+  ICO: ICO
 }
 
 type TradingFees {

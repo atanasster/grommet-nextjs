@@ -3,11 +3,39 @@ import gql from 'graphql-tag';
 export const coinInfoQuery = gql`
   query getCoin($symbol : String!) {
     coin(symbol: $symbol) {
-      symbol,
-      imageUrl,
+      symbol
+      imageUrl
       fullName
     }
   }
+`;
+
+const ICOFields = `
+ICO {
+  description
+  status
+  blogLink
+  websiteURL
+  whitePaperLink
+  features
+  tokenType
+  fundingTarget
+  startPrice
+  startPriceCurrency
+  fundsRaisedList
+  tokenPercentageForInvestors
+  tokenReserveSplit
+  tokenSupply
+  tokenSupplyPostICO
+  fundingCap
+  fundsRaisedUSD
+  jurisdiction
+  legalAdvisers
+  legalForm
+  paymentMethod {
+    symbol
+  }
+}
 `;
 
 export const coinDetailsQuery = gql`
@@ -21,10 +49,10 @@ export const coinDetailsQuery = gql`
         message
         type
       }
+      ${ICOFields}
     }
   }
 `;
-
 
 export const priceHistoryQuery = gql`
   query getPriceHistory($symbol : String!, $toSymbol : String!, $exchange: String!, $period: String, $limit: Int) {
@@ -53,6 +81,24 @@ export const allCoinsQuery = gql`
       preMinedValue
       totalCoinSupply
       totalCoinsFreeFloat
+      ${ICOFields}
+    }
+  }
+`;
+
+export const allICOQuery = gql`
+  query getICOCoins {
+    allICO {
+      symbol
+      imageUrl
+      fullName
+      algorithm
+      proofType
+      fullyPremined
+      preMinedValue
+      totalCoinSupply
+      totalCoinsFreeFloat
+      ${ICOFields}
     }
   }
 `;

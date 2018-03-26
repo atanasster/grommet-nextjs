@@ -1,5 +1,12 @@
 import App from '../../../components/crypto/App';
+import withData from '../../../apollo/withData';
+import ICOList from '../../../components/crypto/coins/ICOList';
 
-export default () => (
-  <App title='Under construction...' />
+const ICOs = () => (
+  <App title='ICOs'>
+    <ICOList />
+  </App>
 );
+
+export default withData(ICOs);
+

@@ -182,7 +182,7 @@ export const ConnectedOrderBookCard = graphql(orderBookQuery, {
 })(ConnectedOrderBook);
 
 const OrderBookCard = ({ coin: { coin }, ...rest }) => (
-  coin && <ConnectedOrderBookCard coin={coin} {...rest} />
+  coin ? <ConnectedOrderBookCard coin={coin} {...rest} /> : null
 );
 
 OrderBookCard.propTypes = {

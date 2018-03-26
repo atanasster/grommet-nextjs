@@ -6,6 +6,7 @@ import connect from '../../../redux';
 import withData from '../../../apollo/withData';
 import { coinInfoQuery, coinDetailsQuery } from '../../../components/crypto/graphql/coins';
 import CardScroll from '../../../components/crypto/CardScroll';
+import ICOCard from '../../../components/crypto/coins/ICOCard';
 import { ConnectedPriceCard } from '../../../components/crypto/coins/PriceCard';
 import { ConnectedOrderBookCard } from '../../../components/crypto/coins/OrderBookCard';
 
@@ -18,15 +19,16 @@ const CoinInfo = ({
     notifications={coin && coin.messages && coin.messages.map(
       msg => ({ message: msg.message, status: msg.type })
     )}
-    description={coin && coin.description}
+    description={coin && (coin.ICO ? coin.ICO.description : coin.description)}
     visibleTitle={coin && <Coin coin={coin} toCoin={toCoin} exchange={exchange} />}
   >
     {coin && toCoin && (
-    <CardScroll>
-      <ConnectedPriceCard coin={coin} toCoin={toCoin} exchange={exchange} />
-      <ConnectedPriceCard coin={coin} toCoin={toCoin} exchange='CCCAGG' />
-      <ConnectedOrderBookCard coin={coin} toSymbol={toSymbol} exchange={exchange} />
-    </CardScroll>
+      <CardScroll>
+        {coin.ICO && <ICOCard coin={coin} />}
+        <ConnectedPriceCard coin={coin} toCoin={toCoin} exchange='CCCAGG' />
+        <ConnectedPriceCard coin={coin} toCoin={toCoin} exchange={exchange} />
+        <ConnectedOrderBookCard coin={coin} toSymbol={toSymbol} exchange={exchange} />
+      </CardScroll>
     )}
   </App>
 );

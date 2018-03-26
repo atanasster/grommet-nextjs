@@ -26,6 +26,9 @@ const resolvers = {
     allCoins() {
       return coins();
     },
+    allICO() {
+      return coins().filter(coin => (coin.ICO && coin.ICO.status !== 'Finished'));
+    },
     allExchanges() {
       return exchanges();
     },
