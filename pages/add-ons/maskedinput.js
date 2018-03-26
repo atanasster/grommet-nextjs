@@ -1,10 +1,7 @@
 import { Box, Calendar } from 'grommet';
 import { Calendar as CalendarIcon, Add, Subtract } from 'grommet-icons';
-import {
-  MaskedInput, placeholderChars,
-  createAutoCorrectedDatePipe, createNumberMask,
-  alphabetic, digit,
-} from 'grommet-controls';
+import { MaskedInput } from 'grommet-controls';
+import { placeholderChars, createAutoCorrectedDatePipe, createNumberMask, alphabetic, digit } from 'grommet-controls/components/MaskedInput';
 import doc from 'grommet-controls/components/MaskedInput/doc';
 import { smallDate } from 'grommet-controls/utils/moment';
 import Doc from '../../components/Doc';

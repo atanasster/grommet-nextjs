@@ -1,6 +1,7 @@
 import { Box, Text, Image, CheckBox } from 'grommet';
 import { Add, Subtract } from 'grommet-icons';
-import { TagsSelect, MultiSelect } from 'grommet-controls';
+import { MultiSelect } from 'grommet-controls';
+import { TagsSelect } from 'grommet-controls/components/Tags';
 import doc from '../../components/grommet-table/doc';
 import Doc from '../../components/Doc';
 import { GrommetTable } from '../../components/grommet-table/index';

@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { Box, Button, Text } from 'grommet';
-import { Form, TextInputField, PasswordInputField, SelectField, CheckBoxField, NumberInputField, validators } from 'grommet-controls';
+import { Form } from 'grommet-controls';
+import { TextInputField, PasswordInputField, SelectField, CheckBoxField, NumberInputField } from 'grommet-controls/components/Form/Fields';
+import validators from 'grommet-controls/components/Form/validators';
 import doc from 'grommet-controls/components/Form/doc';
 import Doc from '../../components/Doc';
 

@@ -1,6 +1,7 @@
 import { Box, Select } from 'grommet';
 import docSelect from 'grommet/components/Select/doc';
-import { MultiSelect, TagsSelect } from 'grommet-controls';
+import { MultiSelect } from 'grommet-controls';
+import { TagsSelect } from 'grommet-controls/components/Tags';
 import doc from 'grommet-controls/components/MultiSelect/doc';
 
 import Doc from '../../components/Doc';
