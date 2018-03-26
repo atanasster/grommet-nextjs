@@ -5,10 +5,18 @@
   "plugins": [
     [
       "styled-components", { "ssr": true, "displayName": true, "preprocess": false },
-      "grommet"
     ]
   ],
   "env": {
+    "production": {
+      "plugins": [
+        ["grommet"],
+        ["transform-imports", { "grommet-controls": {
+          "transform": "grommet-controls/components/${member}",
+          "preventFullImport": true }}]
+
+      ]
+    },
     "alias": {
       "plugins": [
         [

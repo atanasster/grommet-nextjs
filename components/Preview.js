@@ -4,7 +4,8 @@ import {
   DropButton, FormField,
 } from 'grommet';
 import { Menu as MenuIcon, Edit, Grommet } from 'grommet-icons';
-import { MultiSelect, TagsSelect, Tag } from 'grommet-controls';
+import { MultiSelect, Tag } from 'grommet-controls';
+import { TagsSelect } from 'grommet-controls/components/Tags';
 import ColorRoll from './ColorRoll';
 
 
