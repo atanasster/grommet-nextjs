@@ -1,7 +1,5 @@
-import {
-  Box, Table, TableBody, TableCell, TableFooter, TableHeader,
-  TableRow,
-} from 'grommet';
+import { Box, Table } from 'grommet';
+import { TableBody, TableCell, TableFooter, TableHeader, TableRow } from 'grommet/components/Table';
 import doc,
 { docTableCell, docTableRow, docTableHeader, docTableFooter, docTableBody }
   from 'grommet/components/Table/doc';

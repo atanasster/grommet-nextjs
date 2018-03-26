@@ -3,12 +3,18 @@
     "next/babel"
   ],
   "plugins": [
-    ["styled-components", { "ssr": true, "displayName": true, "preprocess": false }],
-    ["transform-imports", { "grommet-controls": {
-          "transform": "grommet-controls/components/${member}",
-          "preventFullImport": true }}]
+    ["styled-components", { "ssr": true, "displayName": true, "preprocess": false }]
   ],
   "env": {
+    "production": {
+      "plugins" : [
+        ["transform-imports", {
+          "grommet-controls": {"transform": "grommet-controls/components/${member}", "preventFullImport": true },
+          "grommet": {"transform": "grommet/components/${member}", "preventFullImport": true },
+          "grommet-icons": {"transform": "grommet-icons/icons/${member}", "preventFullImport": true }
+        }]
+      ]
+    },
     "alias": {
       "plugins": [
         [

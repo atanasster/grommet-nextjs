@@ -3,10 +3,9 @@ import {
   Diagram, Distribution, DropButton, Anchor, FormField,
   Heading, Image, RangeSelector,
   Menu, Meter, Paragraph, RadioButton, RangeInput,
-  Select, Stack,
-  Table, TableBody, TableCell, TableHeader, TableRow,
-  Text, TextArea, TextInput, Video, WorldMap,
+  Select, Stack, Table, Text, TextArea, TextInput, Video, WorldMap,
 } from 'grommet';
+import { TableBody, TableCell, TableHeader, TableRow } from 'grommet/components/Table';
 import { Add, LinkNext, Grommet as GrommetIcon, TopCorner, BottomCorner, Descend } from 'grommet-icons';
 import RoutedButton from '../components/RoutedButton';
 import Page from '../components/Page';

@@ -1,4 +1,5 @@
-import { Box, Button, SkipLinkTarget, SkipLink, SkipLinks, Heading } from 'grommet';
+import { Box, Button, SkipLinks, Heading } from 'grommet';
+import { SkipLinkTarget, SkipLink } from 'grommet/components/SkipLinks';
 import doc from 'grommet/components/SkipLinks/doc';
 
 import Doc from '../components/Doc';
