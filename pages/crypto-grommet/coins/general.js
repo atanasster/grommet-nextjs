@@ -9,7 +9,7 @@ import CardScroll from '../../../components/crypto/CardScroll';
 import ICOCard from '../../../components/crypto/coins/ICOCard';
 import { ConnectedPriceCard } from '../../../components/crypto/coins/PriceCard';
 import { ConnectedOrderBookCard } from '../../../components/crypto/coins/OrderBookCard';
-
+import CoinsPageMenu from '../../../components/crypto/coins/CoinsPageMenu';
 
 const CoinInfo = ({
   symbol, toSymbol, exchange, coin: { coin }, toCoin: { coin: toCoin },
@@ -21,6 +21,7 @@ const CoinInfo = ({
     )}
     description={coin && (coin.ICO ? coin.ICO.description : coin.description)}
     visibleTitle={coin && <Coin coin={coin} toCoin={toCoin} exchange={exchange} />}
+    menu={<CoinsPageMenu activeItem={0} symbol={symbol} toSymbol={toSymbol} exchange={exchange} />}
   >
     {coin && toCoin && (
       <CardScroll>

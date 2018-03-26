@@ -26,7 +26,7 @@ class App extends Component {
 
   render() {
     const {
-      children, description, title, visibleTitle, notifications,
+      children, description, title, visibleTitle, notifications, menu,
     } = this.props;
     let header;
     if (title) {
@@ -53,8 +53,9 @@ class App extends Component {
     }
     return (
       <Page title={title} description={description} footer={false} >
-        <Box pad={{ horizontal: 'large', top: 'medium' }}>
+        <Box pad={{ horizontal: 'large', top: 'medium' }} gap='small'>
           <NavMenu />
+          {menu && menu}
           <Notifications />
           {notifications && notifications.map(
             (msg, index) => (<Notification key={`msg_${index}`} {...msg} />)
@@ -98,6 +99,7 @@ class App extends Component {
 App.propTypes = {
   description: PropTypes.string,
   notifications: PropTypes.array,
+  menu: PropTypes.element,
   title: PropTypes.string.isRequired,
   visibleTitle: PropTypes.oneOfType([PropTypes.string, PropTypes.element]),
 };
@@ -105,6 +107,7 @@ App.propTypes = {
 App.defaultProps = {
   notifications: undefined,
   description: undefined,
+  menu: undefined,
   visibleTitle: undefined,
 };
 

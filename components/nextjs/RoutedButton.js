@@ -7,11 +7,12 @@ import urlParams from '../../utils/urlParams';
 class RoutedButton extends React.Component {
   render() {
     const {
-      path, preserveParams, route, router, as, ...rest
+      path, preserveParams, route, router, params, ...rest
     } = this.props;
     const href = urlParams(path, router, preserveParams);
     return (
-      <Link href={href} route={route} as={as}>
+      // eslint-disable-next-line jsx-a11y/anchor-is-valid
+      <Link route={route || href} params={params}>
         <Button href={href} {...rest} />
       </Link>
     );
@@ -32,3 +33,4 @@ RoutedButton.propTypes = {
   ]),
 };
 export default withRouter(RoutedButton);
+
