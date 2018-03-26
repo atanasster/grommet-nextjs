@@ -70,7 +70,7 @@ export class ConnectedPriceCard extends Component {
                 label={`${optionLimit.find(p => (p.value === points)).value} ${period}s`}
               />
             </Box>
-            <RoutedButton path={`/coins/chart/${coin.symbol}/${toCoin.symbol}/${exchange}`}>
+            <RoutedButton route='coin_charts' params={{ symbol: coin.symbol, toSymbol: toCoin.symbol, exchange }} >
               <PriceChart
                 color={color}
                 symbol={coin.symbol}
