@@ -1,6 +1,6 @@
 const fetch = require('isomorphic-unfetch');
 const Turndown = require('turndown');
-const { sleep } = require('../api/utils');
+const { sleep } = require('../utils');
 
 if (!process.browser) {
   const turndown = new Turndown();
@@ -36,7 +36,6 @@ if (!process.browser) {
             fetch(`https://www.cryptocompare.com/api/data/coinsnapshotfullbyid/?id=${coin.id}`)
               .then(res => res.json())
               .then((data) => {
-                console.log('OK-', coin.symbol);
                 if (data.Data) {
                   const newValue = { ...coin, messages: [] };
                   if (data.Data.General) {

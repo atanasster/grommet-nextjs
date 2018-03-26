@@ -1,7 +1,7 @@
 const fetch = require('isomorphic-unfetch');
-const { coins } = require('../models/coins');
-const { exchanges, exchangeObj } = require('../models/exchanges');
-const { symbolParities } = require('../api/utils');
+const { coins } = require('./models/coins');
+const { exchanges, exchangeObj } = require('./models/exchanges');
+const { symbolParities } = require('./utils');
 
 const coinSynonyms = {
   MIOTA: 'IOTA',

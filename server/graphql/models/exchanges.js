@@ -1,5 +1,5 @@
 const ccxt = require('ccxt');
-const { sleep } = require('../api/utils');
+const { sleep } = require('../utils');
 
 if (!process.browser) {
   const baseExchangeInfo = (exchange) => {
