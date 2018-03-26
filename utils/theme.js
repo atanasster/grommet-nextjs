@@ -154,6 +154,9 @@ const colorsForMood = (color, backgroundColor, mood, scheme) => {
       anchor: {
         color: brandColor.negate().rgb().string(),
       },
+      heading: {
+        font: false,
+      },
       radioButton: {
         border: {
           color: {

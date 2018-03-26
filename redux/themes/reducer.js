@@ -109,6 +109,9 @@ const custom = deepFreeze({
       'radius': '4px',
     },
   },
+  'heading': {
+    font: false,
+  },
 });
 const initialState = {
   themes: {
