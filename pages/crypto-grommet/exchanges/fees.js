@@ -6,11 +6,11 @@ import FavoritePrices from '../../../components/crypto/coins/FavoritePrices';
 import withData from '../../../apollo/withData';
 import ExchangePageMenu from '../../../components/crypto/exchanges/ExchangePageMenu';
 
-const ExchancePrices = ({ exchange }) => (
+const ExchancePFees = ({ exchange }) => (
   <App
-    title={exchange}
+    title={`${exchange} fees`}
     visibleTitle={<Exchange exchange={exchange} />}
-    menu={<ExchangePageMenu activeItem={0} exchange={exchange} />}
+    menu={<ExchangePageMenu activeItem={2} exchange={exchange} />}
   >
     <FavoritePrices exchange={exchange} />
   </App>
@@ -23,4 +23,4 @@ const mapStateToProps = (state, props) => {
   };
 };
 
-export default withData(connect(mapStateToProps)(ExchancePrices));
+export default withData(connect(mapStateToProps)(ExchancePFees));

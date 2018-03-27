@@ -20,23 +20,25 @@ if (!process.browser) {
       hasOrderBook: exchange.has.fetchOrderBook,
       countries: countries.map(c => (c === 'UK' ? 'GB' : c)),
       fees: exchange.fees,
-      currencies: exchange.currencies,
-      markets: exchange.markets,
+      currencies: exchange.currencies ? Object.keys(exchange.currencies).map(key =>
+        (exchange.currencies[key])) : [],
+      markets: exchange.markets ?
+        Object.keys(exchange.markets).map(key => (exchange.markets[key])) : [],
     };
   };
 
-  const exchanges = ccxt.exchanges.map((exchangeId) => {
+  const exchanges = [];
+  ccxt.exchanges.forEach((exchangeId) => {
     const exchange = new ccxt[exchangeId]();
     exchange.loadMarkets()
     // eslint-disable-next-line no-unused-vars
       .then((markets) => {
-        // console.log(markets);
+        exchanges.push(baseExchangeInfo(exchange));
       })
       .catch(() => {
         console.log('ERROR : loadMarkets', exchangeId);
         return sleep();
       });
-    return baseExchangeInfo(exchange);
   });
   exchanges.push({ id: 'CCCAGG', name: 'CCCAGG', countries: [] });
   module.exports.exchangeObj = (exchange) => {

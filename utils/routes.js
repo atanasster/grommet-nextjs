@@ -10,6 +10,10 @@ routes.add('coin_info', '/coins/general/:symbol/:toSymbol?/:exchange?', `${SITE_
 routes.add('coin_charts', '/coins/charts/:symbol/:toSymbol?/:exchange?', `${SITE_ROOT}/coins/charts`);
 
 routes.add('exchange_prices', '/exchanges/prices/:exchange', `${SITE_ROOT}/exchanges/prices`);
+routes.add('exchange_currencies', '/exchanges/currencies/:exchange', `${SITE_ROOT}/exchanges/currencies`);
+routes.add('exchange_fees', '/exchanges/fees/:exchange', `${SITE_ROOT}/exchanges/fees`);
+
+
 routes.add({ name: 'markets', page: `${SITE_ROOT}/markets` });
 routes.add({ name: 'about', page: `${SITE_ROOT}/about` });
 routes.add({ name: 'markets_distribution', page: `${SITE_ROOT}/markets/distribution` });

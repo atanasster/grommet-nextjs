@@ -96,6 +96,26 @@ type Fees {
   funding: FundingFees
 }
   
+type Market {
+  id: String
+  symbol: String
+  base: String
+  quote: String
+  darkpool: String
+  maker: Float
+  taker: Float
+  limits: String
+  precision: Int
+  tierBased: Boolean
+  percentage: Float  
+}  
+
+type Currency {
+  id: String
+  code: String
+  precision: Int
+  coin: Coin
+}
 type Exchange {
   id: String
   name: String
@@ -104,8 +124,8 @@ type Exchange {
   hasOrderBook: Boolean
   countries: [String]
   fees: Fees
-  currencies: String
-  markets: String
+  currencies: [Currency]
+  markets: [Market]
 }
 
 type PriceHistory{

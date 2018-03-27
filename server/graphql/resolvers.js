@@ -32,8 +32,15 @@ const resolvers = {
     allExchanges() {
       return exchanges();
     },
-    exchange(root, { exchange }) {
-      return findExchange(exchange);
+    exchange(root, { exchange: exchangeName }) {
+      const exchange = findExchange(exchangeName);
+      if (exchange && !exchange.coinsLinked) {
+        exchange.coinsLinked = true;
+        exchange.currencies = exchange.currencies.map(currency => (
+          { ...currency, coin: findCoin(currency.code) }
+        ));
+      }
+      return exchange;
     },
     priceHistory(root, {
       symbol, toSymbol, exchange, period = 'day', limit = 60,

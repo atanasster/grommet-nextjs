@@ -23,6 +23,32 @@ export const exchangeInfoQuery = gql`
   }
 `;
 
+export const exchangeMarketsQuery = gql`
+  query getExchange($exchange : String!) {
+    exchange(exchange: $exchange) {
+      id
+      name
+      currencies {
+        code
+        precision
+        coin {
+          symbol
+          imageUrl
+          fullName
+        }
+      }
+      markets {
+        base
+        quote
+        darkpool
+        maker
+        taker
+      }
+    }
+  }
+`;
+
+
 export const orderBookQuery = gql`
   query getOrderBook($exchange : String!, $symbol: String, $toSymbol: String, $start: Int, $limit: Int) {
     orderBook(exchange: $exchange, symbol: $symbol, toSymbol: $toSymbol, start: $start, limit: $limit) {
