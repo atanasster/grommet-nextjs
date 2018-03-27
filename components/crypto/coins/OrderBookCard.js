@@ -8,9 +8,8 @@ import { longDate } from 'grommet-controls/utils/moment';
 import Table from '../../grommet-table';
 import Card from '../Card';
 import { CoinToCoin } from './Coin';
-import Exchange from '../exchanges/Exchange';
+import { ConnectedExchange } from '../exchanges/Exchange';
 import { orderBookQuery } from '../graphql/exchanges';
-import { coinInfoQuery } from '../graphql/coins';
 
 
 function renderAskBidTable(data) {
@@ -47,9 +46,9 @@ function renderAskBidTable(data) {
   );
 }
 
-class ConnectedOrderBook extends Component {
+export class ConnectedOrderBook extends Component {
   renderChart() {
-    const { data: { orderBook }, coin } = this.props;
+    const { orderBook } = this.props;
     const { toSymbol } = this.props;
     const config = {
       chart: {
@@ -79,7 +78,7 @@ class ConnectedOrderBook extends Component {
         valueDecimals: 8,
         useHTML: true,
         headerFormat: '<small style="font-size: 12px;color:{series.color}"><strong>{series.name}</strong></small>.',
-        pointFormat: `<table><tbody><tr><td>Sum ${coin.symbol}</td><td style="text-align: right"><b>{point.y}</b></td></tr>` +
+        pointFormat: `<table><tbody><tr><td>Sum ${orderBook.symbol}</td><td style="text-align: right"><b>{point.y}</b></td></tr>` +
                       `<tr><td>Price ${toSymbol}</td><td style="text-align: right"><b>{point.x}</b></td></tr></tbody></table>`,
         crosshairs: [true, true],
       },
@@ -135,15 +134,15 @@ class ConnectedOrderBook extends Component {
   }
 
   render() {
-    const { data: { orderBook }, exchange, coin } = this.props;
-    if (!orderBook || !coin) {
+    const { orderBook } = this.props;
+    if (!orderBook) {
       return null;
     }
     const { asks, bids, realToSymbol } = orderBook;
     return (
       <Card
-        title={<CoinToCoin coin={coin} toCoin={{ symbol: realToSymbol }} exchange={exchange} border='bottom' />}
-        subTitle={<Exchange exchange={exchange} />}
+        title={<CoinToCoin coin={orderBook.coin} toCoin={{ symbol: realToSymbol }} exchange={this.props.exchange} border='bottom' />}
+        subTitle={<ConnectedExchange exchange={orderBook.exchange} />}
       >
         <Box basis='small' direction='row'>
           {this.renderChart()}
@@ -163,32 +162,45 @@ class ConnectedOrderBook extends Component {
   }
 }
 
+ConnectedOrderBook.defaultProps = {
+  orderBook: undefined,
+};
+
 ConnectedOrderBook.propTypes = {
-  coin: PropTypes.object.isRequired,
+  orderBook: PropTypes.object,
   toSymbol: PropTypes.string.isRequired,
+  exchange: PropTypes.object.isRequired,
+};
+
+
+const OrderBookCard = ({
+  data: { orderBook }, toSymbol,
+}) => (
+  <ConnectedOrderBook
+    orderBook={orderBook}
+    toSymbol={toSymbol}
+    exchange={orderBook.exchange}
+  />
+);
+
+
+OrderBookCard.propTypes = {
+  // eslint-disable-next-line react/no-unused-prop-types
+  symbol: PropTypes.string.isRequired,
+  toSymbol: PropTypes.string.isRequired,
+  // eslint-disable-next-line react/no-unused-prop-types
   exchange: PropTypes.string.isRequired,
 };
 
-export const ConnectedOrderBookCard = graphql(orderBookQuery, {
+export default graphql(orderBookQuery, {
   options: props => ({
     variables: {
-      start: 10,
+      start: 0,
       limit: 100,
-      symbol: props.coin.symbol,
+      symbol: props.symbol,
       toSymbol: props.toSymbol,
       exchange: props.exchange,
     },
   }),
-})(ConnectedOrderBook);
+})(OrderBookCard);
 
-const OrderBookCard = ({ coin: { coin }, ...rest }) => (
-  coin ? <ConnectedOrderBookCard coin={coin} {...rest} /> : null
-);
-
-OrderBookCard.propTypes = {
-  symbol: PropTypes.string.isRequired,
-  toSymbol: PropTypes.string.isRequired,
-  exchange: PropTypes.string.isRequired,
-};
-
-export default graphql(coinInfoQuery, { name: 'coin', options: props => ({ variables: { symbol: props.symbol } }) })(OrderBookCard);

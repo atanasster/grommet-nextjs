@@ -5,10 +5,7 @@ import Coin from '../../../components/crypto/coins/Coin';
 import connect from '../../../redux';
 import withData from '../../../apollo/withData';
 import { coinInfoQuery, coinDetailsQuery } from '../../../components/crypto/graphql/coins';
-import CardScroll from '../../../components/crypto/CardScroll';
-import ICOCard from '../../../components/crypto/coins/ICOCard';
-import { ConnectedPriceCard } from '../../../components/crypto/coins/PriceCard';
-import OrderBookCard from '../../../components/crypto/coins/OrderBookCard';
+import OrderBookAnalysis from '../../../components/crypto/coins/OrderBookAnalysis';
 import CoinsPageMenu from '../../../components/crypto/coins/CoinsPageMenu';
 
 const CoinInfo = ({
@@ -16,20 +13,15 @@ const CoinInfo = ({
 }) => (
   <App
     title={`${symbol}/${toSymbol}/${exchange}`}
-    notifications={coin && coin.messages && coin.messages.map(
-      msg => ({ message: msg.message, status: msg.type })
-    )}
-    description={coin && (coin.ICO && coin.ICO.status !== 'Finished' ? coin.ICO.description : coin.description)}
     visibleTitle={coin && <Coin coin={coin} toCoin={toCoin} exchange={exchange} />}
-    menu={<CoinsPageMenu activeItem={0} symbol={symbol} toSymbol={toSymbol} exchange={exchange} />}
+    menu={<CoinsPageMenu activeItem={1} symbol={symbol} toSymbol={toSymbol} exchange={exchange} />}
   >
     {coin && toCoin && (
-      <CardScroll>
-        {coin.ICO && coin.ICO.status !== 'Finished' && <ICOCard coin={coin} />}
-        <ConnectedPriceCard coin={coin} toCoin={toCoin} exchange='CCCAGG' />
-        <ConnectedPriceCard coin={coin} toCoin={toCoin} exchange={exchange} />
-        <OrderBookCard symbol={symbol} toSymbol={toSymbol} exchange={exchange} />
-      </CardScroll>
+      <OrderBookAnalysis
+        symbol={symbol}
+        toSymbol={toSymbol}
+        exchange={exchange}
+      />
     )}
   </App>
 );

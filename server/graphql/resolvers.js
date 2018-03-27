@@ -104,6 +104,8 @@ const resolvers = {
             ({ price: item[0], qty: item[1] })),
           symbol,
           realToSymbol: toSymbol,
+          coin: findCoin(symbol),
+          exchange: findExchange(exchange),
         }))
         .catch((e) => {
           if (symbolParities[toSymbol]) {
@@ -116,6 +118,8 @@ const resolvers = {
                   .map(item => ({ price: item[0], qty: item[1] })),
                 symbol,
                 realToSymbol: symbolParities[toSymbol],
+                coin: findCoin(symbolParities[toSymbol]),
+                exchange: findExchange(exchange),
               }))
               .catch(() => {
                 throw new Error(`Could not fetch ${symbol} / ${symbolParities[toSymbol]} Order Book for ${exchange}`);

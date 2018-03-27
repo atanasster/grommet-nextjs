@@ -175,6 +175,8 @@ type Order {
 }
 type OrderBook {
   symbol: String
+  coin: Coin
+  exchange: Exchange
   realToSymbol: String
   last_updated: Float
   asks: [Order]

@@ -14,6 +14,13 @@ export default ({
       plain: true,
     },
     {
+      route: 'coin_order_books',
+      params: { symbol, toSymbol, exchange },
+      label: 'Order books',
+      a11yTitle: `Order books analysis for ${symbol}`,
+      plain: true,
+    },
+    {
       route: 'coin_charts',
       params: { symbol, toSymbol, exchange },
       label: 'Charts',

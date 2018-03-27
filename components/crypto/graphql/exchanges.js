@@ -8,6 +8,7 @@ export const allExchangesQuery = gql`
       logo
       countries
       url
+      hasOrderBook
     }
   }
 `;
@@ -100,6 +101,16 @@ export const orderBookQuery = gql`
   query getOrderBook($exchange : String!, $symbol: String, $toSymbol: String, $start: Int, $limit: Int) {
     orderBook(exchange: $exchange, symbol: $symbol, toSymbol: $toSymbol, start: $start, limit: $limit) {
       symbol
+      exchange {
+        id
+        name
+        logo
+      }
+      coin {
+        symbol
+        fullName
+        imageUrl
+      } 
       last_updated
       asks {
         price
