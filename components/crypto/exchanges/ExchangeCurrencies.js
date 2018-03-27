@@ -37,14 +37,21 @@ class ExchangeCurrencies extends Component {
                 {props.value}
               </CoinPath>),
           }, {
-            accessor: 'darkpool',
-            Header: 'DP',
-          }, {
             accessor: 'maker',
             Header: 'Maker',
+            decorations: {
+              cell: {
+                align: 'end',
+              },
+            },
           }, {
             accessor: 'taker',
             Header: 'Taker',
+            decorations: {
+              cell: {
+                align: 'end',
+              },
+            },
           },
         ]}
       />

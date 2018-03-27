@@ -10,7 +10,7 @@ const ExchanceCurrencies = ({ exchange }) => (
   <App
     title={`${exchange} currencies`}
     visibleTitle={<Exchange exchange={exchange} />}
-    menu={<ExchangePageMenu activeItem={1} exchange={exchange} />}
+    menu={<ExchangePageMenu activeItem={2} exchange={exchange} />}
   >
     <ExchangeCurrencies exchange={exchange} />
   </App>

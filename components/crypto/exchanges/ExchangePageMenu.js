@@ -14,6 +14,13 @@ export default ({
       plain: true,
     },
     {
+      route: 'exchange_order_books',
+      params: { exchange },
+      label: 'Order books',
+      a11yTitle: `TFavorite coins order books on ${exchange}`,
+      plain: true,
+    },
+    {
       route: 'exchange_currencies',
       params: { exchange },
       label: 'Currencies',

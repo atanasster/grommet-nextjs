@@ -2,17 +2,17 @@ import React from 'react';
 import App from '../../../components/crypto/App';
 import connect from '../../../redux';
 import Exchange from '../../../components/crypto/exchanges/Exchange';
-import ExchangeFees from '../../../components/crypto/exchanges/ExchangeFees';
+import FavoriteOrderBooks from '../../../components/crypto/coins/FavoriteOrderBooks';
 import withData from '../../../apollo/withData';
 import ExchangePageMenu from '../../../components/crypto/exchanges/ExchangePageMenu';
 
-const ExchancePFees = ({ exchange }) => (
+const ExchancePrices = ({ exchange }) => (
   <App
-    title={`${exchange} fees`}
+    title={exchange}
     visibleTitle={<Exchange exchange={exchange} />}
-    menu={<ExchangePageMenu activeItem={3} exchange={exchange} />}
+    menu={<ExchangePageMenu activeItem={1} exchange={exchange} />}
   >
-    <ExchangeFees exchange={exchange} />
+    <FavoriteOrderBooks exchange={exchange} />
   </App>
 );
 
@@ -23,4 +23,4 @@ const mapStateToProps = (state, props) => {
   };
 };
 
-export default withData(connect(mapStateToProps)(ExchancePFees));
+export default withData(connect(mapStateToProps)(ExchancePrices));

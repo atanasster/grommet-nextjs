@@ -118,7 +118,7 @@ const resolvers = {
                 realToSymbol: symbolParities[toSymbol],
               }))
               .catch(() => {
-                throw new Error(`Could not fetch ${symbolParities[toSymbol]} Order Book for ${exchange}`);
+                throw new Error(`Could not fetch ${symbol} / ${symbolParities[toSymbol]} Order Book for ${exchange}`);
               });
           }
           return e;
