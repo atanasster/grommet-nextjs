@@ -2,6 +2,7 @@ const express = require('express');
 // const compression = require('compression');
 const LRUCache = require('lru-cache');
 const next = require('next');
+const compression = require('compression');
 const path = require('path');
 const fs = require('fs');
 const cors = require('cors');
@@ -82,7 +83,9 @@ const routerHandler = routes.getRequestHandler(
 app.prepare()
   .then(() => {
     const server = express();
-    // server.use(compression({ threshold: 0 }));
+    if (!dev) {
+      server.use(compression({ threshold: 0 }));
+    }
     server.use(cors());
     server.use('/graphql', bodyParser.json(), graphqlExpress({ schema, cacheControl: true }));
     server.use('/graphiql', graphiqlExpress({ endpointURL: '/graphql' }));

@@ -1,10 +1,17 @@
 {
-  "name": "gromet-2-next",
+  "name": "grommet-nextjs",
   "version": "1.0.0",
   "engines": {
     "node": ">=7.6.0",
     "npm": ">=4"
   },
+  "keywords": [
+    "grommet",
+    "nextjs",
+    "graphql",
+    "react",
+    "apollo-react"
+  ],
   "scripts": {
     "dev": "PORT=8444 node server/server.js ",
     "alias": "NODE_ENV=alias PORT=8444 node server/server.js ",
