@@ -58,6 +58,7 @@ class ExchangeFees extends Component {
             {
               Header: 'Symbol',
               accessor: 'symbol',
+              minWidth: 300,
               decorations: {
                 cell: {
                   align: 'start',
@@ -174,12 +175,8 @@ class ExchangeFees extends Component {
   render() {
     return (
       <CardScroll >
-        <Box basis='2/3'>
-          {this.renderFundingFees()}
-        </Box>
-        <Box basis='1/3'>
-          {this.renderTradingFees()}
-        </Box>
+        {this.renderFundingFees()}
+        {this.renderTradingFees()}
       </CardScroll>
     );
   }

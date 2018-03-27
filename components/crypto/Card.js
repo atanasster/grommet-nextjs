@@ -5,7 +5,7 @@ import connect from '../../redux/index';
 
 
 const Card = ({
-  title, subTitle, children, responsive, basis = undefined,
+  title, subTitle, children, responsive, basis = undefined, ...rest
 }) => (
   <Box
     pad='small'
@@ -16,6 +16,7 @@ const Card = ({
     margin={{ vertical: 'small' }}
     align='center'
     basis={basis}
+    {...rest}
   >
     <Box direction='row' align='center' >
       {React.isValidElement(title) ? title : (
