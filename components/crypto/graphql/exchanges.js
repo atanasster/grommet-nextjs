@@ -48,6 +48,53 @@ export const exchangeMarketsQuery = gql`
   }
 `;
 
+export const exchangeFeesQuery = gql`
+  query getExchange($exchange : String!) {
+    exchange(exchange: $exchange) {
+      id
+      name
+      fees {
+        funding {
+          tierBased
+          percentage
+          withdraw {
+            symbol
+            fee
+            coin {
+              symbol
+              fullName
+              imageUrl
+            }
+          }
+          deposit {
+            symbol
+            fee
+            coin {
+              symbol
+              fullName
+              imageUrl
+            }
+          }
+        }
+        trading {
+          tierBased
+          percentage
+          tiers{
+            taker {
+              tier
+              fee
+            }
+            maker {
+              tier
+              fee
+            }
+            
+          }
+        }
+      }
+    }      
+  }
+`;
 
 export const orderBookQuery = gql`
   query getOrderBook($exchange : String!, $symbol: String, $toSymbol: String, $start: Int, $limit: Int) {

@@ -36,9 +36,21 @@ const resolvers = {
       const exchange = findExchange(exchangeName);
       if (exchange && !exchange.coinsLinked) {
         exchange.coinsLinked = true;
-        exchange.currencies = exchange.currencies.map(currency => (
-          { ...currency, coin: findCoin(currency.code) }
-        ));
+        if (exchange.currencies) {
+          exchange.currencies = exchange.currencies.map(currency => (
+            { ...currency, coin: findCoin(currency.code) }
+          ));
+        }
+        if (exchange.fees && exchange.fees.funding && exchange.fees.funding.withdraw) {
+          exchange.fees.funding.withdraw = exchange.fees.funding.withdraw.map(fee => (
+            { ...fee, coin: findCoin(fee.symbol) }
+          ));
+        }
+        if (exchange.fees && exchange.fees.funding && exchange.fees.funding.deposit) {
+          exchange.fees.funding.deposit = exchange.fees.funding.deposit.map(fee => (
+            { ...fee, coin: findCoin(fee.symbol) }
+          ));
+        }
       }
       return exchange;
     },

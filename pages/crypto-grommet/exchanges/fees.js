@@ -2,7 +2,7 @@ import React from 'react';
 import App from '../../../components/crypto/App';
 import connect from '../../../redux';
 import Exchange from '../../../components/crypto/exchanges/Exchange';
-import FavoritePrices from '../../../components/crypto/coins/FavoritePrices';
+import ExchangeFees from '../../../components/crypto/exchanges/ExchangeFees';
 import withData from '../../../apollo/withData';
 import ExchangePageMenu from '../../../components/crypto/exchanges/ExchangePageMenu';
 
@@ -12,7 +12,7 @@ const ExchancePFees = ({ exchange }) => (
     visibleTitle={<Exchange exchange={exchange} />}
     menu={<ExchangePageMenu activeItem={2} exchange={exchange} />}
   >
-    <FavoritePrices exchange={exchange} />
+    <ExchangeFees exchange={exchange} />
   </App>
 );
 

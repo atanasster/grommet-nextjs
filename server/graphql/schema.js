@@ -75,19 +75,31 @@ type Coin {
   ICO: ICO
 }
 
+type Tier {
+  tier: Float
+  fee: Float
+}
+type TradingTiers {
+  taker: [Tier]
+  maker: [Tier]
+}
 type TradingFees {
   tierBased: Boolean
   percentage: Boolean
-  taker: Float
-  maker: Float
-  tiers: [String] 
+  tiers: TradingTiers
+}
+
+type FundingFee {
+  symbol: String
+  fee: Float
+  coin: Coin
 }
 
 type FundingFees { 
   tierBased: Boolean
   percentage: Boolean
-  withdraw: [String]
-  deposit: [String]
+  withdraw: [FundingFee]
+  deposit: [FundingFee]
 } 
  
 

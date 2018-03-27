@@ -12,6 +12,25 @@ if (!process.browser) {
         url = exchange.urls.www;
       }
     }
+    const { fees } = exchange;
+    if (fees.trading && fees.trading.tiers && fees.trading.tiers.taker) {
+      fees.trading.tiers.taker =
+        fees.trading.tiers.taker.map(fee => ({ tier: fee[0], fee: fee[1] }));
+    }
+    if (fees.trading && fees.trading.tiers && fees.trading.tiers.maker) {
+      fees.trading.tiers.maker =
+        fees.trading.tiers.maker.map(fee => ({ tier: fee[0], fee: fee[1] }));
+    }
+    if (fees.funding && fees.funding.withdraw) {
+      fees.funding.withdraw = Object.keys(fees.funding.withdraw).map(key =>
+        ({ symbol: key, fee: fees.funding.withdraw[key] }));
+    }
+
+    if (fees.funding && fees.funding.deposit) {
+      fees.funding.deposit = Object.keys(fees.funding.deposit).map(key =>
+        ({ symbol: key, fee: fees.funding.deposit[key] }));
+    }
+
     return {
       id: exchange.id,
       name: exchange.name,
@@ -19,7 +38,7 @@ if (!process.browser) {
       url,
       hasOrderBook: exchange.has.fetchOrderBook,
       countries: countries.map(c => (c === 'UK' ? 'GB' : c)),
-      fees: exchange.fees,
+      fees,
       currencies: exchange.currencies ? Object.keys(exchange.currencies).map(key =>
         (exchange.currencies[key])) : [],
       markets: exchange.markets ?
