@@ -1,6 +1,6 @@
 import React from 'react';
-import { connect } from 'react-redux';
 import { Box } from 'grommet';
+import connect from '../../../redux';
 import CardScroll from '../CardScroll';
 import OrderBookCard from './OrderBookCard';
 

@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { graphql } from 'react-apollo';
-import { connect } from 'react-redux';
 import { Box, Text, Markdown } from 'grommet';
 import { shortDate } from 'grommet-controls/utils/moment';
+import connect from '../../../redux';
 import Table from '../../grommet-table';
 import Coin from './Coin';
 import ICOCard from './ICOCard';
@@ -67,18 +67,20 @@ class ICOList extends Component {
       },
     ];
     return (
-      <Table
-        decorations={{
-          table: { elevation: 'medium' },
-          rowEven: { background: { color: 'light-1' } },
-        }}
-        loading={loading}
-        filterable={true}
-        data={allICO}
-        SubComponent={this.onExpand}
-        columns={columns}
-        defaultSorted={[{ id: 'start_date', desc: true }]}
-      />
+      <Box fill='horizontal'>
+        <Table
+          decorations={{
+            table: { elevation: 'medium' },
+            rowEven: { background: { color: 'light-1' } },
+          }}
+          loading={loading}
+          filterable={true}
+          data={allICO}
+          SubComponent={this.onExpand}
+          columns={columns}
+          defaultSorted={[{ id: 'start_date', desc: true }]}
+        />
+      </Box>
     );
   }
 }

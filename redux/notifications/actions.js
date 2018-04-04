@@ -23,7 +23,7 @@ export function addStatus(message, status) {
 }
 
 export function addError(message) {
-  return addStatus(message, 'critical');
+  return addStatus(message, 'error');
 }
 
 
@@ -32,7 +32,7 @@ export function addWarning(message) {
 }
 
 export function addRegularMessage(message) {
-  return addStatus(message, 'normal');
+  return addStatus(message, 'info');
 }
 
 export function addSuccessMessage(message) {

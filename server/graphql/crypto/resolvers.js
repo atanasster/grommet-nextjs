@@ -17,7 +17,8 @@ const findCoin = (symbol) => {
 const findExchange = exchange => exchanges()
   .find(item => item.id === exchange || item.name === exchange) || { id: exchange, name: exchange };
 
-const resolvers = {
+// eslint-disable-next-line no-unused-vars
+const resolvers = pubsub => ({
   Query: {
     // eslint-disable-next-line no-unused-vars
     coin(root, { symbol }) {
@@ -129,6 +130,6 @@ const resolvers = {
         });
     },
   },
-};
+});
 
 module.exports = resolvers;

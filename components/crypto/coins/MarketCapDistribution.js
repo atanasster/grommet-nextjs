@@ -36,39 +36,41 @@ class MarketCapDistribution extends Component {
       }
     ));
     return (
-      <Distribution values={values} style={{ width: '100%' }}>
-        {(item) => {
-          const colors = [
-            'brand', 'accent-1', 'accent-2', 'neutral-1', 'neutral-2', 'neutral-3', 'status-ok', 'status-warning',
-          ];
-          const colorIdx = item.index % colors.length;
-          const smallCap = responsive || item.index > 4;
-          return (
-            <Box
-              background={colors[colorIdx]}
-              border='all'
-              fill={true}
-              pad={smallCap ? null : 'small'}
-              onClick={e => this.onClickBackground(e, item)}
-            >
-              <Coin
-                level={3}
-                coin={item.coin}
-                toCoin={{ symbol: currency }}
-                border={null}
-                short={smallCap}
-              />
-              <FormattedCoinValue
-                value={item.value}
-                large={true}
-                level={smallCap ? 4 : 2}
-                justify='start'
-                coin={{ symbol: currency }}
-              />
-            </Box>
-          );
-        }}
-      </Distribution>
+      <Box fill='horizontal' basis='large'>
+        <Distribution values={values} style={{ width: '100%' }}>
+          {(item) => {
+            const colors = [
+              'brand', 'accent-1', 'accent-2', 'neutral-1', 'neutral-2', 'neutral-3', 'status-ok', 'status-warning',
+            ];
+            const colorIdx = item.index % colors.length;
+            const smallCap = responsive || item.index > 4;
+            return (
+              <Box
+                background={colors[colorIdx]}
+                border='all'
+                fill={true}
+                pad={smallCap ? null : 'small'}
+                onClick={e => this.onClickBackground(e, item)}
+              >
+                <Coin
+                  level={3}
+                  coin={item.coin}
+                  toCoin={{ symbol: currency }}
+                  border={null}
+                  short={smallCap}
+                />
+                <FormattedCoinValue
+                  value={item.value}
+                  large={true}
+                  level={smallCap ? 4 : 2}
+                  justify='start'
+                  coin={{ symbol: currency }}
+                />
+              </Box>
+            );
+          }}
+        </Distribution>
+      </Box>
     );
   }
 }

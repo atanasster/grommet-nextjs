@@ -1,21 +1,17 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import getDisplayName from 'recompose/getDisplayName';
 import { ApolloProvider, getDataFromTree } from 'react-apollo';
 import Head from 'next/head';
 import initApollo from './initApollo';
 
-// Gets the display name of a JSX component for dev tools
-function getComponentDisplayName(Component) {
-  return Component.displayName || Component.name || 'Unknown';
-}
-
 export default ComposedComponent => class WithData extends React.Component {
-    static displayName = `WithData(${getComponentDisplayName(
+    static displayName = `WithData(${getDisplayName(
       ComposedComponent
-    )})`
+    )})`;
     static propTypes = {
       serverState: PropTypes.object.isRequired,
-    }
+    };
 
     static async getInitialProps(ctx) {
       // Initial serverState with apollo (empty)
@@ -53,7 +49,6 @@ export default ComposedComponent => class WithData extends React.Component {
         // Handle them in components via the data.error prop:
         // http://dev.apollodata.com/react/api-queries.html#graphql-query-data-error
       }
-
       if (!process.browser) {
         // getDataFromTree does not call componentWillUnmount
         // head side effect therefore need to be cleared manually
@@ -77,7 +72,6 @@ export default ComposedComponent => class WithData extends React.Component {
       super(props);
       this.apollo = initApollo(this.props.serverState.apollo.data);
     }
-
     render() {
       return (
         <ApolloProvider client={this.apollo}>

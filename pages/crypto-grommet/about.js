@@ -1,9 +1,10 @@
 import { Box, Anchor, Paragraph, Heading } from 'grommet';
 import App from '../../components/crypto/App';
+import withData from '../../apollo/withData';
 
-export default () => (
+export default withData(() => (
   <App title='About'>
-    <Box gap='small'>
+    <Box gap='small' fill='horizontal'>
       <Box>
         <Heading level={1}>
           <strong>Site and source code</strong>
@@ -86,4 +87,4 @@ export default () => (
       </Box>
     </Box>
   </App>
-);
+));

@@ -1,0 +1,21 @@
+#import "./Profile.graphql"
+
+fragment UserInfo on User {
+    id
+    username
+    role
+    email
+    profile {
+        ...UserProfileInfo
+    }
+    auth {
+        facebook {
+            fbId
+            displayName
+        }
+        google {
+            googleId
+            displayName
+        }
+    }
+}

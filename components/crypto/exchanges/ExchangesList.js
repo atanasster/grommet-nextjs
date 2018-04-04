@@ -79,16 +79,18 @@ class ExchangesList extends Component {
       },
     ];
     return (
-      <Table
-        filterable={true}
-        decorations={{
-          table: { elevation: 'medium' },
-          rowEven: { background: { color: 'light-1' } },
-        }}
-        data={allExchanges}
-        loading={loading}
-        columns={columns}
-      />
+      <Box fill='horizontal'>
+        <Table
+          filterable={true}
+          decorations={{
+            table: { elevation: 'medium' },
+            rowEven: { background: { color: 'light-1' } },
+          }}
+          data={allExchanges}
+          loading={loading}
+          columns={columns}
+        />
+      </Box>
     );
   }
 }

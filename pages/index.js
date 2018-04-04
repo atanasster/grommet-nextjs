@@ -24,6 +24,8 @@ const CHART_VALUES = [
   { value: [0, 10], label: 'ten' },
 ];
 
+const stringOptions = ['small', 'medium', 'large', 'xlarge', 'huge'];
+
 export default class Home extends React.Component {
   state = { values: [3, 7] };
   render() {
@@ -113,7 +115,7 @@ Visit the official <Anchor href='https://v2.grommet.io/' target='_blank'>Grommet
               </Box>
             </Item>
             <Item name='Button' path='/button' center={true}>
-              <Button label='Panic' primary={true} onClick={() => {}} />
+              <Button label='Primary' primary={true} onClick={() => {}} />
             </Item>
             <Item name='Drop' path='/drop' center={true}>
               <Box pad='xsmall' border={true}>
@@ -129,7 +131,6 @@ Visit the official <Anchor href='https://v2.grommet.io/' target='_blank'>Grommet
                 label='Add'
                 icon={<Add />}
                 reverse={true}
-                open={true}
                 dropAlign={{ top: 'bottom', left: 'left' }}
                 dropContent={
                   <Box
@@ -141,16 +142,20 @@ Visit the official <Anchor href='https://v2.grommet.io/' target='_blank'>Grommet
               />
             </Item>
             <Item name='Menu' path='/menu' center={true}>
-              <Menu tabIndex='-1' label='Actions' items={[]} />
+              <Menu
+                tabIndex='-1'
+                label='Actions'
+                items={stringOptions.map(item => ({ label: item, onClick: () => {} }))}
+              />
             </Item>
           </Section>
 
           <Section name='Input' index={4}>
             <Item name='CheckBox' path='/checkbox' center={true}>
-              <CheckBox checked={true} label='Option one' disabled={true} />
+              <CheckBox label='Check option' onClick={() => {}} />
             </Item>
             <Item name='RadioButton' path='/radiobutton' center={true}>
-              <RadioButton checked={true} label='Option one' disabled={true} />
+              <RadioButton label='Radio option' onClick={() => {}} />
             </Item>
             <Item name='RangeInput' path='/rangeinput' center={true}>
               <RangeInput />
@@ -178,7 +183,7 @@ Visit the official <Anchor href='https://v2.grommet.io/' target='_blank'>Grommet
             </Item>
 
             <Item name='Select' path='/select' center={true}>
-              <Select options={[]} placeholder='Choices' tabIndex='-1' />
+              <Select options={stringOptions} placeholder='Choices' tabIndex='-1' />
             </Item>
             <Item name='TextArea' path='/textarea' center={true}>
               <TextArea placeholder='Placeholder' disabled={true} />

@@ -3,7 +3,7 @@ import { Box, Button, Layer, Heading } from 'grommet';
 import { Close } from 'grommet-icons';
 
 export default ({ onClose, children, heading }) => (
-  <Layer onEsc={onClose} position='right' onClickOverlay={onClose}>
+  <Layer onEsc={onClose} position='right' onClickOverlay={onClose} full='vertical'>
     <Box style={{ minWidth: '450px' }} pad='small' overflow='scroll' fill='horizontal' flex='grow'>
       <Box align='end'>
         <Button icon={<Close />} onClick={onClose} />
@@ -11,7 +11,9 @@ export default ({ onClose, children, heading }) => (
       <Heading level={1} margin='none'>
         <strong>{heading}</strong>
       </Heading>
-      {children}
+      <Box pad='small'>
+        {children}
+      </Box>
     </Box>
   </Layer>
 );

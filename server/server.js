@@ -4,15 +4,17 @@ const LRUCache = require('lru-cache');
 const next = require('next');
 const compression = require('compression');
 const path = require('path');
-const fs = require('fs');
 const cors = require('cors');
-const { graphqlExpress, graphiqlExpress } = require('apollo-server-express');
+const { graphiqlExpress } = require('apollo-server-express');
+const { ApolloEngine } = require('apollo-engine');
 const bodyParser = require('body-parser');
 const staticFiles = require('./static');
 const routes = require('../utils/routes');
 const logger = require('./logger');
-const dotenv = require('dotenv');
-const schema = require('./graphql/schema');
+// eslint-disable-next-line no-unused-vars
+const dotenv = require('dotenv').config();
+const graphql = require('./graphql');
+const confirmEmail = require('./graphql/auth/confirm_email');
 
 const port = parseInt(process.env.PORT, 10) || 3000;
 const dev = process.env.NODE_ENV !== 'production';
@@ -23,22 +25,7 @@ const ssrCache = new LRUCache({
   max: 100,
   maxAge: 1000 * 60 * 60, // 1hour
 });
-const publicEnvFilename = '../public.env';
 
-try {
-  if (fs.existsSync(path.resolve(__dirname, publicEnvFilename))) {
-    const publicEnv = dotenv.parse(
-      fs.readFileSync(path.resolve(__dirname, publicEnvFilename))
-    );
-    Object.keys(publicEnv).forEach((key) => {
-      if (!process.env[key]) {
-        process.env[key] = publicEnv[key];
-      }
-    });
-  }
-} catch (err) {
-  // silence is golden
-}
 const getCacheKey = function getCacheKey(req) {
   return `${req.url}`;
 };
@@ -87,10 +74,9 @@ app.prepare()
       server.use(compression({ threshold: 0 }));
     }
     server.use(cors());
-    server.use('/graphql', bodyParser.json(), graphqlExpress({ schema, cacheControl: true }));
+    server.use('/graphql', bodyParser.json(), graphql);
     server.use('/graphiql', graphiqlExpress({ endpointURL: '/graphql' }));
-    server.use(routerHandler);
-    server.use('/', staticFiles());
+    server.get('/confirmation/:token', confirmEmail);
     server.get('/sw.js', (req, res) =>
       app.serveStatic(req, res, path.resolve('./.next/sw.js')));
 
@@ -104,11 +90,30 @@ app.prepare()
       server.get('/_next/-/app.js', (req, res) =>
         app.serveStatic(req, res, path.resolve('./.next/app.js')));
     }
+    server.use(routerHandler);
+    server.use('/', staticFiles());
+
     server.get('*', (req, res) => handle(req, res));
-    server.listen(port, (err) => {
-      if (err) {
-        return logger.error(err.message);
-      }
-      return logger.appStarted(port, 'localhost');
-    });
+    if (process.env.ENGINE_API_KEY) {
+      console.log('Starting GraphQL Engine');
+      const engine = new ApolloEngine({
+        apiKey: process.env.ENGINE_API_KEY,
+      });
+      engine.listen({
+        port,
+        expressApp: server,
+      }, (err) => {
+        if (err) {
+          return logger.error(err.message);
+        }
+        return logger.appStarted(port, 'localhost');
+      });
+    } else {
+      server.listen(port, (err) => {
+        if (err) {
+          return logger.error(err.message);
+        }
+        return logger.appStarted(port, 'localhost');
+      });
+    }
   });

@@ -5,7 +5,7 @@ const path = require('path');
 const initExport = {
   // eslint-disable-next-line no-unused-vars
   webpack: (config, env) => {
-    config.plugins.push(new Dotenv({ path: './public.env' }));
+    config.plugins.push(new Dotenv({ path: './.env' }));
     config.plugins.push(new IgnorePlugin(/^\.\/locale$/, /moment$/));
 
     if (process.env.ANALYZE_BUILD) {
@@ -19,6 +19,11 @@ const initExport = {
         })
       );
     }
+    config.module.rules.push({
+      test: /\.(graphql|gql)$/,
+      exclude: /node_modules/,
+      loader: 'graphql-tag/loader',
+    });
     if (process.env.NODE_ENV === 'alias') {
       config.module.rules.push({
         loader: 'babel-loader',

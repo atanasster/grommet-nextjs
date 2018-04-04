@@ -21,7 +21,7 @@ export default class FormDoc extends Component {
         desc={desc}
         example={
           <Box direction='row' fill='horizontal'>
-            <Form onSubmit={values => alert(JSON.stringify(values))} pad={{ horizontal: 'small' }} basis='small' >
+            <Form onSubmit={values => alert(JSON.stringify(values))} pad={{ horizontal: 'small' }} >
               <PasswordInputField label='Password' name='password' validation={[validators.required(), validators.minLength(8), validators.alphaNumeric()]} />
               <PasswordInputField label='Confirm Password' name='password1' validation={[validators.equalsField('password', 'the above password')]} />
               <TextInputField label='URL' name='url' validation={[validators.required(), validators.url()]} />
@@ -36,15 +36,18 @@ export default class FormDoc extends Component {
         }
         examples={{
           onSubmit: (
-            <Form focusFirstChild={false} onSubmit={values => alert(JSON.stringify(values))}>
-              <TextInputField label='Text' name='fieldname' />
-            </Form>
+            <Box pad='small' >
+              <Form focusFirstChild={false} onSubmit={values => alert(JSON.stringify(values))} basis='small'>
+                <TextInputField label='Text' name='fieldname' />
+              </Form>
+            </Box>
           ),
           onChange: (
             <Box pad='small' >
               <Form
                 focusFirstChild={false}
                 onChange={({ target: { value } }) => this.setState({ changedValue: value })}
+                basis='small'
               >
                 <TextInputField label='Text' name='onchange' />
               </Form>
@@ -54,13 +57,16 @@ export default class FormDoc extends Component {
             </Box>
           ),
           onSubmitError: (
-            <Form
-              focusFirstChild={false}
-              onSubmit={values => alert(JSON.stringify(values))}
-              onSubmitError={errors => alert(JSON.stringify(errors))}
-            >
-              <TextInputField label='Text' name='errofield' validation={[validators.required(), validators.minLength(8)]} />
-            </Form>
+            <Box pad='small' >
+              <Form
+                focusFirstChild={false}
+                onSubmit={values => alert(JSON.stringify(values))}
+                onSubmitError={errors => alert(JSON.stringify(errors))}
+                basis='small'
+              >
+                <TextInputField label='Text' name='errofield' validation={[validators.required(), validators.minLength(8)]} />
+              </Form>
+            </Box>
           ),
           onInvalidForm: (
             <Box pad='small' >
@@ -68,6 +74,7 @@ export default class FormDoc extends Component {
                 focusFirstChild={false}
                 onSubmit={values => alert(JSON.stringify(values))}
                 onInvalidForm={error => this.setState({ invalid: error })}
+                basis='small'
               >
                 <TextInputField label='Text' name='invalidfield' validation={[validators.required(), validators.minLength(8)]} />
               </Form>

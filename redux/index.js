@@ -9,8 +9,10 @@ import themes from './themes/reducer';
 import notifications from './notifications/reducer';
 import nav from './nav/reducer';
 import settings from './settings/reducer';
+import auth from './auth/reducer';
 
 const makeStore = combineReducers({
+  auth,
   themes,
   notifications,
   nav,
@@ -19,7 +21,7 @@ const makeStore = combineReducers({
 
 const initialState = {};
 
-const store = createStore(makeStore, initialState,
+export const store = createStore(makeStore, initialState,
   composeWithDevTools(applyMiddleware(thunkMiddleware)));
 
 export default (...args) => (WrappedComponent) => {

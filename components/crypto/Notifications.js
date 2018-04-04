@@ -4,32 +4,31 @@ import { Notification } from 'grommet-controls';
 import { deleteNotification } from '../../redux/notifications/actions';
 import connect from '../../redux/index';
 
-const NotificationsContainer = (props) => {
-  let notifications;
-  if (props.notifications.length > 0) {
-    notifications = props.notifications.map((notification) => {
-      const { message, status, id } = notification;
-      return (
-        <Notification
-          key={id}
-          closer={true}
-          status={status}
-          message={message}
-          onClose={() => this.props.deleteNotification(id)}
-        />
-      );
-    });
+const NotificationsContainer = ({ notifications, onDeleteNotification }) => {
+  if (!notifications || !notifications.length) {
+    return null;
   }
-  if (!notifications) return null;
+  const notificationList = notifications.map((notification) => {
+    const { message, status, id } = notification;
+    return (
+      <Notification
+        key={`notification_${id}`}
+        message={message}
+        status={status}
+        onClose={() => onDeleteNotification(id)}
+      />
+    );
+  });
   return (
     <Fragment>
-      {notifications}
+      {notificationList}
     </Fragment>
   );
 };
 
 const mapStateToProps = state => ({ notifications: state.notifications });
 
-const mapDispatchToProps = dispatch => bindActionCreators({ deleteNotification }, dispatch);
+const mapDispatchToProps = dispatch =>
+  bindActionCreators({ onDeleteNotification: deleteNotification }, dispatch);
 
 export default connect(mapStateToProps, mapDispatchToProps)(NotificationsContainer);

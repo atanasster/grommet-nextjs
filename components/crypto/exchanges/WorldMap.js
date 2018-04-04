@@ -149,7 +149,7 @@ class WorldMap extends React.Component {
       `${worldExchanges} exchanges in ${worldContinent}, click to see more...`
     ) : null;
     return (
-      <Box>
+      <Box full='horizontal'>
         <Box direction='row'>
           <GrommetWordMap
             style={{ width: 'auto' }}

@@ -1,9 +1,4 @@
-const { makeExecutableSchema } = require('graphql-tools');
-const resolvers = require('./resolvers');
-
-
-const typeDefs = `
-type Query {
+extend type Query {
   coin(symbol: String): Coin
   allCoins: [Coin]
   allICO: [Coin]
@@ -53,7 +48,7 @@ type ICO {
   websiteURL: String
   whitePaper: String
   whitePaperLink: String
-} 
+}
 type Coin {
   algorithm: String
   coinName: String
@@ -95,19 +90,19 @@ type FundingFee {
   coin: Coin
 }
 
-type FundingFees { 
+type FundingFees {
   tierBased: Boolean
   percentage: Boolean
   withdraw: [FundingFee]
   deposit: [FundingFee]
-} 
- 
+}
+
 
 type Fees {
   trading: TradingFees
   funding: FundingFees
 }
-  
+
 type Market {
   id: String
   symbol: String
@@ -119,8 +114,8 @@ type Market {
   limits: String
   precision: Int
   tierBased: Boolean
-  percentage: Float  
-}  
+  percentage: Float
+}
 
 type Currency {
   id: String
@@ -182,10 +177,3 @@ type OrderBook {
   asks: [Order]
   bids: [Order]
 }
-`;
-
-
-const schema = makeExecutableSchema({ typeDefs, resolvers });
-
-
-module.exports = schema;

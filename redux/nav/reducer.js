@@ -23,6 +23,9 @@ const initialState = {
       a11yTitle: 'Information about Ethereum',
     },
   ],
+  user_items: [
+    { route: 'profile', label: 'profile', a11yTitle: 'View your user profile' },
+  ],
 };
 
 export default function reduce(state = initialState, action) {

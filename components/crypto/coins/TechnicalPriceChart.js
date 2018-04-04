@@ -111,7 +111,7 @@ class TechnicalAnalysis extends Component {
 
   render() {
     return (
-      <Box basis='small' direction='row'>
+      <Box direction='row' fill='horizontal'>
         {this.renderChart()}
       </Box>
     );

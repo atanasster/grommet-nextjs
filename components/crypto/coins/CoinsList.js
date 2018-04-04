@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { graphql } from 'react-apollo';
-import { connect } from 'react-redux';
 import numeral from 'numeral';
 import { Box, Text, Markdown } from 'grommet';
+import connect from '../../../redux';
 import Table from '../../grommet-table';
 import Coin from './Coin';
 import PriceCard from './PriceCard';
@@ -91,18 +91,20 @@ class CoinsList extends Component {
       },
     ];
     return (
-      <Table
-        decorations={{
-          table: { elevation: 'medium' },
-          rowEven: { background: { color: 'light-1' } },
-        }}
-        loading={loading}
-        filterable={true}
-        data={allCoins}
-        SubComponent={this.onExpand}
-        columns={columns}
-        defaultSorted={[{ id: 'symbol' }]}
-      />
+      <Box fill='horizontal'>
+        <Table
+          decorations={{
+            table: { elevation: 'medium' },
+            rowEven: { background: { color: 'light-1' } },
+          }}
+          loading={loading}
+          filterable={true}
+          data={allCoins}
+          SubComponent={this.onExpand}
+          columns={columns}
+          defaultSorted={[{ id: 'symbol' }]}
+        />
+      </Box>
     );
   }
 }
