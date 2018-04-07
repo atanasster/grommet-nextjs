@@ -24,6 +24,9 @@ const LargeParagraph = styled(Paragraph)`
 `;
 
 class App extends Component {
+  static async getInitialProps(context) {
+    console.log('getInitialProps', context);
+  }
   componentWillReceiveProps(nextProps) {
     if (nextProps.user && nextProps.user !== this.props.user) {
       this.props.signIn({ user: nextProps.user });

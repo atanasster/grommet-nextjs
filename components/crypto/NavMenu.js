@@ -7,7 +7,7 @@ import connect from '../../redux/index';
 import Login from './auth/AuthSideBar';
 
 import RoutedAnchor from './RoutedAnchor';
-import routerPush from '../Router';
+import routerPush from './Router';
 import { navActivate } from '../../redux/nav/actions';
 import { signOut } from '../../redux/auth/actions';
 
@@ -30,19 +30,18 @@ class NavMenu extends Component {
 
   onLogOut = () => {
     this.props.signOut();
-    // routerPush({ route: 'home' });
+    routerPush({ route: 'home' });
   };
 
   renderMenu() {
     const { nav, user } = this.props;
-
     let menu;
     if (nav.responsive) {
       menu = (
         <Menu
           dropAlign={{ top: 'bottom', right: 'right' }}
           icon={<MenuIcon />}
-          items={nav.items.map(item => ({ ...item, onClick: () => { routerPush(item.path); } }))}
+          items={nav.items.map(item => ({ ...item, onClick: () => { routerPush(item); } }))}
         />
       );
     } else {
@@ -57,7 +56,7 @@ class NavMenu extends Component {
               label={user.username}
               items={[{ label: 'log out', a11yTitle: 'Log out of the site', onClick: this.onLogOut }]
                 .concat(nav.user_items.map(item =>
-                ({ ...item, onClick: () => { routerPush(item.path); } })))
+                ({ ...item, onClick: () => { routerPush(item); } })))
               }
             />
           ) : (

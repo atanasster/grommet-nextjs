@@ -8,7 +8,7 @@ routes.add('coin_info', '/coins/general/:symbol/:toSymbol?/:exchange?', `${SITE_
 routes.add('coin_order_books', '/coins/orderbooks/:symbol/:toSymbol?/:exchange?', `${SITE_ROOT}/coins/orderbooks`);
 routes.add('coin_charts', '/coins/charts/:symbol/:toSymbol?/:exchange?', `${SITE_ROOT}/coins/charts`);
 routes.add('reset_password', '/reset-password/:token', `${SITE_ROOT}/reset_password`);
-routes.add('profile', '/profile', `${SITE_ROOT}/user/profile`);
+routes.add({ name: 'profile', pattern: '/profile', page: `${SITE_ROOT}/user/profile` });
 
 routes.add('exchange_prices', '/exchanges/prices/:exchange', `${SITE_ROOT}/exchanges/prices`);
 routes.add('exchange_order_books', '/exchanges/orderbooks/:exchange', `${SITE_ROOT}/exchanges/orderbooks`);

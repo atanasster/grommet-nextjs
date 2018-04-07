@@ -11,10 +11,9 @@ const bodyParser = require('body-parser');
 const staticFiles = require('./static');
 const routes = require('../utils/routes');
 const logger = require('./logger');
-// eslint-disable-next-line no-unused-vars
-const dotenv = require('dotenv').config();
 const graphql = require('./graphql');
 const confirmEmail = require('./graphql/auth/confirm_email');
+require('dotenv').config();
 
 const port = parseInt(process.env.PORT, 10) || 3000;
 const dev = process.env.NODE_ENV !== 'production';

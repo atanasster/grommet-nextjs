@@ -8,7 +8,7 @@ import validators from 'grommet-controls/components/Form/validators';
 import connect from '../../../redux';
 import { addError, addSuccessMessage } from '../../../redux/notifications/actions';
 import ResetPasswordMutation from './graphql/ResetPassword.graphql';
-import routerPush from '../../Router';
+import routerPush from '../Router';
 
 
 class ResetPasswordForm extends Component {
@@ -29,7 +29,7 @@ class ResetPasswordForm extends Component {
       .then((response) => {
         if (response.data && response.data.resetPassword.ok) {
           this.props.addSuccessMessage('The password was successfully changed.');
-          routerPush('/login');
+          routerPush({ route: 'login' });
         }
       })
       .catch((err) => {

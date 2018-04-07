@@ -7,7 +7,7 @@ import { PasswordInputField, EmailInputField } from 'grommet-controls/components
 import validators from 'grommet-controls/components/Form/validators';
 import { Facebook, Google, Linkedin, Twitter } from 'grommet-icons';
 import connect from '../../../redux';
-import routerPush from '../../Router';
+import routerPush from '../Router';
 import { addError } from '../../../redux/notifications/actions';
 import { signIn } from '../../../redux/auth/actions';
 
@@ -38,7 +38,7 @@ class LoginForm extends Component {
       .then((response) => {
         if (response.data) {
           this.props.signIn(response.data.login);
-          routerPush('/profile');
+          routerPush({ route: 'profile' });
         }
       })
       .catch((err) => {
