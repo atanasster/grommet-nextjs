@@ -15,6 +15,7 @@ export default class MyDocument extends Document {
       <html lang='en-US'>
         <Head>
           {this.props.styleTags}
+          <meta name='viewport' content='width=device-width,initial-scale=1' />
         </Head>
         <body style={{ margin: 0, height: 'auto', minHeight: '100vh' }} >
           <Main />
