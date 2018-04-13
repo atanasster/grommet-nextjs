@@ -60,7 +60,11 @@ class NavMenu extends Component {
               }
             />
           ) : (
-            <Anchor icon={<User />} a11yTitle='Open login form' onClick={() => this.setState({ loginForm: true })} />
+            <Anchor
+              icon={<User />}
+              a11yTitle='Open login form'
+              onClick={() => this.setState({ loginForm: true })}
+            />
           )
           }
         </Box>

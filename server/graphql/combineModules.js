@@ -1,9 +1,16 @@
 
 class CombineModules {
   constructor(modules) {
-    this.modules = modules;
+    this.modules = [];
+    modules.forEach((module) => {
+      if (Array.isArray(module)) {
+        this.modules = this.modules.concat(module);
+      } else {
+        this.modules.push(module);
+      }
+    });
     this.typeDefs = [];
-    modules.filter(module => module.typeDefs)
+    this.modules.filter(module => module.typeDefs)
       .forEach((module) => {
         if (Array.isArray(module.typeDefs)) {
           this.typeDefs = this.typeDefs.concat(module.typeDefs);
@@ -31,6 +38,11 @@ class CombineModules {
         }
       });
     return result;
+  }
+
+  middleware(app) {
+    this.modules.filter(module => module.middleware)
+      .forEach((module) => { module.middleware(app); });
   }
 }
 

@@ -3,9 +3,13 @@ const resolvers = require('./resolvers');
 const scopes = require('./scopes');
 const readSchema = require('../readSchema');
 const password = require('./password');
+const facebook = require('./facebook');
+const google = require('./google');
+const linkedin = require('./linkedin');
+const github = require('./github');
 const CombineModules = require('../combineModules');
+const confirmEmail = require('./confirm_email');
 
-const User = null;// new UserDAO();
 
 const getCurrentUser = async ({ req }) => {
   const authorization = req && req.headers.authorization;
@@ -32,7 +36,6 @@ const createContext = async (req, res, context, connectionParams, webSocket) => 
   };
 
   return {
-    User,
     user,
     auth,
   };
@@ -42,7 +45,10 @@ const props = {
   typeDefs: readSchema(__dirname),
   resolvers,
   createContext,
+  middleware: (app) => {
+    app.get('/confirmation/:token', confirmEmail);
+  },
 };
 
 // module.exports = props;
-module.exports = new CombineModules([props, password]);
+module.exports = new CombineModules([props, password, facebook, google, linkedin, github]);

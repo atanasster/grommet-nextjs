@@ -5,7 +5,7 @@ module.exports = async (user) => {
   const refreshSecret = process.env.JWT_SECRET_KEY + user.password;
   const tokenUser = { id: user.id, username: user.username, role: user.role };
   tokenUser.fullName = user.firstName ? `${user.firstName} ${user.lastName}` : null;
-  const createToken = jwt.sign(
+  const accessToken = await jwt.sign(
     {
       user: tokenUser,
     },
@@ -15,7 +15,7 @@ module.exports = async (user) => {
     }
   );
 
-  const createRefreshToken = jwt.sign(
+  const refreshToken = await jwt.sign(
     {
       user: user.id,
     },
@@ -25,5 +25,5 @@ module.exports = async (user) => {
     }
   );
 
-  return Promise.all([createToken, createRefreshToken]);
+  return { accessToken, refreshToken };
 };

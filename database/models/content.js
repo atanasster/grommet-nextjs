@@ -1,5 +1,5 @@
 module.exports = (sequelize, DataTypes) => {
-  const Post = sequelize.define('Post', {
+  const Content = sequelize.define('Content', {
     id: {
       type: DataTypes.INTEGER,
       primaryKey: true,
@@ -29,11 +29,11 @@ module.exports = (sequelize, DataTypes) => {
       defaultValue: false,
     },
   });
-  Post.associate = (models) => {
+  Content.associate = (models) => {
     // A post belongs to a user
-    Post.belongsTo(models.User);
+    Content.belongsTo(models.User);
     // A post can belong to many tags
-    Post.belongsToMany(models.Tag, { through: 'post_tag' });
+    Content.belongsToMany(models.Tag, { through: 'ContentTag' });
   };
-  return Post;
+  return Content;
 };

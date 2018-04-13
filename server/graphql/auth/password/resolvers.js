@@ -1,7 +1,7 @@
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const { User } = require('../../../../database/models');
-const { UserProfileFields } = require('../UserData');
+const { userProfileFields } = require('../UserData');
 const generateTokens = require('../jwt');
 const mailer = require('../../mailer');
 
@@ -28,8 +28,8 @@ module.exports = () => ({
       await validateUserPassword(user, password);
       const tokens = await generateTokens(user, req);
       return {
-        user: UserProfileFields(user),
-        tokens: { accessToken: tokens[0], refreshToken: tokens[1] },
+        user: userProfileFields(user),
+        tokens,
       };
     },
     async register(obj, { input }, context) {
@@ -50,7 +50,6 @@ module.exports = () => ({
         is_active: false,
         password: await bcrypt.hash(password, 10),
       });
-      console.log(user);
       if (context.req) {
         // async email
         jwt.sign({ user: { id: user.id } }, process.env.JWT_SECRET_KEY, { expiresIn: '1d' }, (err, emailToken) => {
@@ -70,7 +69,7 @@ module.exports = () => ({
         });
       }
 
-      return { user: UserProfileFields(user) };
+      return { user: userProfileFields(user) };
     },
     async forgotPassword(obj, { input }) {
       const user = await User.findOne({ where: { email: input.email } });

@@ -10,6 +10,7 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING,
     },
     lastName: DataTypes.STRING,
+    picture: DataTypes.STRING,
     username: {
       type: DataTypes.STRING,
       unique: true,
@@ -33,10 +34,23 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.BOOLEAN,
       allowNull: false,
     },
+    gender: { type: DataTypes.ENUM('male', 'female') },
+    facebook_id: DataTypes.STRING,
+    facebook_name: DataTypes.STRING,
+    facebook_url: DataTypes.STRING,
+    google_id: DataTypes.STRING,
+    google_name: DataTypes.STRING,
+    google_url: DataTypes.STRING,
+    linkedin_id: DataTypes.STRING,
+    linkedin_name: DataTypes.STRING,
+    linkedin_url: DataTypes.STRING,
+    github_id: DataTypes.STRING,
+    github_name: DataTypes.STRING,
+    github_url: DataTypes.STRING,
   });
   User.associate = (models) => {
     // A user can have many posts
-    User.hasMany(models.Post);
+    User.hasMany(models.Content, { onDelete: 'CASCADE' });
   };
   return User;
 };

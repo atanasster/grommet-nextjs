@@ -1,12 +1,12 @@
 module.exports = (sequelize, DataTypes) => {
-  const PostTag = sequelize.define('PostTag', {
+  const ContentTag = sequelize.define('ContentTag', {
     id: {
       type: DataTypes.INTEGER,
       primaryKey: true,
       autoIncrement: true,
       allowNull: false,
     },
-    postId: {
+    contentId: {
       type: DataTypes.INTEGER.UNSIGNED,
       allowNull: false,
     },
@@ -15,5 +15,5 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false,
     },
   });
-  return PostTag;
+  return ContentTag;
 };

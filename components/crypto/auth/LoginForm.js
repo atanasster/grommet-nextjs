@@ -5,22 +5,23 @@ import { Box, Text, Anchor, Button } from 'grommet';
 import { Form } from 'grommet-controls';
 import { PasswordInputField, EmailInputField } from 'grommet-controls/components/Form/Fields';
 import validators from 'grommet-controls/components/Form/validators';
-import { Facebook, Google, Linkedin, Twitter } from 'grommet-icons';
+import { Facebook, Google, Linkedin, Github } from 'grommet-icons';
 import connect from '../../../redux';
 import routerPush from '../Router';
 import { addError } from '../../../redux/notifications/actions';
 import { signIn } from '../../../redux/auth/actions';
-
+import popupWindow from './openWindow';
 import loginMutation from './graphql/Login.graphql';
 
 class LoginForm extends Component {
   // eslint-disable-next-line no-unused-vars
   openOAutPopup = (provider) => {
-    /*
-    popupWindow(`${apiServer}/auth/${provider}/start`)
-      .then(data => console.log(data))
-      .catch(err => (console.log(err)));
-    */
+    popupWindow(`${process.env.WEBSITE_URL}/auth/${provider}`)
+      .then((data) => {
+        this.props.signIn(data);
+        routerPush({ route: 'profile' });
+      })
+      .catch(err => console.log('error', err));
   };
 
   getServerErrors(err) {
@@ -68,9 +69,9 @@ class LoginForm extends Component {
             </Box>
             <Box size='small'>
               <Anchor
-                icon={<Twitter color='plain' />}
-                label='Twitter'
-                onClick={() => this.openOAutPopup('twitter')}
+                icon={<Github color='plain' />}
+                label='Github'
+                onClick={() => this.openOAutPopup('github')}
               />
             </Box>
           </Box>

@@ -20,7 +20,7 @@ module.exports = (sequelize, DataTypes) => {
   });
   Tag.associate = (models) => {
     // A tag can have to many posts
-    Tag.belongsToMany(models.Post, { through: 'post_tag' });
+    Tag.belongsToMany(models.Content, { through: 'ContentTag' });
   };
   return Tag;
 };

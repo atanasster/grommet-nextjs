@@ -1,7 +1,7 @@
 const jwt = require('jsonwebtoken');
 const withAuth = require('graphql-auth').default;
 const { User } = require('../../../database/models');
-const UserFind = require('./UserData');
+const { userFind } = require('./UserData');
 const generateTokens = require('./jwt');
 
 // eslint-disable-next-line no-unused-vars
@@ -10,11 +10,11 @@ module.exports = pubsub => ({
     users: withAuth(['user:view:all'], (obj, { orderBy, filter }) => User.getUsers(orderBy, filter)),
     user: withAuth(
       (obj, args, context) => (context.user.id !== args.id ? ['user:view'] : ['user:view:self']),
-      (obj, { id }) => UserFind({ id })
+      (obj, { id }) => userFind({ id })
     ),
     currentUser(obj, args, context) {
       if (context.user) {
-        return UserFind({ id: context.user.id });
+        return userFind({ id: context.user.id });
       }
       throw new Error('Not Authenticated');
     },
@@ -118,13 +118,9 @@ module.exports = pubsub => ({
         res.status(401);
         throw e;
       }
+      const tokens = await generateTokens(user);
 
-      const [accessToken, refreshToken] = await generateTokens(user);
-
-      return {
-        accessToken,
-        refreshToken,
-      };
+      return tokens;
     },
   },
 });

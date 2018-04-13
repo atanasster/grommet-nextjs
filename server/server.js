@@ -11,8 +11,8 @@ const bodyParser = require('body-parser');
 const staticFiles = require('./static');
 const routes = require('../utils/routes');
 const logger = require('./logger');
-const graphql = require('./graphql');
-const confirmEmail = require('./graphql/auth/confirm_email');
+const graphql = require('./graphql/root');
+const modules = require('./graphql');
 require('dotenv').config();
 
 const port = parseInt(process.env.PORT, 10) || 3000;
@@ -75,7 +75,7 @@ app.prepare()
     server.use(cors());
     server.use('/graphql', bodyParser.json(), graphql);
     server.use('/graphiql', graphiqlExpress({ endpointURL: '/graphql' }));
-    server.get('/confirmation/:token', confirmEmail);
+    modules.middleware(server);
     server.get('/sw.js', (req, res) =>
       app.serveStatic(req, res, path.resolve('./.next/sw.js')));
 
