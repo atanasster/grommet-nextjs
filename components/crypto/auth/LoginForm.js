@@ -16,7 +16,7 @@ import loginMutation from './graphql/Login.graphql';
 class LoginForm extends Component {
   // eslint-disable-next-line no-unused-vars
   openOAutPopup = (provider) => {
-    popupWindow(`${process.env.WEBSITE_URL}/auth/${provider}`)
+    popupWindow(`/auth/${provider}`)
       .then((data) => {
         this.props.signIn(data);
         routerPush({ route: 'profile' });
