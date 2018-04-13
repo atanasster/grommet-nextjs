@@ -12,7 +12,7 @@ if (process.env.LINKEDIN_APP_ID) {
       {
         clientID: process.env.LINKEDIN_APP_ID,
         clientSecret: process.env.LINKEDIN_APP_SECRET,
-        callbackURL: '/auth/linkedin/callback',
+        callbackURL: `${process.env.WEBSITE_URL}/auth/linkedin/callback`,
         scope: ['r_basicprofile', 'r_emailaddress'],
       },
       (async (accessToken, refreshToken, profile, done) => {

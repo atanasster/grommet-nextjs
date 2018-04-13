@@ -11,7 +11,7 @@ if (process.env.FACEBOOK_APP_ID) {
       {
         clientID: process.env.FACEBOOK_APP_ID,
         clientSecret: process.env.FACEBOOK_APP_SECRET,
-        callbackURL: '/auth/facebook/callback',
+        callbackURL: `${process.env.WEBSITE_URL}/auth/facebook/callback`,
         scope: ['email'],
         profileFields: ['id', 'emails', 'name', 'displayName', 'picture.type(normal)',
           'profileUrl', 'gender'],

@@ -12,7 +12,7 @@ if (process.env.GOOGLE_APP_ID) {
       {
         clientID: process.env.GOOGLE_APP_ID,
         clientSecret: process.env.GOOGLE_APP_SECRET,
-        callbackURL: '/auth/google/callback',
+        callbackURL: `${process.env.WEBSITE_URL}/auth/google/callback`,
         profileFields: ['id', 'emails', 'name', 'displayName', 'picture.type(normal)',
           'profileUrl', 'gender'],
 

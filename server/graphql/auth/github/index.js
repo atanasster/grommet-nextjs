@@ -11,7 +11,7 @@ if (process.env.GITHUB_APP_ID) {
       {
         clientID: process.env.GITHUB_APP_ID,
         clientSecret: process.env.GITHUB_APP_SECRET,
-        callbackURL: '/auth/github/callback',
+        callbackURL: `${process.env.WEBSITE_URL}/auth/github/callback`,
         scope: 'user:email',
         profileFields: ['id', 'emails', 'name', 'displayName', 'picture.type(normal)',
           'profileUrl'],
