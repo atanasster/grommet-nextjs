@@ -73,6 +73,7 @@ export default class ReactTable extends Component {
     // Props that trigger a data update
     if (
       oldState.data !== newState.data ||
+        JSON.stringify(oldState.columns) !== JSON.stringify(newState.columns) ||
         oldState.pivotBy !== newState.pivotBy ||
         oldState.sorted !== newState.sorted ||
         oldState.filtered !== newState.filtered

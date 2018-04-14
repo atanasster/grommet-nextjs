@@ -1,6 +1,6 @@
 import { Box, Text, Image, CheckBox } from 'grommet';
 import { Add, Subtract } from 'grommet-icons';
-import { MultiSelect } from 'grommet-controls';
+import { Select } from 'grommet-controls';
 import { TagsSelect } from 'grommet-controls/components/Tags';
 import doc from '../../components/grommet-table/doc';
 import Doc from '../../components/Doc';
@@ -116,9 +116,9 @@ export default class TableDoc extends React.Component {
   };
 
 
-  onChangeFields = ({ option }) => {
+  onChangeFields = ({ value }) => {
     const { columns } = this.state;
-    this.setState({ columns: updateColumnShow(columns, option) });
+    this.setState({ columns: updateColumnShow(columns, value) });
   };
 
   render() {
@@ -133,17 +133,21 @@ export default class TableDoc extends React.Component {
           name='Grommet Table'
           desc={desc}
           example={(
-            <Box gap='small'>
+            <Box gap='small' fill='horizontal'>
               <Box direction='row' justify='between'>
                 <CheckBox checked={grouping} label='Group rows' onChange={() => this.setState({ grouping: !grouping })} />
                 <CheckBox checked={sortable} label='Sortable' onChange={() => this.setState({ sortable: !sortable })} />
                 <CheckBox checked={filterable} label='Filter' onChange={() => this.setState({ filterable: !filterable })} />
                 <CheckBox checked={paging} label='Paging' onChange={() => this.setState({ paging: !paging })} />
                 <Box basis='small'>
-                  <MultiSelect
+                  <Select
                     options={allColumns.map(column => column.Header)}
                     label={TagsSelect()}
                     multiple={true}
+                    selected={
+                      visibleColumns.map(c =>
+                        allColumns.findIndex(column => column.Header === c.Header))
+                    }
                     value={visibleColumns.map(column => column.Header)}
                     onChange={this.onChangeFields}
                   />

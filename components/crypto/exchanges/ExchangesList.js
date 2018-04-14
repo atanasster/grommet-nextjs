@@ -18,6 +18,7 @@ class ExchangesList extends Component {
     });
   }
   render() {
+    console.log('render');
     const { allExchanges, loading } = this.props.data;
     const { searchCountries } = this.state;
     const countries = searchCountries || uniqueCountries(allExchanges);
@@ -35,7 +36,7 @@ class ExchangesList extends Component {
         Header: 'Countries',
         accessor: 'countries',
         filterMethod: (filter, row) => !filter.value || row.countries.indexOf(filter.value) !== -1,
-        Filter: cell => (
+        Filter: ({ filter, onChange }) => (
           <Box>
             <Select
               a11yTitle='Open countries filter'
@@ -43,15 +44,15 @@ class ExchangesList extends Component {
               onClose={() => this.setState({ searchCountries: undefined })}
               dropSize='medium'
               activeOptionIndex={
-                      cell.filter ? countries.indexOf(cell.filter) + 1 : undefined
+                      filter ? countries.indexOf(filter) + 1 : undefined
                     }
               background='white'
               options={[{ code: undefined }].concat(countries)}
-              value={cell.filter ? <Country
-                {...countries.find(country => (country.code === cell.filter.value))}
+              value={filter ? <Country
+                {...countries.find(country => (country.code === filter.value))}
               /> : undefined}
               onChange={({ option }) => {
-                      cell.onChange(option.code);
+                      onChange(option.code);
                     }}
             >
               {option => <Country key={`country_${option.code}`} {...option} />}

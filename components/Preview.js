@@ -4,7 +4,7 @@ import {
   DropButton, FormField,
 } from 'grommet';
 import { Menu as MenuIcon, Edit, Grommet } from 'grommet-icons';
-import { MultiSelect, Tag } from 'grommet-controls';
+import { Select as GrommetControlsSelect, Tag } from 'grommet-controls';
 import { TagsSelect } from 'grommet-controls/components/Tags';
 import ColorRoll from './ColorRoll';
 
@@ -165,12 +165,12 @@ export default class Preview extends React.Component {
           </Box>
           <Box direction='row' fill='horizontal'justify='between' pad={{ vertical: 'medium' }} margin={{ top: 'medium' }}>
             <Box basis='medium'>
-              <MultiSelect
+              <GrommetControlsSelect
                 options={stringOptions}
                 value={selected}
                 label={TagsSelect()}
                 multiple={true}
-                onChange={({ option }) => this.setState({ selected: option })}
+                onChange={({ value }) => this.setState({ selected: value })}
               />
             </Box>
             <Box>

@@ -1,6 +1,6 @@
 import { Box, Heading, Paragraph, Chart } from 'grommet';
 import {
-  MultiSelect, Tags, Tag, Notification, DropInput, MaskedInput,
+  Select, Tags, Tag, Notification, DropInput, MaskedInput,
   DateInput, NumberInput, PasswordInput, EmailInput, ColorInput, Colors,
   Spinning, Form,
 } from 'grommet-controls';
@@ -84,7 +84,7 @@ export default class AddOns extends React.Component {
               <Tag
                 label='Tag'
                 background='accent-1'
-                onChange={({ option }) => this.setState({ selected: option })}
+                onChange={({ value }) => this.setState({ selected: value })}
               />
             </Item>
             <Item name='Notification' path='/add-ons/notification' center={true}>
@@ -109,10 +109,10 @@ export default class AddOns extends React.Component {
             </Item>
           </Section>
           <Section align='stretch' name='Controls' index={0}>
-            <Item name='Multiselect' path='/add-ons/multiselect' center={true}>
-              <MultiSelect
+            <Item name='Select' path='/add-ons/multiselect' center={true}>
+              <Select
                 options={options}
-                onChange={({ option }) => this.setState({ selected: option })}
+                onChange={({ value }) => this.setState({ selected: value })}
                 placeholder='Multiselect'
                 multiple={true}
                 value={selected}
@@ -121,7 +121,7 @@ export default class AddOns extends React.Component {
             <Item name='Tags' path='/add-ons/tags' center={true}>
               <Tags
                 value={selected}
-                onChange={({ option }) => this.setState({ selected: option })}
+                onChange={({ value }) => this.setState({ selected: value })}
                 placeholder='Multiselect'
               />
             </Item>
