@@ -9,6 +9,7 @@ const userProfileFields = user => ({
   email: user.email,
   firstName: user.firstName,
   lastName: user.lastName,
+  gender: user.gender,
   picture: user.picture,
   facebook_id: user.facebook_id,
   facebook_name: user.facebook_name,
