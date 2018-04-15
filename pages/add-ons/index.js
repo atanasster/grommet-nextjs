@@ -2,7 +2,7 @@ import { Box, Heading, Paragraph, Chart } from 'grommet';
 import {
   Select, Tags, Tag, Notification, DropInput, MaskedInput,
   DateInput, NumberInput, PasswordInput, EmailInput, ColorInput, Colors,
-  Spinning, Form,
+  Spinning, Form, ImageStamp,
 } from 'grommet-controls';
 import { placeholderChars } from 'grommet-controls/components/MaskedInput';
 import { TextInputField } from 'grommet-controls/components/Form/Fields';
@@ -106,6 +106,9 @@ export default class AddOns extends React.Component {
             </Item>
             <Item name='Spinning' path='/add-ons/spinning' center={true}>
               <Spinning />
+            </Item>
+            <Item name='ImageStamp' path='/add-ons/imagestamp' center={true}>
+              <ImageStamp src='//v2.grommet.io/assets/Wilderpeople_Ricky.jpg' round='full' />
             </Item>
           </Section>
           <Section align='stretch' name='Controls' index={0}>
