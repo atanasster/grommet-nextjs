@@ -1,8 +1,10 @@
 // eslint-disable-next-line camelcase
 import { deepFreeze } from 'grommet/utils/object';
-import dark from 'grommet/themes/dark';
+import { css } from 'styled-components';
 import { black, materiallight, materialdark, metro } from 'grommet-controls/themes';
+import dark from 'grommet/themes/dark';
 import * as ActionTypes from './constants';
+
 
 const defaultTheme = 'grommet';
 const custom = deepFreeze({
@@ -79,7 +81,16 @@ const custom = deepFreeze({
     },
   },
   'icon': {
-    'color': 'rgb(68, 68, 68)',
+    extend: css`
+      ${props => props.dark && `
+        fill: ${props.theme.global.colors.darkBackground.text};
+        stroke: ${props.theme.global.colors.darkBackground.text};
+      `}
+      ${props => props.light && `
+        fill: ${props.theme.global.colors.lightBackground.text};
+        stroke: ${props.theme.global.colors.lightBackground.text};
+      `}
+    `,
   },
   'checkBox': {
     'border': {
