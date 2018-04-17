@@ -2,9 +2,9 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import numeral from 'numeral';
 import { Box, Text } from 'grommet';
+import { PagingTable } from 'grommet-controls';
 import { subscribeLastPrices, unSubscribeLastPrices } from '../../../sockets/price_stream/CryptoComparePrices';
 import Exchange from '../exchanges/Exchange';
-import PagingTable from '../../grommet-table';
 import { FormattedCoinValue, valueToColor } from './Coin';
 
 

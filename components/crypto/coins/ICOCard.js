@@ -2,9 +2,9 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import numeral from 'numeral';
 import { Box, Anchor, Text } from 'grommet';
+import { PagingTable } from 'grommet-controls';
 import { shortDate } from 'grommet-controls/utils/moment';
 import Card from '../Card';
-import PagingTable from '../../grommet-table';
 import Coin from './Coin';
 
 

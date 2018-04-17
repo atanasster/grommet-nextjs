@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import { Box, Text } from 'grommet';
+import { PagingTable } from 'grommet-controls';
 import { graphql } from 'react-apollo';
 import connect from '../../../redux';
 import CardScroll from '../CardScroll';
 import Coin, { CoinPath } from '../coins/Coin';
 import Card from '../Card';
-import PagingTable from '../../grommet-table';
 import { exchangeMarketsQuery } from '../graphql/exchanges';
 
 class ExchangeCurrencies extends Component {

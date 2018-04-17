@@ -3,12 +3,11 @@ import { graphql } from 'react-apollo';
 import numeral from 'numeral';
 import { Close, Checkmark } from 'grommet-icons';
 import { Box, Text } from 'grommet';
+import { PagingTable } from 'grommet-controls';
 import connect from '../../../redux';
 import Card from '..//Card';
 import Coin from '../coins/Coin';
 import CardScroll from '../CardScroll';
-import PagingTable from '../../grommet-table';
-
 import { exchangeFeesQuery } from '../graphql/exchanges';
 
 const redIcon = {

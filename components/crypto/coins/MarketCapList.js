@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { graphql } from 'react-apollo';
 import { Box } from 'grommet';
-import PagingTable from '../../grommet-table';
+import { PagingTable } from 'grommet-controls';
 import CardScroll from '../CardScroll';
 import Coin, { FormattedCoinValue, ColoredPercentChange } from './Coin';
 import PriceCard from './PriceCard';

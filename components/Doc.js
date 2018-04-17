@@ -52,7 +52,7 @@ export default class Doc extends React.Component {
             { desc.usage && (
               <Box pad='large' round='large' margin='small' background='light-2'>
                 <Heading margin='none' level={3}><strong>Usage</strong></Heading>
-                <Markdown>{`\`\`${desc.usage}\`\``}</Markdown>
+                <Markdown>{desc.usage}</Markdown>
               </Box>
             )}
             <Box pad='large' round='large' background='light-1'>

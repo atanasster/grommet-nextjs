@@ -1,11 +1,11 @@
 import React from 'react';
 import { graphql, compose } from 'react-apollo';
 import { Box, WorldMap as GrommetWordMap, Image } from 'grommet';
+import { PagingTable } from 'grommet-controls';
 import RoutedAnchor from '../RoutedAnchor';
 import SideLayer from '../../SideLayer';
 import { uniqueCountries } from '../../../utils/countries';
 import { ExchangeCountries } from './Exchange';
-import PagingTable from '../../grommet-table';
 import { allExchangesQuery } from '../graphql/exchanges';
 
 const continents = [

@@ -2,7 +2,7 @@ import { Box, Heading, Paragraph, Chart } from 'grommet';
 import {
   Select, Tags, Tag, Notification, DropInput, MaskedInput,
   DateInput, NumberInput, PasswordInput, EmailInput, ColorInput, Colors,
-  Spinning, Form, ImageStamp,
+  Spinning, Form, ImageStamp, PagingTable,
 } from 'grommet-controls';
 import { placeholderChars } from 'grommet-controls/components/MaskedInput';
 import { TextInputField } from 'grommet-controls/components/Form/Fields';
@@ -12,8 +12,6 @@ import materialUIPalette from 'grommet-controls/components/Colors/palettes/mater
 import Page from '../../components/Page';
 import Section from '../../components/Section';
 import Item from '../../components/Item';
-import PagingTable from '../../components/grommet-table';
-
 
 const CHART_VALUES = [
   { value: [7, 90], label: 'ninety' },
@@ -54,7 +52,7 @@ export default class AddOns extends React.Component {
         </Box>
         <Box pad={{ horizontal: 'large' }}>
           <Section align='stretch' name='Presentation' index={1}>
-            <Item name='grommet-table' path='/add-ons/grommet-table'>
+            <Item name='PagingTable' path='/add-ons/paging-table'>
               <PagingTable
                 columns={[
                   {

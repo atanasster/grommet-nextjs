@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { graphql } from 'react-apollo';
 import { Box, Text, Anchor, Select } from 'grommet';
-import PagingTable from '../../grommet-table';
+import { PagingTable } from 'grommet-controls';
 import { ConnectedExchange, ExchangeCountries, Country } from './Exchange';
 import { uniqueCountries } from '../../../utils/countries';
 import { allExchangesQuery } from '../graphql/exchanges';

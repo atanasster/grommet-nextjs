@@ -1,11 +1,9 @@
 import { Box, Text, Image, CheckBox } from 'grommet';
 import { Add, Subtract } from 'grommet-icons';
-import { Select } from 'grommet-controls';
+import { Select, PagingTable } from 'grommet-controls';
+import doc from 'grommet-controls/components/PagingTable/doc';
 import { TagsSelect } from 'grommet-controls/components/Tags';
 import Doc from '../../components/Doc';
-import doc from '../../components/grommet-table/doc';
-import PagingTable from '../../components/grommet-table';
-
 
 const desc = doc(PagingTable).toJSON();
 
@@ -107,7 +105,7 @@ export default class TableDoc extends React.Component {
               props.original ? props.original.price * props.original.qty : 0
             ),
             Footer: cell => (
-              <Text>{`Sum ${cell.data.reduce((a, b) => (a + b.price), 0)}`}</Text>
+              <Text size='xlarge' color='brand' >{`Sum ${cell.data.reduce((a, b) => (a + b.price), 0).toFixed(2)}`}</Text>
             ),
           },
         ],
@@ -130,7 +128,7 @@ export default class TableDoc extends React.Component {
     return (
       <Box>
         <Doc
-          name='Grommet Table'
+          name='Paging Table'
           desc={desc}
           example={(
             <Box gap='small' fill='horizontal'>
@@ -173,7 +171,7 @@ export default class TableDoc extends React.Component {
                   rowOdd: {
                     background: { color: 'light-1', opacity: 'medium' },
                   },
-                  footer: { background: 'light-1' },
+                  footer: { background: 'accent-2' },
                   pagination: { pad: { vertical: 'medium' } },
                   expander: { CloseIcon: <Subtract color='brand' />, OpenIcon: <Add color='brand' /> },
                 }}

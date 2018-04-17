@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import { graphql } from 'react-apollo';
 import { Box, Text, Markdown } from 'grommet';
+import { PagingTable } from 'grommet-controls';
 import { shortDate } from 'grommet-controls/utils/moment';
 import connect from '../../../redux';
-import PagingTable from '../../grommet-table';
 import Coin from './Coin';
 import ICOCard from './ICOCard';
 import { allICOQuery } from '../graphql/coins';
