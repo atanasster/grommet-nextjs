@@ -3,7 +3,7 @@ import { graphql } from 'react-apollo';
 import { Box, Text, Markdown } from 'grommet';
 import { shortDate } from 'grommet-controls/utils/moment';
 import connect from '../../../redux';
-import Table from '../../grommet-table';
+import PagingTable from '../../grommet-table';
 import Coin from './Coin';
 import ICOCard from './ICOCard';
 import { allICOQuery } from '../graphql/coins';
@@ -68,7 +68,7 @@ class ICOList extends Component {
     ];
     return (
       <Box fill='horizontal'>
-        <Table
+        <PagingTable
           decorations={{
             table: { elevation: 'medium' },
             rowEven: { background: { color: 'light-1' } },

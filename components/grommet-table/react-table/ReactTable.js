@@ -3,11 +3,13 @@ prefer-destructuring,no-mixed-operators */
 import React, { Component } from 'react';
 import _ from './utils';
 import defaultProps from './defaultProps';
+import { focusNextElement, focusPrevElement } from '../DOM';
 
 export default class ReactTable extends Component {
   static defaultProps = defaultProps;
   constructor(props) {
     super();
+    this.rowRef = [];
     this.state = {
       page: 0,
       pageSize: props.defaultPageSize,
@@ -1043,7 +1045,44 @@ export default class ReactTable extends Component {
         </ThComponent>
       );
     };
-
+    const selectRow = index => (nextRow, childIndex) => {
+      const selectFirstAvailable = (rows) => {
+        for (let i = 0; i < rows.length; i += 1) {
+          if (rows[i]) {
+            return rows[i].selectFirstChild(childIndex);
+          }
+        }
+        return false;
+      };
+      let found;
+      if (typeof index === 'number') {
+        const { page, pages } = this.state;
+        if (nextRow) {
+          if (pageRows.length > index + 1) {
+            found = this.rowRef[index + 1].selectFirstChild(childIndex);
+          } else if (page < pages - 1) {
+            this.onPageChange(page + 1);
+            found = true;
+          } else {
+            found = selectFirstAvailable([this.footerRef]);
+          }
+        } else if (index > 0) {
+          found = this.rowRef[index - 1].selectFirstChild(childIndex);
+        } else if (page > 0) {
+          this.onPageChange(page - 1);
+          found = true;
+        } else {
+          found = selectFirstAvailable([this.filterRef, this.headerRef, this.headerGroupsRef]);
+        }
+      }
+      if (!found) {
+        if (nextRow) {
+          focusNextElement(document);
+        } else {
+          focusPrevElement(document);
+        }
+      }
+    };
     const makeHeaderGroups = () => {
       const theadGroupProps = getTheadGroupProps(finalState, undefined, undefined, this);
       const theadGroupTrProps = getTheadGroupTrProps(finalState, undefined, undefined, this);
@@ -1053,6 +1092,8 @@ export default class ReactTable extends Component {
           {...theadGroupProps}
         >
           <TrComponent
+            ref={(el) => { this.headerGroupsRef = el; }}
+            selectRow={selectRow('headerGroup')}
             {...theadGroupTrProps}
           >
             {headerGroups.map(makeHeaderGroup)}
@@ -1137,6 +1178,8 @@ export default class ReactTable extends Component {
           {...theadProps}
         >
           <TrComponent
+            ref={(el) => { this.headerRef = el; }}
+            selectRow={selectRow('header')}
             {...theadTrProps}
           >
             {allVisibleColumns.map(makeHeader)}
@@ -1216,6 +1259,8 @@ export default class ReactTable extends Component {
           {...theadFilterProps}
         >
           <TrComponent
+            ref={(el) => { this.filterRef = el; }}
+            selectRow={selectRow('filter')}
             {...theadFilterTrProps}
           >
             {allVisibleColumns.map(makeFilter)}
@@ -1246,6 +1291,9 @@ export default class ReactTable extends Component {
       return (
         <TrGroupComponent key={rowInfo.nestingPath.join('_')} {...trGroupProps}>
           <TrComponent
+            selectRow={selectRow(i)}
+            ref={(el) => { this.rowRef[i] = el; }}
+            rowIndex={row.viewIndex}
             {...trProps}
           >
             {allVisibleColumns.map((column, i2) => {
@@ -1562,6 +1610,8 @@ export default class ReactTable extends Component {
           {...tFootProps}
         >
           <TrComponent
+            ref={(el) => { this.footerRef = el; }}
+            selectRow={selectRow('footer')}
             {...tFootTrProps}
           >
             {allVisibleColumns.map(makeColumnFooter)}

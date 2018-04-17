@@ -2,12 +2,12 @@ import { Box, Text, Image, CheckBox } from 'grommet';
 import { Add, Subtract } from 'grommet-icons';
 import { Select } from 'grommet-controls';
 import { TagsSelect } from 'grommet-controls/components/Tags';
-import doc from '../../components/grommet-table/doc';
 import Doc from '../../components/Doc';
-import { GrommetTable } from '../../components/grommet-table/index';
+import doc from '../../components/grommet-table/doc';
+import PagingTable from '../../components/grommet-table';
 
 
-const desc = doc(GrommetTable).toJSON();
+const desc = doc(PagingTable).toJSON();
 
 const getColumn = (columns, header) => (
   columns.reduce((_, column) => (
@@ -153,7 +153,7 @@ export default class TableDoc extends React.Component {
                   />
                 </Box>
               </Box>
-              <GrommetTable
+              <PagingTable
                 key={grouping}
                 pivotBy={grouping ? ['item'] : undefined}
                 defaultPageSize={4}

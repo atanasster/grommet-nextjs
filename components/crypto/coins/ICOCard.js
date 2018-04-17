@@ -4,7 +4,7 @@ import numeral from 'numeral';
 import { Box, Anchor, Text } from 'grommet';
 import { shortDate } from 'grommet-controls/utils/moment';
 import Card from '../Card';
-import Table from '../../grommet-table';
+import PagingTable from '../../grommet-table';
 import Coin from './Coin';
 
 
@@ -106,7 +106,7 @@ export default class ICOCard extends Component {
       ];
       return (
         <Box full='horizontal'>
-          <Table
+          <PagingTable
             data={rows}
             sortable={false}
             resizable={false}

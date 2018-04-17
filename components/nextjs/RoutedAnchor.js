@@ -13,7 +13,7 @@ class RoutedAnchor extends React.Component {
     const href = urlParams(path, router, preserveParams);
     return (
       // eslint-disable-next-line jsx-a11y/anchor-is-valid
-      <Link route={route || href} params={params}>
+      <Link route={route || href} params={params} passHref={true}>
         <Anchor href={href} {...rest} />
       </Link>
     );

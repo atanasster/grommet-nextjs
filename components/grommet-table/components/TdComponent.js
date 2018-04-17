@@ -1,6 +1,6 @@
 import React from 'react';
 import { Box } from 'grommet';
-import { StyledTdComponent } from '../StyledTable';
+import { StyledTdComponent } from '../StyledPagingTable';
 import { extractTextProps } from './CellTextComponent';
 
 export default ({ children, ...props }) => {

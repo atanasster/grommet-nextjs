@@ -1,4 +1,4 @@
 import React from 'react';
-import { StyledTableBodyComponent } from '../StyledTable';
+import { StyledTableBodyComponent } from '../StyledPagingTable';
 
 export default props => (<StyledTableBodyComponent {...props} />);

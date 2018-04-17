@@ -32,9 +32,6 @@ export const StyledResizerComponent = styled(Box)`
 
 export const StyledThComponent = styled(Box)`
   position: relative;
-  ${props => props.sortable && `
-    cursor: pointer;
-  `}  
   ${props => props.hidden && `
     width: 0 !important;
     min-width: 0 !important;

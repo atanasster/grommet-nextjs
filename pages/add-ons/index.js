@@ -12,7 +12,7 @@ import materialUIPalette from 'grommet-controls/components/Colors/palettes/mater
 import Page from '../../components/Page';
 import Section from '../../components/Section';
 import Item from '../../components/Item';
-import Table from '../../components/grommet-table/Table';
+import PagingTable from '../../components/grommet-table';
 
 
 const CHART_VALUES = [
@@ -55,7 +55,7 @@ export default class AddOns extends React.Component {
         <Box pad={{ horizontal: 'large' }}>
           <Section align='stretch' name='Presentation' index={1}>
             <Item name='grommet-table' path='/add-ons/grommet-table'>
-              <Table
+              <PagingTable
                 columns={[
                   {
                     Header: 'Item',

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import StyledTable from './StyledTable';
+import StyledPagingTable from './StyledPagingTable';
 
-export default class GrommetTable extends Component {
+export default class PagingTable extends Component {
   render() {
     const { data, ...rest } = this.props;
     const defaults = {
@@ -11,7 +11,7 @@ export default class GrommetTable extends Component {
     };
     const newProps = { ...defaults, ...rest };
     return (
-      <StyledTable
+      <StyledPagingTable
         data={data || []}
         {...newProps}
       />

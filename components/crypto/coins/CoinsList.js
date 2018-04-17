@@ -3,7 +3,7 @@ import { graphql } from 'react-apollo';
 import numeral from 'numeral';
 import { Box, Text, Markdown } from 'grommet';
 import connect from '../../../redux';
-import Table from '../../grommet-table';
+import PagingTable from '../../grommet-table';
 import Coin from './Coin';
 import PriceCard from './PriceCard';
 import ICOCard from './ICOCard';
@@ -92,7 +92,7 @@ class CoinsList extends Component {
     ];
     return (
       <Box fill='horizontal'>
-        <Table
+        <PagingTable
           decorations={{
             table: { elevation: 'medium' },
             rowEven: { background: { color: 'light-1' } },

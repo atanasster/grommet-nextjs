@@ -4,8 +4,8 @@ export default (Element) => {
   const DocumentedElement = describe(Element)
     .description('A Grommet 2 table component with pagination, filtering, footer, child rows and grouping. Derived from https://github.com/react-tools/react-table. ')
     .usage(`
-    $ npm install grommet-table 
-    import { GrommetTable } from 'grommet-table';
+    $ npm install grommet-controls 
+    import { PagingTable } from 'grommet-controls';
     <GrommetTable columns={...} data={...} />
 `);
 
@@ -24,29 +24,7 @@ export default (Element) => {
       footer: PropTypes.object.description('Footer row styling, all **`<Box />`** properties are valid.'),
       pagination: PropTypes.object.description('Pagination box styling, all **`<Box />`** properties are valid.'),
       expander: PropTypes.object.description('Expander button styling, all **`<Button />`** properties are valid, as well as icons OpenIcon and CloseIcon.'),
-    }).description(`Visual styling of the various Grommet Table elements. Where applicable, those settings can be overriden at the column level. Example:
-\`\`\`
-  <Table
-    decorations={{
-      table: { elevation: 'large', border: 'all' },
-      headerGroup: {
-       background: 'brand', border: 'horizontal', size: 'large', align: 'center',
-      },
-      header: { border: 'all', align: 'center' },
-      filter: { background: 'light-2', border: 'all' },
-      filterInput: { size: 'small', placeholder: 'Filter...' },
-      body: { animation: { type: 'fadeIn', duration: 2000, size: 'large' } },
-      rowOdd: {
-        background: { color: 'light-1', opacity: 'medium' },
-      },
-      footer: { background: 'light-1' },
-      pagination: { pad: { top: 'medium' } },
-      expander: { CloseIcon: <Subtract color='brand' />, OpenIcon: <Add color='brand' /> },
-    }}
-...
-  </Table>
-\`\`\`       
-    `),
+    }).description('Visual styling of the various Grommet Table elements. Where applicable, those settings can be overriden at the column level.'),
     columns: PropTypes.arrayOf(PropTypes.shape({
       Cell: PropTypes.oneOfType([
         PropTypes.element,

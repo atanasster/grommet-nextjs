@@ -7,7 +7,7 @@ import connect from '../../../redux';
 import Card from '..//Card';
 import Coin from '../coins/Coin';
 import CardScroll from '../CardScroll';
-import Table from '../../grommet-table';
+import PagingTable from '../../grommet-table';
 
 import { exchangeFeesQuery } from '../graphql/exchanges';
 
@@ -46,7 +46,7 @@ class ExchangeFees extends Component {
         });
       }
       const table = (
-        <Table
+        <PagingTable
           decorations={{
             cell: {
               align: 'end',
@@ -122,7 +122,7 @@ class ExchangeFees extends Component {
           });
         }
         table = (
-          <Table
+          <PagingTable
             decorations={{
               cell: {
                 align: 'end',

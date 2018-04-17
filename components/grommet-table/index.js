@@ -1,5 +1,3 @@
-import Table from './Table';
+import PagingTable from './PagingTable';
 
-export { default as GrommetTable } from './Table';
-
-export default Table;
+export default PagingTable;

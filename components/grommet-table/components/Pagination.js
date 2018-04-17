@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
-import { Box, Button, Select, TextInput, Text } from 'grommet';
+import { Box, Button, Select, Text } from 'grommet';
+import { NumberInput } from 'grommet-controls';
 import { Previous, Next } from 'grommet-icons';
 
 const defaultButton = ({
@@ -19,13 +20,12 @@ const StyledButton = styled(defaultButton)`
   padding: 10px 0;
 `;
 
-const StyledPageInput = styled(TextInput)`
-  max-width: 120px;
-  margin: 0 10px;
+const StyledPageInput = styled(NumberInput)`
+  max-width: 180px;
 `;
 
 const StyledSelect = styled(Select)`
-  max-width: 130px;
+  max-width: 150px;
 `;
 
 export default class ReactTablePagination extends Component {
@@ -67,7 +67,6 @@ export default class ReactTablePagination extends Component {
       pageJump = (
         <StyledPageInput
           aria-label='Select page to jump to'
-          type={this.state.page === '' ? 'text' : 'number'}
           onChange={(e) => {
             const val = e.target.value;
             const pg = val - 1;
@@ -90,7 +89,7 @@ export default class ReactTablePagination extends Component {
       pageJump = <Text>{page + 1}</Text>;
     }
     return (
-      <Box direction='row' align='center' >
+      <Box direction='row' align='center' gap='small'>
         <Text>{`${pageText} `}</Text>
         {pageJump}
         <span style={{ whiteSpace: 'nowrap' }}>{`${ofText} ${pages || 1}`}</span>

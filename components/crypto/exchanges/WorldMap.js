@@ -5,7 +5,7 @@ import RoutedAnchor from '../RoutedAnchor';
 import SideLayer from '../../SideLayer';
 import { uniqueCountries } from '../../../utils/countries';
 import { ExchangeCountries } from './Exchange';
-import { GrommetTable } from '../../grommet-table/index';
+import PagingTable from '../../grommet-table';
 import { allExchangesQuery } from '../graphql/exchanges';
 
 const continents = [
@@ -114,7 +114,7 @@ class WorldMap extends React.Component {
           heading={continent.name}
         >
           <Box basis='large' margin={{ top: 'small' }}>
-            <GrommetTable
+            <PagingTable
               resizable={false}
               decorations={{
                 rowOdd: { background: { color: 'light-1' } },

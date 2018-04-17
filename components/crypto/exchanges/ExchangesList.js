@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { graphql } from 'react-apollo';
 import { Box, Text, Anchor, Select } from 'grommet';
-import Table from '../../grommet-table';
+import PagingTable from '../../grommet-table';
 import { ConnectedExchange, ExchangeCountries, Country } from './Exchange';
 import { uniqueCountries } from '../../../utils/countries';
 import { allExchangesQuery } from '../graphql/exchanges';
@@ -18,7 +18,6 @@ class ExchangesList extends Component {
     });
   }
   render() {
-    console.log('render');
     const { allExchanges, loading } = this.props.data;
     const { searchCountries } = this.state;
     const countries = searchCountries || uniqueCountries(allExchanges);
@@ -81,7 +80,7 @@ class ExchangesList extends Component {
     ];
     return (
       <Box fill='horizontal'>
-        <Table
+        <PagingTable
           filterable={true}
           decorations={{
             table: { elevation: 'medium' },

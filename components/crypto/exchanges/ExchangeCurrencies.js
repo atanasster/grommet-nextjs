@@ -5,7 +5,7 @@ import connect from '../../../redux';
 import CardScroll from '../CardScroll';
 import Coin, { CoinPath } from '../coins/Coin';
 import Card from '../Card';
-import Table from '../../grommet-table';
+import PagingTable from '../../grommet-table';
 import { exchangeMarketsQuery } from '../graphql/exchanges';
 
 class ExchangeCurrencies extends Component {
@@ -26,7 +26,7 @@ class ExchangeCurrencies extends Component {
     const { data: { exchange } } = this.props;
     const pairs = exchange.markets.filter(market => market.base === currency);
     return (
-      <Table
+      <PagingTable
         data={pairs}
         columns={[
           {

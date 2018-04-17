@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { graphql } from 'react-apollo';
 import { Box } from 'grommet';
-import Table from '../../grommet-table';
+import PagingTable from '../../grommet-table';
 import CardScroll from '../CardScroll';
 import Coin, { FormattedCoinValue, ColoredPercentChange } from './Coin';
 import PriceCard from './PriceCard';
@@ -139,7 +139,7 @@ class MarketCapList extends React.Component {
     ];
     return (
       <Box fill='horizontal'>
-        <Table
+        <PagingTable
           decorations={{
             table: { elevation: 'medium' },
             rowEven: { background: { color: 'light-1' } },

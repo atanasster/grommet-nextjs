@@ -4,7 +4,7 @@ import numeral from 'numeral';
 import { Box, Text } from 'grommet';
 import { subscribeLastPrices, unSubscribeLastPrices } from '../../../sockets/price_stream/CryptoComparePrices';
 import Exchange from '../exchanges/Exchange';
-import Table from '../../grommet-table/index';
+import PagingTable from '../../grommet-table';
 import { FormattedCoinValue, valueToColor } from './Coin';
 
 
@@ -123,7 +123,7 @@ export default class PriceTableStream extends Component {
             </strong>
           </Box>
           <Box fill={true}>
-            <Table
+            <PagingTable
               sortable={false}
               resizable={false}
               data={rows}

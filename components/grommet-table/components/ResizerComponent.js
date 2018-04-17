@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { StyledResizerComponent } from '../StyledTable';
+import { StyledResizerComponent } from '../StyledPagingTable';
 
 const ResizerComponent = props => <StyledResizerComponent {...props} />;
 

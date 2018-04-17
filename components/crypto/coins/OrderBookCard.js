@@ -5,7 +5,7 @@ import ReactHighcharts from 'react-highcharts';
 import numeral from 'numeral';
 import { Box, Text } from 'grommet';
 import { longDate } from 'grommet-controls/utils/moment';
-import Table from '../../grommet-table';
+import PagingTable from '../../grommet-table';
 import Card from '../Card';
 import { CoinToCoin } from './Coin';
 import { ConnectedExchange } from '../exchanges/Exchange';
@@ -14,7 +14,7 @@ import { orderBookQuery } from '../graphql/exchanges';
 
 function renderAskBidTable(data) {
   return (
-    <Table
+    <PagingTable
       sortable={false}
       resizable={false}
       columns={[
@@ -141,7 +141,7 @@ export class ConnectedOrderBook extends Component {
     const { asks, bids, realToSymbol } = orderBook;
     return (
       <Card
-        title={<CoinToCoin coin={orderBook.coin} toCoin={{ symbol: realToSymbol }} exchange={this.props.exchange} border='bottom' />}
+        title={<CoinToCoin coin={orderBook.coin} toCoin={{ symbol: realToSymbol }} exchange={this.props.exchange.name} border='bottom' />}
         subTitle={<ConnectedExchange exchange={orderBook.exchange} />}
       >
         <Box basis='small' direction='row'>
