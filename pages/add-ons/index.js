@@ -4,7 +4,7 @@ import {
   DateInput, NumberInput, PasswordInput, EmailInput, ColorInput, Colors,
   Spinning, Form, ImageStamp, PagingTable, Card,
 } from 'grommet-controls';
-import { CardTitle } from 'grommet-controls/components/Card';
+import { CardTitle, CardContent } from 'grommet-controls/components/Card';
 import { placeholderChars } from 'grommet-controls/components/MaskedInput';
 import { TextInputField } from 'grommet-controls/components/Form/Fields';
 import validators from 'grommet-controls/components/Form/validators';
@@ -83,7 +83,7 @@ export default class AddOns extends React.Component {
             <Item name='Card' path='/add-ons/card' center={true}>
               <Card
                 size={{ width: 'medium', height: 'small' }}
-                innerContent={(
+                backContent={(
                   <Paragraph>
   Lorem ipsum dolor sit amet, ad usu cetero interesset. Ut vix quidam verterem, ex ius lorem dicta
   error, ne meis referrentur vim. Eos purto noluisse adipisci te, verear feugait ad has, usu at
@@ -94,9 +94,9 @@ export default class AddOns extends React.Component {
                 <CardTitle border='bottom'>
                   Card
                 </CardTitle>
-                <Box pad={{ vertical: 'small' }}>
+                <CardContent>
                   <Image fit='contain' src='//v2.grommet.io/assets/Wilderpeople_Ricky.jpg' />
-                </Box>
+                </CardContent>
               </Card>
             </Item>
 
