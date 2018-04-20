@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import { Box, Heading, Anchor } from 'grommet';
-import { ImageStamp } from 'grommet-controls';
+import { Heading, Anchor } from 'grommet';
+import { ImageStamp, Card } from 'grommet-controls';
+import { CardTitle, CardSubTitle } from 'grommet-controls/components/Card';
 import connect from '../../../redux';
-import Card from '../Card';
 
 class UserProfile extends Component {
   render() {
@@ -10,19 +10,15 @@ class UserProfile extends Component {
     if (!user) {
       return null;
     }
-    console.log(user);
     return (
-      <Card
-        title={(
-          <Box direction='row' gap='small' align='center'>
-            {user.picture && <ImageStamp src={user.picture} round='full' />}
-            <Heading margin='small'>{user.username}</Heading>
-          </Box>
-        )}
-        subTitle={user.email}
-        basis='medium'
-        size='large'
-      >
+      <Card size={{ width: 'xlarge' }}>
+        <CardTitle pad='none'>
+          {user.picture && <ImageStamp src={user.picture} round='full' />}
+          <Heading margin='small'>{user.username}</Heading>
+        </CardTitle>
+        <CardSubTitle border='bottom'>
+          {user.email}
+        </CardSubTitle>
         <table>
           <tbody>
             <tr>

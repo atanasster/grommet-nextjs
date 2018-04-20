@@ -71,7 +71,7 @@ export const pushCoinPath = ({ symbol, toSymbol, exchange }) => {
 };
 const Coin = (
   {
-    coin, exchange, defaultExchange, toCoin, level, border, aggregatedExchange, short,
+    coin, exchange, defaultExchange, toCoin, level, aggregatedExchange, short,
   }
 ) => {
   let coinName;
@@ -103,11 +103,11 @@ const Coin = (
   return (
     <Box
       a11yTitle={`View details of ${coinName} coin`}
-      border={border}
       gap='small'
       direction='row'
       align='center'
       flex={false}
+      responsive={false}
     >
       {image}
       {link}
@@ -127,7 +127,6 @@ const ConnectedCoin = connect(mapStateToProps)(Coin);
 
 Coin.defaultProps = {
   level: 3,
-  border: 'bottom',
   coin: undefined,
   toCoin: undefined,
   exchange: undefined,
@@ -139,7 +138,6 @@ Coin.propTypes = {
   toCoin: PropTypes.object,
   exchange: PropTypes.string,
   level: PropTypes.number,
-  border: PropTypes.string,
   short: PropTypes.bool,
 };
 
@@ -147,19 +145,17 @@ export default ConnectedCoin;
 
 
 export const CoinToCoin = ({ coin, toCoin, exchange }) => (
-  <Box align='center' border='bottom'>
+  <Box align='center' fill='hoizontal'>
     <ConnectedCoin
       coin={coin}
       toCoin={toCoin}
       exchange={exchange}
-      border={null}
     />
     <ConnectedCoin
       coin={toCoin}
       toCoin={coin}
       exchange={exchange}
       level={4}
-      border={null}
     />
   </Box>
 );

@@ -3,9 +3,9 @@ import { graphql } from 'react-apollo';
 import numeral from 'numeral';
 import { Close, Checkmark } from 'grommet-icons';
 import { Box, Text } from 'grommet';
-import { PagingTable } from 'grommet-controls';
+import { PagingTable, Card } from 'grommet-controls';
+import { CardTitle, CardSubTitle } from 'grommet-controls/components/Card';
 import connect from '../../../redux';
-import Card from '..//Card';
 import Coin from '../coins/Coin';
 import CardScroll from '../CardScroll';
 import { exchangeFeesQuery } from '../graphql/exchanges';
@@ -85,17 +85,19 @@ class ExchangeFees extends Component {
         />);
       return (
         <Card
-          title='Funding fees'
-          subTitle={(
-            <Box direction='row' justify='between' pad={{ vertical: 'small' }}>
-              <Box direction='row' align='center' margin={{ horizontal: 'small' }}>
-                <Text>Percentage:</Text>{yesNoIcon(exchange.fees.funding.percentage)}
-              </Box>
-              <Box direction='row' justify='between' margin={{ horizontal: 'small' }}>
-                <Text>Tier based:</Text>{yesNoIcon(exchange.fees.funding.tierBased)}
-              </Box>
-            </Box>)}
+          size={{ width: 'large', height: 'large' }}
         >
+          <CardTitle>
+            Funding fees
+          </CardTitle>
+          <CardSubTitle>
+            <Box direction='row' align='center' margin={{ horizontal: 'small' }}>
+              <Text>Percentage:</Text>{yesNoIcon(exchange.fees.funding.percentage)}
+            </Box>
+            <Box direction='row' justify='between' margin={{ horizontal: 'small' }}>
+              <Text>Tier based:</Text>{yesNoIcon(exchange.fees.funding.tierBased)}
+            </Box>
+          </CardSubTitle>
           {table}
         </Card>
       );
@@ -147,23 +149,20 @@ class ExchangeFees extends Component {
           />);
       }
       return (
-        <Card
-          title='Trading fees'
-          subTitle={(
-            <Box>
-              <Box direction='row' fill='horizontal' pad={{ vertical: 'small' }}>
-                <Box direction='row' align='center' margin={{ horizontal: 'small' }}>
-                  <Text>Percentage:</Text>
-                  {yesNoIcon(exchange.fees.trading.percentage)}
-                </Box>
-                <Box direction='row' align='center' margin={{ horizontal: 'small' }}>
-                  <Text>Tier based:</Text>
-                  {yesNoIcon(exchange.fees.trading.tierBased)}
-                </Box>
-              </Box>
+        <Card size={{ width: 'large', height: 'large' }}>
+          <CardTitle>
+            Trading fees
+          </CardTitle>
+          <CardSubTitle>
+            <Box direction='row' align='center' margin={{ horizontal: 'small' }}>
+              <Text>Percentage:</Text>
+              {yesNoIcon(exchange.fees.trading.percentage)}
             </Box>
-          )}
-        >
+            <Box direction='row' align='center' margin={{ horizontal: 'small' }}>
+              <Text>Tier based:</Text>
+              {yesNoIcon(exchange.fees.trading.tierBased)}
+            </Box>
+          </CardSubTitle>
           {table}
         </Card>
       );

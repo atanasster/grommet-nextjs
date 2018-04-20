@@ -1,9 +1,10 @@
-import { Box, Heading, Paragraph, Chart } from 'grommet';
+import { Box, Heading, Paragraph, Chart, Image } from 'grommet';
 import {
   Select, Tags, Tag, Notification, DropInput, MaskedInput,
   DateInput, NumberInput, PasswordInput, EmailInput, ColorInput, Colors,
-  Spinning, Form, ImageStamp, PagingTable,
+  Spinning, Form, ImageStamp, PagingTable, Card,
 } from 'grommet-controls';
+import { CardTitle } from 'grommet-controls/components/Card';
 import { placeholderChars } from 'grommet-controls/components/MaskedInput';
 import { TextInputField } from 'grommet-controls/components/Form/Fields';
 import validators from 'grommet-controls/components/Form/validators';
@@ -78,6 +79,27 @@ export default class AddOns extends React.Component {
                 ]}
               />
             </Item>
+
+            <Item name='Card' path='/add-ons/card' center={true}>
+              <Card
+                size={{ width: 'medium', height: 'small' }}
+                innerContent={(
+                  <Paragraph>
+  Lorem ipsum dolor sit amet, ad usu cetero interesset. Ut vix quidam verterem, ex ius lorem dicta
+  error, ne meis referrentur vim. Eos purto noluisse adipisci te, verear feugait ad has, usu at
+  tollit ponderum disputando. Ei sed diceret interesset, eu convenire omittantur cum. Est no
+                  </Paragraph>
+                )}
+              >
+                <CardTitle border='bottom'>
+                  Card
+                </CardTitle>
+                <Box pad={{ vertical: 'small' }}>
+                  <Image fit='contain' src='//v2.grommet.io/assets/Wilderpeople_Ricky.jpg' />
+                </Box>
+              </Card>
+            </Item>
+
             <Item name='Tag' path='/add-ons/tag' center={true}>
               <Tag
                 label='Tag'

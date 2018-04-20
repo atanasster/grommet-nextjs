@@ -47,7 +47,9 @@ export default class DocProperty extends React.Component {
           <Text><pre>{property.format}{defaultValue}</pre></Text>
 
         </Box>
-        {example}
+        <Box>
+          {example}
+        </Box>
       </Box>
     );
   }

@@ -2,9 +2,8 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import numeral from 'numeral';
 import { Box, Anchor, Text } from 'grommet';
-import { PagingTable } from 'grommet-controls';
+import { PagingTable, Card } from 'grommet-controls';
 import { shortDate } from 'grommet-controls/utils/moment';
-import Card from '../Card';
 import Coin from './Coin';
 
 
@@ -126,7 +125,7 @@ export default class ICOCard extends Component {
     const ico = coin && coin.ICO ? coin.ICO : null;
     return (
       <Card
-        basis='large'
+        size={{ height: 'large' }}
         title={<Coin symbol={coin && coin.symbol} />}
         subTitle={`ICO ${ico && ico.status}`}
       >

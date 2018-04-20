@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
-import { Box, Text } from 'grommet';
-import { PagingTable } from 'grommet-controls';
 import { graphql } from 'react-apollo';
+import { Box, Text } from 'grommet';
+import { PagingTable, Card } from 'grommet-controls';
+import { CardTitle, CardSubTitle } from 'grommet-controls/components/Card';
 import connect from '../../../redux';
 import CardScroll from '../CardScroll';
 import Coin, { CoinPath } from '../coins/Coin';
-import Card from '../Card';
 import { exchangeMarketsQuery } from '../graphql/exchanges';
 
 class ExchangeCurrencies extends Component {
@@ -62,17 +62,17 @@ class ExchangeCurrencies extends Component {
     let currencies;
     if (exchange && exchange.currencies) {
       currencies = exchange.currencies.map(currency => (
-        <Card
-          key={`curr${currency.code}`}
-          title={(
+        <Card key={`curr${currency.code}`}>
+          <CardTitle border='bottom'>
             <Coin
               coin={currency.coin}
               toCoin={{ symbol: defaultCurrency }}
               exchange={exchange.name}
             />
-            )}
-          subTitle={`precision: ${currency.precision}`}
-        >
+          </CardTitle>
+          <CardSubTitle>
+            {`precision: ${currency.precision}`}
+          </CardSubTitle>
           {this.renderCurrencyPairs(currency.code)}
         </Card>
       ));

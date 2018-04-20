@@ -4,9 +4,9 @@ import { graphql } from 'react-apollo';
 import ReactHighcharts from 'react-highcharts';
 import numeral from 'numeral';
 import { Box, Text } from 'grommet';
-import { PagingTable } from 'grommet-controls';
+import { PagingTable, Card } from 'grommet-controls';
+import { CardTitle, CardSubTitle } from 'grommet-controls/components/Card';
 import { longDate } from 'grommet-controls/utils/moment';
-import Card from '../Card';
 import { CoinToCoin } from './Coin';
 import { ConnectedExchange } from '../exchanges/Exchange';
 import { orderBookQuery } from '../graphql/exchanges';
@@ -41,7 +41,7 @@ function renderAskBidTable(data) {
           },
         },
       ]}
-      data={data.slice(0, 12)}
+      data={data.slice(0, 10)}
     />
   );
 }
@@ -140,10 +140,13 @@ export class ConnectedOrderBook extends Component {
     }
     const { asks, bids, realToSymbol } = orderBook;
     return (
-      <Card
-        title={<CoinToCoin coin={orderBook.coin} toCoin={{ symbol: realToSymbol }} exchange={this.props.exchange.name} border='bottom' />}
-        subTitle={<ConnectedExchange exchange={orderBook.exchange} />}
-      >
+      <Card>
+        <CardTitle border='bottom'>
+          <CoinToCoin coin={orderBook.coin} toCoin={{ symbol: realToSymbol }} exchange={this.props.exchange.name} border='bottom' />
+        </CardTitle>
+        <CardSubTitle border='bottom'>
+          <ConnectedExchange exchange={orderBook.exchange} />
+        </CardSubTitle>
         <Box basis='small' direction='row'>
           {this.renderChart()}
         </Box>

@@ -9,6 +9,7 @@ const PriceChart = ({ color, priceHistory: { priceHistory } }) => (priceHistory 
   thickness='xsmall'
   type='line'
   color={color}
+  size={{ width: 'full', height: 'xsmall' }}
   style={{ cursor: 'pointer' }}
   values={priceHistory.map((price, index) => ({
       value: [index, price.close],

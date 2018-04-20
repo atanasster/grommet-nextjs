@@ -2,8 +2,9 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { graphql, compose } from 'react-apollo';
 import { Box, Menu } from 'grommet';
+import { Card } from 'grommet-controls';
+import { CardTitle, CardSubTitle } from 'grommet-controls/components/Card';
 import RoutedButton from '../RoutedButton';
-import Card from '../Card';
 import Exchange from '../exchanges/Exchange';
 import { CoinToCoin } from './Coin';
 import PriceTableStream from './PriceTableStream';
@@ -48,12 +49,15 @@ export class ConnectedPriceCard extends Component {
     }
     const { period, points } = this.state;
     return (
-      <Card
-        title={<CoinToCoin coin={coin} toCoin={toCoin} exchange={exchange} border='bottom' />}
-        subTitle={<Exchange exchange={exchange} />}
-      >
+      <Card>
+        <CardTitle border='bottom'>
+          <CoinToCoin coin={coin} toCoin={toCoin} exchange={exchange} border='bottom' />
+        </CardTitle>
+        <CardSubTitle border='bottom'>
+          <Exchange exchange={exchange} />
+        </CardSubTitle>
         <Box pad='small'>
-          <Box border='bottom'>
+          <Box>
             <Box justify='between' direction='row'>
               <Menu
                 a11yTitle='Select period'
