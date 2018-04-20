@@ -107,19 +107,19 @@ class MarketCapList extends React.Component {
         Header: '%1hr',
         accessor: 'percent_change_1h',
         maxWidth: 100,
-        Cell: cell => (<ColoredPercentChange value={cell.value} />),
+        Cell: cell => (<ColoredPercentChange value={cell.value / 100} />),
         getProps: () => ({ textAlign: 'end' }),
       }, {
         Header: '%24hr',
         accessor: 'percent_change_24h',
         maxWidth: 120,
-        Cell: cell => (<ColoredPercentChange value={cell.value} />),
+        Cell: cell => (<ColoredPercentChange value={cell.value / 100} />),
         getProps: () => ({ textAlign: 'end' }),
       }, {
         Header: '%7d',
         accessor: 'percent_change_7d',
         maxWidth: 120,
-        Cell: cell => (<ColoredPercentChange value={cell.value} />),
+        Cell: cell => (<ColoredPercentChange value={cell.value / 100} />),
         getProps: () => ({ textAlign: 'end' }),
       }, {
         Header: 'Circulation',
