@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { graphql } from 'react-apollo';
 import { Box, Text } from 'grommet';
 import { PagingTable, Card } from 'grommet-controls';
-import { CardTitle, CardSubTitle } from 'grommet-controls/components/Card';
+import { CardTitle, CardSubTitle, CardContent } from 'grommet-controls/components/Card';
 import connect from '../../../redux';
 import CardScroll from '../CardScroll';
 import Coin, { CoinPath } from '../coins/Coin';
@@ -73,7 +73,9 @@ class ExchangeCurrencies extends Component {
           <CardSubTitle>
             {`precision: ${currency.precision}`}
           </CardSubTitle>
-          {this.renderCurrencyPairs(currency.code)}
+          <CardContent>
+            {this.renderCurrencyPairs(currency.code)}
+          </CardContent>
         </Card>
       ));
     }

@@ -5,7 +5,7 @@ import ReactHighcharts from 'react-highcharts';
 import numeral from 'numeral';
 import { Box, Text } from 'grommet';
 import { PagingTable, Card } from 'grommet-controls';
-import { CardTitle, CardSubTitle } from 'grommet-controls/components/Card';
+import { CardTitle, CardSubTitle, CardContent } from 'grommet-controls/components/Card';
 import { longDate } from 'grommet-controls/utils/moment';
 import { CoinToCoin } from './Coin';
 import { ConnectedExchange } from '../exchanges/Exchange';
@@ -150,16 +150,18 @@ export class ConnectedOrderBook extends Component {
         <Box basis='small' direction='row'>
           {this.renderChart()}
         </Box>
-        <Box direction='row' pad=' small'>
-          <Box basis='1/2' align='center' gap='small'>
-            <Text size='medium'><strong>Bid</strong></Text>
-            {renderAskBidTable(bids)}
+        <CardContent>
+          <Box direction='row' pad=' small'>
+            <Box basis='1/2' align='center' gap='small'>
+              <Text size='medium'><strong>Bid</strong></Text>
+              {renderAskBidTable(bids)}
+            </Box>
+            <Box basis='1/2' align='center' gap='small'>
+              <Text size='medium'><strong>Ask</strong></Text>
+              {renderAskBidTable(asks)}
+            </Box>
           </Box>
-          <Box basis='1/2' align='center' gap='small'>
-            <Text size='medium'><strong>Ask</strong></Text>
-            {renderAskBidTable(asks)}
-          </Box>
-        </Box>
+        </CardContent>
       </Card>
     );
   }

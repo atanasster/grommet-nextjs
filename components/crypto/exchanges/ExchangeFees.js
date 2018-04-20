@@ -4,7 +4,7 @@ import numeral from 'numeral';
 import { Close, Checkmark } from 'grommet-icons';
 import { Box, Text } from 'grommet';
 import { PagingTable, Card } from 'grommet-controls';
-import { CardTitle, CardSubTitle } from 'grommet-controls/components/Card';
+import { CardTitle, CardSubTitle, CardContent } from 'grommet-controls/components/Card';
 import connect from '../../../redux';
 import Coin from '../coins/Coin';
 import CardScroll from '../CardScroll';
@@ -98,7 +98,9 @@ class ExchangeFees extends Component {
               <Text>Tier based:</Text>{yesNoIcon(exchange.fees.funding.tierBased)}
             </Box>
           </CardSubTitle>
-          {table}
+          <CardContent>
+            {table}
+          </CardContent>
         </Card>
       );
     }
@@ -163,7 +165,9 @@ class ExchangeFees extends Component {
               {yesNoIcon(exchange.fees.trading.tierBased)}
             </Box>
           </CardSubTitle>
-          {table}
+          <CardContent>
+            {table}
+          </CardContent>
         </Card>
       );
     }

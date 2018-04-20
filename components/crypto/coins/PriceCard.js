@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { graphql, compose } from 'react-apollo';
 import { Box, Menu } from 'grommet';
 import { Card } from 'grommet-controls';
-import { CardTitle, CardSubTitle } from 'grommet-controls/components/Card';
+import { CardTitle, CardSubTitle, CardContent } from 'grommet-controls/components/Card';
 import RoutedButton from '../RoutedButton';
 import Exchange from '../exchanges/Exchange';
 import { CoinToCoin } from './Coin';
@@ -56,37 +56,39 @@ export class ConnectedPriceCard extends Component {
         <CardSubTitle border='bottom'>
           <Exchange exchange={exchange} />
         </CardSubTitle>
-        <Box pad='small'>
-          <Box>
-            <Box justify='between' direction='row'>
-              <Menu
-                a11yTitle='Select period'
-                items={optionDuration.filter(item => (item.value !== period)).map(item => (
-                  { ...item, onClick: () => this.onSelectPeriod(item) }
-                ))}
-                label={optionDuration.find(p => (p.value === period)).label}
-              />
-              <Menu
-                a11yTitle='Select data points'
-                items={optionLimit.filter(item => (item.value !== points)).map(item => (
-                  { value: item.value, label: `${item.value} ${period}s`, onClick: () => this.onSelectPoints(item) }
-                ))}
-                label={`${optionLimit.find(p => (p.value === points)).value} ${period}s`}
-              />
+        <CardContent >
+          <Box pad='small'>
+            <Box>
+              <Box justify='between' direction='row'>
+                <Menu
+                  a11yTitle='Select period'
+                  items={optionDuration.filter(item => (item.value !== period)).map(item => (
+                    { ...item, onClick: () => this.onSelectPeriod(item) }
+                  ))}
+                  label={optionDuration.find(p => (p.value === period)).label}
+                />
+                <Menu
+                  a11yTitle='Select data points'
+                  items={optionLimit.filter(item => (item.value !== points)).map(item => (
+                    { value: item.value, label: `${item.value} ${period}s`, onClick: () => this.onSelectPoints(item) }
+                  ))}
+                  label={`${optionLimit.find(p => (p.value === points)).value} ${period}s`}
+                />
+              </Box>
+              <RoutedButton route='coin_charts' params={{ symbol: coin.symbol, toSymbol: toCoin.symbol, exchange }} >
+                <PriceChart
+                  color={color}
+                  symbol={coin.symbol}
+                  toSymbol={toCoin.symbol}
+                  exchange={exchange}
+                  period={period}
+                  points={points}
+                />
+              </RoutedButton>
             </Box>
-            <RoutedButton route='coin_charts' params={{ symbol: coin.symbol, toSymbol: toCoin.symbol, exchange }} >
-              <PriceChart
-                color={color}
-                symbol={coin.symbol}
-                toSymbol={toCoin.symbol}
-                exchange={exchange}
-                period={period}
-                points={points}
-              />
-            </RoutedButton>
+            <PriceTableStream coin={coin} toCoin={toCoin} exchange={exchange} />
           </Box>
-          <PriceTableStream coin={coin} toCoin={toCoin} exchange={exchange} />
-        </Box>
+        </CardContent>
       </Card>
     );
   }
