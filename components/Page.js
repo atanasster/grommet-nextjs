@@ -61,12 +61,16 @@ class Page extends React.Component {
       keywords.push(pageTitle);
     }
     const menuItems = [
-      { path: '/crypto-grommet', label: 'use-case' },
+      { external: 'https:///crypto-grommet.com', label: 'use-case' },
       { path: '/preview', label: 'view' },
       { path: '/add-ons', label: 'add-ons' },
     ];
     const items = menuItems.map(item => (
-      <RoutedAnchor key={item.label} path={item.path} label={item.label} />
+      item.external ? (
+        <NextJsAnchor target='_blank' key={item.label} path={item.external} label={item.label} />
+      ) : (
+        <RoutedAnchor key={item.label} path={item.path} label={item.label} />
+      )
     ));
     const themeSelector = (
       <Box basis='small' >

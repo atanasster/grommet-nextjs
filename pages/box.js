@@ -11,9 +11,10 @@ export default () => (
     desc={desc}
     example={(
       <Box
+        fill={true}
         flex={true}
         border={{ color: 'brand', size: 'large' }}
-        pad='medium'
+        pad='large'
       />
     )}
     examples={{
