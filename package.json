@@ -13,13 +13,13 @@
     "apollo-react"
   ],
   "scripts": {
-    "dev": "PORT=8444 next dev ",
-    "alias": "NODE_ENV=alias PORT=8444 next dev ",
+    "dev": "next dev -p 8444",
+    "alias": "NODE_ENV=alias next dev -p 8444",
     "build": "NODE_ENV=production next build",
     "check": "./node_modules/.bin/eslint .",
     "heroku-postbuild": "npm run build",
     "analyze": "ANALYZE_BUILD=true npm run build",
-    "start": "NODE_ENV=production next start"
+    "start": "NODE_ENV=production next start -p ${PORT}"
   },
   "dependencies": {
     "babel-plugin-module-resolver": "^3.1.0",
