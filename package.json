@@ -78,8 +78,6 @@
     "sequelize": "^4.37.4",
     "socket.io": "^2.0.4",
     "styled-components": "^2.1.1",
-    "text-mask-addons": "^3.7.2",
-    "text-mask-core": "^5.0.1",
     "turndown": "^4.0.1",
     "url-search-params": "^0.10.0",
     "webpack-bundle-analyzer": "^2.11.1"

@@ -4,7 +4,7 @@ import { Box, Image, Text, Heading } from 'grommet';
 import numeral from 'numeral';
 import RoutedAnchor from '../RoutedAnchor';
 import connect from '../../../redux/index';
-import { Router } from '../../../utils/routes';
+import routerPush from '../Router';
 
 export const FormattedCoinValue = ({
   value, toSymbol, coin, large, justify, level,
@@ -67,7 +67,7 @@ export const CoinPath = ({
 );
 
 export const pushCoinPath = ({ symbol, toSymbol, exchange }) => {
-  Router.pushRoute('coin_info', { symbol, toSymbol, exchange });
+  routerPush({ route: 'coin_info', params: { symbol, toSymbol, exchange } });
 };
 const Coin = (
   {

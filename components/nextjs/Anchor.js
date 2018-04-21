@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import { withRouter } from 'next/router';
 import { Anchor as GrommetAnchor } from 'grommet';
-import urlParams from '../../utils/urlParams';
+import urlParams from './urlParams';
 
 class Anchor extends React.Component {
   render() {

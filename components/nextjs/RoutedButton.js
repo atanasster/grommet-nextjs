@@ -1,19 +1,25 @@
 import PropTypes from 'prop-types';
 import { withRouter } from 'next/router';
 import { Button } from 'grommet';
-import { Link } from '../../utils/routes';
-import urlParams from '../../utils/urlParams';
+import { Link } from '../../server/routes';
+import { queryParams } from './urlParams';
 
 class RoutedButton extends React.Component {
   render() {
     const {
       path, preserveParams, route, router, params, ...rest
     } = this.props;
-    const href = urlParams(path, router, preserveParams);
+    const query = queryParams(router, preserveParams);
     return (
       // eslint-disable-next-line jsx-a11y/anchor-is-valid
-      <Link route={route || href} params={params}>
-        <Button href={href} {...rest} />
+      <Link
+        route={route}
+        href={{ pathname: path, query }}
+        params={{ ...query, ...params }}
+        passHref={true}
+      >
+
+        <Button {...rest} />
       </Link>
     );
   }

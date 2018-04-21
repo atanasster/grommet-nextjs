@@ -1,7 +1,7 @@
-import { Router } from '../../utils/routes';
-import { queryParams } from '../../utils/urlParams';
+import { Router } from '../../server/routes';
+import { queryParams } from '../nextjs/urlParams';
 
 export default (item) => {
-  const params = queryParams(Router, ['theme', 'currency']);
-  Router.pushRoute(item.route, params);
+  const query = { ...queryParams(Router, ['theme', 'currency']) };
+  Router.pushRoute(item.route, { ...query, ...item.params });
 };
