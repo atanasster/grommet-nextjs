@@ -115,17 +115,19 @@ class Page extends React.Component {
     }
     return (
       <div>
-        <Head>
-          {pageTitle && (
-            <title>{`Grommet - ${pageTitle}`}</title>
-            )
-          }
-          {typeof description === 'string' && (
-            <meta name='description' content={description} />
-            )
-          }
-          <meta name='keywords' content={keywords.join(',')} />
-        </Head>
+        {nav && (
+          <Head>
+            {pageTitle && (
+              <title>{`Grommet - ${pageTitle}`}</title>
+              )
+            }
+            {typeof description === 'string' && (
+              <meta name='description' content={description} />
+              )
+            }
+            <meta name='keywords' content={keywords.join(',')} />
+          </Head>
+        )}
         <Grommet theme={themes[theme] || {}} style={{ height: 'auto', minHeight: '100vh' }}>
           <Responsive onChange={this.onResponsive}>
             <Box style={{ height: 'auto', minHeight: '100vh' }}>
