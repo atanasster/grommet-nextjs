@@ -126,9 +126,9 @@ class Page extends React.Component {
           }
           <meta name='keywords' content={keywords.join(',')} />
         </Head>
-        <Grommet theme={themes[theme] || {}}>
+        <Grommet theme={themes[theme] || {}} style={{ height: 'auto', minHeight: '100vh' }}>
           <Responsive onChange={this.onResponsive}>
-            <Box >
+            <Box style={{ height: 'auto', minHeight: '100vh' }}>
               {nav && (
               <Box
                 tag='header'
@@ -152,7 +152,7 @@ class Page extends React.Component {
                 {menu}
               </Box>
                ) }
-              <Box >
+              <Box flex={true}>
                 {children}
               </Box>
               {footer && (
@@ -161,6 +161,7 @@ class Page extends React.Component {
                   direction='row'
                   justify='center'
                   pad={{ top: 'large' }}
+                  justifySelf={true}
                 >
                   <Box
                     basis='large'

@@ -21,7 +21,7 @@ export default class MyDocument extends Document {
           <link rel='shortcut icon' type='image/png' href='/static/img/shortcut-icon.png' />
           <link rel='apple-touch-icon' sizes='196x196' type='image/png' href='/static/img/mobile-app-icon.png' />
         </Head>
-        <body style={{ margin: 0, height: 'auto', minHeight: '100vh' }} >
+        <body style={{ margin: 0 }} >
           <Main />
           <NextScript />
         </body>
