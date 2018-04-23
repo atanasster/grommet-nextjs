@@ -11,7 +11,7 @@ import RoutedAnchor from './RoutedAnchor';
 import NextJsAnchor from './Anchor';
 import { selectTheme } from '../redux/themes/actions';
 import { navActivate, updateResponsive } from '../redux/nav/actions';
-
+import { initGA, logPageView } from './utils/analytics';
 
 class Page extends React.Component {
   constructor(props, context) {
@@ -30,6 +30,11 @@ class Page extends React.Component {
   }
   componentDidMount() {
     this.props.navActivate(false);
+    if (!window.GA_INITIALIZED) {
+      initGA();
+      window.GA_INITIALIZED = true;
+    }
+    logPageView();
   }
 
   onResponsiveMenu = () => {
