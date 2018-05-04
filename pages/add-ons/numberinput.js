@@ -110,17 +110,17 @@ export default class NumberInputDoc extends React.Component {
               onChange={({ target: { value } }) => this.setState({ misedSepValue: value })}
             />
           ),
-          decimalLimit: (
+          decimals: (
             <NumberInput
               value={largeNumber}
-              decimalLimit={4}
+              decimals={4}
               onChange={({ target: { value } }) => this.setState({ largeNumber: value })}
             />
           ),
-          integerLimit: (
+          integers: (
             <NumberInput
               value={largeNumber}
-              integerLimit={4}
+              integers={4}
               onChange={({ target: { value } }) => this.setState({ largeNumber: value })}
             />
           ),
