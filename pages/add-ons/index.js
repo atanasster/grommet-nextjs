@@ -128,7 +128,11 @@ export default class AddOns extends React.Component {
               <Spinning />
             </Item>
             <Item name='ImageStamp' path='/add-ons/imagestamp' center={true}>
-              <ImageStamp src='//v2.grommet.io/assets/Wilderpeople_Ricky.jpg' round='full' />
+              <ImageStamp
+                src='//v2.grommet.io/assets/Wilderpeople_Ricky.jpg'
+                round='full'
+                size='large'
+              />
             </Item>
           </Section>
           <Section align='stretch' name='Controls' index={0}>
