@@ -16,16 +16,16 @@ export default class ImageStampDoc extends React.Component {
             <Box basis='medium'>
               <ImageStamp
                 src='//v2.grommet.io/assets/Wilderpeople_Ricky.jpg'
-                size='xlarge'
-                round='medium'
+                size='large'
+                round='full'
               />
             </Box>
           </Box>
         }
         examples={{
            size: (
-             <Box >
-               {['small', 'medium', 'large', 'xlarge', 'xxlarge'].map(size => (
+             <Box gap='small'>
+               {['small', 'medium', 'large', 'xlarge'].map(size => (
                  <ImageStamp
                    src='//v2.grommet.io/assets/Wilderpeople_Ricky.jpg'
                    key={`size_${size}`}
@@ -35,13 +35,12 @@ export default class ImageStampDoc extends React.Component {
              </Box>
            ),
            round: (
-             <Box >
+             <Box gap='small'>
                {['xsmall', 'small', 'medium', 'large', 'full'].map(round => (
                  <ImageStamp
                    src='//v2.grommet.io/assets/Wilderpeople_Ricky.jpg'
                    key={`round_${round}`}
                    round={round}
-                   size='large'
                  />))
                }
              </Box>
