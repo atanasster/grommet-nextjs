@@ -22,7 +22,7 @@ export default class TagDoc extends React.Component {
         example={
           <Box gap='large'>
             <Box direction='row'>
-              <Tag />
+              <Tag label='Tag' onChange={() => alert('Closing')} />
             </Box>
           </Box>
         }
@@ -65,8 +65,8 @@ export default class TagDoc extends React.Component {
           round: (
             <Tag
               round='medium'
-              background='white'
-              label='border'
+              background='accent-2'
+              label='round'
             />
           ),
           onClick: (

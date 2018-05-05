@@ -1,4 +1,4 @@
-import { Box, Heading, Paragraph, Chart, Image } from 'grommet';
+import { Box, Heading, Paragraph, Chart, Image, Anchor } from 'grommet';
 import {
   Select, Tags, Tag, Notification, DropInput, MaskedInput,
   DateInput, NumberInput, PasswordInput, EmailInput, ColorInput, Colors,
@@ -38,15 +38,22 @@ export default class AddOns extends React.Component {
       options, selected, date, phone, number,
     } = this.state;
     return (
-      <Page title='Add ons'>
+      <Page title='grommet-controls'>
         <Box pad='large'>
           <Box direction='row' gap='xlarge'>
-            <Box margin={{ top: 'large' }} basis='medium' overflow='hidden'>
-              <Heading level={1}>
-                <strong>Add-ons</strong>
-              </Heading>
+            <Box margin={{ top: 'large' }} basis='large' overflow='hidden'>
+              <Anchor
+                href='https://github.com/atanasster/grommet-controls'
+                target='_blank'
+                label={(
+                  <Heading level={1}>
+                    <strong>grommet-controls</strong>
+                  </Heading>
+                )}
+                a11yTitle='Go to the github page for this project'
+              />
               <Paragraph size='large' margin='none'>
-                Various components and code, created by grommet users just like you.
+                Package of additional grommmet components
               </Paragraph>
             </Box>
           </Box>
