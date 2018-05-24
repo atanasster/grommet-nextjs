@@ -1,6 +1,9 @@
 # Example app with nextjs and grommet v 2
 
-### Adapted from  [Grommet 2 Site](https://github.com/grommet/grommet-site)
+**Live site**: https://grommet-nextjs.herokuapp.com
+
+**Community**: https://spectrum.chat/crypto-grommet
+
 
 ## Install
   
