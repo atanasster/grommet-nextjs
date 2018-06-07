@@ -8,9 +8,7 @@
   "keywords": [
     "grommet",
     "nextjs",
-    "graphql",
-    "react",
-    "apollo-react"
+    "react"
   ],
   "scripts": {
     "dev": "next dev -p 8444",
@@ -29,15 +27,15 @@
     "color-scheme": "^1.0.0",
     "dotenv": "^5.0.1",
     "dotenv-webpack": "^1.5.5",
-    "grommet": "2.0.0-beta.3",
+    "grommet": "^2.0.0-beta.2",
     "grommet-controls": "^0.26.3",
-    "grommet-icons": "^0.16.0",
+    "grommet-icons": "^1.0.0",
     "isomorphic-unfetch": "^2.0.0",
-    "next": "^5.1.0",
+    "next": "^6.0.3",
     "npm": "^5.7.1",
     "numeral": "^2.0.6",
-    "react": "16.3.2",
-    "react-dom": "16.3.2",
+    "react": "16.4.0",
+    "react-dom": "16.4.0",
     "react-formify": "^0.10.2",
     "react-ga": "^2.5.0",
     "react-json-pretty": "^1.7.6",
@@ -45,7 +43,7 @@
     "redux": "^3.7.2",
     "redux-devtools-extension": "^2.13.2",
     "redux-thunk": "^2.2.0",
-    "styled-components": "^2.1.1",
+    "styled-components": "^3.3.0",
     "url-search-params": "^0.10.0",
     "webpack-bundle-analyzer": "^2.11.1"
   },
