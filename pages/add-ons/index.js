@@ -102,7 +102,7 @@ export default class AddOns extends React.Component {
                   Card
                 </CardTitle>
                 <CardContent>
-                  <Image fit='contain' src='//v2.grommet.io/assets/Wilderpeople_Ricky.jpg' height='110' />
+                  <Image fit='contain' src='//v2.grommet.io/assets/Wilderpeople_Ricky.jpg' height='120' />
                 </CardContent>
               </Card>
             </Item>
