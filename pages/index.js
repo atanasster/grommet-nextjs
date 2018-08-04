@@ -1,11 +1,12 @@
 import {
   Box, Button, Calendar, Carousel, Chart, CheckBox, Clock,
   Diagram, Distribution, DropButton, Anchor, FormField,
-  Heading, Image, RangeSelector, DataTable, Accordion, AccordionPanel,
+  Heading, Image, RangeSelector, DataTable, Accordion,
   Menu, Meter, Paragraph, RadioButton, RangeInput,
   Select, Stack, Table, Text, TextArea, TextInput, Video, WorldMap,
 } from 'grommet';
 import { TableBody, TableCell, TableHeader, TableRow } from 'grommet/components/Table';
+import { AccordionPanel } from 'grommet/components/Accordion';
 import { Add, LinkNext, Grommet as GrommetIcon, TopCorner, BottomCorner, Descend } from 'grommet-icons';
 import RoutedButton from '../components/RoutedButton';
 import Page from '../components/Page';
