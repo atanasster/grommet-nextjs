@@ -1,7 +1,7 @@
 import {
   Box, Button, Calendar, Carousel, Chart, CheckBox, Clock,
   Diagram, Distribution, DropButton, Anchor, FormField,
-  Heading, Image, RangeSelector,
+  Heading, Image, RangeSelector, DataTable, Accordion, AccordionPanel,
   Menu, Meter, Paragraph, RadioButton, RangeInput,
   Select, Stack, Table, Text, TextArea, TextInput, Video, WorldMap,
 } from 'grommet';
@@ -108,6 +108,30 @@ Visit the official <Anchor href='https://v2.grommet.io/' target='_blank'>Grommet
           </Section>
 
           <Section name='Controls' index={3}>
+            <Item name='Accordion' path='/accordion'>
+              <Accordion>
+                <AccordionPanel label='Panel 1'>
+                  <Box
+                    align='center'
+                    justify='center'
+                    background={{ color: 'brand', opacity: 'weak' }}
+                    height='small'
+                  >
+                    <Text color='text'>Panel 1 contents</Text>
+                  </Box>
+                </AccordionPanel>
+                <AccordionPanel label='Panel 2'>
+                  <Box
+                    align='center'
+                    justify='center'
+                    background={{ color: 'brand', opacity: 'weak' }}
+                    height='small'
+                  >
+                    <Text color='text'>Panel 2 contents</Text>
+                  </Box>
+                </AccordionPanel>
+              </Accordion>
+            </Item>
             <Item name='Anchor' path='/anchor' center={true}>
               <Box direction='row' align='center' gap='small'>
                 <Text color='brand'>Don&quot;t press me</Text>
@@ -148,8 +172,14 @@ Visit the official <Anchor href='https://v2.grommet.io/' target='_blank'>Grommet
                 items={stringOptions.map(item => ({ label: item, onClick: () => {} }))}
               />
             </Item>
+            <Item name='Tabs' path='/tabs'>
+              <Box flex={true} direction='row'>
+                <Box flex={true} background='brand' margin={{ top: 'large' }} />
+                <Box flex={true} background='brand' margin={{ top: 'medium' }} />
+                <Box flex={true} background='brand' margin={{ top: 'large' }} />
+              </Box>
+            </Item>
           </Section>
-
           <Section name='Input' index={4}>
             <Item name='CheckBox' path='/checkbox' center={true}>
               <CheckBox label='Check option' onClick={() => {}} />
@@ -217,14 +247,32 @@ Visit the official <Anchor href='https://v2.grommet.io/' target='_blank'>Grommet
             <Item name='Clock' path='/clock' center={true}>
               <Clock />
             </Item>
-            <Item name='Meter' path='/meter' center={true}>
-              <Meter
-                aria-label='Meter example'
-                type='circle'
-                size='full'
-                thickness='large'
-                round={true}
-                values={[{ value: 60, label: 'sixty' }]}
+            <Item name='DataTable' path='/datatable' center={true}>
+              <DataTable
+                columns={[
+                  {
+                    property: 'name',
+                    header: <Text>Name</Text>,
+                    primary: true,
+                    search: true,
+                  },
+                  {
+                    property: 'percent',
+                    header: 'Complete',
+                    render: datum => (
+                      <Box pad={{ vertical: 'xsmall' }}>
+                        <Meter values={[{ value: datum.percent }]} thickness='small' size='small' />
+                      </Box>
+                    ),
+                  },
+                ]}
+                data={[
+                  { name: 'Alan', percent: 20 },
+                  { name: 'Bryan', percent: 30 },
+                  { name: 'Chris', percent: 40 },
+                  { name: 'Eric', percent: 80 },
+                ]}
+                sortable={true}
               />
             </Item>
             <Item name='Diagram' path='/diagram' center={true}>
@@ -293,57 +341,15 @@ Visit the official <Anchor href='https://v2.grommet.io/' target='_blank'>Grommet
                 )}
               </Distribution>
             </Item>
-            <Item name='WorldMap' path='/worldmap' center={true}>
-              <WorldMap color='brand' />
-            </Item>
-          </Section>
-
-          <Section name='Media' index={4}>
-            <Item name='Image' path='/image'>
-              <Image
-                fit='cover'
-                src='//v2.grommet.io/assets/Wilderpeople_Ricky.jpg'
+            <Item name='Meter' path='/meter' center={true}>
+              <Meter
+                aria-label='Meter example'
+                type='circle'
+                size='full'
+                thickness='large'
+                round={true}
+                values={[{ value: 60, label: 'sixty' }]}
               />
-            </Item>
-
-            <Item name='Video' path='/video'>
-              <Video fit='cover'>
-                <source src='//v2.grommet.io/assets/small.mp4' type='video/mp4' />
-              </Video>
-            </Item>
-          </Section>
-
-          <Section name='Accessibility' index={5}>
-            <Item name='SkipLinks' path='/skiplinks' center={true}>
-              <Text color='brand'>SkipLinks</Text>
-            </Item>
-          </Section>
-
-          <Section name='Utilities' index={4}>
-            <Item name='Grommet' path='/grommet' center={true}>
-              <GrommetIcon color='brand' />
-            </Item>
-            <Item name='InfiniteScroll' path='/infinitescroll' center={true}>
-              <Descend color='brand' size='xlarge' />
-            </Item>
-            <Item name='Keyboard' path='/keyboard' center={true}>
-              <Text>ESC</Text>
-            </Item>
-            <Item name='Responsive' path='/responsive' center={true}>
-              <Box direction='row'>
-                <TopCorner />
-                <BottomCorner />
-              </Box>
-            </Item>
-          </Section>
-
-          <Section name='Old School' index={6}>
-            <Item name='Carousel' path='/carousel'>
-              <Carousel fill={true}>
-                <Image fit='contain' src='//v2.grommet.io/assets/Wilderpeople_Ricky.jpg' />
-                <Image fit='contain' src='//v2.grommet.io/assets/IMG_4245.jpg' />
-                <Image fit='contain' src='//v2.grommet.io/assets/IMG_4210.jpg' />
-              </Carousel>
             </Item>
             <Item name='Table' path='/table' center={true}>
               <Table>
@@ -365,16 +371,53 @@ Visit the official <Anchor href='https://v2.grommet.io/' target='_blank'>Grommet
                 </TableBody>
               </Table>
             </Item>
-
-            <Item name='Tabs' path='/tabs'>
-              <Box flex={true} direction='row'>
-                <Box flex={true} background='brand' margin={{ top: 'large' }} />
-                <Box flex={true} background='brand' margin={{ top: 'medium' }} />
-                <Box flex={true} background='brand' margin={{ top: 'large' }} />
-              </Box>
+            <Item name='WorldMap' path='/worldmap' center={true}>
+              <WorldMap color='brand' />
             </Item>
           </Section>
 
+          <Section name='Media' index={4}>
+            <Item name='Carousel' path='/carousel'>
+              <Carousel fill={true}>
+                <Image fit='contain' src='//v2.grommet.io/assets/Wilderpeople_Ricky.jpg' />
+                <Image fit='contain' src='//v2.grommet.io/assets/IMG_4245.jpg' />
+                <Image fit='contain' src='//v2.grommet.io/assets/IMG_4210.jpg' />
+              </Carousel>
+            </Item>
+            <Item name='Image' path='/image'>
+              <Image
+                fit='cover'
+                src='//v2.grommet.io/assets/Wilderpeople_Ricky.jpg'
+              />
+            </Item>
+
+            <Item name='Video' path='/video'>
+              <Video fit='cover'>
+                <source src='//v2.grommet.io/assets/small.mp4' type='video/mp4' />
+              </Video>
+            </Item>
+          </Section>
+
+          <Section name='Utilities' index={4}>
+            <Item name='Grommet' path='/grommet' center={true}>
+              <GrommetIcon color='brand' />
+            </Item>
+            <Item name='InfiniteScroll' path='/infinitescroll' center={true}>
+              <Descend color='brand' size='xlarge' />
+            </Item>
+            <Item name='Keyboard' path='/keyboard' center={true}>
+              <Text>ESC</Text>
+            </Item>
+            <Item name='Responsive' path='/responsive' center={true}>
+              <Box direction='row'>
+                <TopCorner />
+                <BottomCorner />
+              </Box>
+            </Item>
+            <Item name='SkipLinks' path='/skiplinks' center={true}>
+              <Text color='brand'>SkipLinks</Text>
+            </Item>
+          </Section>
         </Box>
       </Page>
     );
