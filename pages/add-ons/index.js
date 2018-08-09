@@ -53,7 +53,7 @@ export default class AddOns extends React.Component {
                 a11yTitle='Go to the github page for this project'
               />
               <Paragraph size='large' margin='none'>
-                Package of additional grommmet components
+                Package of additional grommet components
               </Paragraph>
             </Box>
           </Box>
