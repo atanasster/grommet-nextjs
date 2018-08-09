@@ -2,7 +2,7 @@ import { Box, Heading, Paragraph, Chart, Image, Anchor } from 'grommet';
 import {
   Select, Tags, Tag, Notification, DropInput, MaskedInput,
   DateInput, NumberInput, PasswordInput, EmailInput, ColorInput, Colors,
-  Spinning, Form, ImageStamp, PagingTable, Card,
+  Spinning, Form, ImageStamp, PagingTable, Card, Value,
 } from 'grommet-controls';
 import { CardTitle, CardContent } from 'grommet-controls/components/Card';
 import { placeholderChars } from 'grommet-controls/components/MaskedInput';
@@ -140,6 +140,9 @@ export default class AddOns extends React.Component {
                 round='full'
                 size='large'
               />
+            </Item>
+            <Item name='Value' path='/add-ons/value' center={true}>
+              <Value value='30%' label='sales last quarter' color='status-ok' />
             </Item>
           </Section>
           <Section align='stretch' name='Controls' index={0}>
