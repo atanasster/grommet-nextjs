@@ -76,7 +76,7 @@ export const parseRGBString = (str) => {
 
 
 const colorsForMood = (color, backgroundColor, mood, scheme) => {
-  let result;
+  let result = {};
   const brandRGB = parseRGBString(color);
   const backgroundRGB = parseRGBString(backgroundColor);
 
@@ -111,18 +111,19 @@ const colorsForMood = (color, backgroundColor, mood, scheme) => {
 
     const cs = new ColorScheme();
     cs.from_hex(color.replace('#', ''));
+    const colors = {
+      brand: color,
+      light,
+      dark,
+      border: border.rgb().string(),
+      background: bgColor.rgb().string(),
+      text: textColor.rgb().string(),
+      placeholder: shadowColor,
+    };
     // create default controls colors
     result = {
       global: {
-        colors: {
-          brand: color,
-          light,
-          dark,
-          border: border.rgb().string(),
-          background: bgColor.rgb().string(),
-          text: textColor.rgb().string(),
-          placeholder: shadowColor,
-        },
+        colors,
         elevation: {
           none: 'none',
           xsmall: `0px 1px 2px ${shadowColor}`,
@@ -167,18 +168,16 @@ const colorsForMood = (color, backgroundColor, mood, scheme) => {
       },
     };
     // create theme palette
-    const colors = cs
+    const colorsTheme = cs
       .scheme(scheme)
       .variation(mood)
       .colors();
-    const accentColors = Math.floor(colors.length / 2) + (colors.length % 2);
-    result.global.colors.accent = [];
+    const accentColors = Math.floor(colorsTheme.length / 2) + (colorsTheme.length % 2);
     for (let i = 0; i < accentColors; i += 1) {
-      result.global.colors.accent.push(`#${colors[i]}`);
+      result.global.colors[`accent-${i + 1}`] = `#${colorsTheme[i]}`;
     }
-    result.global.colors.neutral = [];
-    for (let i = accentColors; i < colors.length; i += 1) {
-      result.global.colors.neutral.push(`#${colors[i]}`);
+    for (let i = accentColors; i < colorsTheme.length; i += 1) {
+      result.global.colors[`neutral-${(i - accentColors) + 1}`] = `#${colorsTheme[i]}`;
     }
   }
   return result;
