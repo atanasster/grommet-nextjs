@@ -29,9 +29,8 @@ class Page extends React.Component {
 
   render() {
     const {
-      children, title: pageTitle, description, themes: { themes },
+      children, title: pageTitle, description, themes: { themes, selected: theme },
     } = this.props;
-    const { theme = 'grommet' } = this.state;
     const keywords = ['grommet', 'grommet 2', 'react', 'next-js', 'next.js', 'ui library'];
     if (pageTitle) {
       keywords.push(pageTitle);

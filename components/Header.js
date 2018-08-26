@@ -14,16 +14,17 @@ import { navActivate } from '../redux/nav/actions';
 class Header extends React.Component {
   constructor(props, context) {
     super(props, context);
-    this.state = { theme: props.router.query.theme };
+    this.changeTheme(props.router.query.theme);
   }
 
   changeTheme(themeName) {
     this.props.selectTheme(themeName);
+    this.theme = themeName;
   }
 
   componentWillReceiveProps(nextProps) {
-    if (nextProps.router.query.theme !== this.state.theme) {
-      this.setState({ theme: nextProps.router.query.theme });
+    if (nextProps.router.query.theme !== this.theme) {
+      this.changeTheme(nextProps.router.query.theme);
     }
   }
   onResponsiveMenu = () => {
@@ -43,9 +44,8 @@ class Header extends React.Component {
 
   render() {
     const {
-      title: pageTitle, themes: { themes }, navMenu,
+      title: pageTitle, themes: { themes, selected: theme }, navMenu,
     } = this.props;
-    const { theme = 'grommet' } = this.state;
     const keywords = ['grommet', 'grommet 2', 'react', 'next-js', 'next.js', 'ui library'];
     if (pageTitle) {
       keywords.push(pageTitle);

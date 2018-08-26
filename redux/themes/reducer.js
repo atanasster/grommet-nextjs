@@ -9,7 +9,7 @@ import grommet from 'grommet/themes/grommet';
 import * as ActionTypes from './constants';
 
 
-const defaultTheme = 'grommet';
+const defaultTheme = 'black';
 const lightColors = [
   '#F6F6F6',
   '#EEEEEE',
