@@ -17,7 +17,8 @@
     "check": "./node_modules/.bin/eslint .",
     "heroku-postbuild": "npm run build",
     "analyze": "ANALYZE_BUILD=true npm run build",
-    "start": "NODE_ENV=production next start -p ${PORT}"
+    "start": "NODE_ENV=production next start -p ${PORT}",
+    "start-server": "NODE_ENV=production next start -p 8444"
   },
   "dependencies": {
     "babel-plugin-module-resolver": "^3.1.0",
