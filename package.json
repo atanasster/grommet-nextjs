@@ -1,6 +1,6 @@
 {
   "name": "grommet-nextjs",
-  "version": "1.10.1",
+  "version": "1.10.5",
   "engines": {
     "node": ">=7.6.0",
     "npm": ">=4"
@@ -44,7 +44,7 @@
     "redux": "^3.7.2",
     "redux-devtools-extension": "^2.13.2",
     "redux-thunk": "^2.2.0",
-    "styled-components": "^3.3.0",
+    "styled-components": "3.3.0",
     "url-search-params": "^0.10.0",
     "webpack-bundle-analyzer": "^2.11.1"
   },
