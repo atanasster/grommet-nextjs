@@ -1,13 +1,13 @@
 import { Box, Heading, Paragraph, Chart, Image, Anchor } from 'grommet';
 import {
-  Select, Tags, Tag, Notification, DropInput, MaskedInput,
+  Tags, Tag, Notification, DropInput, MaskedInput,
   DateInput, NumberInput, PasswordInput, EmailInput, ColorInput, Colors,
   Spinning, Form, ImageStamp, PagingTable, Card, Value,
 } from 'grommet-controls';
 import { CardTitle, CardContent } from 'grommet-controls/components/Card';
 import { placeholderChars } from 'grommet-controls/components/MaskedInput';
 import { TextInputField } from 'grommet-controls/components/Form/Fields';
-import validators from 'grommet-controls/components/Form/validators';
+import { validators } from 'grommet-controls/components/Form/validators';
 
 import materialUIPalette from 'grommet-controls/components/Colors/palettes/materialColors';
 import Page from '../../components/Page';
@@ -27,7 +27,6 @@ const CHART_VALUES = [
 
 export default class AddOns extends React.Component {
   state = {
-    options: ['one', 'two', 'three', 'four', 'five'],
     selected: ['one', 'five'],
     date: undefined,
     phone: '3047245566',
@@ -35,7 +34,7 @@ export default class AddOns extends React.Component {
   };
   render() {
     const {
-      options, selected, date, phone, number,
+      selected, date, phone, number,
     } = this.state;
     return (
       <Page title='grommet-controls'>
@@ -146,15 +145,6 @@ export default class AddOns extends React.Component {
             </Item>
           </Section>
           <Section align='stretch' name='Controls' index={0}>
-            <Item name='Select' path='/add-ons/multiselect' center={true}>
-              <Select
-                options={options}
-                onChange={({ value }) => this.setState({ selected: value })}
-                placeholder='Multiselect'
-                multiple={true}
-                value={selected}
-              />
-            </Item>
             <Item name='Tags' path='/add-ons/tags' center={true}>
               <Tags
                 value={selected}

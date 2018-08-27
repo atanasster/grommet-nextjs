@@ -33,7 +33,7 @@ export default class TagsDoc extends React.Component {
             <Box direction='row'>
               <Tags
                 value={tags}
-                border='small'
+                border='all'
                 basis='medium'
                 placeholder='No selection'
                 onChange={this.onChangeTags}

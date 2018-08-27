@@ -1,8 +1,7 @@
-import { Box, Text, Image, CheckBox } from 'grommet';
+import { Box, Text, Image, CheckBox, Select } from 'grommet';
 import { Add, Subtract } from 'grommet-icons';
-import { Select, PagingTable } from 'grommet-controls';
+import { PagingTable } from 'grommet-controls';
 import doc from 'grommet-controls/components/PagingTable/doc';
-import { TagsSelect } from 'grommet-controls/components/Tags';
 import Doc from '../../components/Doc';
 
 const desc = doc(PagingTable).toJSON();
@@ -140,7 +139,6 @@ export default class TableDoc extends React.Component {
                 <Box basis='small'>
                   <Select
                     options={allColumns.map(column => column.Header)}
-                    label={TagsSelect()}
                     multiple={true}
                     selected={
                       visibleColumns.map(c =>
