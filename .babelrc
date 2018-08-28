@@ -13,7 +13,8 @@
       },
       "grommet-icons": {
         "transform": "grommet-icons/icons/${member}",
-        "preventFullImport": true
+        "preventFullImport": true,
+        "skipDefaultConversion": true
       }
     }]
   ],
