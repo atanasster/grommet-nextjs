@@ -44,9 +44,9 @@ class Page extends React.Component {
         </Head>
         <Grommet theme={themes[theme] || {}} style={{ height: 'auto', minHeight: '100vh' }}>
           <ResponsiveContext.Consumer >
-            {responsive => (
+            {size => (
               <Box style={{ height: 'auto', minHeight: '100vh' }}>
-                <Header title={pageTitle} responsive={responsive} />
+                <Header title={pageTitle} size={size} />
                 <Box flex={true}>
                   {children}
                 </Box>

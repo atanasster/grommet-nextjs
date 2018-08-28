@@ -45,10 +45,10 @@ class Header extends React.Component {
 
   render() {
     const {
-      title: pageTitle, themes: { themes, selected: theme }, responsive,
+      title: pageTitle, themes: { themes, selected: theme }, size,
     } = this.props;
-    const isNarrow = responsive === 'narrow';
-    const isWide = responsive === 'wide';
+    const isNarrow = size === 'narrow';
+    const isWide = size === 'wide';
     const keywords = ['grommet', 'grommet 2', 'react', 'next-js', 'next.js', 'ui library'];
     if (pageTitle) {
       keywords.push(pageTitle);
@@ -87,7 +87,7 @@ class Header extends React.Component {
       if (this.state.activeMenu) {
         menu = (
           <Layer plain={true} onEsc={this.onCloseMenu} position='left' onClickOverlay={this.onCloseMenu}>
-            <Box background='brand' gap='small' style={{ height: '100vh' }} pad='medium'>
+            <Box background='brand' gap='small' style={{ height: '100vh' }} pad='medium' align='start'>
               <Button icon={<Menu />} onClick={this.onResponsiveMenu} />
               <RoutedAnchor path='/' label='home' a11yTitle='go to home page' />
               {items}
@@ -109,7 +109,7 @@ class Header extends React.Component {
     return (
       <Box
         tag='header'
-        direction='row'
+        direction='row-responsive'
         justify='between'
         align='center'
         background='brand'
@@ -133,13 +133,13 @@ class Header extends React.Component {
 }
 
 Header.defaultProps = {
-  responsive: undefined,
+  size: undefined,
 };
 
 
 Header.propTypes = {
   title: PropTypes.string.isRequired,
-  responsive: PropTypes.string,
+  size: PropTypes.string,
 };
 
 
