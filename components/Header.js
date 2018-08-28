@@ -9,9 +9,11 @@ import RoutedButton from './RoutedButton';
 import RoutedAnchor from './RoutedAnchor';
 import NextJsAnchor from './Anchor';
 import { selectTheme } from '../redux/themes/actions';
-import { navActivate } from '../redux/nav/actions';
 
 class Header extends React.Component {
+  state = {
+    activeMenu: false,
+  };
   constructor(props, context) {
     super(props, context);
     this.changeTheme(props.router.query.theme);
@@ -28,12 +30,11 @@ class Header extends React.Component {
     }
   }
   onResponsiveMenu = () => {
-    const { navMenu: { active } } = this.props;
-    this.props.navActivate(!active);
+    this.setState({ activeMenu: !this.state.activeMenu });
   };
 
   onCloseMenu = () => {
-    this.props.navActivate(false);
+    this.setState({ activeMenu: false });
   };
   onThemeChange = ({ option: theme }) => {
     const { router } = this.props;
@@ -44,8 +45,10 @@ class Header extends React.Component {
 
   render() {
     const {
-      title: pageTitle, themes: { themes, selected: theme }, navMenu,
+      title: pageTitle, themes: { themes, selected: theme }, responsive,
     } = this.props;
+    const isNarrow = responsive === 'narrow';
+    const isWide = responsive === 'wide';
     const keywords = ['grommet', 'grommet 2', 'react', 'next-js', 'next.js', 'ui library'];
     if (pageTitle) {
       keywords.push(pageTitle);
@@ -74,14 +77,14 @@ class Header extends React.Component {
     );
     const themeDesigner = (
       <NextJsAnchor
-        icon={navMenu.responsive ? undefined : <System />}
-        label={navMenu.responsive ? 'theme designer' : undefined}
+        icon={isNarrow ? undefined : <System />}
+        label={isNarrow ? 'theme designer' : undefined}
         path='/theme'
         a11yTitle='theme designer'
       />);
     let menu;
-    if (navMenu.responsive) {
-      if (navMenu.active) {
+    if (isNarrow) {
+      if (this.state.activeMenu) {
         menu = (
           <Layer plain={true} onEsc={this.onCloseMenu} position='left' onClickOverlay={this.onCloseMenu}>
             <Box background='brand' gap='small' style={{ height: '100vh' }} pad='medium'>
@@ -94,7 +97,7 @@ class Header extends React.Component {
           </Layer>
         );
       }
-    } else {
+    } else if (isWide) {
       menu = (
         <Box direction='row' align='center' justify='end' gap='small' tag='nav'>
           {items}
@@ -114,7 +117,7 @@ class Header extends React.Component {
         animation='fadeIn'
       >
         <Box direction='row' align='center'gap='small' >
-          {navMenu.responsive && (
+          {isNarrow && (
             <Button icon={<Menu />} onClick={this.onResponsiveMenu} />
           )}
           <Heading margin='none'>
@@ -129,17 +132,22 @@ class Header extends React.Component {
   }
 }
 
+Header.defaultProps = {
+  responsive: undefined,
+};
+
+
 Header.propTypes = {
   title: PropTypes.string.isRequired,
+  responsive: PropTypes.string,
 };
 
 
 const mapDispatchToProps = dispatch =>
-  bindActionCreators({ selectTheme, navActivate }, dispatch);
+  bindActionCreators({ selectTheme }, dispatch);
 
 const mapStateToProps = state => ({
   themes: state.themes,
-  navMenu: state.nav,
 });
 
 

@@ -1,5 +1,5 @@
 import { Anchor, Box } from 'grommet';
-import doc from 'grommet/components/Anchor/doc';
+import { doc } from 'grommet/components/Anchor/doc';
 
 import { Edit } from 'grommet-icons';
 

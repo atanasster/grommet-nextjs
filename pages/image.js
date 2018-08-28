@@ -1,5 +1,5 @@
 import { Box, Image } from 'grommet';
-import doc from 'grommet/components/Image/doc';
+import { doc } from 'grommet/components/Image/doc';
 
 import Doc from '../components/Doc';
 

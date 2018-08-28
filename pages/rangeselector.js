@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Box, RangeSelector, Stack, Text } from 'grommet';
-import doc from 'grommet/components/RangeSelector/doc';
+import { doc } from 'grommet/components/RangeSelector/doc';
 
 import Doc from '../components/Doc';
 
@@ -20,7 +20,7 @@ class RangeSelectorDoc extends Component {
            <Stack>
              <Box direction='row' justify='between'>
                {[0, 1, 2, 3, 4, 5, 6, 7, 8, 9].map(value => (
-                 <Box key={value} pad='small' border={false}>
+                 <Box key={value} pad='small'>
                    <Text style={{ fontFamily: 'monospace' }}>{value}</Text>
                  </Box>
                ))}

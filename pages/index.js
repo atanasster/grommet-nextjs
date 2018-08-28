@@ -1,13 +1,12 @@
 import {
   Box, Button, Calendar, Carousel, Chart, CheckBox, Clock,
   Diagram, Distribution, DropButton, Anchor, FormField,
-  Heading, Image, RangeSelector, DataTable, Accordion,
+  Heading, Image, RangeSelector, DataTable, Accordion, AccordionPanel,
   Menu, Meter, Paragraph, RadioButton, RangeInput,
-  Select, Stack, Table, Text, TextArea, TextInput, Video, WorldMap,
+  Select, Stack, Table, TableBody, TableCell, TableHeader, TableRow,
+  Text, TextArea, TextInput, Video, WorldMap,
 } from 'grommet';
-import { TableBody, TableCell, TableHeader, TableRow } from 'grommet/components/Table';
-import { AccordionPanel } from 'grommet/components/Accordion';
-import { Add, LinkNext, Grommet as GrommetIcon, TopCorner, BottomCorner, Descend } from 'grommet-icons';
+import { Add, LinkNext, Grommet as GrommetIcon, Descend } from 'grommet-icons';
 import RoutedButton from '../components/RoutedButton';
 import Page from '../components/Page';
 import Section from '../components/Section';
@@ -186,7 +185,7 @@ Visit the official <Anchor href='https://v2.grommet.io/' target='_blank'>Grommet
               <CheckBox label='Check option' onClick={() => {}} />
             </Item>
             <Item name='RadioButton' path='/radiobutton' center={true}>
-              <RadioButton label='Radio option' onClick={() => {}} />
+              <RadioButton name='radio1' label='Radio option' onClick={() => {}} />
             </Item>
             <Item name='RangeInput' path='/rangeinput' center={true}>
               <RangeInput />
@@ -284,7 +283,7 @@ Visit the official <Anchor href='https://v2.grommet.io/' target='_blank'>Grommet
                       <Box
                         key={id}
                         id={id}
-                        basis='xxsmall'
+                        basis='xsmall'
                         margin='small'
                         pad='medium'
                         round='small'
@@ -297,7 +296,7 @@ Visit the official <Anchor href='https://v2.grommet.io/' target='_blank'>Grommet
                       <Box
                         key={id}
                         id={id}
-                        basis='xxsmall'
+                        basis='xsmall'
                         margin='small'
                         pad='medium'
                         round='small'
@@ -408,12 +407,6 @@ Visit the official <Anchor href='https://v2.grommet.io/' target='_blank'>Grommet
             </Item>
             <Item name='Keyboard' path='/keyboard' center={true}>
               <Text>ESC</Text>
-            </Item>
-            <Item name='Responsive' path='/responsive' center={true}>
-              <Box direction='row'>
-                <TopCorner />
-                <BottomCorner />
-              </Box>
             </Item>
             <Item name='SkipLinks' path='/skiplinks' center={true}>
               <Text color='brand'>SkipLinks</Text>

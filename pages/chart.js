@@ -1,5 +1,5 @@
 import { Box, Chart } from 'grommet';
-import doc from 'grommet/components/Chart/doc';
+import { doc } from 'grommet/components/Chart/doc';
 
 import Doc from '../components/Doc';
 

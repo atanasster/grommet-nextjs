@@ -1,6 +1,6 @@
 import React from 'react';
 import { Box } from 'grommet';
-import doc from 'grommet/components/Box/doc';
+import { doc } from 'grommet/components/Box/doc';
 import Doc from '../components/Doc';
 
 const desc = doc(Box).toJSON();
@@ -64,7 +64,7 @@ export default () => (
       ),
       border: (
         <Box direction='row' justify='end' wrap={true} align='start'>
-          {['xsmall', 'small', 'medium', 'large'].map(size => (
+          {['small', 'medium', 'large'].map(size => (
             <Box
               key={size}
               border={{ side: 'all', size, color: 'accent-2' }}

@@ -1,5 +1,5 @@
 import { Box, WorldMap } from 'grommet';
-import doc from 'grommet/components/WorldMap/doc';
+import { doc } from 'grommet/components/WorldMap/doc';
 
 import Doc from '../components/Doc';
 

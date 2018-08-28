@@ -1,5 +1,5 @@
 import { Keyboard } from 'grommet';
-import doc from 'grommet/components/Keyboard/doc';
+import { doc } from 'grommet/components/Keyboard/doc';
 
 import Doc from '../components/Doc';
 

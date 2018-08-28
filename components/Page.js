@@ -3,29 +3,23 @@ import { withRouter } from 'next/router';
 import PropTypes from 'prop-types';
 import { bindActionCreators } from 'redux';
 import Head from 'next/head';
-import { Grommet, Responsive, Box } from 'grommet';
+import { Grommet, Box } from 'grommet';
+import { ResponsiveContext } from 'grommet/contexts/ResponsiveContext';
 import Header from './Header';
 import Footer from './Footer';
 import connect from '../redux';
 import { selectTheme } from '../redux/themes/actions';
-import { navActivate, updateResponsive } from '../redux/nav/actions';
 
 import { initGA, logPageView } from './utils/analytics';
 
 class Page extends React.Component {
   componentDidMount() {
-    this.props.navActivate(false);
     if (!window.GA_INITIALIZED) {
       initGA();
       window.GA_INITIALIZED = true;
     }
     logPageView();
   }
-
-  onResponsive = (size) => {
-    this.props.updateResponsive(size === 'narrow');
-  };
-
 
   render() {
     const {
@@ -49,15 +43,17 @@ class Page extends React.Component {
           <meta name='keywords' content={keywords.join(',')} />
         </Head>
         <Grommet theme={themes[theme] || {}} style={{ height: 'auto', minHeight: '100vh' }}>
-          <Responsive onChange={this.onResponsive}>
-            <Box style={{ height: 'auto', minHeight: '100vh' }}>
-              <Header title={pageTitle} />
-              <Box flex={true}>
-                {children}
+          <ResponsiveContext.Consumer >
+            {responsive => (
+              <Box style={{ height: 'auto', minHeight: '100vh' }}>
+                <Header title={pageTitle} responsive={responsive} />
+                <Box flex={true}>
+                  {children}
+                </Box>
+                <Footer />
               </Box>
-              <Footer />
-            </Box>
-          </Responsive>
+              )}
+          </ResponsiveContext.Consumer>
         </Grommet>
       </div>
     );
@@ -74,11 +70,10 @@ Page.defaultProps = {
 };
 
 const mapDispatchToProps = dispatch =>
-  bindActionCreators({ selectTheme, navActivate, updateResponsive }, dispatch);
+  bindActionCreators({ selectTheme }, dispatch);
 
 const mapStateToProps = state => ({
   themes: state.themes,
-  navMenu: state.nav,
 });
 
 

@@ -1,5 +1,5 @@
 import { Box, CheckBox } from 'grommet';
-import doc from 'grommet/components/CheckBox/doc';
+import { doc } from 'grommet/components/CheckBox/doc';
 
 import Doc from '../components/Doc';
 

@@ -41,7 +41,7 @@ export default class DocProperty extends React.Component {
           <Heading level={3} size='small'>
             <strong>{`${property.name}${property.required ? ' *' : ''}`}</strong>
           </Heading>
-          <Markdown>{`\`\`${property.description}\`\``}</Markdown>
+          <Markdown>{`\`\`\`${property.description}\`\`\``}</Markdown>
         </Box>
         <Box flex={true} align='start'>
           <Text><pre>{property.format}{defaultValue}</pre></Text>

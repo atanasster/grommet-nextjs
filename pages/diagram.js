@@ -1,5 +1,5 @@
 import { Box, Diagram, Stack } from 'grommet';
-import doc from 'grommet/components/Diagram/doc';
+import { doc } from 'grommet/components/Diagram/doc';
 
 import Doc from '../components/Doc';
 
@@ -8,7 +8,7 @@ const desc = doc(Diagram).toJSON();
 const Node = ({ id, ...rest }) => (
   <Box
     id={id}
-    basis='xxsmall'
+    basis='xsmall'
     margin='small'
     pad='medium'
     round='small'

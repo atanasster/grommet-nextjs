@@ -1,5 +1,5 @@
 import { Box, Heading, TextInput } from 'grommet';
-import doc from 'grommet/components/TextInput/doc';
+import { doc } from 'grommet/components/TextInput/doc';
 
 import Doc from '../components/Doc';
 
@@ -20,20 +20,20 @@ class TextInputDoc extends React.Component {
         desc={desc}
         examples={{
           placeholder: <TextInput placeholder='abc' />,
-          plain: <TextInput value='A' plain={true} />,
+          plain: <TextInput defaultValue='A' plain={true} />,
           size: (
             <Box>
               <Box margin={{ bottom: 'xsmall' }} align='end'>
-                <TextInput size='small' value='A' />
+                <TextInput size='small' defaultValue='A' />
               </Box>
               <Box margin={{ bottom: 'xsmall' }} align='end'>
-                <TextInput size='medium' value='B' />
+                <TextInput size='medium' defaultValue='B' />
               </Box>
               <Box margin={{ bottom: 'xsmall' }} align='end'>
-                <TextInput size='large' value='C' />
+                <TextInput size='large' defaultValue='C' />
               </Box>
               <Box margin={{ bottom: 'xsmall' }} align='end'>
-                <TextInput size='xlarge' value='D' />
+                <TextInput size='xlarge' defaultValue='D' />
               </Box>
             </Box>
           ),
@@ -51,10 +51,10 @@ class TextInputDoc extends React.Component {
               value={value}
             />
           ),
-          value: <TextInput value='A' />,
+          value: <TextInput defaultValue='A' />,
         }}
       >
-        <Box basis='large' pad={{ horizontal: 'large', bottom: 'xlarge' }}>
+        <Box basis='large' pad={{ horizontal: 'large', bottom: 'large' }}>
           <Heading level={2} margin={{ top: 'none' }}><strong>Examples</strong></Heading>
           <Box margin='small'>
             <TextInput placeholder='search' type='search' />

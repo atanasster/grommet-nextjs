@@ -1,11 +1,11 @@
 import React from 'react';
 import {
   Accordion,
+  AccordionPanel,
   Box,
   Text,
 } from 'grommet';
-import { AccordionPanel } from 'grommet/components/Accordion';
-import doc from 'grommet/components/Accordion/doc';
+import { doc } from 'grommet/components/Accordion/doc';
 
 import Doc from '../components/Doc';
 

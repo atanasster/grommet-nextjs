@@ -1,5 +1,5 @@
 import { Select } from 'grommet';
-import doc from 'grommet/components/Select/doc';
+import { doc } from 'grommet/components/Select/doc';
 
 import Doc from '../components/Doc';
 

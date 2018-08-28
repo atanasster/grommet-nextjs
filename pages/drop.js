@@ -1,5 +1,5 @@
 import { Drop } from 'grommet';
-import doc from 'grommet/components/Drop/doc';
+import { doc } from 'grommet/components/Drop/doc';
 
 import Doc from '../components/Doc';
 

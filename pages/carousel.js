@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { Box, Carousel, Image } from 'grommet';
-import doc from 'grommet/components/Carousel/doc';
+import { doc } from 'grommet/components/Carousel/doc';
 
 import Doc from '../components/Doc';
 

@@ -1,5 +1,5 @@
 import { Menu } from 'grommet';
-import doc from 'grommet/components/Menu/doc';
+import { doc } from 'grommet/components/Menu/doc';
 
 import { More } from 'grommet-icons';
 

@@ -7,7 +7,7 @@ export default ({
   <Box basis='medium' margin={{ right: 'medium', bottom: 'medium' }}>
     <RoutedAnchor path={path} >
       <Box>
-        <Heading level={3} size='small' margin={{ top: 'none', bottom: 'xsmall' }}>
+        <Heading level={3} size='small' margin={{ top: 'none', bottom: 'small' }}>
           <strong>{name}</strong>
         </Heading>
       </Box>

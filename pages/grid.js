@@ -1,5 +1,5 @@
 import { Box, Grid } from 'grommet';
-import doc from 'grommet/components/Grid/doc';
+import { doc } from 'grommet/components/Grid/doc';
 
 import Doc from '../components/Doc';
 
@@ -11,7 +11,7 @@ export default () => (
     desc={desc}
     example={(
       <Grid
-        rows={['xxsmall', 'flex']}
+        rows={['xsmall', 'flex']}
         columns={['xsmall', 'flex', 'small']}
         gap='small'
         areas={[

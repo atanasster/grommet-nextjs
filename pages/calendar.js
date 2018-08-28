@@ -1,5 +1,5 @@
 import { Box, Calendar } from 'grommet';
-import doc from 'grommet/components/Calendar/doc';
+import { doc } from 'grommet/components/Calendar/doc';
 
 import Doc from '../components/Doc';
 

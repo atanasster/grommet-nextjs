@@ -1,5 +1,5 @@
 import { Box, Button, DropButton, Text, TextInput } from 'grommet';
-import doc from 'grommet/components/DropButton/doc';
+import { doc } from 'grommet/components/DropButton/doc';
 
 import Doc from '../components/Doc';
 

@@ -1,5 +1,5 @@
 import { Box, Clock, Text } from 'grommet';
-import doc from 'grommet/components/Clock/doc';
+import { doc } from 'grommet/components/Clock/doc';
 
 import Doc from '../components/Doc';
 

@@ -1,5 +1,5 @@
 import { Box, Button } from 'grommet';
-import doc from 'grommet/components/Button/doc';
+import { doc } from 'grommet/components/Button/doc';
 
 import { Close, Edit } from 'grommet-icons';
 

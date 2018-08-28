@@ -1,5 +1,5 @@
 import { RangeInput } from 'grommet';
-import doc from 'grommet/components/RangeInput/doc';
+import { doc } from 'grommet/components/RangeInput/doc';
 
 import Doc from '../components/Doc';
 
