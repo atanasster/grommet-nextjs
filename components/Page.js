@@ -30,7 +30,7 @@ class Page extends React.Component {
       keywords.push(pageTitle);
     }
     return (
-      <div>
+      <React.Fragment>
         <Head>
           {pageTitle && (
             <title>{`Grommet - ${pageTitle}`}</title>
@@ -55,7 +55,7 @@ class Page extends React.Component {
               )}
           </ResponsiveContext.Consumer>
         </Grommet>
-      </div>
+      </React.Fragment>
     );
   }
 }
