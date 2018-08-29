@@ -117,12 +117,12 @@ export default class Preview extends React.Component {
               <Button icon={<Edit />} label='Disabled' />
             </Box>
             <Box gap='small' margin={{ horizontal: 'medium' }}>
-              <CheckBox checked={true} label='Checked' disabled={false} />
-              <CheckBox checked={false} label='Unchecked' disabled={false} />
-              <CheckBox checked={true} label='Disabled' disabled={true} />
+              <CheckBox checked={true} label='Checked' disabled={false} onChange={() => {}} />
+              <CheckBox checked={false} label='Unchecked' disabled={false} onChange={() => {}} />
+              <CheckBox checked={true} label='Disabled' disabled={true} onChange={() => {}} />
               <RadioButton name='radio' label='Radio 1' />
               <RadioButton name='radio' label='Radio 2' />
-              <RadioButton checked={true} label='Disabled' disabled={true} />
+              <RadioButton name='radio2' checked={true} label='Disabled' disabled={true} />
               <CheckBox label='Toggle' toggle={true} checked={true} onChange={() => {}} />
 
             </Box>
