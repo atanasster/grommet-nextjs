@@ -5,14 +5,14 @@
   "plugins": [
     ["styled-components", { "ssr": true, "displayName": true, "preprocess": false }],
     ["transform-imports", {
-      "grommet-controls": {"transform": "grommet-controls/components/${member}", "preventFullImport": true, "skipDefaultConversion": true },
+      "grommet-controls": {"transform": "grommet-controls/es6/components/${member}", "preventFullImport": true, "skipDefaultConversion": true },
       "grommet": {
-        "transform": "grommet/components/${member}",
+        "transform": "grommet/es6/components/${member}",
         "preventFullImport": true,
         "skipDefaultConversion": true
       },
-      "grommet-icons": {
-        "transform": "grommet-icons/icons/${member}",
+      "-grommet-icons": {
+        "transform": "grommet-icons/es6/icons/${member}",
         "preventFullImport": true,
         "skipDefaultConversion": true
       }
