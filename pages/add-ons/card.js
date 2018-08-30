@@ -2,14 +2,13 @@ import { Box, Heading, Text, Image, Paragraph, Button } from 'grommet';
 import { Bitcoin, Close, Edit, Add } from 'grommet-icons';
 import { Card, ImageStamp } from 'grommet-controls';
 import doc, { docCardActions, docCardTitle, docCardSubTitle, docCardContent } from 'grommet-controls/components/Card/doc';
-import { CardActions, CardTitle, CardSubTitle, CardContent } from 'grommet-controls/components/Card';
 import Doc from '../../components/Doc';
 
 const desc = doc(Card).toJSON();
-const descCardActions = docCardActions(CardActions).toJSON();
-const descCardTitle = docCardTitle(CardTitle).toJSON();
-const descCardSubTitle = docCardSubTitle(CardSubTitle).toJSON();
-const descCardContent = docCardContent(CardContent).toJSON();
+const descCardActions = docCardActions(Card.CardActions).toJSON();
+const descCardTitle = docCardTitle(Card.CardTitle).toJSON();
+const descCardSubTitle = docCardSubTitle(Card.CardSubTitle).toJSON();
+const descCardContent = docCardContent(Card.CardContent).toJSON();
 
 const actions = [
   {
@@ -52,20 +51,20 @@ export default class CardDoc extends React.Component {
                   </Paragraph>
                 )}
               >
-                <CardTitle border='bottom'>
+                <Card.CardTitle border='bottom'>
                   <ImageStamp round='full' src='//v2.grommet.io/assets/Wilderpeople_Ricky.jpg' />
                   <Heading level={3} margin='xsmall'>Info card</Heading>
-                </CardTitle>
-                <CardSubTitle>
+                </Card.CardTitle>
+                <Card.CardSubTitle>
                   <Bitcoin color='plain' />
                   <Text>sub-title info</Text>
-                </CardSubTitle>
-                <CardContent>
+                </Card.CardSubTitle>
+                <Card.CardContent>
                   <Image fit='cover' src='//v2.grommet.io/assets/Wilderpeople_Ricky.jpg' height='250' />
-                </CardContent>
-                <CardActions justify='center'>
+                </Card.CardContent>
+                <Card.CardActions justify='center'>
                   {actions.map((action, index) => (<Button key={`actions_${index}`} label={action.label} onClick={action.onClick} />))}
-                </CardActions>
+                </Card.CardActions>
 
               </Card>
             </Box>
@@ -73,47 +72,47 @@ export default class CardDoc extends React.Component {
           examples={{
             animation: (
               <Card animation={{ type: 'zoomIn', duration: 5000, size: 'xlarge' }} >
-                <CardTitle border='bottom'>
+                <Card.CardTitle border='bottom'>
                   Card
-                </CardTitle>
-                <CardSubTitle border='bottom' strong={false}>
+                </Card.CardTitle>
+                <Card.CardSubTitle border='bottom' strong={false}>
                   sub-title
-                </CardSubTitle>
-                <CardContent>
+                </Card.CardSubTitle>
+                <Card.CardContent>
                   <Image fit='cover' src='//v2.grommet.io/assets/Wilderpeople_Ricky.jpg' height='250' />
-                </CardContent>
+                </Card.CardContent>
               </Card>
             ),
             background: (
               <Card background='accent-1' size={{ width: 'medium', height: 'small' }} >
-                <CardTitle border='bottom'>
+                <Card.CardTitle border='bottom'>
                   Card
-                </CardTitle>
-                <CardSubTitle strong={false}>
+                </Card.CardTitle>
+                <Card.CardSubTitle strong={false}>
                   sub-title
-                </CardSubTitle>
+                </Card.CardSubTitle>
                 Some content
               </Card>
             ),
             border: (
               <Card border={{ color: 'brand', size: 'medium' }} size={{ width: 'medium', height: 'small' }}>
-                <CardTitle border='bottom'>
+                <Card.CardTitle border='bottom'>
                   Card
-                </CardTitle>
-                <CardSubTitle strong={false}>
+                </Card.CardTitle>
+                <Card.CardSubTitle strong={false}>
                   sub-title
-                </CardSubTitle>
+                </Card.CardSubTitle>
                 Card content
               </Card>
             ),
             elevation: (
               <Card elevation='large' size={{ width: 'medium', height: 'small' }}>
-                <CardTitle border='bottom'>
+                <Card.CardTitle border='bottom'>
                   Card
-                </CardTitle>
-                <CardSubTitle strong={false}>
+                </Card.CardTitle>
+                <Card.CardSubTitle strong={false}>
                   sub-title
-                </CardSubTitle>
+                </Card.CardSubTitle>
                 <Box>
                   Card content
                 </Box>
@@ -137,18 +136,18 @@ export default class CardDoc extends React.Component {
                   </Box>
                 )}
               >
-                <CardTitle border='bottom'>
+                <Card.CardTitle border='bottom'>
                   Card
-                </CardTitle>
-                <CardSubTitle strong={false}>
+                </Card.CardTitle>
+                <Card.CardSubTitle strong={false}>
                   sub-title
-                </CardSubTitle>
-                <CardContent>
+                </Card.CardSubTitle>
+                <Card.CardContent>
                   <Image fit='cover' src='//v2.grommet.io/assets/Wilderpeople_Ricky.jpg' height='250' />
-                </CardContent>
-                <CardActions>
+                </Card.CardContent>
+                <Card.CardActions>
                   <Button label='Flip' onClick={() => { this.setState({ flippedInitial: true }); }} />
-                </CardActions>
+                </Card.CardActions>
 
               </Card>
             ),
@@ -170,18 +169,18 @@ export default class CardDoc extends React.Component {
                   </Box>
                 )}
               >
-                <CardTitle border='bottom'>
+                <Card.CardTitle border='bottom'>
                   Card
-                </CardTitle>
-                <CardSubTitle strong={false}>
+                </Card.CardTitle>
+                <Card.CardSubTitle strong={false}>
                   sub-title
-                </CardSubTitle>
-                <CardContent>
+                </Card.CardSubTitle>
+                <Card.CardContent>
                   <Image fit='cover' src='//v2.grommet.io/assets/Wilderpeople_Ricky.jpg' height='250' />
-                </CardContent>
-                <CardActions>
+                </Card.CardContent>
+                <Card.CardActions>
                   <Button label='Flip' onClick={() => { this.setState({ flipped: true }); }} />
-                </CardActions>
+                </Card.CardActions>
 
               </Card>
             ),
@@ -197,25 +196,25 @@ export default class CardDoc extends React.Component {
                   </Paragraph>
                 )}
               >
-                <CardTitle border='bottom'>
+                <Card.CardTitle border='bottom'>
                   Card
-                </CardTitle>
-                <CardSubTitle>
+                </Card.CardTitle>
+                <Card.CardSubTitle>
                   sub-title
-                </CardSubTitle>
-                <CardContent>
+                </Card.CardSubTitle>
+                <Card.CardContent>
                   <Image fit='cover' src='//v2.grommet.io/assets/Wilderpeople_Ricky.jpg' height='250' />
-                </CardContent>
+                </Card.CardContent>
               </Card>
             ),
             gap: (
               <Card gap='medium' size={{ width: 'medium', height: 'small' }}>
-                <CardTitle border='bottom'>
+                <Card.CardTitle border='bottom'>
                   Card
-                </CardTitle>
-                <CardSubTitle>
+                </Card.CardTitle>
+                <Card.CardSubTitle>
                   sub-title
-                </CardSubTitle>
+                </Card.CardSubTitle>
                 Some content
               </Card>
             ),
@@ -238,59 +237,59 @@ export default class CardDoc extends React.Component {
                   </Box>
                 )}
               >
-                <CardTitle border='bottom'>
+                <Card.CardTitle border='bottom'>
                   Card
-                </CardTitle>
-                <CardSubTitle strong={false}>
+                </Card.CardTitle>
+                <Card.CardSubTitle strong={false}>
                   sub-title
-                </CardSubTitle>
-                <CardContent>
+                </Card.CardSubTitle>
+                <Card.CardContent>
                   <Image fit='cover' src='//v2.grommet.io/assets/Wilderpeople_Ricky.jpg' height='250' />
-                </CardContent>
-                <CardActions>
+                </Card.CardContent>
+                <Card.CardActions>
                   <Button label='Flip' onClick={() => { this.setState({ flippedOnFlip: true }); }} />
-                </CardActions>
+                </Card.CardActions>
 
               </Card>
             ),
             pad: (
               <Card pad='medium' size={{ width: 'medium', height: 'small' }}>
-                <CardTitle border='bottom'>
+                <Card.CardTitle border='bottom'>
                   Card
-                </CardTitle>
-                <CardSubTitle>
+                </Card.CardTitle>
+                <Card.CardSubTitle>
                   sub-title
-                </CardSubTitle>
-                <CardContent>
+                </Card.CardSubTitle>
+                <Card.CardContent>
                   Card content
-                </CardContent>
+                </Card.CardContent>
               </Card>
             ),
             round: (
               <Card round='medium' size={{ width: 'medium', height: 'small' }}>
-                <CardTitle border='bottom'>
+                <Card.CardTitle border='bottom'>
                   Card
-                </CardTitle>
-                <CardSubTitle>
+                </Card.CardTitle>
+                <Card.CardSubTitle>
                   sub-title
-                </CardSubTitle>
-                <CardContent>
+                </Card.CardSubTitle>
+                <Card.CardContent>
                   Card content
-                </CardContent>
+                </Card.CardContent>
               </Card>
             ),
 
             size: (
               <Card size={{ height: 'medium', width: 'medium' }}>
-                <CardTitle border='bottom'>
+                <Card.CardTitle border='bottom'>
                   Card
-                </CardTitle>
-                <CardSubTitle strong={false}>
+                </Card.CardTitle>
+                <Card.CardSubTitle strong={false}>
                   sub-title
-                </CardSubTitle>
-                <CardContent>
+                </Card.CardSubTitle>
+                <Card.CardContent>
                   <Image src='//v2.grommet.io/assets/Wilderpeople_Ricky.jpg' height='250' />
-                </CardContent>
+                </Card.CardContent>
               </Card>
             ),
           }}
@@ -306,9 +305,9 @@ export default class CardDoc extends React.Component {
                 <Box pad='small'>
                   <Image fit='cover' src='//v2.grommet.io/assets/Wilderpeople_Ricky.jpg' height='250' />
                 </Box>
-                <CardTitle>
+                <Card.CardTitle>
                   Card
-                </CardTitle>
+                </Card.CardTitle>
               </Card>
             ),
           }}
@@ -321,12 +320,12 @@ export default class CardDoc extends React.Component {
           examples={{
             children: (
               <Card>
-                <CardContent pad='small'>
+                <Card.CardContent pad='small'>
                   <Image fit='cover' src='//v2.grommet.io/assets/Wilderpeople_Ricky.jpg' height='250' />
-                </CardContent>
-                <CardSubTitle color='brand'>
+                </Card.CardContent>
+                <Card.CardSubTitle color='brand'>
                   sub title
-                </CardSubTitle>
+                </Card.CardSubTitle>
               </Card>
             ),
           }}
@@ -339,12 +338,12 @@ export default class CardDoc extends React.Component {
           examples={{
             children: (
               <Card>
-                <CardContent pad='small'>
+                <Card.CardContent pad='small'>
                   <Image fit='cover' src='//v2.grommet.io/assets/Wilderpeople_Ricky.jpg' height='250' />
-                </CardContent>
-                <CardTitle>
+                </Card.CardContent>
+                <Card.CardTitle>
                   Card
-                </CardTitle>
+                </Card.CardTitle>
               </Card>
             ),
           }}
@@ -356,15 +355,15 @@ export default class CardDoc extends React.Component {
           examples={{
             children: (
               <Card>
-                <CardContent pad='small'>
+                <Card.CardContent pad='small'>
                   <Image fit='cover' src='//v2.grommet.io/assets/Wilderpeople_Ricky.jpg' height='250' />
-                </CardContent>
-                <CardTitle>
+                </Card.CardContent>
+                <Card.CardTitle>
                   Card
-                </CardTitle>
-                <CardActions justify='center'>
+                </Card.CardTitle>
+                <Card.CardActions justify='center'>
                   {actions.map((action, index) => (<Button key={`actions_${index}`} label={action.label} onClick={action.onClick} />))}
-                </CardActions>
+                </Card.CardActions>
 
               </Card>
             ),

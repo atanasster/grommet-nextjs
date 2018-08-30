@@ -1,8 +1,6 @@
 import { Box } from 'grommet';
-import { ColorInput } from 'grommet-controls';
-import materialUIPalette from 'grommet-controls/components/Colors/palettes/materialColors';
+import { ColorInput, materialColors, uiColors } from 'grommet-controls';
 import doc from 'grommet-controls/components/ColorInput/doc';
-import uiColorPalette from 'grommet-controls/components/Colors/palettes/uiColors';
 import Doc from '../../components/Doc';
 
 const desc = doc(ColorInput).toJSON();
@@ -19,7 +17,7 @@ export default class ColorInputDoc extends React.Component {
           <Box direction='row'>
             <Box basis='medium'>
               <ColorInput
-                colors={materialUIPalette}
+                colors={materialColors}
                 value={color}
                 onChange={({ target: { value } }) => this.setState({ color: value })}
               />
@@ -33,7 +31,7 @@ export default class ColorInputDoc extends React.Component {
                columns={9}
                wrap={true}
                onChange={({ target: { value } }) => this.setState({ color: value })}
-               colors={uiColorPalette}
+               colors={uiColors}
              />
            ),
         }}

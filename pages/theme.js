@@ -8,8 +8,7 @@ import {
 } from 'grommet';
 import { withTheme } from 'grommet/components/hocs';
 import { deepMerge } from 'grommet/utils/object';
-import { ColorInput } from 'grommet-controls';
-import materialUIPalette from 'grommet-controls/components//Colors/palettes/materialColors';
+import { ColorInput, materialColors } from 'grommet-controls';
 import Page from '../components/Page';
 import createTheme, { MOODS, SCHEMES, SHARPNESSES, themeFromFont } from '../utils/theme';
 import { updateTheme } from '../redux/themes/actions';
@@ -266,7 +265,7 @@ class Theme extends React.Component {
              >
                <ColorInput
                  plain={true}
-                 colors={materialUIPalette}
+                 colors={materialColors}
                  value={color}
                  onChange={this.onChangeColor}
                />
@@ -278,7 +277,7 @@ class Theme extends React.Component {
              >
                <ColorInput
                  plain={true}
-                 colors={materialUIPalette}
+                 colors={materialColors}
                  value={background}
                  onChange={this.onChangeBackground}
                />

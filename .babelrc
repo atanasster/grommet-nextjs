@@ -12,7 +12,7 @@
       },
       "grommet-controls/themes": {
         "transform": "grommet-controls/es6/themes/${member}",
-        "preventFullImport": true,
+        "preventFullImport": true
       },
       "grommet": {
         "transform": "grommet/es6/components/${member}",

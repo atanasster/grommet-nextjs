@@ -2,14 +2,9 @@ import { Box, Heading, Paragraph, Chart, Image, Anchor } from 'grommet';
 import {
   Tags, Tag, Notification, DropInput, MaskedInput,
   DateInput, NumberInput, PasswordInput, EmailInput, ColorInput, Colors,
-  Spinning, Form, ImageStamp, PagingTable, Card, Value,
+  Spinning, Form, ImageStamp, PagingTable, Card, Value, TextInputField, validators,
+  materialColors,
 } from 'grommet-controls';
-import { CardTitle, CardContent } from 'grommet-controls/components/Card';
-import { placeholderChars } from 'grommet-controls/components/MaskedInput';
-import { TextInputField } from 'grommet-controls/components/Form/Fields';
-import { validators } from 'grommet-controls/components/Form/validators';
-
-import materialUIPalette from 'grommet-controls/components/Colors/palettes/materialColors';
 import Page from '../../components/Page';
 import Section from '../../components/Section';
 import Item from '../../components/Item';
@@ -97,12 +92,12 @@ export default class AddOns extends React.Component {
                   </Paragraph>
                 )}
               >
-                <CardTitle border='bottom'>
+                <Card.CardTitle border='bottom'>
                   Card
-                </CardTitle>
-                <CardContent>
+                </Card.CardTitle>
+                <Card.CardContent>
                   <Image fit='contain' src='//v2.grommet.io/assets/Wilderpeople_Ricky.jpg' height='120' />
-                </CardContent>
+                </Card.CardContent>
               </Card>
             </Item>
 
@@ -127,7 +122,7 @@ export default class AddOns extends React.Component {
               <Colors
                 size='small'
                 onSelect={({ color }) => { alert(color); }}
-                colors={materialUIPalette}
+                colors={materialColors}
               />
             </Item>
             <Item name='Spinning' path='/add-ons/spinning' center={true}>
@@ -171,7 +166,7 @@ export default class AddOns extends React.Component {
             </Item>
             <Item name='MaskedInput' path='/add-ons/maskedinput' center={true}>
               <MaskedInput
-                placeholderChar={placeholderChars.underscore}
+                placeholderChar='_'
                 mask={['(', /[1-9]/, /\d/, /\d/, ')', ' ', /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/]}
                 placeholder='US Phone'
                 value={phone}
@@ -206,7 +201,7 @@ export default class AddOns extends React.Component {
             </Item>
             <Item name='ColorInput' path='/add-ons/colorinput' center={true}>
               <ColorInput
-                colors={materialUIPalette}
+                colors={materialColors}
                 defaultValue='#ff00aa'
               />
             </Item>
