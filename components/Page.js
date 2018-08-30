@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import { bindActionCreators } from 'redux';
 import Head from 'next/head';
 import { Grommet, Box } from 'grommet';
-import { ResponsiveContext } from 'grommet/contexts/ResponsiveContext';
+import { ResponsiveContext } from 'grommet/contexts';
 import Header from './Header';
 import Footer from './Footer';
 import connect from '../redux';

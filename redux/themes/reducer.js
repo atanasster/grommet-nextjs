@@ -4,8 +4,7 @@ import { rgba } from 'polished';
 import { css } from 'styled-components';
 import { black, materiallight, materialdark, metro } from 'grommet-controls/themes';
 import { colorsFromArray } from 'grommet-controls/themes/utils';
-import { dark } from 'grommet/themes/dark';
-import { grommet } from 'grommet/themes/grommet';
+import { grommet, dark } from 'grommet/themes';
 import * as ActionTypes from './constants';
 
 

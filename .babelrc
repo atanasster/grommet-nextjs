@@ -25,12 +25,12 @@
         "preventFullImport": true,
         "skipDefaultConversion": true
       },
-      "grommet-icons": {
+      "-grommet-icons": {
          "transform": "grommet-icons/es6/icons/${member}",
          "preventFullImport": true,
          "skipDefaultConversion": true
       },
-      "grommet-icons/contexts": {
+      "-grommet-icons/contexts": {
         "transform": "grommet-icons/es6/contexts/${member}",
         "preventFullImport": true,
         "skipDefaultConversion": true

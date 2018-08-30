@@ -1,5 +1,5 @@
 import { Box, Text } from 'grommet';
-import { ThemeContext } from 'grommet/contexts/ThemeContext';
+import { ThemeContext } from 'grommet/contexts';
 import { colorForName } from 'grommet/utils/colors';
 
 const colorList = (theme, prefix) =>
