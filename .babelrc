@@ -5,17 +5,36 @@
   "plugins": [
     ["styled-components", { "ssr": true, "displayName": true, "preprocess": false }],
     ["transform-imports", {
-      "grommet-controls": {"transform": "grommet-controls/es6/components/${member}", "preventFullImport": true, "skipDefaultConversion": true },
+      "grommet-controls": {
+        "transform": "grommet-controls/es6/components/${member}",
+        "preventFullImport": true,
+        "skipDefaultConversion": true
+      },
       "grommet": {
         "transform": "grommet/es6/components/${member}",
         "preventFullImport": true,
         "skipDefaultConversion": true
       },
-      "-grommet-icons": {
-        "transform": "grommet-icons/es6/icons/${member}",
+      "grommet/contexts": {
+        "transform": "grommet/es6/contexts/${member}",
         "preventFullImport": true,
         "skipDefaultConversion": true
-      }
+      },
+      "grommet/themes": {
+        "transform": "grommet/es6/themes/${member}",
+        "preventFullImport": true,
+        "skipDefaultConversion": true
+      },
+      "grommet-icons": {
+         "transform": "grommet-icons/es6/icons/${member}",
+         "preventFullImport": true,
+         "skipDefaultConversion": true
+      },
+      "grommet-icons/contexts": {
+        "transform": "grommet-icons/es6/contexts/${member}",
+        "preventFullImport": true,
+        "skipDefaultConversion": true
+     }
     }]
   ],
   "env": {
