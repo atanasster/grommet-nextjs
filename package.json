@@ -29,7 +29,7 @@
     "dotenv": "^5.0.1",
     "dotenv-webpack": "^1.5.5",
     "grommet": "https://github.com/grommet/grommet/tarball/NEXT-stable",
-    "grommet-controls": "^0.41.6",
+    "grommet-controls": "^0.45.0",
     "grommet-icons": "^3.0.0",
     "isomorphic-unfetch": "^2.0.0",
     "next": "^6.1.1",
