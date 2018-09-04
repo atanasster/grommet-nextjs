@@ -3,11 +3,13 @@ import {
   Tags, Tag, Notification, DropInput, MaskedInput,
   DateInput, NumberInput, PasswordInput, EmailInput, ColorInput, Colors,
   Spinning, Form, ImageStamp, PagingTable, Card, Value, TextInputField, validators,
-  materialColors,
+  materialColors, BarChart, HorizontalBarChart, LineChart, DoughnutChart, PieChart,
+  PolarChart, RadarChart, ScatterChart,
 } from 'grommet-controls';
 import Page from '../../components/Page';
 import Section from '../../components/Section';
 import Item from '../../components/Item';
+import { rndDatasets, rndDatasets2d } from '../../utils/data';
 
 const CHART_VALUES = [
   { value: [7, 90], label: 'ninety' },
@@ -139,7 +141,7 @@ export default class AddOns extends React.Component {
               <Value value='30%' label='sales last quarter' color='status-ok' />
             </Item>
           </Section>
-          <Section align='stretch' name='Controls' index={0}>
+          <Section align='stretch' name='Controls' index={2}>
             <Item name='Tags' path='/add-ons/tags' center={true}>
               <Tags
                 value={selected}
@@ -206,11 +208,84 @@ export default class AddOns extends React.Component {
               />
             </Item>
           </Section>
-          <Section align='stretch' name='Form' index={2}>
+          <Section align='stretch' name='Form' index={3}>
             <Item name='Form' path='/add-ons/form' center={true}>
               <Form focusFirstChild={false} onSubmit={values => alert(JSON.stringify(values))}>
                 <TextInputField label='Text' name='text' validation={[validators.required(), validators.minLength(8)]} />
               </Form>
+            </Item>
+          </Section>
+          <Section align='stretch' name='Charts' index={4}>
+            <Item name='BarChart' path='/add-ons/barchart' center={true}>
+              <BarChart
+                data={rndDatasets(2, { borderWidth: 1 })}
+              />
+            </Item>
+            <Item name='HorizontalBarChart' path='/add-ons/horizontalbarchart' center={true}>
+              <HorizontalBarChart
+                data={rndDatasets(2, { borderWidth: 1 })}
+              />
+            </Item>
+            <Item name='LineChart' path='/add-ons/linechart' center={true}>
+              <LineChart
+                data={rndDatasets(2, { fill: false })}
+              />
+            </Item>
+            <Item name='DoughnutChart' path='/add-ons/doughnutchart' center={true}>
+              <DoughnutChart
+                data={rndDatasets(1)}
+                options={{
+                  legend: {
+                    display: false,
+                  },
+                  themedData: true,
+                }}
+              />
+            </Item>
+            <Item name='PieChart' path='/add-ons/piechart' center={true}>
+              <PieChart
+                data={rndDatasets(1)}
+                options={{
+                  legend: {
+                    display: false,
+                  },
+                  themedData: true,
+                }}
+              />
+            </Item>
+            <Item name='PolarChart' path='/add-ons/polarchart' center={true}>
+              <PolarChart
+                data={rndDatasets(1, { opacity: 0.2 }, true)}
+                options={{
+                  themedData: true,
+                  legend: {
+                    position: 'right',
+                  },
+                  scale: {
+                    ticks: {
+                      beginAtZero: true,
+                    },
+                    reverse: false,
+                  },
+                }}
+              />
+            </Item>
+            <Item name='RadarChart' path='/add-ons/radarchart' center={true}>
+              <RadarChart
+                data={rndDatasets(2, { opacity: 0.2 }, true)}
+                options={{
+                  scale: {
+                    ticks: {
+                      beginAtZero: true,
+                    },
+                  },
+                }}
+              />
+            </Item>
+            <Item name='ScatterChart' path='/add-ons/scatterchart' center={true}>
+              <ScatterChart
+                data={rndDatasets2d()}
+              />
             </Item>
           </Section>
         </Box>

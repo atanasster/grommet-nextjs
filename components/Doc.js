@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import { Box, Button, Heading, Paragraph, Text, Markdown } from 'grommet';
+import { Box, Button, Heading, Paragraph, Markdown } from 'grommet';
 import Page from './Page';
 import DocProperty from './DocProperty';
 
@@ -55,16 +55,17 @@ export default class Doc extends React.Component {
                 <Markdown>{`\`\`\`${desc.usage}\`\`\``}</Markdown>
               </Box>
             )}
-            <Box pad='large' round='large' background='light-1'>
-              {desc.properties ? desc.properties.map(property => (
-                <DocProperty
-                  key={property.name}
-                  property={property}
-                  examples={examples[property.name]}
-                />
-              )) :
-              <Text color='light-5'>No properties</Text>}
-            </Box>
+            {desc.properties && (
+              <Box pad='large' round='large' background='light-1'>
+                {desc.properties.map(property => (
+                  <DocProperty
+                    key={property.name}
+                    property={property}
+                    examples={examples[property.name]}
+                  />
+                    ))}
+              </Box>
+            )}
           </Box>
         ) : null}
         {children}
