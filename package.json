@@ -2,8 +2,8 @@
   "name": "grommet-nextjs",
   "version": "1.10.5",
   "engines": {
-    "node": ">=7.6.0",
-    "npm": ">=4"
+    "node": ">=10.0",
+    "npm": ">=6.0.1"
   },
   "keywords": [
     "grommet",
@@ -11,14 +11,14 @@
     "react"
   ],
   "scripts": {
-    "dev": "next dev -p 8444",
-    "alias": "NODE_ENV=alias next dev -p 8444",
+    "dev": "PORT=8444 node --experimental-modules server/server.mjs ",
+    "alias": "NODE_ENV=alias PORT=8444 node --experimental-modules server/server.mjs ",
     "build": "NODE_ENV=production next build",
     "check": "./node_modules/.bin/eslint .",
     "heroku-postbuild": "npm run build",
     "analyze": "ANALYZE_BUILD=true npm run build",
-    "start": "NODE_ENV=production next start -p ${PORT}",
-    "start-server": "NODE_ENV=production next start -p 8444"
+    "start": "NODE_ENV=production node --experimental-modules server/server.mjs",
+    "start-server": "NODE_ENV=production PORT=8444 node --experimental-modules server/server.mjs"
   },
   "dependencies": {
     "babel-plugin-module-resolver": "^3.1.0",
@@ -27,12 +27,16 @@
     "chart.js": "^2.7.2",
     "color": "^3.0.0",
     "color-scheme": "^1.0.0",
+    "compression": "^1.7.3",
     "dotenv": "^5.0.1",
     "dotenv-webpack": "^1.5.5",
+    "express": "^4.16.3",
+    "fs": "0.0.1-security",
     "grommet": "https://github.com/grommet/grommet/tarball/NEXT-stable",
     "grommet-controls": "^0.45.4",
     "grommet-icons": "^3.0.0",
     "isomorphic-unfetch": "^2.0.0",
+    "memory-cache": "^0.2.0",
     "next": "^6.1.1",
     "next-plugin-transpile-modules": "^0.1.1",
     "npm": "^5.7.1",
