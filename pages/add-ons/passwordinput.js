@@ -1,3 +1,4 @@
+import React from 'react';
 import { Box } from 'grommet';
 import { Lock, Unlock } from 'grommet-icons';
 import { PasswordInput } from 'grommet-controls';

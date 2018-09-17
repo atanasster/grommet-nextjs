@@ -1,3 +1,4 @@
+import React from 'react';
 import { Box } from 'grommet';
 import { Grommet, CircleQuestion } from 'grommet-icons';
 import { Notification } from 'grommet-controls';

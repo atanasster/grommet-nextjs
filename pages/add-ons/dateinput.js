@@ -1,3 +1,4 @@
+import React from 'react';
 import { Box } from 'grommet';
 import { DateInput } from 'grommet-controls';
 import doc from 'grommet-controls/components/DateInput/doc';

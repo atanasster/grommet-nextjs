@@ -1,3 +1,4 @@
+import React from 'react';
 import { Box, Text, Image, CheckBox, Select } from 'grommet';
 import { Add, Subtract } from 'grommet-icons';
 import { PagingTable } from 'grommet-controls';

@@ -1,3 +1,4 @@
+import React from 'react';
 import { Box, Heading, Text, Image, Paragraph, Button } from 'grommet';
 import { Bitcoin, Close, Edit, Add } from 'grommet-icons';
 import { Card, ImageStamp } from 'grommet-controls';

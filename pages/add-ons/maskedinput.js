@@ -1,3 +1,4 @@
+import React from 'react';
 import { Box, Calendar } from 'grommet';
 import { Calendar as CalendarIcon, Add, Subtract } from 'grommet-icons';
 import { MaskedInput } from 'grommet-controls';

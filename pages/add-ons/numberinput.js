@@ -1,3 +1,4 @@
+import React from 'react';
 import { Box } from 'grommet';
 import { AddCircle, SubtractCircle } from 'grommet-icons';
 import { NumberInput } from 'grommet-controls';

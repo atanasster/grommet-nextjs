@@ -2,8 +2,7 @@
 import { deepFreeze } from 'grommet/utils/object';
 import { rgba } from 'polished';
 import { css } from 'styled-components';
-import { colorsFromArray, black, materiallight, materialdark, metro } from 'grommet-controls/themes';
-import { grommet, dark } from 'grommet/themes';
+import { colorsFromArray, black, materiallight, materialdark, metro, grommet, dark } from 'grommet-controls/themes';
 import * as ActionTypes from './constants';
 
 

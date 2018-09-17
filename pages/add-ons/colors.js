@@ -1,3 +1,4 @@
+import React from 'react';
 import { Box } from 'grommet';
 import { Colors, materialColors, uiColors, basicColors } from 'grommet-controls';
 import doc from 'grommet-controls/components/Colors/doc';

@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { Box } from 'grommet';
 import { Spinning } from 'grommet-controls';
 import doc from 'grommet-controls/components/Spinning/doc';
@@ -6,7 +6,7 @@ import Doc from '../../components/Doc';
 
 const desc = doc(Spinning).toJSON();
 
-export default class SpinningDoc extends Component {
+export default class SpinningDoc extends React.Component {
   render() {
     return (
       <Doc

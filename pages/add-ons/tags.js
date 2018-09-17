@@ -1,3 +1,4 @@
+import React from 'react';
 import { Box, Button } from 'grommet';
 import { FormSubtract, Trash } from 'grommet-icons';
 import { Tags } from 'grommet-controls';

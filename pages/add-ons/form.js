@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { Box, Button, Text } from 'grommet';
 import { Form, TextInputField, PasswordInputField, SelectField, CheckBoxField, NumberInputField, validators } from 'grommet-controls';
 import doc from 'grommet-controls/components/Form/doc';
@@ -6,7 +6,7 @@ import Doc from '../../components/Doc';
 
 const desc = doc(Form).toJSON();
 
-export default class FormDoc extends Component {
+export default class FormDoc extends React.Component {
   state = {
     changedValue: '',
     invalid: false,
