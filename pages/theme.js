@@ -7,7 +7,7 @@ import {
   TextInput, DropButton, FormField,
 } from 'grommet';
 import { withTheme } from 'grommet/components/hocs';
-import { deepMerge } from 'grommet/utils/object';
+import { deepMerge } from 'grommet/utils';
 import { ColorInput, materialColors } from 'grommet-controls';
 import Page from '../components/Page';
 import createTheme, { MOODS, SCHEMES, SHARPNESSES, themeFromFont } from '../utils/theme';

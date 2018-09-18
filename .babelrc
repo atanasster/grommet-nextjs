@@ -34,6 +34,11 @@
         "preventFullImport": true,
         "skipDefaultConversion": true
       },
+      "grommet/utils": {
+        "transform": "grommet/es6/utils",
+        "preventFullImport": true,
+        "skipDefaultConversion": true
+      },
       "grommet-icons/contexts": {
         "transform": "grommet-icons/es6/contexts/${member}",
         "preventFullImport": true,

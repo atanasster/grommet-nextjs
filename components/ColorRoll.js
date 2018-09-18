@@ -1,6 +1,6 @@
 import { Box, Text } from 'grommet';
 import { ThemeContext } from 'grommet/contexts';
-import { colorForName } from 'grommet/utils/colors';
+import { colorForName } from 'grommet/utils';
 
 const colorList = (theme, prefix) =>
   Object.keys(theme.global.colors).filter(c => c.startsWith(prefix));

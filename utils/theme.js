@@ -1,7 +1,6 @@
 import Color from 'color';
 import ColorScheme from 'color-scheme';
-import { colorIsDark } from 'grommet/utils/colors';
-import { deepMerge } from 'grommet/utils/object';
+import { deepMerge, colorIsDark } from 'grommet/utils';
 
 export const SHARPNESSES = [
   'rounded',

@@ -1,5 +1,5 @@
 // eslint-disable-next-line camelcase
-import { deepFreeze } from 'grommet/utils/object';
+import { deepFreeze } from 'grommet/utils';
 import { rgba } from 'polished';
 import { css } from 'styled-components';
 import { colorsFromArray, black, materiallight, materialdark, metro, grommet, dark } from 'grommet-controls/themes';
