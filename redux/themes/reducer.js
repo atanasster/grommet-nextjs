@@ -2,7 +2,7 @@
 import { deepFreeze } from 'grommet/utils';
 import { rgba } from 'polished';
 import { css } from 'styled-components';
-import { colorsFromArray, black, materiallight, materialdark, metro, grommet, dark } from 'grommet-controls/themes';
+import { colorsFromArray, black, materiallight, materialdark, metro, grommet, dark, light } from 'grommet-controls/themes';
 import * as ActionTypes from './constants';
 
 
@@ -135,6 +135,7 @@ const custom = deepFreeze({
 });
 const initialState = {
   themes: {
+    light,
     grommet,
     dark,
     black,
