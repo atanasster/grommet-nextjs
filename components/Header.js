@@ -115,6 +115,7 @@ class Header extends React.Component {
         background='brand'
         pad='medium'
         animation='fadeIn'
+        border='bottom'
       >
         <Box direction='row' align='center'gap='small' >
           {isNarrow && (
