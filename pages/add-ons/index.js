@@ -86,13 +86,6 @@ export default class AddOns extends React.Component {
             <Item name='Card' path='/add-ons/card' center={true}>
               <Card
                 size={{ width: 'medium', height: 'small' }}
-                backContent={(
-                  <Paragraph>
-  Lorem ipsum dolor sit amet, ad usu cetero interesset. Ut vix quidam verterem, ex ius lorem dicta
-  error, ne meis referrentur vim. Eos purto noluisse adipisci te, verear feugait ad has, usu at
-  tollit ponderum disputando. Ei sed diceret interesset, eu convenire omittantur cum. Est no
-                  </Paragraph>
-                )}
               >
                 <Card.CardTitle border='bottom'>
                   Card

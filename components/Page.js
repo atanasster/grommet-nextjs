@@ -23,7 +23,7 @@ class Page extends React.Component {
 
   render() {
     const {
-      children, title: pageTitle, description, themes: { themes, selected: theme },
+      children, title: pageTitle, description, nav, footer, themes: { themes, selected: theme },
     } = this.props;
     const keywords = ['grommet', 'grommet 2', 'react', 'next-js', 'next.js', 'ui library'];
     if (pageTitle) {
@@ -46,11 +46,11 @@ class Page extends React.Component {
           <ResponsiveContext.Consumer >
             {size => (
               <Box style={{ height: 'auto', minHeight: '100vh' }}>
-                <Header title={pageTitle} size={size} />
+                {nav && <Header title={pageTitle} size={size} />}
                 <Box flex={true}>
                   {children}
                 </Box>
-                <Footer />
+                {footer && <Footer /> }
               </Box>
               )}
           </ResponsiveContext.Consumer>
@@ -63,10 +63,14 @@ class Page extends React.Component {
 Page.propTypes = {
   title: PropTypes.string.isRequired,
   description: PropTypes.string,
+  nav: PropTypes.bool,
+  footer: PropTypes.bool,
 };
 
 Page.defaultProps = {
   description: undefined,
+  nav: true,
+  footer: true,
 };
 
 const mapDispatchToProps = dispatch =>
