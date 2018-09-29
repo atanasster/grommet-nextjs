@@ -15,7 +15,7 @@ export default ({
     <Box>
       <Box
         basis='small'
-        border={{ color: 'active', size: 'medium' }}
+        border={{ color: 'focus', size: 'medium' }}
         justify={center ? 'center' : undefined}
         align={center ? 'center' : undefined}
         pad={center ? 'medium' : undefined}
