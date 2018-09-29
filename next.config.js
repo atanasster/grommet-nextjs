@@ -1,7 +1,12 @@
+/* eslint-disable no-param-reassign */
 const { IgnorePlugin } = require('webpack');
 const Dotenv = require('dotenv-webpack');
 const path = require('path');
 const withTM = require('next-plugin-transpile-modules');
+
+const dedupeDependencies = (dependencies, alias) => (
+  dependencies.reduce((res, dependecy) => ({ ...res, [dependecy]: path.resolve(`./node_modules/${dependecy}`) }), alias)
+);
 
 const initExport = {
   // eslint-disable-next-line no-unused-vars
@@ -21,14 +26,9 @@ const initExport = {
       );
     }
     if (process.env.NODE_ENV === 'alias') {
-      config.module.rules.push({
-        loader: 'babel-loader',
-        test: /\.js(\?[^?]*)?$/,
-        include: [path.resolve(__dirname, '../grommet-controls/src/js')],
-        options: {
-          presets: ['next/babel'],
-        },
-      });
+      config.resolve.alias = dedupeDependencies(
+        ['styled-components', 'grommet', 'grommet-icons'], config.resolve.alias
+      );
     }
     return config;
   },

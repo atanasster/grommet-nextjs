@@ -1,10 +1,10 @@
-import { Box, Heading, Paragraph, Chart, Image, Anchor } from 'grommet';
+import { Box, Heading, Paragraph, Chart, Image, Anchor, Text } from 'grommet';
 import {
   Tags, Tag, Notification, DropInput, MaskedInput,
   DateInput, NumberInput, PasswordInput, EmailInput, ColorInput, Colors,
   Spinning, Form, ImageStamp, PagingTable, Card, Value, TextInputField, validators,
   materialColors, BarChart, HorizontalBarChart, LineChart, DoughnutChart, PieChart,
-  PolarChart, RadarChart, ScatterChart,
+  PolarChart, RadarChart, ScatterChart, Sidebar,
 } from 'grommet-controls';
 import Page from '../../components/Page';
 import Section from '../../components/Section';
@@ -82,10 +82,22 @@ export default class AddOns extends React.Component {
                 ]}
               />
             </Item>
-
+            <Item name='Sidebar' path='/add-ons/sidebar'>
+              <Box pad='small'>
+                <Sidebar
+                  title='My title'
+                  border={{ size: 'small' }}
+                  width='small'
+                  basis='large'
+                >
+                  <Text>Side item</Text>
+                </Sidebar>
+              </Box>
+            </Item>
             <Item name='Card' path='/add-ons/card' center={true}>
               <Card
-                size={{ width: 'medium', height: 'small' }}
+                background='brand'
+                basis='small'
               >
                 <Card.CardTitle border='bottom'>
                   Card
