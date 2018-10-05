@@ -27,7 +27,7 @@ const initExport = {
     }
     if (process.env.NODE_ENV === 'alias') {
       config.resolve.alias = dedupeDependencies(
-        ['styled-components', 'grommet', 'grommet-icons'], config.resolve.alias
+        ['styled-components', 'grommet', 'grommet-icons', 'react', 'react-dom'], config.resolve.alias
       );
     }
     return config;

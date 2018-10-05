@@ -16,8 +16,8 @@ export default (newPath, router, preserveParams) => {
 };
 
 export const queryParams = (router, preserveParams) => {
-  const result = {};
   if (preserveParams) {
+    const result = {};
     const query = typeof preserveParams === 'string' ? [preserveParams] : preserveParams;
     const params = new URLSearchParams(router.asPath.split('?')[1]);
     // eslint-disable-next-line no-restricted-syntax
@@ -27,6 +27,7 @@ export const queryParams = (router, preserveParams) => {
         result[pair[0]] = pair[1];
       }
     }
+    return result;
   }
-  return result;
+  return router.asPath.split('?')[0];
 };

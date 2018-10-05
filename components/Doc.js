@@ -1,17 +1,28 @@
+/* eslint-disable dot-notation */
 import PropTypes from 'prop-types';
+import 'isomorphic-fetch';
 import { Box, Button, Heading, Paragraph, Markdown } from 'grommet';
 import Page from './Page';
 import DocProperty from './DocProperty';
+import Example from './Example';
 
 export default class Doc extends React.Component {
-  componentDidMount() {
-    window.scrollTo(0, 0);
+  state = {
+    examples: {},
   }
-
+  componentDidMount() {
+    const { name } = this.props;
+    window.scrollTo(0, 0);
+    fetch(`/api/examples/grommet/${name}`)
+      .then(res => (res ? res.json() : res))
+      .catch(() => this.setState({ examples: {} }))
+      .then(res => res && this.setState({ examples: res.examples }));
+  }
   render() {
     const {
-      children, desc, name, example, examples, text, nav, footer,
+      children, desc, name, text, nav, footer,
     } = this.props;
+    const { examples } = this.state;
     return (
       <Page
         title={this.props.name}
@@ -41,9 +52,11 @@ export default class Doc extends React.Component {
                 </Button>
               ) : null}
             </Box>
-            <Box flex={true} pad={{ vertical: 'large' }} align='center'>
-              {example}
-            </Box>
+            {examples['_starter'] && (
+              <Box flex={true} pad={{ vertical: 'large' }} align='center'>
+                <Example code={examples['_starter']} component={name} example='_starter' />
+              </Box>
+            )}
           </Box>
         </Box>
 
@@ -61,9 +74,11 @@ export default class Doc extends React.Component {
                   <DocProperty
                     key={property.name}
                     property={property}
-                    examples={examples[property.name]}
+                    code={examples[property.name]}
+                    component={name}
+                    example={property.name}
                   />
-                    ))}
+                ))}
               </Box>
             )}
           </Box>
@@ -76,8 +91,6 @@ export default class Doc extends React.Component {
 
 Doc.propTypes = {
   desc: PropTypes.object,
-  example: PropTypes.node,
-  examples: PropTypes.object,
   name: PropTypes.string.isRequired,
   text: PropTypes.string,
   nav: PropTypes.bool,
@@ -86,8 +99,6 @@ Doc.propTypes = {
 
 Doc.defaultProps = {
   desc: undefined,
-  example: null,
-  examples: {},
   text: undefined,
   nav: true,
   footer: true,

@@ -9,10 +9,5 @@ export default () => (
   <Doc
     name='RadioButton'
     desc={desc}
-    examples={{
-      checked: <RadioButton name='radio1' label='A' checked={true} onChange={() => {}} />,
-      disabled: <RadioButton name='radio1' label='A' disabled={true} onChange={() => {}} />,
-      label: <RadioButton name='radio1' label='A' onChange={() => {}} />,
-    }}
   />
 );

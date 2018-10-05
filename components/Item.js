@@ -1,28 +1,17 @@
-import { Box, Heading } from 'grommet';
+import { Card } from 'grommet-controls';
 import RoutedAnchor from './RoutedAnchor';
 
 export default ({
-  name, path, children, center,
+  name, path, children,
 }) => (
-  <Box basis='medium' margin={{ right: 'medium', bottom: 'medium' }}>
-    <RoutedAnchor path={path} >
-      <Box>
-        <Heading level={3} size='small' margin={{ top: 'none', bottom: 'small' }}>
-          <strong>{name}</strong>
-        </Heading>
-      </Box>
-    </RoutedAnchor>
-    <Box>
-      <Box
-        basis='small'
-        border={{ color: 'focus', size: 'medium' }}
-        justify={center ? 'center' : undefined}
-        align={center ? 'center' : undefined}
-        pad={center ? 'medium' : undefined}
-        style={{ overflow: 'hidden' }}
-      >
-        {children}
-      </Box>
-    </Box>
-  </Box>
+  <Card background='brand' basis='medium' margin='xsmall'>
+    <Card.CardTitle>
+      <RoutedAnchor path={path}>
+        {name}
+      </RoutedAnchor>
+    </Card.CardTitle>
+    <Card.CardContent basis='220px' align='center' justify='center'>
+      {children}
+    </Card.CardContent>
+  </Card>
 );

@@ -1,27 +1,17 @@
 import PropTypes from 'prop-types';
 import { Box, Heading, Markdown, Text } from 'grommet';
+import Example from './Example';
 
 export default class DocProperty extends React.Component {
-  static defaultProps = {
-    examples: undefined,
-  }
-
-  static propTypes = {
-    property: PropTypes.object.isRequired,
-    examples: PropTypes.object,
-  }
   render() {
-    const { property, examples } = this.props;
-    let example;
-    if (examples) {
-      example = (
+    const {
+      property, code, component, example,
+    } = this.props;
+    let sample;
+    if (code) {
+      sample = (
         <Box flex={true} align='end' margin={{ vertical: 'medium' }}>
-          {/* <Button
-            plain={true}
-            icon={codeMode ? <Close /> : <Reactjs color='plain' />}
-            onClick={() => this.setState({ codeMode: !codeMode })}
-          /> */}
-          {examples}
+          <Example code={code} component={component} example={example} />
         </Box>
       );
     }
@@ -48,9 +38,23 @@ export default class DocProperty extends React.Component {
 
         </Box>
         <Box>
-          {example}
+          {sample}
         </Box>
       </Box>
     );
   }
 }
+
+DocProperty.defaultProps = {
+  code: '',
+  component: undefined,
+  example: undefined,
+};
+
+DocProperty.propTypes = {
+  property: PropTypes.object.isRequired,
+  code: PropTypes.string,
+  component: PropTypes.string,
+  example: PropTypes.string,
+};
+

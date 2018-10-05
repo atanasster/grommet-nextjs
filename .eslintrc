@@ -30,6 +30,7 @@
     "async-await/space-after-await": 2,
     "comma-dangle": ["error", "always-multiline"],
     "function-paren-newline": ["error", "consistent"],
+    "import/prefer-default-export": 0,
     "jsx-quotes": ["error", "prefer-single"],
     "no-console": 0,
     "quote-props": ["error", "consistent"],

@@ -22,7 +22,7 @@ class WorldMapDoc extends React.Component {
                   onClick: name => alert(name),
                 },
               ]}
-              onSelectPlaceX={(lat, lon) => alert(lat, lon)}
+              onSelectPlace={(lat, lon) => alert(lat, lon)}
               places={[
                 {
                   name: 'Sydney',

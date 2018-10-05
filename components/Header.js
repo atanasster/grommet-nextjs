@@ -3,7 +3,9 @@ import { withRouter } from 'next/router';
 import PropTypes from 'prop-types';
 import { bindActionCreators } from 'redux';
 import { Box, Heading, Select, Layer, Button } from 'grommet';
+import { colorIsDark } from 'grommet/utils';
 import { System, Menu } from 'grommet-icons';
+import { queryParams } from './nextjs/urlParams';
 import connect from '../redux';
 import RoutedButton from './RoutedButton';
 import RoutedAnchor from './RoutedAnchor';
@@ -38,7 +40,7 @@ class Header extends React.Component {
   };
   onThemeChange = ({ option: theme }) => {
     const { router } = this.props;
-    const path = { pathname: router.pathname, query: { ...router.query, theme } };
+    const path = { pathname: queryParams(router), query: { theme } };
     this.changeTheme(theme);
     router.replace(path, path, { shallow: true });
   };
@@ -55,7 +57,7 @@ class Header extends React.Component {
     }
     const menuItems = [
       { external: 'https:///crypto-grommet.com', label: 'use-case' },
-      { path: '/preview', label: 'view' },
+      { path: '/examples', label: 'examples' },
       { path: '/add-ons', label: 'add-ons' },
     ];
     const items = menuItems.map(item => (
@@ -115,7 +117,7 @@ class Header extends React.Component {
         background='brand'
         pad='medium'
         animation='fadeIn'
-        border='bottom'
+        border={themes[theme].global.colors.brand && !colorIsDark(themes[theme].global.colors.brand) ? { side: 'bottom', size: 'medium' } : undefined}
       >
         <Box direction='row' align='center'gap='small' >
           {isNarrow && (

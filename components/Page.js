@@ -1,14 +1,12 @@
 import React from 'react';
 import { withRouter } from 'next/router';
 import PropTypes from 'prop-types';
-import { bindActionCreators } from 'redux';
 import Head from 'next/head';
 import { Grommet, Box } from 'grommet';
 import { ResponsiveContext } from 'grommet/contexts';
 import Header from './Header';
 import Footer from './Footer';
 import connect from '../redux';
-import { selectTheme } from '../redux/themes/actions';
 
 import { initGA, logPageView } from './utils/analytics';
 
@@ -73,13 +71,11 @@ Page.defaultProps = {
   footer: true,
 };
 
-const mapDispatchToProps = dispatch =>
-  bindActionCreators({ selectTheme }, dispatch);
 
 const mapStateToProps = state => ({
   themes: state.themes,
 });
 
 
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Page));
+export default withRouter(connect(mapStateToProps)(Page));
 
