@@ -6,12 +6,14 @@ export const _starter = `class Demo extends React.Component {
   }
   render() {
     const { size } = this.state;
-    return (  
-      <Select
-        options={['small', 'medium', 'large', 'xlarge', 'huge']}
-        value={size}
-        onChange={({ option }) => this.setState({ size: option })}
-      />
+    return (
+      <Box align='center'>
+        <Select
+          options={['small', 'medium', 'large', 'xlarge', 'huge']}
+          value={size}
+          onChange={({ option }) => this.setState({ size: option })}
+        />
+      </Box>  
     );
   }
 }  

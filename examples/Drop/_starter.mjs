@@ -11,7 +11,7 @@ export const _starter = `class Demo extends React.Component {
 
   render() {
     return (
-      <Box align='start'>
+      <Box align='center'>
         <Box
           background='dark-4'
           pad='medium'
@@ -26,7 +26,7 @@ export const _starter = `class Demo extends React.Component {
             align={{ top: 'bottom', left: 'left' }}
             target={this.targetRef.current}
           >
-            <Box pad='large'>
+            <Box pad='medium'>
               Drop Contents
             </Box>
           </Drop>

@@ -7,11 +7,13 @@ export const _starter = `class Demo extends React.Component {
   render() {
     const { selected } = this.state;
     return (
-      <Tags
-        value={selected}
-        onChange={({ value }) => this.setState({ selected: value })}
-        placeholder='Multiselect'
-      />
+      <Box align='center'>
+        <Tags
+          value={selected}
+          onChange={({ value }) => this.setState({ selected: value })}
+          placeholder='Multiselect'
+        />
+      </Box>  
     );
   }
 }    
