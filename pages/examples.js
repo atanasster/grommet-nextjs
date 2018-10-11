@@ -18,11 +18,10 @@ import * as Themes from 'grommet-controls/themes';
 import * as GrommetControls from 'grommet-controls';
 import Page from '../components/Page';
 import pushRoute from '../components/PushRoute';
-import { rndDatasets, rndDatasets2d } from '../utils/data';
 // import * as allExamples from '../examples';
 
 const scope = {
-  ...Grommet, ...GrommetControls, rndDatasets, rndDatasets2d, Icons, Themes, styled, css,
+  ...Grommet, ...GrommetControls, Icons, Themes, styled, css,
 };
 
 const StyledEditor = styled(LiveEditor)`

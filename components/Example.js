@@ -9,11 +9,10 @@ import * as Icons from 'grommet-icons';
 import * as Grommet from 'grommet';
 import * as Themes from 'grommet-controls/themes';
 import * as GrommetControls from 'grommet-controls';
-import { rndDatasets, rndDatasets2d } from '../utils/data';
 import RoutedButton from './RoutedButton';
 
 const scope = {
-  ...Grommet, ...GrommetControls, rndDatasets, rndDatasets2d, Icons, Themes,
+  ...Grommet, ...GrommetControls, Icons, Themes,
 };
 
 const StyledProvider = styled(LiveProvider)`
