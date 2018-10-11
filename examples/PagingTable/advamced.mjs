@@ -84,6 +84,7 @@ class Demo extends React.Component {
             }, {
               Header: 'Total',
               id: 'total',
+              filterable: false,
               decorations: {
                 cell: {
                   background: { color: 'light-1' },
