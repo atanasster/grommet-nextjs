@@ -31,7 +31,7 @@ class Demo extends React.Component {
       grouping: false,
       filterable: true,
       sortable: true,
-      paging: false,
+      paging: true,
       data: [
         {
           item: 'Fork', qty: 4, price: 5.50, image: 'http://lorempixel.com/output/food-q-c-264-260-2.jpg',
