@@ -31,16 +31,18 @@ class Examples extends React.Component {
   constructor(props) {
     super(props);
     const { group = 'Box', example = '_starter' } = props.router.query;
+    let pckg = 'grommet';
     let code = '';
     const item = props.examples.find(e => e.label === group);
     if (item) {
+      pckg = item.package;
       const exmpl = item.items.find(e => e.label === example);
       if (exmpl) {
         ({ code } = exmpl);
       }
     }
     this.state = {
-      code, group, example, search: '',
+      code, group, example, pckg, search: '',
     };
   }
   static async getInitialProps({ req }) {
@@ -59,7 +61,7 @@ class Examples extends React.Component {
             label: item,
             component: key,
             code: example.examples[item],
-            id: `${key}_${item}`,
+            id: `${example.package}_${key}_${item}`,
           })),
       };
     });
@@ -80,7 +82,11 @@ class Examples extends React.Component {
       }, {});
       return {
         label: p,
-        items: Object.keys(byCategory).sort().map(cat => ({ label: cat, items: byCategory[cat] })),
+        items: Object.keys(byCategory).sort().map(cat => ({
+          label: cat,
+          id: `${p}_${cat}`,
+          items: byCategory[cat],
+        })),
       };
     });
     return {
@@ -91,7 +97,7 @@ class Examples extends React.Component {
   render() {
     const { grouped } = this.props;
     const {
-      group, example, code, search,
+      pckg, group, example, code, search,
     } = this.state;
     return (
       <Page title='Component editor'>
@@ -119,14 +125,16 @@ class Examples extends React.Component {
             <Box overflow='auto'>
               <VerticalMenu
                 items={grouped}
-                activeItem={{ id: `${group}_${example}` }}
+                activeItem={{ id: `${pckg}_${group}_${example}` }}
                 search={search}
                 onSelect={(item) => {
                   pushRoute({
                     route: 'examples',
                     params: { group: item.component, example: item.label },
                   });
-                  this.setState({ code: item.code, group: item.component, example: item.label });
+                  this.setState({
+ pckg: item.package, code: item.code, group: item.component, example: item.label,
+});
                 }}
               />
             </Box>
