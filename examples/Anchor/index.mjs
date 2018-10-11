@@ -1,4 +1,5 @@
 /* eslint-disable import/extensions,import/no-unresolved */
+import doc from 'grommet/components/Anchor/doc';
 import { packages, categories } from '../lookups';
 import { _starter } from './_starter';
 import { icon } from './icon';
@@ -9,6 +10,7 @@ import { reverse } from './reverse';
 export const Anchor = {
   category: categories.controls,
   package: packages.grommet,
+  doc: doc.doc({}).toJSON(),
   examples: {
     _starter,
     icon,

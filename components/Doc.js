@@ -8,25 +8,26 @@ import Example from './Example';
 
 export default class Doc extends React.Component {
   state = {
-    examples: {},
-  }
+    documentation: {},
+  };
   componentDidMount() {
     const { name } = this.props;
     window.scrollTo(0, 0);
     fetch(`/api/examples/grommet/${name}`)
       .then(res => (res ? res.json() : res))
-      .catch(() => this.setState({ examples: {} }))
-      .then(res => res && this.setState({ examples: res.examples }));
+      .catch(() => this.setState({ documentation: {} }))
+      .then(res => res && this.setState({ documentation: res }));
   }
   render() {
     const {
-      children, desc, name, text, nav, footer,
+      children, name, text, nav, footer,
     } = this.props;
-    const { examples } = this.state;
+    const { documentation } = this.state;
+    const { examples = {}, doc = {} } = documentation;
     return (
       <Page
         title={this.props.name}
-        description={desc && desc.description}
+        description={doc && doc.description}
         nav={nav}
         footer={footer}
       >
@@ -36,9 +37,9 @@ export default class Doc extends React.Component {
               <Heading level={1}>
                 <strong>{name}</strong>
               </Heading>
-              {desc ? (
+              {doc ? (
                 <Paragraph size='large'>
-                  {desc.description}
+                  {doc.description}
                 </Paragraph>
               ) : null}
               {text ? (
@@ -46,9 +47,9 @@ export default class Doc extends React.Component {
                   {text}
                 </Paragraph>
               ) : null}
-              {(desc && desc.availableAt) ? (
-                <Button href={desc.availableAt.url} target='_blank' >
-                  {typeof desc.availableAt.badge === 'string' ? <img alt='Example badge' src={desc.availableAt.badge} /> : desc.availableAt.badge}
+              {(doc && doc.availableAt) ? (
+                <Button href={doc.availableAt.url} target='_blank' >
+                  {typeof doc.availableAt.badge === 'string' ? <img alt='Example badge' src={doc.availableAt.badge} /> : doc.availableAt.badge}
                 </Button>
               ) : null}
             </Box>
@@ -60,17 +61,17 @@ export default class Doc extends React.Component {
           </Box>
         </Box>
 
-        {desc ? (
+        {doc ? (
           <Box pad={{ horizontal: 'large', bottom: 'large' }}>
-            { desc.usage && (
+            { doc.usage && (
               <Box pad='large' round='large' margin='small' background='light-2'>
                 <Heading margin='none' level={3}><strong>Usage</strong></Heading>
-                <Markdown>{`\`\`\`${desc.usage}\`\`\``}</Markdown>
+                <Markdown>{`\`\`\`${doc.usage}\`\`\``}</Markdown>
               </Box>
             )}
-            {desc.properties && (
+            {doc.properties && (
               <Box pad='large' round='large' background='light-1'>
-                {desc.properties.map(property => (
+                {doc.properties.map(property => (
                   <DocProperty
                     key={property.name}
                     property={property}
@@ -90,7 +91,6 @@ export default class Doc extends React.Component {
 }
 
 Doc.propTypes = {
-  desc: PropTypes.object,
   name: PropTypes.string.isRequired,
   text: PropTypes.string,
   nav: PropTypes.bool,
@@ -98,7 +98,6 @@ Doc.propTypes = {
 };
 
 Doc.defaultProps = {
-  desc: undefined,
   text: undefined,
   nav: true,
   footer: true,

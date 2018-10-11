@@ -1,4 +1,5 @@
 /* eslint-disable import/extensions,import/no-unresolved */
+import doc from 'grommet-controls/components/Tag/doc';
 import { packages, categories } from '../lookups';
 import { _starter } from './_starter';
 import { a11yTitle } from './a11yTitle';
@@ -13,9 +14,11 @@ import { reverse } from './reverse';
 import { round } from './round';
 import { size } from './size';
 
+
 export const Tag = {
   category: categories.controls,
   package: packages.grommetControls,
+  doc: doc.default({}).toJSON(),
   examples: {
     _starter,
     a11yTitle,

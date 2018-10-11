@@ -1,4 +1,5 @@
 /* eslint-disable import/extensions,import/no-unresolved */
+import doc from 'grommet/components/Box/doc';
 import { packages, categories } from '../lookups';
 import { _starter } from './_starter';
 import { align } from './align';
@@ -16,6 +17,7 @@ import { wrap } from './wrap';
 export const Box = {
   category: categories.layout,
   package: packages.grommet,
+  doc: doc.doc({}).toJSON(),
   examples: {
     _starter,
     align,

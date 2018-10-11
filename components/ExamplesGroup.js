@@ -11,7 +11,7 @@ export default ({ examples, group }) => (
     {Object.keys(examples).filter(key => (examples[key].category === group)).sort().map(item => (
       <Card background='brand' key={`${group}_${item}`} basis='medium' margin='xsmall'>
         <Card.CardTitle>
-          <RoutedButton path={`\\${item.toLowerCase()}`}>
+          <RoutedButton route='documentation' params={{ component: item }}>
             {item}
           </RoutedButton>
         </Card.CardTitle>
@@ -21,7 +21,8 @@ export default ({ examples, group }) => (
         <Card.CardActions>
           <Box direction='row' justify='between' fill='horizontal'>
             <RoutedButton
-              path={`\\${item.toLowerCase()}`}
+              route='documentation'
+              params={{ component: item }}
             >
               <Box direction='row' gap='xsmall' pad='xsmall'>
                 <Document />

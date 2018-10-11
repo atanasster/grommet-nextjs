@@ -1,7 +1,7 @@
 import 'isomorphic-fetch';
 import { Box, Heading, Paragraph, Anchor } from 'grommet';
-import Page from '../../components/Page';
-import ExamplesGroup from '../../components/ExamplesGroup';
+import Page from '../components/Page';
+import ExamplesGroup from '../components/ExamplesGroup';
 
 
 export default class AddOns extends React.Component {
