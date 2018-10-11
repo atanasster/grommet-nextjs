@@ -35,6 +35,11 @@ app.prepare()
 
     if (!dev) {
       server.use(compression({ threshold: 0 }));
+      server.use((req, res, next) => {
+        res.header('Access-Control-Allow-Origin', '*');
+        res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
+        next();
+      });
     }
     server.get('/api/examples/:package?/:component?', (req, res) => {
       if (req.params.component) {
