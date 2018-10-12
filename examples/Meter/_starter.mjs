@@ -3,7 +3,7 @@ export const _starter = `const Demo = () => (
   <Meter
     aria-label='Meter example'
     type='circle'
-    size='full'
+    size='small'
     thickness='large'
     round={true}
     values={[{ value: 60, label: 'sixty' }]}
