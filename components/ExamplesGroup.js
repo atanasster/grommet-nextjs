@@ -1,5 +1,5 @@
 /* eslint-disable no-underscore-dangle */
-import { Box } from 'grommet';
+import { Box, Heading } from 'grommet';
 import { Card } from 'grommet-controls';
 import { Code, Document } from 'grommet-icons';
 import RoutedButton from '../components/RoutedButton';
@@ -12,7 +12,9 @@ export default ({ examples, group }) => (
       <Card background='brand' key={`${group}_${item}`} basis='medium' margin='xsmall'>
         <Card.CardTitle>
           <RoutedButton route='documentation' params={{ component: item }}>
-            {item}
+            <Heading margin='none' level={3}>
+              {item}
+            </Heading>
           </RoutedButton>
         </Card.CardTitle>
         <Card.CardContent flex={false} basis='220px' align='center' justify='center'>
