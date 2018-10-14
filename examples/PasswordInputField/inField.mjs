@@ -1,5 +1,9 @@
 export const inField = `const Demo = () => (
-  <Form onSubmit={values => alert(JSON.stringify(values))} pad={{ horizontal: 'small' }} >
+  <Form
+    onSubmit={values => alert(JSON.stringify(values))}
+    pad={{ horizontal: 'small' }}
+    focusFirstChild={false}
+  >
     <PasswordInputField
       label='Password'
       name='password'

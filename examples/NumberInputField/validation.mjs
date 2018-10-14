@@ -1,5 +1,9 @@
 export const validation = `const Demo = () => (
-  <Form onSubmit={values => alert(JSON.stringify(values))} pad={{ horizontal: 'small' }} >
+  <Form
+    onSubmit={values => alert(JSON.stringify(values))}
+    pad={{ horizontal: 'small' }}
+    focusFirstChild={false}
+  >
     <NumberInputField
       min={6}
       max={22}

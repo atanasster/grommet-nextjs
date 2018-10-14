@@ -1,6 +1,10 @@
 // eslint-disable-next-line no-underscore-dangle
 export const _starter = `const Demo = () => (
-  <Form onSubmit={values => alert(JSON.stringify(values))} pad={{ horizontal: 'small' }} >
+  <Form
+    onSubmit={values => alert(JSON.stringify(values))}
+    pad={{ horizontal: 'small' }}
+    focusFirstChild={false}
+  >
     <CheckBoxField
       name='tos'
       label='Terms of service'

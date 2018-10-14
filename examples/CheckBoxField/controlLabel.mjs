@@ -1,5 +1,9 @@
 export const controlLabel = `const Demo = () => (
-  <Form onSubmit={values => alert(JSON.stringify(values))} pad={{ horizontal: 'small' }} >
+  <Form
+    onSubmit={values => alert(JSON.stringify(values))}
+    pad={{ horizontal: 'small' }}
+    focusFirstChild={false}
+  >
     <CheckBoxField
       name='tos'
       controlLabel={<Text weight='bold'>Terms of service</Text>}
