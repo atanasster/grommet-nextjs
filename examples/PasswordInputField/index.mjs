@@ -9,7 +9,7 @@ import { validation } from './validation';
 export const PasswordInputField = {
   category: categories.validation,
   package: packages.grommetControls,
-  doc: doc.default({}, 'PasswordInputField').toJSON(),
+  doc: doc.default({}, 'PasswordInputField', 'A password input field with form validation.').toJSON(),
   examples: {
     _starter,
     inField,

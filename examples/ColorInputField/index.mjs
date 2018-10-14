@@ -8,7 +8,7 @@ import { inField } from './inField';
 export const ColorInputField = {
   category: categories.validation,
   package: packages.grommetControls,
-  doc: doc.default({}, 'ColorInputField').toJSON(),
+  doc: doc.default({}, 'ColorInputField', 'A Color selection field with form validation.').toJSON(),
   examples: {
     _starter,
     inField,
