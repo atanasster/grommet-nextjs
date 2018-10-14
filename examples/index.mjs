@@ -41,6 +41,8 @@ export { Carousel } from './Carousel';
 export { Image } from './Image';
 export { Video } from './Video';
 
+export { VerticalMenu } from './VerticalMenu';
+
 export { Card } from './Card';
 export { Colors } from './Colors';
 export { ImageStamp } from './ImageStamp';

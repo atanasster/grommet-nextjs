@@ -1,19 +1,17 @@
 /* eslint-disable import/extensions,import/no-unresolved */
-import doc from 'grommet/components/Menu/doc';
+import doc from 'grommet-controls/components/VerticalMenu/doc';
 import { packages, categories } from '../lookups';
 import { _starter } from './_starter';
-import { icon } from './icon';
-import { label } from './label';
+import { items } from './items';
 
 
-export const Menu = {
+export const VerticalMenu = {
   category: categories.navigation,
-  package: packages.grommet,
-  doc: doc.doc({}).toJSON(),
+  package: packages.grommetControls,
+  doc: doc.default({}).toJSON(),
   examples: {
     _starter,
-    icon,
-    label,
+    items,
   },
 };
 

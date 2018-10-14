@@ -10,7 +10,7 @@ import { primary } from './primary';
 import { reverse } from './reverse';
 
 export const Button = {
-  category: categories.controls,
+  category: categories.navigation,
   package: packages.grommet,
   doc: doc.doc({}).toJSON(),
   examples: {

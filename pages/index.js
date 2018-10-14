@@ -38,7 +38,7 @@ Visit the official <Anchor href='https://v2.grommet.io/' target='_blank'>Grommet
         <Box pad={{ horizontal: 'large' }}>
           <ExamplesGroup examples={examples} group='Layout' />
           <ExamplesGroup examples={examples} group='Type' />
-
+          <ExamplesGroup examples={examples} group='Navigation' />
           <Section basis='full' align='stretch' name='Color' index={2}>
             <Box flex={true}>
               <RoutedButton path='/color'>

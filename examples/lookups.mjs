@@ -10,6 +10,7 @@ export const categories = {
   input: 'Input',
   visualization: 'Visualizations',
   validation: 'Validation',
+  navigation: 'Navigation',
   media: 'Media',
   utilities: 'Utilities',
   charts: 'Visualizations',

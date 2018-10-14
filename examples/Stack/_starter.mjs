@@ -5,7 +5,7 @@ export const _starter = `const Demo = () => (
       border={{ color: 'brand', size: 'large' }}
       align='center'
       justify='center'
-      pad='large'
+      pad='medium'
       round='medium'
     >
       <Paragraph>
