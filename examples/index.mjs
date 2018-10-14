@@ -55,11 +55,23 @@ export { ColorInput } from './ColorInput';
 export { DateInput } from './DateInput';
 export { DropInput } from './DropInput';
 export { EmailInput } from './EmailInput';
-export { Form } from './Form';
 export { MaskedInput } from './MaskedInput';
 export { NumberInput } from './NumberInput';
 export { PasswordInput } from './PasswordInput';
 export { Tags } from './Tags';
+
+export { CheckBoxField } from './CheckBoxField';
+export { ColorInputField } from './ColorInputField';
+export { DateInputField } from './DateInputField';
+export { EmailInputField } from './EmailInputField';
+export { Form } from './Form';
+export { MaskedInputField } from './MaskedInputField';
+export { NumberInputField } from './NumberInputField';
+export { PasswordInputField } from './PasswordInputField';
+export { SelectField } from './SelectField';
+export { TextAreaField } from './TextAreaField';
+export { TextInputField } from './TextInputField';
+
 
 export { BarChart } from './BarChart';
 export { DoughnutChart } from './DoughnutChart';

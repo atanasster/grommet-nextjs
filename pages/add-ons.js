@@ -36,8 +36,10 @@ export default class AddOns extends React.Component {
           </Box>
         </Box>
         <Box pad={{ horizontal: 'large' }}>
+          <ExamplesGroup examples={examples} group='Layout' />
           <ExamplesGroup examples={examples} group='Controls' />
           <ExamplesGroup examples={examples} group='Input' />
+          <ExamplesGroup examples={examples} group='Validation' />
           <ExamplesGroup examples={examples} group='Visualizations' />
         </Box>
       </Page>

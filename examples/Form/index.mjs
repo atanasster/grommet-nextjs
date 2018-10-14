@@ -7,9 +7,10 @@ import { onChange } from './onChange';
 import { onInvalidForm } from './onInvalidForm';
 import { onSubmit } from './onSubmit';
 import { onSubmitError } from './onSubmitError';
+import { profile } from './profile';
 
 export const Form = {
-  category: categories.input,
+  category: categories.validation,
   package: packages.grommetControls,
   doc: doc.default({}).toJSON(),
   examples: {
@@ -19,6 +20,7 @@ export const Form = {
     onInvalidForm,
     onSubmit,
     onSubmitError,
+    profile,
   },
 };
 

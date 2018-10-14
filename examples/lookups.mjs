@@ -9,6 +9,7 @@ export const categories = {
   controls: 'Controls',
   input: 'Input',
   visualization: 'Visualizations',
+  validation: 'Validation',
   media: 'Media',
   utilities: 'Utilities',
   charts: 'Visualizations',
