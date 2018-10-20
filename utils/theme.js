@@ -82,27 +82,22 @@ const colorsForMood = (color, backgroundColor, mood, scheme) => {
   if (brandRGB && backgroundRGB) {
     const bgColor = Color.rgb(backgroundRGB[0], backgroundRGB[1], backgroundRGB[2]);
     const brandColor = Color.rgb(brandRGB[0], brandRGB[1], brandRGB[2]);
-
+    let isDarkBrand;
     let isDarkBackground;
     try {
       isDarkBackground = colorIsDark(backgroundColor);
+      isDarkBrand = colorIsDark(color);
     } catch (e) {
       return result;
     }
     let softerBackground;
-    let light;
-    let dark;
     let textColor;
     if (isDarkBackground) {
       textColor = parseRGBString('#ebebeb');
       softerBackground = bgColor.lighten(0.05);
-      light = ['#333333', '#555555', '#666666', '#777777', '#999999', '#AAAAAA'];
-      dark = ['#F6F6F6', '#EEEEEE', '#DDDDDD', '#CCCCCC', '#BBBBBB', '#AAAAAA'];
     } else {
       textColor = parseRGBString('#444444');
       softerBackground = bgColor.darken(0.05);
-      dark = ['#333333', '#444444', '#555555', '#666666', '#777777', '#999999'];
-      light = ['#F6F6F6', '#EEEEEE', '#DDDDDD', '#CCCCCC', '#BBBBBB', '#AAAAAA'];
     }
     textColor = Color.rgb(textColor[0], textColor[1], textColor[2]);
     const border = textColor.fade(0.4);
@@ -110,14 +105,17 @@ const colorsForMood = (color, backgroundColor, mood, scheme) => {
 
     const cs = new ColorScheme();
     cs.from_hex(color.replace('#', ''));
+    const brandNormalized = {
+      dark: isDarkBrand ? brandColor.negate().rgb().string() : brandColor.rgb().string(),
+      light: isDarkBrand ? brandColor.rgb().string() : brandColor.negate().rgb().string(),
+    };
+
     const colors = {
       brand: color,
-      light,
-      dark,
       border: border.rgb().string(),
       background: bgColor.rgb().string(),
-      text: textColor.rgb().string(),
       placeholder: shadowColor,
+      control: brandNormalized,
     };
     // create default controls colors
     result = {
@@ -140,9 +138,6 @@ const colorsForMood = (color, backgroundColor, mood, scheme) => {
         backgroundColor,
         overlayBackgroundColor: shadowColor,
       },
-      icon: {
-        color: textColor.rgb().string(),
-      },
       checkBox: {
         border: {
           color: {
@@ -152,7 +147,7 @@ const colorsForMood = (color, backgroundColor, mood, scheme) => {
         },
       },
       anchor: {
-        color: brandColor.negate().rgb().string(),
+        color: brandNormalized,
       },
       heading: {
         font: false,
@@ -171,11 +166,12 @@ const colorsForMood = (color, backgroundColor, mood, scheme) => {
       .scheme(scheme)
       .variation(mood)
       .colors();
-    const accentColors = Math.floor(colorsTheme.length / 2) + (colorsTheme.length % 2);
+    const accentColors = 4;
     for (let i = 0; i < accentColors; i += 1) {
       result.global.colors[`accent-${i + 1}`] = `#${colorsTheme[i]}`;
     }
-    for (let i = accentColors; i < colorsTheme.length; i += 1) {
+    const neutralColors = 5;
+    for (let i = accentColors; i < accentColors + neutralColors; i += 1) {
       result.global.colors[`neutral-${(i - accentColors) + 1}`] = `#${colorsTheme[i]}`;
     }
   }

@@ -1,8 +1,6 @@
 // eslint-disable-next-line camelcase
 import { deepFreeze } from 'grommet/utils';
-import { rgba } from 'polished';
-import { css } from 'styled-components';
-import { colorsFromArray, black, materiallight, materialdark, metro, light } from 'grommet-controls/themes';
+import { black, materiallight, materialdark, metro, light } from 'grommet-controls/themes';
 import { grommet, dark } from 'grommet/themes';
 import { aruba } from 'grommet-theme-aruba';
 import { dxc } from 'grommet-theme-dxc';
@@ -13,56 +11,28 @@ import * as ActionTypes from './constants';
 
 
 const defaultTheme = 'black';
-const lightColors = [
-  '#F6F6F6',
-  '#EEEEEE',
-  '#DDDDDD',
-  '#CCCCCC',
-  '#BBBBBB',
-  '#AAAAAA',
-];
-const darkColors = [
-  '#333333',
-  '#444444',
-  '#555555',
-  '#666666',
-  '#777777',
-  '#999999',
-];
-const accentColors = [
-  '#c7e673',
-  '#6f8040',
-  '#dfe6cf',
-  '#99bf30',
-  '#68458a',
-  '#604080',
-];
-const neutralColors = [
-  '#dacfe6',
-  '#7830bf',
-  '#d56b89',
-  '#804052',
-  '#e6cfd5',
-  '#bf3059',
-];
-
-const colors = {
-  'active': rgba('#DDDDDD', 0.5),
-  'brand': '#99cc33',
-  'border': 'rgba(68, 68, 68, 0.6)',
-  'background': 'rgb(255, 248, 225)',
-  'text': 'rgb(68, 68, 68)',
-  'placeholder': 'rgba(68, 68, 68, 0.5)',
-};
-
-colorsFromArray(colors, accentColors, 'accent');
-colorsFromArray(colors, darkColors, 'dark');
-colorsFromArray(colors, lightColors, 'light');
-colorsFromArray(colors, neutralColors, 'neutral');
 
 const custom = deepFreeze({
   'global': {
-    'colors': colors,
+    'colors': {
+      'brand': '#99cc33',
+      'border': 'rgba(68, 68, 68, 0.6)',
+      'background': 'rgb(255, 248, 225)',
+      'placeholder': 'rgba(68, 68, 68, 0.5)',
+      'control': {
+        'dark': 'rgb(153, 204, 51)',
+        'light': 'rgb(102, 51, 204)',
+      },
+      'accent-1': '#c7e673',
+      'accent-2': '#6f8040',
+      'accent-3': '#dfe6cf',
+      'accent-4': '#99bf30',
+      'neutral-1': '#68458a',
+      'neutral-2': '#604080',
+      'neutral-3': '#dacfe6',
+      'neutral-4': '#7830bf',
+      'neutral-5': '#d56b89',
+    },
     'elevation': {
       'none': 'none',
       'xsmall': '0px 1px 2px rgba(68, 68, 68, 0.5)',
@@ -95,18 +65,6 @@ const custom = deepFreeze({
       'radius': '4px',
     },
   },
-  'icon': {
-    extend: css`
-      ${props => props.dark && `
-        fill: ${props.theme.global.text.color.dark};
-        stroke: ${props.theme.global.text.color.dark};
-      `}
-      ${props => props.light && `
-        fill: ${props.theme.global.text.color.light};
-        stroke: ${props.theme.global.text.color.light};
-      `}
-    `,
-  },
   'checkBox': {
     'border': {
       'color': {
@@ -120,7 +78,13 @@ const custom = deepFreeze({
     },
   },
   'anchor': {
-    'color': 'rgb(102, 51, 204)',
+    'color': {
+      'dark': 'rgb(153, 204, 51)',
+      'light': 'rgb(102, 51, 204)',
+    },
+  },
+  'heading': {
+    'font': false,
   },
   'radioButton': {
     'border': {
@@ -135,10 +99,8 @@ const custom = deepFreeze({
       'radius': '4px',
     },
   },
-  'heading': {
-    font: false,
-  },
 });
+
 const initialState = {
   themes: {
     light,

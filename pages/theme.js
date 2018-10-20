@@ -1,4 +1,5 @@
 import { Fragment } from 'react';
+import { withRouter } from 'next/router';
 import { bindActionCreators } from 'redux';
 import 'isomorphic-unfetch';
 import JSONPretty from 'react-json-pretty';
@@ -14,6 +15,7 @@ import createTheme, { MOODS, SCHEMES, SHARPNESSES, themeFromFont } from '../util
 import { updateTheme } from '../redux/themes/actions';
 import connect from '../redux';
 import Preview from '../components/Preview';
+import { queryParams } from '../components/nextjs/urlParams';
 
 const defaultFont = 'Roboto';
 const defaultColor = '#99cc33';
@@ -221,7 +223,10 @@ class Theme extends React.Component {
 
  onApply = () => {
    const { name, theme } = this.state;
+   const { router } = this.props;
+   const path = { pathname: queryParams(router), query: { theme: name } };
    this.props.updateTheme(name, theme);
+   router.replace(path, path, { shallow: true });
  };
 
 
@@ -235,8 +240,10 @@ class Theme extends React.Component {
    if (viewTheme) {
      const closeLayer = () => this.setState({ viewTheme: false });
      layer = (
-       <Layer onEsc={closeLayer} onClickOutside={closeLayer}>
-         <JSONPretty json={theme} />
+       <Layer onEsc={closeLayer} onClickOutside={closeLayer} full={true} responsive={true} margin='medium'>
+         <Box overflow='auto'>
+           <JSONPretty json={theme} />
+         </Box>
        </Layer>
      );
    }
@@ -355,4 +362,4 @@ const mapStateToProps = state => ({
 });
 
 
-export default connect(mapStateToProps, mapDispatchToProps)(Theme);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Theme));

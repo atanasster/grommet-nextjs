@@ -59,6 +59,7 @@ class Header extends React.Component {
       { external: 'https:///crypto-grommet.com', label: 'use-case' },
       { path: '/examples', label: 'examples' },
       { path: '/add-ons', label: 'add-ons' },
+      { path: '/colors', label: 'colors' },
     ];
     const items = menuItems.map(item => (
       item.external ? (

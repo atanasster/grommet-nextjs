@@ -1,12 +1,10 @@
 import 'isomorphic-fetch';
 import { Box, Anchor, Heading, Paragraph, Text } from 'grommet';
 import { Grommet as GrommetIcon, Descend } from 'grommet-icons';
-import RoutedButton from '../components/RoutedButton';
 import Page from '../components/Page';
 import Section from '../components/Section';
 import Item from '../components/Item';
 import ExamplesGroup from '../components/ExamplesGroup';
-import ColorRoll from '../components/ColorRoll';
 
 
 export default class Home extends React.Component {
@@ -39,15 +37,6 @@ Visit the official <Anchor href='https://v2.grommet.io/' target='_blank'>Grommet
           <ExamplesGroup examples={examples} group='Layout' />
           <ExamplesGroup examples={examples} group='Type' />
           <ExamplesGroup examples={examples} group='Navigation' />
-          <Section basis='full' align='stretch' name='Color' index={2}>
-            <Box flex={true}>
-              <RoutedButton path='/color'>
-                <Box>
-                  <ColorRoll basis='small' />
-                </Box>
-              </RoutedButton>
-            </Box>
-          </Section>
           <ExamplesGroup examples={examples} group='Controls' />
           <ExamplesGroup examples={examples} group='Input' />
           <ExamplesGroup examples={examples} group='Visualizations' />
