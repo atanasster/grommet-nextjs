@@ -16,12 +16,12 @@ const custom = deepFreeze({
   'global': {
     'colors': {
       'brand': '#99cc33',
-      'border': 'rgba(68, 68, 68, 0.6)',
-      'background': 'rgb(255, 248, 225)',
+      'border': '#444444',
+      'background': '#FFF8E1',
       'placeholder': 'rgba(68, 68, 68, 0.5)',
       'control': {
-        'dark': 'rgb(153, 204, 51)',
-        'light': 'rgb(102, 51, 204)',
+        'dark': '#99CC33',
+        'light': '#6633CC',
       },
       'accent-1': '#c7e673',
       'accent-2': '#6f8040',
@@ -79,8 +79,8 @@ const custom = deepFreeze({
   },
   'anchor': {
     'color': {
-      'dark': 'rgb(153, 204, 51)',
-      'light': 'rgb(102, 51, 204)',
+      'dark': '#99CC33',
+      'light': '#6633CC',
     },
   },
   'heading': {

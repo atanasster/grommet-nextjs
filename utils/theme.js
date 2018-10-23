@@ -106,14 +106,13 @@ const colorsForMood = (color, backgroundColor, mood, scheme) => {
     const cs = new ColorScheme();
     cs.from_hex(color.replace('#', ''));
     const brandNormalized = {
-      dark: isDarkBrand ? brandColor.negate().rgb().string() : brandColor.rgb().string(),
-      light: isDarkBrand ? brandColor.rgb().string() : brandColor.negate().rgb().string(),
+      dark: isDarkBrand ? brandColor.negate().hex() : brandColor.hex(),
+      light: isDarkBrand ? brandColor.hex() : brandColor.negate().hex(),
     };
-
     const colors = {
       brand: color,
-      border: border.rgb().string(),
-      background: bgColor.rgb().string(),
+      border: border.hex(),
+      background: bgColor,
       placeholder: shadowColor,
       control: brandNormalized,
     };
