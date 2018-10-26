@@ -256,7 +256,7 @@ class Theme extends React.Component {
        </Box>
 
        <Box direction='row-responsive'>
-         <Box basis='medium' margin={{ bottom: 'large' }}>
+         <Box margin={{ bottom: 'large' }}>
            <Box pad='medium'>
              <FormField label='Name'>
                <TextInput

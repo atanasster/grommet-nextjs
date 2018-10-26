@@ -50,7 +50,7 @@ export default class Preview extends React.Component {
         direction='column'
         animation='fadeIn'
       >
-        <Box pad='medium' background='brand' direction='row' justify='between' align='center'>
+        <Box pad='medium' background='brand' direction='row-responsive' justify='between' align='center'>
 
           <Menu
             icon={<MenuIcon />}
@@ -66,7 +66,7 @@ export default class Preview extends React.Component {
         <Box pad='large' align='start'>
           <Heading level={1} margin={{ top: 'none' }}>Heading H1</Heading>
           <Text>Text</Text>
-          <Box direction='row' fill='horizontal' pad={{ vertical: 'medium' }} justify='between' align='center'>
+          <Box direction='row-responsive' fill='horizontal' pad={{ vertical: 'medium' }} justify='between' align='center'>
             <FormField
               label='TextInput'
               error='error'
@@ -93,7 +93,7 @@ export default class Preview extends React.Component {
             </FormField>
 
           </Box>
-          <Box direction='row' pad={{ vertical: 'medium' }} justify='between' fill='horizontal'>
+          <Box direction='row-responsive' pad={{ vertical: 'medium' }} justify='between' fill='horizontal'>
             <Box gap='small' margin={{ right: 'medium' }}>
               <Button
                 active={true}
@@ -162,8 +162,8 @@ export default class Preview extends React.Component {
               />
             </Box>
           </Box>
-          <Box direction='row' fill='horizontal'justify='between' pad={{ vertical: 'medium' }} margin={{ top: 'medium' }}>
-            <Box basis='medium'>
+          <Box direction='row-responsive' fill='horizontal'justify='between' pad={{ vertical: 'medium' }} margin={{ top: 'medium' }}>
+            <Box>
               <Tags
                 options={stringOptions}
                 value={selected}
