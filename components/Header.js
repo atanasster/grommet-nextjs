@@ -49,16 +49,16 @@ class Header extends React.Component {
     const {
       title: pageTitle, themes: { themes, selected: theme }, size,
     } = this.props;
-    const isNarrow = size === 'small';
+    const isNarrow = size === 'medium';
     const isWide = !isNarrow;
     const keywords = ['grommet', 'grommet 2', 'react', 'next-js', 'next.js', 'ui library'];
     if (pageTitle) {
       keywords.push(pageTitle);
     }
     const menuItems = [
-      { external: 'https:///crypto-grommet.com', label: 'use-case' },
+      { path: '/sites', label: 'sites' },
       { path: '/examples', label: 'examples' },
-      { path: '/add-ons', label: 'add-ons' },
+      { path: '/add-ons', label: 'controls' },
       { path: '/colors', label: 'colors' },
     ];
     const items = menuItems.map(item => (
@@ -69,7 +69,7 @@ class Header extends React.Component {
       )
     ));
     const themeSelector = (
-      <Box basis='small' >
+      <Box basis='medium' >
         <Select
           a11yTitle='Change theme'
           value={theme}
@@ -89,7 +89,7 @@ class Header extends React.Component {
     if (isNarrow) {
       if (this.state.activeMenu) {
         menu = (
-          <Layer plain={true} onEsc={this.onCloseMenu} position='left' onClickOverlay={this.onCloseMenu}>
+          <Layer plain={true} onEsc={this.onCloseMenu} position='left' onClickOutside={this.onCloseMenu}>
             <Box background='brand' gap='small' style={{ height: '100vh' }} pad='medium' align='start'>
               <Button icon={<Menu />} onClick={this.onResponsiveMenu} />
               <RoutedAnchor path='/' label='home' a11yTitle='go to home page' />
