@@ -60,7 +60,7 @@ const sites = [
     href: 'https://horizontalworking.herokuapp.com',
     title: 'horizontal working',
     source: 'https://github.com/martin-stoyanov/horizontalworking',
-    description: 'Horizontal working simeple grommet v2 + next.js web site',
+    description: 'Horizontal working sample grommet v2 + next.js',
     author: 'Martin Stoyanov',
     authorLink: 'https://github.com/martin-stoyanov',
   },
