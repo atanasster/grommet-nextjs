@@ -88,7 +88,9 @@ export default () => (
                   <Paragraph>
                     {site.description}
                   </Paragraph>
-                  <Anchor primary href={site.source} target='_blank' label='source' icon={<Github />} />
+                  {site.source && (
+                    <Anchor primary={true} href={site.source} target='_blank' label='source' icon={<Github />} />
+                  )}
                 </Box>
               </Box>
             </Card.CardContent>
