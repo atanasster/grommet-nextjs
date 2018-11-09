@@ -68,7 +68,7 @@ const sites = [
 ];
 
 export default () => (
-  <Page title='Colors'>
+  <Page title='Built with grommet v2'>
     <Box pad='large'>
       <Grid columns='large' rows='medium' gap='medium'>
         {sites.map(site => (
