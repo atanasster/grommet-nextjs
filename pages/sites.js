@@ -77,7 +77,7 @@ export default () => (
               <Anchor href={site.href} target='_blank'>{site.title}</Anchor>
             </Card.CardTitle>
             <Card.CardContent pad={null}>
-              <Box direction='row' fill={true}>
+              <Box direction='row-responsive' fill={true}>
                 <Box width='1/3' height='100%' pad='small' background='light-2'>
                   <div style={{ width: '400%', height: '400%' }}>
                     <StyledIFrame title={site.title} src={site.href} />
