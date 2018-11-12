@@ -1,4 +1,4 @@
-/* eslint-disable import/extensions,import/no-unresolved */
+/* eslint-disable import/extensions,import/no-unresolved,no-param-reassign */
 import express from 'express';
 import mcache from 'memory-cache';
 import fs from 'fs';
@@ -52,6 +52,34 @@ app.prepare()
         res.json(examples);
       }
     });
+    server.get('/api/theme', (req, res) => {
+      const theme = {};
+      Object.keys(examples).forEach((exampleName) => {
+        if (examples[exampleName].themeDoc) {
+          Object.keys(examples[exampleName].themeDoc).forEach((propName) => {
+
+            const setThemeValue = (obj, keys, value) => {
+              const lastIndex = keys.length - 1;
+              for (let i = 0; i < lastIndex; i += 1) {
+                const key = keys[i];
+                if (!(key in obj)) {
+                  obj[key] = {};
+                }
+                obj = obj[key];
+              }
+              if (!(keys[lastIndex] in obj)) {
+                obj[keys[lastIndex]] = [];
+              }
+              obj[keys[lastIndex]].push({ component: exampleName, ...value });
+            };
+            const keys = propName.split('.');
+            setThemeValue(theme, keys, examples[exampleName].themeDoc[propName]);
+          });
+        }
+      });
+      res.json(theme);
+    });
+
     server.get('*', cache(10), (req, res) => {
       const parsedUrl = url.parse(req.url, true);
       const { pathname } = parsedUrl;
