@@ -11,6 +11,7 @@ export const Anchor = {
   category: categories.navigation,
   package: packages.grommet,
   doc: doc.doc({}).toJSON(),
+  themeDoc: doc.themeDoc,
   examples: {
     _starter,
     icon,

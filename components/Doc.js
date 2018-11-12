@@ -1,7 +1,9 @@
 /* eslint-disable dot-notation */
 import PropTypes from 'prop-types';
 import 'isomorphic-fetch';
+import JSONPretty from 'react-json-pretty';
 import { Box, Button, Heading, Paragraph, Markdown } from 'grommet';
+import { ThemeContext } from 'grommet/contexts';
 import Page from './Page';
 import DocProperty from './DocProperty';
 import Example from './Example';
@@ -23,7 +25,7 @@ export default class Doc extends React.Component {
       children, name, text, nav, footer,
     } = this.props;
     const { documentation } = this.state;
-    const { examples = {}, doc = {} } = documentation;
+    const { examples = {}, doc, themeDoc } = documentation;
     return (
       <Page
         title={this.props.name}
@@ -84,6 +86,41 @@ export default class Doc extends React.Component {
             )}
           </Box>
         ) : null}
+        {themeDoc && (
+          <Box
+            margin={{ horizontal: 'large', bottom: 'large' }}
+          >
+            <Heading level={2} margin={{ top: 'medium', bottom: 'xlarge' }}>
+              Theme
+            </Heading>
+            <Box
+              pad='large'
+              round='large'
+              background='light-1'
+            >
+              <ThemeContext.Consumer>
+                {theme =>
+                  Object.keys(themeDoc).map((key) => {
+                    const themeProp = themeDoc[key];
+                    const props = key.split('.');
+                    const themeValue = props.reduce(
+                      (branch, prop) => (branch ? branch[prop] : null),
+                      theme
+                    );
+                    return (
+                      <DocProperty
+                        key={key}
+                        basis='1/3'
+                        property={{ name: key, ...themeProp }}
+                        defaultExample={themeValue && typeof themeValue !== 'string' ? <JSONPretty json={themeValue} /> : themeValue}
+                      />
+                    );
+                  })
+                }
+              </ThemeContext.Consumer>
+            </Box>
+          </Box>
+        )}
         {children}
       </Page>
     );

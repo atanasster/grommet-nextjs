@@ -13,6 +13,7 @@ export const Layer = {
   category: categories.layout,
   package: packages.grommet,
   doc: doc.doc({}).toJSON(),
+  themeDoc: doc.themeDoc,
   examples: {
     _starter,
     full,

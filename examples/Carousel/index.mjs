@@ -8,6 +8,7 @@ export const Carousel = {
   category: categories.media,
   package: packages.grommet,
   doc: doc.doc({}).toJSON(),
+  themeDoc: doc.themeDoc,
   examples: {
     _starter,
   },

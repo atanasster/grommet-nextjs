@@ -5,7 +5,7 @@ import Example from './Example';
 export default class DocProperty extends React.Component {
   render() {
     const {
-      property, code, component, example,
+      property, code, component, example, basis, defaultExample,
     } = this.props;
     let sample;
     if (code) {
@@ -14,10 +14,12 @@ export default class DocProperty extends React.Component {
           <Example code={code} component={component} example={example} />
         </Box>
       );
+    } else {
+      sample = defaultExample;
     }
     let defaultValue;
     if (property.defaultValue) {
-      defaultValue = ` (${property.defaultValue})`;
+      defaultValue = <div><strong>{`${property.defaultValue}`}</strong></div>;
     }
     return (
       <Box
@@ -27,14 +29,14 @@ export default class DocProperty extends React.Component {
         align='start'
         border='bottom'
       >
-        <Box basis='1/2' margin={{ right: 'large' }}>
+        <Box basis={basis} margin={{ right: 'large' }}>
           <Heading level={3} size='small'>
             <strong>{`${property.name}${property.required ? ' *' : ''}`}</strong>
           </Heading>
           <Markdown>{`\`\`\`${property.description}\`\`\``}</Markdown>
         </Box>
         <Box flex={true} align='start'>
-          <Text><pre>{property.format}{defaultValue}</pre></Text>
+          <Text><pre>{property.format || property.type}{defaultValue}</pre></Text>
 
         </Box>
         <Box>
@@ -49,12 +51,14 @@ DocProperty.defaultProps = {
   code: '',
   component: undefined,
   example: undefined,
+  basis: '1/2',
 };
 
 DocProperty.propTypes = {
   property: PropTypes.object.isRequired,
   code: PropTypes.string,
+  basis: PropTypes.string,
   component: PropTypes.string,
-  example: PropTypes.string,
+  example: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
 };
 

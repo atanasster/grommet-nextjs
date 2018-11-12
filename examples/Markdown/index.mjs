@@ -8,6 +8,7 @@ export const Markdown = {
   category: categories.type,
   package: packages.grommet,
   doc: doc.doc({}).toJSON(),
+  themeDoc: doc.themeDoc,
   examples: {
     _starter,
   },
