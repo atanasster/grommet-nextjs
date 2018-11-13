@@ -16,7 +16,7 @@ export default class Theming extends React.Component {
   render() {
     const { theme } = this.state;
     return (
-      <Page title='Colors'>
+      <Page title='Theming properties'>
         <JSONPretty json={theme} />
       </Page>
     );
