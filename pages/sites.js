@@ -57,7 +57,7 @@ const sites = [
 
   },
   {
-    href: 'https://hyperjs.herokuapp.com',
+    href: 'https://ganevru.github.io/gatsby-starter-blog-grommet/',
     title: 'gatsby starter blog grommet',
     source: 'https://github.com/ganevru/gatsby-starter-blog-grommet',
     description: 'GatsbyJS v2 starter for creating a blog. Based on Grommet v2 UI.',
