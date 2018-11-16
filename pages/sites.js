@@ -57,7 +57,16 @@ const sites = [
 
   },
   {
-    href: 'https://horizontalworking.herokuapp.com',
+    href: 'https://hyperjs.herokuapp.com',
+    title: 'gatsby starter blog grommet',
+    source: 'https://github.com/ganevru/gatsby-starter-blog-grommet',
+    description: 'GatsbyJS v2 starter for creating a blog. Based on Grommet v2 UI.',
+    author: 'Ivan Ganev',
+    authorLink: 'https://github.com/Ganevru',
+
+  },
+  {
+    href: 'https://ganevru.github.io/gatsby-starter-blog-grommet/',
     title: 'horizontal working',
     source: 'https://github.com/martin-stoyanov/horizontalworking',
     description: 'Horizontal working sample grommet v2 + next.js',
