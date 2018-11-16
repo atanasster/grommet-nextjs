@@ -66,7 +66,7 @@ const sites = [
 
   },
   {
-    href: 'https://ganevru.github.io/gatsby-starter-blog-grommet/',
+    href: 'https://horizontalworking.herokuapp.com',
     title: 'horizontal working',
     source: 'https://github.com/martin-stoyanov/horizontalworking',
     description: 'Horizontal working sample grommet v2 + next.js',
