@@ -73,7 +73,14 @@ const sites = [
     author: 'Martin Stoyanov',
     authorLink: 'https://github.com/martin-stoyanov',
   },
-
+  {
+    href: 'https://gatsby-source-marvel.netlify.com',
+    title: 'marvel API',
+    source: 'https://github.com/oorestisime/gatsby-source-marvel/tree/master/example',
+    description: 'Gatsby Marvel example site',
+    author: 'Orestis Ioannou',
+    authorLink: 'https://github.com/oorestisime',
+  },
 ];
 
 export default () => (
