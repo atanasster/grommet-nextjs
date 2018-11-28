@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import { Box, Heading, Markdown, Text } from 'grommet';
+import { Box, Heading, Text } from 'grommet';
 import Example from './Example';
 
 export default class DocProperty extends React.Component {
@@ -33,7 +33,7 @@ export default class DocProperty extends React.Component {
           <Heading level={3} size='small'>
             <strong>{`${property.name}${property.required ? ' *' : ''}`}</strong>
           </Heading>
-          <Markdown>{`\`\`\`${property.description}\`\`\``}</Markdown>
+          {property.description}
         </Box>
         <Box flex={true} align='start'>
           <Text><pre>{property.format || property.type}{defaultValue}</pre></Text>
