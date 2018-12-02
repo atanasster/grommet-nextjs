@@ -93,7 +93,7 @@ export default () => (
               <Anchor href={site.href} target='_blank'>{site.title}</Anchor>
             </Card.CardTitle>
             <Card.CardContent pad={null}>
-              <Box direction='row-responsive' fill={true} pad='small' gap='medium'>
+              <Box direction='row' fill={true} pad='small' gap='medium'>
                 <Box basis='1/3' border='all'>
                   <Image src={site.img} fit='contain' />
                 </Box>

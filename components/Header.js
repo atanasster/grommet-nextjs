@@ -49,7 +49,7 @@ class Header extends React.Component {
     const {
       title: pageTitle, themes: { themes, selected: theme }, size,
     } = this.props;
-    const isNarrow = size === 'medium';
+    const isNarrow = size === 'small';
     const isWide = !isNarrow;
     const keywords = ['grommet', 'grommet 2', 'react', 'next-js', 'next.js', 'ui library'];
     if (pageTitle) {
