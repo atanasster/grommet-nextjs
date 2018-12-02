@@ -1,20 +1,13 @@
 import React from 'react';
-import styled from 'styled-components';
-import { Box, Grid, Anchor, Paragraph } from 'grommet';
+import { Box, Grid, Anchor, Paragraph, Image } from 'grommet';
 import { Github } from 'grommet-icons';
 import { Card } from 'grommet-controls';
 import Page from '../components/Page';
 
-const StyledIFrame = styled.iframe`
-  width: 100%;
-  height: 100%;
-  border: 0;  
-  transform: scale(0.25);
-  transform-origin: 0 0;
-`;
 const sites = [
   {
     href: 'https://v2.grommet.io',
+    img: '/static/img/grommet-site.jpg',
     title: 'grommet site',
     source: 'https://github.com/grommet/grommet-site',
     description: 'Site for Grommet v2',
@@ -23,6 +16,7 @@ const sites = [
   },
   {
     href: 'https://crypto-grommet.herokuapp.com',
+    img: '/static/img/crypto-grommet1.jpg',
     title: 'crypto-grommet',
     source: 'https://github.com/atanasster/crypto-grommet',
     description: 'Crypto and equities app built with react, redux, nodejs, express, passport, nextjs, graphql, apollo',
@@ -31,6 +25,7 @@ const sites = [
   },
   {
     href: 'https://grommet-dashboard.herokuapp.com/?packages=material-ui%2Csemantic-ui-react%2Creact-bootstrap%2Cantd%2Coffice-ui-fabric-react%2Cgrommet',
+    img: '/static/img/grommet-dashboard.jpg',
     title: 'dashboard template',
     source: 'https://github.com/atanasster/grommet-dashboard',
     description: 'React nextjs grommet 2 dashboard template',
@@ -40,6 +35,7 @@ const sites = [
   },
   {
     href: 'https://grommet-nextjs.herokuapp.com',
+    img: '/static/img/grommet-nextjs.jpg',
     title: 'nextjs grommet site',
     source: 'https://github.com/atanasster/grommet-nextjs',
     description: 'Site for grommet v2 and grommet-controls built with next.js',
@@ -49,6 +45,7 @@ const sites = [
   },
   {
     href: 'https://hyperjs.herokuapp.com',
+    img: '/static/img/hyperparameters.jpg',
     title: 'hyperparameters tensorflow',
     source: 'https://github.com/martin-stoyanov/hyperparameters-site',
     description: 'Home of the hyperparameters.js library for tensorflow.js',
@@ -58,6 +55,7 @@ const sites = [
   },
   {
     href: 'https://ganevru.github.io/gatsby-starter-blog-grommet/',
+    img: '/static/img/gatsby-blog.jpg',
     title: 'gatsby starter blog grommet',
     source: 'https://github.com/ganevru/gatsby-starter-blog-grommet',
     description: 'GatsbyJS v2 starter for creating a blog. Based on Grommet v2 UI.',
@@ -67,6 +65,7 @@ const sites = [
   },
   {
     href: 'https://horizontalworking.herokuapp.com',
+    img: '/static/img/horizontal-working.jpg',
     title: 'horizontal working',
     source: 'https://github.com/martin-stoyanov/horizontalworking',
     description: 'Horizontal working sample grommet v2 + next.js',
@@ -75,6 +74,7 @@ const sites = [
   },
   {
     href: 'https://gatsby-source-marvel.netlify.com',
+    img: '/static/img/gatsby-marvel.jpg',
     title: 'marvel API',
     source: 'https://github.com/oorestisime/gatsby-source-marvel/tree/master/example',
     description: 'Gatsby Marvel example site',
@@ -93,13 +93,11 @@ export default () => (
               <Anchor href={site.href} target='_blank'>{site.title}</Anchor>
             </Card.CardTitle>
             <Card.CardContent pad={null}>
-              <Box direction='row-responsive' fill={true}>
-                <Box width='1/3' height='100%' pad='small' background='light-2'>
-                  <div style={{ width: '400%', height: '400%' }}>
-                    <StyledIFrame title={site.title} src={site.href} />
-                  </div>
+              <Box direction='row-responsive' fill={true} pad='small' gap='medium'>
+                <Box basis='1/3' border='all'>
+                  <Image src={site.img} fit='contain' />
                 </Box>
-                <Box width='2/3' height='100%' pad='small' >
+                <Box basis='2/3' >
                   <Anchor href={site.authorLink} target='_blank' >by: {site.author}</Anchor>
                   <Paragraph>
                     {site.description}
