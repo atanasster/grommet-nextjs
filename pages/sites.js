@@ -16,7 +16,7 @@ const sites = [
   },
   {
     href: 'https://crypto-grommet.herokuapp.com',
-    img: '/static/img/crypto-grommet1.jpg',
+    img: '/static/img/crypto-grommet.jpg',
     title: 'crypto-grommet',
     source: 'https://github.com/atanasster/crypto-grommet',
     description: 'Crypto and equities app built with react, redux, nodejs, express, passport, nextjs, graphql, apollo',
