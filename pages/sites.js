@@ -81,6 +81,15 @@ const sites = [
     author: 'Orestis Ioannou',
     authorLink: 'https://github.com/oorestisime',
   },
+  {
+    href: 'https://oorestisime.netlify.com',
+    img: '/static/img/orestis-blog.jpg',
+    title: 'Personal blog',
+    source: undefined,
+    description: 'Gatsby personal blog site',
+    author: 'Orestis Ioannou',
+    authorLink: 'https://github.com/oorestisime',
+  },
 ];
 
 export default () => (
