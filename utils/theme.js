@@ -20,14 +20,14 @@ const SHARPNESS = {
   rounded: {
     global: { input: { border: { radius: '24px' } }, drop: { border: { radius: '4px' } } },
     button: { border: { radius: '24px' } },
-    checkBox: { border: { radius: '24px' } },
+    checkBox: { check: { radius: '24px' } },
     layer: { border: { radius: '24px' } },
     tag: { border: { round: 'medium' } },
   },
   soft: {
     global: { input: { border: { radius: '16px' } }, drop: { border: { radius: '3px' } } },
     button: { border: { radius: '16px' } },
-    checkBox: { border: { radius: '16px' }, toggle: { radius: '4px' } },
+    checkBox: { check: { radius: '16px' }, toggle: { radius: '4px' } },
     layer: { border: { radius: '16px' } },
     tag: { border: { round: 'small' } },
   },
@@ -35,13 +35,13 @@ const SHARPNESS = {
   medium: {
     global: { input: { border: { radius: '4px' } }, drop: { border: { radius: '2px' } } },
     button: { border: { radius: '4px' } },
-    checkBox: { border: { radius: '4px' }, toggle: { radius: '2px' } },
+    checkBox: { check: { radius: '4px' }, toggle: { radius: '2px' } },
     layer: { border: { radius: '4px' } },
   },
   hard: {
     global: { input: { border: { radius: '0px' } }, drop: { border: { radius: '0px' } } },
     button: { border: { radius: '0px' } },
-    checkBox: { border: { radius: '0px' }, toggle: { radius: '0px' } },
+    checkBox: { check: { radius: '0px' }, toggle: { radius: '0px' } },
     layer: { border: { radius: '0px' } },
   },
 };
@@ -112,7 +112,7 @@ const colorsForMood = (color, backgroundColor, mood, scheme) => {
     const colors = {
       brand: color,
       border: border.hex(),
-      background: bgColor,
+      background: backgroundColor,
       placeholder: shadowColor,
       control: brandNormalized,
     };
@@ -129,13 +129,15 @@ const colorsForMood = (color, backgroundColor, mood, scheme) => {
           xlarge: `0px 8px 16px ${shadowColor}`,
         },
         drop: {
-          backgroundColor: softerBackground.rgb().string(),
+          background: softerBackground.rgb().string(),
           shadow: `0px 3px 8px ${shadowColor}`,
         },
       },
       layer: {
-        backgroundColor,
-        overlayBackgroundColor: shadowColor,
+        background: backgroundColor,
+        overlay: {
+          background: shadowColor,
+        },
       },
       checkBox: {
         border: {

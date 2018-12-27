@@ -43,7 +43,7 @@ const custom = deepFreeze({
       'xlarge': '0px 8px 16px rgba(68, 68, 68, 0.5)',
     },
     'drop': {
-      'backgroundColor': 'rgb(255, 242, 201)',
+      'background': 'rgb(255, 242, 201)',
       'shadow': '0px 3px 8px rgba(68, 68, 68, 0.5)',
       'border': {
         'radius': '2px',
@@ -60,8 +60,10 @@ const custom = deepFreeze({
     },
   },
   'layer': {
-    'backgroundColor': '#fff8e1',
-    'overlayBackgroundColor': 'rgba(68, 68, 68, 0.5)',
+    'background': '#fff8e1',
+    'overlay': {
+      'background': 'rgba(68, 68, 68, 0.5)',
+    },
     'border': {
       'radius': '4px',
     },
@@ -72,7 +74,9 @@ const custom = deepFreeze({
         'light': 'rgba(68, 68, 68, 0.6)',
         'dark': 'rgba(68, 68, 68, 0.6)',
       },
-      'radius': '4px',
+      'check': {
+        'radius': '4px',
+      },
     },
     'toggle': {
       'radius': '2px',
