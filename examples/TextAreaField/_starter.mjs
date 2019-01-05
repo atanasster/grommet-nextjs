@@ -6,7 +6,7 @@ export const _starter = `const Demo = () => (
     focusFirstChild={false}
   >
     <TextAreaField
-      rows='6'
+      rows='3'
       label='Short bio'
       name='bio'
     />
