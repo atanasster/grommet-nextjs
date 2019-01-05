@@ -2,7 +2,7 @@
 import doc from 'grommet-controls/components/PagingTable/doc';
 import { packages, categories } from '../lookups';
 import { _starter } from './_starter';
-import { advanced } from './advamced';
+import { advanced } from './advanced';
 
 
 export const PagingTable = {

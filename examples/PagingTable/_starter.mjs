@@ -1,6 +1,9 @@
 // eslint-disable-next-line no-underscore-dangle
 export const _starter = `const Demo = () => (
   <PagingTable
+    decorations={{      
+     row: { hover: true }
+    }}
     columns={[
       {
         Header: 'Item',
