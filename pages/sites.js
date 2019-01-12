@@ -1,5 +1,6 @@
 import React from 'react';
 import { Box, Grid, Anchor, Paragraph, Image } from 'grommet';
+import { ResponsiveContext } from 'grommet/contexts';
 import { Github } from 'grommet-icons';
 import { Card } from 'grommet-controls';
 import Page from '../components/Page';
@@ -90,37 +91,50 @@ const sites = [
     author: 'Orestis Ioannou',
     authorLink: 'https://github.com/oorestisime',
   },
+  {
+    href: 'https://mighty-castle-63479.herokuapp.com',
+    img: '/static/img/grommet-layout.jpg',
+    title: 'Grommet Layout Interactive Demo',
+    source: 'https://github.com/Fatslug/grommet-layout-demo',
+    description: 'Grommet Box layout demo',
+    author: 'Sean Powell',
+    authorLink: 'https://github.com/Fatslug',
+  },
 ];
 
 export default () => (
   <Page title='Built with grommet v2'>
     <Box pad='large'>
-      <Grid columns='large' rows='medium' gap='medium'>
-        {sites.map(site => (
-          <Card key={site.title} background='white' gap={null}>
-            <Card.CardTitle>
-              <Anchor href={site.href} target='_blank'>{site.title}</Anchor>
-            </Card.CardTitle>
-            <Card.CardContent pad={null}>
-              <Box direction='row' fill={true} pad='small' gap='medium'>
-                <Box basis='1/3' border='all'>
-                  <Image src={site.img} fit='contain' />
-                </Box>
-                <Box basis='2/3' >
-                  <Anchor href={site.authorLink} target='_blank' >by: {site.author}</Anchor>
-                  <Paragraph>
-                    {site.description}
-                  </Paragraph>
-                  {site.source && (
-                    <Anchor primary={true} href={site.source} target='_blank' label='source' icon={<Github />} />
-                  )}
-                </Box>
-              </Box>
-            </Card.CardContent>
-          </Card>
-        ))
-      }
-      </Grid>
+      <ResponsiveContext.Consumer>
+        {size => (
+          <Grid columns={size === 'small' ? 'full' : 'large'} rows='medium' gap='medium'>
+            {sites.map(site => (
+              <Card key={site.title} background='white' gap={null}>
+                <Card.CardTitle>
+                  <Anchor href={site.href} target='_blank'>{site.title}</Anchor>
+                </Card.CardTitle>
+                <Card.CardContent pad={null}>
+                  <Box direction='row-responsive' fill={true} pad='small' gap='medium'>
+                    <Box basis='1/3' border='all'>
+                      <Image src={site.img} fit='contain' />
+                    </Box>
+                    <Box basis='2/3' >
+                      <Anchor href={site.authorLink} target='_blank' >by: {site.author}</Anchor>
+                      <Paragraph>
+                        {site.description}
+                      </Paragraph>
+                      {site.source && (
+                        <Anchor primary={true} href={site.source} target='_blank' label='source' icon={<Github />} />
+                      )}
+                    </Box>
+                  </Box>
+                </Card.CardContent>
+              </Card>
+            ))
+          }
+          </Grid>
+        )}
+      </ResponsiveContext.Consumer>
     </Box>
   </Page>
 );
