@@ -7,6 +7,7 @@ import { onChange } from './onChange';
 import { onInvalidForm } from './onInvalidForm';
 import { onSubmit } from './onSubmit';
 import { onSubmitError } from './onSubmitError';
+import { object } from './object';
 import { profile } from './profile';
 
 export const Form = {
@@ -20,6 +21,7 @@ export const Form = {
     onInvalidForm,
     onSubmit,
     onSubmitError,
+    object,
     profile,
   },
 };
