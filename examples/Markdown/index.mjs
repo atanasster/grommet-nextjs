@@ -5,6 +5,7 @@ import { _starter } from './_starter';
 
 
 export const Markdown = {
+  name: 'Markdown',
   category: categories.type,
   package: packages.grommet,
   doc: doc.doc({}).toJSON(),

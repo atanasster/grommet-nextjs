@@ -5,6 +5,7 @@ import { _starter } from './_starter';
 import { fit } from './fit';
 
 export const Image = {
+  name: 'Image',
   category: categories.media,
   package: packages.grommet,
   doc: doc.doc({}).toJSON(),

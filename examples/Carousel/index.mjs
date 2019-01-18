@@ -5,6 +5,7 @@ import { _starter } from './_starter';
 
 
 export const Carousel = {
+  name: 'Carousel',
   category: categories.media,
   package: packages.grommet,
   doc: doc.doc({}).toJSON(),

@@ -6,6 +6,7 @@ import { colors } from './colors';
 
 
 export const ColorInput = {
+  name: 'ColorInput',
   category: categories.input,
   package: packages.grommetControls,
   doc: doc.default({}).toJSON(),

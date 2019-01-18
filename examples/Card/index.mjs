@@ -12,6 +12,7 @@ import { round } from './round';
 
 
 export const Card = {
+  name: 'Card',
   category: categories.controls,
   package: packages.grommetControls,
   doc: doc.default({}).toJSON(),

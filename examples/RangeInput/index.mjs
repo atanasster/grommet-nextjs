@@ -6,6 +6,7 @@ import { value } from './value';
 
 
 export const RangeInput = {
+  name: 'RangeInput',
   category: categories.input,
   package: packages.grommet,
   doc: doc.doc({}).toJSON(),

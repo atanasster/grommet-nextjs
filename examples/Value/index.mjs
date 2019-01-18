@@ -10,6 +10,7 @@ import { weight } from './weight';
 
 
 export const Value = {
+  name: 'Value',
   category: categories.controls,
   package: packages.grommetControls,
   doc: doc.default({}).toJSON(),

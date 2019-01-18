@@ -7,6 +7,7 @@ import { validation } from './validation';
 
 
 export const NumberInputField = {
+  name: 'NumberInputField',
   category: categories.validation,
   package: packages.grommetControls,
   doc: doc.default({}, 'NumberInputField', 'A numeric input field with form validation.').toJSON(),

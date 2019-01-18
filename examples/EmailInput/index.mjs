@@ -5,6 +5,7 @@ import { _starter } from './_starter';
 
 
 export const EmailInput = {
+  name: 'EmailInput',
   category: categories.input,
   package: packages.grommetControls,
   doc: doc.default({}).toJSON(),

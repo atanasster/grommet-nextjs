@@ -8,6 +8,7 @@ import { label } from './label';
 
 
 export const RadioButton = {
+  name: 'RadioButton',
   category: categories.input,
   package: packages.grommet,
   doc: doc.doc({}).toJSON(),

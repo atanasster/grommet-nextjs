@@ -1,17 +1,18 @@
 /* eslint-disable import/extensions,import/no-unresolved */
-import doc from 'grommet/components/Tabs/doc';
+import doc from 'grommet/components/Form/doc';
 import { packages, categories } from '../lookups';
 import { _starter } from './_starter';
+import { advanced } from './advanced';
 
 
-export const Tabs = {
-  name: 'Tabs',
-  category: categories.controls,
+export const FormGrommet = {
+  name: 'Form',
+  category: categories.input,
   package: packages.grommet,
   doc: doc.doc({}).toJSON(),
-  themeDoc: doc.themeDoc,
   examples: {
     _starter,
+    advanced,
   },
 };
 

@@ -5,6 +5,7 @@ import { _starter } from './_starter';
 
 
 export const WorldMap = {
+  name: 'WorldMap',
   category: categories.visualization,
   package: packages.grommet,
   doc: doc.doc({}).toJSON(),

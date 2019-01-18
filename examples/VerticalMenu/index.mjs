@@ -6,6 +6,7 @@ import { items } from './items';
 
 
 export const VerticalMenu = {
+  name: 'VerticalMenu',
   category: categories.navigation,
   package: packages.grommetControls,
   doc: doc.default({}).toJSON(),

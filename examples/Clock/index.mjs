@@ -9,6 +9,7 @@ import { type } from './type';
 
 
 export const Clock = {
+  name: 'Clock',
   category: categories.visualization,
   package: packages.grommet,
   doc: doc.doc({}).toJSON(),

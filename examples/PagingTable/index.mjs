@@ -6,6 +6,7 @@ import { advanced } from './advanced';
 
 
 export const PagingTable = {
+  name: 'PagingTable',
   category: categories.controls,
   package: packages.grommetControls,
   doc: doc.default({}).toJSON(),

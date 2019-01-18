@@ -5,6 +5,7 @@ import { _starter } from './_starter';
 
 
 export const DropButton = {
+  name: 'DropButton',
   category: categories.controls,
   package: packages.grommet,
   doc: doc.doc({}).toJSON(),

@@ -8,6 +8,7 @@ import { size } from './size';
 
 
 export const Spinning = {
+  name: 'Spinning',
   category: categories.controls,
   package: packages.grommetControls,
   doc: doc.default({}).toJSON(),

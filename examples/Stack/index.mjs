@@ -6,6 +6,7 @@ import { anchor } from './anchor';
 
 
 export const Stack = {
+  name: 'Stack',
   category: categories.layout,
   package: packages.grommet,
   doc: doc.doc({}).toJSON(),

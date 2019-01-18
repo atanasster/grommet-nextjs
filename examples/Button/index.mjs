@@ -10,6 +10,7 @@ import { primary } from './primary';
 import { reverse } from './reverse';
 
 export const Button = {
+  name: 'Button',
   category: categories.navigation,
   package: packages.grommet,
   doc: doc.doc({}).toJSON(),

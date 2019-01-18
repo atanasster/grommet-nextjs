@@ -6,6 +6,7 @@ import { connections } from './connections';
 
 
 export const Diagram = {
+  name: 'Diagram',
   category: categories.visualization,
   package: packages.grommet,
   doc: doc.doc({}).toJSON(),

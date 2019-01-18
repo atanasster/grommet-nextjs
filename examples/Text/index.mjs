@@ -9,6 +9,7 @@ import { weight } from './weight';
 
 
 export const Text = {
+  name: 'Text',
   category: categories.type,
   package: packages.grommet,
   doc: doc.doc({}).toJSON(),

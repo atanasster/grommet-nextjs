@@ -13,16 +13,17 @@ export default class Doc extends React.Component {
     documentation: {},
   };
   componentDidMount() {
-    const { name } = this.props;
+    const { name, library } = this.props;
     window.scrollTo(0, 0);
-    fetch(`/api/examples/grommet/${name}`)
+    fetch(`/api/examples/${library}/${name}`)
       .then(res => (res ? res.json() : res))
       .catch(() => this.setState({ documentation: {} }))
-      .then(res => res && this.setState({ documentation: res }));
+      .then(res => res && res.length &&
+        this.setState({ documentation: res.length > 0 ? res[0] : res }));
   }
   render() {
     const {
-      children, name, text, nav, footer,
+      children, name, library, text, nav, footer,
     } = this.props;
     const { documentation } = this.state;
     const { examples = {}, doc, themeDoc } = documentation;
@@ -57,7 +58,7 @@ export default class Doc extends React.Component {
             </Box>
             {examples['_starter'] && (
               <Box flex={true} pad={{ vertical: 'large' }} align='center'>
-                <Example code={examples['_starter']} component={name} example='_starter' />
+                <Example library={library} code={examples['_starter']} component={name} example='_starter' />
               </Box>
             )}
           </Box>
@@ -79,6 +80,7 @@ export default class Doc extends React.Component {
                     property={property}
                     code={examples[property.name]}
                     component={name}
+                    library={library}
                     example={property.name}
                   />
                 ))}
@@ -129,6 +131,7 @@ export default class Doc extends React.Component {
 
 Doc.propTypes = {
   name: PropTypes.string.isRequired,
+  library: PropTypes.string.isRequired,
   text: PropTypes.string,
   nav: PropTypes.bool,
   footer: PropTypes.bool,

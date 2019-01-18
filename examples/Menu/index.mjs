@@ -7,6 +7,7 @@ import { label } from './label';
 
 
 export const Menu = {
+  name: 'Menu',
   category: categories.navigation,
   package: packages.grommet,
   doc: doc.doc({}).toJSON(),

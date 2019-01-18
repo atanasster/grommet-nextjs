@@ -8,6 +8,7 @@ import { primary } from './primary';
 import { reverse } from './reverse';
 
 export const Anchor = {
+  name: 'Anchor',
   category: categories.navigation,
   package: packages.grommet,
   doc: doc.doc({}).toJSON(),

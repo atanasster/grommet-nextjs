@@ -16,6 +16,7 @@ import { timestamp } from './timestamp';
 
 
 export const Notification = {
+  name: 'Notification',
   category: categories.controls,
   package: packages.grommetControls,
   doc: doc.default({}).toJSON(),

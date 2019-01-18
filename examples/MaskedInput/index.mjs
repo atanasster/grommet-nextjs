@@ -20,6 +20,7 @@ import { widgets } from './widgets';
 
 
 export const MaskedInput = {
+  name: 'MaskedInput',
   category: categories.input,
   package: packages.grommetControls,
   doc: doc.default({}).toJSON(),

@@ -14,6 +14,7 @@ import { value } from './value';
 
 
 export const Tags = {
+  name: 'Tags',
   category: categories.input,
   package: packages.grommetControls,
   doc: doc.default({}).toJSON(),

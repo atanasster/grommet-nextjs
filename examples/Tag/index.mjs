@@ -16,6 +16,7 @@ import { size } from './size';
 
 
 export const Tag = {
+  name: 'Tag',
   category: categories.controls,
   package: packages.grommetControls,
   doc: doc.default({}).toJSON(),

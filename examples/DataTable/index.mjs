@@ -6,6 +6,7 @@ import { search } from './search';
 
 
 export const DataTable = {
+  name: 'DataTable',
   category: categories.visualization,
   package: packages.grommet,
   doc: doc.doc({}).toJSON(),

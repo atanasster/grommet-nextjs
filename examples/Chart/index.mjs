@@ -12,6 +12,7 @@ import { values } from './values';
 
 
 export const Chart = {
+  name: 'Chart',
   category: categories.visualization,
   package: packages.grommet,
   doc: doc.doc({}).toJSON(),

@@ -14,6 +14,7 @@ import {
 import styled, { css } from 'styled-components';
 import * as Icons from 'grommet-icons';
 import * as Grommet from 'grommet';
+import { Form as GrommetForm, MaskedInput as GrommetMaskedInput } from 'grommet';
 import * as Themes from 'grommet-controls/themes';
 import * as GrommetControls from 'grommet-controls';
 import Page from '../components/Page';
@@ -21,7 +22,7 @@ import pushRoute from '../components/PushRoute';
 // import * as allExamples from '../examples';
 
 const scope = {
-  ...Grommet, ...GrommetControls, Icons, Themes, styled, css,
+  ...Grommet, GrommetForm, GrommetMaskedInput, ...GrommetControls, Icons, Themes, styled, css,
 };
 
 const StyledEditor = styled(LiveEditor)`
@@ -30,41 +31,36 @@ const StyledEditor = styled(LiveEditor)`
 class Examples extends React.Component {
   constructor(props) {
     super(props);
-    const { group = 'Box', example = '_starter' } = props.router.query;
-    let pckg = 'grommet';
+    const { group = 'Box', library, example = '_starter' } = props.router.query;
     let code = '';
-    const item = props.examples.find(e => e.label === group);
+    const item = props.examples.find(e => e.label === group && (!library || e.package === library));
     if (item) {
-      pckg = item.package;
       const exmpl = item.items.find(e => e.label === example);
       if (exmpl) {
         ({ code } = exmpl);
       }
     }
     this.state = {
-      code, group, example, pckg, search: '',
+      code, group, example, library, search: '',
     };
   }
   static async getInitialProps({ req }) {
     const baseUrl = req ? `${req.protocol}://${req.get('Host')}` : '';
     const res = await fetch(`${baseUrl}/api/examples`);
     const allExamples = await res.json();
-    const examples = Object.keys(allExamples).sort().map((key) => {
-      const example = allExamples[key];
-      return {
-        label: key,
-        package: example.package,
-        category: example.category,
-        items: Object.keys(example.examples)
-          .sort()
-          .map(item => ({
-            label: item,
-            component: key,
-            code: example.examples[item],
-            id: `${example.package}_${key}_${item}`,
-          })),
-      };
-    });
+    const examples = allExamples.sort().map(example => ({
+      label: example.name,
+      package: example.package,
+      category: example.category,
+      items: Object.keys(example.examples)
+        .sort()
+        .map(item => ({
+          label: item,
+          component: example.name,
+          code: example.examples[item],
+          id: `${example.package}_${example.name}_${item}`,
+        })),
+    }));
     const byPackage = examples.reduce((acc, item) => {
       if (!acc[item.package]) {
         acc[item.package] = [];
@@ -84,7 +80,7 @@ class Examples extends React.Component {
         label: p,
         items: Object.keys(byCategory).sort().map(cat => ({
           label: cat,
-          id: `${p}_${cat}`,
+          id: `${byCategory[cat].package}_${p}_${cat}`,
           items: byCategory[cat],
         })),
       };
@@ -97,7 +93,7 @@ class Examples extends React.Component {
   render() {
     const { grouped } = this.props;
     const {
-      pckg, group, example, code, search,
+      library, group, example, code, search,
     } = this.state;
     return (
       <Page title='Component editor'>
@@ -123,17 +119,18 @@ class Examples extends React.Component {
               />
             </Box>
             <Box overflow='auto'>
+
               <VerticalMenu
                 items={grouped}
-                activeItem={{ id: `${pckg}_${group}_${example}` }}
+                activeItem={{ id: `${library}_${group}_${example}` }}
                 search={search}
                 onSelect={(item) => {
                   pushRoute({
                     route: 'examples',
-                    params: { group: item.component, example: item.label },
+                    params: { library, group: item.component, example: item.label },
                   });
                   this.setState({
- pckg: item.package, code: item.code, group: item.component, example: item.label,
+ library: item.package, code: item.code, group: item.component, example: item.label,
 });
                 }}
               />

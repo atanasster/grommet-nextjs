@@ -9,6 +9,7 @@ import { toggle } from './toggle';
 
 
 export const CheckBox = {
+  name: 'CheckBox',
   category: categories.input,
   package: packages.grommet,
   doc: doc.doc({}).toJSON(),

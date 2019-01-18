@@ -8,6 +8,7 @@ import { width } from './width';
 
 
 export const Sidebar = {
+  name: 'Sidebar',
   category: categories.layout,
   package: packages.grommetControls,
   doc: doc.default({}).toJSON(),

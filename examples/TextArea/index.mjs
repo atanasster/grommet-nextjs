@@ -9,6 +9,7 @@ import { value } from './value';
 
 
 export const TextArea = {
+  name: 'TextArea',
   category: categories.input,
   package: packages.grommet,
   doc: doc.doc({}).toJSON(),

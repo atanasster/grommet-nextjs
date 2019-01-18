@@ -6,6 +6,7 @@ import { viewIcon } from './viewIcon';
 
 
 export const PasswordInput = {
+  name: 'PasswordInput',
   category: categories.input,
   package: packages.grommetControls,
   doc: doc.default({}).toJSON(),

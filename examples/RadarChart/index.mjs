@@ -5,6 +5,7 @@ import { _starter } from './_starter';
 
 
 export const RadarChart = {
+  name: 'RadarChart',
   category: categories.charts,
   package: packages.grommetControls,
   doc: doc.default({}).toJSON(),

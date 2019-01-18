@@ -14,6 +14,7 @@ import { widgets } from './widgets';
 
 
 export const DropInput = {
+  name: 'DropInput',
   category: categories.input,
   package: packages.grommetControls,
   doc: doc.default({}).toJSON(),

@@ -7,6 +7,7 @@ import { fit } from './fit';
 
 
 export const Video = {
+  name: 'Video',
   category: categories.media,
   package: packages.grommet,
   doc: doc.doc({}).toJSON(),

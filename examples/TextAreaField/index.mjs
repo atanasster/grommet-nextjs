@@ -7,6 +7,7 @@ import { validation } from './validation';
 
 
 export const TextAreaField = {
+  name: 'TextAreaField',
   category: categories.validation,
   package: packages.grommetControls,
   doc: doc.default({}, 'TextAreaField', 'A TextArea field with form validation.').toJSON(),

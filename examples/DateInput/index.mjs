@@ -12,6 +12,7 @@ import { size } from './size';
 import { value } from './value';
 
 export const DateInput = {
+  name: 'DateInput',
   category: categories.input,
   package: packages.grommetControls,
   doc: doc.default({}).toJSON(),

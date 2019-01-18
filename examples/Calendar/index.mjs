@@ -6,6 +6,7 @@ import { value } from './value';
 
 
 export const Calendar = {
+  name: 'Calendar',
   category: categories.visualization,
   package: packages.grommet,
   doc: doc.doc({}).toJSON(),

@@ -9,6 +9,7 @@ import { label } from './label';
 
 
 export const FormField = {
+  name: 'FormField',
   category: categories.input,
   package: packages.grommet,
   doc: doc.doc({}).toJSON(),

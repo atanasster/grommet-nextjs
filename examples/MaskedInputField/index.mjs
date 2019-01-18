@@ -7,6 +7,7 @@ import { validation } from './validation';
 
 
 export const MaskedInputField = {
+  name: 'MaskedInputField',
   category: categories.validation,
   package: packages.grommetControls,
   doc: doc.default({}, 'MaskedInputField', 'A masked input field with form validation.').toJSON(),

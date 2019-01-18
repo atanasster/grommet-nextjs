@@ -15,6 +15,7 @@ import { round } from './round';
 import { wrap } from './wrap';
 
 export const Box = {
+  name: 'Box',
   category: categories.layout,
   package: packages.grommet,
   doc: doc.doc({}).toJSON(),

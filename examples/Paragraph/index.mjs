@@ -8,6 +8,7 @@ import { size } from './size';
 
 
 export const Paragraph = {
+  name: 'Paragraph',
   category: categories.type,
   package: packages.grommet,
   doc: doc.doc({}).toJSON(),

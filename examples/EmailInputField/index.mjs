@@ -7,6 +7,7 @@ import { validation } from './validation';
 
 
 export const EmailInputField = {
+  name: 'EmailInputField',
   category: categories.validation,
   package: packages.grommetControls,
   doc: doc.default({}, 'EmailInputField', 'An email input field with form validation.').toJSON(),

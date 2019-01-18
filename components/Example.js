@@ -1,3 +1,4 @@
+/* eslint-disable import/no-duplicates */
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
@@ -7,12 +8,13 @@ import {
 } from 'react-live';
 import * as Icons from 'grommet-icons';
 import * as Grommet from 'grommet';
+import { Form as GrommetForm, MaskedInput as GrommetMaskedInput } from 'grommet';
 import * as Themes from 'grommet-controls/themes';
 import * as GrommetControls from 'grommet-controls';
 import RoutedButton from './RoutedButton';
 
 const scope = {
-  ...Grommet, ...GrommetControls, Icons, Themes,
+  ...Grommet, GrommetForm, GrommetMaskedInput, ...GrommetControls, Icons, Themes,
 };
 
 const StyledProvider = styled(LiveProvider)`
@@ -29,7 +31,9 @@ const StyledPreview = styled(LivePreview)`
   align-items: center;
 `;
 
-const Example = ({ code, component, example }) => (
+const Example = ({
+  code, library, component, example,
+}) => (
   <StyledProvider code={code} scope={scope} noInline={true}>
     <StyledPreview />
     {component && example && (
@@ -37,7 +41,7 @@ const Example = ({ code, component, example }) => (
         <RoutedButton
           plain={true}
           route='examples'
-          params={{ group: component, example }}
+          params={{ library, group: component, example }}
         >
           <Grommet.Box direction='row' gap='xsmall' pad='xsmall'>
             <Icons.Code />
@@ -53,6 +57,7 @@ const Example = ({ code, component, example }) => (
 Example.defaultProps = {
   code: '',
   component: undefined,
+  library: undefined,
   example: undefined,
 };
 
@@ -61,6 +66,7 @@ Example.propTypes = {
   code: PropTypes.string,
   component: PropTypes.string,
   example: PropTypes.string,
+  library: PropTypes.string,
 };
 
 export default Example;

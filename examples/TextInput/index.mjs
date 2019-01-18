@@ -9,6 +9,7 @@ import { suggestions } from './suggestions';
 
 
 export const TextInput = {
+  name: 'TextInput',
   category: categories.input,
   package: packages.grommet,
   doc: doc.doc({}).toJSON(),

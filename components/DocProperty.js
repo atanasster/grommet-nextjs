@@ -5,13 +5,13 @@ import Example from './Example';
 export default class DocProperty extends React.Component {
   render() {
     const {
-      property, code, component, example, basis, defaultExample,
+      property, code, library, component, example, basis, defaultExample,
     } = this.props;
     let sample;
     if (code) {
       sample = (
         <Box flex={true} align='end' margin={{ vertical: 'medium' }}>
-          <Example code={code} component={component} example={example} />
+          <Example code={code} library={library} component={component} example={example} />
         </Box>
       );
     } else {
@@ -51,6 +51,7 @@ DocProperty.defaultProps = {
   code: '',
   component: undefined,
   example: undefined,
+  library: undefined,
   basis: '1/2',
 };
 
@@ -59,6 +60,7 @@ DocProperty.propTypes = {
   code: PropTypes.string,
   basis: PropTypes.string,
   component: PropTypes.string,
+  library: PropTypes.string,
   example: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
 };
 

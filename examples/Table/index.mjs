@@ -5,6 +5,7 @@ import { _starter } from './_starter';
 
 
 export const Table = {
+  name: 'Table',
   category: categories.visualization,
   package: packages.grommet,
   doc: doc.doc({}).toJSON(),

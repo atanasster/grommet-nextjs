@@ -5,6 +5,7 @@ import { _starter } from './_starter';
 
 
 export const PolarChart = {
+  name: 'PolarChart',
   category: categories.charts,
   package: packages.grommetControls,
   doc: doc.default({}).toJSON(),

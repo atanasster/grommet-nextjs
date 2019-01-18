@@ -16,6 +16,7 @@ import { thousandsSeparatorSymbol } from './thousandsSeparatorSymbol';
 
 
 export const NumberInput = {
+  name: 'NumberInput',
   category: categories.input,
   package: packages.grommetControls,
   doc: doc.default({}).toJSON(),

@@ -11,6 +11,7 @@ import { object } from './object';
 import { profile } from './profile';
 
 export const Form = {
+  name: 'Form',
   category: categories.validation,
   package: packages.grommetControls,
   doc: doc.default({}).toJSON(),

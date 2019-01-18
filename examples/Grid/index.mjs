@@ -5,6 +5,7 @@ import { _starter } from './_starter';
 
 
 export const Grid = {
+  name: 'Grid',
   category: categories.layout,
   package: packages.grommet,
   doc: doc.doc({}).toJSON(),

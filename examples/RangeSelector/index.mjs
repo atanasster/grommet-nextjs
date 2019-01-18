@@ -5,6 +5,7 @@ import { _starter } from './_starter';
 
 
 export const RangeSelector = {
+  name: 'RangeSelector',
   category: categories.input,
   package: packages.grommet,
   doc: doc.doc({}).toJSON(),

@@ -10,6 +10,7 @@ import { values } from './values';
 
 
 export const Meter = {
+  name: 'Meter',
   category: categories.visualization,
   package: packages.grommet,
   doc: doc.doc({}).toJSON(),

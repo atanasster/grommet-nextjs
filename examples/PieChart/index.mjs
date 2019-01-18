@@ -5,6 +5,7 @@ import { _starter } from './_starter';
 
 
 export const PieChart = {
+  name: 'PieChart',
   category: categories.charts,
   package: packages.grommetControls,
   doc: doc.default({}).toJSON(),

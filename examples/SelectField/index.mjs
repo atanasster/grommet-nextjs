@@ -7,6 +7,7 @@ import { validation } from './validation';
 
 
 export const SelectField = {
+  name: 'SelectField',
   category: categories.validation,
   package: packages.grommetControls,
   doc: doc.default({}, 'SelectField', 'A Select field with form validation.').toJSON(),

@@ -6,7 +6,7 @@ import url from 'url';
 import nextjs from 'next';
 import compression from 'compression';
 import routes from './routes';
-import * as examples from '../examples/index';
+import { examples } from '../examples/index';
 
 const port = parseInt(process.env.PORT, 10) || 8444;
 const dev = process.env.NODE_ENV !== 'production';
@@ -42,22 +42,20 @@ app.prepare()
       });
     }
     server.get('/api/examples/:package?/:component?', (req, res) => {
-      if (req.params.component) {
-        res.json(examples[req.params.component]);
-      } else if (req.params.package) {
-        res.json(Object.keys(examples)
-          .filter(e => examples[e].package === req.params.package)
-          .reduce((acc, key) => ({ ...acc, [key]: examples[key] }), {}));
+      if (req.params.component || req.params.package) {
+        const item = examples
+          .filter(e => (!req.params.package || e.package === req.params.package) &&
+            (!req.params.component || e.name === req.params.component));
+        res.json(item);
       } else {
         res.json(examples);
       }
     });
     server.get('/api/theme', (req, res) => {
       const theme = {};
-      Object.keys(examples).forEach((exampleName) => {
-        if (examples[exampleName].themeDoc) {
-          Object.keys(examples[exampleName].themeDoc).forEach((propName) => {
-
+      examples.forEach((example) => {
+        if (example.themeDoc) {
+          Object.keys(example.themeDoc).forEach((propName) => {
             const setThemeValue = (obj, keys, value) => {
               const lastIndex = keys.length - 1;
               for (let i = 0; i < lastIndex; i += 1) {
@@ -70,10 +68,10 @@ app.prepare()
               if (!(keys[lastIndex] in obj)) {
                 obj[keys[lastIndex]] = [];
               }
-              obj[keys[lastIndex]].push({ component: exampleName, ...value });
+              obj[keys[lastIndex]].push({ component: example.name, ...value });
             };
             const keys = propName.split('.');
-            setThemeValue(theme, keys, examples[exampleName].themeDoc[propName]);
+            setThemeValue(theme, keys, example.themeDoc[propName]);
           });
         }
       });

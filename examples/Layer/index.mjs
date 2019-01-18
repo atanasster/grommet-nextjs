@@ -10,6 +10,7 @@ import { position } from './position';
 
 
 export const Layer = {
+  name: 'Layer',
   category: categories.layout,
   package: packages.grommet,
   doc: doc.doc({}).toJSON(),

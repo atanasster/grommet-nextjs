@@ -10,6 +10,7 @@ import { wrap } from './wrap';
 
 
 export const Colors = {
+  name: 'Colors',
   category: categories.controls,
   package: packages.grommetControls,
   doc: doc.default({}).toJSON(),
