@@ -100,6 +100,15 @@ const sites = [
     author: 'Sean Powell',
     authorLink: 'https://github.com/Fatslug',
   },
+  {
+    href: 'https://grommet-theme-builder.netlify.com',
+    img: '/static/img/theme-builder.jpg',
+    title: 'Grommet theme builder',
+    source: 'https://github.com/oorestisime/grommet-theme-builder',
+    description: 'Grommet theme builder sample',
+    author: 'Orestis Ioannou',
+    authorLink: 'https://github.com/oorestisime',
+  },
 ];
 
 export default () => (
