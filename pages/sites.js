@@ -109,6 +109,15 @@ const sites = [
     author: 'Orestis Ioannou',
     authorLink: 'https://github.com/oorestisime',
   },
+  {
+    href: 'https://likemeornot.io',
+    img: '/static/img/like-me-or-not.jpg',
+    title: 'Let\'s create the next big thing',
+    source: undefined,
+    description: 'Get exclusive deals by reviewing and promoting world changing startups',
+    author: 'Nurlan Nurmanov',
+    authorLink: undefined,
+  },
 ];
 
 export default () => (
@@ -128,7 +137,9 @@ export default () => (
                       <Image src={site.img} fit='contain' />
                     </Box>
                     <Box basis='2/3' >
-                      <Anchor href={site.authorLink} target='_blank' >by: {site.author}</Anchor>
+                      {site.authorLink ? (
+                        <Anchor href={site.authorLink} target='_blank' >by: {site.author}</Anchor>
+                        ) : `by: ${site.author}`}
                       <Paragraph>
                         {site.description}
                       </Paragraph>
