@@ -83,10 +83,10 @@ const sites = [
     authorLink: 'https://github.com/oorestisime',
   },
   {
-    href: 'https://oorestisime.netlify.com',
+    href: 'https://oioannou.com',
     img: '/static/img/orestis-blog.jpg',
     title: 'Personal blog',
-    source: undefined,
+    source: 'https://github.com/oorestisime/oioannou',
     description: 'Gatsby personal blog site',
     author: 'Orestis Ioannou',
     authorLink: 'https://github.com/oorestisime',
