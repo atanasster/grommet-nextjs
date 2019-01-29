@@ -118,6 +118,15 @@ const sites = [
     author: 'Nurlan Nurmanov',
     authorLink: undefined,
   },
+  {
+    href: 'https://hpe.design',
+    img: '/static/img/hpe-design.jpg',
+    title: 'hpe.design',
+    source: undefined,
+    description: 'You might be suprised to learn that hpe* makes apps, let alone has a bunch of folks that are trying to change how the enterprise is experienced.',
+    author: 'HPE Design',
+    authorLink: 'https://github.com/hpe-design',
+  },
 ];
 
 export default () => (
