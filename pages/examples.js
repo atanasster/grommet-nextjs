@@ -58,6 +58,7 @@ class Examples extends React.Component {
           label: item,
           component: example.name,
           code: example.examples[item],
+          package: example.package,
           id: `${example.package}_${example.name}_${item}`,
         })),
     }));
@@ -119,7 +120,6 @@ class Examples extends React.Component {
               />
             </Box>
             <Box overflow='auto'>
-
               <VerticalMenu
                 items={grouped}
                 activeItem={{ id: `${library}_${group}_${example}` }}
@@ -127,7 +127,7 @@ class Examples extends React.Component {
                 onSelect={(item) => {
                   pushRoute({
                     route: 'examples',
-                    params: { library, group: item.component, example: item.label },
+                    params: { library: item.package, group: item.component, example: item.label },
                   });
                   this.setState({
  library: item.package, code: item.code, group: item.component, example: item.label,
