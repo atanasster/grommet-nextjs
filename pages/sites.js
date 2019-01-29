@@ -142,8 +142,10 @@ export default () => (
                 </Card.CardTitle>
                 <Card.CardContent pad={null}>
                   <Box direction='row-responsive' fill={true} pad='small' gap='medium'>
-                    <Box basis='1/3' border='all'>
-                      <Image src={site.img} fit='contain' />
+                    <Box basis='1/3' align='center'>
+                      <Anchor href={site.href} target='_blank'>
+                        <Image width='100%' src={site.img} fit='contain' />
+                      </Anchor>
                     </Box>
                     <Box basis='2/3' >
                       {site.authorLink ? (
