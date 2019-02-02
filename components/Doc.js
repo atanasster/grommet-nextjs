@@ -15,18 +15,20 @@ export default class Doc extends React.Component {
   componentDidMount() {
     const { name, library } = this.props;
     window.scrollTo(0, 0);
-    fetch(`/api/examples/${library}/${name}`)
-      .then(res => (res ? res.json() : res))
-      .catch(() => this.setState({ documentation: {} }))
-      .then(res => res && res.length &&
-        this.setState({ documentation: res.length > 0 ? res[0] : res }));
+    if (name && library) {
+      fetch(`/api/examples/${library}/${name}`)
+        .then(res => (res ? res.json() : res))
+        .catch(() => this.setState({ documentation: {} }))
+        .then(res => res && res.length &&
+          this.setState({ documentation: res.length > 0 ? res[0] : res }));
+    }
   }
   render() {
     const {
-      children, name, library, text, nav, footer,
+      children, name, library, text, nav, footer, desc,
     } = this.props;
     const { documentation } = this.state;
-    const { examples = {}, doc, themeDoc } = documentation;
+    const { examples = {}, doc = desc, themeDoc } = documentation;
     return (
       <Page
         title={this.props.name}
@@ -131,7 +133,7 @@ export default class Doc extends React.Component {
 
 Doc.propTypes = {
   name: PropTypes.string.isRequired,
-  library: PropTypes.string.isRequired,
+  library: PropTypes.string,
   text: PropTypes.string,
   nav: PropTypes.bool,
   footer: PropTypes.bool,
@@ -139,6 +141,7 @@ Doc.propTypes = {
 
 Doc.defaultProps = {
   text: undefined,
+  library: undefined,
   nav: true,
   footer: true,
 };
