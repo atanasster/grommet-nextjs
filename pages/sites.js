@@ -1,5 +1,5 @@
 import React from 'react';
-import { Box, Grid, Anchor, Paragraph, Image } from 'grommet';
+import { Box, Grid, Anchor, Paragraph, Image, InfiniteScroll } from 'grommet';
 import { ResponsiveContext } from 'grommet/contexts';
 import { Github } from 'grommet-icons';
 import { Card } from 'grommet-controls';
@@ -134,35 +134,38 @@ export default () => (
     <Box pad='large'>
       <ResponsiveContext.Consumer>
         {size => (
-          <Grid columns={size === 'small' ? 'full' : 'large'} rows='medium' gap='medium'>
-            {sites.map(site => (
-              <Card key={site.title} background='white' gap={null}>
-                <Card.CardTitle>
-                  <Anchor href={site.href} target='_blank'>{site.title}</Anchor>
-                </Card.CardTitle>
-                <Card.CardContent pad={null}>
-                  <Box direction='row-responsive' fill={true} pad='small' gap='medium'>
-                    <Box basis='1/3' align='center'>
-                      <Anchor href={site.href} target='_blank'>
-                        <Image width='100%' src={site.img} fit='contain' />
-                      </Anchor>
-                    </Box>
-                    <Box basis='2/3' >
-                      {site.authorLink ? (
-                        <Anchor href={site.authorLink} target='_blank' >by: {site.author}</Anchor>
-                        ) : `by: ${site.author}`}
-                      <Paragraph>
-                        {site.description}
-                      </Paragraph>
-                      {site.source && (
+          <Grid columns={size === 'small' ? 'full' : 'medium'} rows='medium' gap='small'>
+            <InfiniteScroll items={sites}>
+              {site => (
+                <Card key={site.title} background='white' gap={null}>
+                  <Card.CardTitle>
+                    <Anchor href={site.href} target='_blank'>{site.title}</Anchor>
+                  </Card.CardTitle>
+                  <Card.CardContent pad={null} >
+                    <Box direction='row-responsive' fill={true} pad='small' gap='medium'>
+                      <Box basis='1/3' align='center'>
+                        <Anchor href={site.href} target='_blank'>
+                          <Image width='100%' src={site.img} fit='contain' />
+                        </Anchor>
+                      </Box>
+                      <Box basis='2/3' justify='between'>
+                        <Box>
+                          {site.authorLink ? (
+                            <Anchor href={site.authorLink} target='_blank' >by: {site.author}</Anchor>
+                          ) : `by: ${site.author}`}
+                          <Paragraph>
+                            {site.description}
+                          </Paragraph>
+                        </Box>
+                        {site.source && (
                         <Anchor primary={true} href={site.source} target='_blank' label='source' icon={<Github />} />
                       )}
+                      </Box>
                     </Box>
-                  </Box>
-                </Card.CardContent>
-              </Card>
-            ))
-          }
+                  </Card.CardContent>
+                </Card>
+            )}
+            </InfiniteScroll>
           </Grid>
         )}
       </ResponsiveContext.Consumer>
