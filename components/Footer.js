@@ -18,7 +18,7 @@ export default () => (
       gap='medium'
     >
       <Anchor
-        href='https://github.com/grommet/grommet/tree/NEXT'
+        href='https://github.com/grommet/grommet'
         target='_blank'
         label='grommet'
         a11yTitle='Go to the github page for Grommet 2'
