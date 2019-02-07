@@ -1,11 +1,11 @@
 import React from 'react';
-import { withRouter } from 'next/router';
 import PropTypes from 'prop-types';
 import Head from 'next/head';
 import { Grommet, Box } from 'grommet';
 import { ResponsiveContext } from 'grommet/contexts';
 import Header from './Header';
 import Footer from './Footer';
+import SideMenu from './SideMenu';
 import connect from '../redux';
 
 import { initGA, logPageView } from './utils/analytics';
@@ -21,7 +21,8 @@ class Page extends React.Component {
 
   render() {
     const {
-      children, title: pageTitle, description, nav, footer, themes: { themes, selected: theme },
+      children, title: pageTitle, description,
+      nav, footer, themes: { themes, selected: theme }, sideBar,
     } = this.props;
     const keywords = ['grommet', 'grommet 2', 'react', 'next-js', 'next.js', 'ui library'];
     if (pageTitle) {
@@ -31,7 +32,7 @@ class Page extends React.Component {
       <React.Fragment>
         <Head>
           {pageTitle && (
-            <title>{`Grommet - ${pageTitle}`}</title>
+            <title>{`grommet-controls - ${pageTitle}`}</title>
             )
           }
           {typeof description === 'string' && (
@@ -40,13 +41,18 @@ class Page extends React.Component {
           }
           <meta name='keywords' content={keywords.join(',')} />
         </Head>
-        <Grommet theme={themes[theme] || {}} style={{ height: 'auto', minHeight: '100vh' }}>
+        <Grommet theme={themes[theme] || {}} full={true}>
           <ResponsiveContext.Consumer >
             {size => (
               <Box style={{ height: 'auto', minHeight: '100vh' }}>
-                {nav && <Header title={pageTitle} size={size} />}
-                <Box flex={true}>
-                  {children}
+                <Box direction='row'>
+                  {sideBar || <SideMenu />}
+                  <Box flex={true}>
+                    {nav && <Header title={pageTitle} size={size} />}
+                    <Box flex={true} pad='large'>
+                      {children}
+                    </Box>
+                  </Box>
                 </Box>
                 {footer && <Footer /> }
               </Box>
@@ -63,12 +69,14 @@ Page.propTypes = {
   description: PropTypes.string,
   nav: PropTypes.bool,
   footer: PropTypes.bool,
+  sideBar: PropTypes.node,
 };
 
 Page.defaultProps = {
   description: undefined,
   nav: true,
   footer: true,
+  sideBar: undefined,
 };
 
 
@@ -77,5 +85,5 @@ const mapStateToProps = state => ({
 });
 
 
-export default withRouter(connect(mapStateToProps)(Page));
+export default connect(mapStateToProps)(Page);
 

@@ -10,6 +10,11 @@
         "preventFullImport": false,
         "skipDefaultConversion": true
       },
+      "grommet-controls/chartjs": {
+        "transform": "grommet-controls/es6/chartjs/${member}",
+        "preventFullImport": false,
+        "skipDefaultConversion": true
+      },
       "grommet-controls/themes": {
         "transform": "grommet-controls/es6/themes/${member}",
         "preventFullImport": false

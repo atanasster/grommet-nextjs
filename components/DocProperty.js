@@ -11,7 +11,13 @@ export default class DocProperty extends React.Component {
     if (code) {
       sample = (
         <Box flex={true} align='end' margin={{ vertical: 'medium' }}>
-          <Example code={code} library={library} component={component} example={example} />
+          <Example
+            library={library}
+            component={component}
+            example={example}
+          >
+            {code}
+          </Example>
         </Box>
       );
     } else {

@@ -1,4 +1,4 @@
-/* eslint-disable import/extensions,import/no-unresolved,no-param-reassign */
+/* eslint-disable import/no-unresolved,import/extensions */
 import express from 'express';
 import mcache from 'memory-cache';
 import fs from 'fs';
@@ -6,7 +6,7 @@ import url from 'url';
 import nextjs from 'next';
 import compression from 'compression';
 import routes from './routes';
-import { examples } from '../examples/index';
+import apiRoutes from './api_routes';
 
 const port = parseInt(process.env.PORT, 10) || 8444;
 const dev = process.env.NODE_ENV !== 'production';
@@ -41,42 +41,7 @@ app.prepare()
         next();
       });
     }
-    server.get('/api/examples/:package?/:component?', (req, res) => {
-      if (req.params.component || req.params.package) {
-        const item = examples
-          .filter(e => (!req.params.package || e.package === req.params.package) &&
-            (!req.params.component || e.name === req.params.component));
-        res.json(item);
-      } else {
-        res.json(examples);
-      }
-    });
-    server.get('/api/theme', (req, res) => {
-      const theme = {};
-      examples.forEach((example) => {
-        if (example.themeDoc) {
-          Object.keys(example.themeDoc).forEach((propName) => {
-            const setThemeValue = (obj, keys, value) => {
-              const lastIndex = keys.length - 1;
-              for (let i = 0; i < lastIndex; i += 1) {
-                const key = keys[i];
-                if (!(key in obj)) {
-                  obj[key] = {};
-                }
-                obj = obj[key];
-              }
-              if (!(keys[lastIndex] in obj)) {
-                obj[keys[lastIndex]] = [];
-              }
-              obj[keys[lastIndex]].push({ component: example.name, ...value });
-            };
-            const keys = propName.split('.');
-            setThemeValue(theme, keys, example.themeDoc[propName]);
-          });
-        }
-      });
-      res.json(theme);
-    });
+    server.use('/api', apiRoutes);
 
     server.get('*', cache(10), (req, res) => {
       const parsedUrl = url.parse(req.url, true);

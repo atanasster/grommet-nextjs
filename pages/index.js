@@ -1,63 +1,92 @@
-import 'isomorphic-fetch';
-import { Box, Anchor, Heading, Paragraph, Text } from 'grommet';
-import { Grommet as GrommetIcon, Descend } from 'grommet-icons';
+import React from 'react';
+import { Box } from 'grommet';
 import Page from '../components/Page';
-import Section from '../components/Section';
-import Item from '../components/Item';
-import ExamplesGroup from '../components/ExamplesGroup';
+import ExtMarkdown from '../components/ExtMarkdown';
+import Example from '../components/Example';
 
 
-export default class Home extends React.Component {
-  static async getInitialProps({ req }) {
-    const baseUrl = req ? `${req.protocol}://${req.get('Host')}` : '';
-    const res = await fetch(`${baseUrl}/api/examples/grommet`);
-    const allExamples = await res.json();
-    return { examples: allExamples };
-  }
+export default () => (
+  <Page
+    title='Home'
+  >
+    <Box>
+      <ExtMarkdown>
+        {`
+#about this site
+This a an unofficial site dedicated to the grommet react library, as well as the home of the grommet-controls collection of components.
+ The site is built with next.js and the full source code can be found here [github](https://github.com/atanasster/grommet-nextjs).
+ Head on there as we would really appreciate to hear your feedback and get some github stars.
+`}
+      </ExtMarkdown>
+    </Box>
+    <Box>
+      <ExtMarkdown>
+        {`
+#[installation](/installation)
+\`$ npm install grommet grommet-icons grommet-components\`
+`}
+      </ExtMarkdown>
 
-  render() {
-    const { examples } = this.props;
+    </Box>
+    <Box>
+      <ExtMarkdown>
+        {`
+#[get started](/get-started)
 
-    return (
-      <Page title='Explore'>
-        <Box pad='large'>
-          <Box direction='row' gap='xlarge' margin={{ bottom: 'large' }}>
-            <Box basis='medium' overflow='hidden'>
-              <Heading level={1}>
-                <strong>Grommet 2.0 core</strong>
-              </Heading>
-              <Paragraph size='large' margin='none'>
-This is an experimental site built with <strong>Grommet 2</strong> and <strong>Next.js</strong>.
-Visit the official <Anchor href='https://v2.grommet.io/' target='_blank'>Grommet site</Anchor> for the latest updates.
-              </Paragraph>
-            </Box>
-          </Box>
-        </Box>
-        <Box pad={{ horizontal: 'large' }}>
-          <ExamplesGroup examples={examples} group='Layout' />
-          <ExamplesGroup examples={examples} group='Type' />
-          <ExamplesGroup examples={examples} group='Navigation' />
-          <ExamplesGroup examples={examples} group='Controls' />
-          <ExamplesGroup examples={examples} group='Input' />
-          <ExamplesGroup examples={examples} group='Visualizations' />
-          <ExamplesGroup examples={examples} group='Media' />
+###if you project is set up for [tree shaking](/tree-shaking):
+\`\`\`
+import { Grommet, Box } from 'grommet';
+import { Card, Value } from 'grommet-controls';
+\`\`\`
 
-          <Section name='Utilities' index={4}>
-            <Item name='Grommet' path='/grommet' center={true}>
-              <GrommetIcon />
-            </Item>
-            <Item name='InfiniteScroll' path='/infinitescroll' center={true}>
-              <Descend size='xlarge' />
-            </Item>
-            <Item name='Keyboard' path='/keyboard' center={true}>
-              <Text>ESC</Text>
-            </Item>
-            <Item name='SkipLinks' path='/skiplinks' center={true}>
-              <Text >SkipLinks</Text>
-            </Item>
-          </Section>
-        </Box>
-      </Page>
-    );
-  }
-}
+###if you project is NOT set up for [tree shaking](/tree-shaking):
+\`\`\`
+import { Grommet } from 'grommet/components/Grommet';
+import { Box } from 'grommet/components/Box';
+import { Card } from 'grommet-controls/components/Card';
+import { Value } from 'grommet-controls/components/Value';
+\`\`\`
+
+`}
+      </ExtMarkdown>
+      <Example
+        editorPosition='left'
+      >
+        {`
+const Demo = () => (
+  <Grommet fill>
+    <Box full>
+      <Card height='small'>
+        <Card.CardTitle>
+          hello from grommet-controls
+        </Card.CardTitle>
+        <Card.CardContent align='center'>
+          <Value label='Almost there' value='65%' color='red'/>
+        </Card.CardContent>
+      </Card>
+    </Box>
+  </Grommet>
+);
+
+render(<Demo />);
+`}
+      </Example>
+    </Box>
+    <Box>
+      <ExtMarkdown>
+        {`
+  #[page templates](/page-layouts)
+  *WIP*
+  `}
+      </ExtMarkdown>
+    </Box>
+    <Box>
+      <ExtMarkdown>
+        {`
+  #[example sites](/sites)
+  *WIP*
+  `}
+      </ExtMarkdown>
+    </Box>
+  </Page>
+);

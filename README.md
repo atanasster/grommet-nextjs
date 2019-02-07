@@ -1,4 +1,4 @@
-# Example app with nextjs and grommet v 2
+# Example app with nextjs and grommet v2
 
 **Live site**: https://grommet-nextjs.herokuapp.com
 

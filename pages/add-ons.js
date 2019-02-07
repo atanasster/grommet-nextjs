@@ -1,7 +1,7 @@
 import 'isomorphic-fetch';
 import { Box, Heading, Paragraph, Anchor } from 'grommet';
 import Page from '../components/Page';
-import ExamplesGroup from '../components/ExamplesGroup';
+import ComponentsGroup from '../components/ComponentsGroup';
 
 
 export default class AddOns extends React.Component {
@@ -36,12 +36,12 @@ export default class AddOns extends React.Component {
           </Box>
         </Box>
         <Box pad={{ horizontal: 'large' }}>
-          <ExamplesGroup examples={examples} group='Layout' />
-          <ExamplesGroup examples={examples} group='Navigation' />
-          <ExamplesGroup examples={examples} group='Controls' />
-          <ExamplesGroup examples={examples} group='Input' />
-          <ExamplesGroup examples={examples} group='Validation' />
-          <ExamplesGroup examples={examples} group='Visualizations' />
+          <ComponentsGroup examples={examples} group='Layout' />
+          <ComponentsGroup examples={examples} group='Navigation' />
+          <ComponentsGroup examples={examples} group='Controls' />
+          <ComponentsGroup examples={examples} group='Input' />
+          <ComponentsGroup examples={examples} group='Validation' />
+          <ComponentsGroup examples={examples} group='Visualizations' />
         </Box>
       </Page>
     );

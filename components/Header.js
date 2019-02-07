@@ -2,14 +2,11 @@ import React from 'react';
 import { withRouter } from 'next/router';
 import PropTypes from 'prop-types';
 import { bindActionCreators } from 'redux';
-import { Box, Heading, Select, Layer, Button } from 'grommet';
+import { Box, Heading, Select } from 'grommet';
 import { colorIsDark } from 'grommet/utils';
-import { System, Menu } from 'grommet-icons';
 import { queryParams } from './nextjs/urlParams';
 import connect from '../redux';
 import RoutedButton from './RoutedButton';
-import RoutedAnchor from './RoutedAnchor';
-import NextJsAnchor from './Anchor';
 import { selectTheme } from '../redux/themes/actions';
 
 class Header extends React.Component {
@@ -49,25 +46,10 @@ class Header extends React.Component {
     const {
       title: pageTitle, themes: { themes, selected: theme }, size,
     } = this.props;
-    const isNarrow = size === 'small';
-    const isWide = !isNarrow;
     const keywords = ['grommet', 'grommet 2', 'react', 'next-js', 'next.js', 'ui library'];
     if (pageTitle) {
       keywords.push(pageTitle);
     }
-    const menuItems = [
-      { path: '/sites', label: 'sites' },
-      { path: '/examples', label: 'examples' },
-      { path: '/add-ons', label: 'controls' },
-      { path: '/colors', label: 'colors' },
-    ];
-    const items = menuItems.map(item => (
-      item.external ? (
-        <NextJsAnchor target='_blank' key={item.label} path={item.external} label={item.label} />
-      ) : (
-        <RoutedAnchor key={item.label} path={item.path} label={item.label} />
-      )
-    ));
     const themeSelector = (
       <Box basis='medium' >
         <Select
@@ -78,59 +60,27 @@ class Header extends React.Component {
         />
       </Box>
     );
-    const themeDesigner = (
-      <NextJsAnchor
-        icon={isNarrow ? undefined : <System />}
-        label={isNarrow ? 'theme designer' : undefined}
-        path='/theme'
-        a11yTitle='theme designer'
-      />);
-    let menu;
-    if (isNarrow) {
-      if (this.state.activeMenu) {
-        menu = (
-          <Layer plain={true} onEsc={this.onCloseMenu} position='left' onClickOutside={this.onCloseMenu}>
-            <Box background='brand' gap='small' style={{ height: '100vh' }} pad='medium' align='start'>
-              <Button icon={<Menu />} onClick={this.onResponsiveMenu} />
-              <RoutedAnchor path='/' label='home' a11yTitle='go to home page' />
-              {items}
-              {themeDesigner}
-              {themeSelector}
-            </Box>
-          </Layer>
-        );
-      }
-    } else if (isWide) {
-      menu = (
-        <Box direction='row' align='center' justify='end' gap='small' tag='nav'>
-          {items}
-          {themeSelector}
-          {themeDesigner}
-        </Box>
-      );
-    }
     return (
       <Box
         tag='header'
         direction='row-responsive'
-        justify='between'
         align='center'
         background='brand'
         pad='medium'
         animation='fadeIn'
+        justify='between'
         border={themes[theme].global.colors.brand && !colorIsDark(themes[theme].global.colors.brand) ? { side: 'bottom', size: 'medium' } : undefined}
       >
-        <Box direction='row' align='center'gap='small' >
-          {isNarrow && (
-            <Button icon={<Menu />} onClick={this.onResponsiveMenu} />
-          )}
+        {size !== 'small' && (
           <Heading margin='none'>
             <RoutedButton path='/'>
-                Grommet/Next.js
+                grommet-controls
             </RoutedButton>
           </Heading>
+        )}
+        <Box direction='row' align='center' gap='small' tag='nav'>
+          {themeSelector}
         </Box>
-        {menu}
       </Box>
     );
   }
@@ -139,7 +89,6 @@ class Header extends React.Component {
 Header.defaultProps = {
   size: undefined,
 };
-
 
 Header.propTypes = {
   title: PropTypes.string.isRequired,

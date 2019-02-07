@@ -5,29 +5,10 @@ import 'isomorphic-fetch';
 import { Box } from 'grommet';
 import { Search } from 'grommet-icons';
 import { Sidebar, VerticalMenu, DropInput } from 'grommet-controls';
-import {
-  LiveProvider,
-  LiveEditor,
-  LiveError,
-  LivePreview,
-} from 'react-live';
-import styled, { css } from 'styled-components';
-import * as Icons from 'grommet-icons';
-import * as Grommet from 'grommet';
-import { Form as GrommetForm, MaskedInput as GrommetMaskedInput } from 'grommet';
-import * as Themes from 'grommet-controls/themes';
-import * as GrommetControls from 'grommet-controls';
 import Page from '../components/Page';
 import pushRoute from '../components/PushRoute';
-// import * as allExamples from '../examples';
+import Example from '../components/Example';
 
-const scope = {
-  ...Grommet, GrommetForm, GrommetMaskedInput, ...GrommetControls, Icons, Themes, styled, css,
-};
-
-const StyledEditor = styled(LiveEditor)`
-  overflow: auto;
-`;
 class Examples extends React.Component {
   constructor(props) {
     super(props);
@@ -97,8 +78,9 @@ class Examples extends React.Component {
       library, group, example, code, search,
     } = this.state;
     return (
-      <Page title='Component editor'>
-        <Box direction='row' flex={true}>
+      <Page
+        title='Component editor'
+        sideBar={(
           <Sidebar
             title='Examples'
             width='medium'
@@ -136,24 +118,14 @@ class Examples extends React.Component {
               />
             </Box>
           </Sidebar>
-          <Box fill={true}>
-            <LiveProvider
-              code={code}
-              scope={scope}
-              noInline={true}
-            >
-              <Box direction='row-responsive' fill={true} pad='medium' gap='medium'>
-                <Box basis='1/2'>
-                  <StyledEditor onChange={e => this.setState({ code: e })} />
-                  <LiveError />
-                </Box>
-                <Box basis='1/2'>
-                  <LivePreview />
-                </Box>
-              </Box>
-            </LiveProvider>
-          </Box>
-
+        )}
+      >
+        <Box fill={true}>
+          <Example
+            editorPosition='left'
+          >
+            {code}
+          </Example>
         </Box>
       </Page>
     );

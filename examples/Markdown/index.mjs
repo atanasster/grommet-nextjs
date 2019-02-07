@@ -2,6 +2,7 @@
 import doc from 'grommet/components/Markdown/doc';
 import { packages, categories } from '../lookups';
 import { _starter } from './_starter';
+import { components } from './components';
 
 
 export const Markdown = {
@@ -12,6 +13,7 @@ export const Markdown = {
   themeDoc: doc.themeDoc,
   examples: {
     _starter,
+    components,
   },
 };
 

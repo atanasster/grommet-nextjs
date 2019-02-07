@@ -1,5 +1,5 @@
 /* eslint-disable import/extensions,import/no-unresolved */
-import doc from 'grommet-controls/components/RadarChart/doc';
+import doc from 'grommet-controls/chartjs/RadarChart/doc';
 import { packages, categories } from '../lookups';
 import { _starter } from './_starter';
 

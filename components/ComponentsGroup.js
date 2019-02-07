@@ -1,4 +1,6 @@
 /* eslint-disable no-underscore-dangle */
+import React from 'react';
+import PropTypes from 'prop-types';
 import { Box, Heading } from 'grommet';
 import { ResponsiveContext } from 'grommet/contexts';
 import { Card } from 'grommet-controls';
@@ -7,7 +9,7 @@ import RoutedButton from '../components/RoutedButton';
 import Section from './Section';
 import Example from './Example';
 
-export default ({ examples, group }) => (
+const ComponentsGroup = ({ examples, group }) => (
   <Section name={group}>
     <ResponsiveContext.Consumer>
       {size => examples.filter(example => (example.category === group)).sort().map(item => (
@@ -20,7 +22,9 @@ export default ({ examples, group }) => (
             </RoutedButton>
           </Card.CardTitle>
           <Card.CardContent flex={false} basis='220px' align='center' justify='center'>
-            <Example code={item.examples._starter} />
+            <Example>
+              {item.examples._starter}
+            </Example>
           </Card.CardContent>
           <Card.CardActions>
             <Box direction='row' justify='between' fill='horizontal'>
@@ -39,7 +43,7 @@ export default ({ examples, group }) => (
               >
                 <Box direction='row' gap='xsmall' pad='xsmall'>
                   <Code />
-                            Code
+                    Code
                 </Box>
               </RoutedButton>
             </Box>
@@ -50,3 +54,10 @@ export default ({ examples, group }) => (
     </ResponsiveContext.Consumer>
   </Section>
 );
+
+ComponentsGroup.propTypes = {
+  group: PropTypes.string.isRequired,
+  examples: PropTypes.array.isRequired,
+};
+
+export default ComponentsGroup;

@@ -45,8 +45,11 @@ import { Video } from './Video';
 
 import { VerticalMenu } from './VerticalMenu';
 
+import { Avatar } from './Avatar';
 import { Card } from './Card';
 import { Colors } from './Colors';
+import { Header } from './Header';
+import { IconButton } from './IconButton';
 import { ImageStamp } from './ImageStamp';
 import { Notification } from './Notification';
 import { PagingTable } from './PagingTable';
@@ -94,7 +97,8 @@ export const examples = [
   RangeSelector, Select, TextArea, TextInput, FormField, FormGrommet, Calendar, Chart,
   Clock, DataTable, Diagram, Distribution, Meter, Table, WorldMap, Carousel,
   Image, Video,
-  VerticalMenu, Card, Colors, ImageStamp, Notification, PagingTable, Sidebar,
+  VerticalMenu,
+  Avatar, Card, Colors, Header, IconButton, ImageStamp, Notification, PagingTable, Sidebar,
   Spinning, Tag, Value, ColorInput, DateInput, DropInput, EmailInput, MaskedInput,
   NumberInput, PasswordInput, Tags, CheckBoxField, ColorInputField, DateInputField,
   EmailInputField, Form, MaskedInputField, NumberInputField, PasswordInputField,

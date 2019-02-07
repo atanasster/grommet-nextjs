@@ -1,5 +1,5 @@
 /* eslint-disable import/extensions,import/no-unresolved */
-import doc from 'grommet-controls/components/PolarChart/doc';
+import doc from 'grommet-controls/chartjs/PolarChart/doc';
 import { packages, categories } from '../lookups';
 import { _starter } from './_starter';
 

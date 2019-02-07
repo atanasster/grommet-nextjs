@@ -5,7 +5,6 @@ import { grommet, dark } from 'grommet/themes';
 import { aruba } from 'grommet-theme-aruba';
 import { dxc } from 'grommet-theme-dxc';
 import { hp } from 'grommet-theme-hp';
-import { hpe } from 'grommet-theme-hpe';
 import { v1 } from 'grommet-theme-v1';
 
 import * as ActionTypes from './constants';
@@ -108,19 +107,18 @@ const custom = deepFreeze({
 
 const initialState = {
   themes: {
-    light,
-    aruba,
-    black,
-    dark,
-    dxc,
     grommet,
-    'grommet-v1': v1,
-    hp,
-    hpe,
+    black,
     materiallight,
     materialdark,
     metro,
     custom,
+    light,
+    aruba,
+    dark,
+    dxc,
+    'grommet-v1': v1,
+    hp,
   },
   selected: defaultTheme,
 };

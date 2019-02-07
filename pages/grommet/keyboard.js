@@ -1,7 +1,7 @@
 import { Keyboard } from 'grommet';
 import { doc } from 'grommet/components/Keyboard/doc';
 
-import Doc from '../components/Doc';
+import Doc from '../../components/Doc';
 
 const desc = doc(Keyboard).toJSON();
 

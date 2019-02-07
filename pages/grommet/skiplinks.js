@@ -1,7 +1,7 @@
 import { Box, Button, SkipLinks, Heading, SkipLinkTarget, SkipLink } from 'grommet';
 import { doc } from 'grommet/components/SkipLinks/doc';
 
-import Doc from '../components/Doc';
+import Doc from '../../components/Doc';
 
 const desc = doc(SkipLinks).toJSON();
 
