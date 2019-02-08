@@ -20,7 +20,7 @@ export default withTheme(({ theme, ...rest }) => (
     components={{
       p: { component: LargeParagraph },
       img: { component: MarkdownImage },
-      code: { component: Code, props: { background: theme.dark ? 'dark-4' : 'light-2' } },
+      code: { component: Code, props: { background: theme.dark ? 'dark-1' : 'light-2' } },
     }}
     {...rest}
   />
