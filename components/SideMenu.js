@@ -43,7 +43,7 @@ const menuItems = [
       {
         id: 'existing-react-app',
         path: '/existing-react-app',
-        label: 'Existing app, add grommet',
+        label: 'Existing app',
       },
       {
         id: 'sample_projects',

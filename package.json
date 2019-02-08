@@ -54,7 +54,6 @@
     "react": "^16.8.1",
     "react-chartjs-2": "^2.7.4",
     "react-dom": "^16.8.1",
-    "react-formify": "^0.10.2",
     "react-ga": "^2.5.0",
     "react-json-pretty": "^1.7.6",
     "react-live": "^1.11.0",
