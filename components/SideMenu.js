@@ -45,11 +45,6 @@ const menuItems = [
         path: '/existing-react-app',
         label: 'Existing app',
       },
-      {
-        id: 'sample_projects',
-        path: '/sample-projecs',
-        label: 'Sample projects',
-      },
     ],
   },
   {
