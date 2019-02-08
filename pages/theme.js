@@ -1,4 +1,4 @@
-import { Fragment } from 'react';
+import React, { Fragment } from 'react';
 import { withRouter } from 'next/router';
 import { bindActionCreators } from 'redux';
 import 'isomorphic-unfetch';

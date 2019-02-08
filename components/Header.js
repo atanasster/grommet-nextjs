@@ -3,7 +3,7 @@ import { withRouter } from 'next/router';
 import PropTypes from 'prop-types';
 import { bindActionCreators } from 'redux';
 import { Box, Heading, Select } from 'grommet';
-import { colorIsDark } from 'grommet/utils';
+import { Header as AppBar } from 'grommet-controls';
 import { queryParams } from './nextjs/urlParams';
 import connect from '../redux';
 import RoutedButton from './RoutedButton';
@@ -61,15 +61,9 @@ class Header extends React.Component {
       </Box>
     );
     return (
-      <Box
-        tag='header'
-        direction='row-responsive'
-        align='center'
-        background='brand'
-        pad='medium'
-        animation='fadeIn'
-        justify='between'
-        border={themes[theme].global.colors.brand && !colorIsDark(themes[theme].global.colors.brand) ? { side: 'bottom', size: 'medium' } : undefined}
+      <AppBar
+        position='sticky'
+        elevation='none'
       >
         {size !== 'small' && (
           <Heading margin='none'>
@@ -81,7 +75,7 @@ class Header extends React.Component {
         <Box direction='row' align='center' gap='small' tag='nav'>
           {themeSelector}
         </Box>
-      </Box>
+      </AppBar>
     );
   }
 }
