@@ -4,7 +4,6 @@ import {
   DropButton, FormField,
 } from 'grommet';
 import { Menu as MenuIcon, Edit, Grommet } from 'grommet-icons';
-import { Tag, Tags } from 'grommet-controls';
 import ColorRoll from './ColorRoll';
 
 
@@ -14,12 +13,11 @@ export default class Preview extends React.Component {
   state = {
     layer: undefined,
     open: undefined,
-    selected: [stringOptions[0], stringOptions[2]],
     size: stringOptions[0],
   };
   render() {
     const {
-      layer, open, selected, size,
+      layer, open, size,
     } = this.state;
     let modal;
     if (layer !== undefined) {
@@ -162,19 +160,6 @@ export default class Preview extends React.Component {
               />
             </Box>
           </Box>
-          <Box direction='row-responsive' fill='horizontal'justify='between' pad={{ vertical: 'medium' }} margin={{ top: 'medium' }}>
-            <Box>
-              <Tags
-                options={stringOptions}
-                value={selected}
-                onChange={({ value }) => this.setState({ selected: value })}
-              />
-            </Box>
-            <Box>
-              <Tag size='large' pad='small' />
-            </Box>
-          </Box>
-
           <Box fill='horizontal' border='top' align='center' pad={{ vertical: 'medium' }} margin={{ top: 'medium' }}>
             <ColorRoll basis='xsmall' extended={true} />
           </Box>
