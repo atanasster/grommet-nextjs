@@ -15,7 +15,7 @@ class RoutedAnchor extends React.Component {
       // eslint-disable-next-line jsx-a11y/anchor-is-valid
       <Link
         route={route}
-        href={{ pathname: path, query }}
+        href={{ pathname: path || rest.href, query }}
         params={{ ...query, ...params }}
         passHref={true}
       >
