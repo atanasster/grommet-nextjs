@@ -6,6 +6,8 @@ import metadata from 'grommet-icons/metadata';
 import Page from '../components/Page';
 import Title from '../components/Title';
 
+const reservedIcons = ['defaultProps', 'extendDefaultTheme'];
+
 const iconKeys = Object.keys(Icons).filter(icon =>
   Icons[icon] && icon !== 'default' && icon !== 'ThemeContext' && icon !== 'Icon' && icon !== 'base' &&
   Icons[icon] !== true);
@@ -18,6 +20,9 @@ export default class IconsPage extends React.Component {
     const { search } = this.state;
     const searchRegularized = search.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, '\\$&').toLowerCase();
     const icons = iconKeys
+      .filter(icon => (
+        reservedIcons.indexOf(icon) === -1
+      ))
       .filter(icon => (
         icon.toLowerCase().match(searchRegularized) ||
         (metadata[icon] || []).some(synonym =>
