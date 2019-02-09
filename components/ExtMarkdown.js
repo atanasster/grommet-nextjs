@@ -2,6 +2,7 @@ import React from 'react';
 import styled, { withTheme } from 'styled-components';
 import { Image, Markdown, Box, Paragraph } from 'grommet';
 import RoutedAnchor from './RoutedAnchor';
+import Example from './Example';
 
 const LargeParagraph = styled(Paragraph)`
   max-width: 632px;
@@ -22,6 +23,7 @@ export default withTheme(({ theme, ...rest }) => (
       img: { component: MarkdownImage },
       a: { component: RoutedAnchor },
       code: { component: Code, props: { background: theme.dark ? 'dark-1' : 'light-2' } },
+      example: { component: Example },
     }}
     {...rest}
   />

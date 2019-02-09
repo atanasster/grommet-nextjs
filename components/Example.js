@@ -90,14 +90,25 @@ class Example extends React.Component {
     }
   };
 
+  childrenToChode = (children) => {
+    if (typeof children === 'string') {
+      return children;
+    }
+    if (Array.isArray(children) && children.length === 1) {
+      return children[0].props.children.props.children;
+    }
+    return '';
+  };
+
   componentDidMount() {
     // eslint-disable-next-line react/no-did-mount-set-state
-    this.setState({ code: this.props.children });
+    this.setState({ code: this.childrenToChode(this.props.children) });
   }
 
   componentWillReceiveProps(newProps) {
-    if (newProps.children !== this.props.children) {
-      this.setState({ code: newProps.children });
+    const code = this.childrenToChode(newProps.children);
+    if (code !== this.props.children) {
+      this.setState({ code });
     }
   }
 
@@ -139,7 +150,7 @@ Example.defaultProps = {
 
 
 Example.propTypes = {
-  children: PropTypes.string,
+  children: PropTypes.oneOfType([PropTypes.string, PropTypes.array]),
   component: PropTypes.string,
   example: PropTypes.string,
   library: PropTypes.string,
