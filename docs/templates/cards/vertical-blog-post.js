@@ -49,21 +49,23 @@ const VerticalPost = ({
 );
 
 const Demo = () => (
-  <VerticalPost
-    image='https://picsum.photos/650/200/?image=50'
-    title='John Wick'
-    path='https://www.imdb.com/title/tt2911666/'
-    excerpt={`
-Legendary assassin retired from his violent career after marrying the love of his life.
-Her sudden death leaves John in deep mourning and when sadistic mobster Iosef Tarasov and his thugs
-steal John's prized car and kill the puppy that was a last gift from his wife,
-John unleashes the remorseless killing machine within and seeks vengeance.
-              `}
-    authorName='John Doe'
-    authorImage='https://picsum.photos/g/200/200?image=99'
-    authorDescription='15 min. ago'
-    icons={[{ icon: <Icons.Favorite /> }]}
-  />
+  <Grid columns='medium' gap='small'>
+    <VerticalPost
+      image='https://picsum.photos/650/200/?image=50'
+      title='John Wick'
+      path='https://www.imdb.com/title/tt2911666/'
+      excerpt={`
+  Legendary assassin retired from his violent career after marrying the love of his life.
+  Her sudden death leaves John in deep mourning and when sadistic mobster Iosef Tarasov and his thugs
+  steal John's prized car and kill the puppy that was a last gift from his wife,
+  John unleashes the remorseless killing machine within and seeks vengeance.
+                `}
+      authorName='John Doe'
+      authorImage='https://picsum.photos/g/200/200?image=99'
+      authorDescription='15 min. ago'
+      icons={[{ icon: <Icons.Favorite/> }]}
+    />
+  </Grid>
 );
 
 render(<Demo />);

@@ -22,7 +22,7 @@ class Article extends React.Component {
 
   render() {
     const { content, markdown } = this.state;
-    const { title, url } = this.props;
+    const { title, url, ...rest } = this.props;
     return (
       <Page title={title}>
         <Box pad='large' gap='medium'>
@@ -35,7 +35,9 @@ class Article extends React.Component {
               target='_blank'
             />
           </Box>
-          <ExtMarkdown>
+          <ExtMarkdown
+            {...rest}
+          >
             {markdown}
           </ExtMarkdown>
         </Box>
@@ -47,12 +49,15 @@ class Article extends React.Component {
 Article.defaultProps = {
   location: 'github',
   url: undefined,
+  owner: 'default',
+  repo: 'default',
+
 };
 
 Article.propTypes = {
   title: PropTypes.string.isRequired,
-  owner: PropTypes.string.isRequired,
-  repo: PropTypes.string.isRequired,
+  owner: PropTypes.string,
+  repo: PropTypes.string,
   path: PropTypes.string.isRequired,
   location: PropTypes.string,
   url: PropTypes.oneOf(['github', 'wiki', 'file']),

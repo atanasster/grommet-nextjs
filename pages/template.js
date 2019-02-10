@@ -2,11 +2,15 @@
 import React from 'react';
 import { withRouter } from 'next/router';
 import 'isomorphic-fetch';
-import { Box } from 'grommet';
+import { Box, Button, Anchor } from 'grommet';
+import { Code, Github } from 'grommet-icons';
 import Page from '../components/Page';
 import Example from '../components/Example';
 
 class Template extends React.Component {
+  state = {
+    editor: undefined,
+  }
   static async getInitialProps({ query, req }) {
     const { folder = 'card', file = 'vertical_blog_post' } = query;
     const baseUrl = req ? `${req.protocol}://${req.get('Host')}` : '';
@@ -16,14 +20,28 @@ class Template extends React.Component {
     return { content };
   }
   render() {
-    const { content } = this.props;
+    const { content, router } = this.props;
+    const { folder, file } = router.query;
+    const { editor } = this.state;
     return (
       <Page
         title='Template'
       >
-        <Box fill={true}>
+        <Box fill={true} gap='small'>
+          <Box direction='row' background='light-3' pad={{ horizontal: 'small' }} justify='end' gap='small'>
+            <Button
+              icon={<Code />}
+              primary={editor === 'top'}
+              onClick={() => this.setState({ editor: (editor === 'top') ? undefined : 'top' })}
+            />
+            <Anchor
+              target='_blank'
+              href={`https://github.com/atanasster/grommet-nextjs/blob/master/docs/templates/${folder}/${file}.js`}
+              icon={<Github />}
+            />
+          </Box>
           <Example
-            editorPosition='left'
+            editorPosition={editor}
           >
             {content.markdown}
           </Example>

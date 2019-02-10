@@ -5,6 +5,7 @@ import fs from 'fs';
 import npath from 'path';
 import fetch from 'isomorphic-unfetch';
 import { examples } from '../examples/index';
+import templateRoutes from './api_templates';
 
 const router = express.Router();
 const cache = apicache.middleware;
@@ -102,26 +103,6 @@ router.get('/file/:owner?/:repo?/:file', (req, res) => {
     });
 });
 
-const allFiles = [];
 
-router.get('/templates', (req, res) => {
-  const docsFolder = npath.join(fs.realpathSync('.'), './docs/templates/');
-  // nodeFile.walkSync()
-  if (allFiles.length === 0) {
-    const folders = fs.readdirSync(docsFolder);
-    folders.forEach((folder) => {
-      const folderPath = `${docsFolder}${folder}/`;
-      const files = fs.readdirSync(folderPath);
-      files.forEach((file) => {
-        const fileName = `templates/${folder}/${file}`;
-        const fullFileName = `${folderPath}${file}`;
-        const content = fs.readFileSync(fullFileName).toString();
-        allFiles.push({ category: folder, file: fileName, content });
-      });
-    });
-  }
-  res.json({ templates: allFiles });
-});
-
-
+router.use('/templates', templateRoutes);
 export default router;

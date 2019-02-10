@@ -32,7 +32,7 @@ const menuItems = [
       },
       {
         id: 'page_templates',
-        path: '/page-layouts',
+        path: '/page-templates',
         label: 'Page templates',
       },
       {

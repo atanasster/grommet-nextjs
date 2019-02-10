@@ -69,6 +69,22 @@ class Example extends React.Component {
             </Grommet.Box>
           </Grommet.Box>
         );
+      case 'top':
+        return (
+          <Grommet.Box fill={true} pad='medium' gap='medium'>
+            <Grommet.Box>
+              {code && (
+                <React.Fragment>
+                  <StyledEditor onChange={e => this.setState({ code: e })} />
+                  <LiveError />
+                </React.Fragment>
+              )}
+            </Grommet.Box>
+            <Grommet.Box>
+              <StyledPreview />
+            </Grommet.Box>
+          </Grommet.Box>
+        );
       case 'right':
         return (
           <Grommet.Box direction='row-responsive' fill={true} pad='medium' gap='medium'>
@@ -86,7 +102,11 @@ class Example extends React.Component {
           </Grommet.Box>
         );
       default:
-        return (<StyledPreview />);
+        return (
+          <Grommet.Box fill={true} pad='medium'>
+            <StyledPreview />
+          </Grommet.Box>
+        );
     }
   };
 
@@ -154,7 +174,7 @@ Example.propTypes = {
   component: PropTypes.string,
   example: PropTypes.string,
   library: PropTypes.string,
-  editorPosition: PropTypes.oneOf(['left', 'right']),
+  editorPosition: PropTypes.oneOf(['top', 'left', 'right']),
 };
 
 export default Example;

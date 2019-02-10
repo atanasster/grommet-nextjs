@@ -46,8 +46,12 @@ import { Value } from 'grommet-controls/components/Value';
 ```
 </example>
 
-# [page templates](/page-layouts)
-*WIP*
+# [page templates](/page-templates)
+<grid columns='medium' rows='medium' gap='small'>
+  <template group='pages' name='home-dashboard' />
+  <template group='cards' name='vertical-blog-post' />
+  <template group='cards' name='horizontal-blog-post' /> 
+</grid>
 
 # [example sites](/sites)
 

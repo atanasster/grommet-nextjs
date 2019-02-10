@@ -4,6 +4,8 @@ import { Image, Markdown, Box, Paragraph, Grid } from 'grommet';
 import RoutedAnchor from './RoutedAnchor';
 import Example from './Example';
 import VerticalCard from './VerticalCard';
+import TemplatesGroup from './TemplatesGroup';
+import TemplateCard from './TemplateCard';
 
 const LargeParagraph = styled(Paragraph)`
   max-width: 632px;
@@ -27,6 +29,8 @@ export default withTheme(({ theme, ...rest }) => (
       example: { component: Example },
       grid: { component: Grid },
       card: { component: VerticalCard },
+      templates: { component: TemplatesGroup, props: { templates: rest.templates } },
+      template: { component: TemplateCard },
     }}
     {...rest}
   />
