@@ -90,15 +90,37 @@ router.get('/wiki/:owner/:repo/:path', cache('5 minutes'), (req, res) => {
     .catch(err => res.json({ markdown: err }));
 });
 
-router.get('/file/:owner/:repo/:path', (req, res) => {
-  const { path } = req.params;
-  fs.readFile(npath.join(fs.realpathSync('.'), `./docs/${path}.md`),
+router.get('/file/:owner?/:repo?/:file', (req, res) => {
+  const { file } = req.params;
+  const fileName = npath.join(fs.realpathSync('.'), `./docs/${file}`);
+  fs.readFile(fileName,
     (err, data) => {
       res.json({
         markdown: (err && JSON.stringify(err)) || (data && data.toString()),
-        content: { html_url: `https://github.com/atanasster/grommet-nextjs/tree/master/docs/${path}.md` }
+        content: { html_url: `https://github.com/atanasster/grommet-nextjs/tree/master/docs/${file}` },
       });
     });
+});
+
+const allFiles = [];
+
+router.get('/templates', (req, res) => {
+  const docsFolder = npath.join(fs.realpathSync('.'), './docs/templates/');
+  // nodeFile.walkSync()
+  if (allFiles.length === 0) {
+    const folders = fs.readdirSync(docsFolder);
+    folders.forEach((folder) => {
+      const folderPath = `${docsFolder}${folder}/`;
+      const files = fs.readdirSync(folderPath);
+      files.forEach((file) => {
+        const fileName = `templates/${folder}/${file}`;
+        const fullFileName = `${folderPath}${file}`;
+        const content = fs.readFileSync(fullFileName).toString();
+        allFiles.push({ category: folder, file: fileName, content });
+      });
+    });
+  }
+  res.json({ templates: allFiles });
 });
 
 

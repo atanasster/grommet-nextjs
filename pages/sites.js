@@ -8,7 +8,7 @@ export default () => (
     location='file'
     owner='atanasster'
     repo='grommet-controls-starter'
-    path='sites'
+    path='sites.md'
   />
 
 );

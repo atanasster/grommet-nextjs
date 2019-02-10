@@ -66,22 +66,13 @@ A list of sites developed with grommet v2. You can submit your own site, just li
     excerpt='Horizontal working sample grommet v2 + next.js.'
   />
   <card
-    image='//raw.githubusercontent.com/atanasster/grommet-nextjs/master/static/img/horizontal-working.jpg'
+    image='//raw.githubusercontent.com/atanasster/grommet-nextjs/master/static/img/gatsby-marvel.jpg'
     title='marvel API'
     authorName='Orestis Ioannou'
     github='https://github.com/oorestisime/gatsby-source-marvel/tree/master/example'
     authorLink='https://github.com/oorestisime'
     path='https://gatsby-source-marvel.netlify.com'
     excerpt='Gatsby Marvel example site.'
-  />
-  <card
-    image='//raw.githubusercontent.com/atanasster/grommet-nextjs/master/static/img/orestis-blog.jpg'
-    title='Personal blog'
-    authorName='Orestis Ioannou'
-    github='https://github.com/oorestisime/oioannou'
-    authorLink='https://github.com/oorestisime'
-    path='https://oioannou.com'
-    excerpt='Gatsby personal blog site.'
   />
   <card
     image='//raw.githubusercontent.com/atanasster/grommet-nextjs/master/static/img/orestis-blog.jpg'

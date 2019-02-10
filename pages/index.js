@@ -8,6 +8,6 @@ export default () => (
     location='file'
     owner='atanasster'
     repo='grommet-controls-starter'
-    path='README'
+    path='README.md'
   />
 );
