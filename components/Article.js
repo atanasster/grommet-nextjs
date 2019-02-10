@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import 'isomorphic-fetch';
-import { Box, Anchor, Text } from 'grommet';
+import { Box, Anchor } from 'grommet';
 import { Github } from 'grommet-icons';
 import ExtMarkdown from './ExtMarkdown';
 import Page from './Page';
@@ -26,10 +26,7 @@ class Article extends React.Component {
     return (
       <Page title={title}>
         <Box pad='large' gap='medium'>
-          <Box direction='row' justify='between' align='center'>
-            <Text size='large'>
-              {title}
-            </Text>
+          <Box direction='row' justify='end' align='center'>
             <Anchor
               icon={<Github />}
               label='Edit this page'

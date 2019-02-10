@@ -50,4 +50,33 @@ import { Value } from 'grommet-controls/components/Value';
 *WIP*
 
 # [example sites](/sites)
-*WIP*
+
+<grid columns='medium' gap='small'>
+  <card 
+    image='//raw.githubusercontent.com/atanasster/grommet-nextjs/master/static/img/grommet-dashboard.jpg'
+    title='grommet dashboard'
+    authorName='Atanas Stoyanov'
+    github='https://github.com/atanasster/grommet-dashboard'
+    authorLink='https://github.com/atanasster'
+    path='https://grommet-dashboard.herokuapp.com/?packages=material-ui%2Csemantic-ui-react%2Creact-bootstrap%2Cantd%2Coffice-ui-fabric-react%2Cgrommet'
+    excerpt='React nextjs grommet 2 dashboard template with sample pages, charts, forms etc.'
+  />  
+  <card
+    image='//raw.githubusercontent.com/atanasster/grommet-nextjs/master/static/img/grommet-site.jpg'
+    title='grommet site'
+    authorName='Grommet'
+    github='https://github.com/grommet/grommet-site'
+    authorLink='https://github.com/grommet'
+    path='https://v2.grommet.io'
+    excerpt='Site for Grommet v2.'
+  />
+  <card
+    image='//raw.githubusercontent.com/atanasster/grommet-nextjs/master/static/img/hyperparameters.jpg'
+    title='tensorflowjs hyperparameters'
+    authorName='Martin Stoyanov'
+    github='https://github.com/martin-stoyanov/hyperparameters-site'
+    authorLink='https://github.com/martin-stoyanov'
+    path='https://hyperjs.herokuapp.com'
+    excerpt='Home of the hyperparameters.js library for tensorflow.js.'
+  />  
+</grid>

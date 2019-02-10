@@ -1,8 +1,9 @@
 import React from 'react';
 import styled, { withTheme } from 'styled-components';
-import { Image, Markdown, Box, Paragraph } from 'grommet';
+import { Image, Markdown, Box, Paragraph, Grid } from 'grommet';
 import RoutedAnchor from './RoutedAnchor';
 import Example from './Example';
+import VerticalCard from './VerticalCard';
 
 const LargeParagraph = styled(Paragraph)`
   max-width: 632px;
@@ -24,6 +25,8 @@ export default withTheme(({ theme, ...rest }) => (
       a: { component: RoutedAnchor },
       code: { component: Code, props: { background: theme.dark ? 'dark-1' : 'light-2' } },
       example: { component: Example },
+      grid: { component: Grid },
+      card: { component: VerticalCard },
     }}
     {...rest}
   />
