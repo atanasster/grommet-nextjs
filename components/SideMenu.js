@@ -9,104 +9,114 @@ const menuItems = [
   {
     id: 'home',
     path: '/',
-    label: 'Home',
+    label: 'home',
   },
   {
     id: 'get_started',
-    label: 'Get started',
+    label: 'get started',
     items: [
       {
         id: 'installation',
         path: '/installation',
-        label: 'Installation',
+        label: 'installation',
       },
       {
         id: 'get_started_page',
         path: '/get-started',
-        label: 'Get started',
+        label: 'get started',
       },
       {
         id: 'tree_shaking',
         path: '/tree-shaking',
-        label: 'Tree shaking',
+        label: 'tree shaking',
       },
       {
         id: 'page_templates',
         path: '/page-templates',
-        label: 'Page templates',
+        label: 'page templates',
       },
       {
         id: 'new-react-app-cra',
         path: '/new-react-app-cra',
-        label: 'New app with CRA',
+        label: 'create react app',
+      },
+      {
+        id: 'nextjs-app',
+        path: '/nextjs',
+        label: 'nextjs',
+      },
+      {
+        id: 'gatsby-app',
+        path: '/gatsby',
+        label: 'gatsby',
       },
       {
         id: 'existing-react-app',
         path: '/existing-react-app',
-        label: 'Existing app',
+        label: 'existing app',
       },
     ],
   },
   {
     id: 'style',
-    label: 'Style',
+    label: 'style',
     items: [
       {
         id: 'typography',
         path: '/typography',
-        label: 'Typography',
+        label: 'typography',
       },
       {
         id: 'colors',
         path: '/colors',
-        label: 'Colors',
+        label: 'colors',
       },
       {
         id: 'design-kit',
         path: '/design-kit',
-        label: 'Design kit',
+        label: 'design kit',
       },
       {
         id: 'icons',
         path: '/icons',
-        label: 'Grommet icons',
+        label: 'grommet icons',
       },
       {
         id: 'material_icons',
         path: '/material-icons',
-        label: 'Material icons',
+        label: 'material icons',
       },
       {
         id: 'theme_intro',
         path: '/theming-intro',
-        label: 'Grommet theming',
+        label: 'grommet theming',
       },
       {
         id: 'theme',
         path: '/theme',
-        label: 'Theme designer',
+        label: 'theme designer',
       },
     ],
   },
   {
     id: 'grommet',
     path: '/grommet',
-    label: 'Grommet',
+    label: 'grommet',
   },
   {
     id: 'grommet-controls',
     path: '/add-ons',
-    label: 'Grommet controls',
+    label: 'grommet controls',
   },
   {
     id: 'component_examples',
     path: '/examples',
-    label: 'Examples',
+    label: 'examples',
   },
   {
     id: 'grommet-sites',
     path: '/sites',
-    label: 'Grommet sites',
+    label: 'grommet sites',
   },
 
 ];
