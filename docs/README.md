@@ -61,7 +61,7 @@ This a an unofficial site dedicated to the grommet react library, as well as the
     excerpt='Site for Grommet v2.'
   />
   <card
-    image='/static/static/img/hyperparameters.jpg'
+    image='/static/img/hyperparameters.jpg'
     title='tensorflowjs hyperparameters'
     authorName='Martin Stoyanov'
     github='https://github.com/martin-stoyanov/hyperparameters-site'
