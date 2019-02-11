@@ -17,10 +17,10 @@ const getAllTemplates = () => {
       const files = fs.readdirSync(folderPath);
       files.forEach((file) => {
         const fileName = `templates/${folder}/${file}`;
-        const fullFileName = `${folderPath}${file}`;
-        const code = fs.readFileSync(fullFileName).toString();
+        // const fullFileName = `${folderPath}${file}`;
+        // const code = fs.readFileSync(fullFileName).toString();
         const name = file.substring(0, file.indexOf('.')).replace(/_/g, ' ');
-        const template = { category: folder, file: fileName, code, name };
+        const template = { category: folder, file: fileName, name };
         allTemplates.push(template);
         if (templatesByCategory[folder] === undefined) {
           templatesByCategory[folder] = [];
