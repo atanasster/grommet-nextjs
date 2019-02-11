@@ -9,6 +9,7 @@ const LargeProfileForm = ({ object }) => (
     object={object}
     basis='large'
     focusFirstChild={false}
+    onSubmit={f => alert(JSON.stringify(f))}
   >
     <Box direction='row' gap='medium'>
       <Box basis='1/3'>
