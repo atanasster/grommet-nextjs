@@ -6,7 +6,7 @@
 
 `$ npm install styled-components`
 
-# nextjs
+# [nextjs](/nextjs)
 in order to use styled-components with server-side rendering:
 
 `$ npm install babel-plugin-styled-components`
@@ -15,7 +15,7 @@ in order to use the es6 versions of the grommet, grommet-icons and grommet-contr
 
 `$ npm install next-plugin-transpile-modules`
 
-# gatsby
+# [gatsby](/gatsby)
 in order to use styled-components with server-side rendering:
 
 `$ npm install --save gatsby-plugin-styled-components babel-plugin-styled-components`

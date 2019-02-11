@@ -35,4 +35,9 @@ import { Value } from 'grommet-controls/components/Value';
     render(<Demo />);
 ```
 
-# nextjs
+# [nextjs](/nextjs)
+
+for nextjs projects, you will need to set up styled-components for server-side rendering and es6 modules for the grommet libraries
+
+# [gatsby](/gatsby)
+for gatsby projects, you will need to set up styled-components for server-side rendering
