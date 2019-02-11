@@ -133,10 +133,6 @@ export default (state = initialState, action) => {
         themes: { ...state.themes, [action.name]: action.theme },
         selected: action.name,
       };
-    case ActionTypes.DELETE_THEME: {
-      const { [action.name]: omit, ...rest } = this.state.themes;
-      return { ...state, themes: rest };
-    }
     case ActionTypes.SELECT_THEME:
       return { ...state, selected: state.themes[action.name] ? action.name : defaultTheme };
     default:
