@@ -31,7 +31,6 @@ const StyledProvider = styled(LiveProvider)`
   dispplay: flex;
   flex: 0 0;
   width: 100%;
-  height: 100%;
   align-items: center;
 `;
 
@@ -55,7 +54,7 @@ class Example extends React.Component {
     switch (editorPosition) {
       case 'left':
         return (
-          <Grommet.Box direction='row-responsive' fill={true} pad='medium' gap='medium'>
+          <Grommet.Box direction='row-responsive' fill='horizontal' pad='medium' gap='medium'>
             <Grommet.Box basis='1/2'>
               {code && (
                 <React.Fragment>
@@ -71,7 +70,7 @@ class Example extends React.Component {
         );
       case 'top':
         return (
-          <Grommet.Box fill={true} pad='medium' gap='medium'>
+          <Grommet.Box fill='horizontal' pad='medium' gap='medium'>
             <Grommet.Box>
               {code && (
                 <React.Fragment>
@@ -87,7 +86,7 @@ class Example extends React.Component {
         );
       case 'right':
         return (
-          <Grommet.Box direction='row-responsive' fill={true} pad='medium' gap='medium'>
+          <Grommet.Box direction='row-responsive' fill='horizontal' pad='medium' gap='medium'>
             <Grommet.Box basis='1/2'>
               <StyledPreview />
             </Grommet.Box>
