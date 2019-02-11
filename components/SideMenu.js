@@ -38,7 +38,7 @@ const menuItems = [
       {
         id: 'new-react-app-cra',
         path: '/new-react-app-cra',
-        label: 'create react app',
+        label: 'create-react-app',
       },
       {
         id: 'nextjs-app',
