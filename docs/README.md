@@ -1,4 +1,4 @@
-# [about](/about) this site
+# about this site
 
 This a an unofficial site dedicated to the grommet react library, as well as the home of the grommet-controls collection of components.
  The site is built with next.js and the full source code can be found here [github](https://github.com/atanasster/grommet-nextjs).
@@ -6,23 +6,9 @@ This a an unofficial site dedicated to the grommet react library, as well as the
 
 # [installation](/installation)
 
-`$ npm install grommet grommet-icons grommet-components`
+`$ npm install grommet grommet-icons grommet-controls`
 
 # [get started](/get-started)
-
-### if you project is set up for [tree shaking](/tree-shaking):
-```
-import { Grommet, Box } from 'grommet';
-import { Card, Value } from 'grommet-controls';
-```
-
-### if you project is NOT set up for [tree shaking](/tree-shaking):
-```
-import { Grommet } from 'grommet/components/Grommet';
-import { Box } from 'grommet/components/Box';
-import { Card } from 'grommet-controls/components/Card';
-import { Value } from 'grommet-controls/components/Value';
-```
 
 <example editorPosition='left'>
 
