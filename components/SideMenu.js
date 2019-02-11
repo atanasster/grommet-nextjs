@@ -21,7 +21,7 @@ const menuItems = [
         label: 'Installation',
       },
       {
-        id: 'get_started',
+        id: 'get_started_page',
         path: '/get-started',
         label: 'Get started',
       },
