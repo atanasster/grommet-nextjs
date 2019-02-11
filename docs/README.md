@@ -43,7 +43,7 @@ This a an unofficial site dedicated to the grommet react library, as well as the
 
 <grid columns='medium' gap='small'>
   <card 
-    image='//raw.githubusercontent.com/atanasster/grommet-nextjs/master/static/img/grommet-dashboard.jpg'
+    image='/static/img/grommet-dashboard.jpg'
     title='grommet dashboard'
     authorName='Atanas Stoyanov'
     github='https://github.com/atanasster/grommet-dashboard'
@@ -52,7 +52,7 @@ This a an unofficial site dedicated to the grommet react library, as well as the
     excerpt='React nextjs grommet 2 dashboard template with sample pages, charts, forms etc.'
   />  
   <card
-    image='//raw.githubusercontent.com/atanasster/grommet-nextjs/master/static/img/grommet-site.jpg'
+    image='/static/img/grommet-site.jpg'
     title='grommet site'
     authorName='Grommet'
     github='https://github.com/grommet/grommet-site'
@@ -61,7 +61,7 @@ This a an unofficial site dedicated to the grommet react library, as well as the
     excerpt='Site for Grommet v2.'
   />
   <card
-    image='//raw.githubusercontent.com/atanasster/grommet-nextjs/master/static/img/hyperparameters.jpg'
+    image='/static/static/img/hyperparameters.jpg'
     title='tensorflowjs hyperparameters'
     authorName='Martin Stoyanov'
     github='https://github.com/martin-stoyanov/hyperparameters-site'
