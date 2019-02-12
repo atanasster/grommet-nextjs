@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import 'isomorphic-fetch';
 import { Box, Text, TextInput } from 'grommet';
-import { AnnounceContext } from 'grommet/es6/contexts/AnnounceContext';
+import { AnnounceContext } from 'grommet/contexts';
 
 class SearchComponent extends React.Component {
   state = {
