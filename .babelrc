@@ -63,6 +63,18 @@
           "module-resolver", { "alias": {"grommet-controls": "../grommet-controls/src/js" } }
         ]
       ]
+    },
+    "grommet": {
+      "plugins": [
+        [
+          "module-resolver",
+          {
+            "alias": {
+              "grommet": "../grommet/src/js"
+            }
+          }
+        ]
+      ]
     }
   }
 }

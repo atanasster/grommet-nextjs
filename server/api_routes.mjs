@@ -21,6 +21,16 @@ router.get('/examples/:package?/:component?', (req, res) => {
   }
 });
 
+router.get('/components/search/:search?/:limit?', (req, res) => {
+  const { search = '', limit = 10 } = req.params;
+  const searchLower = search.toLowerCase();
+  const items = examples
+    .filter(e => e.name.toLowerCase().match(searchLower))
+    .slice(0, limit)
+    .map(e => ({ name: e.name, package: e.package, category: e.category }));
+  res.json(items);
+});
+
 
 router.get('/theme', (req, res) => {
   const theme = {};

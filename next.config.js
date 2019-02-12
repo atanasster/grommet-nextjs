@@ -27,9 +27,15 @@ const initExport = {
     }
     if (process.env.NODE_ENV === 'alias') {
       config.resolve.alias = dedupeDependencies(
-        ['styled-components', 'grommet', 'grommet-icons', 'react', 'react-dom'], config.resolve.alias
+        ['styled-components', 'grommet', 'grommet-icons', 'react', 'react-dom', 'polished'], config.resolve.alias
       );
     }
+    if (process.env.NODE_ENV === 'grommet') {
+      config.resolve.alias = dedupeDependencies(
+        ['styled-components', 'grommet-icons', 'react', 'react-dom', 'polished'], config.resolve.alias
+      );
+    }
+
     return config;
   },
   transpileModules: ['grommet-controls', 'grommet', 'grommet-icons'],

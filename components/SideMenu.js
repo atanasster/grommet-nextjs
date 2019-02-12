@@ -1,9 +1,14 @@
 import React from 'react';
 import { withRouter } from 'next/router';
+import { bindActionCreators } from 'redux';
 import 'isomorphic-fetch';
-import { Box, Button } from 'grommet';
+import { Box, Button, Select, FormField } from 'grommet';
 import { Sidebar, VerticalMenu } from 'grommet-controls';
 import RoutedButton from './RoutedButton';
+import { queryParams } from './nextjs/urlParams';
+import connect from '../redux';
+import { selectTheme } from '../redux/themes/actions';
+
 
 const menuItems = [
   {
@@ -126,6 +131,27 @@ class SideMenu extends React.Component {
     grommet: {},
     grommetControls: {},
   }
+  constructor(props, context) {
+    super(props, context);
+
+    this.changeTheme(props.router.query.theme);
+  }
+  changeTheme(themeName) {
+    this.props.selectTheme(themeName);
+    this.theme = themeName;
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.router.query.theme !== this.theme) {
+      this.changeTheme(nextProps.router.query.theme);
+    }
+  }
+  onThemeChange = ({ option: theme }) => {
+    const { router } = this.props;
+    const path = { pathname: queryParams(router), query: { theme } };
+    this.changeTheme(theme);
+    router.replace(path, path, { shallow: true });
+  };
   componentDidMount() {
     fetch('/api/package/grommet/latest')
       .then(res => res.json())
@@ -136,8 +162,21 @@ class SideMenu extends React.Component {
   }
 
   render() {
-    const { router } = this.props;
+    const { router, themes: { themes, selected: theme } } = this.props;
     const { grommet, grommetControls } = this.state;
+    const themeSelector = (
+      <Box pad='small'>
+        <FormField label='theme:'>
+          <Select
+            a11yTitle='Change theme'
+            value={theme}
+            options={Object.keys(themes)}
+            onChange={this.onThemeChange}
+          />
+        </FormField>
+      </Box>
+    );
+
     menuItems.find(item => item.id === 'grommet').widget = grommet.version;
     menuItems.find(item => item.id === 'grommet-controls').widget = grommetControls.version;
     const findPath = (items) => {
@@ -160,9 +199,9 @@ class SideMenu extends React.Component {
         <Sidebar
           width='250px'
           flex={false}
-
         >
           <Box overflow='auto'>
+            {themeSelector}
             <VerticalMenu
               activeItem={activeItem}
               buttonClass={RoutedButton}
@@ -183,4 +222,12 @@ class SideMenu extends React.Component {
   }
 }
 
-export default withRouter(SideMenu);
+const mapDispatchToProps = dispatch =>
+  bindActionCreators({ selectTheme }, dispatch);
+
+const mapStateToProps = state => ({
+  themes: state.themes,
+});
+
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(SideMenu));
+
