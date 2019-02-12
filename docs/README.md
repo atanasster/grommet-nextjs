@@ -48,7 +48,7 @@ This a an unofficial site dedicated to the grommet react library, as well as the
     authorName='Atanas Stoyanov'
     github='https://github.com/atanasster/grommet-dashboard'
     authorLink='https://github.com/atanasster'
-    path='https://grommet-dashboard.herokuapp.com/?packages=material-ui%2Csemantic-ui-react%2Creact-bootstrap%2Cantd%2Coffice-ui-fabric-react%2Cgrommet'
+    path='https://grommet-dashboard.herokuapp.com/'
     excerpt='React nextjs grommet 2 dashboard template with sample pages, charts, forms etc.'
   />  
   <card

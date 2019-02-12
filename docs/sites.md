@@ -8,7 +8,7 @@ A list of sites developed with grommet v2. You can submit your own site, just li
     authorName='Atanas Stoyanov'
     github='https://github.com/atanasster/grommet-dashboard'
     authorLink='https://github.com/atanasster'
-    path='https://grommet-dashboard.herokuapp.com/?packages=material-ui%2Csemantic-ui-react%2Creact-bootstrap%2Cantd%2Coffice-ui-fabric-react%2Cgrommet'
+    path='https://grommet-dashboard.herokuapp.com/'
     excerpt='React nextjs grommet 2 dashboard template with sample pages, charts, forms etc.'
   />  
   <card
@@ -112,8 +112,8 @@ A list of sites developed with grommet v2. You can submit your own site, just li
     image='/static/img/hpe-design.jpg'
     title='hpe.design'
     authorName='HPE Design'
-    authorLink='https://github.com/oorestisime'
-    path='https://github.com/hpe-design'
+    authorLink='https://github.com/hpe-design'
+    path='https://hpe.design'
     excerpt='You might be suprised to learn that hpe* makes apps, let alone has a bunch of folks that are trying to change how the enterprise is experienced.'
   />
 </grid>
