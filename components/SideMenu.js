@@ -77,6 +77,11 @@ const menuItems = [
         label: 'colors',
       },
       {
+        id: 'flexbox',
+        path: '/flexbox',
+        label: 'flexbox layout',
+      },
+      {
         id: 'design-kit',
         path: '/design-kit',
         label: 'design kit',

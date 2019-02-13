@@ -6,6 +6,7 @@ import Example from './Example';
 import VerticalCard from './VerticalCard';
 import TemplatesGroup from './TemplatesGroup';
 import TemplateCard from './TemplateCard';
+import FlexBox from './FlexBox';
 
 const MarkdownImage = styled(Image)`
   max-width: 100%;
@@ -43,6 +44,7 @@ export default withTheme(({ theme, ...rest }) => (
       card: { component: VerticalCard },
       templates: { component: TemplatesGroup, props: { templates: rest.templates } },
       template: { component: TemplateCard },
+      flexbox: { component: FlexBox },
     }}
     {...rest}
   />
