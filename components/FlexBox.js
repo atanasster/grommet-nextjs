@@ -8,7 +8,7 @@ const BoxChild = ({
 }) => (
   <Box
     border='all'
-    background='status-warning'
+    background={{ color: 'accent-2', opacity: 'strong' }}
     key={`child_${idx}`}
     {...allChildProps}
     {...childProps}
@@ -249,7 +249,7 @@ export default () => {
         <Box align='start'>
           <Button primary={true} icon={<Add />} label='add child' onClick={() => setState({ ...state, children: [...state.children, []] })} />
         </Box>
-        <Box background='light-4' border='all' {...state.container}>
+        <Box background={{ color: 'accent-2', opacity: 'weak' }} border='all' {...state.container}>
           {state.children.map((props, idx) => (
             <BoxChild
               idx={idx}
