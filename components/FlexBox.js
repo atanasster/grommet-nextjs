@@ -245,7 +245,7 @@ export default () => {
         </Box>
 
       </Box>
-      <Box gap='small'>
+      <Box gap='small' margin={{ top: 'large' }}>
         <Box align='start'>
           <Button primary={true} icon={<Add />} label='add child' onClick={() => setState({ ...state, children: [...state.children, []] })} />
         </Box>
