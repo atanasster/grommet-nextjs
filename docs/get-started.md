@@ -1,12 +1,12 @@
 # basic usage
 
-### if you project is set up for [tree shaking](/tree-shaking):
+### if your project is set up for [tree shaking](/tree-shaking):
 ```
 import { Grommet, Box } from 'grommet';
 import { Card, Value } from 'grommet-controls';
 ```
 
-### if you project is NOT set up for [tree shaking](/tree-shaking):
+### if your project is NOT set up for [tree shaking](/tree-shaking):
 ```
 import { Grommet } from 'grommet/components/Grommet';
 import { Box } from 'grommet/components/Box';
