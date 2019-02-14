@@ -82,11 +82,6 @@ const menuItems = [
         label: 'flexbox layout',
       },
       {
-        id: 'design-kit',
-        path: '/design-kit',
-        label: 'design kit',
-      },
-      {
         id: 'icons',
         path: '/icons',
         label: 'grommet icons',
@@ -105,6 +100,11 @@ const menuItems = [
         id: 'theme',
         path: '/theme',
         label: 'theme designer',
+      },
+      {
+        id: 'design-kit',
+        path: '/design-kit',
+        label: 'design kit',
       },
     ],
   },
