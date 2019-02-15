@@ -1,12 +1,9 @@
-import React from 'react';
-import Article from '../components/Article';
+import withArticle from '../components/withArticle';
 
-export default () => (
-  <Article
-    title='flexbox playground'
-    location='file'
-    path='flexbox.md'
-
-  />
-);
+export default withArticle(() => {},
+  {
+    title: 'flexbox playground',
+    location: 'file',
+    path: 'flexbox.md',
+  });
 

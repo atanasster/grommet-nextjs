@@ -1,11 +1,9 @@
-import React from 'react';
-import Article from '../components/Article';
+import withArticle from '../components/withArticle';
 
-export default () => (
-  <Article
-    title='Grommet design kit'
-    owner='grommet'
-    repo='design-kit'
-    path='/README.md'
-  />
-);
+export default withArticle(() => {},
+  {
+    title: 'Grommet design kit',
+    owner: 'grommet',
+    repo: 'design-kit',
+    path: '/README.md',
+  });

@@ -1,10 +1,8 @@
-import React from 'react';
-import Article from '../components/Article';
+import withArticle from '../components/withArticle';
 
-export default () => (
-  <Article
-    title='get started'
-    location='file'
-    path='get-started.md'
-  />
-);
+export default withArticle(() => {},
+  {
+    title: 'get started',
+    location: 'file',
+    path: 'get-started.md',
+  });

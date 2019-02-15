@@ -1,12 +1,8 @@
-import React from 'react';
-import Article from '../components/Article';
+import withArticle from '../components/withArticle';
 
-
-export default () => (
-  <Article
-    title='grommet sites'
-    location='file'
-    path='sites.md'
-  />
-
-);
+export default withArticle(() => {},
+  {
+    title: 'grommet sites',
+    location: 'file',
+    path: 'sites.md',
+  });

@@ -14,7 +14,7 @@ const TemplatesGroup = ({ templates, group }) => {
     <Section name={group}>
       <Grid columns='medium' rows='medium' gap='small'>
         {examples.map(item => (
-          <TemplateCard key={`template_${item}`} group={group} {...item} />
+          <TemplateCard key={`template_${item.name}`} group={group} {...item} />
         ))
         }
       </Grid>

@@ -1,11 +1,9 @@
-import React from 'react';
-import Article from '../components/Article';
+import withArticle from '../components/withArticle';
 
-export default () => (
-  <Article
-    title='gatsby tree shaking'
-    owner='atanasster'
-    repo='grommet-controls-starter'
-    path='gatsby/README.md'
-  />
-);
+export default withArticle(() => {},
+  {
+    title: 'gatsby tree shaking',
+    owner: 'atanasster',
+    repo: 'grommet-controls-starter',
+    path: 'gatsby/README.md',
+  });
