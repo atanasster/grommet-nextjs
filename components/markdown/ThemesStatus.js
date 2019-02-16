@@ -175,6 +175,7 @@ class ThemesStatus extends React.Component {
     return (
       <Box>
         <PagingTable
+          sortable={false}
           decorations={{
            row: { hover: true },
           }}
