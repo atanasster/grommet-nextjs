@@ -100,7 +100,10 @@ const colorsForMood = (color, backgroundColor, mood, scheme) => {
       softerBackground = bgColor.darken(0.05);
     }
     textColor = Color.rgb(textColor[0], textColor[1], textColor[2]);
-    const border = textColor.fade(0.4);
+    const border = {
+      dark: '#ebebeb',
+      light: '#444444',
+    };
     const shadowColor = textColor.fade(0.5).rgb().string();
 
     const cs = new ColorScheme();
@@ -111,7 +114,7 @@ const colorsForMood = (color, backgroundColor, mood, scheme) => {
     };
     const colors = {
       brand: color,
-      border: border.hex(),
+      border,
       background: backgroundColor,
       placeholder: shadowColor,
       control: brandNormalized,
@@ -140,12 +143,7 @@ const colorsForMood = (color, backgroundColor, mood, scheme) => {
         },
       },
       checkBox: {
-        border: {
-          color: {
-            light: border.rgb().string(),
-            dark: border.rgb().string(),
-          },
-        },
+        border: { color: border },
       },
       anchor: {
         color: brandNormalized,
@@ -154,12 +152,7 @@ const colorsForMood = (color, backgroundColor, mood, scheme) => {
         font: false,
       },
       radioButton: {
-        border: {
-          color: {
-            light: border.rgb().string(),
-            dark: border.rgb().string(),
-          },
-        },
+        border: { color: border },
       },
     };
     // create theme palette

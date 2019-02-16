@@ -17,7 +17,10 @@ const custom = deepFreeze({
   'global': {
     'colors': {
       'brand': '#99cc33',
-      'border': '#444444',
+      'border': {
+        dark: '#f3f3f3',
+        light: '#444444',
+      },
       'background': '#FFF8E1',
       'placeholder': 'rgba(68, 68, 68, 0.5)',
       'control': {
@@ -71,8 +74,8 @@ const custom = deepFreeze({
   'checkBox': {
     'border': {
       'color': {
-        'light': 'rgba(68, 68, 68, 0.6)',
-        'dark': 'rgba(68, 68, 68, 0.6)',
+        dark: '#f3f3f3',
+        light: '#444444',
       },
       'check': {
         'radius': '4px',
@@ -94,8 +97,8 @@ const custom = deepFreeze({
   'radioButton': {
     'border': {
       'color': {
-        'light': 'rgba(68, 68, 68, 0.6)',
-        'dark': 'rgba(68, 68, 68, 0.6)',
+        dark: '#f3f3f3',
+        light: '#444444',
       },
     },
   },

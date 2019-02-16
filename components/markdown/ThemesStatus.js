@@ -1,5 +1,5 @@
 import React from 'react';
-import { Grommet, Box, Anchor, Button, Text, Select } from 'grommet';
+import { Grommet, Box, Anchor, Button, Text, Select, CheckBox, RadioButton } from 'grommet';
 import { colorIsDark } from 'grommet/utils';
 import { Home } from 'grommet-icons';
 import { PagingTable } from 'grommet-controls';
@@ -17,29 +17,63 @@ const anchorTest = ({ backgroundColor, container }) => {
 
 const buttonTest = ({ backgroundColor, container }) => {
   const errors = [];
+  const darkBackground = colorIsDark(backgroundColor);
   const btn = container.children[0];
-  const { color } = getComputedStyle(container.children[0]);
-  if (colorIsDark(color) === colorIsDark(backgroundColor)) {
+  const { color } = getComputedStyle(btn);
+  if (colorIsDark(color) === darkBackground) {
     errors.push(`${color} on ${backgroundColor}`);
   }
-  const svgIcon = btn.children[0].children[0].children[0];
+  const { borderColor } = getComputedStyle(btn);
+  if (colorIsDark(borderColor) === darkBackground) {
+    errors.push(`border ${borderColor} on ${backgroundColor}`);
+  }
+
+  const svgIcon = btn.querySelector('svg');
   const { stroke } = getComputedStyle(svgIcon);
-  if (colorIsDark(stroke) === colorIsDark(backgroundColor)) {
+  if (colorIsDark(stroke) === darkBackground) {
     errors.push(`icon ${stroke} on ${backgroundColor}`);
+  }
+  return errors;
+};
+
+const checkboxTest = ({ backgroundColor, container }) => {
+  const errors = [];
+  const darkBackground = colorIsDark(backgroundColor);
+  const label = container.querySelector('label');
+  const { color } = getComputedStyle(label);
+  if (colorIsDark(color) === darkBackground) {
+    errors.push(`${color} on ${backgroundColor}`);
+  }
+  const checkbox = container.querySelector('input').nextSibling;
+
+  const { borderColor } = getComputedStyle(checkbox);
+  if (colorIsDark(borderColor) === darkBackground) {
+    errors.push(`border ${borderColor} on ${backgroundColor}`);
+  }
+  const svgIcon = container.querySelector('svg');
+  const { stroke, fill } = getComputedStyle(svgIcon);
+  const svgColor = stroke !== 'none' ? stroke : fill;
+  if (colorIsDark(svgColor) === darkBackground) {
+    errors.push(`icon ${svgColor} on ${backgroundColor}`);
   }
   return errors;
 };
 
 const selectTest = ({ backgroundColor, container }) => {
   const errors = [];
+  const darkBackground = colorIsDark(backgroundColor);
   const btn = container.children[0];
-  const { color } = getComputedStyle(container.children[0]);
-  if (colorIsDark(color) === colorIsDark(backgroundColor)) {
+  const { color } = getComputedStyle(btn);
+  if (colorIsDark(color) === darkBackground) {
     errors.push(`${color} on ${backgroundColor}`);
   }
-  const svgIcon = btn.children[0].children[1].children[0];
+  const { borderColor } = getComputedStyle(btn);
+  if (colorIsDark(borderColor) === darkBackground) {
+    errors.push(`border ${borderColor} on ${backgroundColor}`);
+  }
+  const svgIcon = btn.querySelector('svg');
   const { stroke } = getComputedStyle(svgIcon);
-  if (colorIsDark(stroke) === colorIsDark(backgroundColor)) {
+  if (colorIsDark(stroke) === darkBackground) {
     errors.push(`icon ${stroke} on ${backgroundColor}`);
   }
   return errors;
@@ -96,6 +130,30 @@ const ButtonOnDark = props => (
 const ButtonOnLight = props => (
   <TestContainer test='ButtonOnLight' background='white' errorFunc={buttonTest} {...props}>
     <Button icon={<Home />} label='Link' onClick={() => {}} />
+  </TestContainer>
+);
+
+const CheckboxOnDark = props => (
+  <TestContainer test='CheckboxOnDark' background='black' errorFunc={checkboxTest} {...props}>
+    <CheckBox checked={true} label='check' onChange={() => {}} />
+  </TestContainer>
+);
+
+const CheckboxOnLight = props => (
+  <TestContainer test='CheckboxOnLight' background='white' errorFunc={checkboxTest} {...props}>
+    <CheckBox checked={true} label='check' onChange={() => {}} />
+  </TestContainer>
+);
+
+const RadioButtonOnDark = props => (
+  <TestContainer test='RadioButtonOnDark' name='RadioButtonOnDark' background='black' errorFunc={checkboxTest} {...props}>
+    <RadioButton checked={true} label='radio' onChange={() => {}} />
+  </TestContainer>
+);
+
+const RadioButtonOnLight = props => (
+  <TestContainer test='RadioButtonOnLight' name='RadioButtonOnLight' background='white' errorFunc={checkboxTest} {...props}>
+    <RadioButton checked={true} label='radio' onChange={() => {}} />
   </TestContainer>
 );
 
@@ -159,6 +217,30 @@ class ThemesStatus extends React.Component {
             accessor: '5',
             Cell: props => (
               <SelectOnLight theme={props.original.theme} name={props.original.name} />
+            ),
+          }, {
+            Header: 'Checkbox/dark',
+            accessor: '4',
+            Cell: props => (
+              <CheckboxOnDark theme={props.original.theme} name={props.original.name} />
+            ),
+          }, {
+            Header: 'Checkbox/light',
+            accessor: '5',
+            Cell: props => (
+              <CheckboxOnLight theme={props.original.theme} name={props.original.name} />
+            ),
+          }, {
+            Header: 'Radio/dark',
+            accessor: '4',
+            Cell: props => (
+              <RadioButtonOnDark theme={props.original.theme} name={props.original.name} />
+            ),
+          }, {
+            Header: 'Radio/light',
+            accessor: '5',
+            Cell: props => (
+              <RadioButtonOnLight theme={props.original.theme} name={props.original.name} />
             ),
           },
           ]}
