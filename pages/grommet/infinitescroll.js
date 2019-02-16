@@ -1,7 +1,7 @@
 import React from 'react';
 import { InfiniteScroll } from 'grommet';
 import { doc } from 'grommet/components/InfiniteScroll/doc';
-import Doc from '../../components/Doc';
+import Doc from '../../components/documentation/Doc';
 
 const desc = doc(InfiniteScroll).toJSON();
 

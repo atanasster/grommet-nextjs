@@ -2,7 +2,7 @@ import React from 'react';
 import { Box, Heading, Image, Anchor } from 'grommet';
 import { Code, Github } from 'grommet-icons';
 import { Card } from 'grommet-controls';
-import RoutedButton from './RoutedButton';
+import RoutedButton from '../RoutedButton';
 
 export default ({ name, group, ...rest }) => (
   <Card

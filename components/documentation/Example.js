@@ -14,7 +14,7 @@ import { Form as GrommetForm, MaskedInput as GrommetMaskedInput } from 'grommet'
 import * as Themes from 'grommet-controls/themes';
 import * as GrommetControls from 'grommet-controls';
 import * as GrommetCharts from 'grommet-controls/chartjs';
-import RoutedButton from './RoutedButton';
+import RoutedButton from '../RoutedButton';
 
 
 const scope = {

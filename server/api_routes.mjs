@@ -49,7 +49,12 @@ router.get('/theme', (req, res) => {
           if (!(keys[lastIndex] in obj)) {
             obj[keys[lastIndex]] = [];
           }
-          obj[keys[lastIndex]].push({ component: example.name, ...value });
+
+          try {
+            obj[keys[lastIndex]].push({ component: example.name, ...value });
+          } catch (e) {
+            console.log(propName, keys[lastIndex]);
+          }
         };
         const keys = propName.split('.');
         setThemeValue(theme, keys, example.themeDoc[propName]);

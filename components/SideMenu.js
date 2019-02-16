@@ -92,19 +92,30 @@ const menuItems = [
         label: 'material icons',
       },
       {
+        id: 'design-kit',
+        path: '/design-kit',
+        label: 'design kit',
+      },
+    ],
+  },
+  {
+    id: 'theming',
+    label: 'theming',
+    items: [
+      {
         id: 'theme_intro',
         path: '/theming-intro',
         label: 'grommet theming',
       },
       {
+        id: 'themes_status',
+        path: '/themes-status',
+        label: 'themes status',
+      },
+      {
         id: 'theme',
         path: '/theme',
         label: 'theme designer',
-      },
-      {
-        id: 'design-kit',
-        path: '/design-kit',
-        label: 'design kit',
       },
     ],
   },

@@ -1,12 +1,13 @@
 import React from 'react';
 import styled, { withTheme } from 'styled-components';
 import { Image, Markdown, Box, Paragraph, Grid } from 'grommet';
-import RoutedAnchor from './RoutedAnchor';
-import Example from './Example';
+import RoutedAnchor from '../RoutedAnchor';
+import Example from '../documentation/Example';
 import VerticalCard from './VerticalCard';
 import TemplatesGroup from './TemplatesGroup';
 import TemplateCard from './TemplateCard';
 import FlexBox from './FlexBox';
+import ThemesStatus from './ThemesStatus';
 
 const MarkdownImage = styled(Image)`
   max-width: 100%;
@@ -45,6 +46,7 @@ export default withTheme(({ theme, ...rest }) => (
       templates: { component: TemplatesGroup, props: { templates: rest.templates } },
       template: { component: TemplateCard },
       flexbox: { component: FlexBox },
+      themesstatus: { component: ThemesStatus },
     }}
     {...rest}
   />

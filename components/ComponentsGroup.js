@@ -7,7 +7,7 @@ import { Card } from 'grommet-controls';
 import { Code, Document } from 'grommet-icons';
 import RoutedButton from '../components/RoutedButton';
 import Section from './Section';
-import Example from './Example';
+import Example from './documentation/Example';
 
 const ComponentsGroup = ({ examples, group }) => (
   <Section name={group}>

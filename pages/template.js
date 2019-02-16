@@ -5,7 +5,7 @@ import 'isomorphic-fetch';
 import { Box, Button, Anchor } from 'grommet';
 import { Code, Github } from 'grommet-icons';
 import Page from '../components/Page';
-import Example from '../components/Example';
+import Example from '../components/documentation/Example';
 
 class Template extends React.Component {
   state = {

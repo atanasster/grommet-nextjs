@@ -7,7 +7,7 @@ import { Search } from 'grommet-icons';
 import { Sidebar, VerticalMenu, DropInput } from 'grommet-controls';
 import Page from '../components/Page';
 import pushRoute from '../components/PushRoute';
-import Example from '../components/Example';
+import Example from '../components/documentation/Example';
 
 class Examples extends React.Component {
   constructor(props) {

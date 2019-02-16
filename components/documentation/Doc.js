@@ -4,7 +4,7 @@ import 'isomorphic-fetch';
 import JSONPretty from 'react-json-pretty';
 import { Box, Button, Heading, Paragraph, Markdown } from 'grommet';
 import { ThemeContext } from 'grommet/contexts';
-import Page from './Page';
+import Page from '../Page';
 import DocProperty from './DocProperty';
 import Example from './Example';
 

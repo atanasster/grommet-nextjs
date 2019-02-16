@@ -2,7 +2,7 @@ import React from 'react';
 import getDisplayName from 'recompose/getDisplayName';
 import { Box, Anchor } from 'grommet';
 import { Github } from 'grommet-icons';
-import ExtMarkdown from './ExtMarkdown';
+import ExtMarkdown from './markdown/ExtMarkdown';
 import Page from './Page';
 
 export default (ComposedComponent, {

@@ -19,6 +19,7 @@
     "document": true,
     "test": true,
     "window": true,
+    "getComputedStyle": true,
     "fetch": true,
     "WebSocket": true,
     "alert": true,
