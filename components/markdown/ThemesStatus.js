@@ -146,14 +146,14 @@ const CheckboxOnLight = props => (
 );
 
 const RadioButtonOnDark = props => (
-  <TestContainer test='RadioButtonOnDark' name='RadioButtonOnDark' background='black' errorFunc={checkboxTest} {...props}>
-    <RadioButton checked={true} label='radio' onChange={() => {}} />
+  <TestContainer test='RadioButtonOnDark' background='black' errorFunc={checkboxTest} {...props}>
+    <RadioButton checked={true} label='radio' name='RadioButtonOnDark' onChange={() => {}} />
   </TestContainer>
 );
 
 const RadioButtonOnLight = props => (
-  <TestContainer test='RadioButtonOnLight' name='RadioButtonOnLight' background='white' errorFunc={checkboxTest} {...props}>
-    <RadioButton checked={true} label='radio' onChange={() => {}} />
+  <TestContainer test='RadioButtonOnLight'background='white' errorFunc={checkboxTest} {...props}>
+    <RadioButton checked={true} label='radio' name='RadioButtonOnLight' onChange={() => {}} />
   </TestContainer>
 );
 
