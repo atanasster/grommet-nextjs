@@ -186,7 +186,8 @@ class ThemesStatus extends React.Component {
           resizable={false}
           SubComponent={this.onExpand}
           decorations={{
-           table: { elevation: 'medium', border: 'all' },
+           table: { elevation: 'medium' },
+           body: { animation: { type: 'fadeIn', duration: 4000, size: 'large' } },
            row: { hover: true },
            headerGroup: {
               background: 'brand', border: 'all', size: 'large', textAlign: 'center',
