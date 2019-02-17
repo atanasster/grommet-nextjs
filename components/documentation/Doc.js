@@ -45,9 +45,14 @@ export default class Doc extends React.Component {
         nav={nav}
         footer={footer}
       >
-        <Box pad={{ horizontal: 'large', top: 'large' }}>
-          <Box direction='row-responsive'>
-            <Box margin={{ vertical: 'large' }} basis='1/2' align='start'>
+        <Box
+          pad={{ vertical: 'medium' }}
+          border='bottom'
+        >
+          <Box
+            direction='row-responsive'
+          >
+            <Box basis='1/2' align='start'>
               <Heading level={1}>
                 <strong>{name}</strong>
               </Heading>
@@ -82,15 +87,33 @@ export default class Doc extends React.Component {
         </Box>
 
         {doc ? (
-          <Box pad={{ horizontal: 'large', bottom: 'large' }}>
+          <Box>
             { doc.usage && (
-              <Box pad='large' round='large' margin='small' background='light-2'>
-                <Heading margin='none' level={3}><strong>Usage</strong></Heading>
-                <Markdown>{`\`\`\`${doc.usage}\`\`\``}</Markdown>
+              <Box
+                pad={{ vertical: 'medium' }}
+                border='bottom'
+                gap='medium'
+              >
+                <Heading margin='none' level={2}><strong>usage</strong></Heading>
+                <Box
+                  background='light-2'
+                  pad='medium'
+                >
+                  <Markdown>{`\`\`\`${doc.usage}\`\`\``}</Markdown>
+                </Box>
               </Box>
             )}
             {doc.properties && (
-              <Box pad='large' round='large' background='light-1'>
+            <Box
+              pad={{ vertical: 'medium' }}
+              border='bottom'
+              gap='medium'
+            >
+              <Heading margin='none' level={2}><strong>documentation</strong></Heading>
+              <Box
+                background='light-2'
+                pad='medium'
+              >
                 {doc.properties.map(property => (
                   <DocProperty
                     key={property.name}
@@ -100,22 +123,22 @@ export default class Doc extends React.Component {
                     example={property.name}
                     code={examples[property.name]}
                   />
-                ))}
+                  ))}
               </Box>
+            </Box>
             )}
           </Box>
         ) : null}
         {themeDoc && (
           <Box
-            margin={{ horizontal: 'large', bottom: 'large' }}
+            pad={{ vertical: 'medium' }}
+            border='bottom'
+            gap='medium'
           >
-            <Heading level={2} margin={{ top: 'medium', bottom: 'xlarge' }}>
-              Theme
-            </Heading>
+            <Heading margin='none' level={2}><strong>theming</strong></Heading>
             <Box
-              pad='large'
-              round='large'
-              background='light-1'
+              background='light-2'
+              pad='medium'
             >
               <ThemeContext.Consumer>
                 {theme =>
