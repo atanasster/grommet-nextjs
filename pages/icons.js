@@ -3,8 +3,8 @@ import { Box, Grid, InfiniteScroll, Text } from 'grommet';
 import { DropInput } from 'grommet-controls';
 import * as Icons from 'grommet-icons';
 import metadata from 'grommet-icons/metadata';
-import Page from '../components/Page';
-import Title from '../components/Title';
+import Page from '../components/app/Page';
+import Title from '../components/app/Title';
 
 const reservedIcons = ['defaultProps', 'extendDefaultTheme'];
 

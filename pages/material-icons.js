@@ -4,8 +4,8 @@ import { ResponsiveContext, ThemeContext } from 'grommet/contexts';
 import { DropInput } from 'grommet-controls';
 import { Search } from 'grommet-icons';
 import * as Icons from '@material-ui/icons/index';
-import Page from '../components/Page';
-import Title from '../components/Title';
+import Page from '../components/app/Page';
+import Title from '../components/app/Title';
 
 const iconKeys = Object.keys(Icons).filter(iconName => (
   !iconName.endsWith('Outlined') && !iconName.endsWith('Rounded') && !iconName.endsWith('Sharp') && !iconName.endsWith('TwoTone')

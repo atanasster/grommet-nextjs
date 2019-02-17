@@ -5,8 +5,8 @@ import 'isomorphic-fetch';
 import { Box } from 'grommet';
 import { Search } from 'grommet-icons';
 import { Sidebar, VerticalMenu, DropInput } from 'grommet-controls';
-import Page from '../components/Page';
-import pushRoute from '../components/PushRoute';
+import Page from '../components/app/Page';
+import pushRoute from '../components/app/PushRoute';
 import Example from '../components/documentation/Example';
 
 class Examples extends React.Component {

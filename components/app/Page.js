@@ -6,9 +6,9 @@ import { ResponsiveContext } from 'grommet/contexts';
 import Header from './Header';
 import Footer from './Footer';
 import SideMenu from './SideMenu';
-import connect from '../redux';
+import connect from '../../redux/index';
 
-import { initGA, logPageView } from './utils/analytics';
+import { initGA, logPageView } from '../utils/analytics';
 
 class Page extends React.Component {
   componentDidMount() {

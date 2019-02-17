@@ -2,7 +2,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Grid } from 'grommet';
-import Section from '../Section';
+import Section from '../app/Section';
 import TemplateCard from './TemplateCard';
 
 const TemplatesGroup = ({ templates, group }) => {

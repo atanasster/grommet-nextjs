@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { Box, Heading, Paragraph, Image, Anchor, Text } from 'grommet';
 import { Github } from 'grommet-icons';
 import { Card } from 'grommet-controls';
-import RoutedAnchor from '../RoutedAnchor';
+import RoutedAnchor from '../app/RoutedAnchor';
 
 const withAnchor = (link, children) => (
   link ? <Anchor href={link} target='_blank'>{children}</Anchor> : children

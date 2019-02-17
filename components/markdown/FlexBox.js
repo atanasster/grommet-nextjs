@@ -253,6 +253,7 @@ export default () => {
           {state.children.map((props, idx) => (
             <BoxChild
               idx={idx}
+              key={`box_child_${idx}`}
               allChildProps={state.child}
               childProps={props}
               onRemove={() => setState({

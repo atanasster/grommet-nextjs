@@ -14,7 +14,7 @@ import { Form as GrommetForm, MaskedInput as GrommetMaskedInput } from 'grommet'
 import * as Themes from 'grommet-controls/themes';
 import * as GrommetControls from 'grommet-controls';
 import * as GrommetCharts from 'grommet-controls/chartjs';
-import RoutedButton from '../RoutedButton';
+import RoutedButton from '../app/RoutedButton';
 
 
 const scope = {
@@ -37,11 +37,12 @@ const StyledProvider = styled(LiveProvider)`
 const StyledPreview = styled(LivePreview)`
   width: 100%;
   height: 100%;
-  align-items: center;
+  align-items: center;  
 `;
 
 const StyledEditor = styled(LiveEditor)`
   overflow: auto;
+  max-height: 400px;
 `;
 
 class Example extends React.Component {

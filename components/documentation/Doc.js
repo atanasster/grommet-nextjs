@@ -4,7 +4,7 @@ import 'isomorphic-fetch';
 import JSONPretty from 'react-json-pretty';
 import { Box, Button, Heading, Paragraph, Markdown } from 'grommet';
 import { ThemeContext } from 'grommet/contexts';
-import Page from '../Page';
+import Page from '../app/Page';
 import DocProperty from './DocProperty';
 import Example from './Example';
 
@@ -12,15 +12,24 @@ export default class Doc extends React.Component {
   state = {
     documentation: {},
   };
-  componentDidMount() {
-    const { name, library } = this.props;
-    window.scrollTo(0, 0);
+
+  loadComponnet = ({ name, library }) => {
     if (name && library) {
       fetch(`/api/examples/${library}/${name}`)
         .then(res => (res ? res.json() : res))
         .catch(() => this.setState({ documentation: {} }))
         .then(res => res && res.length &&
           this.setState({ documentation: res.length > 0 ? res[0] : res }));
+    }
+  };
+
+  componentDidMount() {
+    this.loadComponnet(this.props);
+  }
+
+  componentWillReceiveProps(newProps) {
+    if (newProps.name !== this.props.name || newProps.library !== this.props.library) {
+      this.loadComponnet(newProps);
     }
   }
   render() {
@@ -60,7 +69,13 @@ export default class Doc extends React.Component {
             </Box>
             {examples['_starter'] && (
               <Box flex={true} pad={{ vertical: 'large' }} align='center'>
-                <Example library={library} code={examples['_starter']} component={name} example='_starter' />
+                <Example
+                  library={library}
+                  component={name}
+                  example='_starter'
+                >
+                  {examples['_starter']}
+                </Example>
               </Box>
             )}
           </Box>
@@ -80,10 +95,10 @@ export default class Doc extends React.Component {
                   <DocProperty
                     key={property.name}
                     property={property}
-                    code={examples[property.name]}
                     component={name}
                     library={library}
                     example={property.name}
+                    code={examples[property.name]}
                   />
                 ))}
               </Box>

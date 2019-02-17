@@ -5,9 +5,9 @@ import 'isomorphic-fetch';
 import { Box, Button, Select, FormField } from 'grommet';
 import { Sidebar, VerticalMenu } from 'grommet-controls';
 import RoutedButton from './RoutedButton';
-import { queryParams } from './nextjs/urlParams';
-import connect from '../redux';
-import { selectTheme } from '../redux/themes/actions';
+import { queryParams } from '../nextjs/urlParams';
+import connect from '../../redux/index';
+import { selectTheme } from '../../redux/themes/actions';
 
 
 const menuItems = [

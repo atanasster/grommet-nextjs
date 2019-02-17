@@ -4,7 +4,7 @@ import { withRouter } from 'next/router';
 import 'isomorphic-fetch';
 import { Box, Button, Anchor } from 'grommet';
 import { Code, Github } from 'grommet-icons';
-import Page from '../components/Page';
+import Page from '../components/app/Page';
 import Example from '../components/documentation/Example';
 
 class Template extends React.Component {

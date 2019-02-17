@@ -1,6 +1,6 @@
 import React from 'react';
 import { Box, Heading, Text, Paragraph } from 'grommet';
-import Page from '../components/Page';
+import Page from '../components/app/Page';
 
 const lineText = 'It\'s 5 o\'clock somewhere';
 const paragraphText = `

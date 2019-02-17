@@ -1,7 +1,7 @@
 import React from 'react';
 import 'isomorphic-fetch';
 import JSONPretty from 'react-json-pretty';
-import Page from '../components/Page';
+import Page from '../components/app/Page';
 
 export default class Theming extends React.Component {
   state = {

@@ -1,10 +1,10 @@
 import 'isomorphic-fetch';
 import { Box, Anchor, Heading, Paragraph, Text } from 'grommet';
 import { Grommet as GrommetIcon, Descend } from 'grommet-icons';
-import Page from '../../components/Page';
-import Section from '../../components/Section';
-import Item from '../../components/Item';
-import ComponentsGroup from '../../components/ComponentsGroup';
+import Page from '../../components/app/Page';
+import Section from '../../components/app/Section';
+import Item from '../../components/components/Item';
+import ComponentsGroup from '../../components/components/ComponentsGroup';
 
 
 export default class Home extends React.Component {

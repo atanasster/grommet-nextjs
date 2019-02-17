@@ -1,7 +1,7 @@
 import React from 'react';
 import styled, { withTheme } from 'styled-components';
 import { Image, Markdown, Box, Paragraph, Grid } from 'grommet';
-import RoutedAnchor from '../RoutedAnchor';
+import RoutedAnchor from '../app/RoutedAnchor';
 import Example from '../documentation/Example';
 import VerticalCard from './VerticalCard';
 import TemplatesGroup from './TemplatesGroup';

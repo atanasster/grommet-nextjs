@@ -10,11 +10,11 @@ import {
 import { withTheme } from 'grommet/components/hocs';
 import { deepMerge } from 'grommet/utils';
 import { ColorInput, materialColors } from 'grommet-controls';
-import Page from '../components/Page';
-import createTheme, { MOODS, SCHEMES, SHARPNESSES, themeFromFont } from '../utils/theme';
+import Page from '../components/app/Page';
+import createTheme, { MOODS, SCHEMES, SHARPNESSES, themeFromFont } from '../components/themes/theme';
 import { updateTheme } from '../redux/themes/actions';
 import connect from '../redux';
-import Preview from '../components/Preview';
+import Preview from '../components/themes/Preview';
 import { queryParams } from '../components/nextjs/urlParams';
 
 const defaultFont = 'Roboto';

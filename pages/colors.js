@@ -2,7 +2,7 @@ import React from 'react';
 import { Box, Grid, Text } from 'grommet';
 import { ThemeContext } from 'grommet/contexts';
 import { Card } from 'grommet-controls';
-import Page from '../components/Page';
+import Page from '../components/app/Page';
 
 const getRGB = (color) => {
   if (typeof color.match === 'function') {

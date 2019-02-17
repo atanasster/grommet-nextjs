@@ -1,6 +1,6 @@
 import React from 'react';
 import 'isomorphic-fetch';
-import withArticle from '../components/withArticle';
+import withArticle from '../components/app/withArticle';
 
 export default withArticle(class Templates extends React.Component {
   static async getInitialProps({ req }) {

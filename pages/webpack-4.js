@@ -1,4 +1,4 @@
-import withArticle from '../components/withArticle';
+import withArticle from '../components/app/withArticle';
 
 export default withArticle(() => {},
   {

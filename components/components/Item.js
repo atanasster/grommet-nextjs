@@ -1,5 +1,5 @@
 import { Card } from 'grommet-controls';
-import RoutedAnchor from './RoutedAnchor';
+import RoutedAnchor from '../app/RoutedAnchor';
 
 export default ({
   name, path, children,
