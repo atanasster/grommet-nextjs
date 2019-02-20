@@ -6,6 +6,7 @@ import npath from 'path';
 import fetch from 'isomorphic-unfetch';
 import { examples } from '../examples/index';
 import templateRoutes from './api_templates';
+import themeRoutes from './api_themes';
 
 const router = express.Router();
 const cache = apicache.middleware;
@@ -31,38 +32,6 @@ router.get('/components/search/:search?/:limit?', (req, res) => {
   res.json(items);
 });
 
-
-router.get('/theme', (req, res) => {
-  const theme = {};
-  examples.forEach((example) => {
-    if (example.themeDoc) {
-      Object.keys(example.themeDoc).forEach((propName) => {
-        const setThemeValue = (obj, keys, value) => {
-          const lastIndex = keys.length - 1;
-          for (let i = 0; i < lastIndex; i += 1) {
-            const key = keys[i];
-            if (!(key in obj)) {
-              obj[key] = {};
-            }
-            obj = obj[key];
-          }
-          if (!(keys[lastIndex] in obj)) {
-            obj[keys[lastIndex]] = [];
-          }
-
-          try {
-            obj[keys[lastIndex]].push({ component: example.name, ...value });
-          } catch (e) {
-            console.log(propName, keys[lastIndex]);
-          }
-        };
-        const keys = propName.split('.');
-        setThemeValue(theme, keys, example.themeDoc[propName]);
-      });
-    }
-  });
-  res.json(theme);
-});
 
 router.get('/package/:package/:field?', cache('5 minutes'), (req, res) => {
   fetch(`https://registry.npmjs.org/${encodeURIComponent(req.params.package)}`)
@@ -120,4 +89,5 @@ router.get('/file/:owner?/:repo?/:file', (req, res) => {
 
 
 router.use('/templates', templateRoutes);
+router.use('/themes', themeRoutes);
 export default router;
