@@ -105,17 +105,22 @@ const menuItems = [
       {
         id: 'theme_intro',
         path: '/theming-intro',
-        label: 'grommet theming',
+        label: 'introduction',
       },
       {
         id: 'themes_status',
         path: '/themes-status',
-        label: 'themes status',
+        label: 'status',
+      },
+      {
+        id: 'theme-explorer',
+        path: '/themes-explorer',
+        label: 'explorer',
       },
       {
         id: 'theme',
         path: '/theme',
-        label: 'theme designer',
+        label: 'designer',
       },
     ],
   },

@@ -5,6 +5,7 @@ import RoutedAnchor from '../app/RoutedAnchor';
 import Example from '../documentation/Example';
 import VerticalCard from './VerticalCard';
 import TemplatesGroup from './TemplatesGroup';
+import ThemesExplorer from './ThemesExplorer';
 import TemplateCard from './TemplateCard';
 import FlexBox from './FlexBox';
 import ThemesStatus from './ThemesStatus';
@@ -52,6 +53,7 @@ export default withTheme(({ theme, ...rest }) => (
       flexbox: { component: FlexBox },
       themesstatus: { component: ThemesStatus },
       box: { component: BoxRow },
+      themesexplorer: { component: ThemesExplorer, props: { themes: rest.themes } },
     }}
     {...rest}
   />
