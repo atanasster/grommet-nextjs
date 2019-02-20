@@ -34,6 +34,7 @@ import { Value } from 'grommet-controls/components/Value';
 
     render(<Demo />);
 ```
+</example>
 
 # [nextjs](/nextjs)
 

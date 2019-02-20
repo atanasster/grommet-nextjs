@@ -4,9 +4,12 @@ This a an unofficial site dedicated to the grommet react library, as well as the
  The site is built with next.js and the full source code can be found here [github](https://github.com/atanasster/grommet-nextjs).
  Head on there as we would really appreciate to hear your feedback and get some github stars.
 
+
 # [installation](/installation)
 
-`$ npm install grommet grommet-icons grommet-controls`
+```
+$ npm install grommet grommet-icons grommet-controls
+```
 
 # [get started](/get-started)
 
@@ -32,12 +35,16 @@ This a an unofficial site dedicated to the grommet react library, as well as the
 ```
 </example>
 
+
 # [page templates](/page-templates)
+
 <grid columns='medium' rows='medium' gap='small'>
   <template group='pages' name='home-dashboard' />
   <template group='cards' name='vertical-blog-post' />
   <template group='cards' name='horizontal-blog-post' /> 
 </grid>
+
+
 
 # [example sites](/sites)
 

@@ -30,8 +30,12 @@ const LargeParagraph = styled(Paragraph)`
 
 
 const Code = styled(Box)`
-  font-family: monospace; 
+  font-family: monospace;
+  display: initial;
 `;
+
+
+const BoxRow = props => (<Box direction='row-responsive' wrap={true} {...props} />);
 
 export default withTheme(({ theme, ...rest }) => (
   <Markdown
@@ -47,6 +51,7 @@ export default withTheme(({ theme, ...rest }) => (
       template: { component: TemplateCard },
       flexbox: { component: FlexBox },
       themesstatus: { component: ThemesStatus },
+      box: { component: BoxRow },
     }}
     {...rest}
   />
