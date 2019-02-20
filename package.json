@@ -1,6 +1,6 @@
 {
   "name": "grommet-nextjs",
-  "version": "1.10.5",
+  "version": "1.15.0",
   "engines": {
     "node": ">=10.0",
     "npm": ">=6.0.1"
