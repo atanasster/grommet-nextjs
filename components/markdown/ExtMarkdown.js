@@ -38,7 +38,7 @@ const Code = styled(Box)`
 
 const BoxRow = props => (<Box direction='row-responsive' wrap={true} {...props} />);
 
-export default withTheme(({ theme, ...rest }) => (
+export default withTheme(({ children, theme, ...rest }) => (
   <Markdown
     components={{
       p: { component: LargeParagraph },
@@ -53,8 +53,9 @@ export default withTheme(({ theme, ...rest }) => (
       flexbox: { component: FlexBox },
       themesstatus: { component: ThemesStatus },
       box: { component: BoxRow },
-      themesexplorer: { component: ThemesExplorer, props: { themes: rest.themes } },
+      themesexplorer: { component: ThemesExplorer, props: { themeDocs: rest.themeDocs } },
     }}
-    {...rest}
-  />
+  >
+    {children}
+  </Markdown>
 ));

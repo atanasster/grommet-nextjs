@@ -2,10 +2,12 @@ import React from 'react';
 import { withRouter } from 'next/router';
 import { bindActionCreators } from 'redux';
 import 'isomorphic-fetch';
-import { Box, Button, Select, FormField } from 'grommet';
+import { Box, Button, FormField } from 'grommet';
 import { Sidebar, VerticalMenu } from 'grommet-controls';
 import RoutedButton from './RoutedButton';
 import { queryParams } from '../nextjs/urlParams';
+import ThemeSelect from '../themes/ThemeSelect';
+
 import connect from '../../redux/index';
 import { selectTheme } from '../../redux/themes/actions';
 
@@ -167,7 +169,7 @@ class SideMenu extends React.Component {
       this.changeTheme(nextProps.router.query.theme);
     }
   }
-  onThemeChange = ({ option: theme }) => {
+  onThemeChange = (theme) => {
     const { router } = this.props;
     const path = { pathname: queryParams(router), query: { theme } };
     this.changeTheme(theme);
@@ -183,15 +185,13 @@ class SideMenu extends React.Component {
   }
 
   render() {
-    const { router, themes: { themes, selected: theme } } = this.props;
+    const { router, theme } = this.props;
     const { grommet, grommetControls } = this.state;
     const themeSelector = (
       <Box pad='small'>
         <FormField label='theme:'>
-          <Select
-            a11yTitle='Change theme'
-            value={theme}
-            options={Object.keys(themes)}
+          <ThemeSelect
+            theme={theme}
             onChange={this.onThemeChange}
           />
         </FormField>
@@ -247,7 +247,7 @@ const mapDispatchToProps = dispatch =>
   bindActionCreators({ selectTheme }, dispatch);
 
 const mapStateToProps = state => ({
-  themes: state.themes,
+  theme: state.themes.selected,
 });
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(SideMenu));

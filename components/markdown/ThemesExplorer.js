@@ -2,9 +2,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import JSONPretty from 'react-json-pretty';
-import { Box, Grid, Heading, Text, Markdown } from 'grommet';
+import { Box, Grid, Heading, Text, Markdown, Button } from 'grommet';
+import { ResponsiveContext } from 'grommet/contexts';
 import { VerticalMenu, Tag, Card } from 'grommet-controls';
 import RoutedAnchor from '../app/RoutedAnchor';
+import ThemeSelect from '../themes/ThemeSelect';
+import ComponentsList from '../components/ComponentsList';
+import connect from '../../redux';
 
 const itemsTree = (items, path) => {
   if (typeof items === 'object' && !Array.isArray(items)) {
@@ -81,23 +85,62 @@ const ThemeComponent = ({
     </Card.CardContent>
   </Card>
 );
-const ThemesExplorer = ({ themes }) => {
-  if (themes === undefined) {
+const ThemesExplorer = ({ themeDocs, siteTheme }) => {
+  if (themeDocs === undefined) {
     return null;
   }
-  const [items] = React.useState(itemsTree(themes, ''));
+  const [items] = React.useState(itemsTree(themeDocs, ''));
   const [selection, setSelection] = React.useState({ selected: [], path: undefined });
   const { selected, path } = selection;
-  return (
-    <Box direction='row-responsive' gap='large'>
-      <Box basis='medium' overflow='auto' background='light-1'>
-        <VerticalMenu
-          items={items}
-          onSelect={item => setSelection({ selected: item.children, path: item.themePath })}
+  const [theme, setTheme] = React.useState(siteTheme);
+  const [viewDocs, setViewDocs] = React.useState(true);
+  let view;
+  if (viewDocs) {
+    view = Array.isArray(selected) && selected.length > 0 && (
+    <Grid columns='medium' gap='small'>
+      {selected.map(component => (
+        <ThemeComponent key={component.component} {...component} />
+              ))}
+    </Grid>
+    );
+  } else {
+    view = (
+      <Grid columns='medium' gap='small'>
+        <ComponentsList
+          components={selected.map(component => ({
+            name: component.component,
+            package: 'grommet',
+          }))}
         />
-      </Box>
+      </Grid>
+    );
+  }
+
+
+  return (
+    <Box direction='row-responsive' gap='large' pad={{ vertical: 'medium' }} >
+      <ResponsiveContext.Consumer>
+        {size => (
+          <Box basis={size !== 'small' && 'medium'} overflow='auto' background='light-1'>
+            <VerticalMenu
+              items={items}
+              onSelect={item => setSelection({ selected: item.children, path: item.themePath })}
+            />
+          </Box>
+        )}
+      </ResponsiveContext.Consumer>
       <Box pad='small' fill='horizontal'>
-        <Box pad={{ vertical: 'small' }} border='bottom'>
+        <Box pad={{ vertical: 'small' }} border='bottom' direction='row-responsive' justify='between'>
+          <Box direction='row' gap='small' >
+            <Button label='docs' onClick={() => setViewDocs(true)} active={viewDocs} />
+            <Button label='components' onClick={() => setViewDocs(false)} active={!viewDocs} />
+          </Box>
+          <ThemeSelect
+            theme={theme}
+            onChange={newTheme => setTheme(newTheme)}
+          />
+        </Box>
+        <Box pad={{ vertical: 'small' }} direction='row-responsive' justify='between' align='center'>
           <Heading level={2} margin='none'>
             {selected.length > 0 ? (
               `${path} `
@@ -105,20 +148,12 @@ const ThemesExplorer = ({ themes }) => {
               'no current selection...'
             )}
           </Heading>
-        </Box>
-        <Box pad={{ vertical: 'small' }}>
           <Text size='large'>
             {selected.length ? `${selected.length} affected components` : ''}
           </Text>
         </Box>
         <Box pad={{ vertical: 'small' }}>
-          {Array.isArray(selected) && selected.length > 0 && (
-            <Grid columns='medium' gap='small'>
-              {selected.map(component => (
-                <ThemeComponent key={component.component} {...component} />
-              ))}
-            </Grid>
-          )}
+          {view}
         </Box>
       </Box>
     </Box>
@@ -126,7 +161,14 @@ const ThemesExplorer = ({ themes }) => {
 };
 
 ThemesExplorer.propTypes = {
-  themes: PropTypes.object.isRequired,
+  themeDocs: PropTypes.object.isRequired,
 };
 
-export default ThemesExplorer;
+
+const mapStateToProps = state => ({
+  themes: state.themes.themes,
+  siteTheme: state.themes.selected,
+});
+
+
+export default connect(mapStateToProps)(ThemesExplorer);

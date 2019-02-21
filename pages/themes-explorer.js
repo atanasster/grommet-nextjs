@@ -6,8 +6,8 @@ export default withArticle(class ThemesExplorer extends React.Component {
   static async getInitialProps({ req }) {
     const baseUrl = req ? `${req.protocol}://${req.get('Host')}` : '';
     const r = await fetch(`${baseUrl}/api/themes`);
-    const themes = await r.json();
-    return { themes };
+    const themeDocs = await r.json();
+    return { themeDocs };
   }
 }, {
   title: 'theme explorer',

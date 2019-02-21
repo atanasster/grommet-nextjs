@@ -11,6 +11,17 @@ import themeRoutes from './api_themes';
 const router = express.Router();
 const cache = apicache.middleware;
 
+router.get('/examples/list', (req, res) => {
+  if (req.query.array) {
+    const list = JSON.parse(req.query.array);
+    const items = examples
+      .filter(e => list.find(l => l.package === e.package && l.name === e.name));
+    res.json(items);
+  } else {
+    res.json('this API expects an "array" parameter equal to a JSON encoded list of the components to retrieve');
+  }
+});
+
 router.get('/examples/:package?/:component?', (req, res) => {
   if (req.params.component || req.params.package) {
     const item = examples
