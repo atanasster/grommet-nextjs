@@ -9,12 +9,13 @@ import RoutedAnchor from '../app/RoutedAnchor';
 const itemsTree = (items, path) => {
   if (typeof items === 'object' && !Array.isArray(items)) {
     return Object.keys(items).sort().map((item) => {
-      const newPath = `${path}_${item}`;
+      const themePath = `${path}/${item}`;
       return {
-        id: newPath,
+        id: themePath,
         label: item,
-        items: itemsTree(items[item], newPath),
+        items: itemsTree(items[item], themePath),
         children: items[item],
+        themePath,
         widget: (Array.isArray(items[item]) ? <Tag round='small' border='all' pad={{ horizontal: 'small' }} label={items[item].length} /> : undefined),
       };
     });
@@ -58,9 +59,9 @@ const Describe = ({ label, children }) => {
 const ThemeComponent = ({
   component, defaultValue, description, type, ...rest
 }) => (
-  <Card pad='medium' {...rest} >
+  <Card {...rest} >
     <Card.CardTitle>
-      <Heading level={2} margin='none'>
+      <Heading level={3} margin='none'>
         <RoutedAnchor route='documentation' params={{ library: 'grommet', component }}>
           {component}
         </RoutedAnchor>
@@ -85,21 +86,40 @@ const ThemesExplorer = ({ themes }) => {
     return null;
   }
   const [items] = React.useState(itemsTree(themes, ''));
-  const [selected, setSelected] = React.useState([]);
+  const [selection, setSelection] = React.useState({ selected: [], path: undefined });
+  const { selected, path } = selection;
   return (
     <Box direction='row-responsive' gap='large'>
       <Box basis='medium' overflow='auto' background='light-1'>
         <VerticalMenu
           items={items}
-          onSelect={(item => setSelected(item.children))}
+          onSelect={item => setSelection({ selected: item.children, path: item.themePath })}
         />
       </Box>
-      <Box flex={true}>
-        <Grid columns='medium' gap='small'>
-          {Array.isArray(selected) && selected.map(component => (
-            <ThemeComponent key={component.component} {...component} />
-          ))}
-        </Grid>
+      <Box pad='small' fill='horizontal'>
+        <Box pad={{ vertical: 'small' }} border='bottom'>
+          <Heading level={2} margin='none'>
+            {selected.length > 0 ? (
+              `${path} `
+            ) : (
+              'no current selection...'
+            )}
+          </Heading>
+        </Box>
+        <Box pad={{ vertical: 'small' }}>
+          <Text size='large'>
+            {selected.length ? `${selected.length} affected components` : ''}
+          </Text>
+        </Box>
+        <Box pad={{ vertical: 'small' }}>
+          {Array.isArray(selected) && selected.length > 0 && (
+            <Grid columns='medium' gap='small'>
+              {selected.map(component => (
+                <ThemeComponent key={component.component} {...component} />
+              ))}
+            </Grid>
+          )}
+        </Box>
       </Box>
     </Box>
   );
