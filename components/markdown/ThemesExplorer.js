@@ -1,7 +1,8 @@
 /* eslint-disable no-underscore-dangle */
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Box, Grid, Paragraph, Heading, Text } from 'grommet';
+import JSONPretty from 'react-json-pretty';
+import { Box, Grid, Heading, Text, Markdown } from 'grommet';
 import { VerticalMenu, Tag, Card } from 'grommet-controls';
 import RoutedAnchor from '../app/RoutedAnchor';
 
@@ -21,12 +22,39 @@ const itemsTree = (items, path) => {
   return undefined;
 };
 
-const Describe = ({ label, children }) => (
-  <Box gap='xxsmall'>
-    <Text weight='bold'>{`${label}:`}</Text>
-    <Paragraph margin='none'>{children}</Paragraph>
-  </Box>
-);
+const Describe = ({ label, children }) => {
+  let text;
+  if (typeof children === 'string') {
+    try {
+      // eslint-disable-next-line no-eval
+      const obj = eval(`(${children.trim()})`);
+
+      if (typeof obj === 'object') {
+        text = <JSONPretty json={obj} />;
+      } else {
+        text = (
+          <Markdown>
+            {children}
+          </Markdown>
+        );
+      }
+    } catch (e) {
+      text = (
+        <Markdown>
+          {children}
+        </Markdown>
+      );
+    }
+  } else {
+    text = <JSONPretty json={children} />;
+  }
+  return (
+    <Box gap='xxsmall'>
+      <Text weight='bold'>{`${label}:`}</Text>
+      {text}
+    </Box>
+  );
+};
 const ThemeComponent = ({
   component, defaultValue, description, type, ...rest
 }) => (
