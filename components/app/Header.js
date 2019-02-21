@@ -36,9 +36,7 @@ class Header extends React.Component {
     }
     return (
       <AppBar
-        position='sticky'
         elevation='none'
-        zIndex={11}
       >
         {size !== 'small' && (
           <Heading margin='none'>

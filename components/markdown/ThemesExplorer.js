@@ -7,13 +7,14 @@ import { ResponsiveContext } from 'grommet/contexts';
 import { VerticalMenu, Tag, Card } from 'grommet-controls';
 import RoutedAnchor from '../app/RoutedAnchor';
 import ThemeSelect from '../themes/ThemeSelect';
+import BaseProperty from '../themes/BaseProperty';
 import ComponentsList from '../components/ComponentsList';
 import connect from '../../redux';
 
 const itemsTree = (items, path) => {
   if (typeof items === 'object' && !Array.isArray(items)) {
     return Object.keys(items).sort().map((item) => {
-      const themePath = `${path}/${item}`;
+      const themePath = `${path}${path ? '/' : ''}${item}`;
       return {
         id: themePath,
         label: item,
@@ -143,13 +144,16 @@ const ThemesExplorer = ({ themes, themeDocs, siteTheme }) => {
           />
         </Box>
         <Box pad={{ vertical: 'small' }} direction='row-responsive' justify='between' align='center'>
-          <Heading level={2} margin='none'>
-            {selected.length > 0 ? (
-              `${path} `
-            ) : (
-              'no current selection...'
-            )}
-          </Heading>
+          <Box direction='row' align='center' gap='small'>
+            <Heading level={2} margin='none'>
+              {selected.length > 0 ? (
+                `${path} `
+              ) : (
+                'no current selection...'
+              )}
+            </Heading>
+            {path && <BaseProperty path={path} />}
+          </Box>
           <Text size='large'>
             {selected.length ? `${selected.length} affected components` : ''}
           </Text>
