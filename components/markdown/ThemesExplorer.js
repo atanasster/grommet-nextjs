@@ -2,7 +2,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import JSONPretty from 'react-json-pretty';
-import { Box, Grid, Heading, Text, Markdown, Button } from 'grommet';
+import { Grommet, Box, Grid, Heading, Text, Markdown, Button } from 'grommet';
 import { ResponsiveContext } from 'grommet/contexts';
 import { VerticalMenu, Tag, Card } from 'grommet-controls';
 import RoutedAnchor from '../app/RoutedAnchor';
@@ -85,7 +85,7 @@ const ThemeComponent = ({
     </Card.CardContent>
   </Card>
 );
-const ThemesExplorer = ({ themeDocs, siteTheme }) => {
+const ThemesExplorer = ({ themes, themeDocs, siteTheme }) => {
   if (themeDocs === undefined) {
     return null;
   }
@@ -105,14 +105,16 @@ const ThemesExplorer = ({ themeDocs, siteTheme }) => {
     );
   } else {
     view = (
-      <Grid columns='medium' gap='small'>
-        <ComponentsList
-          components={selected.map(component => ({
-            name: component.component,
-            package: 'grommet',
-          }))}
-        />
-      </Grid>
+      <Grommet theme={themes[theme]} style={{ background: 'transparent' }}>
+        <Grid columns='medium' gap='small'>
+          <ComponentsList
+            components={selected.map(component => ({
+              name: component.component,
+              package: 'grommet',
+            }))}
+          />
+        </Grid>
+      </Grommet>
     );
   }
 
