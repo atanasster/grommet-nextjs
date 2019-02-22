@@ -32,7 +32,8 @@ const LargeParagraph = styled(Paragraph)`
 
 const Code = styled(Box)`
   font-family: monospace;
-  display: initial;
+  display: table-cell;
+  padding: 0 4px;
 `;
 
 
@@ -44,7 +45,7 @@ export default withTheme(({ children, theme, ...rest }) => (
       p: { component: LargeParagraph },
       img: { component: GithubImage },
       a: { component: RoutedAnchor },
-      code: { component: Code, props: { background: theme.dark ? 'dark-1' : 'light-2' } },
+      code: { component: Code, props: { flex: false, background: theme.dark ? 'dark-1' : 'light-2' } },
       example: { component: Example },
       grid: { component: Grid },
       card: { component: VerticalCard },
