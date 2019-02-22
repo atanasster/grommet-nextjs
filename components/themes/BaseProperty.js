@@ -5,9 +5,9 @@ import { Box, DropButton, Heading } from 'grommet';
 import { base } from 'grommet/themes';
 
 const getProp = (obj, path) => {
-  const parts = path.split('/');
+  const parts = path.split('-');
   if (parts.length >= 1 && obj[parts[0]] !== undefined) {
-    return getProp(obj[parts[0]], parts.slice(1).join('/'));
+    return getProp(obj[parts[0]], parts.slice(1).join('-'));
   }
   return obj;
 };

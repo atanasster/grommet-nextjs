@@ -14,7 +14,7 @@ import connect from '../../redux';
 const itemsTree = (items, path) => {
   if (typeof items === 'object' && !Array.isArray(items)) {
     return Object.keys(items).sort().map((item) => {
-      const themePath = `${path}${path ? '/' : ''}${item}`;
+      const themePath = `${path}${path ? '-' : ''}${item}`;
       return {
         id: themePath,
         label: item,
@@ -126,6 +126,7 @@ const ThemesExplorer = ({ themes, themeDocs, siteTheme }) => {
         {size => (
           <Box basis={size !== 'small' && 'medium'} overflow='auto' background='light-1'>
             <VerticalMenu
+              activeItem={{ id: path }}
               items={items}
               onSelect={item => setSelection({ selected: item.children, path: item.themePath })}
             />
@@ -147,7 +148,7 @@ const ThemesExplorer = ({ themes, themeDocs, siteTheme }) => {
           <Box direction='row' align='center' gap='small'>
             <Heading level={2} margin='none'>
               {selected.length > 0 ? (
-                `${path} `
+                `${path.replace('-', '/')} `
               ) : (
                 'no current selection...'
               )}
