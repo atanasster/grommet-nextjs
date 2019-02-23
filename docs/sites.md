@@ -1,4 +1,4 @@
-A list of sites developed with grommet v2. You can submit your own site, just lick on the github link above and submit a pull request.
+A list of sites developed with grommet v2. You can submit your own site, just click on the github link above and submit a pull request.
 
 
 <grid columns='medium' gap='small'>
