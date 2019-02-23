@@ -35,14 +35,12 @@ export const _starter = `const Demo = () => (
           {
             fromTarget: '1',
             toTarget: '2',
-            color: 'accent-1',
             thickness: 'xsmall',
             round: true,
           },
           {
             fromTarget: '1',
             toTarget: '4',
-            color: 'accent-1',
             thickness: 'xsmall',
             round: true,
           },
