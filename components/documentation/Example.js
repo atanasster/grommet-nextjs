@@ -37,7 +37,11 @@ const StyledProvider = styled(LiveProvider)`
 const StyledPreview = styled(LivePreview)`
   width: 100%;
   height: 100%;
-  align-items: center;  
+  align-items: center;
+  display: flex;
+  flex: 0 0 auto;
+  flex-direction: column;
+}
 `;
 
 const StyledEditor = styled(LiveEditor)`
