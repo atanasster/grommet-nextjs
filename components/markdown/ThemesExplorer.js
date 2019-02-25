@@ -1,15 +1,20 @@
 /* eslint-disable no-underscore-dangle */
 import React from 'react';
 import PropTypes from 'prop-types';
+import { withRouter } from 'next/router';
 import JSONPretty from 'react-json-pretty';
 import { Grommet, Box, Grid, Heading, Text, Markdown, Button } from 'grommet';
+import { deepMerge } from 'grommet/utils';
+import { base } from 'grommet/themes';
 import { ResponsiveContext } from 'grommet/contexts';
 import { VerticalMenu, Tag, Card } from 'grommet-controls';
 import RoutedAnchor from '../app/RoutedAnchor';
-import ThemeSelect from '../themes/ThemeSelect';
-import BaseProperty from '../themes/BaseProperty';
+import ThemePath from '../themes/ThemePath';
+import ThemeEditor from '../themes/editors/ThemeEditor';
 import ComponentsList from '../components/ComponentsList';
-import connect from '../../redux';
+import { assignProp, getProp, getArrayProp } from '../themes/utils';
+import ThemeSource from '../themes/ThemeSource';
+import pushRoute from '../app/PushRoute';
 
 const itemsTree = (items, path) => {
   if (typeof items === 'object' && !Array.isArray(items)) {
@@ -86,14 +91,31 @@ const ThemeComponent = ({
     </Card.CardContent>
   </Card>
 );
-const ThemesExplorer = ({ themes, themeDocs, siteTheme }) => {
+const ThemesExplorer = ({ themeDocs, router: { query: { path } } }) => {
   if (themeDocs === undefined) {
     return null;
   }
   const [items] = React.useState(itemsTree(themeDocs, ''));
-  const [selection, setSelection] = React.useState({ selected: [], path: undefined });
-  const { selected, path } = selection;
-  const [theme, setTheme] = React.useState(siteTheme);
+  let selected = [];
+  const pathItem = path && getArrayProp(items, path);
+  if (pathItem) {
+    selected = pathItem.children;
+  }
+  const [theme, setTheme] = React.useState({});
+  const onThemeChange = (newValue) => {
+    const oldValue = getProp(deepMerge(base, theme), path);
+    if (JSON.stringify(oldValue) !== JSON.stringify(newValue)) {
+      const newTheme = assignProp(theme, path, newValue);
+      setTheme(newTheme);
+    }
+  };
+
+  const [viewTheme, setViewTheme] = React.useState(false);
+  let themeModal;
+  if (viewTheme) {
+    themeModal = <ThemeSource theme={theme} onClose={() => setViewTheme(false)} />;
+  }
+
   const [viewDocs, setViewDocs] = React.useState(true);
   let view;
   if (viewDocs) {
@@ -106,7 +128,7 @@ const ThemesExplorer = ({ themes, themeDocs, siteTheme }) => {
     );
   } else {
     view = (
-      <Grommet theme={themes[theme]} style={{ background: 'transparent' }}>
+      <Grommet theme={theme} style={{ background: 'transparent' }}>
         <Grid columns='medium' gap='small'>
           <ComponentsList
             components={selected.map(component => ({
@@ -128,7 +150,12 @@ const ThemesExplorer = ({ themes, themeDocs, siteTheme }) => {
             <VerticalMenu
               activeItem={{ id: path }}
               items={items}
-              onSelect={item => setSelection({ selected: item.children, path: item.themePath })}
+              onSelect={(item) => {
+                pushRoute({
+                    route: 'theme_explorer',
+                    params: { path: item.themePath },
+                  });
+              }}
             />
           </Box>
         )}
@@ -137,28 +164,24 @@ const ThemesExplorer = ({ themes, themeDocs, siteTheme }) => {
         <Box pad={{ vertical: 'small' }} border='bottom' direction='row-responsive' justify='between'>
           <Box direction='row' gap='small' >
             <Button label='docs' onClick={() => setViewDocs(true)} active={viewDocs} />
-            <Button label='components' onClick={() => setViewDocs(false)} active={!viewDocs} />
+            <Button label='live' onClick={() => setViewDocs(false)} active={!viewDocs} />
           </Box>
-          <ThemeSelect
-            theme={theme}
-            onChange={newTheme => setTheme(newTheme)}
-          />
+          <Box direction='row'>
+            <Button label='theme' onClick={() => setViewTheme(true)} />
+            {themeModal}
+          </Box>
         </Box>
-        <Box pad={{ vertical: 'small' }} direction='row-responsive' justify='between' align='center'>
-          <Box direction='row' align='center' gap='small'>
-            <Heading level={2} margin='none'>
-              {selected.length > 0 ? (
-                `${path.replace('-', '/')} `
-              ) : (
-                'no current selection...'
-              )}
-            </Heading>
-            {path && <BaseProperty path={path} />}
-          </Box>
+        <Box pad={{ vertical: 'small' }} border='bottom' direction='row-responsive' justify='between' align='center'>
+          <ThemePath path={path} />
           <Text size='large'>
             {selected.length ? `${selected.length} affected components` : ''}
           </Text>
         </Box>
+        {path && (
+          <Box pad={{ vertical: 'small' }} border='bottom' direction='row-responsive' justify='between' align='center'>
+            <ThemeEditor path={path} onChange={onThemeChange} theme={theme} />
+          </Box>
+        )}
         <Box pad={{ vertical: 'small' }}>
           {view}
         </Box>
@@ -172,10 +195,4 @@ ThemesExplorer.propTypes = {
 };
 
 
-const mapStateToProps = state => ({
-  themes: state.themes.themes,
-  siteTheme: state.themes.selected,
-});
-
-
-export default connect(mapStateToProps)(ThemesExplorer);
+export default withRouter(ThemesExplorer);
