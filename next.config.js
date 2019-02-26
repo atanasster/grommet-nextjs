@@ -2,7 +2,6 @@
 const { IgnorePlugin } = require('webpack');
 const Dotenv = require('dotenv-webpack');
 const path = require('path');
-const withTM = require('next-plugin-transpile-modules');
 
 const dedupeDependencies = (dependencies, alias) => (
   dependencies.reduce((res, dependecy) => ({ ...res, [dependecy]: path.resolve(`./node_modules/${dependecy}`) }), alias)
@@ -40,4 +39,4 @@ const initExport = {
   },
 };
 
-module.exports = withTM(initExport);
+module.exports = initExport;
