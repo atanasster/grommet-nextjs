@@ -91,7 +91,7 @@ const ThemeComponent = ({
     </Card.CardContent>
   </Card>
 );
-const ThemesExplorer = ({ themeDocs, router: { query: { path } } }) => {
+const ThemesExplorer = ({ themeDocs, router: { query: { path } }, fonts }) => {
   if (themeDocs === undefined) {
     return null;
   }
@@ -179,7 +179,7 @@ const ThemesExplorer = ({ themeDocs, router: { query: { path } } }) => {
         </Box>
         {path && (
           <Box pad={{ vertical: 'small' }} border='bottom' direction='row-responsive' justify='between' align='center'>
-            <ThemeEditor path={path} onChange={onThemeChange} theme={theme} />
+            <ThemeEditor path={path} onChange={onThemeChange} theme={theme} fonts={fonts} />
           </Box>
         )}
         <Box pad={{ vertical: 'small' }}>

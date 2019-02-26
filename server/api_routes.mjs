@@ -43,6 +43,22 @@ router.get('/components/search/:search?/:limit?', (req, res) => {
   res.json(items);
 });
 
+let fonts = null;
+router.get('/fonts', (req, res) => {
+  if (fonts) {
+    res.json(fonts);
+  } else {
+    fetch('https://www.googleapis.com/webfonts/v1/webfonts?key=AIzaSyCLZDrp4KclCHz0Y39_BP0t7MRKo_5_ZBo&sort=popularity')
+      .then(r => r.json())
+      .then(json => (json.items ? json.items.filter(item => item.subsets.indexOf('latin') !== -1) : []))
+      .then(items => items.map(item => ({ family: item.family, category: item.category })))
+      .then((result) => {
+        fonts = result;
+        res.json(fonts);
+      })
+      .catch(e => res.json(e));
+  }
+});
 
 router.get('/package/:package/:field?', cache('5 minutes'), (req, res) => {
   fetch(`https://registry.npmjs.org/${encodeURIComponent(req.params.package)}`)

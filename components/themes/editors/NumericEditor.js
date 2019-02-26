@@ -26,6 +26,7 @@ NumericEditor.propTypes = {
   max: PropTypes.number,
   step: PropTypes.number,
   decimals: PropTypes.number,
+  onChange: PropTypes.func.isRequired,
 };
 
 NumericEditor.defaultProps = {

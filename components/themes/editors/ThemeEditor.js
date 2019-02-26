@@ -9,9 +9,12 @@ import BreakpointEditor from './BreakpointEditor';
 import CodeEditor from './CodeEditor';
 import NumericEditor from './NumericEditor';
 import PixelEditor from './PixelEditor';
+import FontEditor from './FontEditor';
 import { getProp } from '../utils';
 
-const ThemeEditor = ({ theme, onChange, path }) => {
+const ThemeEditor = ({
+  theme, onChange, path, ...rest
+}) => {
   const mergedTheme = deepMerge(base, theme);
   const object = getProp(mergedTheme, path);
   const parts = path.split('-');
@@ -21,6 +24,7 @@ const ThemeEditor = ({ theme, onChange, path }) => {
     path,
     theme: mergedTheme,
     object,
+    ...rest,
   };
   let editor;
   if (parts.find(name => (name.startsWith('color') || name.startsWith('background')))) {
@@ -37,6 +41,8 @@ const ThemeEditor = ({ theme, onChange, path }) => {
     editor = <NumericEditor {...props} max={1} min={0} step={0.05} decimals={2} />;
   } else if (['radius', 'width', 'height', 'maxWidth', 'minWidth', 'horizontal', 'vertical', 'spacing', 'base'].indexOf(lastPath) !== -1) {
     editor = <PixelEditor {...props} />;
+  } else if (lastPath === 'font') {
+    editor = <FontEditor {...props} />;
   } else {
     let code;
     try {

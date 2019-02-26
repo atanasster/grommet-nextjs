@@ -54,7 +54,7 @@ export default withTheme(({ children, theme, ...rest }) => (
       flexbox: { component: FlexBox },
       themesstatus: { component: ThemesStatus },
       box: { component: BoxRow },
-      themesexplorer: { component: ThemesExplorer, props: { themeDocs: rest.themeDocs } },
+      themesexplorer: { component: ThemesExplorer, props: rest },
     }}
   >
     {children}
