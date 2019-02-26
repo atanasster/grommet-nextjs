@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { Box, Grid, InfiniteScroll, Text } from 'grommet';
-import { ResponsiveContext, ThemeContext } from 'grommet/contexts';
+import { Box, Grid, InfiniteScroll, Text, ResponsiveContext } from 'grommet';
+import { ThemeContext } from 'styled-components';
 import { DropInput } from 'grommet-controls';
 import { Search } from 'grommet-icons';
 import * as Icons from '@material-ui/icons/index';

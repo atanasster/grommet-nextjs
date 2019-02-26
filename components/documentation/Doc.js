@@ -1,9 +1,9 @@
 /* eslint-disable dot-notation */
 import PropTypes from 'prop-types';
 import 'isomorphic-fetch';
+import { ThemeContext } from 'styled-components';
 import JSONPretty from 'react-json-pretty';
 import { Box, Button, Heading, Paragraph, Markdown } from 'grommet';
-import { ThemeContext } from 'grommet/contexts';
 import Page from '../app/Page';
 import DocProperty from './DocProperty';
 import Example from './Example';

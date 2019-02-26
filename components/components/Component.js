@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Box, Heading } from 'grommet';
-import { ResponsiveContext } from 'grommet/contexts';
+import { Box, Heading, ResponsiveContext } from 'grommet';
 import { Card } from 'grommet-controls';
 import { Code, Document } from 'grommet-icons';
 import RoutedButton from '../app/RoutedButton';

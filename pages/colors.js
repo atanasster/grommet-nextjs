@@ -1,6 +1,6 @@
 import React from 'react';
 import { Box, Grid, Text } from 'grommet';
-import { ThemeContext } from 'grommet/contexts';
+import { ThemeContext } from 'styled-components';
 import { Card } from 'grommet-controls';
 import Page from '../components/app/Page';
 

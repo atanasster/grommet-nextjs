@@ -1,8 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Head from 'next/head';
-import { Grommet, Box } from 'grommet';
-import { ResponsiveContext } from 'grommet/contexts';
+import { Grommet, Box, ResponsiveContext } from 'grommet';
 import Header from './Header';
 import Footer from './Footer';
 import SideMenu from './SideMenu';
