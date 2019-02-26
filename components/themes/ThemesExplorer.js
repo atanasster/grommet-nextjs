@@ -9,11 +9,11 @@ import { base } from 'grommet/themes';
 import { ResponsiveContext } from 'grommet/contexts';
 import { VerticalMenu, Tag, Card } from 'grommet-controls';
 import RoutedAnchor from '../app/RoutedAnchor';
-import ThemePath from '../themes/ThemePath';
-import ThemeEditor from '../themes/editors/ThemeEditor';
+import ThemePath from './ThemePath';
+import ThemeEditor from './editors/ThemeEditor';
 import ComponentsList from '../components/ComponentsList';
-import { assignProp, getProp, getArrayProp } from '../themes/utils';
-import ThemeSource from '../themes/ThemeSource';
+import { assignProp, getProp, getArrayProp } from './utils';
+import ThemeSource from './ThemeSource';
 import pushRoute from '../app/PushRoute';
 
 const itemsTree = (items, path) => {

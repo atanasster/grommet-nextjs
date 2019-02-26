@@ -5,7 +5,7 @@ import RoutedAnchor from '../app/RoutedAnchor';
 import Example from '../documentation/Example';
 import VerticalCard from './VerticalCard';
 import TemplatesGroup from './TemplatesGroup';
-import ThemesExplorer from './ThemesExplorer';
+import ThemesExplorer from '../themes/ThemesExplorer';
 import TemplateCard from './TemplateCard';
 import FlexBox from './FlexBox';
 import ThemesStatus from './ThemesStatus';

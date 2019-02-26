@@ -38,7 +38,6 @@ const initExport = {
 
     return config;
   },
-  transpileModules: ['grommet-controls', 'grommet', 'grommet-icons'],
 };
 
 module.exports = withTM(initExport);
