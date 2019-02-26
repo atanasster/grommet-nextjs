@@ -2,7 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import 'isomorphic-fetch';
 import { Box, Text, TextInput } from 'grommet';
-import { AnnounceContext } from 'grommet/contexts';
 
 class SearchComponent extends React.Component {
   state = {
@@ -50,18 +49,13 @@ class SearchComponent extends React.Component {
   render() {
     const { value } = this.props;
     return (
-      <AnnounceContext.Consumer>
-        {announce => (
-          <TextInput
-            announce={announce}
-            defaultValue={value}
-            placeholder='search'
-            suggestions={this.createSuggestions()}
-            onChange={this.onSearch}
-            onSelect={this.onSelect}
-          />
-        )}
-      </AnnounceContext.Consumer>
+      <TextInput
+        defaultValue={value}
+        placeholder='search'
+        suggestions={this.createSuggestions()}
+        onChange={this.onSearch}
+        onSelect={this.onSelect}
+      />
     );
   }
 }
