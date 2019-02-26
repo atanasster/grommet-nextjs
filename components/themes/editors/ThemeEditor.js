@@ -5,6 +5,7 @@ import { base } from 'grommet/themes';
 import { deepMerge } from 'grommet/utils';
 import ColorEditor from './ColorEditor';
 import TextDecorationEditor from './TextDecorationEditor';
+import FontWeightEditor from './FontWeightEditor';
 import BreakpointEditor from './BreakpointEditor';
 import CodeEditor from './CodeEditor';
 import NumericEditor from './NumericEditor';
@@ -34,7 +35,7 @@ const ThemeEditor = ({
   } else if (lastPath === 'responsiveBreakpoint') {
     editor = <BreakpointEditor {...props} />;
   } else if (['fontWeight', 'weight'].indexOf(lastPath) !== -1) {
-    editor = <NumericEditor {...props} max={1000} min={100} step={100} />;
+    editor = <FontWeightEditor {...props} />;
   } else if (['zIndex', 'step'].indexOf(lastPath) !== -1) {
     editor = <NumericEditor {...props} max={1000} min={0} step={1} />;
   } else if (parts.indexOf('opacity') !== -1) {

@@ -116,7 +116,7 @@ const ThemesExplorer = ({ themeDocs, router: { query: { path } }, fonts }) => {
     themeModal = <ThemeSource theme={theme} onClose={() => setViewTheme(false)} />;
   }
 
-  const [viewDocs, setViewDocs] = React.useState(true);
+  const [viewDocs, setViewDocs] = React.useState(false);
   let view;
   if (viewDocs) {
     view = Array.isArray(selected) && selected.length > 0 && (
@@ -163,8 +163,8 @@ const ThemesExplorer = ({ themeDocs, router: { query: { path } }, fonts }) => {
       <Box pad='small' fill='horizontal'>
         <Box pad={{ vertical: 'small' }} border='bottom' direction='row-responsive' justify='between'>
           <Box direction='row' gap='small' >
-            <Button label='docs' onClick={() => setViewDocs(true)} active={viewDocs} />
             <Button label='live' onClick={() => setViewDocs(false)} active={!viewDocs} />
+            <Button label='docs' onClick={() => setViewDocs(true)} active={viewDocs} />
           </Box>
           <Box direction='row'>
             <Button label='theme' onClick={() => setViewTheme(true)} />

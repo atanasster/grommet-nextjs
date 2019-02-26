@@ -4,6 +4,9 @@ import { withTheme } from 'styled-components';
 import { Box, Select, Grommet, Text } from 'grommet';
 import { deepMerge } from 'grommet/utils';
 
+
+const fontString = font => `'${font.family}', ${font.category}`;
+
 class FontEditor extends React.Component {
  state = { search: '' };
 
@@ -18,7 +21,7 @@ class FontEditor extends React.Component {
        value={(object && object.family) || ''}
        options={fonts.filter(font => (font.family.toLowerCase().match(search)))}
        onClose={() => this.setState({ search: '' })}
-       onChange={({ option: font }) => onChange({ family: `'${font.family}', ${font.category}` })}
+       onChange={({ option: font }) => onChange({ family: fontString(font) })}
        onSearch={(text) => {
           this.setState({
             search: text.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, '\\$&').toLowerCase(),
@@ -26,7 +29,7 @@ class FontEditor extends React.Component {
         }}
      >
        {font => (
-         <Grommet key={`font_${font.family}`} theme={deepMerge(theme, { global: { font: { family: `'${font.family}', ${font.category}` } } })} >
+         <Grommet key={`font_${font.family}`} theme={deepMerge(theme, { global: { font: { family: fontString(font) } } })} >
            <Box
              direction='row-responsive'
              justify='between'

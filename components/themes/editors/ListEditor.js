@@ -4,7 +4,7 @@ import { Select } from 'grommet';
 
 const ListEditor = ({ object, onChange, items }) => (
   <Select
-    value={object}
+    value={typeof object === 'number' ? object.toString() : object}
     options={items}
     onChange={({ option }) => onChange(option)}
   />
@@ -12,7 +12,7 @@ const ListEditor = ({ object, onChange, items }) => (
 );
 
 ListEditor.propTypes = {
-  object: PropTypes.string,
+  object: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   items: PropTypes.array.isRequired,
 };
 
