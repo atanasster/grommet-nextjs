@@ -1,6 +1,6 @@
 # about this site
 
-This a an unofficial site dedicated to the grommet react library, as well as the home of the grommet-controls collection of components.
+This is an unofficial site dedicated to the grommet react library, as well as the home of the grommet-controls collection of components.
  The site is built with next.js and the full source code can be found here [github](https://github.com/atanasster/grommet-nextjs).
  Head on there as we would really appreciate to hear your feedback and get some github stars.
 
