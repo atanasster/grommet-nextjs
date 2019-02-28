@@ -2,7 +2,7 @@ import withArticle from '../components/app/withArticle';
 
 export default withArticle(() => {},
   {
-    title: 'colors',
+    title: 'theme preview',
     location: 'file',
-    path: 'colors.md',
+    path: 'theme-preview.md',
   });

@@ -6,6 +6,8 @@ import Example from '../documentation/Example';
 import VerticalCard from './VerticalCard';
 import TemplatesGroup from './TemplatesGroup';
 import ThemesExplorer from '../themes/ThemesExplorer';
+import ThemePreview from '../themes/ThemePreview';
+import ColorRoll from '../themes/ColorRoll';
 import TemplateCard from './TemplateCard';
 import FlexBox from './FlexBox';
 import ThemesStatus from './ThemesStatus';
@@ -55,6 +57,8 @@ export default withTheme(({ children, theme, ...rest }) => (
       themesstatus: { component: ThemesStatus },
       box: { component: BoxRow },
       themesexplorer: { component: ThemesExplorer, props: rest },
+      colorbox: { component: ColorRoll },
+      previewtheme: { component: ThemePreview },
     }}
   >
     {children}

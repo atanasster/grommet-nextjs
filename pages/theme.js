@@ -14,7 +14,7 @@ import Page from '../components/app/Page';
 import createTheme, { MOODS, SCHEMES, SHARPNESSES, themeFromFont } from '../components/themes/theme';
 import { updateTheme } from '../redux/themes/actions';
 import connect from '../redux';
-import Preview from '../components/themes/Preview';
+import ThemePreview from '../components/themes/ThemePreview';
 import { queryParams } from '../components/nextjs/urlParams';
 
 const defaultFont = 'Roboto';
@@ -255,96 +255,90 @@ class Theme extends React.Component {
          </Heading>
        </Box>
 
-       <Box direction='row-responsive'>
+       <Box>
          <Box margin={{ bottom: 'large' }}>
-           <Box pad='medium'>
-             <FormField label='Name'>
-               <TextInput
-                 plain={true}
-                 value={name}
-                 onChange={event => this.setState({ name: event.target.value })}
-               />
-             </FormField>
-             <FormField
-               label='Brand Color'
-               help='hex RGB'
-               error={errors.color}
-             >
-               <ColorInput
-                 plain={true}
-                 colors={materialColors}
-                 value={color}
-                 onChange={this.onChangeColor}
-               />
-             </FormField>
-             <FormField
-               label='Background Color'
-               help='hex RGB'
-               error={errors.background}
-             >
-               <ColorInput
-                 plain={true}
-                 colors={materialColors}
-                 value={background}
-                 onChange={this.onChangeBackground}
-               />
-             </FormField>
-             <FormField
-               label='Font Name'
-               help={<Anchor href='https://fonts.google.com/' label='google fonts' />}
-             >
-               <DropButton
-                 plain={true}
-                 label={font.family}
-                 open={open}
-                 dropAlign={{ top: 'bottom', right: 'right' }}
-                 dropContent={
-                   <Box>
-                     <TextInput placeholder='Search' onChange={this.onFontSearch} />
-                     <ThemeFonts fonts={fonts} search={fontSearch} onSelect={this.onSelectFont} />
-                   </Box>
-                }
-               />
-             </FormField>
-             <FormField label='Border sharpness'>
-               <Select
-                 plain={true}
-                 value={sharpness}
-                 options={SHARPNESSES}
-                 onChange={this.onChangeSharpness}
-               />
-             </FormField>
-             <FormField label='Color scheme'>
-               <Select
-                 plain={true}
-                 value={scheme}
-                 options={SCHEMES}
-                 onChange={this.onChangeScheme}
-               />
-             </FormField>
-             <FormField label='Color variation'>
-               <Select
-                 plain={true}
-                 value={mood}
-                 options={MOODS}
-                 onChange={this.onChangeMood}
-               />
-             </FormField>
+           <Box gap='small'>
+             <Box gap='small' direction='row-responsive'>
+               <FormField
+                 label='Brand Color'
+                 help='hex RGB'
+                 error={errors.color}
+               >
+                 <ColorInput
+                   plain={true}
+                   colors={materialColors}
+                   value={color}
+                   onChange={this.onChangeColor}
+                 />
+               </FormField>
+               <FormField
+                 label='Background Color'
+                 help='hex RGB'
+                 error={errors.background}
+               >
+                 <ColorInput
+                   plain={true}
+                   colors={materialColors}
+                   value={background}
+                   onChange={this.onChangeBackground}
+                 />
+               </FormField>
+               <FormField
+                 label='Font Name'
+                 help={<Anchor href='https://fonts.google.com/' label='google fonts' />}
+               >
+                 <DropButton
+                   plain={true}
+                   label={font.family}
+                   open={open}
+                   dropAlign={{ top: 'bottom', right: 'right' }}
+                   dropContent={
+                     <Box>
+                       <TextInput placeholder='Search' onChange={this.onFontSearch} />
+                       <ThemeFonts fonts={fonts} search={fontSearch} onSelect={this.onSelectFont} />
+                     </Box>
+                  }
+                 />
+               </FormField>
+             </Box>
+             <Box gap='small' direction='row-responsive'>
+               <FormField label='Border sharpness'>
+                 <Select
+                   plain={true}
+                   value={sharpness}
+                   options={SHARPNESSES}
+                   onChange={this.onChangeSharpness}
+                 />
+               </FormField>
+               <FormField label='Color scheme'>
+                 <Select
+                   plain={true}
+                   value={scheme}
+                   options={SCHEMES}
+                   onChange={this.onChangeScheme}
+                 />
+               </FormField>
+               <FormField label='Color variation'>
+                 <Select
+                   plain={true}
+                   value={mood}
+                   options={MOODS}
+                   onChange={this.onChangeMood}
+                 />
+               </FormField>
+             </Box>
            </Box>
-           <Box pad={{ horizontal: 'medium' }} >
+           <Box align='start' gap='small' direction='row-responsive'>
              <Button label='Apply' primary={true} onClick={this.onApply} />
              <Button label='View theme' onClick={() => this.setState({ viewTheme: true })} />
            </Box>
          </Box>
 
          <Box
-           pad={{ horizontal: 'medium' }}
            flex='grow'
-           margin={{ bottom: 'large' }}
-           align='center'
          >
            <Grommet key={key} theme={theme}>
-             <Preview />
+             <ThemePreview />
            </Grommet>
          </Box>
          {layer}

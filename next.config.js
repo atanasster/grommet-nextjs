@@ -2,11 +2,11 @@
 const { IgnorePlugin } = require('webpack');
 const Dotenv = require('dotenv-webpack');
 const path = require('path');
+const withTM = require('next-transpile-modules');
 
 const dedupeDependencies = (dependencies, alias) => (
   dependencies.reduce((res, dependecy) => ({ ...res, [dependecy]: path.resolve(`./node_modules/${dependecy}`) }), alias)
 );
-
 const initExport = {
   // eslint-disable-next-line no-unused-vars
   webpack: (config, env) => {
@@ -34,9 +34,11 @@ const initExport = {
         ['styled-components', 'grommet-icons', 'react', 'react-dom', 'polished'], config.resolve.alias
       );
     }
-
     return config;
   },
 };
 
-module.exports = initExport;
+if (process.env.NODE_ENV === 'alias' || process.env.NODE_ENV === 'grommet') {
+  initExport.transpileModules = ['grommet-controls', 'grommet', 'grommet-icons'];
+}
+module.exports = withTM(initExport);
