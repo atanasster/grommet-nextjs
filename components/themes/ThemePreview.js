@@ -27,7 +27,7 @@ export default class ThemePreview extends React.Component {
         </Box>
         <Box direction='row-responsive' align='center' justify='between'>
           {['xxlarge', 'xlarge', 'large', 'medium', 'small', 'xsmall']
-            .map(item => <Text size={item}>{`Text ${item}`}</Text>)
+            .map(item => <Text key={`text_${item}`} size={item}>{`Text ${item}`}</Text>)
           }
         </Box>
         <Box direction='row-responsive' justify='between' align='center'>
@@ -169,7 +169,7 @@ export default class ThemePreview extends React.Component {
               >
                 {[11, 12, 13, 14, 15].map(value => (
                   <Box
-                    key={value}
+                    key={`range_selector_${value}`}
                     width='xxsmall'
                     height='xxsmall'
                     align='center'
