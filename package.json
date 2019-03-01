@@ -22,6 +22,9 @@
     "start-server": "NODE_ENV=production PORT=8444 node --experimental-modules server/server.mjs"
   },
   "dependencies": {
+    "@devexpress/dx-react-core": "^1.10.3",
+    "@devexpress/dx-react-grid": "^1.10.3",
+    "@devexpress/dx-react-grid-material-ui": "^1.10.3",
     "@material-ui/core": "^3.9.1",
     "@material-ui/icons": "^3.0.2",
     "apicache": "^1.2.3",
