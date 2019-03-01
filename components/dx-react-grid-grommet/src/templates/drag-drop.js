@@ -13,8 +13,8 @@ const StyledContainer = styled.div`
 `;
 
 const StyledColumn = styled(Box)`
-    float: 'right',
-    cursor: 'move',
+  float: right;
+  cursor: move;
 `;
 
 
