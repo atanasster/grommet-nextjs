@@ -1,20 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import styled from 'styled-components';
-
-const StyledTitle = styled.span`
-  overflow: hidden;
-  textOverflow: ellipsis;
-`;
+import { Text } from 'grommet';
 
 const TitelBase = ({
   children, ...restProps
 }) => (
-  <StyledTitle
+  <Text truncate={true}
     {...restProps}
   >
     {children}
-  </StyledTitle>
+  </Text>
 );
 
 TitelBase.propTypes = {
