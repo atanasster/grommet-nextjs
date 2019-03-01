@@ -3,6 +3,8 @@ import { Box, Heading } from 'grommet';
 import {
   FilteringState,
   IntegratedFiltering,
+  SortingState,
+  IntegratedSorting,
 } from '@devexpress/dx-react-grid';
 
 import { Grid, Table, TableFilterRow, TableHeaderRow } from '../components/dx-react-grid-grommet/src';
@@ -79,10 +81,12 @@ export default () => (
         <strong>DevEx Reactive Grid</strong>
       </Heading>
       <Grid rows={rows} columns={columns}>
+        <SortingState />
+        <IntegratedSorting />
         <FilteringState defaultFiltering={[]} />
         <IntegratedFiltering />
         <Table />
-        <TableHeaderRow />
+        <TableHeaderRow showSortingControls />
         <TableFilterRow />
       </Grid>
     </Box>

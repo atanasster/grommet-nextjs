@@ -1,36 +1,64 @@
-import * as React from 'react';
-import * as PropTypes from 'prop-types';
-import TableSortLabel from '@material-ui/core/TableSortLabel';
-import Tooltip from '@material-ui/core/Tooltip';
-import { withStyles } from '@material-ui/core/styles';
-import classNames from 'classnames';
+import React from 'react';
+import PropTypes from 'prop-types';
+import styled, { withTheme } from 'styled-components';
+import { Box, Button } from 'grommet';
+
+const SorterButton = styled(Button)`
+  flex-shrink: 1;
+  height: 100%;
+`;
+
+const Sort = withTheme(({
+  align,
+  children,
+  disabled,
+  fill,
+  onClick,
+  direction,
+  theme,
+  themeProps,
+}) => {
+  let icon;
+  if (direction) {
+    const Icon =
+      theme.dataTable.icons[direction === 'asc' ? 'ascending' : 'descending'];
+    icon = <Icon />;
+  }
+  let content = (
+    <Box
+      {...themeProps}
+      flex='shrink'
+      direction='row'
+      justify={align}
+      align='center'
+      pad={{ horizontal: 'xsmall' }}
+      gap='xsmall'
+      fill={fill}
+    >
+      {children}
+      {icon}
+    </Box>
+  );
+  if (true) {
+    content = (
+      <SorterButton
+        disabled={disabled}
+        fill={fill}
+        hoverIndicator={true}
+        onClick={onClick}
+      >
+        {content}
+      </SorterButton>
+    );
+  }
+
+  return content;
+});
+
 
 const ENTER_KEY_CODE = 13;
 const SPACE_KEY_CODE = 32;
 
-const styles = () => ({
-  root: {
-    width: '100%',
-    userSelect: 'none',
-    MozUserSelect: 'none',
-    WebkitUserSelect: 'none',
-  },
-  tooltipRoot: {
-    display: 'block',
-    whiteSpace: 'nowrap',
-    overflow: 'hidden',
-    textOverflow: 'ellipsis',
-  },
-  sortLabelRoot: {
-    maxWidth: '100%',
-  },
-  sortLabelRight: {
-    flexDirection: 'row-reverse',
-  },
-  sortLabelActive: {
-    color: 'inherit',
-  },
-});
 
 const onClick = (e, onSort) => {
   const isActionKeyDown = e.keyCode === ENTER_KEY_CODE || e.keyCode === SPACE_KEY_CODE;
@@ -51,33 +79,16 @@ const SortLabelBase = ({
   classes, getMessage, disabled, className, ...restProps
 }) => (
   <div
-    className={classNames(classes.root, className)}
     {...restProps}
   >
-    <Tooltip
-      title={getMessage('sortingHint')}
-      placement={align === 'right' ? 'bottom-end' : 'bottom-start'}
-      enterDelay={300}
-      classes={{
-        tooltip: classes.tooltipRoot,
-      }}
+    <Sort
+      active={!!direction}
+      direction={direction === null ? undefined : direction}
+      onClick={e => onClick(e, onSort)}
+      disabled={disabled}
     >
-      <TableSortLabel
-        active={!!direction}
-        direction={direction === null ? undefined : direction}
-        onClick={e => onClick(e, onSort)}
-        disabled={disabled}
-        classes={{
-          root: classNames({
-            [classes.sortLabelRoot]: true,
-            [classes.sortLabelRight]: align === 'right',
-          }),
-          active: classes.sortLabelActive,
-        }}
-      >
-        {children}
-      </TableSortLabel>
-    </Tooltip>
+      {children}
+    </Sort>
   </div>
 );
 
@@ -86,11 +97,9 @@ SortLabelBase.propTypes = {
   align: PropTypes.string,
   direction: PropTypes.oneOf(['asc', 'desc', null]),
   children: PropTypes.node,
-  classes: PropTypes.object.isRequired,
   onSort: PropTypes.func.isRequired,
   getMessage: PropTypes.func.isRequired,
   disabled: PropTypes.bool,
-  className: PropTypes.string,
 };
 
 SortLabelBase.defaultProps = {
@@ -98,8 +107,7 @@ SortLabelBase.defaultProps = {
   direction: undefined,
   disabled: false,
   align: 'left',
-  className: null,
   children: undefined,
 };
 
-export const SortLabel = withStyles(styles, { name: 'SortLabel' })(SortLabelBase);
+export const SortLabel = SortLabelBase;
