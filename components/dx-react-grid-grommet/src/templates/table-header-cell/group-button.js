@@ -4,14 +4,13 @@ import styled, { withTheme } from 'styled-components';
 import { List } from 'grommet-icons';
 
 const StyledGroupButton = styled.div`
-  paddingLeft: 0;
+  padding-left: 0;
   height: ${props => props.theme.spacing.unit * 3};
   cursor: pointer;
   ${props => props.isDisabled && `
     cursor: default;
     opacity: 0.3;
   `}
-
 `;
 
 const GroupButtonBase = ({
