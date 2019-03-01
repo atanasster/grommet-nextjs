@@ -218,7 +218,7 @@ class SideMenu extends React.Component {
     return (
       <Box background='brand'>
         <Sidebar
-          width='250px'
+          width='280px'
           flex={false}
         >
           <Box overflow='auto'>
