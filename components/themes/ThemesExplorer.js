@@ -21,7 +21,7 @@ const itemsTree = (items, path) => {
       const themePath = `${path}${path ? '-' : ''}${item}`;
       return {
         id: themePath,
-        label: item,
+        label: <Text truncate={true}>{item}</Text>,
         items: itemsTree(items[item], themePath),
         children: items[item],
         themePath,
