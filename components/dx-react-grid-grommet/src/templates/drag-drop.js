@@ -5,7 +5,7 @@ import { Box, Text } from 'grommet';
 
 const StyledContainer = styled.div`
   position: fixed;
-  zIndex: 1000,
+  z-index: 1000,
   left: 0;
   top: 0;
   display: inline-block;
