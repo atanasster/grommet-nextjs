@@ -1,16 +1,59 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import styled from 'styled-components';
+import styled, { withTheme } from 'styled-components';
 import { DragSource } from '@devexpress/dx-react-core';
-
 import { TableCell } from 'grommet';
+import { normalizeColor } from 'grommet/utils';
 
-import { ResizingControl } from './table-header-cell/resizing-control';
+import { ResizingControl, ResizeHandle } from './table-header-cell/resizing-control';
 
 const StyledTableCell = styled(TableCell)`
+    outline: none;
+    position: relative;
+    overflow: visible;
+    padding-right: ${props => props.theme.global.edgeSize.xxsmall};
+    padding-left: ${props => props.theme.global.edgeSize.xxsmall};
+    &:first-child {
+      padding-left: ${props => props.theme.global.edgeSize.xsmall};
+    }
+    &:nth-last-child(2) ${ResizeHandle} {
+      width: ${props => props.theme.global.edgeSize.xxsmall};
+      right: 1px;
+    }
+    ${props => props.noUserSelect && `
+      user-select: none;
+    `}
+    ${props => props.draggable && `
+      cursor: pointer;
+    `}
+    ${props => props.cellAlign === 'right' && `
+       padding-left: ${props.theme.global.edgeSize.xxsmall};
+       padding-right: ${props.theme.global.edgeSize.xxsmall};
+       text-align: right;
+    `}
+    ${props => props.cellAlign === 'center' && `
+      text-align: center;
+    `}
+    ${props => props.dimmed && `
+      &:after {
+        content: "";
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        background-color: ${normalizeColor('background', props.theme)};
+        opacity: 0.7;
+        pointerEvents: none;
+        z-index: 400;
+      },
+    `}
+    ${props => props.noWrap && `
+      white-space: nowrap;
+    `}
 `;
 
-export class TableHeaderCell extends React.PureComponent {
+class TableHeaderCellBase extends React.PureComponent {
   constructor(props) {
     super(props);
 
@@ -48,7 +91,11 @@ export class TableHeaderCell extends React.PureComponent {
 
     const cellLayout = (
       <StyledTableCell
-        style={style}
+        noUserSelect={draggingEnabled}
+        draggable={draggingEnabled}
+        cellAlign={align}
+        dimmed={dragging || (tableColumn && tableColumn.draft)}
+        noWrap={!(tableColumn && tableColumn.wordWrapEnabled)}
         {...restProps}
       >
         <div>
@@ -59,8 +106,6 @@ export class TableHeaderCell extends React.PureComponent {
             onWidthChange={onWidthChange}
             onWidthDraft={onWidthDraft}
             onWidthDraftCancel={onWidthDraftCancel}
-            resizeLastHandleClass={classes.resizeHandle}
-            resizeHandleOpacityClass={classes.resizeHandleLine}
           />
         )}
       </StyledTableCell>
@@ -79,7 +124,7 @@ export class TableHeaderCell extends React.PureComponent {
   }
 }
 
-TableHeaderCell.propTypes = {
+TableHeaderCellBase.propTypes = {
   tableColumn: PropTypes.object,
   tableRow: PropTypes.object,
   column: PropTypes.object,
@@ -100,7 +145,7 @@ TableHeaderCell.propTypes = {
   before: PropTypes.node,
 };
 
-TableHeaderCell.defaultProps = {
+TableHeaderCellBase.defaultProps = {
   column: undefined,
   tableColumn: undefined,
   tableRow: undefined,
@@ -120,3 +165,5 @@ TableHeaderCell.defaultProps = {
   children: undefined,
   before: undefined,
 };
+
+export const TableHeaderCell = withTheme(TableHeaderCellBase);

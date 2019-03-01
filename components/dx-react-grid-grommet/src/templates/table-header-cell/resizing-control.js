@@ -2,19 +2,20 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled, { withTheme } from 'styled-components';
 import { Draggable } from '@devexpress/dx-react-core';
+import { normalizeColor } from 'grommet/utils';
 
-const ResizeHandle = styled.div`
+export const ResizeHandle = styled.div`
   position: absolute;
-  userSelect: none;
-  width: ${props => props.theme.spacing.unit * 2}px;
-  top: 0,
-  right: -${props => props.theme.spacing.unit}px;
+  user-select: none;
+  width: ${props => props.theme.global.edgeSize.xsmall};
+  top: 0;
+  right: -${props => props.theme.global.edgeSize.xxsmall};
   height: 100%;
   cursor: col-resize;
-  zIndex: 100;
+  z-index: 100;
   ${props => props.resizing && `
       opacity: 1;
-      backgroundColor: ${props.theme.global.colors.text};
+      background-color: ${normalizeColor('text', props.theme)};
       height: calc(100% - 4px);
       top: 2px;
     `}
@@ -22,24 +23,27 @@ const ResizeHandle = styled.div`
 
 const ResizeHandleLine = styled.div`
   position: absolute;
-  backgroundColor: ${props => props.theme.global.colors.text};
+  background-color: ${props => normalizeColor('text', props.theme)};
   height: 50%;
   width: 1px;
   top: 25%;
   transition: all linear 100ms;
   ${props => props.first && `
-    left: ${props.theme.spacing.unit - 1}px;
+    left: ${props.theme.global.edgeSize.xxsmall};
   `}
   ${props => props.second && `
-    left: ${props.theme.spacing.unit + 1}px;
+    left: ${props.theme.global.edgeSize.xxsmall};
   `}
   ${props => props.resizing && `
-    left: ${props.theme.spacing.unit}px;
-  `}  
+    left: ${props.theme.global.edgeSize.xxsmall};
+  `}
+  &:hover: {
+    opacity: 1;
+  }
 `;
 
 
-export class ResizingControlBase extends React.PureComponent {
+class ResizingControlBase extends React.PureComponent {
   constructor(props) {
     super(props);
 

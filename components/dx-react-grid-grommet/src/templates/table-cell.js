@@ -6,11 +6,11 @@ import { TableCell as GrommetTableCell } from 'grommet';
 export const TableCell = ({
   column, value, children, classes,
   tableRow, tableColumn, row,
-  className,
-  ...restProps
+  className, style,
+  ...rest
 }) => (
   <GrommetTableCell
-    {...restProps}
+    {...rest}
   >
     {children || value}
   </GrommetTableCell>
