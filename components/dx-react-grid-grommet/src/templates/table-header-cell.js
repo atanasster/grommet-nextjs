@@ -63,10 +63,12 @@ class TableHeaderCellBase extends React.PureComponent {
     this.cellRef = React.createRef();
 
     this.onDragStart = () => {
+      console.log('onDragStart');
       this.setState({ dragging: true });
     };
     this.onDragEnd = () => {
       if (this.cellRef.current) {
+        console.log('onDragEnd');
         this.setState({ dragging: false });
       }
     };
