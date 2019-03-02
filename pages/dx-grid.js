@@ -122,33 +122,35 @@ export default class DXGrid extends React.Component {
           <Heading level={1}>
             <strong>DevEx Reactive Grid</strong>
           </Heading>
-          <Grid rows={rows} columns={columns}>
-            <DragDropProvider />
-            <SortingState />
-            <IntegratedSorting />
-            <FilteringState defaultFiltering={[]} />
-            <IntegratedFiltering />
-            <Table
-              columnExtensions={tableColumnExtensions}
-            />
-            <TableColumnResizing
-              columnWidths={columnWidths}
-              onColumnWidthsChange={this.changeColumnWidths}
-            />
-            <TableColumnReordering
-              order={columnOrder}
-              onOrderChange={this.changeColumnOrder}
-            />
-            <TableHeaderRow showSortingControls={true} />
-            <TableColumnVisibility
-              hiddenColumnNames={hiddenColumnNames}
-              onHiddenColumnNamesChange={this.hiddenColumnNamesChange}
-            />
-            <Toolbar />
-            <ColumnChooser />
-            <TableFilterRow />
+          <Box align='center'>
+            <Grid rows={rows} columns={columns}>
+              <DragDropProvider />
+              <SortingState />
+              <IntegratedSorting />
+              <FilteringState defaultFiltering={[]} />
+              <IntegratedFiltering />
+              <Table
+                columnExtensions={tableColumnExtensions}
+              />
+              <TableColumnResizing
+                columnWidths={columnWidths}
+                onColumnWidthsChange={this.changeColumnWidths}
+              />
+              <TableColumnReordering
+                order={columnOrder}
+                onOrderChange={this.changeColumnOrder}
+              />
+              <TableHeaderRow showSortingControls={true} />
+              <TableColumnVisibility
+                hiddenColumnNames={hiddenColumnNames}
+                onHiddenColumnNamesChange={this.hiddenColumnNamesChange}
+              />
+              <Toolbar />
+              <ColumnChooser />
+              <TableFilterRow />
 
-          </Grid>
+            </Grid>
+          </Box>
         </Box>
       </Page>
     );
