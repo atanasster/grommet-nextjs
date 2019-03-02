@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import styled, { withTheme } from 'styled-components';
 import { Draggable } from '@devexpress/dx-react-core';
 import { normalizeColor } from 'grommet/utils';
+import { parseMetricToNum } from 'grommet/utils/mixins';
 
 export const ResizeHandle = styled.div`
   position: absolute;
@@ -29,10 +30,10 @@ const ResizeHandleLine = styled.div`
   top: 25%;
   transition: all linear 100ms;
   ${props => props.first && `
-    left: ${props.theme.global.edgeSize.xxsmall};
+    left: ${parseMetricToNum(props.theme.global.edgeSize.xxsmall) - 1}px;
   `}
   ${props => props.second && `
-    left: ${props.theme.global.edgeSize.xxsmall};
+    left: ${parseMetricToNum(props.theme.global.edgeSize.xxsmall) + 1}px;
   `}
   ${props => props.resizing && `
     left: ${props.theme.global.edgeSize.xxsmall};

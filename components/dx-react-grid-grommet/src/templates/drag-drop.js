@@ -5,11 +5,11 @@ import { Box, Text } from 'grommet';
 
 const StyledContainer = styled.div`
   position: fixed;
-  z-index: 1000,
+  z-index: 1000;
   left: 0;
   top: 0;
   display: inline-block;
-  transform: translate(calc(${props => props.clientOffset.x}px - 50%), calc(${props => props.clientOffset.y}px - 50%))\`;
+  transform: translate(calc(${props => props.clientOffset.x}px - 50%), calc(${props => props.clientOffset.y}px - 50%));
 `;
 
 const StyledColumn = styled(Box)`
