@@ -44,7 +44,7 @@ const StyledTableCell = styled(TableCell)`
         left: 0;
         background-color: ${normalizeColor('background', props.theme)};
         opacity: 0.7;
-        pointerEvents: none;
+        pointer-events: none;
         z-index: 400;
       },
     `}
@@ -88,7 +88,6 @@ class TableHeaderCellBase extends React.PureComponent {
     const { dragging } = this.state;
     // eslint-disable-next-line no-unused-vars
     const align = (tableColumn && tableColumn.align) || 'left';
-
     const cellLayout = (
       <StyledTableCell
         noUserSelect={draggingEnabled}
