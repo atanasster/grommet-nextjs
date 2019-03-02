@@ -15,6 +15,9 @@ import {
   TableColumnResizing,
   TableFilterRow,
   TableHeaderRow,
+  ColumnChooser,
+  TableColumnVisibility,
+  Toolbar,
 } from '../components/dx-react-grid-grommet/src';
 
 import Page from '../components/app/Page';
@@ -94,6 +97,7 @@ export default class DXGrid extends React.Component {
       { columnName: 'sex', width: 100 },
     ],
     columnOrder: ['city', 'sex', 'car', 'name'],
+    hiddenColumnNames: [],
   };
 
   changeColumnOrder = (newOrder) => {
@@ -103,9 +107,14 @@ export default class DXGrid extends React.Component {
     this.setState({ columnWidths });
   };
 
+
+  hiddenColumnNamesChange = (hiddenColumnNames) => {
+    this.setState({ hiddenColumnNames });
+  };
+
   render() {
     const {
-      rows, columns, tableColumnExtensions, columnOrder, columnWidths,
+      rows, columns, tableColumnExtensions, columnOrder, columnWidths, hiddenColumnNames,
     } = this.state;
     return (
       <Page title='devex react grid'>
@@ -131,7 +140,14 @@ export default class DXGrid extends React.Component {
               onOrderChange={this.changeColumnOrder}
             />
             <TableHeaderRow showSortingControls={true} />
+            <TableColumnVisibility
+              hiddenColumnNames={hiddenColumnNames}
+              onHiddenColumnNamesChange={this.hiddenColumnNamesChange}
+            />
+            <Toolbar />
+            <ColumnChooser />
             <TableFilterRow />
+
           </Grid>
         </Box>
       </Page>

@@ -1,6 +1,11 @@
-import * as React from 'react';
-import * as PropTypes from 'prop-types';
+import React from 'react';
+import PropTypes from 'prop-types';
+import styled from 'styled-components';
 import { Box, CheckBox, Text } from 'grommet';
+
+const StyledItem = styled(Box)`
+  cursor: pointer;
+`;
 
 export const Item = ({
   item: { column, hidden },
@@ -8,11 +13,11 @@ export const Item = ({
   classes,
   ...restProps
 }) => (
-  <Box
-    as='li'
+  <StyledItem
+    tag='li'
     disabled={disabled}
     direction='row'
-    justify='between'
+    gap='small'
     onClick={!disabled ? onToggle : null}
     {...restProps}
   >
@@ -20,9 +25,10 @@ export const Item = ({
       checked={!hidden}
       tabIndex={-1}
       disabled={disabled}
+      onChange={() => {}}
     />
     <Text>{column.title || column.name}</Text>
-  </Box>
+  </StyledItem>
 );
 
 Item.propTypes = {

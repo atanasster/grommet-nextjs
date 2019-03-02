@@ -4,6 +4,7 @@ export * from './grid';
 export * from './plugins/table';
 export * from './plugins/table-column-reordering';
 export * from './plugins/table-column-resizing';
+export * from './plugins/table-column-visibility';
 export * from './plugins/table-filter-row';
 export * from './plugins/table-header-row';
-
+export * from './plugins/toolbar';

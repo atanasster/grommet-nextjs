@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Button } from 'grommet';
-import { View } from 'grommet-icons';
+import { Columns } from 'grommet-icons';
 
 export const ToggleButton = ({
   onToggle, getMessage,
@@ -10,7 +10,8 @@ export const ToggleButton = ({
 }) => (
   <Button
     onClick={onToggle}
-    icon={<View />}
+    icon={<Columns />}
+    ref={buttonRef}
     {...restProps}
   />
 );

@@ -4,17 +4,17 @@ import { Drop } from 'grommet';
 
 export const Overlay = ({
   visible, onHide, children, target, ...restProps
-}) => (
-  <Drop
-    open={visible}
-    target={target}
-    onClickOutside={onHide}
-    onEsc={onHide}
-    align={{ top: 'top', right: 'right' }}
-    {...restProps}
-  >
-    {children}
-  </Drop>
+}) => visible && (
+<Drop
+  open={visible}
+  target={target}
+  onClickOutside={onHide}
+  onEsc={onHide}
+  align={{ top: 'bottom', right: 'left' }}
+  {...restProps}
+>
+  {children}
+</Drop>
 );
 
 Overlay.propTypes = {
