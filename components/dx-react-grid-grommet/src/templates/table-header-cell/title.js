@@ -5,7 +5,8 @@ import { Text } from 'grommet';
 const TitelBase = ({
   children, ...restProps
 }) => (
-  <Text truncate={true}
+  <Text
+    truncate={true}
     {...restProps}
   >
     {children}

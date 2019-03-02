@@ -3,10 +3,10 @@ import PropTypes from 'prop-types';
 import { Box } from 'grommet';
 
 export const Root = ({
-  children, classes, className, ...restProps
+  children, ...rest
 }) => (
   <Box
-    {...restProps}
+    {...rest}
   >
     {children}
   </Box>

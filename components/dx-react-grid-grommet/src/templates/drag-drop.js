@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import { Box, Text } from 'grommet';
+import { Text } from 'grommet';
 
 const StyledContainer = styled.div`
   position: fixed;
@@ -12,7 +12,9 @@ const StyledContainer = styled.div`
   transform: translate(calc(${props => props.clientOffset.x}px - 50%), calc(${props => props.clientOffset.y}px - 50%));
 `;
 
-const StyledColumn = styled(Box)`
+const StyledColumn = styled.div`
+  padding-left: ${props => props.theme.global.edgeSize.xsmall};
+  padding-right: ${props => props.theme.global.edgeSize.xsmall};
   float: right;
   cursor: move;
 `;
@@ -20,11 +22,11 @@ const StyledColumn = styled(Box)`
 
 const ContainerBase = ({
   clientOffset, children,
-  ...restProps
+  ...rest
 }) => (
   <StyledContainer
     clientOffset={clientOffset}
-    {...restProps}
+    {...rest}
   >
     {children}
   </StyledContainer>
@@ -49,7 +51,6 @@ const ColumnBase = ({
   ...restProps
 }) => (
   <StyledColumn
-    pad={{ horizontal: 'small' }}
     {...restProps}
   >
     <Text>{column.title}</Text>

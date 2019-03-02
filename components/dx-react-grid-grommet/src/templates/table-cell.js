@@ -1,20 +1,45 @@
-import * as React from 'react';
-import * as PropTypes from 'prop-types';
-import { TableCell as GrommetTableCell } from 'grommet';
+import React from 'react';
+import PropTypes from 'prop-types';
+import styled, { withTheme } from 'styled-components';
+
+const StyledTableCell = styled.td`
+  padding-left: ${props => props.theme.global.edgeSize.xsmall};
+  padding-right: ${props => props.theme.global.edgeSize.xsmall};
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-weight: inherit;
+  height: 100%;
+  &:first-child {
+      padding-left: ${props => props.theme.global.edgeSize.small};
+  }
+  ${props => (props.align === 'right') && `
+    text-align: right;
+  `}
+  
+  ${props => (props.align === 'center') && `
+    text-align: center;
+  `}
+  ${props => props.noWrap && `
+    white-space: nowrap;
+  `}
+  ${props => props.tableContextTheme && props.tableContextTheme.extend}
+`;
 
 
-export const TableCell = ({
+export const TableCell = withTheme(({
   column, value, children, classes,
   tableRow, tableColumn, row,
   className, style,
   ...rest
 }) => (
-  <GrommetTableCell
+  <StyledTableCell
+    align={tableColumn && tableColumn.align}
+    noWrap={!(tableColumn && tableColumn.wordWrapEnabled)}
     {...rest}
   >
     {children || value}
-  </GrommetTableCell>
-);
+  </StyledTableCell>
+));
 
 TableCell.propTypes = {
   value: PropTypes.any,

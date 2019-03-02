@@ -6,6 +6,7 @@ import { Box, Button } from 'grommet';
 const SorterButton = styled(Button)`
   flex-shrink: 1;
   height: 100%;
+  user-select: none;
 `;
 
 const Sort = withTheme(({
@@ -39,18 +40,16 @@ const Sort = withTheme(({
       {icon}
     </Box>
   );
-  if (true) {
-    content = (
-      <SorterButton
-        disabled={disabled}
-        fill={fill}
-        hoverIndicator={true}
-        onClick={onClick}
-      >
-        {content}
-      </SorterButton>
-    );
-  }
+  content = (
+    <SorterButton
+      disabled={disabled}
+      fill={fill}
+      hoverIndicator={true}
+      onClick={onClick}
+    >
+      {content}
+    </SorterButton>
+  );
 
   return content;
 });

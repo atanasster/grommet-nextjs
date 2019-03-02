@@ -38,7 +38,13 @@ const ResizeHandleLine = styled.div`
   ${props => props.resizing && `
     left: ${props.theme.global.edgeSize.xxsmall};
   `}
-  &:hover: {
+  ${props => props.resizing && `
+    opacity: 1;
+    background-color: ${normalizeColor('brand', props.theme)};
+    height: calc(100% - 4px);
+    top: 2px;
+  `}
+  &:hover {
     opacity: 1;
   }
 `;
