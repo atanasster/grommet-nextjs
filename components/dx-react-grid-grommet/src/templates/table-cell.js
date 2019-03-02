@@ -29,7 +29,7 @@ const StyledTableCell = styled.td`
 export const TableCell = withTheme(({
   column, value, children, classes,
   tableRow, tableColumn, row,
-  className, style,
+  className,
   ...rest
 }) => (
   <StyledTableCell

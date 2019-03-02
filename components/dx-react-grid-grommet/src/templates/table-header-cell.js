@@ -23,7 +23,7 @@ const StyledTableCell = styled(TableCell)`
     ${props => props.noUserSelect && `
       user-select: none;
     `}
-    ${props => props.draggable && `
+    ${props => props.isDraggable && `
       cursor: pointer;
     `}
     ${props => props.cellAlign === 'right' && `
@@ -63,12 +63,10 @@ class TableHeaderCellBase extends React.PureComponent {
     this.cellRef = React.createRef();
 
     this.onDragStart = () => {
-      console.log('onDragStart');
       this.setState({ dragging: true });
     };
     this.onDragEnd = () => {
       if (this.cellRef.current) {
-        console.log('onDragEnd');
         this.setState({ dragging: false });
       }
     };
@@ -93,7 +91,7 @@ class TableHeaderCellBase extends React.PureComponent {
     const cellLayout = (
       <StyledTableCell
         noUserSelect={draggingEnabled}
-        draggable={draggingEnabled}
+        isDraggable={draggingEnabled}
         cellAlign={align}
         dimmed={dragging || (tableColumn && tableColumn.draft)}
         noWrap={!(tableColumn && tableColumn.wordWrapEnabled)}
