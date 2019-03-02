@@ -5,8 +5,9 @@ import { Box } from 'grommet';
 export const Container = ({ children, ...restProps }) => (
   <Box
     as='nav'
-    pad='small'
+    pad={{ vertical: 'small', left: 'small', right: 'medium' }}
     gap='xsmall'
+    flex='grow'
     {...restProps}
   >
     {children}

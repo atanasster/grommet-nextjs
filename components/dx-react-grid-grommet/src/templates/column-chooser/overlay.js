@@ -10,7 +10,7 @@ export const Overlay = ({
   target={target}
   onClickOutside={onHide}
   onEsc={onHide}
-  align={{ top: 'bottom', right: 'left' }}
+  align={{ top: 'bottom', right: 'right' }}
   {...restProps}
 >
   {children}

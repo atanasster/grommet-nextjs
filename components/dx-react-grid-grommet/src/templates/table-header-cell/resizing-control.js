@@ -14,12 +14,16 @@ export const ResizeHandle = styled.div`
   height: 100%;
   cursor: col-resize;
   z-index: 100;
+  opacity: 0;
   ${props => props.resizing && `
       opacity: 1;
       background-color: ${normalizeColor('text', props.theme)};
       height: calc(100% - 4px);
       top: 2px;
     `}
+  &:hover {
+    opacity: 1;
+  }
 `;
 
 const ResizeHandleLine = styled.div`
@@ -44,9 +48,6 @@ const ResizeHandleLine = styled.div`
     height: calc(100% - 4px);
     top: 2px;
   `}
-  &:hover {
-    opacity: 1;
-  }
 `;
 
 
