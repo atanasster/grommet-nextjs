@@ -2,8 +2,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
-const StyledTableRow = styled.tr`
+export const StyledTableRow = styled.tr`
   height: 100%;
+  ${props => props.theme.table.row && props.theme.table.row.extend}
 `;
 
 export const TableRow = ({

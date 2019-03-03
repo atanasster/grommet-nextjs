@@ -8,6 +8,8 @@ import {
   PagingState,
   IntegratedPaging,
   SearchState,
+  IntegratedSelection,
+  SelectionState,
 } from '@devexpress/dx-react-grid';
 
 import {
@@ -23,6 +25,7 @@ import {
   Toolbar,
   PagingPanel,
   SearchPanel,
+  TableSelection,
 } from '../components/dx-react-grid-grommet/src';
 
 import Page from '../components/app/Page';
@@ -107,6 +110,7 @@ export default class DXGrid extends React.Component {
     pageSize: 5,
     pageSizes: [5, 10, 15],
     searchValue: '',
+    selection: [1],
   };
 
   changeColumnOrder = newOrder => this.setState({ columnOrder: newOrder });
@@ -121,10 +125,13 @@ export default class DXGrid extends React.Component {
 
   changeSearchValue = value => this.setState({ searchValue: value });
 
+  changeSelection = selection => this.setState({ selection });
+
   render() {
     const {
       rows, columns, tableColumnExtensions, columnOrder, columnWidths,
       hiddenColumnNames, pageSize, pageSizes, currentPage, searchValue,
+      selection,
     } = this.state;
     return (
       <Page title='devex react grid'>
@@ -149,6 +156,11 @@ export default class DXGrid extends React.Component {
               onPageSizeChange={this.changePageSize}
             />
             <IntegratedPaging />
+            <SelectionState
+              selection={selection}
+              onSelectionChange={this.changeSelection}
+            />
+            <IntegratedSelection />
             <Table
               columnExtensions={tableColumnExtensions}
             />
@@ -161,6 +173,12 @@ export default class DXGrid extends React.Component {
               onOrderChange={this.changeColumnOrder}
             />
             <TableHeaderRow showSortingControls={true} />
+            <TableSelection
+              selectByRowClick
+              highlightRow
+              showSelectAll
+              showSelectionColumn={true}
+            />
             <TableColumnVisibility
               hiddenColumnNames={hiddenColumnNames}
               onHiddenColumnNamesChange={this.hiddenColumnNamesChange}

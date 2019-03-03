@@ -1,9 +1,9 @@
 import * as React from 'react';
 // base table filter row
 import { TableFilterRow as TableFilterRowBase } from '@devexpress/dx-react-grid';
-import { TableRow, TableCell, TextInput } from 'grommet';
-
-const SearchInput = TextInput;
+import { StyledTableCell } from '../templates/table-cell';
+import { StyledTableRow } from '../templates/table-row';
+import { SearchInput } from '../utils/SearchInput';
 
 const defaultMessages = {
   filterPlaceholder: 'Filter...',
@@ -20,12 +20,16 @@ const TableFilterCell = ({
   getMessage,
   filteringEnabled,
   ...restProps
-}) => <TableCell {...restProps}>{children}</TableCell>;
+}) => <StyledTableCell {...restProps}>{children}</StyledTableCell>;
 
 const GrommetTableRow = ({
   children, row, tableRow, ...restProps
 }) => (
-  <TableRow {...restProps}>{children}</TableRow>
+  <StyledTableRow
+    {...restProps}
+  >
+    {children}
+  </StyledTableRow>
 );
 
 const Editor = ({

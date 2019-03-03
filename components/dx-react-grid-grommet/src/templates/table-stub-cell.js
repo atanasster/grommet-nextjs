@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { TableCell } from 'grommet';
+import { StyledTableCell } from './table-cell';
 
 
 export const TableStubCell = ({
@@ -10,7 +10,7 @@ export const TableStubCell = ({
   tableColumn,
   ...restProps
 }) => (
-  <TableCell
+  <StyledTableCell
     {...restProps}
   />
 );

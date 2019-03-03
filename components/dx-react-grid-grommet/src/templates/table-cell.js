@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled, { withTheme } from 'styled-components';
 
-const StyledTableCell = styled.td`
+export const StyledTableCell = styled.td`
   padding-left: ${props => props.theme.global.edgeSize.xsmall};
   padding-right: ${props => props.theme.global.edgeSize.xsmall};
   overflow: hidden;
@@ -22,7 +22,7 @@ const StyledTableCell = styled.td`
   ${props => props.noWrap && `
     white-space: nowrap;
   `}
-  ${props => props.tableContextTheme && props.tableContextTheme.extend}
+  ${props => props.theme.table.cell && props.theme.table.cell.extend}
 `;
 
 

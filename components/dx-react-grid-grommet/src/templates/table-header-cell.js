@@ -2,12 +2,13 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled, { withTheme } from 'styled-components';
 import { DragSource } from '@devexpress/dx-react-core';
-import { TableCell } from 'grommet';
 import { normalizeColor } from 'grommet/utils';
+import { StyledTableCell } from './table-cell';
+
 
 import { ResizingControl, ResizeHandle } from './table-header-cell/resizing-control';
 
-const StyledTableCell = styled(TableCell)`
+const StyledHeaderCell = styled(StyledTableCell)`
     outline: none;
     position: relative;
     overflow: visible;
@@ -89,7 +90,7 @@ class TableHeaderCellBase extends React.PureComponent {
     // eslint-disable-next-line no-unused-vars
     const align = (tableColumn && tableColumn.align) || 'left';
     const cellLayout = (
-      <StyledTableCell
+      <StyledHeaderCell
         noUserSelect={draggingEnabled}
         isDraggable={draggingEnabled}
         cellAlign={align}
@@ -107,7 +108,7 @@ class TableHeaderCellBase extends React.PureComponent {
             onWidthDraftCancel={onWidthDraftCancel}
           />
         )}
-      </StyledTableCell>
+      </StyledHeaderCell>
     );
 
     return draggingEnabled ? (

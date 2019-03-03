@@ -23,7 +23,7 @@ const Sort = withTheme(({
   if (direction) {
     const Icon =
       theme.dataTable.icons[direction === 'asc' ? 'ascending' : 'descending'];
-    icon = <Icon />;
+    icon = <Icon style={{ height: '1rem' }} />;
   }
   let content = (
     <Box

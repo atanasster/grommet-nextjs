@@ -29,5 +29,5 @@ SearchInput.propTypes = {
 SearchInput.defaultProps = {
   onChange: undefined,
   value: undefined,
-  placeholder: 'search',
+  placeholder: 'Search...',
 };
