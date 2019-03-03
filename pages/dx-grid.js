@@ -28,6 +28,7 @@ import {
   SearchPanel,
   TableSelection,
   TableRowDetail,
+  TableFixedColumns,
 } from '../components/dx-react-grid-grommet/src';
 
 import Page from '../components/app/Page';
@@ -116,7 +117,7 @@ export default class DXGrid extends React.Component {
     tableColumnExtensions: [
       { columnName: 'sex', width: 100 },
     ],
-    columnOrder: ['city', 'sex', 'car', 'name'],
+    columnOrder: ['name', 'city', 'sex', 'car'],
     hiddenColumnNames: [],
     currentPage: 0,
     pageSize: 5,
@@ -208,6 +209,9 @@ export default class DXGrid extends React.Component {
             <TableFilterRow />
             <TableRowDetail
               contentComponent={RowDetail}
+            />
+            <TableFixedColumns
+              leftColumns={['name']}
             />
             <PagingPanel
               pageSizes={pageSizes}
