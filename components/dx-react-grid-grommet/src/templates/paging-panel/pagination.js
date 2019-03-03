@@ -48,7 +48,7 @@ const renderPageButtons = (
   if (startPage > 1) {
     pageButtons.push((
       <PageButton
-        key={1}
+        key='page_1'
         text={String(1)}
         onClick={() => onCurrentPageChange(0)}
       />
@@ -68,7 +68,7 @@ const renderPageButtons = (
   for (let page = startPage; page <= endPage; page += 1) {
     pageButtons.push((
       <PageButton
-        key={page}
+        key={`page_${page}`}
         text={String(page)}
         isActive={page === currentPage + 1}
         onClick={() => onCurrentPageChange(page - 1)}
@@ -90,13 +90,12 @@ const renderPageButtons = (
 
     pageButtons.push((
       <PageButton
-        key={totalPageCount}
+        key={`page_${totalPageCount}`}
         text={String(totalPageCount)}
         onClick={() => onCurrentPageChange(totalPageCount - 1)}
       />
     ));
   }
-
   return pageButtons;
 };
 
