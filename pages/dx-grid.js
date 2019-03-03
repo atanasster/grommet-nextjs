@@ -5,6 +5,8 @@ import {
   IntegratedFiltering,
   SortingState,
   IntegratedSorting,
+  PagingState,
+  IntegratedPaging,
 } from '@devexpress/dx-react-grid';
 
 import {
@@ -18,6 +20,7 @@ import {
   ColumnChooser,
   TableColumnVisibility,
   Toolbar,
+  PagingPanel,
 } from '../components/dx-react-grid-grommet/src';
 
 import Page from '../components/app/Page';
@@ -98,6 +101,9 @@ export default class DXGrid extends React.Component {
     ],
     columnOrder: ['city', 'sex', 'car', 'name'],
     hiddenColumnNames: [],
+    currentPage: 0,
+    pageSize: 5,
+    pageSizes: [5, 10, 15],
   };
 
   changeColumnOrder = (newOrder) => {
@@ -112,9 +118,14 @@ export default class DXGrid extends React.Component {
     this.setState({ hiddenColumnNames });
   };
 
+  changeCurrentPage = currentPage => this.setState({ currentPage });
+
+  changePageSize = pageSize => this.setState({ pageSize });
+
   render() {
     const {
-      rows, columns, tableColumnExtensions, columnOrder, columnWidths, hiddenColumnNames,
+      rows, columns, tableColumnExtensions, columnOrder, columnWidths,
+      hiddenColumnNames, pageSize, pageSizes, currentPage,
     } = this.state;
     return (
       <Page title='devex react grid'>
@@ -128,6 +139,14 @@ export default class DXGrid extends React.Component {
             <IntegratedSorting />
             <FilteringState defaultFiltering={[]} />
             <IntegratedFiltering />
+            <PagingState
+              currentPage={currentPage}
+              onCurrentPageChange={this.changeCurrentPage}
+              pageSize={pageSize}
+              onPageSizeChange={this.changePageSize}
+            />
+            <IntegratedPaging />
+
             <Table
               columnExtensions={tableColumnExtensions}
             />
@@ -147,7 +166,9 @@ export default class DXGrid extends React.Component {
             <Toolbar />
             <ColumnChooser />
             <TableFilterRow />
-
+            <PagingPanel
+              pageSizes={pageSizes}
+            />
           </Grid>
         </Box>
       </Page>
