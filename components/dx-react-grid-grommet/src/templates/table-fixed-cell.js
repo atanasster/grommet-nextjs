@@ -1,30 +1,31 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import styled from 'styled-components';
+import styled, { withTheme } from 'styled-components';
 import { normalizeColor } from 'grommet/utils';
 
-const FixedCellBase = ({
-  component: CellPlaceholder,
+const FixedCellBase = withTheme(({
+  component,
   side,
   showLeftDivider,
   showRightDivider,
-  className,
-  classes,
+  theme,
   style,
   position,
   ...restProps
 }) => {
-  const StyledPlaceholder = styled(CellPlaceholder)`
-        position: sticky;
-        z-index: 300;
-        background-clip: padding-box;
-        ${props => props.dividerRight && `border-right: solid ${props.theme.global.borderSize.xsmall} ${normalizeColor('border', props.theme)};`}}
-        ${props => props.dividerLeft && `border-left: solid ${props.theme.global.borderSize.xsmall} ${normalizeColor('border', props.theme)};`}}
-    `;
+  const CellPlaceholder = styled(component)`
+    position: sticky;
+    z-index: 300;
+    background-clip: padding-box;
+    ${props => props.divRight && `border-right: solid ${props.theme.global.borderSize.xsmall} ${normalizeColor('border', props.theme)};`}}
+    ${props => props.divLeft && `border-left: solid ${props.theme.global.borderSize.xsmall} ${normalizeColor('border', props.theme)};`}}
+  `;
+  console.log(component);
   return (
-    <StyledPlaceholder
-      dividerLeft={showLeftDivider}
-      dividerRight={showRightDivider}
+    <CellPlaceholder
+      divLeft={showLeftDivider}
+      divRight={showRightDivider}
+      theme={theme}
       style={{
           ...style,
           [side]: position,
@@ -32,7 +33,7 @@ const FixedCellBase = ({
       {...restProps}
     />
   );
-};
+});
 
 
 FixedCellBase.propTypes = {

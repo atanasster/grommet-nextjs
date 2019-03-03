@@ -29,6 +29,7 @@ import {
   TableSelection,
   TableRowDetail,
   TableFixedColumns,
+  TableBandHeader,
 } from '../components/dx-react-grid-grommet/src';
 
 import Page from '../components/app/Page';
@@ -43,6 +44,22 @@ const RowDetail = ({ row }) => (
     </Text>
   </Box>
 );
+
+const columnBands = [
+  {
+    title: 'Personal Data',
+    children: [
+      { columnName: 'name' },
+      {
+        title: 'Full Name',
+        children: [
+          { columnName: 'card' },
+        ],
+      },
+      { columnName: 'city' },
+    ],
+  },
+];
 
 export default class DXGrid extends React.Component {
   state = {
@@ -198,6 +215,9 @@ export default class DXGrid extends React.Component {
               highlightRow
               showSelectAll
               showSelectionColumn={true}
+            />
+            <TableBandHeader
+              columnBands={columnBands}
             />
             <TableColumnVisibility
               hiddenColumnNames={hiddenColumnNames}
