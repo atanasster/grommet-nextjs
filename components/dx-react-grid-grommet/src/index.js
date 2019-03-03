@@ -9,5 +9,6 @@ export * from './plugins/table-column-resizing';
 export * from './plugins/table-column-visibility';
 export * from './plugins/table-filter-row';
 export * from './plugins/table-header-row';
+export * from './plugins/table-row-detail';
 export * from './plugins/table-selection';
 export * from './plugins/toolbar';

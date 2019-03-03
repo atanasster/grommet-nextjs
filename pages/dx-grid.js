@@ -1,5 +1,5 @@
 import React from 'react';
-import { Box, Heading } from 'grommet';
+import { Box, Heading, Text } from 'grommet';
 import {
   FilteringState,
   IntegratedFiltering,
@@ -10,6 +10,7 @@ import {
   SearchState,
   IntegratedSelection,
   SelectionState,
+  RowDetailState,
 } from '@devexpress/dx-react-grid';
 
 import {
@@ -26,10 +27,21 @@ import {
   PagingPanel,
   SearchPanel,
   TableSelection,
+  TableRowDetail,
 } from '../components/dx-react-grid-grommet/src';
 
 import Page from '../components/app/Page';
 
+const RowDetail = ({ row }) => (
+  <Box background='light-1' fill={true} pad='medium' gap='medium'>
+    <Heading level={3} margin='none'>
+      {`Details for ${row.name} `}
+    </Heading>
+    <Text>
+      {`from ${row.city}`}
+    </Text>
+  </Box>
+);
 
 export default class DXGrid extends React.Component {
   state = {
@@ -111,6 +123,7 @@ export default class DXGrid extends React.Component {
     pageSizes: [5, 10, 15],
     searchValue: '',
     selection: [1],
+    expandedRowIds: [],
   };
 
   changeColumnOrder = newOrder => this.setState({ columnOrder: newOrder });
@@ -127,11 +140,13 @@ export default class DXGrid extends React.Component {
 
   changeSelection = selection => this.setState({ selection });
 
+  changeExpandedDetails = expandedRowIds => this.setState({ expandedRowIds });
+
   render() {
     const {
       rows, columns, tableColumnExtensions, columnOrder, columnWidths,
       hiddenColumnNames, pageSize, pageSizes, currentPage, searchValue,
-      selection,
+      selection, expandedRowIds,
     } = this.state;
     return (
       <Page title='devex react grid'>
@@ -140,6 +155,10 @@ export default class DXGrid extends React.Component {
             <strong>DevEx Reactive Grid</strong>
           </Heading>
           <Grid rows={rows} columns={columns}>
+            <RowDetailState
+              expandedRowIds={expandedRowIds}
+              onExpandedRowIdsChange={this.changeExpandedDetails}
+            />
             <DragDropProvider />
             <SortingState />
             <IntegratedSorting />
@@ -187,6 +206,9 @@ export default class DXGrid extends React.Component {
             <SearchPanel />
             <ColumnChooser />
             <TableFilterRow />
+            <TableRowDetail
+              contentComponent={RowDetail}
+            />
             <PagingPanel
               pageSizes={pageSizes}
             />
