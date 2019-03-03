@@ -17,7 +17,8 @@ export const Pager = ({
   <Box
     overflow='hidden'
     pad='xsmall'
-    gap='xsmall'
+    gap='medium'
+    direction='row-responsive'
   >
     {!!pageSizes.length && (
     <PageSizeSelector

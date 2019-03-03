@@ -1,14 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled, { withTheme } from 'styled-components';
+import { TableCell as TableCellGrommet } from 'grommet';
 
-export const StyledTableCell = styled.td`
-  padding-left: ${props => props.theme.global.edgeSize.xsmall};
-  padding-right: ${props => props.theme.global.edgeSize.xsmall};
-  overflow: hidden;
-  text-overflow: ellipsis;
-  font-weight: inherit;
-  height: 100%;
+export const StyledTableCell = styled(TableCellGrommet)`
   &:first-child {
       padding-left: ${props => props.theme.global.edgeSize.small};
   }
@@ -22,7 +17,6 @@ export const StyledTableCell = styled.td`
   ${props => props.noWrap && `
     white-space: nowrap;
   `}
-  ${props => props.theme.table.cell && props.theme.table.cell.extend}
 `;
 
 

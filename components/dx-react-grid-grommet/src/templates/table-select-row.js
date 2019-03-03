@@ -1,12 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled, { withTheme } from 'styled-components';
-import { selectedStyle } from 'grommet/utils';
-import { StyledTableRow } from './table-row';
+import { activeStyle } from 'grommet/utils';
+import { TableRow as TableRowGrommet } from 'grommet';
 
 
-const StyledSelectRow = styled(StyledTableRow)`
-  ${props => props.isSelected && selectedStyle}
+const StyledSelectRow = styled(TableRowGrommet)`
+  ${props => props.isSelected && activeStyle}
 `;
 
 export const TableSelectRow = withTheme(({

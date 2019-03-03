@@ -112,7 +112,7 @@ export const Pagination = ({
   const to = lastRowOnPage(currentPage, pageSize, totalCount);
 
   return (
-    <Box direction='row-responsive' align='center'>
+    <Box direction='row' align='center'>
       <Text>
         {getMessage('info', { from, to, count: totalCount })}
       </Text>
@@ -121,7 +121,9 @@ export const Pagination = ({
         disabled={currentPage === 0}
         onClick={() => (currentPage > 0) && onCurrentPageChange(currentPage - 1)}
       />
-      {renderPageButtons(currentPage, totalPages, onCurrentPageChange)}
+      <Box direction='row' align='center' gap='xsmall'>
+        {renderPageButtons(currentPage, totalPages, onCurrentPageChange)}
+      </Box>
       <Button
         disabled={currentPage === totalPages - 1 || totalCount === 0}
         onClick={() => currentPage < totalPages - 1 && onCurrentPageChange(currentPage + 1)}

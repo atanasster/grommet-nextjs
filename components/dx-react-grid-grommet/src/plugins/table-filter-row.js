@@ -1,70 +1,15 @@
-import * as React from 'react';
-// base table filter row
+import { withComponents } from '@devexpress/dx-react-core';
 import { TableFilterRow as TableFilterRowBase } from '@devexpress/dx-react-grid';
-import { StyledTableCell } from '../templates/table-cell';
-import { StyledTableRow } from '../templates/table-row';
-import { SearchInput } from '../utils/SearchInput';
+import { TableFilterCell as Cell } from '../templates/table-filter-cell';
+import { TableRow as Row } from '../templates/table-row';
+import { Editor } from '../templates/filter-row/editor';
+import { FilterSelector } from '../templates/filter-row/filter-selector';
+import { ToggleButton } from '../templates/filter-row/filter-selector/toggle-button';
+import { Icon } from '../templates/filter-row/icon';
 
-const defaultMessages = {
-  filterPlaceholder: 'Filter...',
-};
 
-// custom plugin components
-const TableFilterCell = ({
-  filter,
-  onFilter,
-  children,
-  column,
-  tableRow,
-  tableColumn,
-  getMessage,
-  filteringEnabled,
-  ...restProps
-}) => <StyledTableCell {...restProps}>{children}</StyledTableCell>;
+export const TableFilterRow = withComponents({
+  Row, Cell, Editor, FilterSelector, Icon, ToggleButton,
+})(TableFilterRowBase);
 
-const GrommetTableRow = ({
-  children, row, tableRow, ...restProps
-}) => (
-  <StyledTableRow
-    {...restProps}
-  >
-    {children}
-  </StyledTableRow>
-);
-
-const Editor = ({
-  value,
-  disabled,
-  getMessage,
-  onChange,
-  className,
-  ...restProps
-}) => (
-  <SearchInput
-    value={value || ''}
-    onChange={event => onChange(event.target.value)}
-    readOnly={disabled}
-    placeHolder={getMessage('filterPlaceholder')}
-    className='filter-editor'
-    {...restProps}
-  />
-);
-
-// custom table filter row plugin
-export class TableFilterRow extends React.PureComponent {
-  render() {
-    const { messages, ...restProps } = this.props;
-
-    return (
-      <TableFilterRowBase
-        cellComponent={TableFilterCell}
-        rowComponent={GrommetTableRow}
-        filterSelectorComponent={() => null}
-        iconComponent={() => null}
-        editorComponent={Editor}
-        messages={{ ...defaultMessages, ...messages }}
-        {...restProps}
-      />
-    );
-  }
-}
+TableFilterRow.ROW_TYPE = TableFilterRowBase.ROW_TYPE;

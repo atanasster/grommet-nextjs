@@ -1,22 +1,17 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import styled from 'styled-components';
-
-export const StyledTableRow = styled.tr`
-  height: 100%;
-  ${props => props.theme.table.row && props.theme.table.row.extend}
-`;
+import { TableRow as TableRowGrommet } from 'grommet';
 
 export const TableRow = ({
   children,
   row, tableRow,
   ...rest
 }) => (
-  <StyledTableRow
+  <TableRowGrommet
     {...rest}
   >
     {children}
-  </StyledTableRow>
+  </TableRowGrommet>
 );
 
 TableRow.propTypes = {

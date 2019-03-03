@@ -1,17 +1,17 @@
 import * as React from 'react';
 import * as PropTypes from 'prop-types';
-import { StyledTableRow } from './table-row';
+import { TableRow as TableRowGrommet } from 'grommet';
 
 export const TableStubRow = ({
   children,
   tableRow,
   ...restProps
 }) => (
-  <StyledTableRow
+  <TableRowGrommet
     {...restProps}
   >
     {children}
-  </StyledTableRow>
+  </TableRowGrommet>
 );
 
 TableStubRow.propTypes = {
