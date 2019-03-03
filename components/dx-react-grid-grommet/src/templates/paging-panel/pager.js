@@ -16,7 +16,7 @@ export const Pager = ({
 }) => (
   <Box
     overflow='hidden'
-    pad='small'
+    pad='xsmall'
     gap='xsmall'
   >
     {!!pageSizes.length && (

@@ -10,6 +10,9 @@ export const Toolbar = ({
     border='bottom'
     direction='row-responsive'
     style={style}
+    align='center'
+    pad='xsmall'
+    gap='xsmall'
     {...restProps}
   >
     {children}

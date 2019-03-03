@@ -45,7 +45,6 @@ export default class IconsPage extends React.Component {
               style={{
                 WebkitAppearance: 'none',
               }}
-
               value={search}
               type='search'
               onChange={({ target: { value } }) => this.setState({ search: value })}

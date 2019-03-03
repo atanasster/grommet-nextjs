@@ -2,6 +2,7 @@ export * from './grid';
 export * from './plugins/column-chooser';
 export * from './plugins/drag-drop-provider';
 export * from './plugins/paging-panel';
+export * from './plugins/search-panel';
 export * from './plugins/table';
 export * from './plugins/table-column-reordering';
 export * from './plugins/table-column-resizing';

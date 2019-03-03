@@ -7,6 +7,7 @@ import {
   IntegratedSorting,
   PagingState,
   IntegratedPaging,
+  SearchState,
 } from '@devexpress/dx-react-grid';
 
 import {
@@ -21,6 +22,7 @@ import {
   TableColumnVisibility,
   Toolbar,
   PagingPanel,
+  SearchPanel,
 } from '../components/dx-react-grid-grommet/src';
 
 import Page from '../components/app/Page';
@@ -104,28 +106,25 @@ export default class DXGrid extends React.Component {
     currentPage: 0,
     pageSize: 5,
     pageSizes: [5, 10, 15],
+    searchValue: '',
   };
 
-  changeColumnOrder = (newOrder) => {
-    this.setState({ columnOrder: newOrder });
-  };
-  changeColumnWidths = (columnWidths) => {
-    this.setState({ columnWidths });
-  };
+  changeColumnOrder = newOrder => this.setState({ columnOrder: newOrder });
 
+  changeColumnWidths = columnWidths => this.setState({ columnWidths });
 
-  hiddenColumnNamesChange = (hiddenColumnNames) => {
-    this.setState({ hiddenColumnNames });
-  };
+  hiddenColumnNamesChange = hiddenColumnNames => this.setState({ hiddenColumnNames });
 
   changeCurrentPage = currentPage => this.setState({ currentPage });
 
   changePageSize = pageSize => this.setState({ pageSize });
 
+  changeSearchValue = value => this.setState({ searchValue: value });
+
   render() {
     const {
       rows, columns, tableColumnExtensions, columnOrder, columnWidths,
-      hiddenColumnNames, pageSize, pageSizes, currentPage,
+      hiddenColumnNames, pageSize, pageSizes, currentPage, searchValue,
     } = this.state;
     return (
       <Page title='devex react grid'>
@@ -137,6 +136,10 @@ export default class DXGrid extends React.Component {
             <DragDropProvider />
             <SortingState />
             <IntegratedSorting />
+            <SearchState
+              value={searchValue}
+              onValueChange={this.changeSearchValue}
+            />
             <FilteringState defaultFiltering={[]} />
             <IntegratedFiltering />
             <PagingState
@@ -146,7 +149,6 @@ export default class DXGrid extends React.Component {
               onPageSizeChange={this.changePageSize}
             />
             <IntegratedPaging />
-
             <Table
               columnExtensions={tableColumnExtensions}
             />
@@ -164,6 +166,7 @@ export default class DXGrid extends React.Component {
               onHiddenColumnNamesChange={this.hiddenColumnNamesChange}
             />
             <Toolbar />
+            <SearchPanel />
             <ColumnChooser />
             <TableFilterRow />
             <PagingPanel
