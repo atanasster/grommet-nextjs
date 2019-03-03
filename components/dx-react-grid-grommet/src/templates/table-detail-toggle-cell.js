@@ -1,9 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Box, Button } from 'grommet';
+import styled from 'styled-components';
+import { Button } from 'grommet';
 import { FormDown, FormUp } from 'grommet-icons';
 import { StyledTableCell } from './table-cell';
 
+const StyledButton = styled(Button)`
+  display: contents;
+`;
 const TableDetailToggleCellBase = ({
   style, expanded, classes, onToggle,
   tableColumn, tableRow, row,
@@ -19,13 +23,11 @@ const TableDetailToggleCellBase = ({
       style={style}
       {...restProps}
     >
-      <Box direction='row' align='center'>
-        <Button
-          onClick={handleClick}
-        >
-          {expanded ? <FormUp /> : <FormDown />}
-        </Button>
-      </Box>
+      <StyledButton
+        onClick={handleClick}
+      >
+        {expanded ? <FormUp /> : <FormDown />}
+      </StyledButton>
     </StyledTableCell>
   );
 };
