@@ -226,7 +226,9 @@ export default class DXGrid extends React.Component {
             <Toolbar />
             <SearchPanel />
             <ColumnChooser />
-            <TableFilterRow />
+            <TableFilterRow
+              showFilterSelector
+            />
             <TableRowDetail
               contentComponent={RowDetail}
             />

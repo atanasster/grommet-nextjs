@@ -16,11 +16,11 @@ const FixedCellBase = withTheme(({
   const CellPlaceholder = styled(component)`
     position: sticky;
     z-index: 300;
+    background-color: ${normalizeColor('active', theme)};
     background-clip: padding-box;
     ${props => props.divRight && `border-right: solid ${props.theme.global.borderSize.xsmall} ${normalizeColor('border', props.theme)};`}}
     ${props => props.divLeft && `border-left: solid ${props.theme.global.borderSize.xsmall} ${normalizeColor('border', props.theme)};`}}
   `;
-  console.log(component);
   return (
     <CellPlaceholder
       divLeft={showLeftDivider}
