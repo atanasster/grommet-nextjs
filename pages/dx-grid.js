@@ -50,13 +50,7 @@ const columnBands = [
     title: 'Personal Data',
     children: [
       { columnName: 'name' },
-      {
-        title: 'Full Name',
-        children: [
-          { columnName: 'card' },
-        ],
-      },
-      { columnName: 'city' },
+      { columnName: 'sex' },
     ],
   },
 ];
@@ -134,7 +128,7 @@ export default class DXGrid extends React.Component {
     tableColumnExtensions: [
       { columnName: 'sex', width: 100 },
     ],
-    columnOrder: ['name', 'city', 'sex', 'car'],
+    columnOrder: ['name', 'sex', 'city', 'car'],
     hiddenColumnNames: [],
     currentPage: 0,
     pageSize: 5,
@@ -233,7 +227,7 @@ export default class DXGrid extends React.Component {
               contentComponent={RowDetail}
             />
             <TableFixedColumns
-              leftColumns={['name']}
+              leftColumns={['name', 'sex']}
             />
             <PagingPanel
               pageSizes={pageSizes}
