@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import styled, { withTheme } from 'styled-components';
+import styled from 'styled-components';
 import { CheckBox } from 'grommet';
 import { StyledSelectCell } from './table-select-cell';
 
@@ -11,13 +11,12 @@ const AllSelectionCell = styled(StyledSelectCell)`
   `}
 `;
 
-const TableSelectAllCellBase = withTheme(({
-  allSelected, someSelected, disabled, onToggle, classes,
-  className, tableRow, tableColumn, rowSpan, theme,
+const TableSelectAllCellBase = ({
+  allSelected, someSelected, disabled, onToggle,
+  tableRow, tableColumn, rowSpan,
   ...restProps
 }) => (
   <AllSelectionCell
-    theme={theme}
     alignWithRowSpan={rowSpan > 1}
     rowSpan={rowSpan}
     {...restProps}
@@ -35,7 +34,7 @@ const TableSelectAllCellBase = withTheme(({
         }}
     />
   </AllSelectionCell>
-));
+);
 
 TableSelectAllCellBase.propTypes = {
   allSelected: PropTypes.bool,

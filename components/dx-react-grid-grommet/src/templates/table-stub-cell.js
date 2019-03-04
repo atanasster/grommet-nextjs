@@ -4,8 +4,6 @@ import { StyledTableCell } from './table-cell';
 
 
 export const TableStubCell = ({
-  classes,
-  className,
   tableRow,
   tableColumn,
   ...restProps

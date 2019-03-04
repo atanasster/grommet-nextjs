@@ -216,12 +216,12 @@ export default class DXGrid extends React.Component {
               showSelectAll
               showSelectionColumn={true}
             />
-            <TableBandHeader
-              columnBands={columnBands}
-            />
             <TableColumnVisibility
               hiddenColumnNames={hiddenColumnNames}
               onHiddenColumnNamesChange={this.hiddenColumnNamesChange}
+            />
+            <TableBandHeader
+              columnBands={columnBands}
             />
             <Toolbar />
             <SearchPanel />

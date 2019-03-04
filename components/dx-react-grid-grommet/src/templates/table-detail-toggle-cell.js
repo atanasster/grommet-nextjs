@@ -9,9 +9,8 @@ const StyledButton = styled(Button)`
   display: contents;
 `;
 const TableDetailToggleCellBase = ({
-  style, expanded, classes, onToggle,
+  style, expanded, onToggle,
   tableColumn, tableRow, row,
-  className,
   ...restProps
 }) => {
   const handleClick = (e) => {

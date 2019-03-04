@@ -7,8 +7,6 @@ export const TableNoDataCell = ({
   style,
   colSpan,
   getMessage,
-  classes,
-  className,
   tableRow,
   tableColumn,
   ...restProps

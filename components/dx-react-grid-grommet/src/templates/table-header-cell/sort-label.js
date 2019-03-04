@@ -75,7 +75,7 @@ const onClick = (e, onSort) => {
 
 const SortLabelBase = ({
   column, align, direction, children, onSort,
-  classes, getMessage, disabled, className, ...restProps
+  getMessage, disabled, ...restProps
 }) => (
   <div
     {...restProps}

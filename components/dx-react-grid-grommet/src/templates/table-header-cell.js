@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import styled, { withTheme } from 'styled-components';
+import styled from 'styled-components';
 import { DragSource } from '@devexpress/dx-react-core';
 import { normalizeColor } from 'grommet/utils';
 import { StyledTableCell } from './table-cell';
@@ -75,11 +75,11 @@ class TableHeaderCellBase extends React.PureComponent {
 
   render() {
     const {
-      style, column, tableColumn,
+      column, tableColumn,
       showGroupingControls, onGroup, groupingEnabled,
       draggingEnabled,
       resizingEnabled, onWidthChange, onWidthDraft, onWidthDraftCancel,
-      classes, tableRow, className, children,
+      tableRow, children,
       // @deprecated
       showSortingControls, sortingDirection, sortingEnabled, onSort, before,
       ...restProps
@@ -166,4 +166,4 @@ TableHeaderCellBase.defaultProps = {
   before: undefined,
 };
 
-export const TableHeaderCell = withTheme(TableHeaderCellBase);
+export const TableHeaderCell = TableHeaderCellBase;

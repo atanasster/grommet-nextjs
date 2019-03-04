@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import styled, { withTheme } from 'styled-components';
+import styled from 'styled-components';
 import { CheckBox } from 'grommet';
 import { StyledTableCell } from './table-cell';
 
@@ -12,13 +12,12 @@ export const StyledSelectCell = styled(StyledTableCell)`
   padding-bottom: ${props => props.theme.global.edgeSize.xsmall}; 
 `;
 
-export const TableSelectCell = withTheme(({
-  style, selected, onToggle, classes, theme,
-  className, row, tableRow, tableColumn,
+export const TableSelectCell = ({
+  selected, onToggle,
+  row, tableRow, tableColumn,
   ...restProps
 }) => (
   <StyledSelectCell
-    theme={theme}
     {...restProps}
   >
     <CheckBox
@@ -30,7 +29,7 @@ export const TableSelectCell = withTheme(({
       onChange={() => {}}
     />
   </StyledSelectCell>
-));
+);
 
 TableSelectCell.propTypes = {
   style: PropTypes.object,

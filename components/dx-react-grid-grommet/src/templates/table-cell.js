@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import styled, { withTheme } from 'styled-components';
+import styled from 'styled-components';
 import { TableCell as TableCellGrommet } from 'grommet';
 
 export const StyledTableCell = styled(TableCellGrommet)`
@@ -20,10 +20,9 @@ export const StyledTableCell = styled(TableCellGrommet)`
 `;
 
 
-export const TableCell = withTheme(({
-  column, value, children, classes,
+export const TableCell = ({
+  column, value, children,
   tableRow, tableColumn, row,
-  className,
   ...rest
 }) => (
   <StyledTableCell
@@ -33,7 +32,7 @@ export const TableCell = withTheme(({
   >
     {children || value}
   </StyledTableCell>
-));
+);
 
 TableCell.propTypes = {
   value: PropTypes.any,

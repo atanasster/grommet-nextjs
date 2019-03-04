@@ -15,8 +15,11 @@ const FixedCellBase = withTheme(({
 }) => {
   const CellPlaceholder = styled(component)`
     position: sticky;
-    z-index: 300;
-    background-color: ${normalizeColor('active', theme)};
+    z-index: 19;
+    ${props => `
+        background-color: ${normalizeColor(props.theme.dark ? 'dark-1' : 'light-1', props.theme)};
+        color: ${normalizeColor(props.theme.dark ? 'light-1' : 'dark-1', props.theme)};
+      `}
     background-clip: padding-box;
     ${props => props.divRight && `border-right: solid ${props.theme.global.borderSize.xsmall} ${normalizeColor('border', props.theme)};`}}
     ${props => props.divLeft && `border-left: solid ${props.theme.global.borderSize.xsmall} ${normalizeColor('border', props.theme)};`}}

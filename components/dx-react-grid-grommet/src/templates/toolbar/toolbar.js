@@ -4,7 +4,7 @@ import { Box } from 'grommet';
 
 
 export const Toolbar = ({
-  children, classes, className, style, ...restProps
+  children, classes, style, ...restProps
 }) => (
   <Box
     border='bottom'

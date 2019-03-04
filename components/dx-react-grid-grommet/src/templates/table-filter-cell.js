@@ -5,8 +5,8 @@ import { StyledTableCell } from './table-cell';
 
 const TableFilterCellBase = ({
   filter, getMessage, onFilter,
-  classes, children, className,
-  tableRow, tableColumn, column, filteringEnabled,
+  children, tableRow, tableColumn,
+  column, filteringEnabled,
   ...restProps
 }) => (
   <StyledTableCell

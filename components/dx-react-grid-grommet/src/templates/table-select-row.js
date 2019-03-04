@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import styled, { withTheme } from 'styled-components';
+import styled from 'styled-components';
 import { activeStyle } from 'grommet/utils';
 import { TableRow as TableRowGrommet } from 'grommet';
 
@@ -9,14 +9,13 @@ const StyledSelectRow = styled(TableRowGrommet)`
   ${props => props.isSelected && activeStyle}
 `;
 
-export const TableSelectRow = withTheme(({
+export const TableSelectRow = ({
   selected, selectByRowClick, onToggle,
   row, tableRow, tableColumn,
-  children, theme,
+  children,
   ...restProps
 }) => (
   <StyledSelectRow
-    theme={theme}
     isSelected={selected}
     onClick={(e) => {
       if (!selectByRowClick) return;
@@ -27,7 +26,7 @@ export const TableSelectRow = withTheme(({
   >
     {children}
   </StyledSelectRow>
-));
+);
 
 TableSelectRow.propTypes = {
   children: PropTypes.node,
