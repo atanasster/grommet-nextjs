@@ -3,13 +3,11 @@ import PropTypes from 'prop-types';
 import styled, { withTheme } from 'styled-components';
 import RootRef from '@material-ui/core/RootRef';
 import { RefType } from '@devexpress/dx-react-core';
-import { genericStyles, normalizeColor } from 'grommet/utils';
+import { Table as GrommetTable } from 'grommet';
+import { normalizeColor } from 'grommet/utils';
 
-const StyledTable = styled.table`
-  border-spacing: 0;
-  table-layout: fixed;
-  border-collapse: separate;
-  ${genericStyles} ${props => props.theme.table && props.theme.table.extend};
+const StyledTable = styled(GrommetTable)`
+  width: initial;
   ${props => props.sticky && `
     position: sticky;
     z-index: 500;
