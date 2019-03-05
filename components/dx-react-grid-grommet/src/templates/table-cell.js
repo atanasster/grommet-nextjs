@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import { TableCell as TableCellGrommet } from 'grommet';
+import { TableCell as GrommetCell } from 'grommet';
 
-export const StyledTableCell = styled(TableCellGrommet)`
+const StyledCell = styled(GrommetCell)`
   &:first-child {
       padding-left: ${props => props.theme.global.edgeSize.small};
   }
@@ -20,12 +20,16 @@ export const StyledTableCell = styled(TableCellGrommet)`
 `;
 
 
+export const StyledTableCell = props => <StyledCell plain={true} {...props} />;
+
+
 export const TableCell = ({
   column, value, children,
   tableRow, tableColumn, row,
   ...rest
 }) => (
   <StyledTableCell
+    plain={true}
     align={tableColumn && tableColumn.align}
     noWrap={!(tableColumn && tableColumn.wordWrapEnabled)}
     {...rest}

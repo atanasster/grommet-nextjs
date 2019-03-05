@@ -58,10 +58,10 @@ const columnBands = [
 export default class DXGrid extends React.Component {
   state = {
     columns: [
+      { name: 'car', title: 'Car' },
       { name: 'name', title: 'Name' },
       { name: 'sex', title: 'Sex' },
       { name: 'city', title: 'City' },
-      { name: 'car', title: 'Car' },
     ],
     rows: [
       {
@@ -120,15 +120,15 @@ export default class DXGrid extends React.Component {
       },
     ],
     columnWidths: [
+      { columnName: 'car', width: 240 },
       { columnName: 'name', width: 180 },
       { columnName: 'sex', width: 180 },
       { columnName: 'city', width: 180 },
-      { columnName: 'car', width: 240 },
     ],
     tableColumnExtensions: [
-      { columnName: 'sex', width: 100 },
+      {},
     ],
-    columnOrder: ['name', 'sex', 'city', 'car'],
+    columnOrder: ['car', 'name', 'sex', 'city'],
     hiddenColumnNames: [],
     currentPage: 0,
     pageSize: 5,
@@ -227,7 +227,7 @@ export default class DXGrid extends React.Component {
               contentComponent={RowDetail}
             />
             <TableFixedColumns
-              leftColumns={['name', 'sex']}
+              leftColumns={['car']}
             />
             <PagingPanel
               pageSizes={pageSizes}

@@ -14,8 +14,9 @@ const BandedCell = styled(StyledTableCell)`
       padding-right: ${props => props.theme.global.edgeSize.medium};
       border-right: 0;
     }
-    height: theme.spacing.unit * 6;
-    overflow: hidden
+    vertical-align: middle;
+    height: ${props => props.theme.global.edgeSize.large};
+    overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
     border-bottom: ${props => `solid ${props.theme.global.borderSize.xsmall} ${normalizeColor('border', props.theme)};`}}
