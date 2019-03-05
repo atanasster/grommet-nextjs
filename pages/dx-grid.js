@@ -15,6 +15,8 @@ import {
   CustomSummary,
   IntegratedSummary,
   DataTypeProvider,
+  GroupingState,
+  IntegratedGrouping,
 } from '@devexpress/dx-react-grid';
 
 import {
@@ -35,6 +37,7 @@ import {
   TableFixedColumns,
   TableBandHeader,
   TableSummaryRow,
+  TableGroupRow,
 } from '../components/dx-react-grid-grommet/src';
 
 import Page from '../components/app/Page';
@@ -68,6 +71,21 @@ const CurrencyTypeProvider = props => (
     {...props}
   />
 );
+
+const GroupCellContent = ({ column, row }) => (
+  <Box direction='row' gap='small' as='span'>
+    Group
+    <Text weight='bold'>
+      {column.title}
+    </Text>
+    by first letter:
+    <Text weight='bold'>
+      {row.value}
+    </Text>
+  </Box>
+);
+
+const cityGroupCriteria = value => ({ key: value.substr(0, 1) });
 
 export default class DXGrid extends React.Component {
   state = {
@@ -163,6 +181,13 @@ export default class DXGrid extends React.Component {
       { columnName: 'amount', type: 'sum' },
     ],
     currencyColumns: ['amount'],
+    integratedGroupingColumnExtensions: [
+      { columnName: 'city', criteria: cityGroupCriteria },
+    ],
+    tableGroupColumnExtension: [
+      { columnName: 'city', showWhenGrouped: true },
+    ],
+    grouping: [{ columnName: 'city' }],
   };
 
   changeColumnOrder = newOrder => this.setState({ columnOrder: newOrder });
@@ -196,6 +221,7 @@ export default class DXGrid extends React.Component {
       rows, columns, tableColumnExtensions, columnOrder, columnWidths,
       hiddenColumnNames, pageSize, pageSizes, currentPage, searchValue,
       selection, expandedRowIds, currencyColumns, totalSummaryItems,
+      grouping, integratedGroupingColumnExtensions, tableGroupColumnExtension,
     } = this.state;
     return (
       <Page title='devex react grid'>
@@ -203,83 +229,105 @@ export default class DXGrid extends React.Component {
           <Heading level={1}>
             <strong>DevEx Reactive Grid</strong>
           </Heading>
-          <Grid rows={rows} columns={columns}>
-            <RowDetailState
-              expandedRowIds={expandedRowIds}
-              onExpandedRowIdsChange={this.changeExpandedDetails}
-            />
-            <CurrencyTypeProvider
-              for={currencyColumns}
-            />
-            <SummaryState
-              totalItems={totalSummaryItems}
-            />
-            <DragDropProvider />
-            <SortingState />
-            <IntegratedSorting />
-            <SearchState
-              value={searchValue}
-              onValueChange={this.changeSearchValue}
-            />
-            <FilteringState defaultFiltering={[]} />
-            <IntegratedFiltering />
-            <PagingState
-              currentPage={currentPage}
-              onCurrentPageChange={this.changeCurrentPage}
-              pageSize={pageSize}
-              onPageSizeChange={this.changePageSize}
-            />
-            <IntegratedPaging />
-            <SelectionState
-              selection={selection}
-              onSelectionChange={this.changeSelection}
-            />
-            <IntegratedSelection />
-            <CustomSummary
-              totalValues={this.getTotalSummaryValues()}
-            />
-            <Table
-              columnExtensions={tableColumnExtensions}
-            />
-            <TableColumnResizing
-              columnWidths={columnWidths}
-              onColumnWidthsChange={this.changeColumnWidths}
-            />
-            <TableColumnReordering
-              order={columnOrder}
-              onOrderChange={this.changeColumnOrder}
-            />
-            <TableHeaderRow showSortingControls={true} />
-            <TableSelection
-              selectByRowClick={true}
-              highlightRow={true}
-              showSelectAll={true}
-              showSelectionColumn={true}
-            />
-            <TableColumnVisibility
-              hiddenColumnNames={hiddenColumnNames}
-              onHiddenColumnNamesChange={this.hiddenColumnNamesChange}
-            />
-            <Toolbar />
-            <SearchPanel />
-            <ColumnChooser />
-            <TableFilterRow
-              showFilterSelector={true}
-            />
-            <TableSummaryRow />
-            <TableRowDetail
-              contentComponent={RowDetail}
-            />
-            <TableBandHeader
-              columnBands={columnBands}
-            />
-            <TableFixedColumns
-              leftColumns={['car']}
-            />
-            <PagingPanel
-              pageSizes={pageSizes}
-            />
-          </Grid>
+          <Box gap='medium'>
+            <Grid rows={rows} columns={columns}>
+              <RowDetailState
+                expandedRowIds={expandedRowIds}
+                onExpandedRowIdsChange={this.changeExpandedDetails}
+              />
+              <CurrencyTypeProvider
+                for={currencyColumns}
+              />
+              <SummaryState
+                totalItems={totalSummaryItems}
+              />
+              <DragDropProvider />
+              <SortingState />
+              <IntegratedSorting />
+              <SearchState
+                value={searchValue}
+                onValueChange={this.changeSearchValue}
+              />
+              <FilteringState defaultFiltering={[]} />
+              <IntegratedFiltering />
+              <PagingState
+                currentPage={currentPage}
+                onCurrentPageChange={this.changeCurrentPage}
+                pageSize={pageSize}
+                onPageSizeChange={this.changePageSize}
+              />
+              <IntegratedPaging />
+
+              <SelectionState
+                selection={selection}
+                onSelectionChange={this.changeSelection}
+              />
+              <IntegratedSelection />
+              <CustomSummary
+                totalValues={this.getTotalSummaryValues()}
+              />
+              <Table
+                columnExtensions={tableColumnExtensions}
+              />
+              <TableColumnResizing
+                columnWidths={columnWidths}
+                onColumnWidthsChange={this.changeColumnWidths}
+              />
+              <TableColumnReordering
+                order={columnOrder}
+                onOrderChange={this.changeColumnOrder}
+              />
+              <TableHeaderRow showSortingControls={true} />
+              <TableSelection
+                selectByRowClick={true}
+                highlightRow={true}
+                showSelectAll={true}
+                showSelectionColumn={true}
+              />
+              <TableColumnVisibility
+                hiddenColumnNames={hiddenColumnNames}
+                onHiddenColumnNamesChange={this.hiddenColumnNamesChange}
+              />
+              <Toolbar />
+              <SearchPanel />
+              <ColumnChooser />
+              <TableFilterRow
+                showFilterSelector={true}
+              />
+              <TableSummaryRow />
+              <TableRowDetail
+                contentComponent={RowDetail}
+              />
+              <TableBandHeader
+                columnBands={columnBands}
+              />
+              <TableFixedColumns
+                leftColumns={['car']}
+              />
+              <PagingPanel
+                pageSizes={pageSizes}
+              />
+            </Grid>
+            <Box>
+              <Heading level={3}>
+                Grid with grouping
+              </Heading>
+              <Grid rows={rows} columns={columns}>
+                <GroupingState
+                  grouping={grouping}
+                />
+                <IntegratedGrouping
+                  columnExtensions={integratedGroupingColumnExtensions}
+                />
+                <Table />
+                <TableHeaderRow />
+                <TableGroupRow
+                  contentComponent={GroupCellContent}
+                  columnExtensions={tableGroupColumnExtension}
+                />
+              </Grid>
+            </Box>
+          </Box>
         </Box>
       </Page>
     );

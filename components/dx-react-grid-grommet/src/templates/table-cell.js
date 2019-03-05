@@ -4,6 +4,8 @@ import styled from 'styled-components';
 import { TableCell as GrommetCell } from 'grommet';
 
 const StyledCell = styled(GrommetCell)`
+  padding-left: ${props => props.theme.global.edgeSize.xsmall};
+  padding-right: ${props => props.theme.global.edgeSize.xsmall};
   &:first-child {
       padding-left: ${props => props.theme.global.edgeSize.small};
   }
