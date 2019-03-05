@@ -11,6 +11,10 @@ import {
   IntegratedSelection,
   SelectionState,
   RowDetailState,
+  SummaryState,
+  CustomSummary,
+  IntegratedSummary,
+  DataTypeProvider,
 } from '@devexpress/dx-react-grid';
 
 import {
@@ -30,6 +34,7 @@ import {
   TableRowDetail,
   TableFixedColumns,
   TableBandHeader,
+  TableSummaryRow,
 } from '../components/dx-react-grid-grommet/src';
 
 import Page from '../components/app/Page';
@@ -55,6 +60,15 @@ const columnBands = [
   },
 ];
 
+const CurrencyFormatter = ({ value }) => `$${value}`;
+
+const CurrencyTypeProvider = props => (
+  <DataTypeProvider
+    formatterComponent={CurrencyFormatter}
+    {...props}
+  />
+);
+
 export default class DXGrid extends React.Component {
   state = {
     columns: [
@@ -62,61 +76,67 @@ export default class DXGrid extends React.Component {
       { name: 'name', title: 'Name' },
       { name: 'sex', title: 'Sex' },
       { name: 'city', title: 'City' },
+      { name: 'amount', title: 'Price' },
     ],
     rows: [
       {
-        sex: 'Female', name: 'Sandra', city: 'Las Vegas', car: 'Audi A4',
+        sex: 'Female', name: 'Sandra', city: 'Las Vegas', car: 'Audi A4', amount: 35000,
       },
       {
-        sex: 'Male', name: 'Paul', city: 'Paris', car: 'Nissan Altima',
+        sex: 'Male', name: 'Paul', city: 'Paris', car: 'Nissan Altima', amount: 21000,
       },
       {
-        sex: 'Male', name: 'Mark', city: 'Paris', car: 'Honda Accord',
+        sex: 'Male', name: 'Mark', city: 'Paris', car: 'Honda Accord', amount: 15600,
       },
       {
-        sex: 'Male', name: 'Paul', city: 'Paris', car: 'Nissan Altima',
+        sex: 'Male', name: 'Paul', city: 'Paris', car: 'Nissan Altima', amount: 22500,
       },
       {
-        sex: 'Female', name: 'Linda', city: 'Austin', car: 'Toyota Corolla',
+        sex: 'Female', name: 'Linda', city: 'Austin', car: 'Toyota Corolla', amount: 13400,
       },
       {
         sex: 'Male',
         name: 'Robert',
         city: 'Las Vegas',
         car: 'Chevrolet Cruze',
+        amount: 18300,
       },
       {
-        sex: 'Female', name: 'Lisa', city: 'London', car: 'BMW 750',
+        sex: 'Female', name: 'Lisa', city: 'London', car: 'BMW 750', amount: 72000,
       },
       {
-        sex: 'Male', name: 'Mark', city: 'Chicago', car: 'Toyota Corolla',
+        sex: 'Male', name: 'Mark', city: 'Chicago', car: 'Toyota Corolla', amount: 13600,
+
       },
       {
         sex: 'Male',
         name: 'Thomas',
         city: 'Rio de Janeiro',
         car: 'Honda Accord',
+        amount: 15200,
       },
       {
-        sex: 'Male', name: 'Robert', city: 'Las Vegas', car: 'Honda Civic',
+        sex: 'Male', name: 'Robert', city: 'Las Vegas', car: 'Honda Civic', amount: 12300,
       },
       {
-        sex: 'Female', name: 'Betty', city: 'Paris', car: 'Honda Civic',
+        sex: 'Female', name: 'Betty', city: 'Paris', car: 'Honda Civic', amount: 12100,
       },
       {
         sex: 'Male',
         name: 'Robert',
         city: 'Los Angeles',
         car: 'Honda Accord',
+        amount: 15850,
       },
       {
         sex: 'Male',
         name: 'William',
         city: 'Los Angeles',
         car: 'Honda Civic',
+        amount: 12500,
       },
       {
-        sex: 'Male', name: 'Mark', city: 'Austin', car: 'Nissan Altima',
+        sex: 'Male', name: 'Mark', city: 'Austin', car: 'Nissan Altima', amount: 21200,
       },
     ],
     columnWidths: [
@@ -124,11 +144,12 @@ export default class DXGrid extends React.Component {
       { columnName: 'name', width: 180 },
       { columnName: 'sex', width: 180 },
       { columnName: 'city', width: 180 },
+      { columnName: 'amount', width: 150 },
     ],
     tableColumnExtensions: [
-      {},
+      { columnName: 'amount', align: 'right' },
     ],
-    columnOrder: ['car', 'name', 'sex', 'city'],
+    columnOrder: ['car', 'name', 'sex', 'city', 'amount'],
     hiddenColumnNames: [],
     currentPage: 0,
     pageSize: 5,
@@ -136,6 +157,12 @@ export default class DXGrid extends React.Component {
     searchValue: '',
     selection: [1],
     expandedRowIds: [],
+    totalSummaryItems: [
+      { columnName: 'city', type: 'count' },
+      { columnName: 'amount', type: 'max' },
+      { columnName: 'amount', type: 'sum' },
+    ],
+    currencyColumns: ['amount'],
   };
 
   changeColumnOrder = newOrder => this.setState({ columnOrder: newOrder });
@@ -154,11 +181,21 @@ export default class DXGrid extends React.Component {
 
   changeExpandedDetails = expandedRowIds => this.setState({ expandedRowIds });
 
+  getTotalSummaryValues = () => {
+    const { selection, rows, totalSummaryItems } = this.state;
+    const selectionSet = new Set(selection);
+    const selectedRows = rows.filter((row, rowIndex) => selectionSet.has(rowIndex));
+    return totalSummaryItems.map((summary) => {
+      const { columnName, type } = summary;
+      return IntegratedSummary.defaultCalculator(type, selectedRows, row => row[columnName]);
+    });
+  };
+
   render() {
     const {
       rows, columns, tableColumnExtensions, columnOrder, columnWidths,
       hiddenColumnNames, pageSize, pageSizes, currentPage, searchValue,
-      selection, expandedRowIds,
+      selection, expandedRowIds, currencyColumns, totalSummaryItems,
     } = this.state;
     return (
       <Page title='devex react grid'>
@@ -170,6 +207,12 @@ export default class DXGrid extends React.Component {
             <RowDetailState
               expandedRowIds={expandedRowIds}
               onExpandedRowIdsChange={this.changeExpandedDetails}
+            />
+            <CurrencyTypeProvider
+              for={currencyColumns}
+            />
+            <SummaryState
+              totalItems={totalSummaryItems}
             />
             <DragDropProvider />
             <SortingState />
@@ -192,6 +235,9 @@ export default class DXGrid extends React.Component {
               onSelectionChange={this.changeSelection}
             />
             <IntegratedSelection />
+            <CustomSummary
+              totalValues={this.getTotalSummaryValues()}
+            />
             <Table
               columnExtensions={tableColumnExtensions}
             />
@@ -205,26 +251,27 @@ export default class DXGrid extends React.Component {
             />
             <TableHeaderRow showSortingControls={true} />
             <TableSelection
-              selectByRowClick
-              highlightRow
-              showSelectAll
+              selectByRowClick={true}
+              highlightRow={true}
+              showSelectAll={true}
               showSelectionColumn={true}
             />
             <TableColumnVisibility
               hiddenColumnNames={hiddenColumnNames}
               onHiddenColumnNamesChange={this.hiddenColumnNamesChange}
             />
-            <TableBandHeader
-              columnBands={columnBands}
-            />
             <Toolbar />
             <SearchPanel />
             <ColumnChooser />
             <TableFilterRow
-              showFilterSelector
+              showFilterSelector={true}
             />
+            <TableSummaryRow />
             <TableRowDetail
               contentComponent={RowDetail}
+            />
+            <TableBandHeader
+              columnBands={columnBands}
             />
             <TableFixedColumns
               leftColumns={['car']}
