@@ -7,7 +7,7 @@ import { Table as GrommetTable } from 'grommet';
 import { normalizeColor } from 'grommet/utils';
 
 const StyledTable = styled(GrommetTable)`
-  width: initial;
+  width: fit-content;
   ${props => props.sticky && `
     position: sticky;
     z-index: 500;
