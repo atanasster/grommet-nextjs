@@ -15,7 +15,6 @@ export const Icon = ({
 
 Icon.propTypes = {
   expanded: PropTypes.bool.isRequired,
-  classes: PropTypes.object.isRequired,
   className: PropTypes.string,
 };
 

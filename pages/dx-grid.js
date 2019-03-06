@@ -38,6 +38,7 @@ import {
   TableBandHeader,
   TableSummaryRow,
   TableGroupRow,
+  GroupingPanel,
 } from '../components/dx-react-grid-grommet/src';
 
 import Page from '../components/app/Page';
@@ -310,7 +311,7 @@ export default class DXGrid extends React.Component {
             </Grid>
             <Box>
               <Heading level={3}>
-                Grid with grouping
+                Custom grouping
               </Heading>
               <Grid rows={rows} columns={columns}>
                 <GroupingState
@@ -327,6 +328,23 @@ export default class DXGrid extends React.Component {
                 />
               </Grid>
             </Box>
+            <Box>
+              <Heading level={3}>
+                Grouping custom UI
+              </Heading>
+              <Grid rows={rows} columns={columns}>
+                <DragDropProvider />
+                <GroupingState defaultGrouping={[{ columnName: 'city' }]} />
+                <IntegratedGrouping />
+
+                <Table />
+                <TableHeaderRow />
+                <TableGroupRow />
+                <Toolbar />
+                <GroupingPanel />
+              </Grid>
+            </Box>
+
           </Box>
         </Box>
       </Page>
