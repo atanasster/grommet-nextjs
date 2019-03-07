@@ -19,7 +19,7 @@ const Chip = ({
 
   <PointerBox
     round='small'
-    background={{ color: 'light-1', opacity: draft ? 0.3 : 1 }}
+    background={{ color: 'light-1', opacity: draft ? 'weak' : undefined }}
     onClick={onClick}
     direction='row'
     align='center'
