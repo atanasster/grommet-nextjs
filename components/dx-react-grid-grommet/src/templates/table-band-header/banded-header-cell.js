@@ -9,7 +9,7 @@ const HeaderCellComponent = styled.div`
   &:last-child {
     border-right: 0;
   }
-  vertical-align: bottom;
+  vertical-align: middle;
   padding-bottom: ${props => props.theme.global.edgeSize.small};
   ${props => props.beforeBorder && `border-left: solid ${props.theme.global.borderSize.xsmall} ${normalizeColor('border', props.theme)};`}
 `;
@@ -18,6 +18,7 @@ export const BandedHeaderCell = ({
   component, beforeBorder, ...restProps
 }) => (
   <HeaderCellComponent
+    scope='col'
     as={component}
     beforeBorder={beforeBorder}
     {...restProps}

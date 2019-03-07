@@ -30,6 +30,7 @@ export const Cell = ({
   ...restProps
 }) => (
   <BandedCell
+    scope='col'
     borderBefore={beforeBorder}
     {...restProps}
   >

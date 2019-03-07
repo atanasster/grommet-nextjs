@@ -91,6 +91,7 @@ class TableHeaderCellBase extends React.PureComponent {
     const align = (tableColumn && tableColumn.align) || 'left';
     const cellLayout = (
       <StyledHeaderCell
+        scope='col'
         noUserSelect={draggingEnabled}
         isDraggable={draggingEnabled}
         cellAlign={align}

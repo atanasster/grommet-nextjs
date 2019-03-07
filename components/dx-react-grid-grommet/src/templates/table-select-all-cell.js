@@ -17,6 +17,7 @@ const TableSelectAllCellBase = ({
   ...restProps
 }) => (
   <AllSelectionCell
+    scope='col'
     alignWithRowSpan={rowSpan > 1}
     rowSpan={rowSpan}
     {...restProps}

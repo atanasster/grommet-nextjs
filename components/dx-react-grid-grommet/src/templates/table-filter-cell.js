@@ -10,6 +10,7 @@ const TableFilterCellBase = ({
   ...restProps
 }) => (
   <StyledTableCell
+    scope='col'
     {...restProps}
   >
     <Box direction='row' align='center'>
