@@ -17,10 +17,16 @@ const defaultTheme = {
 padding: ${props => props.theme.global.edgeSize.xsmall};
       `,
     },
-    'cell-stub': undefined,
-    'cell-toggle': undefined,
+    'cell-banded-header': {
+      extend: css`
+ border-bottom: ${props => props.theme.global.control.border.width} solid
+    ${props => normalizeColor('border', props.theme)};
+      `,
+    },
     'cell-filter': undefined,
     'cell-nodata': undefined,
+    'cell-stub': undefined,
+    'cell-toggle': undefined,
     'header': {
       extend: css`
  border-bottom: ${props => props.theme.global.control.border.width} solid
@@ -36,7 +42,7 @@ padding: ${props => props.theme.global.edgeSize.xsmall};
     'row': undefined,
     'row-select': undefined,
     'row-stub': undefined,
-    'row-band-header': undefined,
+    'row-banded-header': undefined,
     'row-filter': {
       extend: css`
  border-top: ${props => props.theme.global.control.border.width} solid

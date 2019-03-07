@@ -19,6 +19,7 @@ export const Cell = ({
   <BandedCell
     scope='col'
     borderBefore={beforeBorder}
+    tableContext='cell-banded-header'
     {...restProps}
   >
     {children}

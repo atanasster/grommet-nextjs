@@ -7,7 +7,7 @@ export const Row = ({
   children, row, tableRow, tableColumn, ...restProps
 }) => (
   <TableRowGrommet
-    tableContext='row-band-header'
+    tableContext='row-banded-header'
     {...restProps}
   >
     {children}
