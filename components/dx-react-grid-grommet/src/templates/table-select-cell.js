@@ -2,14 +2,11 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { CheckBox } from 'grommet';
-import { StyledTableCell } from './table-cell';
+import { TableCell } from '../utils/TableCell';
 
-export const StyledSelectCell = styled(StyledTableCell)`
+export const StyledSelectCell = styled(TableCell)`
   overflow: visible;
-  padding-right: 0,
   text-align: center;
-  padding-top: ${props => props.theme.global.edgeSize.xsmall};
-  padding-bottom: ${props => props.theme.global.edgeSize.xsmall}; 
 `;
 
 export const TableSelectCell = ({

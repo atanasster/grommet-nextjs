@@ -1,12 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { TableRow as TableRowGrommet } from 'grommet';
+import { TableRow as TableRowGrommet } from '../../utils/TableRow';
 
 
 export const Row = ({
   children, row, tableRow, tableColumn, ...restProps
 }) => (
   <TableRowGrommet
+    tableContext='row-band-header'
     {...restProps}
   >
     {children}

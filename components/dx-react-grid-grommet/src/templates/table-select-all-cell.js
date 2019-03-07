@@ -7,7 +7,6 @@ import { StyledSelectCell } from './table-select-cell';
 const AllSelectionCell = styled(StyledSelectCell)`
   ${props => props.alignWithRowSpan && `
     vertical-align: bottom;
-    padding-bottom: ${props.theme.global.edgeSize.xsmall};
   `}
 `;
 

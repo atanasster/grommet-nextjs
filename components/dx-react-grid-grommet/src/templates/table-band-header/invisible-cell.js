@@ -1,8 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
-import { StyledTableCell } from '../table-cell';
+import { TableCell } from '../../utils/TableCell';
 
-const HiddenTableCell = styled(StyledTableCell)`
+const HiddenTableCell = styled(TableCell)`
  display: none;
 `;
 

@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { activeStyle } from 'grommet/utils';
-import { TableRow as TableRowGrommet } from 'grommet';
+import { TableRow as TableRowGrommet } from '../utils/TableRow';
 
 
 const StyledSelectRow = styled(TableRowGrommet)`
@@ -16,6 +16,7 @@ export const TableSelectRow = ({
   ...restProps
 }) => (
   <StyledSelectRow
+    tableContext='row-select'
     isSelected={selected}
     onClick={(e) => {
       if (!selectByRowClick) return;

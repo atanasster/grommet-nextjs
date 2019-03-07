@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { TableRow as GrommetTableRow } from '../utils/TableRow';
+import { TableRow as GrommetTableRow } from '../../utils/TableRow';
 
 export const TableRow = ({
   children,
@@ -8,6 +8,7 @@ export const TableRow = ({
   ...rest
 }) => (
   <GrommetTableRow
+    tableContext='row-filter'
     {...rest}
   >
     {children}

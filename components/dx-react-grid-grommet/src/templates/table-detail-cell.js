@@ -1,6 +1,6 @@
 import * as React from 'react';
 import * as PropTypes from 'prop-types';
-import { StyledTableCell } from './table-cell';
+import { TableCell } from '../utils/TableCell';
 
 
 const TableDetailCellBase = ({
@@ -8,13 +8,13 @@ const TableDetailCellBase = ({
   tableColumn, tableRow, row,
   ...restProps
 }) => (
-  <StyledTableCell
+  <TableCell
     style={style}
     colSpan={colSpan}
     {...restProps}
   >
     {children}
-  </StyledTableCell>
+  </TableCell>
 );
 
 TableDetailCellBase.propTypes = {

@@ -2,9 +2,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { Box } from 'grommet';
-import { StyledTableCell } from '../table-cell';
+import { TableCell } from '../../utils/TableCell';
 
-const GroupedCell = styled(StyledTableCell)`
+const GroupedCell = styled(TableCell)`
   cursor: pointer;
   padding-top: padding-left: ${props => props.theme.global.edgeSize.small};
 `;

@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Box } from 'grommet';
-import { StyledTableCell } from './table-cell';
+import { TableCell } from '../utils/TableCell';
 
 const TableFilterCellBase = ({
   filter, getMessage, onFilter,
@@ -9,14 +9,15 @@ const TableFilterCellBase = ({
   column, filteringEnabled,
   ...restProps
 }) => (
-  <StyledTableCell
+  <TableCell
     scope='col'
+    tableContext='cell-filter'
     {...restProps}
   >
     <Box direction='row' align='center'>
       {children}
     </Box>
-  </StyledTableCell>
+  </TableCell>
 );
 
 TableFilterCellBase.propTypes = {

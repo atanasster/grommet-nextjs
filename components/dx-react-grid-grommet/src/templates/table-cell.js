@@ -1,43 +1,20 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import styled from 'styled-components';
-import { TableCell as GrommetCell } from 'grommet';
-
-const StyledCell = styled(GrommetCell)`
-  padding-left: ${props => props.theme.global.edgeSize.xsmall};
-  padding-right: ${props => props.theme.global.edgeSize.xsmall};
-  &:first-child {
-      padding-left: ${props => props.theme.global.edgeSize.small};
-  }
-  ${props => (props.align === 'right') && `
-    text-align: right;
-  `}
-  
-  ${props => (props.align === 'center') && `
-    text-align: center;
-  `}
-  ${props => props.noWrap && `
-    white-space: nowrap;
-  `}
-`;
-
-
-export const StyledTableCell = props => <StyledCell plain={true} {...props} />;
-
+import { TableCell as GrommetCell } from '../utils/TableCell';
 
 export const TableCell = ({
   column, value, children,
   tableRow, tableColumn, row,
   ...rest
 }) => (
-  <StyledTableCell
+  <GrommetCell
     plain={true}
     align={tableColumn && tableColumn.align}
     noWrap={!(tableColumn && tableColumn.wordWrapEnabled)}
     {...rest}
   >
     {children || value}
-  </StyledTableCell>
+  </GrommetCell>
 );
 
 TableCell.propTypes = {

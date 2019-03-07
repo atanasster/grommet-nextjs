@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { StyledTableCell } from './table-cell';
+import { TableCell } from '../utils/TableCell';
 
 
 export const TableStubCell = ({
@@ -8,7 +8,8 @@ export const TableStubCell = ({
   tableColumn,
   ...restProps
 }) => (
-  <StyledTableCell
+  <TableCell
+    tableContext='cell-stub'
     {...restProps}
   />
 );

@@ -14,6 +14,7 @@ export const TableNoDataCell = ({
   <TableCell
     style={style}
     colSpan={colSpan}
+    tableContext='cell-nodata'
     {...restProps}
   >
     <Text size='large'>

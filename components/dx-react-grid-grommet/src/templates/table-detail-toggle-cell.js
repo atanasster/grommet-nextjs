@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { Button } from 'grommet';
 import { FormDown, FormUp } from 'grommet-icons';
-import { StyledTableCell } from './table-cell';
+import { TableCell } from '../utils/TableCell';
 
 const StyledButton = styled(Button)`
   display: contents;
@@ -18,8 +18,9 @@ const TableDetailToggleCellBase = ({
     onToggle();
   };
   return (
-    <StyledTableCell
+    <TableCell
       style={style}
+      tableContext='cell-toggle'
       {...restProps}
     >
       <StyledButton
@@ -27,7 +28,7 @@ const TableDetailToggleCellBase = ({
       >
         {expanded ? <FormUp /> : <FormDown />}
       </StyledButton>
-    </StyledTableCell>
+    </TableCell>
   );
 };
 

@@ -11,8 +11,6 @@ const CellPlaceholder = styled.div`
       color: ${normalizeColor(props.theme.dark ? 'light-1' : 'dark-1', props.theme)};
     `}
   background-clip: padding-box;
-  ${props => props.divRight && `border-right: solid ${props.theme.global.borderSize.xsmall} ${normalizeColor('border', props.theme)};`}}
-  ${props => props.divLeft && `border-left: solid ${props.theme.global.borderSize.xsmall} ${normalizeColor('border', props.theme)};`}}
 `;
 
 const FixedCellBase = withTheme(({

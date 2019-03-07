@@ -3,20 +3,15 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { DragSource } from '@devexpress/dx-react-core';
 import { normalizeColor } from 'grommet/utils';
-import { StyledTableCell } from './table-cell';
+import { TableCell } from '../utils/TableCell';
 
 
 import { ResizingControl, ResizeHandle } from './table-header-cell/resizing-control';
 
-const StyledHeaderCell = styled(StyledTableCell)`
+const StyledHeaderCell = styled(TableCell)`
     outline: none;
     position: relative;
     overflow: visible;
-    padding-right: ${props => props.theme.global.edgeSize.xxsmall};
-    padding-left: ${props => props.theme.global.edgeSize.xxsmall};
-    &:first-child {
-      padding-left: ${props => props.theme.global.edgeSize.xsmall};
-    }
     &:nth-last-child(2) ${ResizeHandle} {
       width: ${props => props.theme.global.edgeSize.xxsmall};
       right: 1px;
@@ -28,8 +23,6 @@ const StyledHeaderCell = styled(StyledTableCell)`
       cursor: pointer;
     `}
     ${props => props.cellAlign === 'right' && `
-       padding-left: ${props.theme.global.edgeSize.xxsmall};
-       padding-right: ${props.theme.global.edgeSize.xxsmall};
        text-align: right;
     `}
     ${props => props.cellAlign === 'center' && `

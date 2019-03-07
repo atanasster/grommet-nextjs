@@ -3,8 +3,9 @@ import PropTypes from 'prop-types';
 import styled, { withTheme } from 'styled-components';
 import RootRef from '@material-ui/core/RootRef';
 import { RefType } from '@devexpress/dx-react-core';
-import { Table as GrommetTable } from 'grommet';
 import { normalizeColor } from 'grommet/utils';
+import { Table as GrommetTable } from '../utils/Table';
+
 
 const StyledTable = styled(GrommetTable)`
   width: fit-content;
@@ -21,7 +22,6 @@ const StyledTable = styled(GrommetTable)`
     top: 0;
   `}
   ${props => (props.use === 'foot') && `
-    border-top: ${`solid ${props.theme.global.borderSize.small} ${normalizeColor('border', props.theme)}`};
     bottom: 0;
   `} 
 `;

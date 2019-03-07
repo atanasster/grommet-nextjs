@@ -1,27 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import { normalizeColor } from 'grommet/utils';
-import { StyledTableCell } from '../table-cell';
+import { TableCell } from '../../utils/TableCell';
 
-const BandedCell = styled(StyledTableCell)`
-    padding-right: ${props => props.theme.global.edgeSize.small};
-    padding-left: ${props => props.theme.global.edgeSize.small};
-    &:first-child {
-      padding-left: ${props => props.theme.global.edgeSize.medium};
-    }
-    &:last-child {
-      padding-right: ${props => props.theme.global.edgeSize.medium};
-      border-right: 0;
-    }
+const BandedCell = styled(TableCell)`
     vertical-align: middle;
     height: ${props => props.theme.global.edgeSize.large};
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
-    border-bottom: ${props => `solid ${props.theme.global.borderSize.xsmall} ${normalizeColor('border', props.theme)};`}}
-    border-right: ${props => `solid ${props.theme.global.borderSize.xsmall} ${normalizeColor('border', props.theme)};`}}
-    ${props => props.borderBefore && `border-left: solid ${props.theme.global.borderSize.xsmall} ${normalizeColor('border', props.theme)};`}}
 `;
 
 

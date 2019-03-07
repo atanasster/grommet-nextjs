@@ -1,7 +1,9 @@
 import { withComponents } from '@devexpress/dx-react-core';
 import { Table as TableBase } from '@devexpress/dx-react-grid';
-import { TableBody, TableHeader, TableFooter } from 'grommet';
 import { Table as TableComponent } from '../templates/table';
+import { TableHeader } from '../utils/TableHeader';
+import { TableBody } from '../utils/TableBody';
+import { TableFooter } from '../utils/TableFooter';
 import { TableRow as Row } from '../templates/table-row';
 import { TableLayout as Layout } from '../templates/table-layout';
 import { TableCell as Cell } from '../templates/table-cell';

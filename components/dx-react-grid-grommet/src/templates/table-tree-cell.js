@@ -2,14 +2,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { Box } from 'grommet';
-import { StyledTableCell } from './table-cell';
+import { TableCell } from '../utils/TableCell';
 
-const StyledTreeCell = styled(StyledTableCell)`
-    padding-right: ${props => props.theme.global.edgeSize.small};
-    padding-left: ${props => props.theme.global.edgeSize.small};
-    &:first-child {
-      padding-left: ${props => props.theme.global.edgeSize.medium};
-    }
+const StyledTreeCell = styled(TableCell)`
     ${props => props.noWrap && 'white-space: nowrap;'}
     ${props => props.alignRight && 'text-align: right;'}
     ${props => props.alignCenter && 'text-align: center;'}

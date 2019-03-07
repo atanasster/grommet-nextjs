@@ -7,7 +7,12 @@ const GroupPanelContainerBase = ({
   children,
   ...restProps
 }) => (
-  <Box direction='row' wrap={true} width='full' gap='small' pad={{ vertical: 'small' }}
+  <Box
+    direction='row'
+    wrap={true}
+    width='full'
+    gap='small'
+    pad={{ vertical: 'small' }}
     {...restProps}
   >
     {children}

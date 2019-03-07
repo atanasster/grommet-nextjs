@@ -1,6 +1,6 @@
 import * as React from 'react';
 import * as PropTypes from 'prop-types';
-import { TableRow as TableRowGrommet } from 'grommet';
+import { TableRow as TableRowGrommet } from '../utils/TableRow';
 
 export const TableStubRow = ({
   children,
@@ -8,6 +8,7 @@ export const TableStubRow = ({
   ...restProps
 }) => (
   <TableRowGrommet
+    tableContext='row-stub'
     {...restProps}
   >
     {children}
