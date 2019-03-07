@@ -52,8 +52,11 @@ padding: ${props => props.theme.global.edgeSize.xsmall};
   },
 };
 
-export const Table = withTheme(({ theme, ...rest }) => (
-  <ThemeContext.Extend value={defaultTheme}>
-    <StyledTable theme={deepMerge(defaultTheme, theme)} {...rest} />
-  </ThemeContext.Extend>
-));
+export const Table = withTheme(({ theme, ...rest }) => {
+  const extTheme = deepMerge(defaultTheme, theme);
+  return (
+    <ThemeContext.Provider value={extTheme}>
+      <StyledTable theme={extTheme} {...rest} />
+    </ThemeContext.Provider>
+  );
+});
