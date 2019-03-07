@@ -14,12 +14,9 @@ const StyledTableCell = styled.td`
 `;
 
 export const TableCell = withTheme(({
-  children,
   scope,
   theme,
   verticalAlign,
-  className,
-  style,
   tableContext,
   ...rest
 }) => {
@@ -30,17 +27,13 @@ export const TableCell = withTheme(({
       scope={scope}
       tableContext={tableContext}
       tableContextTheme={tableContextTheme}
-      className={className}
-      style={style}
       theme={theme}
       verticalAlign={
         verticalAlign ||
         (tableContextTheme ? tableContextTheme.verticalAlign : undefined)
       }
       {...rest}
-    >
-      {children}
-    </StyledTableCell>
+    />
   );
 });
 
