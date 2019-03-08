@@ -1,30 +1,22 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import styled from 'styled-components';
 import { Box } from 'grommet';
-import { TableCell } from '../utils/TableCell';
-
-const StyledTreeCell = styled(TableCell)`
-    ${props => props.noWrap && 'white-space: nowrap;'}
-    ${props => props.alignRight && 'text-align: right;'}
-    ${props => props.alignCenter && 'text-align: center;'}
-`;
+import { TableCell } from '../../utils/TableCell';
 
 const TableTreeCellBase = ({
   column, value, children,
   tableRow, tableColumn, row,
   ...restProps
 }) => (
-  <StyledTreeCell
+  <TableCell
     noWrap={!(tableColumn && tableColumn.wordWrapEnabled)}
-    alignRight={tableColumn && tableColumn.align === 'right'}
-    alignCenter={tableColumn && tableColumn.align === 'center'}
+    align={tableColumn && tableColumn.align}
     {...restProps}
   >
     <Box direction='row' align='center' gap='small'>
       {children}
     </Box>
-  </StyledTreeCell>
+  </TableCell>
 );
 
 TableTreeCellBase.propTypes = {

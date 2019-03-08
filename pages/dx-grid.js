@@ -18,6 +18,8 @@ import {
   GroupingState,
   IntegratedGrouping,
   EditingState,
+  TreeDataState,
+  CustomTreeData,
 } from '@devexpress/dx-react-grid';
 
 import {
@@ -42,6 +44,8 @@ import {
   GroupingPanel,
   TableEditColumn,
   TableEditRow,
+  TableTreeColumn,
+  VirtualTable,
 } from '../components/dx-react-grid-grommet/src';
 
 import Page from '../components/app/Page';
@@ -76,6 +80,7 @@ const CurrencyTypeProvider = props => (
   />
 );
 
+
 const GroupCellContent = ({ column, row }) => (
   <Box direction='row' gap='small' as='span'>
     Group
@@ -91,11 +96,17 @@ const GroupCellContent = ({ column, row }) => (
 
 const cityGroupCriteria = value => ({ key: value.substr(0, 1) });
 
+
+const getChildRows = (row, rootRows) => {
+  const childRows = rootRows.filter(r => r.parentId === (row ? row.id : null));
+  return childRows.length ? childRows : null;
+};
+
 export default class DXGrid extends React.Component {
   state = {
     columns: [
-      { name: 'car', title: 'Car' },
       { name: 'name', title: 'Name' },
+      { name: 'car', title: 'Car' },
       { name: 'sex', title: 'Sex' },
       { name: 'city', title: 'City' },
       { name: 'amount', title: 'Price' },
@@ -361,9 +372,9 @@ export default class DXGrid extends React.Component {
               />
               <TableEditRow />
               <TableEditColumn
-                showAddCommand
-                showEditCommand
-                showDeleteCommand
+                showAddCommand={true}
+                showEditCommand={true}
+                showDeleteCommand={true}
               />
               <TableBandHeader
                 columnBands={columnBands}
@@ -410,7 +421,39 @@ export default class DXGrid extends React.Component {
                 <GroupingPanel />
               </Grid>
             </Box>
-
+            <Box>
+              <Heading level={3}>
+                Tree column
+              </Heading>
+              <Grid
+                rows={rows.map((row, index) => ({
+                    ...row,
+                    parentId: (index > 0 ? Math.trunc((Math.random() * index) / 2) : null),
+                  }))}
+                columns={columns}
+              >
+                <CurrencyTypeProvider
+                  for={currencyColumns}
+                />
+                <TreeDataState />
+                <SummaryState
+                  totalItems={totalSummaryItems}
+                  treeItems={totalSummaryItems}
+                />
+                <CustomTreeData
+                  getChildRows={getChildRows}
+                />
+                <IntegratedSummary />
+                <VirtualTable
+                  columnExtensions={tableColumnExtensions}
+                />
+                <TableHeaderRow />
+                <TableTreeColumn
+                  for='name'
+                />
+                <TableSummaryRow />
+              </Grid>
+            </Box>
           </Box>
         </Box>
       </Page>

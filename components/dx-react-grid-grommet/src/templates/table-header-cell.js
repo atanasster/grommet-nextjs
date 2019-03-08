@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { DragSource } from '@devexpress/dx-react-core';
+import { Box } from 'grommet';
 import { normalizeColor } from 'grommet/utils';
 import { TableCell } from '../utils/TableCell';
 
@@ -93,9 +94,9 @@ class TableHeaderCellBase extends React.PureComponent {
         noWrap={!(tableColumn && tableColumn.wordWrapEnabled)}
         {...restProps}
       >
-        <div>
+        <Box direction='row'>
           {children}
-        </div>
+        </Box>
         {resizingEnabled && (
           <ResizingControl
             onWidthChange={onWidthChange}
