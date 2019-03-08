@@ -17,6 +17,7 @@ import {
   DataTypeProvider,
   GroupingState,
   IntegratedGrouping,
+  EditingState,
 } from '@devexpress/dx-react-grid';
 
 import {
@@ -39,6 +40,7 @@ import {
   TableSummaryRow,
   TableGroupRow,
   GroupingPanel,
+  TableEditColumn,
 } from '../components/dx-react-grid-grommet/src';
 
 import Page from '../components/app/Page';
@@ -189,6 +191,31 @@ export default class DXGrid extends React.Component {
       { columnName: 'city', showWhenGrouped: true },
     ],
     grouping: [{ columnName: 'city' }],
+    editingStateColumnExtensions: [
+      { columnName: 'name', editingEnabled: false },
+    ],
+  };
+
+  commitChanges = ({ added, changed, deleted }) => {
+    let { rows } = this.state;
+    if (added) {
+      const startingAddedId = rows.length > 0 ? rows[rows.length - 1].id + 1 : 0;
+      rows = [
+        ...rows,
+        ...added.map((row, index) => ({
+          id: startingAddedId + index,
+          ...row,
+        })),
+      ];
+    }
+    if (changed) {
+      rows = rows.map(row => (changed[row.id] ? { ...row, ...changed[row.id] } : row));
+    }
+    if (deleted) {
+      const deletedSet = new Set(deleted);
+      rows = rows.filter(row => !deletedSet.has(row.id));
+    }
+    this.setState({ rows });
   };
 
   changeColumnOrder = newOrder => this.setState({ columnOrder: newOrder });
@@ -217,12 +244,35 @@ export default class DXGrid extends React.Component {
     });
   };
 
+  commitChanges = ({ added, changed, deleted }) => {
+    let { rows } = this.state;
+    if (added) {
+      const startingAddedId = rows.length > 0 ? rows[rows.length - 1].id + 1 : 0;
+      rows = [
+        ...rows,
+        ...added.map((row, index) => ({
+          id: startingAddedId + index,
+          ...row,
+        })),
+      ];
+    }
+    if (changed) {
+      rows = rows.map(row => (changed[row.id] ? { ...row, ...changed[row.id] } : row));
+    }
+    if (deleted) {
+      const deletedSet = new Set(deleted);
+      rows = rows.filter(row => !deletedSet.has(row.id));
+    }
+    this.setState({ rows });
+  };
+
   render() {
     const {
       rows, columns, tableColumnExtensions, columnOrder, columnWidths,
       hiddenColumnNames, pageSize, pageSizes, currentPage, searchValue,
       selection, expandedRowIds, currencyColumns, totalSummaryItems,
       grouping, integratedGroupingColumnExtensions, tableGroupColumnExtension,
+      editingStateColumnExtensions,
     } = this.state;
     return (
       <Page title='devex react grid'>
@@ -251,6 +301,11 @@ export default class DXGrid extends React.Component {
               />
               <FilteringState defaultFiltering={[]} />
               <IntegratedFiltering />
+              <EditingState
+                onCommitChanges={this.commitChanges}
+                defaultEditingRowIds={[0]}
+                columnExtensions={editingStateColumnExtensions}
+              />
               <PagingState
                 currentPage={currentPage}
                 onCurrentPageChange={this.changeCurrentPage}
@@ -298,6 +353,11 @@ export default class DXGrid extends React.Component {
               <TableSummaryRow />
               <TableRowDetail
                 contentComponent={RowDetail}
+              />
+              <TableEditColumn
+                showAddCommand
+                showEditCommand
+                showDeleteCommand
               />
               <TableBandHeader
                 columnBands={columnBands}
