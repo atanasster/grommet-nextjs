@@ -22,6 +22,7 @@ const itemsTree = (items, path) => {
       return {
         id: themePath,
         label: <Text truncate={true}>{item}</Text>,
+        name: item,
         items: itemsTree(items[item], themePath),
         children: items[item],
         themePath,

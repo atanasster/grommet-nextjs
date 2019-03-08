@@ -9,7 +9,7 @@ export const getProp = (object, path) => {
 export const getArrayProp = (arr, path) => {
   const parts = path.split('-');
   if (parts.length >= 1 && Array.isArray(arr)) {
-    const el = arr.find(e => e.label === parts[0]);
+    const el = arr.find(e => e.name === parts[0]);
     if (el) {
       if (Array.isArray(el.items)) {
         return getArrayProp(el.items, parts.slice(1).join('-'));
