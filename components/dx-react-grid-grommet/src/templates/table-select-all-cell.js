@@ -1,23 +1,16 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import styled from 'styled-components';
 import { CheckBox } from 'grommet';
 import { StyledSelectCell } from './table-select-cell';
 
-const AllSelectionCell = styled(StyledSelectCell)`
-  ${props => props.alignWithRowSpan && `
-    vertical-align: bottom;
-  `}
-`;
 
 const TableSelectAllCellBase = ({
   allSelected, someSelected, disabled, onToggle,
   tableRow, tableColumn, rowSpan,
   ...restProps
 }) => (
-  <AllSelectionCell
+  <StyledSelectCell
     scope='col'
-    alignWithRowSpan={rowSpan > 1}
     rowSpan={rowSpan}
     {...restProps}
   >
@@ -33,7 +26,7 @@ const TableSelectAllCellBase = ({
           onToggle();
         }}
     />
-  </AllSelectionCell>
+  </StyledSelectCell>
 );
 
 TableSelectAllCellBase.propTypes = {
