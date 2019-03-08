@@ -20,7 +20,8 @@ export const TableCell = withTheme(({
   tableContext,
   ...rest
 }) => {
-  const tableContextTheme = (theme && theme.dxgrid && theme.dxgrid[tableContext]) || {};
+  let tableContextTheme = (theme.dxgrid && theme.dxgrid[tableContext]);
+  tableContextTheme = (theme.dxgrid && theme.dxgrid[tableContextTheme]) || tableContextTheme;
   return (
     <StyledTableCell
       as={scope ? 'th' : undefined}

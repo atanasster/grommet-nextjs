@@ -5,7 +5,6 @@ import { TableCell } from '../../utils/TableCell';
 
 const BandedCell = styled(TableCell)`
     vertical-align: middle;
-    height: ${props => props.theme.global.edgeSize.large};
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;

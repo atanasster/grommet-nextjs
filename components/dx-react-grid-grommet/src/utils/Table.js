@@ -20,12 +20,14 @@ padding: ${props => props.theme.global.edgeSize.xsmall};
     'cell-banded-header': {
       extend: css`
       border-bottom: ${props => props.theme.global.control.border.width} solid ${props => normalizeColor('border', props.theme)};
+      padding: ${props => props.theme.global.edgeSize.xsmall};
       `,
     },
-    'cell-filter': undefined,
-    'cell-nodata': undefined,
+    'cell-filter': 'cell',
+    'cell-header': 'cell',
+    'cell-nodata': 'cell',
     'cell-stub': undefined,
-    'cell-toggle': undefined,
+    'cell-toggle': 'cell',
     'header': {
       extend: css`
  border-bottom: ${props => props.theme.global.control.border.width} solid ${props => normalizeColor('border', props.theme)};

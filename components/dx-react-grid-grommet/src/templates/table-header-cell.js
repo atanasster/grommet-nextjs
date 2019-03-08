@@ -85,9 +85,10 @@ class TableHeaderCellBase extends React.PureComponent {
     const cellLayout = (
       <StyledHeaderCell
         scope='col'
+        tableContext='cell-header'
         noUserSelect={draggingEnabled}
         isDraggable={draggingEnabled}
-        cellAlign={align}
+        align={align}
         dimmed={dragging || (tableColumn && tableColumn.draft)}
         noWrap={!(tableColumn && tableColumn.wordWrapEnabled)}
         {...restProps}
