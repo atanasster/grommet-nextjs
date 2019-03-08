@@ -10,6 +10,7 @@ export * from './plugins/table-column-reordering';
 export * from './plugins/table-column-resizing';
 export * from './plugins/table-column-visibility';
 export * from './plugins/table-edit-column';
+export * from './plugins/table-edit-row';
 export * from './plugins/table-filter-row';
 export * from './plugins/table-fixed-columns';
 export * from './plugins/table-group-row';

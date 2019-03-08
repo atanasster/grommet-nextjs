@@ -41,6 +41,7 @@ import {
   TableGroupRow,
   GroupingPanel,
   TableEditColumn,
+  TableEditRow,
 } from '../components/dx-react-grid-grommet/src';
 
 import Page from '../components/app/Page';
@@ -101,21 +102,22 @@ export default class DXGrid extends React.Component {
     ],
     rows: [
       {
-        sex: 'Female', name: 'Sandra', city: 'Las Vegas', car: 'Audi A4', amount: 35000,
+        id: 0, sex: 'Female', name: 'Sandra', city: 'Las Vegas', car: 'Audi A4', amount: 35000,
       },
       {
-        sex: 'Male', name: 'Paul', city: 'Paris', car: 'Nissan Altima', amount: 21000,
+        id: 1, sex: 'Male', name: 'Paul', city: 'Paris', car: 'Nissan Altima', amount: 21000,
       },
       {
-        sex: 'Male', name: 'Mark', city: 'Paris', car: 'Honda Accord', amount: 15600,
+        id: 2, sex: 'Male', name: 'Mark', city: 'Paris', car: 'Honda Accord', amount: 15600,
       },
       {
-        sex: 'Male', name: 'Paul', city: 'Paris', car: 'Nissan Altima', amount: 22500,
+        id: 3, sex: 'Male', name: 'Paul', city: 'Paris', car: 'Nissan Altima', amount: 22500,
       },
       {
-        sex: 'Female', name: 'Linda', city: 'Austin', car: 'Toyota Corolla', amount: 13400,
+        id: 4, sex: 'Female', name: 'Linda', city: 'Austin', car: 'Toyota Corolla', amount: 13400,
       },
       {
+        id: 5,
         sex: 'Male',
         name: 'Robert',
         city: 'Las Vegas',
@@ -123,13 +125,14 @@ export default class DXGrid extends React.Component {
         amount: 18300,
       },
       {
-        sex: 'Female', name: 'Lisa', city: 'London', car: 'BMW 750', amount: 72000,
+        id: 6, sex: 'Female', name: 'Lisa', city: 'London', car: 'BMW 750', amount: 72000,
       },
       {
-        sex: 'Male', name: 'Mark', city: 'Chicago', car: 'Toyota Corolla', amount: 13600,
+        id: 7, sex: 'Male', name: 'Mark', city: 'Chicago', car: 'Toyota Corolla', amount: 13600,
 
       },
       {
+        id: 8,
         sex: 'Male',
         name: 'Thomas',
         city: 'Rio de Janeiro',
@@ -137,12 +140,13 @@ export default class DXGrid extends React.Component {
         amount: 15200,
       },
       {
-        sex: 'Male', name: 'Robert', city: 'Las Vegas', car: 'Honda Civic', amount: 12300,
+        id: 9, sex: 'Male', name: 'Robert', city: 'Las Vegas', car: 'Honda Civic', amount: 12300,
       },
       {
-        sex: 'Female', name: 'Betty', city: 'Paris', car: 'Honda Civic', amount: 12100,
+        id: 10, sex: 'Female', name: 'Betty', city: 'Paris', car: 'Honda Civic', amount: 12100,
       },
       {
+        id: 11,
         sex: 'Male',
         name: 'Robert',
         city: 'Los Angeles',
@@ -150,6 +154,7 @@ export default class DXGrid extends React.Component {
         amount: 15850,
       },
       {
+        id: 12,
         sex: 'Male',
         name: 'William',
         city: 'Los Angeles',
@@ -157,7 +162,7 @@ export default class DXGrid extends React.Component {
         amount: 12500,
       },
       {
-        sex: 'Male', name: 'Mark', city: 'Austin', car: 'Nissan Altima', amount: 21200,
+        id: 13, sex: 'Male', name: 'Mark', city: 'Austin', car: 'Nissan Altima', amount: 21200,
       },
     ],
     columnWidths: [
@@ -354,6 +359,7 @@ export default class DXGrid extends React.Component {
               <TableRowDetail
                 contentComponent={RowDetail}
               />
+              <TableEditRow />
               <TableEditColumn
                 showAddCommand
                 showEditCommand
