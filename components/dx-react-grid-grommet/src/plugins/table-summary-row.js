@@ -3,9 +3,9 @@ import { TableSummaryRow as TableSummaryRowBase } from '@devexpress/dx-react-gri
 import { TableSummaryItem } from '../templates/table-summary/table-summary-item';
 import { TableSummaryCell as TableCell } from '../templates/table-summary/cell';
 import { TableSummarylRow as TableRow } from '../templates/table-summary/row';
-import { Indent } from '../templates/table-tree/indent';
-import { Content } from '../templates/table-tree/content';
-import { Cell } from '../templates/table-tree/cell';
+import { TableTreeIndent as Indent } from '../templates/table-tree/indent';
+import { TableTreeContent as Content } from '../templates/table-tree/content';
+import { TableTreeCell as Cell } from '../templates/table-tree/cell';
 
 export const TableSummaryRow = withComponents({
   TotalRow: TableRow,
