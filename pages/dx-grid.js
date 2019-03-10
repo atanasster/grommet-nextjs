@@ -1,5 +1,7 @@
 import React from 'react';
-import { Box, Heading, Text } from 'grommet';
+import { css, ThemeContext } from 'styled-components';
+import { normalizeColor, deepMerge } from 'grommet/utils';
+import { Grommet, Box, Heading, Text } from 'grommet';
 import {
   FilteringState,
   IntegratedFiltering,
@@ -47,11 +49,22 @@ import {
   TableTreeColumn,
   VirtualTable,
 } from '../components/dx-react-grid-grommet/src';
-
 import Page from '../components/app/Page';
 
+const customDxTheme = {
+  dxgrid: {
+    'cell-detail': {
+      extend: css`
+  border: ${props => props.theme.global.control.border.width} solid ${props => normalizeColor('brand', props.theme)};
+  padding: ${props => props.theme.global.edgeSize.small};
+  background-color: ${props => normalizeColor('accent-1', props.theme)};
+  `,
+    },
+  },
+};
+
 const RowDetail = ({ row }) => (
-  <Box background='light-1' fill={true} pad='medium' gap='medium'>
+  <Box fill={true} pad='medium' gap='medium'>
     <Heading level={3} margin='none'>
       {`Details for ${row.name} `}
     </Heading>
@@ -297,95 +310,101 @@ export default class DXGrid extends React.Component {
             <strong>DevEx Reactive Grid</strong>
           </Heading>
           <Box gap='medium'>
-            <Grid rows={rows} columns={columns}>
-              <RowDetailState
-                expandedRowIds={expandedRowIds}
-                onExpandedRowIdsChange={this.changeExpandedDetails}
-              />
-              <CurrencyTypeProvider
-                for={currencyColumns}
-              />
-              <SummaryState
-                totalItems={totalSummaryItems}
-              />
-              <DragDropProvider />
-              <SortingState />
-              <IntegratedSorting />
-              <SearchState
-                value={searchValue}
-                onValueChange={this.changeSearchValue}
-              />
-              <FilteringState defaultFiltering={[]} />
-              <IntegratedFiltering />
-              <EditingState
-                onCommitChanges={this.commitChanges}
-                defaultEditingRowIds={[0]}
-                columnExtensions={editingStateColumnExtensions}
-              />
-              <PagingState
-                currentPage={currentPage}
-                onCurrentPageChange={this.changeCurrentPage}
-                pageSize={pageSize}
-                onPageSizeChange={this.changePageSize}
-              />
-              <IntegratedPaging />
+            <ThemeContext.Consumer>
+              {theme => (
+                <Grommet theme={deepMerge(theme, customDxTheme)}>
+                  <Grid rows={rows} columns={columns}>
+                    <RowDetailState
+                      expandedRowIds={expandedRowIds}
+                      onExpandedRowIdsChange={this.changeExpandedDetails}
+                    />
+                    <CurrencyTypeProvider
+                      for={currencyColumns}
+                    />
+                    <SummaryState
+                      totalItems={totalSummaryItems}
+                    />
+                    <DragDropProvider />
+                    <SortingState />
+                    <IntegratedSorting />
+                    <SearchState
+                      value={searchValue}
+                      onValueChange={this.changeSearchValue}
+                    />
+                    <FilteringState defaultFiltering={[]} />
+                    <IntegratedFiltering />
+                    <EditingState
+                      onCommitChanges={this.commitChanges}
+                      defaultEditingRowIds={[0]}
+                      columnExtensions={editingStateColumnExtensions}
+                    />
+                    <PagingState
+                      currentPage={currentPage}
+                      onCurrentPageChange={this.changeCurrentPage}
+                      pageSize={pageSize}
+                      onPageSizeChange={this.changePageSize}
+                    />
+                    <IntegratedPaging />
 
-              <SelectionState
-                selection={selection}
-                onSelectionChange={this.changeSelection}
-              />
-              <IntegratedSelection />
-              <CustomSummary
-                totalValues={this.getTotalSummaryValues()}
-              />
-              <Table
-                columnExtensions={tableColumnExtensions}
-              />
-              <TableColumnResizing
-                columnWidths={columnWidths}
-                onColumnWidthsChange={this.changeColumnWidths}
-              />
-              <TableColumnReordering
-                order={columnOrder}
-                onOrderChange={this.changeColumnOrder}
-              />
-              <TableHeaderRow showSortingControls={true} />
-              <TableSelection
-                selectByRowClick={true}
-                highlightRow={true}
-                showSelectAll={true}
-                showSelectionColumn={true}
-              />
-              <TableColumnVisibility
-                hiddenColumnNames={hiddenColumnNames}
-                onHiddenColumnNamesChange={this.hiddenColumnNamesChange}
-              />
-              <Toolbar />
-              <SearchPanel />
-              <ColumnChooser />
-              <TableFilterRow
-                showFilterSelector={true}
-              />
-              <TableSummaryRow />
-              <TableRowDetail
-                contentComponent={RowDetail}
-              />
-              <TableEditRow />
-              <TableEditColumn
-                showAddCommand={true}
-                showEditCommand={true}
-                showDeleteCommand={true}
-              />
-              <TableBandHeader
-                columnBands={columnBands}
-              />
-              <TableFixedColumns
-                leftColumns={['car']}
-              />
-              <PagingPanel
-                pageSizes={pageSizes}
-              />
-            </Grid>
+                    <SelectionState
+                      selection={selection}
+                      onSelectionChange={this.changeSelection}
+                    />
+                    <IntegratedSelection />
+                    <CustomSummary
+                      totalValues={this.getTotalSummaryValues()}
+                    />
+                    <Table
+                      columnExtensions={tableColumnExtensions}
+                    />
+                    <TableColumnResizing
+                      columnWidths={columnWidths}
+                      onColumnWidthsChange={this.changeColumnWidths}
+                    />
+                    <TableColumnReordering
+                      order={columnOrder}
+                      onOrderChange={this.changeColumnOrder}
+                    />
+                    <TableHeaderRow showSortingControls={true} />
+                    <TableSelection
+                      selectByRowClick={true}
+                      highlightRow={true}
+                      showSelectAll={true}
+                      showSelectionColumn={true}
+                    />
+                    <TableColumnVisibility
+                      hiddenColumnNames={hiddenColumnNames}
+                      onHiddenColumnNamesChange={this.hiddenColumnNamesChange}
+                    />
+                    <Toolbar />
+                    <SearchPanel />
+                    <ColumnChooser />
+                    <TableFilterRow
+                      showFilterSelector={true}
+                    />
+                    <TableSummaryRow />
+                    <TableRowDetail
+                      contentComponent={RowDetail}
+                    />
+                    <TableEditRow />
+                    <TableEditColumn
+                      showAddCommand={true}
+                      showEditCommand={true}
+                      showDeleteCommand={true}
+                    />
+                    <TableBandHeader
+                      columnBands={columnBands}
+                    />
+                    <TableFixedColumns
+                      leftColumns={['car']}
+                    />
+                    <PagingPanel
+                      pageSizes={pageSizes}
+                    />
+                  </Grid>
+                </Grommet>
+              )}
+            </ThemeContext.Consumer>
             <Box>
               <Heading level={3}>
                 Custom grouping
