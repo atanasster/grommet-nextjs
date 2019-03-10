@@ -21,7 +21,6 @@ export const TableSummaryCell = ({
     colSpan={colSpan}
     {...restProps}
   >
-    {console.log(tableColumn.align)}
     <Box
       gap='small'
       fill={true}
