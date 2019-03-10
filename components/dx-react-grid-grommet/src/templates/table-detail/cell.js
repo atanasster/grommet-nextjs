@@ -1,14 +1,15 @@
-import * as React from 'react';
-import * as PropTypes from 'prop-types';
-import { TableCell } from '../utils/TableCell';
+import React from 'react';
+import PropTypes from 'prop-types';
+import { TableCell } from '../../grommet/TableCell';
 
 
-const TableDetailCellBase = ({
+export const TableDetailCell = ({
   colSpan, style, children,
   tableColumn, tableRow, row,
   ...restProps
 }) => (
   <TableCell
+    tableContext='cell-detail'
     style={style}
     colSpan={colSpan}
     {...restProps}
@@ -17,7 +18,7 @@ const TableDetailCellBase = ({
   </TableCell>
 );
 
-TableDetailCellBase.propTypes = {
+TableDetailCell.propTypes = {
   style: PropTypes.object,
   colSpan: PropTypes.number,
   children: PropTypes.node,
@@ -26,7 +27,7 @@ TableDetailCellBase.propTypes = {
   row: PropTypes.any,
 };
 
-TableDetailCellBase.defaultProps = {
+TableDetailCell.defaultProps = {
   style: null,
   colSpan: 1,
   tableColumn: undefined,
@@ -34,5 +35,3 @@ TableDetailCellBase.defaultProps = {
   row: undefined,
   children: undefined,
 };
-
-export const TableDetailCell = TableDetailCellBase;

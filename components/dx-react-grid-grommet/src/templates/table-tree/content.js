@@ -9,7 +9,7 @@ const StyledTreeContent = styled.div`
   text-overflow: ellipsis;
 `;
 
-const TableTreeContentBase = ({
+export const TableTreeContent = ({
   children, ...restProps
 }) => (
   <StyledTreeContent
@@ -21,12 +21,10 @@ const TableTreeContentBase = ({
   </StyledTreeContent>
 );
 
-TableTreeContentBase.propTypes = {
+TableTreeContent.propTypes = {
   children: PropTypes.node,
 };
 
-TableTreeContentBase.defaultProps = {
+TableTreeContent.defaultProps = {
   children: undefined,
 };
-
-export const TableTreeContent = TableTreeContentBase;

@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { Button } from 'grommet';
 import { FormDown, FormUp } from 'grommet-icons';
-import { TableCell } from '../utils/TableCell';
+import { TableCell } from '../grommet/TableCell';
 
 const StyledButton = styled(Button)`
   display: contents;

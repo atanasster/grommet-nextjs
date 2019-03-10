@@ -1,5 +1,5 @@
-import * as React from 'react';
-import * as PropTypes from 'prop-types';
+import React from 'react';
+import PropTypes from 'prop-types';
 import { Box, Button, Text } from 'grommet';
 import { FormPrevious, FormNext } from 'grommet-icons';
 import { firstRowOnPage, lastRowOnPage, calculateStartPage } from '@devexpress/dx-grid-core';

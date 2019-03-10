@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Box } from 'grommet';
-import { TableCell } from '../utils/TableCell';
+import { TableCell } from '../../grommet/TableCell';
 
-const TableFilterCellBase = ({
+export const TableFilterCell = ({
   filter, getMessage, onFilter,
   children, tableRow, tableColumn,
   column, filteringEnabled,
@@ -20,7 +20,7 @@ const TableFilterCellBase = ({
   </TableCell>
 );
 
-TableFilterCellBase.propTypes = {
+TableFilterCell.propTypes = {
   filter: PropTypes.object,
   onFilter: PropTypes.func,
   children: PropTypes.node,
@@ -31,7 +31,7 @@ TableFilterCellBase.propTypes = {
   filteringEnabled: PropTypes.bool,
 };
 
-TableFilterCellBase.defaultProps = {
+TableFilterCell.defaultProps = {
   filter: null,
   onFilter: () => {},
   children: undefined,
@@ -41,4 +41,3 @@ TableFilterCellBase.defaultProps = {
   filteringEnabled: true,
 };
 
-export const TableFilterCell = TableFilterCellBase;

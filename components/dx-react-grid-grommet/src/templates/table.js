@@ -4,11 +4,11 @@ import styled, { withTheme } from 'styled-components';
 import RootRef from '@material-ui/core/RootRef';
 import { RefType } from '@devexpress/dx-react-core';
 import { normalizeColor } from 'grommet/utils';
-import { Table as GrommetTable } from '../utils/Table';
+import { Table as GrommetTable } from '../grommet/Table';
 
 
 const StyledTable = styled(GrommetTable)`
-  width: fit-content;
+  width: 100%;
   ${props => props.sticky && `
     position: sticky;
     z-index: 500;

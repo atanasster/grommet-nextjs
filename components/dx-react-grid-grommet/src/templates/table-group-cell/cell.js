@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { Box } from 'grommet';
-import { TableCell } from '../../utils/TableCell';
+import { TableCell } from '../../grommet/TableCell';
 
 const GroupedCell = styled(TableCell)`
   cursor: pointer;

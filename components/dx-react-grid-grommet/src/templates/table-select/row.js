@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { activeStyle } from 'grommet/utils';
-import { TableRow as TableRowGrommet } from '../utils/TableRow';
+import { TableRow as TableRowGrommet } from '../../grommet/TableRow';
 
 
 const StyledSelectRow = styled(TableRowGrommet)`

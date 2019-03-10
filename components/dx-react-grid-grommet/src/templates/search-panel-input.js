@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Box } from 'grommet';
-import { SearchInput } from '../utils/SearchInput';
+import { SearchInput } from '../grommet/SearchInput';
 
 export const SearchPanelInput = ({
   onValueChange, value, getMessage,

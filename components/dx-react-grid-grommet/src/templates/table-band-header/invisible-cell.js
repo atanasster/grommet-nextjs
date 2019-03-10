@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { TableCell } from '../../utils/TableCell';
+import { TableCell } from '../../grommet/TableCell';
 
 const HiddenTableCell = styled(TableCell)`
  display: none;

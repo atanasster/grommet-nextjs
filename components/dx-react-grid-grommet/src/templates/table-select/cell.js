@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { CheckBox } from 'grommet';
-import { TableCell } from '../utils/TableCell';
+import { TableCell } from '../../grommet/TableCell';
 
 export const StyledSelectCell = styled(TableCell)`
   overflow: visible;
@@ -15,6 +15,7 @@ export const TableSelectCell = ({
   ...restProps
 }) => (
   <StyledSelectCell
+    tableContext='cell-select'
     {...restProps}
   >
     <CheckBox
@@ -29,6 +30,7 @@ export const TableSelectCell = ({
 );
 
 TableSelectCell.propTypes = {
+  tableContext: PropTypes.string,
   style: PropTypes.object,
   selected: PropTypes.bool,
   onToggle: PropTypes.func,
@@ -38,6 +40,7 @@ TableSelectCell.propTypes = {
 };
 
 TableSelectCell.defaultProps = {
+  tableContext: 'cell-select',
   style: null,
   selected: false,
   onToggle: () => {},

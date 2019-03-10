@@ -6,7 +6,7 @@ const HeaderCellComponent = styled.div`
   vertical-align: middle;
 `;
 
-export const BandedHeaderCell = ({
+export const HeaderCell = ({
   component, beforeBorder, ...restProps
 }) => (
   <HeaderCellComponent
@@ -17,12 +17,12 @@ export const BandedHeaderCell = ({
   />
 );
 
-BandedHeaderCell.propTypes = {
+HeaderCell.propTypes = {
   component: PropTypes.func.isRequired,
   beforeBorder: PropTypes.bool,
 };
 
-BandedHeaderCell.defaultProps = {
+HeaderCell.defaultProps = {
   beforeBorder: false,
 };
 

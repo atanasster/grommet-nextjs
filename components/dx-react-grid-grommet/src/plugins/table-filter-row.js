@@ -1,11 +1,11 @@
 import { withComponents } from '@devexpress/dx-react-core';
 import { TableFilterRow as TableFilterRowBase } from '@devexpress/dx-react-grid';
-import { TableFilterCell as Cell } from '../templates/table-filter-cell';
-import { TableRow as Row } from '../templates/filter-row/table-filter-row';
-import { Editor } from '../templates/filter-row/editor';
-import { FilterSelector } from '../templates/filter-row/filter-selector';
-import { ToggleButton } from '../templates/filter-row/filter-selector/toggle-button';
-import { Icon } from '../templates/filter-row/icon';
+import { TableFilterCell as Cell } from '../templates/table-filter/cell';
+import { TableFilterRow as Row } from '../templates/table-filter/row';
+import { Editor } from '../templates/table-filter/editor';
+import { FilterSelector } from '../templates/table-filter/filter-selector';
+import { ToggleButton } from '../templates/table-filter/filter-selector/toggle-button';
+import { Icon } from '../templates/table-filter/icon';
 
 
 export const TableFilterRow = withComponents({

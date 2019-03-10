@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { TableCell as GrommetCell } from '../utils/TableCell';
+import { TableCell as GrommetCell } from '../grommet/TableCell';
 
 export const TableCell = ({
   column, value, children,

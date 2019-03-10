@@ -12,15 +12,10 @@ const TableSummaryItemBase = ({
   <Text
     {...restProps}
     weight='bold'
-    margin={{ left: 'xsmall' }}
   >
-    {
-      <React.Fragment>
-        {getMessage(type)}
-        :&nbsp;
-        {children}
-      </React.Fragment>
-    }
+    {getMessage(type)}
+    :&nbsp;
+    {children}
   </Text>
 );
 

@@ -1,19 +1,21 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { TextInput } from 'grommet';
-import { TableCell } from '../utils/TableCell';
+import { TableCell } from '../../grommet/TableCell';
 
 export const EditCell = ({
   column, value, onValueChange, style, children,
   row, tableRow, tableColumn, editingEnabled, ...restProps
 }) => (
   <TableCell
+    tableContext='cell-edit'
     align={tableColumn && tableColumn.align}
     style={style}
     {...restProps}
   >
     {children || (
     <TextInput
+      focusIndicator={true}
       value={value || ''}
       disabled={!editingEnabled}
       onChange={e => onValueChange(e.target.value)}

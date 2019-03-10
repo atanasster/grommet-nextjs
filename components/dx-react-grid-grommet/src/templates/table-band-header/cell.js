@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import { TableCell } from '../../utils/TableCell';
+import { TableCell } from '../../grommet/TableCell';
 
 const BandedCell = styled(TableCell)`
     vertical-align: middle;

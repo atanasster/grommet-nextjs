@@ -4,7 +4,7 @@ import {
   EditCommandHeadingCell as HeaderCell,
   EditCommandCell as Cell,
   CommandButton as Command,
-} from '../templates/table-edit-command-cell';
+} from '../templates/table-edit/command-cell';
 import { withPatchedProps } from '../utils/with-patched-props';
 
 const TableEditColumnWithWidth = withPatchedProps(props => ({

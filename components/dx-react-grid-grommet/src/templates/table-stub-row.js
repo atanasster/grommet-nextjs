@@ -1,6 +1,6 @@
-import * as React from 'react';
-import * as PropTypes from 'prop-types';
-import { TableRow as TableRowGrommet } from '../utils/TableRow';
+import React from 'react';
+import PropTypes from 'prop-types';
+import { TableRow as TableRowGrommet } from '../grommet/TableRow';
 
 export const TableStubRow = ({
   children,

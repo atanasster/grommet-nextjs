@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import { DragSource } from '@devexpress/dx-react-core';
 import { Box } from 'grommet';
 import { normalizeColor } from 'grommet/utils';
-import { TableCell } from '../utils/TableCell';
+import { TableCell } from '../grommet/TableCell';
 
 
 import { ResizingControl, ResizeHandle } from './table-header-cell/resizing-control';

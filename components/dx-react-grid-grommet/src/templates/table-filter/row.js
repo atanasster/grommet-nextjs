@@ -1,26 +1,27 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { TableRow as GrommetTableRow } from '../grommet/TableRow';
+import { TableRow as GrommetTableRow } from '../../grommet/TableRow';
 
-export const TableRow = ({
+export const TableFilterRow = ({
   children,
   row, tableRow,
   ...rest
 }) => (
   <GrommetTableRow
+    tableContext='row-filter'
     {...rest}
   >
     {children}
   </GrommetTableRow>
 );
 
-TableRow.propTypes = {
+TableFilterRow.propTypes = {
   children: PropTypes.node,
   row: PropTypes.any,
   tableRow: PropTypes.object,
 };
 
-TableRow.defaultProps = {
+TableFilterRow.defaultProps = {
   children: undefined,
   row: undefined,
   tableRow: undefined,

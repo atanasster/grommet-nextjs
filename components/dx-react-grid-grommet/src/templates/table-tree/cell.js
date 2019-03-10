@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Box } from 'grommet';
-import { TableCell } from '../../utils/TableCell';
+import { TableCell } from '../../grommet/TableCell';
 
-const TableTreeCellBase = ({
+export const TableTreeCell = ({
   column, value, children,
   tableRow, tableColumn, row,
   ...restProps
@@ -19,7 +19,7 @@ const TableTreeCellBase = ({
   </TableCell>
 );
 
-TableTreeCellBase.propTypes = {
+TableTreeCell.propTypes = {
   value: PropTypes.any,
   column: PropTypes.object,
   row: PropTypes.any,
@@ -28,7 +28,7 @@ TableTreeCellBase.propTypes = {
   tableColumn: PropTypes.object,
 };
 
-TableTreeCellBase.defaultProps = {
+TableTreeCell.defaultProps = {
   value: undefined,
   column: undefined,
   row: undefined,
@@ -36,5 +36,3 @@ TableTreeCellBase.defaultProps = {
   tableRow: undefined,
   tableColumn: undefined,
 };
-
-export const TableTreeCell = TableTreeCellBase;

@@ -1,11 +1,11 @@
 import { withComponents } from '@devexpress/dx-react-core';
 import { TableSummaryRow as TableSummaryRowBase } from '@devexpress/dx-react-grid';
-import { TableSummaryItem } from '../templates/table-summary-item';
-import { TableCell } from '../templates/table-cell';
-import { TableRow } from '../templates/table-row';
-import { TableTreeIndent } from '../templates/table-tree/table-tree-indent';
-import { TableTreeContent } from '../templates/table-tree/table-tree-content';
-import { TableTreeCell } from '../templates/table-tree/table-tree-cell';
+import { TableSummaryItem } from '../templates/table-summary/table-summary-item';
+import { TableSummaryCell as TableCell } from '../templates/table-summary/cell';
+import { TableSummarylRow as TableRow } from '../templates/table-summary/row';
+import { Indent } from '../templates/table-tree/indent';
+import { Content } from '../templates/table-tree/content';
+import { Cell } from '../templates/table-tree/cell';
 
 export const TableSummaryRow = withComponents({
   TotalRow: TableRow,
@@ -14,9 +14,9 @@ export const TableSummaryRow = withComponents({
   TotalCell: TableCell,
   GroupCell: TableCell,
   TreeCell: TableCell,
-  TableTreeCell,
-  TableTreeContent,
-  TableTreeIndent,
+  TableTreeCell: Cell,
+  TableTreeContent: Content,
+  TableTreeIndent: Indent,
   Item: TableSummaryItem,
 })(TableSummaryRowBase);
 

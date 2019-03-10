@@ -1,15 +1,16 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { CheckBox } from 'grommet';
-import { StyledSelectCell } from './table-select-cell';
+import { StyledSelectCell } from './cell';
 
 
-const TableSelectAllCellBase = ({
+export const SelectAllCell = ({
   allSelected, someSelected, disabled, onToggle,
   tableRow, tableColumn, rowSpan,
   ...restProps
 }) => (
   <StyledSelectCell
+    tableContext='cell-select-all'
     scope='col'
     rowSpan={rowSpan}
     {...restProps}
@@ -29,7 +30,7 @@ const TableSelectAllCellBase = ({
   </StyledSelectCell>
 );
 
-TableSelectAllCellBase.propTypes = {
+SelectAllCell.propTypes = {
   allSelected: PropTypes.bool,
   someSelected: PropTypes.bool,
   disabled: PropTypes.bool,
@@ -39,7 +40,7 @@ TableSelectAllCellBase.propTypes = {
   rowSpan: PropTypes.number,
 };
 
-TableSelectAllCellBase.defaultProps = {
+SelectAllCell.defaultProps = {
   allSelected: false,
   someSelected: false,
   disabled: false,
@@ -48,5 +49,3 @@ TableSelectAllCellBase.defaultProps = {
   tableColumn: undefined,
   rowSpan: undefined,
 };
-
-export const TableSelectAllCell = TableSelectAllCellBase;
