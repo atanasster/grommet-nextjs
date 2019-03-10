@@ -48,7 +48,7 @@ import {
   TableEditRow,
   TableTreeColumn,
   VirtualTable,
-} from '../components/dx-react-grid-grommet/src';
+} from 'dx-react-grid-grommet';
 import Page from '../components/app/Page';
 
 const customDxTheme = {
