@@ -1,23 +1,25 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import { DropInput } from 'grommet-controls';
+import { Box, TextInput } from 'grommet';
 import { Search } from 'grommet-icons';
 
-const StyledSearchInput = styled(DropInput)`
+const StyledSearchInput = styled(TextInput)`
   -webkit-appearance: none;
 `;
 
 export const SearchInput = ({ onChange, value, placeholder }) => (
-  <StyledSearchInput
-    value={value}
-    type='search'
-    onChange={onChange}
-    placeholder={placeholder}
-    widgets={[
-      { icon: <Search />, onClick: () => {} },
-    ]}
-  />
+  <Box direction='row' align='center' border='all' pad={{ right: 'small' }}>
+    <StyledSearchInput
+      plain={true}
+      focusIndicator={true}
+      value={value}
+      type='search'
+      onChange={onChange}
+      placeholder={placeholder}
+    />
+    <Search />
+  </Box>
 );
 
 SearchInput.propTypes = {
