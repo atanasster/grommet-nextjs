@@ -26,19 +26,30 @@ const initExport = {
     }
     if (process.env.NODE_ENV === 'alias') {
       config.resolve.alias = dedupeDependencies(
-        ['styled-components', 'grommet', 'grommet-icons', 'react', 'react-dom', 'polished'], config.resolve.alias
+        ['@babel', 'styled-components', 'grommet', 'grommet-icons', 'react', 'react-dom', 'polished'], config.resolve.alias
+      );
+    }
+    if (process.env.NODE_ENV === 'dx-grid') {
+      config.resolve.alias = dedupeDependencies(
+        ['@babel', '@devexpress', 'styled-components', 'grommet', 'grommet-controls', 'grommet-icons', 'react', 'react-dom', 'polished'], config.resolve.alias
       );
     }
     if (process.env.NODE_ENV === 'grommet') {
       config.resolve.alias = dedupeDependencies(
-        ['styled-components', 'grommet-icons', 'react', 'react-dom', 'polished'], config.resolve.alias
+        ['@babel', 'styled-components', 'grommet-icons', 'react', 'react-dom', 'polished'], config.resolve.alias
       );
     }
     return config;
   },
 };
 
-if (process.env.NODE_ENV === 'alias' || process.env.NODE_ENV === 'grommet') {
-  initExport.transpileModules = ['grommet-controls', 'grommet', 'grommet-icons'];
+if (process.env.NODE_ENV === 'alias') {
+  initExport.transpileModules = ['grommet-controls'];
+}
+if (process.env.NODE_ENV === 'grommet') {
+  initExport.transpileModules = ['grommet'];
+}
+if (process.env.NODE_ENV === 'dx-grid') {
+  initExport.transpileModules = ['dx-react-grid-grommet'];
 }
 module.exports = withTM(initExport);

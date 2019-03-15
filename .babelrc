@@ -13,6 +13,13 @@
         ]
       ]
     },
+    "dx-grid": {
+      "plugins": [
+        [
+          "module-resolver", { "alias": {"dx-react-grid-grommet": "../dx-react-grid-grommet/src" } }
+        ]
+      ]
+    },
     "grommet": {
       "plugins": [
         [
