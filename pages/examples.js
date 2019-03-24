@@ -22,7 +22,7 @@ class Examples extends React.Component {
       }
     }
     this.state = {
-      code, group, example, library, search: '',
+      code, group, example, library, search: '', size: item.size,
     };
   }
   static async getInitialProps({ req }) {
@@ -33,6 +33,7 @@ class Examples extends React.Component {
       label: example.name,
       package: example.package,
       category: example.category,
+      size: example.size,
       items: Object.keys(example.examples)
         .sort()
         .map(item => ({
@@ -75,7 +76,7 @@ class Examples extends React.Component {
   render() {
     const { grouped } = this.props;
     const {
-      library, group, example, code, search,
+      library, group, example, code, search, size,
     } = this.state;
     return (
       <Page
@@ -112,8 +113,12 @@ class Examples extends React.Component {
                     params: { library: item.package, group: item.component, example: item.label },
                   });
                   this.setState({
- library: item.package, code: item.code, group: item.component, example: item.label,
-});
+                   library: item.package,
+                    code: item.code,
+                    group: item.component,
+                    example: item.label,
+                    size: item.size,
+                  });
                 }}
               />
             </Box>
@@ -122,7 +127,7 @@ class Examples extends React.Component {
       >
         <Box fill={true}>
           <Example
-            editorPosition='left'
+            editorPosition={size === 'large' ? 'top' : 'left'}
           >
             {code}
           </Example>

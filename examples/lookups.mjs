@@ -1,6 +1,7 @@
 export const packages = {
   grommet: 'grommet',
   grommetControls: 'grommet-controls',
+  dxGrid: 'dx-grid',
 };
 
 export const categories = {
@@ -14,4 +15,5 @@ export const categories = {
   media: 'Media',
   utilities: 'Utilities',
   charts: 'Visualizations',
+  dxGrid: 'dx-grid',
 };

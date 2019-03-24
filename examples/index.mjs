@@ -89,7 +89,6 @@ import { PolarChart } from './PolarChart';
 import { RadarChart } from './RadarChart';
 import { ScatterChart } from './ScatterChart';
 
-
 export const examples = [
   Box, Grid, Layer, Stack, Heading, Text, Paragraph, Markdown, Accordion,
   Anchor, Button, Drop, DropButton, Menu, Tabs, CheckBox, MaskedInputGrommet,
@@ -103,5 +102,5 @@ export const examples = [
   NumberInput, PasswordInput, Tags, CheckBoxField, ColorInputField, DateInputField,
   EmailInputField, Form, MaskedInputField, NumberInputField, PasswordInputField,
   SelectField, TextAreaField, TextInputField, BarChart, DoughnutChart,
-  HorizontalBarChart, LineChart, PieChart, PolarChart, RadarChart, ScatterChart
+  HorizontalBarChart, LineChart, PieChart, PolarChart, RadarChart, ScatterChart,
 ];

@@ -8,18 +8,29 @@ import {
   LiveEditor,
   LiveError,
 } from 'react-live';
+import { createStore } from 'redux';
+import { connect, Provider } from 'react-redux';
 import * as Icons from 'grommet-icons';
 import * as Grommet from 'grommet';
 import { Form as GrommetForm, MaskedInput as GrommetMaskedInput } from 'grommet';
 import * as Themes from 'grommet-controls/themes';
 import * as GrommetControls from 'grommet-controls';
 import * as GrommetCharts from 'grommet-controls/chartjs';
+import * as dxGrid from '@devexpress/dx-react-grid';
+import * as dxGridGrommet from 'dx-react-grid-grommet';
+import * as dxGridGrommetTable from 'dx-react-grid-grommet/grommet';
+import { countries } from '../../data/dx-grid-data/countries';
+import { tasks, employees, priorities } from '../../data/dx-grid-data/data.json';
+import * as dataGenerator from '../../data/dx-grid-data/generator';
 import RoutedButton from '../app/RoutedButton';
 
 
 const scope = {
   ...Grommet,
   GrommetForm,
+  createStore,
+  connect,
+  Provider,
   GrommetMaskedInput,
   ...GrommetControls,
   ...GrommetCharts,
@@ -141,8 +152,22 @@ class Example extends React.Component {
       library, component, example,
     } = this.props;
     const { code } = this.state;
+    let editScope = scope;
+    if (library === 'dx-grid') {
+      editScope = {
+        ...editScope,
+        ...dxGrid,
+        ...dxGridGrommetTable,
+        ...dxGridGrommet,
+        ...dataGenerator,
+        countries,
+        tasks,
+        employees,
+        priorities,
+      };
+    }
     return (
-      <StyledProvider code={code} scope={scope} noInline={true}>
+      <StyledProvider code={code} scope={editScope} noInline={true}>
         {this.exampleContainer()}
         {component && example && library && (
           <Grommet.Box pad={{ vertical: 'small' }} align='start'>

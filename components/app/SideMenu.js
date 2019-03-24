@@ -134,7 +134,12 @@ const menuItems = [
   {
     id: 'grommet-controls',
     path: '/add-ons',
-    label: 'grommet controls',
+    label: 'grommet-controls',
+  },
+  {
+    id: 'dx-react-grid-grommet',
+    path: '/templates/dx-grid',
+    label: 'dx-react-grid-grommet',
   },
   {
     id: 'component_examples',
@@ -182,11 +187,14 @@ class SideMenu extends React.Component {
     fetch('/api/package/grommet-controls/latest')
       .then(res => res.json())
       .then(res => this.setState({ grommetControls: res }));
+    fetch('/api/package/dx-react-grid-grommet/latest')
+      .then(res => res.json())
+      .then(res => this.setState({ dxGrid: res }));
   }
 
   render() {
     const { router, theme } = this.props;
-    const { grommet, grommetControls } = this.state;
+    const { grommet, grommetControls, dxGrid } = this.state;
     const themeSelector = (
       <Box pad='small'>
         <FormField label='theme:'>
@@ -197,9 +205,11 @@ class SideMenu extends React.Component {
         </FormField>
       </Box>
     );
-
     menuItems.find(item => item.id === 'grommet').widget = grommet.version;
     menuItems.find(item => item.id === 'grommet-controls').widget = grommetControls.version;
+    if (dxGrid) {
+      menuItems.find(item => item.id === 'dx-react-grid-grommet').widget = dxGrid.version;
+    }
     const findPath = (items) => {
       for (let i = 0; i < items.length; i += 1) {
         const item = items[i];
@@ -218,7 +228,7 @@ class SideMenu extends React.Component {
     return (
       <Box background='brand'>
         <Sidebar
-          width='280px'
+          width='330px'
           flex={false}
         >
           <Box overflow='auto'>

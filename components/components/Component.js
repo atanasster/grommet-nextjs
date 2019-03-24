@@ -9,7 +9,7 @@ import Example from '../documentation/Example';
 const Component = ({ component, example }) => (
   <ResponsiveContext.Consumer>
     {size => (
-      <Card background='brand' basis={size !== 'small' ? 'medium' : undefined} margin='xsmall'>
+      <Card background='brand' basis={size !== 'small' && component.size !== 'large' ? 'medium' : undefined} margin='xsmall'>
         <Card.CardTitle>
           <RoutedButton route='documentation' params={{ library: component.package, component: component.name }}>
             <Heading margin='none' level={3}>
@@ -17,7 +17,7 @@ const Component = ({ component, example }) => (
             </Heading>
           </RoutedButton>
         </Card.CardTitle>
-        <Card.CardContent flex={false} basis='220px' align='center' justify='center'>
+        <Card.CardContent flex={false} basis={component.size === 'large' ? '550px' : '220px'} align='center' justify='center'>
           <Example>
             {component.examples[example]}
           </Example>

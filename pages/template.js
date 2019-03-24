@@ -41,6 +41,7 @@ class Template extends React.Component {
             />
           </Box>
           <Example
+            library={folder}
             editorPosition={editor}
           >
             {content.markdown}

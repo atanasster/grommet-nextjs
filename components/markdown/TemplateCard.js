@@ -20,7 +20,7 @@ export default ({ name, group, ...rest }) => (
     </Card.CardTitle>
     <Card.CardContent>
       <Image
-        fit='cover'
+        fit='contain'
         src={`/static/img/templates/${group}/${name}.jpg`}
       />
     </Card.CardContent>
