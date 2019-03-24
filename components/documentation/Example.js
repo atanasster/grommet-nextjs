@@ -12,6 +12,7 @@ import { createStore } from 'redux';
 import { connect, Provider } from 'react-redux';
 import * as Icons from 'grommet-icons';
 import * as Grommet from 'grommet';
+import * as GrommetColors from 'grommet/utils/colors';
 import { Form as GrommetForm, MaskedInput as GrommetMaskedInput } from 'grommet';
 import * as Themes from 'grommet-controls/themes';
 import * as GrommetControls from 'grommet-controls';
@@ -26,7 +27,9 @@ import RoutedButton from '../app/RoutedButton';
 
 
 const scope = {
+  styled,
   ...Grommet,
+  ...GrommetColors,
   GrommetForm,
   createStore,
   connect,

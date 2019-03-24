@@ -18,7 +18,6 @@ const walk = (folder, category, subDir) => {
     } else {
       const name = [...subDir.slice(1), file.substring(0, file.indexOf('.')).replace(/_/g, ' ')].join('/');
       const fileName = `templates/${subDir.join('/')}/${file}`;
-      console.log('walk',subDir.slice(1, 0), name);
       results.push({ category, file: fileName, name });
     }
   });

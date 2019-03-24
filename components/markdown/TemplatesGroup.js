@@ -14,7 +14,7 @@ const TemplatesGroup = ({
   }
   const link = (group && !category) ? { route: 'templates', params: { category: group } } : undefined;
   return (
-    <Section name={group || 'featured'} link={link}>
+    <Section name={group ? group.replace(/_/g, '') : 'featured'} link={link}>
       <Grid columns='medium' rows='medium' gap='small' fill={true}>
         {examples.map(item => (
           <TemplateCard key={`template_${item.name}`} group={category || group} {...item} />
