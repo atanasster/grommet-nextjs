@@ -1,0 +1,53 @@
+/*
+import React from 'react';
+import {
+  Grid,
+  DragDropProvider,
+  Table,
+  TableHeaderRow,
+  TableColumnReordering,
+} from 'dx-react-grid-grommet';
+
+import { generateRows } from '../../../data/dx-grid-data/generator';
+*/
+
+class Demo extends React.PureComponent {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      columns: [
+        { name: 'name', title: 'Name' },
+        { name: 'sex', title: 'Sex' },
+        { name: 'city', title: 'City' },
+        { name: 'car', title: 'Car' },
+      ],
+      tableColumnExtensions: [
+        { columnName: 'sex', width: 100 },
+      ],
+      rows: generateRows({ length: 6 }),
+    };
+  }
+
+  render() {
+    const { rows, columns, tableColumnExtensions } = this.state;
+
+    return (
+      <Grid
+        rows={rows}
+        columns={columns}
+      >
+        <DragDropProvider />
+        <Table
+          columnExtensions={tableColumnExtensions}
+        />
+        <TableColumnReordering
+          defaultOrder={['city', 'sex', 'car', 'name']}
+        />
+        <TableHeaderRow />
+      </Grid>
+    );
+  }
+}
+
+render(<Demo />);
