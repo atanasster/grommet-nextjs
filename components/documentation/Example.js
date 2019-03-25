@@ -27,6 +27,7 @@ import RoutedButton from '../app/RoutedButton';
 
 
 const scope = {
+  PropTypes,
   styled,
   ...Grommet,
   ...GrommetColors,
