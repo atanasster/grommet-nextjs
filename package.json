@@ -39,7 +39,7 @@
     "compression": "^1.7.3",
     "dotenv": "^5.0.1",
     "dotenv-webpack": "^1.5.5",
-    "dx-react-grid-grommet": "^1.0.3",
+    "dx-react-grid-grommet": "^1.0.4",
     "express": "^4.16.3",
     "fs": "0.0.1-security",
     "grommet": "https://github.com/grommet/grommet/tarball/stable",

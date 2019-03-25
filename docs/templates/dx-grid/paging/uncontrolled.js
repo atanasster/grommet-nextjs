@@ -1,34 +1,18 @@
 /*
 import React from 'react';
-import Paper from '@material-ui/core/Paper';
 import {
-  SortingState,
-  IntegratedSorting,
+  PagingState,
+  IntegratedPaging,
 } from '@devexpress/dx-react-grid';
 import {
   Grid,
   Table,
   TableHeaderRow,
+  PagingPanel,
 } from 'dx-react-grid-grommet';
 
-import { Button } from 'grommet';
-import { Descend, Ascend } from 'grommet-icons';
 import { generateRows } from '../../../data/dx-grid-data/generator';
 */
-
-const SortingIcon = ({ direction }) => (
-  direction === 'asc'
-    ? <Icons.Ascend />
-    : <Icons.Descend />
-);
-
-const SortLabel = ({ onSort, children, direction }) => (
-  <Button
-    label={children}
-    icon={(direction && <SortingIcon direction={direction} />)}
-    onClick={onSort}
-  />
-);
 
 class Demo extends React.PureComponent {
   constructor(props) {
@@ -53,15 +37,14 @@ class Demo extends React.PureComponent {
         rows={rows}
         columns={columns}
       >
-        <SortingState
-          defaultSorting={[{ columnName: 'city', direction: 'asc' }]}
+        <PagingState
+          defaultCurrentPage={0}
+          pageSize={5}
         />
-        <IntegratedSorting />
+        <IntegratedPaging />
         <Table />
-        <TableHeaderRow
-          showSortingControls
-          sortLabelComponent={SortLabel}
-        />
+        <TableHeaderRow />
+        <PagingPanel />
       </Grid>
     );
   }
