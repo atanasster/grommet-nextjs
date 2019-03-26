@@ -25,7 +25,7 @@ class Templates extends React.Component {
     const { category } = router.query;
     return (
       <Page
-        title='Template'
+        title={`${category} templates`}
       >
         {Object.keys(grouped).sort().map(key => (
           <TemplatesGroup
