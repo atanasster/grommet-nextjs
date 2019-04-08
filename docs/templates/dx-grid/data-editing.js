@@ -1,7 +1,7 @@
 /* import React from 'react';
 import {
   SortingState, EditingState, PagingState, SummaryState,
-  IntegratedPaging, IntegratedSavailableFilterOperationsorting, IntegratedSummary,
+  IntegratedPaging, IntegratedSorting, IntegratedSummary,
 } from '@devexpress/dx-react-grid';
 import {
   Grid,
