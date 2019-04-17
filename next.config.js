@@ -52,4 +52,8 @@ if (process.env.NODE_ENV === 'grommet') {
 if (process.env.NODE_ENV === 'dx-grid') {
   initExport.transpileModules = ['dx-react-grid-grommet'];
 }
-module.exports = withTM(initExport);
+if (['alias', 'grommet', 'dx-grid'].indexOf(process.env.NODE_ENV) >= 0) {
+  module.exports = withTM(initExport);
+} else {
+  module.exports = initExport;
+}

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Box, Text, Button, Select, FormField, CheckBox } from 'grommet';
+import { Box, Text, Button, Select, FormField } from 'grommet';
 import { Close, Add } from 'grommet-icons';
 
 
@@ -155,15 +155,13 @@ export default () => {
           <FormField
             label='wrap'
           >
-            <CheckBox
-              checked={state.container.wrap}
-              onChange={() =>
+            <Select
+              options={valuesToOptions([undefined, true, false, 'reverse'])}
+              value={valueToOption(state.container.wrap)}
+              onChange={({ value }) =>
                 setState({
-                 ...state,
-                container: {
-                  ...state.container,
-                    wrap: !state.container.wrap,
-                  },
+                  ...state,
+                  container: { ...state.container, wrap: optionToValue(value) },
                 })}
             />
           </FormField>
@@ -250,6 +248,7 @@ export default () => {
           <Button primary={true} icon={<Add />} label='add child' onClick={() => setState({ ...state, children: [...state.children, []] })} />
         </Box>
         <Box background={{ color: 'accent-2', opacity: 'weak' }} border='all' {...state.container}>
+          {console.log(state.container)}
           {state.children.map((props, idx) => (
             <BoxChild
               idx={idx}
