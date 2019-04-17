@@ -248,7 +248,6 @@ export default () => {
           <Button primary={true} icon={<Add />} label='add child' onClick={() => setState({ ...state, children: [...state.children, []] })} />
         </Box>
         <Box background={{ color: 'accent-2', opacity: 'weak' }} border='all' {...state.container}>
-          {console.log(state.container)}
           {state.children.map((props, idx) => (
             <BoxChild
               idx={idx}
