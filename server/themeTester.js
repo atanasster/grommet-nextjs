@@ -1,6 +1,8 @@
-const { rgba } = require('polished');
-const icons = require('grommet-icons/icons/Blank');
+import polished from 'polished';
+// eslint-disable-next-line import/extensions
+import icon from 'grommet-icons/icons/Blank.js';
 
+const { rgba } = polished;
 const brandColor = '#757575';
 const color = '#123456';
 const objColor = {
@@ -10,7 +12,7 @@ const objColor = {
 
 const borderWidth = 4;
 
-const Icon = icons.Blank;
+const Icon = icon.Blank;
 const rgbColor = rgba(1, 2, 3, 0.33);
 
 const baseSpacing = 46;
@@ -25,7 +27,7 @@ const fontSizing = factor => ({
   // see: https://ux.stackexchange.com/a/34125
   maxWidth: `${baseSpacing * (baseFontSize + (factor * fontScale))}px`,
 });
-module.exports = {
+export default {
   global: {
     animation: {
       duration: '3s',

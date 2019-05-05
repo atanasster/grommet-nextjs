@@ -1,10 +1,13 @@
 /* eslint-disable import/no-unresolved,import/extensions */
-const React = require('react');
-const cheerio = require('cheerio');
-const cssjs = require('jotform-css.js');
-const { renderToString } = require('react-dom/server');
-const { ServerStyleSheet } = require('styled-components');
-const testerTheme = require('./themeTester');
+import React from 'react';
+import cheerio from 'cheerio';
+import cssjs from 'jotform-css.js';
+import server from 'react-dom/server.js';
+import sc from 'styled-components';
+import testerTheme from './themeTester.js';
+
+const { renderToString } = server;
+const { ServerStyleSheet } = sc;
 
 const TestComponent = ({
   theme, Grommet, Component, ...rest
@@ -92,7 +95,7 @@ const iterateTheme = ({
   }
 };
 
-const testComponent = ({ Grommet, Component, baseTheme }) => {
+export default ({ Grommet, Component, baseTheme }) => {
   const object = {
     Grommet,
     Component,
@@ -116,5 +119,3 @@ const testComponent = ({ Grommet, Component, baseTheme }) => {
   });
   return { errors };
 };
-
-exports.testComponent = testComponent;

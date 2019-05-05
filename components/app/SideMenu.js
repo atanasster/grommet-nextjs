@@ -110,11 +110,6 @@ const menuItems = [
         label: 'introduction',
       },
       {
-        id: 'themes_status',
-        path: '/themes-status',
-        label: 'status',
-      },
-      {
         id: 'theme-explorer',
         path: '/themes-explorer',
         label: 'explorer',
