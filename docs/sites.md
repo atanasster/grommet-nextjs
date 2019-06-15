@@ -125,5 +125,14 @@ A list of sites developed with grommet v2. You can submit your own site, just cl
     path='https://developer.hpe.com/api/onesphere/'
     excerpt='Swagger API browser built using grommet. HPE OneSphere hybrid cloud management REST API.'
   />
+  <card
+    image='/static/img/grommet-designer.jpg'
+    title='grommet-designer'
+    authorName='Eric Soderberg'
+    github='https://github.com/grommet/grommet-designer'
+    authorLink='https://github.com/grommet'
+    path='https://designer.grommet.io'
+    excerpt='A tool to design screens using grommet components.'
+  />
   
 </grid>
