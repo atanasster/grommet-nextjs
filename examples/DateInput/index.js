@@ -8,6 +8,7 @@ import { disabled } from './disabled.js';
 import { disabledDates } from './disabledDates.js';
 import { firstDayOfWeek } from './firstDayOfWeek.js';
 import { locale } from './locale.js';
+import { maskFormat } from './maskFormat.js';
 import { size } from './size.js';
 import { value } from './value.js';
 
@@ -24,6 +25,7 @@ export const DateInput = {
     disabledDates,
     firstDayOfWeek,
     locale,
+    maskFormat,
     size,
     value,
   },

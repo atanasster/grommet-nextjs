@@ -3,6 +3,7 @@ import doc from 'grommet-controls/components/withFormField/doc.js';
 import { packages, categories } from '../lookups.js';
 import { _starter } from './_starter.js';
 import { inField } from './inField.js';
+import { maskFormat } from './maskFormat.js';
 import { validation } from './validation.js';
 
 
@@ -14,6 +15,7 @@ export const DateInputField = {
   examples: {
     _starter,
     inField,
+    maskFormat,
     validation,
   },
 };
