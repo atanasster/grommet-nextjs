@@ -141,8 +141,12 @@ const AppThemeContextProvider = ({ children }) => {
     <AppThemeContext.Provider value={{
       themes,
       selected: state,
-      selectTheme: setState,
-      updateTheme,
+      selectTheme: (theme) => {
+        if (theme) {
+          setState(theme)
+        }
+      },
+       updateTheme,
     }}>
       {children}
     </AppThemeContext.Provider>
