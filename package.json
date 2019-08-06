@@ -58,7 +58,7 @@
     "next": "^9.0.2",
     "next-routes": "^1.4.2",
     "next-transpile-modules": "^2.3.0",
-    "npm": "^5.7.1",
+    "npm": "^6.10.3",
     "numeral": "^2.0.6",
     "react": "^16.8.1",
     "react-chartjs-2": "^2.7.4",
