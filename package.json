@@ -43,7 +43,7 @@
     "dx-react-grid-grommet": "^1.0.16",
     "express": "^4.16.3",
     "fs": "0.0.1-security",
-    "grommet": "https://github.com/grommet/grommet/tarball/stable",
+    "grommet": "^2.7.4",
     "grommet-controls": "^1.1.21",
     "grommet-icons": "^4.2.0",
     "grommet-theme-aruba": "latest",
@@ -55,7 +55,7 @@
     "jotform-css.js": "^1.0.1",
     "jss": "^9.8.7",
     "memory-cache": "^0.2.0",
-    "next": "^8.1.0",
+    "next": "^9.0.2",
     "next-routes": "^1.4.2",
     "next-transpile-modules": "^2.3.0",
     "npm": "^5.7.1",
@@ -75,6 +75,10 @@
     "webpack-bundle-analyzer": "^3.3.2"
   },
   "devDependencies": {
+    "@types/node": "^12.6.8",
+    "@types/react": "^16.8.23",
+    "@types/react-dom": "^16.8.5",
+    "@zeit/next-typescript": "^1.1.1",
     "babel-eslint": "^8.2.2",
     "babel-plugin-transform-imports": "^1.5.0",
     "eslint": "^4.18.2",
@@ -84,7 +88,8 @@
     "eslint-plugin-import": "^2.2.0",
     "eslint-plugin-jsx-a11y": "^6.0.3",
     "eslint-plugin-react": "^7.7.0",
-    "pre-commit": "^1.2.2"
+    "pre-commit": "^1.2.2",
+    "typescript": "^3.5.3"
   },
   "pre-commit": [
     "check"

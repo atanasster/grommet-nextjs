@@ -17,7 +17,7 @@ $ npm install grommet grommet-icons grommet-controls
 
 ```
     const Demo = () => (
-      <Grommet fill>
+      <Grommet>
         <Box full>
           <Card height='small'>
             <Card.CardTitle>

@@ -18,7 +18,7 @@ import { Value } from 'grommet-controls/components/Value';
 
 ```
     const Demo = () => (
-      <Grommet fill>
+      <Grommet>
         <Box full>
           <Card height='small'>
             <Card.CardTitle>
