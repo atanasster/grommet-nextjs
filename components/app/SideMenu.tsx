@@ -1,6 +1,5 @@
 import React, { useState , useContext, useEffect } from 'react';
 import { withRouter, Router } from 'next/router';
-import { bindActionCreators } from 'redux';
 import 'isomorphic-fetch';
 import { Box, Button, FormField } from 'grommet';
 import { Sidebar, VerticalMenu } from 'grommet-controls';
@@ -176,11 +175,7 @@ const SideMenu : React.FC<SideMenuProps> = ({ router }) => {
     fetch('/api/package/dx-react-grid-grommet/latest')
       .then(res => res.json())
       .then(res => setState({...state, dxGrid: res }));
-}, [])
-  useEffect(() => {
-    selectTheme(router.query.theme as string);
-  }, [router.query.theme])
-
+  }, []);
   const onThemeChange = (theme) => {
     selectTheme(theme);
     let params = new URLSearchParams();

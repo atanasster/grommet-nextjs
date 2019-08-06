@@ -1,65 +1,71 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import React, { useEffect, useContext } from 'react';
+import { withRouter, Router } from 'next/router';
 import Head from 'next/head';
 import { Grommet, Box, ResponsiveContext } from 'grommet';
 import Header from './Header';
 import Footer from './Footer';
 import SideMenu from './SideMenu';
-import { AppThemeContextConsumer, AppThemeContextProvider } from './AppThemeContext';
-
-
+import { AppThemeContext, AppThemeContextConsumer, AppThemeContextProvider } from './AppThemeContext';
 import { initGA, logPageView } from '../utils/analytics';
+
+interface PageThemeRouterProps {
+  router: Router,
+}
+
+const PageTheme: React.FC<PageThemeRouterProps> = ({ router, children }) => {
+  const { selected, themes, selectTheme } = useContext(AppThemeContext);
+  useEffect(() => {
+    selectTheme(router.query.theme as string);
+  }, [router.query.theme]);
+  return (
+    <React.Fragment>
+      {children}
+    </React.Fragment>
+  );
+};
+
+const PageThemeRouter = withRouter(PageTheme);
 
 interface PageProps {
   title: string,
-  description: string,
-  nav: boolean,
-  footer: boolean,
-  sideBar: React.ReactNode,
+  description?: string,
+  nav?: boolean,
+  footer?: boolean,
+  sideBar?: React.ReactNode,
 }
 
-class Page extends React.Component<PageProps> {
-  static defaultProps = {
-    description: undefined,
-    nav: true,
-    footer: true,
-    sideBar: undefined,
-  };
-
-  componentDidMount() {
+const Page: React.FC<PageProps> = ({ children, title: pageTitle, description,
+    nav, footer, sideBar }) => {
+  useEffect(() => {
     if (!window['GA_INITIALIZED']) {
       initGA();
       window['GA_INITIALIZED'] = true;
     }
     logPageView();
+  }, []);
+  const keywords = ['grommet', 'grommet 2', 'react', 'next-js', 'next.js', 'ui library'];
+  if (pageTitle) {
+    keywords.push(pageTitle);
   }
-
-  render() {
-    const {
-      children, title: pageTitle, description,
-      nav, footer, sideBar,
-    } = this.props;
-    const keywords = ['grommet', 'grommet 2', 'react', 'next-js', 'next.js', 'ui library'];
-    if (pageTitle) {
-      keywords.push(pageTitle);
-    }
-    return (
-      <React.Fragment>
-        <Head>
-          {pageTitle && (
-            <title>{`grommet-controls - ${pageTitle}`}</title>
-            )
-          }
-          {typeof description === 'string' && (
-            <meta name='description' content={description} />
-            )
-          }
-          <meta name='keywords' content={keywords.join(',')} />
-        </Head>
-        <AppThemeContextProvider>
+  return (
+    <React.Fragment>
+      <Head>
+        {pageTitle && (
+          <title>{`grommet-controls - ${pageTitle}`}</title>
+          )
+        }
+        {typeof description === 'string' && (
+          <meta name='description' content={description} />
+          )
+        }
+        <meta name='keywords' content={keywords.join(',')} />
+      </Head>
+      <AppThemeContextProvider>
+        <PageThemeRouter />
           <AppThemeContextConsumer>
             {({ themes, selected }) => (
               <Grommet theme={themes[selected] || {}} full={true}>
+
                 <ResponsiveContext.Consumer >
                   {size => (
                     <Box style={{ height: 'auto', minHeight: '100vh' }}>
@@ -79,11 +85,15 @@ class Page extends React.Component<PageProps> {
               </Grommet>
             )}
           </AppThemeContextConsumer>
-        </AppThemeContextProvider>
-      </React.Fragment>
-    );
-  }
-}
+      </AppThemeContextProvider>
+    </React.Fragment>
+  );
+};
+
+Page.defaultProps = {
+  nav: true,
+  footer: true,
+};
 
 export default Page;
 
