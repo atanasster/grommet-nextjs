@@ -6,11 +6,12 @@ import Page from '../../components/app/Page';
 import Section from '../../components/app/Section';
 import Item from '../../components/components/Item';
 import ComponentsGroup from '../../components/components/ComponentsGroup';
-import { ComponentInterface } from "../../components/components/Component";
+// eslint-disable-next-line no-unused-vars
+import { ComponentInterface } from '../../components/components/Component';
 
 interface GrommetHomeProps {
   examples: ComponentInterface[],
-};
+}
 
 
 export default class GrommetHome extends React.Component<GrommetHomeProps> {
@@ -18,7 +19,9 @@ export default class GrommetHome extends React.Component<GrommetHomeProps> {
     const baseUrl = req ? `${req.protocol}://${req.get('Host')}` : '';
     const res = await fetch(`${baseUrl}/api/examples/grommet`);
     const allExamples = await res.json();
-    return { examples: allExamples };
+    return {
+      examples: allExamples,
+    };
   }
 
   render() {
@@ -27,19 +30,40 @@ export default class GrommetHome extends React.Component<GrommetHomeProps> {
     return (
       <Page title='Explore'>
         <Box pad='large'>
-          <Box direction='row' gap='xlarge' margin={{ bottom: 'large' }}>
+          <Box
+            direction='row'
+            gap='xlarge'
+            margin={{
+              bottom: 'large',
+            }}
+          >
             <Box basis='medium' overflow='hidden'>
               <Heading level={1}>
                 <strong>Grommet 2.0 core</strong>
               </Heading>
               <Paragraph size='large' margin='none'>
-This is an experimental site built with <strong>Grommet 2</strong> and <strong>Next.js</strong>.
-Visit the official <Anchor href='https://v2.grommet.io/' target='_blank'>Grommet site</Anchor> for the latest updates.
+This is an experimental site built with
+                {' '}
+                <strong>Grommet 2</strong>
+                {' '}
+and
+                {' '}
+                <strong>Next.js</strong>
+.
+Visit the official
+                {' '}
+                <Anchor href='https://v2.grommet.io/' target='_blank'>Grommet site</Anchor>
+                {' '}
+for the latest updates.
               </Paragraph>
             </Box>
           </Box>
         </Box>
-        <Box pad={{ horizontal: 'large' }}>
+        <Box
+          pad={{
+            horizontal: 'large',
+          }}
+        >
           <ComponentsGroup examples={examples} group='Layout' />
           <ComponentsGroup examples={examples} group='Type' />
           <ComponentsGroup examples={examples} group='Navigation' />
@@ -59,7 +83,7 @@ Visit the official <Anchor href='https://v2.grommet.io/' target='_blank'>Grommet
               <Text>ESC</Text>
             </Item>
             <Item name='SkipLinks' path='/grommet/skiplinks'>
-              <Text >SkipLinks</Text>
+              <Text>SkipLinks</Text>
             </Item>
           </Section>
         </Box>

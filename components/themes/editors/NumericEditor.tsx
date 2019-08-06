@@ -12,7 +12,12 @@ interface NumericEditorProps {
 }
 
 const NumericEditor: React.FC<NumericEditorProps> = ({
-  object, onChange, decimals, min, max, step,
+  object,
+  onChange,
+  decimals,
+  min,
+  max,
+  step,
 }) => (
   <Box
     flex={false}

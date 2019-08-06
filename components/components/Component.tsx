@@ -15,14 +15,19 @@ export interface ComponentInterface {
 interface ComponentProps {
   example?: string,
   component: ComponentInterface,
-};
+}
 
 const Component: React.FC<ComponentProps> = ({ component, example }) => (
   <ResponsiveContext.Consumer>
     {size => (
       <Card background='brand' basis={size !== 'small' && component.size !== 'large' ? 'medium' : undefined} margin='xsmall'>
         <Card.CardTitle>
-          <RoutedButton route='documentation' params={{ library: component.package, component: component.name }}>
+          <RoutedButton
+            route='documentation'
+            params={{
+              library: component.package, component: component.name,
+            }}
+          >
             <Heading margin='none' level='3'>
               {component.name}
             </Heading>
@@ -37,7 +42,9 @@ const Component: React.FC<ComponentProps> = ({ component, example }) => (
           <Box direction='row' justify='between' fill='horizontal'>
             <RoutedButton
               route='documentation'
-              params={{ library: component.package, component: component.name }}
+              params={{
+                library: component.package, component: component.name,
+              }}
             >
               <Box direction='row' gap='xsmall' pad='xsmall'>
                 <Document />
@@ -46,7 +53,9 @@ const Component: React.FC<ComponentProps> = ({ component, example }) => (
             </RoutedButton>
             <RoutedButton
               route='examples'
-              params={{ library: component.package, group: component.name, example: '_starter' }}
+              params={{
+                library: component.package, group: component.name, example: '_starter',
+              }}
             >
               <Box direction='row' gap='xsmall' pad='xsmall'>
                 <Code />
@@ -56,7 +65,7 @@ const Component: React.FC<ComponentProps> = ({ component, example }) => (
           </Box>
         </Card.CardActions>
       </Card>
-      )}
+    )}
   </ResponsiveContext.Consumer>
 );
 

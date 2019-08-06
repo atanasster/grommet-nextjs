@@ -1,4 +1,3 @@
-import React from 'react';
 import withArticle from '../components/app/withArticle';
 
 export default withArticle(() => {},

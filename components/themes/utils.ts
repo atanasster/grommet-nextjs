@@ -22,7 +22,9 @@ export const getArrayProp = (arr: any, path: string): object => {
 
 
 export const assignProp = (object: object, path: string, newValue: any): object => {
-  const newObject = { ...object };
+  const newObject = {
+    ...object,
+  };
   let obj = newObject;
   const parts = path.split('-');
   for (let i = 0; i < parts.length - 1; i += 1) {

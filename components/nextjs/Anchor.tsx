@@ -1,7 +1,9 @@
 import React from 'react';
+// eslint-disable-next-line no-unused-vars
 import { withRouter, Router } from 'next/router';
 import { Anchor as GrommetAnchor } from 'grommet';
 import urlParams from './urlParams';
+// eslint-disable-next-line no-unused-vars
 import { PreserveParams } from './Link.interface';
 
 interface AnchorProps {

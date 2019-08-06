@@ -26,7 +26,9 @@ export default class ThemePreview extends React.Component<{}, ThemePreviewState>
 
   renderControls = (background?: string) => {
     const { open, size } = this.state;
-    const diabledProps = { disabled: true};
+    const diabledProps = {
+      disabled: true,
+    };
     return (
       <Box pad='large' gap='medium' background={background}>
         <Box direction='row-responsive' align='center' justify='between'>
@@ -53,13 +55,17 @@ export default class ThemePreview extends React.Component<{}, ThemePreviewState>
           <Select
             options={stringOptions}
             value={size}
-            onChange={({ option }) => this.setState({ size: option })}
+            onChange={({ option }) => this.setState({
+              size: option,
+            })}
           />
           <Select
             options={stringOptions}
             disabled={true}
             value='disabled'
-            onChange={({ option }) => this.setState({ size: option })}
+            onChange={({ option }) => this.setState({
+              size: option,
+            })}
           />
         </Box>
         <Box direction='row-responsive' justify='between'>
@@ -124,11 +130,15 @@ export default class ThemePreview extends React.Component<{}, ThemePreviewState>
           <Menu
             icon={<MenuIcon />}
             label='menu'
-            items={stringOptions.map(item => ({ label: item }))}
+            items={stringOptions.map(item => ({
+              label: item,
+            }))}
           />
 
           <Box
-            border={{ color: 'brand', size: 'large' }}
+            border={{
+              color: 'brand', size: 'large',
+            }}
             elevation='xlarge'
             pad='large'
           >
@@ -138,21 +148,27 @@ export default class ThemePreview extends React.Component<{}, ThemePreviewState>
             <DropButton
               label='DropButton'
               open={open}
-              dropAlign={{ top: 'bottom', right: 'right' }}
-              dropContent={
+              dropAlign={{
+                top: 'bottom', right: 'right',
+              }}
+              dropContent={(
                 <Box>
                   <TextInput placeholder='Search' />
                   {stringOptions.map((label, index) => (
                     <Button
                       key={label}
                       hoverIndicator={true}
-                      onClick={() => this.setState({ open: undefined })}
+                      onClick={() => this.setState({
+                        open: undefined,
+                      })}
                     >
                       <Box
                         direction='row'
                         justify='between'
                         align='center'
-                        pad={{ horizontal: 'small', vertical: 'xsmall' }}
+                        pad={{
+                          horizontal: 'small', vertical: 'xsmall',
+                        }}
                       >
                         <Text>{label}</Text>
                         <Text>{index + 1}</Text>
@@ -160,7 +176,7 @@ export default class ThemePreview extends React.Component<{}, ThemePreviewState>
                     </Button>
                   ))}
                 </Box>
-              }
+)}
             />
           </Box>
           <Box flex={false}>
@@ -180,7 +196,13 @@ export default class ThemePreview extends React.Component<{}, ThemePreviewState>
                     align='center'
                     pad='small'
                   >
-                    <Text style={{ fontFamily: 'monospace' }}>{value}</Text>
+                    <Text
+                      style={{
+                        fontFamily: 'monospace',
+                      }}
+                    >
+                      {value}
+                    </Text>
                   </Box>
                 ))}
               </Box>
@@ -196,23 +218,37 @@ export default class ThemePreview extends React.Component<{}, ThemePreviewState>
       </Box>
     );
   };
+
   render() {
     const { layer } = this.state;
     let modal;
     if (layer !== undefined) {
-      const close = () => { this.setState({ layer: undefined }); };
+      const close = () => {
+        this.setState({
+          layer: undefined,
+        });
+      };
       modal = (
         <Layer
           position={layer === 'vertical' ? 'right' : 'center'}
           full={layer}
           onEsc={close}
         >
-          <Box pad={{ horizontal: 'medium' }}>
+          <Box
+            pad={{
+              horizontal: 'medium',
+            }}
+          >
             <Heading level={2} margin='medium'>Confirm</Heading>
             <Text>
               Are you sure you want to close this layer?
             </Text>
-            <Box align='start' margin={{ vertical: 'medium' }}>
+            <Box
+              align='start'
+              margin={{
+                vertical: 'medium',
+              }}
+            >
               <Button primary={true} label='Close' onClick={close} />
             </Box>
           </Box>
@@ -229,12 +265,35 @@ export default class ThemePreview extends React.Component<{}, ThemePreviewState>
           >
             {this.renderControls()}
             {this.renderControls(colorIsDark(normalizeColor('background', theme)) ? 'white' : 'black')}
-            <Box fill='horizontal' pad={{ horizontal: 'large', vertical: 'medium' }} gap='medium'>
+            <Box
+              fill='horizontal'
+              pad={{
+                horizontal: 'large', vertical: 'medium',
+              }}
+              gap='medium'
+            >
               <Box direction='row' gap='small' fill='horizontal'>
-                <Button label='Dialog' onClick={() => this.setState({ layer: false })} />
-                <Button label='Layer' onClick={() => this.setState({ layer: 'vertical' })} />
+                <Button
+                  label='Dialog'
+                  onClick={() => this.setState({
+                    layer: false,
+                  })}
+                />
+                <Button
+                  label='Layer'
+                  onClick={() => this.setState({
+                    layer: 'vertical',
+                  })}
+                />
               </Box>
-              <Box fill='horizontal' border='top' pad={{ top: 'medium' }} align='center'>
+              <Box
+                fill='horizontal'
+                border='top'
+                pad={{
+                  top: 'medium',
+                }}
+                align='center'
+              >
                 <ColorRoll size='small' />
               </Box>
             </Box>

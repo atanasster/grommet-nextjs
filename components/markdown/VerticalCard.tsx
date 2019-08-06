@@ -1,6 +1,7 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-import { Box, Heading, Paragraph, Image, Anchor, Text } from 'grommet';
+import {
+  Box, Heading, Paragraph, Image, Anchor, Text,
+} from 'grommet';
 import { Github } from 'grommet-icons';
 import { Card } from 'grommet-controls';
 import RoutedAnchor from '../app/RoutedAnchor';
@@ -23,11 +24,28 @@ interface VerticalCardProps {
 
 }
 const VerticalCard: React.FC<VerticalCardProps> = ({
-  image, title, authorName, authorLink, path, excerpt, github,
+  image,
+  title,
+  authorName,
+  authorLink,
+  path,
+  excerpt,
+  github,
 }) => (
   <Card>
-    <RoutedAnchor path={path} style={{ maxWidth: '100%' }}>
-      <Box background='light-1' pad='small' border={{ side: 'bottom' }}>
+    <RoutedAnchor
+      path={path}
+      style={{
+        maxWidth: '100%',
+      }}
+    >
+      <Box
+        background='light-1'
+        pad='small'
+        border={{
+          side: 'bottom',
+        }}
+      >
         <Box basis='small' flex={false}>
           <Image
             fit='cover'
@@ -46,16 +64,24 @@ const VerticalCard: React.FC<VerticalCardProps> = ({
         <Paragraph
           size='small'
           style={{
-           display: '-webkit-box',
-           WebkitLineClamp: 5,
-           WebkitBoxOrient: 'vertical',
-           overflow: 'hidden',
-         }}
+            display: '-webkit-box',
+            WebkitLineClamp: 5,
+            WebkitBoxOrient: 'vertical',
+            overflow: 'hidden',
+          }}
         >
           {excerpt}
         </Paragraph>
       </Box>
-      <Box direction='row' justify='between' align='center' pad={{ vertical: 'small', horizontal: 'medium' }} fill='horizontal'>
+      <Box
+        direction='row'
+        justify='between'
+        align='center'
+        pad={{
+          vertical: 'small', horizontal: 'medium',
+        }}
+        fill='horizontal'
+      >
         <Box>
           <Text size='small'>
             by
@@ -64,7 +90,7 @@ const VerticalCard: React.FC<VerticalCardProps> = ({
             <Text weight='bold'>
               {authorName}
             </Text>
-            ))}
+          ))}
         </Box>
         {withAnchor(github, <Github />)}
       </Box>

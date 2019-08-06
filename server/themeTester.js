@@ -1,3 +1,4 @@
+/* eslint-disable */
 import polished from 'polished';
 // eslint-disable-next-line import/extensions
 import icon from 'grommet-icons/icons/Blank.js';
@@ -344,12 +345,24 @@ export default {
     },
     digital: {
       text: {
-        xsmall: { size: `${baseFontSize - (2 * fontScale)}px`, height: 1.5 },
-        small: { size: `${baseFontSize - fontScale}px`, height: 1.43 },
-        medium: { size: `${baseFontSize}px`, height: 1.375 },
-        large: { size: `${baseFontSize + fontScale}px`, height: 1.167 },
-        xlarge: { size: `${baseFontSize + (2 * fontScale)}px`, height: 1.1875 },
-        xxlarge: { size: `${baseFontSize + (4 * fontScale)}px`, height: 1.125 },
+        xsmall: {
+          size: `${baseFontSize - (2 * fontScale)}px`, height: 1.5,
+        },
+        small: {
+          size: `${baseFontSize - fontScale}px`, height: 1.43,
+        },
+        medium: {
+          size: `${baseFontSize}px`, height: 1.375,
+        },
+        large: {
+          size: `${baseFontSize + fontScale}px`, height: 1.167,
+        },
+        xlarge: {
+          size: `${baseFontSize + (2 * fontScale)}px`, height: 1.1875,
+        },
+        xxlarge: {
+          size: `${baseFontSize + (4 * fontScale)}px`, height: 1.125,
+        },
       },
     },
   },
@@ -360,9 +373,13 @@ export default {
   dataTable: {
     header: {},
     groupHeader: {
-      border: { side: 'top', size: 'small' },
+      border: {
+        side: 'top', size: 'small',
+      },
       fill: 'horizontal',
-      pad: { horizontal: 'xsmall', vertical: 'small' },
+      pad: {
+        horizontal: 'xsmall', vertical: 'small',
+      },
       background: objColor,
     },
     icons: {
@@ -418,60 +435,108 @@ export default {
           // family: undefined,
           // weight: undefined,
         },
-        small: { ...fontSizing(4) },
-        medium: { ...fontSizing(8) },
-        large: { ...fontSizing(16) },
-        xlarge: { ...fontSizing(24) },
+        small: {
+          ...fontSizing(4),
+        },
+        medium: {
+          ...fontSizing(8),
+        },
+        large: {
+          ...fontSizing(16),
+        },
+        xlarge: {
+          ...fontSizing(24),
+        },
       },
       2: {
         font: {
           // family: undefined,
           // weight: undefined,
         },
-        small: { ...fontSizing(2) },
-        medium: { ...fontSizing(4) },
-        large: { ...fontSizing(8) },
-        xlarge: { ...fontSizing(12) },
+        small: {
+          ...fontSizing(2),
+        },
+        medium: {
+          ...fontSizing(4),
+        },
+        large: {
+          ...fontSizing(8),
+        },
+        xlarge: {
+          ...fontSizing(12),
+        },
       },
       3: {
         font: {
           // family: undefined,
           // weight: undefined,
         },
-        small: { ...fontSizing(1) },
-        medium: { ...fontSizing(2) },
-        large: { ...fontSizing(4) },
-        xlarge: { ...fontSizing(6) },
+        small: {
+          ...fontSizing(1),
+        },
+        medium: {
+          ...fontSizing(2),
+        },
+        large: {
+          ...fontSizing(4),
+        },
+        xlarge: {
+          ...fontSizing(6),
+        },
       },
       4: {
         font: {
           // family: undefined,
           // weight: undefined,
         },
-        small: { ...fontSizing(0) },
-        medium: { ...fontSizing(0) },
-        large: { ...fontSizing(0) },
-        xlarge: { ...fontSizing(0) },
+        small: {
+          ...fontSizing(0),
+        },
+        medium: {
+          ...fontSizing(0),
+        },
+        large: {
+          ...fontSizing(0),
+        },
+        xlarge: {
+          ...fontSizing(0),
+        },
       },
       5: {
         font: {
           // family: undefined,
           // weight: undefined,
         },
-        small: { ...fontSizing(-0.5) },
-        medium: { ...fontSizing(-0.5) },
-        large: { ...fontSizing(-0.5) },
-        xlarge: { ...fontSizing(-0.5) },
+        small: {
+          ...fontSizing(-0.5),
+        },
+        medium: {
+          ...fontSizing(-0.5),
+        },
+        large: {
+          ...fontSizing(-0.5),
+        },
+        xlarge: {
+          ...fontSizing(-0.5),
+        },
       },
       6: {
         font: {
           // family: undefined,
           // weight: undefined,
         },
-        small: { ...fontSizing(-1) },
-        medium: { ...fontSizing(-1) },
-        large: { ...fontSizing(-1) },
-        xlarge: { ...fontSizing(-1) },
+        small: {
+          ...fontSizing(-1),
+        },
+        medium: {
+          ...fontSizing(-1),
+        },
+        large: {
+          ...fontSizing(-1),
+        },
+        xlarge: {
+          ...fontSizing(-1),
+        },
       },
     },
     responsiveBreakpoint: 'small', // when we scale the font size down
@@ -503,11 +568,21 @@ export default {
     // extend: undefined,
   },
   paragraph: {
-    small: { ...fontSizing(-1) },
-    medium: { ...fontSizing(0) },
-    large: { ...fontSizing(1) },
-    xlarge: { ...fontSizing(2) },
-    xxlarge: { ...fontSizing(4) },
+    small: {
+      ...fontSizing(-1),
+    },
+    medium: {
+      ...fontSizing(0),
+    },
+    large: {
+      ...fontSizing(1),
+    },
+    xlarge: {
+      ...fontSizing(2),
+    },
+    xxlarge: {
+      ...fontSizing(4),
+    },
   },
   radioButton: {
     border: {
@@ -605,7 +680,9 @@ export default {
   table: {
     header: {
       align: 'end',
-      pad: { horizontal: 'xsmall', vertical: 'small' },
+      pad: {
+        horizontal: 'xsmall', vertical: 'small',
+      },
       border: 'top',
       verticalAlign: 'top',
       fill: 'horizontal',
@@ -614,13 +691,17 @@ export default {
     },
     body: {
       align: 'end',
-      pad: { horizontal: 'xsmall', vertical: 'small' },
+      pad: {
+        horizontal: 'xsmall', vertical: 'small',
+      },
       // border: undefined,
       // extend: undefined,
     },
     footer: {
       align: 'end',
-      pad: { horizontal: 'xsmall', vertical: 'small' },
+      pad: {
+        horizontal: 'xsmall', vertical: 'small',
+      },
       border: 'bottom',
       verticalAlign: 'bottom',
       fill: 'horizontal',
@@ -628,12 +709,24 @@ export default {
     },
   },
   text: {
-    xsmall: { ...fontSizing(-1.5) },
-    small: { ...fontSizing(-1) },
-    medium: { ...fontSizing(0) },
-    large: { ...fontSizing(1) },
-    xlarge: { ...fontSizing(2) },
-    xxlarge: { ...fontSizing(4) },
+    xsmall: {
+      ...fontSizing(-1.5),
+    },
+    small: {
+      ...fontSizing(-1),
+    },
+    medium: {
+      ...fontSizing(0),
+    },
+    large: {
+      ...fontSizing(1),
+    },
+    xlarge: {
+      ...fontSizing(2),
+    },
+    xxlarge: {
+      ...fontSizing(4),
+    },
   },
   // textInput: {
   //   extend: undefined,

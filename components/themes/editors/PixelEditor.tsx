@@ -9,7 +9,7 @@ interface PixelEditorProps {
   max?: number,
   step?: number,
   onChange(value: string): void,
-};
+}
 
 const PixelEditor: React.FC<PixelEditorProps> = ({ object, onChange, ...rest }) => {
   const pixels = parseMetricToNum(object);

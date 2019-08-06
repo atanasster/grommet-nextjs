@@ -8,7 +8,12 @@ interface SectionProps {
 }
 const Section: React.FC<SectionProps> = ({ children, name, link }) => {
   let heading = name && (
-    <Heading level={2} margin={{ top: 'none' }}>
+    <Heading
+      level={2}
+      margin={{
+        top: 'none',
+      }}
+    >
         {name}
     </Heading>
   );
@@ -23,7 +28,9 @@ const Section: React.FC<SectionProps> = ({ children, name, link }) => {
   }
   return (
     <Box
-      pad={{ vertical: 'medium' }}
+      pad={{
+        vertical: 'medium',
+      }}
     >
       {heading}
       <Box direction='row' wrap={true}>

@@ -1,9 +1,12 @@
 /* eslint-disable no-underscore-dangle */
 import React from 'react';
 import PropTypes from 'prop-types';
+// eslint-disable-next-line no-unused-vars
 import { withRouter, Router } from 'next/router';
 import JSONPretty from 'react-json-pretty';
-import { Grommet, Box, Grid, Heading, Text, Markdown, Button, ResponsiveContext } from 'grommet';
+import {
+  Grommet, Box, Grid, Heading, Text, Markdown, Button, ResponsiveContext,
+} from 'grommet';
 import { deepMerge } from 'grommet/utils';
 import { base } from 'grommet/themes';
 import { VerticalMenu, Tag, Card } from 'grommet-controls';
@@ -30,7 +33,16 @@ const itemsTree = (items: object, path: string): object => {
         items: itemsTree(items[item], themePath),
         children: items[item],
         themePath,
-        widget: (Array.isArray(items[item]) ? <Tag round='small' border='all' pad={{ horizontal: 'small' }} label={items[item].length} /> : undefined),
+        widget: (Array.isArray(items[item]) ? (
+          <Tag
+            round='small'
+            border='all'
+            pad={{
+              horizontal: 'small',
+            }}
+            label={items[item].length}
+          />
+        ) : undefined),
       };
     });
   }
@@ -83,12 +95,21 @@ interface ThemeComponentProps {
   type: string,
 }
 const ThemeComponent: React.FC<ThemeComponentProps> = ({
-  component, defaultValue, description, type, ...rest
+  component,
+  defaultValue,
+  description,
+  type,
+  ...rest
 }) => (
-  <Card {...rest} >
+  <Card {...rest}>
     <Card.CardTitle>
       <Heading level={3} margin='none'>
-        <RoutedAnchor route='documentation' params={{ library: 'grommet', component }}>
+        <RoutedAnchor
+          route='documentation'
+          params={{
+            library: 'grommet', component,
+          }}
+        >
           {component}
         </RoutedAnchor>
       </Heading>
@@ -113,15 +134,23 @@ interface ThemesExplorerProps {
   router: Router
   fonts: string[],
 }
-const ThemesExplorer: React.FC<ThemesExplorerProps> = ({ themeDocs, router: { query: { path } }, fonts }) => {
+
+interface PathType {
+  children?: any,
+}
+const ThemesExplorer: React.FC<ThemesExplorerProps> = ({
+  themeDocs,
+  router: { query: { path } },
+  fonts,
+}) => {
   if (themeDocs === undefined) {
     return null;
   }
   const [items] = React.useState(itemsTree(themeDocs, ''));
   let selected = [];
-  const pathItem = path && getArrayProp(items, path as string);
+  const pathItem = path && getArrayProp(items, path as string) as PathType;
   if (pathItem) {
-    selected = pathItem['children'];
+    selected = pathItem.children;
   }
   const [theme, setTheme] = React.useState({});
   const onThemeChange = (newValue) => {
@@ -145,12 +174,17 @@ const ThemesExplorer: React.FC<ThemesExplorerProps> = ({ themeDocs, router: { qu
     <Grid columns='medium' gap='small'>
       {selected.map(component => (
         <ThemeComponent key={component.component} {...component} />
-              ))}
+      ))}
     </Grid>
     );
   } else {
     view = (
-      <Grommet theme={theme} style={{ background: 'transparent' }}>
+      <Grommet
+        theme={theme}
+        style={{
+          background: 'transparent',
+        }}
+      >
         <Grid columns='medium' gap='small'>
           <ComponentsList
             components={selected.map(component => ({
@@ -165,26 +199,43 @@ const ThemesExplorer: React.FC<ThemesExplorerProps> = ({ themeDocs, router: { qu
 
 
   return (
-    <Box direction='row-responsive' gap='large' pad={{ vertical: 'medium' }} >
+    <Box
+      direction='row-responsive'
+      gap='large'
+      pad={{
+        vertical: 'medium',
+      }}
+    >
       <ResponsiveContext.Consumer>
         {size => (
           <Box basis={size !== 'small' && 'medium'} overflow='auto' background='light-1'>
             <VerticalMenu
-              activeItem={{ id: path }}
+              activeItem={{
+                id: path,
+              }}
               items={items}
               onSelect={(item) => {
                 pushRoute({
-                    route: 'theme_explorer',
-                    params: { path: item.themePath },
-                  });
+                  route: 'theme_explorer',
+                  params: {
+                    path: item.themePath,
+                  },
+                });
               }}
             />
           </Box>
         )}
       </ResponsiveContext.Consumer>
       <Box pad='small' fill='horizontal'>
-        <Box pad={{ vertical: 'small' }} border='bottom' direction='row-responsive' justify='between'>
-          <Box direction='row' gap='small' >
+        <Box
+          pad={{
+            vertical: 'small',
+          }}
+          border='bottom'
+          direction='row-responsive'
+          justify='between'
+        >
+          <Box direction='row' gap='small'>
             <Button label='live' onClick={() => setViewDocs(false)} active={!viewDocs} />
             <Button label='docs' onClick={() => setViewDocs(true)} active={viewDocs} />
           </Box>
@@ -193,18 +244,43 @@ const ThemesExplorer: React.FC<ThemesExplorerProps> = ({ themeDocs, router: { qu
             {themeModal}
           </Box>
         </Box>
-        <Box pad={{ vertical: 'small' }} border='bottom' direction='row-responsive' justify='between' align='center'>
+        <Box
+          pad={{
+            vertical: 'small',
+          }}
+          border='bottom'
+          direction='row-responsive'
+          justify='between'
+          align='center'
+        >
           <ThemePath path={path as string} />
           <Text size='large'>
             {selected.length ? `${selected.length} affected components` : ''}
           </Text>
         </Box>
         {path && (
-          <Box pad={{ vertical: 'small' }} border='bottom' direction='row-responsive' justify='between' align='center'>
-            <ThemeEditor path={path as string} onChange={onThemeChange} theme={theme} fonts={fonts} />
+          <Box
+            pad={{
+              vertical: 'small',
+            }}
+            border='bottom'
+            direction='row-responsive'
+            justify='between'
+            align='center'
+          >
+            <ThemeEditor
+              path={path as string}
+              onChange={onThemeChange}
+              theme={theme}
+              fonts={fonts}
+            />
           </Box>
         )}
-        <Box pad={{ vertical: 'small' }}>
+        <Box
+          pad={{
+            vertical: 'small',
+          }}
+        >
           {view}
         </Box>
       </Box>

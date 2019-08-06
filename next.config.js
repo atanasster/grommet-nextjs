@@ -5,12 +5,16 @@ const path = require('path');
 const withTM = require('next-transpile-modules');
 
 const dedupeDependencies = (dependencies, alias) => (
-  dependencies.reduce((res, dependecy) => ({ ...res, [dependecy]: path.resolve(`./node_modules/${dependecy}`) }), alias)
+  dependencies.reduce((res, dependecy) => ({
+    ...res, [dependecy]: path.resolve(`./node_modules/${dependecy}`),
+  }), alias)
 );
 const initExport = {
   // eslint-disable-next-line no-unused-vars
   webpack: (config, env) => {
-    config.plugins.push(new Dotenv({ path: './.env' }));
+    config.plugins.push(new Dotenv({
+      path: './.env',
+    }));
     config.plugins.push(new IgnorePlugin(/^\.\/locale$/, /moment$/));
 
     if (process.env.ANALYZE_BUILD) {

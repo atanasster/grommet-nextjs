@@ -1,4 +1,3 @@
-/* eslint-disable import/no-duplicates */
 import React from 'react';
 import { withRouter } from 'next/router';
 import 'isomorphic-fetch';
@@ -38,6 +37,7 @@ class Examples extends React.Component<ExamplesProps, ExamplesState> {
       code, group, example, library, search: '', size: item.size,
     };
   }
+
   static async getInitialProps({ req }) {
     const baseUrl = req ? `${req.protocol}://${req.get('Host')}` : '';
     const res = await fetch(`${baseUrl}/api/examples`);
@@ -86,11 +86,10 @@ class Examples extends React.Component<ExamplesProps, ExamplesState> {
       grouped,
     };
   }
+
   render() {
     const { grouped } = this.props;
-    const {
-      library, group, example, code, search, size,
-    } = this.state;
+    const { library, group, example, code, search, size } = this.state;
     return (
       <Page
         title='Component editor'
@@ -109,24 +108,32 @@ class Examples extends React.Component<ExamplesProps, ExamplesState> {
                 placeholder='Search for example'
                 value={search}
                 type='search'
-                onChange={({ target: { value } }) => this.setState({ search: value })}
+                onChange={({ target: { value } }) => this.setState({
+                  search: value,
+                })}
                 widgets={[
-                  { icon: <Search />, onClick: () => {} },
+                  {
+                    icon: <Search />, onClick: () => {},
+                  },
                 ]}
               />
             </Box>
             <Box overflow='auto'>
               <VerticalMenu
                 items={grouped}
-                activeItem={{ id: `${library}_${group}_${example}` }}
+                activeItem={{
+                  id: `${library}_${group}_${example}`,
+                }}
                 search={search}
                 onSelect={(item) => {
                   pushRoute({
                     route: 'examples',
-                    params: { library: item.package, group: item.component, example: item.label },
+                    params: {
+                      library: item.package, group: item.component, example: item.label,
+                    },
                   });
                   this.setState({
-                   library: item.package,
+                    library: item.package,
                     code: item.code,
                     group: item.component,
                     example: item.label,

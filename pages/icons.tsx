@@ -8,9 +8,8 @@ import Title from '../components/app/Title';
 
 const reservedIcons = ['defaultProps', 'extendDefaultTheme'];
 
-const iconKeys = Object.keys(Icons).filter(icon =>
-  Icons[icon] && icon !== 'default' && icon !== 'ThemeContext' && icon !== 'Icon' && icon !== 'base' &&
-  Icons[icon] !== true);
+const iconKeys = Object.keys(Icons).filter(icon => Icons[icon] && icon !== 'default' && icon !== 'ThemeContext' && icon !== 'Icon' && icon !== 'base'
+  && Icons[icon] !== true);
 
 
 interface IconsPageProps {
@@ -21,7 +20,9 @@ interface IconsPageState {
   search: string,
 }
 export default class IconsPage extends React.Component<IconsPageProps, IconsPageState> {
-  state = { search: '' };
+  state = {
+    search: '',
+  };
 
   render() {
     const { small } = this.props;
@@ -32,9 +33,10 @@ export default class IconsPage extends React.Component<IconsPageProps, IconsPage
         reservedIcons.indexOf(icon) === -1
       ))
       .filter(icon => (
-        icon.toLowerCase().match(searchRegularized) ||
-        (metadata[icon] || []).some(synonym =>
-          synonym.substr(0, search.length).toLowerCase() === search.toLowerCase())
+        icon.toLowerCase().match(searchRegularized)
+        || (metadata[icon] || [])
+          .some(synonym => synonym.substr(0, search.length)
+            .toLowerCase() === search.toLowerCase())
       ))
       .sort()
       .map(icon => ({
@@ -55,9 +57,13 @@ export default class IconsPage extends React.Component<IconsPageProps, IconsPage
               }}
               value={search}
               type='search'
-              onChange={({ target: { value } }) => this.setState({ search: value })}
+              onChange={({ target: { value } }) => this.setState({
+                search: value,
+              })}
               widgets={[
-                { icon: <Icons.Search />, onClick: () => {} },
+                {
+                  icon: <Icons.Search />, onClick: () => {},
+                },
               ]}
             />
           </Box>
@@ -71,22 +77,32 @@ export default class IconsPage extends React.Component<IconsPageProps, IconsPage
                     basis={small ? 'xsmall' : 'small'}
                     justify='start'
                     align='center'
-                    pad={{ vertical: 'small' }}
+                    pad={{
+                      vertical: 'small',
+                    }}
                     key={name}
-                    style={{ minHeight: small ? '162px' : '144px' }}
+                    style={{
+                      minHeight: small ? '162px' : '144px',
+                    }}
                   >
                     <Icon size='large' />
                     <Text
                       textAlign='center'
                       margin='small'
-                      style={{ wordBreak: 'break-all' }}
+                      style={{
+                        wordBreak: 'break-all',
+                      }}
                     >
-                      <span dangerouslySetInnerHTML={{ __html: label }} />
+                      <span
+                        dangerouslySetInnerHTML={{
+                          __html: label,
+                        }}
+                      />
                     </Text>
                   </Box>
-                  )}
+                )}
               </InfiniteScroll>
-              ) : null}
+            ) : null}
           </Grid>
         </Box>
       </Page>

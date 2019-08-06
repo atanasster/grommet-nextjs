@@ -135,19 +135,23 @@ const AppThemeContextProvider = ({ children }) => {
   const [state, setState] = useState(defaultTheme);
   const [themes, setThemes] = useState(defaultThemes);
   const updateTheme = (themeName: string, theme: object) => {
-    setThemes({...themes, [themeName]: theme });
+    setThemes({
+      ...themes, [themeName]: theme,
+    });
   };
   return (
-    <AppThemeContext.Provider value={{
-      themes,
-      selected: state,
-      selectTheme: (theme) => {
-        if (theme) {
-          setState(theme)
-        }
-      },
-       updateTheme,
-    }}>
+    <AppThemeContext.Provider
+      value={{
+        themes,
+        selected: state,
+        selectTheme: (theme) => {
+          if (theme) {
+            setState(theme);
+          }
+        },
+        updateTheme,
+      }}
+    >
       {children}
     </AppThemeContext.Provider>
   );
@@ -155,4 +159,6 @@ const AppThemeContextProvider = ({ children }) => {
 
 const AppThemeContextConsumer = AppThemeContext.Consumer;
 
-export { AppThemeContext, AppThemeContextProvider, AppThemeContextConsumer}
+export {
+  AppThemeContext, AppThemeContextProvider, AppThemeContextConsumer,
+};

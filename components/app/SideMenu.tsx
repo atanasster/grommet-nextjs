@@ -1,4 +1,5 @@
-import React, { useState , useContext, useEffect } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
+// eslint-disable-next-line no-unused-vars
 import { withRouter, Router } from 'next/router';
 import 'isomorphic-fetch';
 import { Box, Button, FormField } from 'grommet';
@@ -8,7 +9,15 @@ import { queryParams } from '../nextjs/urlParams';
 import ThemeSelect from '../themes/ThemeSelect';
 import { AppThemeContext } from './AppThemeContext';
 
-const menuItems = [
+interface ItemType {
+  id: string,
+  path?: string,
+  label: string,
+  widget?: React.ReactNode,
+  items?: ItemType[],
+
+}
+const menuItems: ItemType[] = [
   {
     id: 'home',
     path: '/',
@@ -160,31 +169,39 @@ interface SideMenuState {
 
 const SideMenu : React.FC<SideMenuProps> = ({ router }) => {
   const [state, setState] = useState<SideMenuState>({
-      grommet: {},
-      grommetControls: {},
-      dxGrid: {}
-    })
+    grommet: {},
+    grommetControls: {},
+    dxGrid: {},
+  });
   const { selected, selectTheme } = useContext(AppThemeContext);
   useEffect(() => {
     fetch('/api/package/grommet/latest')
       .then(res => res.json())
-      .then(res => setState({...state, grommet: res }));
+      .then(res => setState({
+        ...state, grommet: res,
+      }));
     fetch('/api/package/grommet-controls/latest')
       .then(res => res.json())
-      .then(res => setState({...state, grommetControls: res }));
+      .then(res => setState({
+        ...state, grommetControls: res,
+      }));
     fetch('/api/package/dx-react-grid-grommet/latest')
       .then(res => res.json())
-      .then(res => setState({...state, dxGrid: res }));
+      .then(res => setState({
+        ...state, dxGrid: res,
+      }));
   }, []);
   const onThemeChange = (theme) => {
     selectTheme(theme);
-    let params = new URLSearchParams();
+    const params = new URLSearchParams();
     if (theme) {
       params.append('theme', theme);
     }
     const sParams = params.toString();
-    const path = queryParams(router) + (sParams ? `?${sParams}` : '') ;
-    router.replace(path, path, { shallow: true });
+    const path = queryParams(router) + (sParams ? `?${sParams}` : '');
+    router.replace(path, path, {
+      shallow: true,
+    });
   };
   const { grommet, grommetControls, dxGrid } = state;
   const ThemeSelector = ({ theme }) => (
@@ -197,10 +214,10 @@ const SideMenu : React.FC<SideMenuProps> = ({ router }) => {
       </FormField>
     </Box>
   );
-  menuItems.find(item => item.id === 'grommet')['widget'] = grommet.version;
-  menuItems.find(item => item.id === 'grommet-controls')['widget'] = grommetControls.version;
+  menuItems.find(item => item.id === 'grommet').widget = grommet.version;
+  menuItems.find(item => item.id === 'grommet-controls').widget = grommetControls.version;
   if (dxGrid) {
-    menuItems.find(item => item.id === 'dx-react-grid-grommet')['widget'] = dxGrid.version;
+    menuItems.find(item => item.id === 'dx-react-grid-grommet').widget = dxGrid.version;
   }
   const findPath = (items) => {
     for (let i = 0; i < items.length; i += 1) {
@@ -242,7 +259,7 @@ const SideMenu : React.FC<SideMenuProps> = ({ router }) => {
       </Sidebar>
     </Box>
   );
-}
+};
 
 export default withRouter(SideMenu);
 

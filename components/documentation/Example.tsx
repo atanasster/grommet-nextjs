@@ -2,12 +2,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import {
-  LiveProvider,
+import { LiveProvider,
   LivePreview,
   LiveEditor,
-  LiveError,
-} from 'react-live';
+  LiveError } from 'react-live';
 import { createStore } from 'redux';
 import { connect, Provider } from 'react-redux';
 import * as Icons from 'grommet-icons';
@@ -76,6 +74,7 @@ class Example extends React.Component<ExampleProps> {
   state = {
     code: '',
   };
+
   static defaultProps = {
     children: '',
     component: undefined,
@@ -94,7 +93,11 @@ class Example extends React.Component<ExampleProps> {
             <Grommet.Box basis='1/2'>
               {code && (
                 <React.Fragment>
-                  <StyledEditor onChange={e => this.setState({ code: e })} />
+                  <StyledEditor
+                    onChange={e => this.setState({
+                      code: e,
+                    })}
+                  />
                   <LiveError />
                 </React.Fragment>
               )}
@@ -110,7 +113,11 @@ class Example extends React.Component<ExampleProps> {
             <Grommet.Box>
               {code && (
                 <React.Fragment>
-                  <StyledEditor onChange={e => this.setState({ code: e })} />
+                  <StyledEditor
+                    onChange={e => this.setState({
+                      code: e,
+                    })}
+                  />
                   <LiveError />
                 </React.Fragment>
               )}
@@ -129,7 +136,11 @@ class Example extends React.Component<ExampleProps> {
             <Grommet.Box basis='1/2'>
               {code && (
                 <React.Fragment>
-                  <StyledEditor onChange={e => this.setState({ code: e })} />
+                  <StyledEditor
+                    onChange={e => this.setState({
+                      code: e,
+                    })}
+                  />
                   <LiveError />
                 </React.Fragment>
               )}
@@ -157,20 +168,22 @@ class Example extends React.Component<ExampleProps> {
 
   componentDidMount() {
     // eslint-disable-next-line react/no-did-mount-set-state
-    this.setState({ code: this.childrenToChode(this.props.children) });
+    this.setState({
+      code: this.childrenToChode(this.props.children),
+    });
   }
 
   componentWillReceiveProps(newProps) {
     const code = this.childrenToChode(newProps.children);
     if (code !== this.props.children) {
-      this.setState({ code });
+      this.setState({
+        code,
+      });
     }
   }
 
   render() {
-    const {
-      library, component, example,
-    } = this.props;
+    const { library, component, example } = this.props;
     const { code } = this.state;
     let editScope = scope;
     if (library === 'dx-grid') {
@@ -190,11 +203,18 @@ class Example extends React.Component<ExampleProps> {
       <StyledProvider code={code} scope={editScope} noInline={true}>
         {this.exampleContainer()}
         {component && example && library && (
-          <Grommet.Box pad={{ vertical: 'small' }} align='start'>
+          <Grommet.Box
+            pad={{
+              vertical: 'small',
+            }}
+            align='start'
+          >
             <RoutedButton
               plain={true}
               route='examples'
-              params={{ library, group: component, example }}
+              params={{
+                library, group: component, example,
+              }}
             >
               <Grommet.Box direction='row' gap='xsmall' pad='xsmall'>
                 <Icons.Code />

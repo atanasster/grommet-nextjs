@@ -6,7 +6,9 @@ export default () => (
     tag='footer'
     direction='row'
     justify='center'
-    pad={{ top: 'large' }}
+    pad={{
+      top: 'large',
+    }}
   >
     <Box
       basis='large'

@@ -18,7 +18,9 @@ const walk = (folder, category, subDir) => {
     } else {
       const name = [...subDir.slice(1), file.substring(0, file.indexOf('.')).replace(/_/g, ' ')].join('/');
       const fileName = `templates/${subDir.join('/')}/${file}`;
-      results.push({ category, file: fileName, name });
+      results.push({
+        category, file: fileName, name,
+      });
     }
   });
   return results;
@@ -39,7 +41,9 @@ const getAllTemplates = () => {
           // const fullFileName = `${folderPath}${file}`;
           // const code = fs.readFileSync(fullFileName).toString();
           const name = file.substring(0, file.indexOf('.')).replace(/_/g, ' ');
-          const template = { category: folder, file: fileName, name };
+          const template = {
+            category: folder, file: fileName, name,
+          };
           allTemplates.push(template);
           if (templatesByCategory[folder] === undefined) {
             templatesByCategory[folder] = [];
@@ -62,7 +66,9 @@ router.get('/byCategory/:category?', (req, res) => {
   getAllTemplates();
   const { category } = req.params;
   if (category) {
-    res.json({ [category]: allTemplates.filter(template => template.category === category) });
+    res.json({
+      [category]: allTemplates.filter(template => template.category === category),
+    });
   } else {
     res.json(templatesByCategory);
   }
@@ -87,7 +93,9 @@ router.get('/file/:file', (req, res) => {
     (err, data) => {
       res.json({
         markdown: (err && JSON.stringify(err)) || (data && data.toString()),
-        content: { html_url: `https://github.com/atanasster/grommet-nextjs/tree/master/docs/${file}` },
+        content: {
+          htmlUrl: `https://github.com/atanasster/grommet-nextjs/tree/master/docs/${file}`,
+        },
       });
     });
 });

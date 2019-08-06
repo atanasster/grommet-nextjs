@@ -12,7 +12,15 @@ interface TypographyLineProps {
   element: React.ReactNode,
 }
 const TypographyLine: React.FC<TypographyLineProps> = ({ label, element }) => (
-  <Box direction='row' align='center' border='bottom' pad={{ vertical: 'small' }} gap='small'>
+  <Box
+    direction='row'
+    align='center'
+    border='bottom'
+    pad={{
+      vertical: 'small',
+    }}
+    gap='small'
+  >
     <Box basis='small'>
       <Text>{label}</Text>
     </Box>
@@ -23,7 +31,11 @@ export default class IconsPage extends React.Component {
   render() {
     return (
       <Page title='Typography'>
-        <Box pad={{ horizontal: 'large' }}>
+        <Box
+          pad={{
+            horizontal: 'large',
+          }}
+        >
           <TypographyLine label='Header level = 1' element={<Heading level={1}>{lineText}</Heading>} />
           <TypographyLine label='Header level = 2' element={<Heading level={2}>{lineText}</Heading>} />
           <TypographyLine label='Header level = 3' element={<Heading level={3}>{lineText}</Heading>} />

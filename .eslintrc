@@ -1,12 +1,13 @@
 {
-  "parser": "babel-eslint",
+  "parser": "@typescript-eslint/parser",
+  "plugins": ["@typescript-eslint"],
   "extends": "airbnb",
   "env": {
     "node": true,
     "es6": true
   },
-  "plugins": ["async-await"],
   "parserOptions": {
+    "ecmaVersion":  2018,
     "sourceType": "module",
     "allowImportExportEverywhere": false,
     "codeFrame": false
@@ -27,14 +28,20 @@
     "React": true
   },
   "rules": {
-    "async-await/space-after-async": 2,
-    "async-await/space-after-await": 2,
     "comma-dangle": ["error", "always-multiline"],
     "function-paren-newline": ["error", "consistent"],
     "import/prefer-default-export": 0,
     "jsx-quotes": ["error", "prefer-single"],
     "no-console": 0,
+    "no-multiple-empty-lines": ["error", { "max": 2, "maxEOF": 1 }],
+    "object-curly-newline": ["error", {
+        "ObjectExpression": { "minProperties": 1 },
+        "ObjectPattern": { "multiline": true },
+        "ImportDeclaration": { "minProperties": 6 },
+        "ExportDeclaration": { "multiline": true, "minProperties": 3 }
+    }],
     "quote-props": ["error", "consistent"],
+    "react/destructuring-assignment": 0,
     "react/forbid-prop-types": 0,  // Soft requirement now, try hard requ in future
     "react/jsx-boolean-value": [1, "always"],
     "react/jsx-filename-extension": 0,
@@ -48,7 +55,13 @@
     "react/sort-comp": 0,
     "react/no-array-index-key": 0,
     "import/no-extraneous-dependencies": 0,
-    "no-alert": 0,
-    "jsx-a11y/href-no-hash": 0
+    "no-alert": 0
+  },
+  "settings": {
+    "import/resolver": {
+      "node": {
+        "extensions": [".js", ".jsx", ".ts", ".tsx"]
+      }
+    }
   }
 }

@@ -1,6 +1,4 @@
-/* eslint-disable no-underscore-dangle */
 import React from 'react';
-import PropTypes from 'prop-types';
 import 'isomorphic-fetch';
 import Component from './Component';
 

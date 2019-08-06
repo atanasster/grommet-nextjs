@@ -10,12 +10,18 @@ export default class Theming extends React.Component<{}, ThemingState> {
   state = {
     theme: {},
   }
+
   componentDidMount() {
     fetch('/api/theme')
       .then(res => (res ? res.json() : res))
-      .catch(() => this.setState({ theme: {} }))
-      .then(res => res && this.setState({ theme: res }));
+      .catch(() => this.setState({
+        theme: {},
+      }))
+      .then(res => res && this.setState({
+        theme: res,
+      }));
   }
+
   render() {
     const { theme } = this.state;
     return (

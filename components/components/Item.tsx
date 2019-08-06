@@ -6,9 +6,7 @@ interface ItemProps {
   name: string,
   path: string,
 }
-const Item: React.FC<ItemProps> = ({
-  name, path, children,
-}) => (
+const Item: React.FC<ItemProps> = ({ name, path, children }) => (
   <Card background='brand' basis='medium' margin='xsmall'>
     <Card.CardTitle>
       <RoutedAnchor path={path}>

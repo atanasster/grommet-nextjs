@@ -17,36 +17,47 @@ interface FontEditorProps {
 
 }
 const FontEditor: React.FC<FontEditorProps> = ({ theme, object, onChange, fonts }) => {
- const [ search, setSearch] = useState<string>('');
- return (
-   <Select
-     labelKey='family'
-     value={(object && object.family) || ''}
-     options={fonts.filter(font => (font.family.toLowerCase().match(search)))}
-     onClose={() => this.setState({ search: '' })}
-     onChange={({ option: font }) => onChange({ family: fontString(font) })}
-     onSearch={(text) => {
-        this.setState({
-          search: text.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, '\\$&').toLowerCase(),
-        });
+  const [search, setSearch] = useState<string>('');
+  return (
+    <Select
+      labelKey='family'
+      value={(object && object.family) || ''}
+      options={fonts.filter(font => (font.family.toLowerCase().match(search)))}
+      onClose={() => setSearch('')}
+      onChange={({ option: font }) => onChange({
+        family: fontString(font),
+      })}
+      onSearch={(text) => {
+        setSearch(text.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, '\\$&').toLowerCase());
       }}
-   >
-     {font => (
-       <Grommet key={`font_${font.family}`} theme={deepMerge(theme, { global: { font: { family: fontString(font) } } })} >
-         <Box
-           direction='row-responsive'
-           justify='between'
-           align='center'
-           pad={{ horizontal: 'small', vertical: 'xsmall' }}
-         >
-           <Text>{font.family}</Text>
-           <Text size='small'>{font.category}</Text>
-         </Box>
-       </Grommet>
+    >
+      {font => (
+        <Grommet
+          key={`font_${font.family}`}
+          theme={deepMerge(theme, {
+            global: {
+              font: {
+                family: fontString(font),
+              },
+            },
+          })}
+        >
+          <Box
+            direction='row-responsive'
+            justify='between'
+            align='center'
+            pad={{
+              horizontal: 'small', vertical: 'xsmall',
+            }}
+          >
+            <Text>{font.family}</Text>
+            <Text size='small'>{font.category}</Text>
+          </Box>
+        </Grommet>
       )}
-   </Select>
- );
-}
+    </Select>
+  );
+};
 
 export default withTheme(FontEditor);
 

@@ -43,16 +43,18 @@ const MaterialIconsPage = () => {
             type='search'
             onChange={({ target: { value } }) => setIcons(updateSearchIcons(value))}
             widgets={[
-              { icon: <Search />, onClick: () => {} },
+              {
+                icon: <Search />, onClick: () => {},
+              },
             ]}
           />
         </Box>
       </Title>
-      <Box >
+      <Box>
         <ThemeContext.Consumer>
           {(theme) => {
-            const iconColor = theme.dark ?
-              theme.global.colors.text.dark : theme.global.colors.text.light;
+            const iconColor = theme.dark
+              ? theme.global.colors.text.dark : theme.global.colors.text.light;
             return (
               <ResponsiveContext.Consumer>
                 {size => (
@@ -64,17 +66,31 @@ const MaterialIconsPage = () => {
                             basis={size === 'small' ? 'xsmall' : 'small'}
                             justify='start'
                             align='center'
-                            pad={{ vertical: 'small' }}
+                            pad={{
+                              vertical: 'small',
+                            }}
                             key={name}
-                            style={{ minHeight: (size === 'small') ? '162px' : '144px' }}
+                            style={{
+                              minHeight: (size === 'small') ? '162px' : '144px',
+                            }}
                           >
-                            <Icon style={{ width: 48, height: 48, fill: iconColor }} />
+                            <Icon
+                              style={{
+                                width: 48, height: 48, fill: iconColor,
+                              }}
+                            />
                             <Text
                               textAlign='center'
                               margin='small'
-                              style={{ wordBreak: 'break-all' }}
+                              style={{
+                                wordBreak: 'break-all',
+                              }}
                             >
-                              <span dangerouslySetInnerHTML={{ __html: label }} />
+                              <span
+                                dangerouslySetInnerHTML={{
+                                  __html: label,
+                                }}
+                              />
                             </Text>
                           </Box>
                         )}

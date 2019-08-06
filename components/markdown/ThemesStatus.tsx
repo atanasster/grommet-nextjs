@@ -1,6 +1,8 @@
 import React from 'react';
 import JSONPretty from 'react-json-pretty';
-import { Grommet, Box, Anchor, Button, Text, Select, CheckBox, RadioButton } from 'grommet';
+import {
+  Grommet, Box, Anchor, Button, Text, Select, CheckBox, RadioButton,
+} from 'grommet';
 import { colorIsDark } from 'grommet/utils/colors';
 import { Home } from 'grommet-icons';
 import { PagingTable } from 'grommet-controls';
@@ -80,18 +82,18 @@ const selectTest = ({ backgroundColor, container }) => {
   return errors;
 };
 
-const TestContainer = ({
-  children, theme, test, name, errorFunc = anchorTest, ...rest
-}) => {
+const TestContainer = ({ children, theme, test, name, errorFunc = anchorTest, ...rest }) => {
   const ref = React.useRef();
   let err;
   if (ref.current) {
     const { backgroundColor } = getComputedStyle(ref.current);
-    const errors = errorFunc({ backgroundColor, container: ref.current });
+    const errors = errorFunc({
+      backgroundColor, container: ref.current,
+    });
     if (errors.length > 0) {
       const title = errors.join('\n');
       err = (
-        <Text title={title} color='red' >
+        <Text title={title} color='red'>
           {`${errors.length} ERROR${errors.length > 1 ? 'S' : ''}`}
         </Text>
       );
@@ -153,7 +155,7 @@ const RadioButtonOnDark = props => (
 );
 
 const RadioButtonOnLight = props => (
-  <TestContainer test='RadioButtonOnLight'background='white' errorFunc={checkboxTest} {...props}>
+  <TestContainer test='RadioButtonOnLight' background='white' errorFunc={checkboxTest} {...props}>
     <RadioButton checked={true} label='radio' name='RadioButtonOnLight' onChange={() => {}} />
   </TestContainer>
 );
@@ -183,19 +185,27 @@ class ThemesStatus extends React.Component {
     return (
       <AppThemeContextConsumer>
         {({ themes }) => (
-            <PagingTable
-              sortable={false}
-              resizable={false}
-              SubComponent={this.onExpand}
-              decorations={{
-               table: { elevation: 'medium' },
-               body: { animation: { type: 'fadeIn', duration: 4000, size: 'large' } },
-               row: { hover: true },
-               headerGroup: {
-                  background: 'brand', border: 'all', size: 'large', textAlign: 'center',
+          <PagingTable
+            sortable={false}
+            resizable={false}
+            SubComponent={this.onExpand}
+            decorations={{
+              table: {
+                elevation: 'medium',
+              },
+              body: {
+                animation: {
+                  type: 'fadeIn', duration: 4000, size: 'large',
                 },
-              }}
-              columns={[
+              },
+              row: {
+                hover: true,
+              },
+              headerGroup: {
+                background: 'brand', border: 'all', size: 'large', textAlign: 'center',
+              },
+            }}
+            columns={[
               {
                 columns: [
                   {
@@ -206,7 +216,7 @@ class ThemesStatus extends React.Component {
               }, {
                 Header: 'Anchor',
                 columns: [
-                 {
+                  {
                     Header: 'dark',
                     Cell: props => (
                       <AnchorOnDark theme={props.original.theme} name={props.original.name} />
@@ -219,75 +229,76 @@ class ThemesStatus extends React.Component {
                   },
                 ],
               }, {
-                  Header: 'Button',
-                  columns: [
-                    {
-                      Header: 'dark',
-                      Cell: props => (
-                        <ButtonOnDark theme={props.original.theme} name={props.original.name} />
-                      ),
-                    }, {
-                      Header: 'light',
-                      Cell: props => (
-                        <ButtonOnLight theme={props.original.theme} name={props.original.name} />
-                      ),
-                    },
-                  ],
-                }, {
-                  Header: 'Select',
-                  columns: [
-                    {
-                      Header: 'dark',
-                      Cell: props => (
-                        <SelectOnDark theme={props.original.theme} name={props.original.name} />
-                      ),
-                    }, {
-                      Header: 'light',
-                      Cell: props => (
-                        <SelectOnLight theme={props.original.theme} name={props.original.name} />
-                      ),
-                    },
-                  ],
-                }, {
-                  Header: 'CheckBox',
-                  columns: [
-                    {
-                      Header: 'dark',
-                      Cell: props => (
-                        <CheckboxOnDark theme={props.original.theme} name={props.original.name} />
-                      ),
-                    }, {
-                      Header: 'light',
-                      Cell: props => (
-                        <CheckboxOnLight theme={props.original.theme} name={props.original.name} />
-                      ),
-                    },
-                  ],
-                }, {
-                  Header: 'RadioButton',
-                  columns: [
-                    {
-                      Header: 'dark',
-                      Cell: props => (
-                        <RadioButtonOnDark theme={props.original.theme} name={props.original.name} />
-                      ),
-                    }, {
-                      Header: 'light',
-                      Cell: props => (
-                        <RadioButtonOnLight theme={props.original.theme} name={props.original.name} />
-                      ),
-                    },
-                  ],
-                },
-              ]}
-              data={Object.keys(themes).map(theme => ({ name: theme, theme: themes[theme] }))}
-            />
+                Header: 'Button',
+                columns: [
+                  {
+                    Header: 'dark',
+                    Cell: props => (
+                      <ButtonOnDark theme={props.original.theme} name={props.original.name} />
+                    ),
+                  }, {
+                    Header: 'light',
+                    Cell: props => (
+                      <ButtonOnLight theme={props.original.theme} name={props.original.name} />
+                    ),
+                  },
+                ],
+              }, {
+                Header: 'Select',
+                columns: [
+                  {
+                    Header: 'dark',
+                    Cell: props => (
+                      <SelectOnDark theme={props.original.theme} name={props.original.name} />
+                    ),
+                  }, {
+                    Header: 'light',
+                    Cell: props => (
+                      <SelectOnLight theme={props.original.theme} name={props.original.name} />
+                    ),
+                  },
+                ],
+              }, {
+                Header: 'CheckBox',
+                columns: [
+                  {
+                    Header: 'dark',
+                    Cell: props => (
+                      <CheckboxOnDark theme={props.original.theme} name={props.original.name} />
+                    ),
+                  }, {
+                    Header: 'light',
+                    Cell: props => (
+                      <CheckboxOnLight theme={props.original.theme} name={props.original.name} />
+                    ),
+                  },
+                ],
+              }, {
+                Header: 'RadioButton',
+                columns: [
+                  {
+                    Header: 'dark',
+                    Cell: props => (
+                      <RadioButtonOnDark theme={props.original.theme} name={props.original.name} />
+                    ),
+                  }, {
+                    Header: 'light',
+                    Cell: props => (
+                      <RadioButtonOnLight theme={props.original.theme} name={props.original.name} />
+                    ),
+                  },
+                ],
+              },
+            ]}
+            data={Object.keys(themes).map(theme => ({
+              name: theme, theme: themes[theme],
+            }))}
+          />
         )}
       </AppThemeContextConsumer>
     );
   }
 }
-
 
 
 export default ThemesStatus;

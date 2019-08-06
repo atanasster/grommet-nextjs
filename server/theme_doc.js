@@ -9,15 +9,15 @@ import testerTheme from './themeTester.js';
 const { renderToString } = server;
 const { ServerStyleSheet } = sc;
 
-const TestComponent = ({
-  theme, Grommet, Component, ...rest
-}) => (
-  React.createElement(Grommet, { theme }, React.createElement(Component, { ...rest }, null))
+const TestComponent = ({ theme, Grommet, Component, ...rest }) => (
+  React.createElement(Grommet, {
+    theme,
+  }, React.createElement(Component, {
+    ...rest,
+  }, null))
 );
 
-const cssRules = ({
-  theme, Grommet, Component, ...rest
-}) => {
+const cssRules = ({ theme, Grommet, Component, ...rest }) => {
   // eslint-disable-next-line new-cap
   const cssParser = new cssjs.cssjs();
   const sheet = new ServerStyleSheet();
@@ -37,7 +37,9 @@ const cssRules = ({
       const className = classes[2].split('-')[0];
       if (className !== 'StyledGrommet') {
         p.rules.forEach((rule) => {
-          rules.push({ ...rule, className });
+          rules.push({
+            ...rule, className,
+          });
         });
       }
     }
@@ -46,18 +48,21 @@ const cssRules = ({
 };
 
 
-const testCssDiffs = ({
-  object, theme, baseline, errors, path,
-}) => {
-  const newCss = cssRules({ ...object, theme });
+const testCssDiffs = ({ object, theme, baseline, errors, path }) => {
+  const newCss = cssRules({
+    ...object, theme,
+  });
   baseline.forEach((cssRule) => {
     const namedRules = newCss
-      .filter(newRule =>
-        (newRule.className === cssRule.className && newRule.directive === cssRule.directive));
+      .filter(newRule => (
+        newRule.className === cssRule.className && newRule.directive === cssRule.directive
+      ));
 
     const found = namedRules.find(newRule => (newRule.value === cssRule.value));
     if (found === undefined) {
-      errors.push({ ...cssRule, path, newValue: namedRules.length > 0 ? namedRules[0].value : 'none' });
+      errors.push({
+        ...cssRule, path, newValue: namedRules.length > 0 ? namedRules[0].value : 'none',
+      });
     }
   });
 };
@@ -67,9 +72,7 @@ const isObject = item => (
 );
 
 
-const iterateTheme = ({
-  object, baseline, errors, theme, path,
-}) => {
+const iterateTheme = ({ object, baseline, errors, theme, path }) => {
   if (isObject(theme)) {
     Object.keys(theme).forEach((key) => {
       iterateTheme({
@@ -110,12 +113,16 @@ export default ({ Grommet, Component, baseTheme }) => {
     placeholder: 'text',
     size: 'small',
   };
-  const baseline = cssRules({ ...object, theme: baseTheme });
+  const baseline = cssRules({
+    ...object, theme: baseTheme,
+  });
 
 
   const errors = [];
   iterateTheme({
     object, baseline, errors, theme: testerTheme, path: '',
   });
-  return { errors };
+  return {
+    errors,
+  };
 };

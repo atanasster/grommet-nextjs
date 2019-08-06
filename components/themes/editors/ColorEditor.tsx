@@ -1,19 +1,16 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import { Box, RadioButton } from 'grommet';
 import ColorSelect from './ColorSelect';
 
 
 interface ColorEditorProps {
-  object: any, //{ dark?: string; light?: string } | string,
+  object: any, // { dark?: string; light?: string } | string,
   onChange(color: string): void,
   path: string,
   theme: object,
 
 }
-const ColorEditor: React.FC<ColorEditorProps> = ({
-  theme, object, path, onChange,
-}) => {
+const ColorEditor: React.FC<ColorEditorProps> = ({ theme, object, path, onChange }) => {
   const [color, setColor] = React.useState(object);
   React.useEffect(() => {
     setColor(object);
@@ -43,7 +40,9 @@ const ColorEditor: React.FC<ColorEditorProps> = ({
   };
   const onChangeColor = (newColor) => {
     if (colorIsObject) {
-      const objColor = { ...(colorIsObject ? object : {}), light: newColor };
+      const objColor = {
+        ...(colorIsObject ? object : {}), light: newColor,
+      };
       onChange(objColor);
     } else {
       onChange(newColor);
@@ -51,7 +50,9 @@ const ColorEditor: React.FC<ColorEditorProps> = ({
   };
   const onChangeDarkColor = (newColor) => {
     if (colorIsObject) {
-      const objColor = { ...(colorIsObject ? object : {}), dark: newColor };
+      const objColor = {
+        ...(colorIsObject ? object : {}), dark: newColor,
+      };
       onChange(objColor);
     } else {
       onChange(newColor);

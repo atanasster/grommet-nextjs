@@ -1,4 +1,4 @@
-/* eslint-disable import/no-unresolved,import/extensions,no-param-reassign */
+/* eslint-disable import/extensions,no-param-reassign */
 import express from 'express';
 import grommet from 'grommet';
 import grommetControls from 'grommet-controls';
@@ -27,7 +27,9 @@ router.get('/:name?', (req, res) => {
           }
 
           try {
-            obj[keys[lastIndex]].push({ component: example.name, ...value });
+            obj[keys[lastIndex]].push({
+              component: example.name, ...value,
+            });
           } catch (e) {
             console.log('ERROR: ', propName, keys[lastIndex]);
           }

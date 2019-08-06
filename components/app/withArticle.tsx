@@ -6,12 +6,12 @@ import ExtMarkdown from '../markdown/ExtMarkdown';
 import Page from './Page';
 
 interface ArticleContent {
-  html_url: string;
+  htmlUrl: string;
 }
 interface WithArticleProps {
   markdown: string;
   content: ArticleContent;
-};
+}
 
 interface ArticleProps {
   location?: string;
@@ -21,8 +21,7 @@ interface ArticleProps {
   title: string;
   url?: string;
 }
-export default (ComposedComponent, {location = 'github', owner = 'default', repo = 'default', path, title, url} : ArticleProps) =>
-  class withArticle extends Component<WithArticleProps, {}>  {
+export default (ComposedComponent, { location = 'github', owner = 'default', repo = 'default', path, title, url } : ArticleProps) => class withArticle extends Component<WithArticleProps, {}> {
     static displayName = `withArticle(${getDisplayName(
       ComposedComponent
     )})`;
@@ -42,26 +41,27 @@ export default (ComposedComponent, {location = 'github', owner = 'default', repo
         ...composedInitialProps,
       };
     }
+
     render(): JSX.Element {
-      const {
-        content, markdown, ...rest
-      } = this.props;
-      return <Page title={title}>
-        <Box pad='large' gap='medium'>
-          <Box direction='row' justify='end' align='center'>
-            <Anchor
-              icon={<Github/>}
-              label='Edit this page'
-              href={url || content.html_url}
-              target='_blank'
-            />
+      const { content, markdown, ...rest } = this.props;
+      return (
+        <Page title={title}>
+          <Box pad='large' gap='medium'>
+            <Box direction='row' justify='end' align='center'>
+              <Anchor
+                icon={<Github />}
+                label='Edit this page'
+                href={url || content.htmlUrl}
+                target='_blank'
+              />
+            </Box>
+            <ExtMarkdown
+              {...rest}
+            >
+              {markdown}
+            </ExtMarkdown>
           </Box>
-          <ExtMarkdown
-            {...rest}
-          >
-            {markdown}
-          </ExtMarkdown>
-        </Box>
-      </Page>;
+        </Page>
+      );
     }
 };

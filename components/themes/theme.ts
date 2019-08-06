@@ -18,6 +18,7 @@ export const SHARPNESS_ROUND_SIZE = {
   hard: 'none',
 };
 
+// eslint-disable-next-line no-unused-vars
 enum SharpnessLevelType { rounded, soft, medium, hard }
 interface SharpnessObjectType {
   global: { input: { border: { radius: string } }, drop: { border: { radius: string } } },
@@ -32,29 +33,132 @@ type SharpnessType = {
 
 const SHARPNESS: SharpnessType = {
   rounded: {
-    global: { input: { border: { radius: '24px' } }, drop: { border: { radius: '4px' } } },
-    button: { border: { radius: '24px' } },
-    checkBox: { check: { radius: '24px' }, toggle: { radius: '24px' } },
-    layer: { border: { radius: '24px' } },
+    global: {
+      input: {
+        border: {
+          radius: '24px',
+        },
+      },
+      drop: {
+        border: {
+          radius: '4px',
+        },
+      },
+    },
+    button: {
+      border: {
+        radius: '24px',
+      },
+    },
+    checkBox: {
+      check: {
+        radius: '24px',
+      },
+      toggle: {
+        radius: '24px',
+      },
+    },
+    layer: {
+      border: {
+        radius: '24px',
+      },
+    },
   },
   soft: {
-    global: { input: { border: { radius: '16px' } }, drop: { border: { radius: '3px' } } },
-    button: { border: { radius: '16px' } },
-    checkBox: { check: { radius: '16px' },
-    toggle: { radius: '4px' } },
-    layer: { border: { radius: '16px' } },
+    global: {
+      input: {
+        border: {
+          radius: '16px',
+        },
+      },
+      drop: {
+        border: {
+          radius: '3px',
+        },
+      },
+    },
+    button: {
+      border: {
+        radius: '16px',
+      },
+    },
+    checkBox: {
+      check: {
+        radius: '16px',
+      },
+      toggle: {
+        radius: '4px',
+      },
+    },
+    layer: {
+      border: {
+        radius: '16px',
+      },
+    },
   },
   medium: {
-    global: { input: { border: { radius: '4px' } }, drop: { border: { radius: '2px' } } },
-    button: { border: { radius: '4px' } },
-    checkBox: { check: { radius: '4px' }, toggle: { radius: '2px' } },
-    layer: { border: { radius: '4px' } },
+    global: {
+      input: {
+        border: {
+          radius: '4px',
+        },
+      },
+      drop: {
+        border: {
+          radius: '2px',
+        },
+      },
+    },
+    button: {
+      border: {
+        radius: '4px',
+      },
+    },
+    checkBox: {
+      check: {
+        radius: '4px',
+      },
+      toggle: {
+        radius: '2px',
+      },
+    },
+    layer: {
+      border: {
+        radius: '4px',
+      },
+    },
   },
   hard: {
-    global: { input: { border: { radius: '0px' } }, drop: { border: { radius: '0px' } } },
-    button: { border: { radius: '0px' } },
-    checkBox: { check: { radius: '0px' }, toggle: { radius: '0px' } },
-    layer: { border: { radius: '0px' } },
+    global: {
+      input: {
+        border: {
+          radius: '0px',
+        },
+      },
+      drop: {
+        border: {
+          radius: '0px',
+        },
+      },
+    },
+    button: {
+      border: {
+        radius: '0px',
+      },
+    },
+    checkBox: {
+      check: {
+        radius: '0px',
+      },
+      toggle: {
+        radius: '0px',
+      },
+    },
+    layer: {
+      border: {
+        radius: '0px',
+      },
+    },
   },
 };
 
@@ -87,7 +191,18 @@ export const parseRGBString = (str) => {
 
 
 const colorsForMood = (color, backgroundColor, mood, scheme) => {
-  let result = {};
+  let result = {
+    global: {
+      colors: {},
+      elevation: {},
+      drop: {},
+    },
+    layer: {},
+    checkBox: {},
+    anchor: {},
+    heading: {},
+    radioButton: {},
+  };
   const brandRGB = parseRGBString(color);
   const backgroundRGB = parseRGBString(backgroundColor);
 
@@ -155,7 +270,9 @@ const colorsForMood = (color, backgroundColor, mood, scheme) => {
         },
       },
       checkBox: {
-        border: { color: border },
+        border: {
+          color: border,
+        },
       },
       anchor: {
         color: brandNormalized,
@@ -164,7 +281,9 @@ const colorsForMood = (color, backgroundColor, mood, scheme) => {
         font: false,
       },
       radioButton: {
-        border: { color: border },
+        border: {
+          color: border,
+        },
       },
     };
     // create theme palette
@@ -174,11 +293,11 @@ const colorsForMood = (color, backgroundColor, mood, scheme) => {
       .colors();
     const accentColors = 4;
     for (let i = 0; i < accentColors; i += 1) {
-      result['global'].colors[`accent-${i + 1}`] = `#${colorsTheme[i]}`;
+      result.global.colors[`accent-${i + 1}`] = `#${colorsTheme[i]}`;
     }
     const neutralColors = 5;
     for (let i = accentColors; i < accentColors + neutralColors; i += 1) {
-      result['global'].colors[`neutral-${(i - accentColors) + 1}`] = `#${colorsTheme[i]}`;
+      result.global.colors[`neutral-${(i - accentColors) + 1}`] = `#${colorsTheme[i]}`;
     }
   }
   return result;
@@ -206,15 +325,25 @@ export const themeFromFont = async (font: FontType): Promise<FontType> => {
   return {};
 };
 
-export default ({
-  color, background, mood, scheme, sharpness, font,
-}) => {
+export default ({ color, background, mood, scheme, sharpness, font }) => {
   let theme = null;
   const colors = colorsForMood(color, background, mood, scheme);
   if (colors) {
-    theme = { ...colors };
+    theme = {
+      ...colors,
+    };
     theme = deepMerge(theme, SHARPNESS[sharpness]);
-    theme = { ...theme, global: { ...theme.global, ...{ font: { ...font.theme } } } };
+    theme = {
+      ...theme,
+      global: {
+        ...theme.global,
+        ...{
+          font: {
+            ...font.theme,
+          },
+        },
+      },
+    };
   }
   return theme;
 };

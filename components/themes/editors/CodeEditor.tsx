@@ -1,9 +1,6 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
-import {
-  LiveProvider,
-  LiveEditor,
-} from 'react-live';
+import { LiveProvider, LiveEditor } from 'react-live';
 import { Box, DropButton, Button } from 'grommet';
 
 const StyledProvider = styled(LiveProvider)`
@@ -35,10 +32,17 @@ const CodeEditor: React.FC<CodeEditorProps> = ({ object, path, onChange }) => {
     <DropButton
       open={open}
       label='code'
-      dropAlign={{ top: 'bottom', right: 'right' }}
-      dropContent={
+      dropAlign={{
+        top: 'bottom', right: 'right',
+      }}
+      dropContent={(
         <Box pad='small' gap='medium' flex='grow'>
-          <StyledProvider code={code} scope={{ styled, css }}>
+          <StyledProvider
+            code={code}
+            scope={{
+              styled, css,
+            }}
+          >
             <Box>
               <StyledEditor onChange={e => setCode(e)} />
             </Box>
@@ -60,7 +64,7 @@ const CodeEditor: React.FC<CodeEditorProps> = ({ object, path, onChange }) => {
             />
           </Box>
         </Box>
-        }
+)}
     />
   );
 };

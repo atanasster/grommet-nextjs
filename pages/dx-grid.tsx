@@ -78,8 +78,12 @@ const columnBands = [
   {
     title: 'Personal Data',
     children: [
-      { columnName: 'name' },
-      { columnName: 'sex' },
+      {
+        columnName: 'name',
+      },
+      {
+        columnName: 'sex',
+      },
     ],
   },
 ];
@@ -107,7 +111,9 @@ const GroupCellContent = ({ column, row }) => (
   </Box>
 );
 
-const cityGroupCriteria = value => ({ key: value.substr(0, 1) });
+const cityGroupCriteria = value => ({
+  key: value.substr(0, 1),
+});
 
 
 const getChildRows = (row, rootRows) => {
@@ -118,11 +124,21 @@ const getChildRows = (row, rootRows) => {
 export default class DXGrid extends React.Component {
   state = {
     columns: [
-      { name: 'name', title: 'Name' },
-      { name: 'car', title: 'Car' },
-      { name: 'sex', title: 'Sex' },
-      { name: 'city', title: 'City' },
-      { name: 'amount', title: 'Price' },
+      {
+        name: 'name', title: 'Name',
+      },
+      {
+        name: 'car', title: 'Car',
+      },
+      {
+        name: 'sex', title: 'Sex',
+      },
+      {
+        name: 'city', title: 'City',
+      },
+      {
+        name: 'amount', title: 'Price',
+      },
     ],
     rows: [
       {
@@ -190,14 +206,26 @@ export default class DXGrid extends React.Component {
       },
     ],
     columnWidths: [
-      { columnName: 'car', width: 240 },
-      { columnName: 'name', width: 180 },
-      { columnName: 'sex', width: 180 },
-      { columnName: 'city', width: 180 },
-      { columnName: 'amount', width: 150 },
+      {
+        columnName: 'car', width: 240,
+      },
+      {
+        columnName: 'name', width: 180,
+      },
+      {
+        columnName: 'sex', width: 180,
+      },
+      {
+        columnName: 'city', width: 180,
+      },
+      {
+        columnName: 'amount', width: 150,
+      },
     ],
     tableColumnExtensions: [
-      { columnName: 'amount', align: 'right' },
+      {
+        columnName: 'amount', align: 'right',
+      },
     ],
     columnOrder: ['car', 'name', 'sex', 'city', 'amount'],
     hiddenColumnNames: [],
@@ -208,39 +236,69 @@ export default class DXGrid extends React.Component {
     selection: [1],
     expandedRowIds: [],
     totalSummaryItems: [
-      { columnName: 'city', type: 'count' },
-      { columnName: 'amount', type: 'max' },
-      { columnName: 'amount', type: 'sum' },
+      {
+        columnName: 'city', type: 'count',
+      },
+      {
+        columnName: 'amount', type: 'max',
+      },
+      {
+        columnName: 'amount', type: 'sum',
+      },
     ],
     currencyColumns: ['amount'],
     integratedGroupingColumnExtensions: [
-      { columnName: 'city', criteria: cityGroupCriteria },
+      {
+        columnName: 'city', criteria: cityGroupCriteria,
+      },
     ],
     tableGroupColumnExtension: [
-      { columnName: 'city', showWhenGrouped: true },
+      {
+        columnName: 'city', showWhenGrouped: true,
+      },
     ],
-    grouping: [{ columnName: 'city' }],
+    grouping: [{
+      columnName: 'city',
+    }],
     editingStateColumnExtensions: [
-      { columnName: 'name', editingEnabled: false },
+      {
+        columnName: 'name', editingEnabled: false,
+      },
     ],
   };
 
 
-  changeColumnOrder = newOrder => this.setState({ columnOrder: newOrder });
+  changeColumnOrder = newOrder => this.setState({
+    columnOrder: newOrder,
+  });
 
-  changeColumnWidths = columnWidths => this.setState({ columnWidths });
+  changeColumnWidths = columnWidths => this.setState({
+    columnWidths,
+  });
 
-  hiddenColumnNamesChange = hiddenColumnNames => this.setState({ hiddenColumnNames });
+  hiddenColumnNamesChange = hiddenColumnNames => this.setState({
+    hiddenColumnNames,
+  });
 
-  changeCurrentPage = currentPage => this.setState({ currentPage });
+  changeCurrentPage = currentPage => this.setState({
+    currentPage,
+  });
 
-  changePageSize = pageSize => this.setState({ pageSize });
+  changePageSize = pageSize => this.setState({
+    pageSize,
+  });
 
-  changeSearchValue = value => this.setState({ searchValue: value });
+  changeSearchValue = value => this.setState({
+    searchValue: value,
+  });
 
-  changeSelection = selection => this.setState({ selection });
+  changeSelection = selection => this.setState({
+    selection,
+  });
 
-  changeExpandedDetails = expandedRowIds => this.setState({ expandedRowIds });
+  changeExpandedDetails = expandedRowIds => this.setState({
+    expandedRowIds,
+  });
 
   getTotalSummaryValues = () => {
     const { selection, rows, totalSummaryItems } = this.state;
@@ -265,13 +323,17 @@ export default class DXGrid extends React.Component {
       ];
     }
     if (changed) {
-      rows = rows.map(row => (changed[row.id] ? { ...row, ...changed[row.id] } : row));
+      rows = rows.map(row => (changed[row.id] ? {
+        ...row, ...changed[row.id],
+      } : row));
     }
     if (deleted) {
       const deletedSet = new Set(deleted);
       rows = rows.filter(row => !deletedSet.has(row.id));
     }
-    this.setState({ rows });
+    this.setState({
+      rows,
+    });
   };
 
   render() {
@@ -409,7 +471,11 @@ export default class DXGrid extends React.Component {
               </Heading>
               <Grid rows={rows} columns={columns}>
                 <DragDropProvider />
-                <GroupingState defaultGrouping={[{ columnName: 'city' }]} />
+                <GroupingState
+                  defaultGrouping={[{
+                    columnName: 'city',
+                  }]}
+                />
                 <IntegratedGrouping />
 
                 <Table />
@@ -425,9 +491,9 @@ export default class DXGrid extends React.Component {
               </Heading>
               <Grid
                 rows={rows.map((row, index) => ({
-                    ...row,
-                    parentId: (index > 0 ? Math.trunc((Math.random() * index) / 2) : null),
-                  }))}
+                  ...row,
+                  parentId: (index > 0 ? Math.trunc((Math.random() * index) / 2) : null),
+                }))}
                 columns={columns}
               >
                 <CurrencyTypeProvider

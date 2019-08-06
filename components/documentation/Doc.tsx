@@ -5,6 +5,7 @@ import { ThemeContext } from 'styled-components';
 import JSONPretty from 'react-json-pretty';
 import { Box, Button, Heading, Paragraph, Markdown } from 'grommet';
 import Page from '../app/Page';
+// eslint-disable-next-line no-unused-vars
 import DocProperty, { PropertyInterface } from './DocProperty';
 import Example from './Example';
 
@@ -52,15 +53,19 @@ export default class Doc extends React.Component<DocProps, DocState> {
     this.state = {
       documentation: {},
     };
-
   }
+
   loadComponent = ({ name, library }: DocProps) => {
     if (name && library) {
       fetch(`/api/examples/${library}/${name}`)
         .then(res => (res ? res.json() : res))
-        .catch(() => this.setState({ documentation: {} }))
-        .then(res => res && res.length &&
-          this.setState({ documentation: res.length > 0 ? res[0] : res }));
+        .catch(() => this.setState({
+          documentation: {},
+        }))
+        .then(res => res && res.length
+          && this.setState({
+            documentation: res.length > 0 ? res[0] : res,
+          }));
     }
   };
 
@@ -73,10 +78,9 @@ export default class Doc extends React.Component<DocProps, DocState> {
       this.loadComponent(newProps);
     }
   }
+
   render() {
-    const {
-      children, name, library, text, nav, footer, desc,
-    } = this.props;
+    const { children, name, library, text, nav, footer, desc } = this.props;
     const { documentation } = this.state;
     const { examples = {}, doc = desc, themeDoc } = documentation;
     return (
@@ -87,7 +91,9 @@ export default class Doc extends React.Component<DocProps, DocState> {
         footer={footer}
       >
         <Box
-          pad={{ vertical: 'medium' }}
+          pad={{
+            vertical: 'medium',
+          }}
           border='bottom'
         >
           <Box
@@ -108,13 +114,19 @@ export default class Doc extends React.Component<DocProps, DocState> {
                 </Paragraph>
               ) : null}
               {(doc && doc.availableAt) ? (
-                <Button href={doc.availableAt.url} target='_blank' >
+                <Button href={doc.availableAt.url} target='_blank'>
                   {typeof doc.availableAt.badge === 'string' ? <img alt='Example badge' src={doc.availableAt.badge} /> : doc.availableAt.badge}
                 </Button>
               ) : null}
             </Box>
             {examples['_starter'] && (
-              <Box flex={true} pad={{ vertical: 'large' }} align='center'>
+              <Box
+                flex={true}
+                pad={{
+                  vertical: 'large',
+                }}
+                align='center'
+              >
                 <Example
                   library={library}
                   component={name}
@@ -131,7 +143,9 @@ export default class Doc extends React.Component<DocProps, DocState> {
           <Box>
             { doc.usage && (
               <Box
-                pad={{ vertical: 'medium' }}
+                pad={{
+                  vertical: 'medium',
+                }}
                 border='bottom'
                 gap='medium'
               >
@@ -146,7 +160,9 @@ export default class Doc extends React.Component<DocProps, DocState> {
             )}
             {doc.properties && (
             <Box
-              pad={{ vertical: 'medium' }}
+              pad={{
+                vertical: 'medium',
+              }}
               border='bottom'
               gap='medium'
             >
@@ -164,7 +180,7 @@ export default class Doc extends React.Component<DocProps, DocState> {
                     example={property.name}
                     code={examples[property.name]}
                   />
-                  ))}
+                ))}
               </Box>
             </Box>
             )}
@@ -172,7 +188,9 @@ export default class Doc extends React.Component<DocProps, DocState> {
         ) : null}
         {themeDoc && (
           <Box
-            pad={{ vertical: 'medium' }}
+            pad={{
+              vertical: 'medium',
+            }}
             border='bottom'
             gap='medium'
           >
@@ -182,23 +200,24 @@ export default class Doc extends React.Component<DocProps, DocState> {
               pad='medium'
             >
               <ThemeContext.Consumer>
-                {theme =>
-                  Object.keys(themeDoc).map((key) => {
-                    const themeProp = themeDoc[key];
-                    const props = key.split('.');
-                    const themeValue = props.reduce(
-                      (branch, prop) => (branch ? branch[prop] : null),
-                      theme
-                    );
-                    return (
-                      <DocProperty
-                        key={key}
-                        basis='1/3'
-                        property={{ name: key, ...themeProp }}
-                        defaultExample={themeValue && typeof themeValue !== 'string' ? <JSONPretty json={themeValue} /> : themeValue}
-                      />
-                    );
-                  })
+                {theme => Object.keys(themeDoc).map((key) => {
+                  const themeProp = themeDoc[key];
+                  const props = key.split('.');
+                  const themeValue = props.reduce(
+                    (branch, prop) => (branch ? branch[prop] : null),
+                    theme
+                  );
+                  return (
+                    <DocProperty
+                      key={key}
+                      basis='1/3'
+                      property={{
+                        name: key, ...themeProp,
+                      }}
+                      defaultExample={themeValue && typeof themeValue !== 'string' ? <JSONPretty json={themeValue} /> : themeValue}
+                    />
+                  );
+                })
                 }
               </ThemeContext.Consumer>
             </Box>

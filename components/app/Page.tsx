@@ -1,4 +1,5 @@
 import React, { useEffect, useContext } from 'react';
+// eslint-disable-next-line no-unused-vars
 import { withRouter, Router } from 'next/router';
 import Head from 'next/head';
 import { Grommet, Box, ResponsiveContext } from 'grommet';
@@ -13,7 +14,7 @@ interface PageThemeRouterProps {
 }
 
 const PageTheme: React.FC<PageThemeRouterProps> = ({ router, children }) => {
-  const { selected, themes, selectTheme } = useContext(AppThemeContext);
+  const { selectTheme } = useContext(AppThemeContext);
   useEffect(() => {
     selectTheme(router.query.theme as string);
   }, [router.query.theme]);
@@ -34,12 +35,16 @@ interface PageProps {
   sideBar?: React.ReactNode,
 }
 
-const Page: React.FC<PageProps> = ({ children, title: pageTitle, description,
-    nav, footer, sideBar }) => {
+const Page: React.FC<PageProps> = ({
+  children, title: pageTitle, description,
+  nav, footer, sideBar,
+}) => {
   useEffect(() => {
-    if (!window['GA_INITIALIZED']) {
+    // @ts-ignore
+    if (!window.GA_INITIALIZED) {
       initGA();
-      window['GA_INITIALIZED'] = true;
+      // @ts-ignore
+      window.GA_INITIALIZED = true;
     }
     logPageView();
   }, []);
@@ -52,39 +57,43 @@ const Page: React.FC<PageProps> = ({ children, title: pageTitle, description,
       <Head>
         {pageTitle && (
           <title>{`grommet-controls - ${pageTitle}`}</title>
-          )
+        )
         }
         {typeof description === 'string' && (
           <meta name='description' content={description} />
-          )
+        )
         }
         <meta name='keywords' content={keywords.join(',')} />
       </Head>
       <AppThemeContextProvider>
         <PageThemeRouter />
-          <AppThemeContextConsumer>
-            {({ themes, selected }) => (
-              <Grommet theme={themes[selected] || {}} full={true}>
+        <AppThemeContextConsumer>
+          {({ themes, selected }) => (
+            <Grommet theme={themes[selected] || {}} full={true}>
 
-                <ResponsiveContext.Consumer >
-                  {size => (
-                    <Box style={{ height: 'auto', minHeight: '100vh' }}>
-                      <Box direction='row'>
-                        {sideBar || <SideMenu />}
-                        <Box flex={true}>
-                          {nav && <Header title={pageTitle} size={size} />}
-                          <Box flex={true} pad='large'>
-                            {children}
-                          </Box>
+              <ResponsiveContext.Consumer>
+                {size => (
+                  <Box
+                    style={{
+                      height: 'auto', minHeight: '100vh',
+                    }}
+                  >
+                    <Box direction='row'>
+                      {sideBar || <SideMenu />}
+                      <Box flex={true}>
+                        {nav && <Header title={pageTitle} size={size} />}
+                        <Box flex={true} pad='large'>
+                          {children}
                         </Box>
                       </Box>
-                      {footer && <Footer /> }
                     </Box>
-                    )}
-                </ResponsiveContext.Consumer>
-              </Grommet>
-            )}
-          </AppThemeContextConsumer>
+                    {footer && <Footer /> }
+                  </Box>
+                )}
+              </ResponsiveContext.Consumer>
+            </Grommet>
+          )}
+        </AppThemeContextConsumer>
       </AppThemeContextProvider>
     </React.Fragment>
   );

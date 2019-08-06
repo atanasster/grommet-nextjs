@@ -1,6 +1,6 @@
 import React, { Fragment } from 'react';
+// eslint-disable-next-line no-unused-vars
 import { withRouter, Router } from 'next/router';
-import { bindActionCreators } from 'redux';
 import 'isomorphic-unfetch';
 import JSONPretty from 'react-json-pretty';
 import {
@@ -34,25 +34,32 @@ interface FontsProps {
   fonts: FontType[],
 }
 class Fonts extends React.Component<FontsProps> {
- state = { fonts: [] };
+ state = {
+   fonts: [],
+ };
 
  loadFontThemes(props) {
    const { fonts, search } = props;
-   this.setState({ fonts: [] });
-   const filtered =
-      fonts.filter(f => (f.family.toUpperCase().startsWith(search.toUpperCase()) ||
-        f.category.toUpperCase().startsWith(search.toUpperCase()))).slice(0, 10);
+   this.setState({
+     fonts: [],
+   });
+   const filtered = fonts.filter(f => (f.family.toUpperCase().startsWith(search.toUpperCase())
+        || f.category.toUpperCase().startsWith(search.toUpperCase()))).slice(0, 10);
    const self = this;
    filtered.map(font => (
-     themeFromFont(font).then(theme => self.setState({
-       fonts: [...this.state.fonts, { ...font, theme }],
-     }))
+     themeFromFont(font)
+       .then(theme => self.setState({
+         fonts: [...this.state.fonts, {
+           ...font, theme,
+         }],
+       }))
    ));
  }
 
  componentDidMount() {
    this.loadFontThemes(this.props);
  }
+
  componentWillReceiveProps(nextProps) {
    if (nextProps.search !== this.props.search) {
      this.loadFontThemes(nextProps);
@@ -63,25 +70,34 @@ class Fonts extends React.Component<FontsProps> {
    const { fonts } = this.state;
    const { theme } = this.props;
    return (
-     <Fragment >
+     <Fragment>
        {fonts.map(font => (
          <Button
            key={font.family}
            hoverIndicator={true}
            onClick={() => this.props.onSelect(font)}
          >
-           <Grommet theme={deepMerge(theme, { global: { font: font.theme } })} >
+           <Grommet
+             theme={deepMerge(theme, {
+               global: {
+                 font: font.theme,
+               },
+             })}
+           >
              <Box
                direction='row-responsive'
                justify='between'
                align='center'
-               pad={{ horizontal: 'small', vertical: 'xsmall' }}
+               pad={{
+                 horizontal: 'small', vertical: 'xsmall',
+               }}
              >
                <Text>{font.family}</Text>
                <Text>{font.category}</Text>
              </Box>
            </Grommet>
-         </Button>))
+         </Button>
+       ))
         }
      </Fragment>
    );
@@ -101,7 +117,7 @@ interface ThemeState {
   },
   key: number,
   color: string,
-  background:  string,
+  background: string,
   mood: string,
   scheme: string,
   sharpness: string,
@@ -140,20 +156,24 @@ class Theme extends React.Component<ThemeProps, ThemeState> {
       theme,
     };
   }
+
   static async getInitialProps({ req }) {
     const baseUrl = req ? `${req.protocol}://${req.get('Host')}` : '';
     const r = await fetch(`${baseUrl}/api/fonts`);
     const fonts = await r.json();
     const font = fonts.find(f => f.family === defaultFont);
     const theme = await themeFromFont(font);
-    return { fonts, font: { ...font, theme } };
+    return {
+      fonts,
+      font: {
+        ...font, theme,
+      },
+    };
   }
 
 
   onChangeColor = (event) => {
-    const {
-      errors, key, background, mood, scheme, sharpness, font,
-    } = this.state;
+    const { errors, key, background, mood, scheme, sharpness, font } = this.state;
     const color = event.target.value;
     const theme = createTheme({
       color, background, mood, scheme, sharpness, font,
@@ -161,21 +181,24 @@ class Theme extends React.Component<ThemeProps, ThemeState> {
     if (theme) {
       this.setState({
         color,
-        errors: { ...errors, color: undefined },
+        errors: {
+          ...errors, color: undefined,
+        },
         key: key + 1,
         theme,
       });
     } else {
       this.setState({
         color,
-        errors: { ...errors, color: 'must be #RRGGBB' },
+        errors: {
+          ...errors, color: 'must be #RRGGBB',
+        },
       });
     }
   };
+
     onChangeBackground = (event) => {
-      const {
-        errors, key, color, mood, scheme, sharpness, font,
-      } = this.state;
+      const { errors, key, color, mood, scheme, sharpness, font } = this.state;
       const background = event.target.value;
       const theme = createTheme({
         color, background, mood, scheme, sharpness, font,
@@ -183,22 +206,24 @@ class Theme extends React.Component<ThemeProps, ThemeState> {
       if (theme) {
         this.setState({
           background,
-          errors: { ...errors, background: undefined },
+          errors: {
+            ...errors, background: undefined,
+          },
           key: key + 1,
           theme,
         });
       } else {
         this.setState({
           background,
-          errors: { ...errors, background: 'must be #RRGGBB' },
+          errors: {
+            ...errors, background: 'must be #RRGGBB',
+          },
         });
       }
     };
 
   onChangeSharpness = ({ option: sharpness }) => {
-    const {
-      key, color, background, mood, scheme, font,
-    } = this.state;
+    const { key, color, background, mood, scheme, font } = this.state;
     this.setState({
       key: key + 1,
       sharpness,
@@ -209,9 +234,7 @@ class Theme extends React.Component<ThemeProps, ThemeState> {
   };
 
   onChangeMood = ({ option: mood }) => {
-    const {
-      key, color, background, sharpness, font, scheme,
-    } = this.state;
+    const { key, color, background, sharpness, font, scheme } = this.state;
     this.setState({
       key: key + 1,
       mood,
@@ -222,9 +245,7 @@ class Theme extends React.Component<ThemeProps, ThemeState> {
   };
 
   onChangeScheme = ({ option: scheme }) => {
-    const {
-      key, color, background, sharpness, font, mood,
-    } = this.state;
+    const { key, color, background, sharpness, font, mood } = this.state;
     this.setState({
       key: key + 1,
       scheme,
@@ -235,9 +256,7 @@ class Theme extends React.Component<ThemeProps, ThemeState> {
   };
 
   onSelectFont = (font) => {
-    const {
-      color, background, mood, scheme, sharpness, key,
-    } = this.state;
+    const { color, background, mood, scheme, sharpness, key } = this.state;
     this.setState({
       key: key + 1,
       font,
@@ -249,143 +268,164 @@ class Theme extends React.Component<ThemeProps, ThemeState> {
   };
 
   onFontSearch = ({ target: { value: search } }) => {
-    this.setState({ fontSearch: search, open: true });
+    this.setState({
+      fontSearch: search, open: true,
+    });
   };
 
   onApply = (updateTheme) => {
     const { name, theme } = this.state;
     const { router } = this.props;
     updateTheme(name, theme);
-    let params = new URLSearchParams();
+    const params = new URLSearchParams();
     if (theme) {
       params.append('theme', name);
     }
     const sParams = params.toString();
-    const path = queryParams(router) + (sParams ? `?${sParams}` : '') ;
-    router.replace(path, path, { shallow: true });
- };
+    const path = queryParams(router) + (sParams ? `?${sParams}` : '');
+    router.replace(path, path, {
+      shallow: true,
+    });
+  };
 
 
- render() {
-   const {
-     color, background, errors, font, key, mood, scheme, name, sharpness,
-     theme, fontSearch, viewTheme, open,
-   } = this.state;
-   const { fonts } = this.props;
-   let layer;
-   if (viewTheme) {
-     const closeLayer = () => this.setState({ viewTheme: false });
-     layer = (
-       <Layer onEsc={closeLayer} onClickOutside={closeLayer} full={true} responsive={true} margin='medium'>
-         <Box overflow='auto'>
-           <JSONPretty json={theme} />
-         </Box>
-       </Layer>
-     );
-   }
-   return (
-     <Page title='Theme'>
-       <Box pad='large'>
-         <Heading level={1}>
-           <strong>{`Theme "${name}"`}</strong>
-         </Heading>
-       </Box>
+  render() {
+    const {
+      color, background, errors, font, key, mood, scheme, name, sharpness,
+      theme, fontSearch, viewTheme, open,
+    } = this.state;
+    const { fonts } = this.props;
+    let layer;
+    if (viewTheme) {
+      const closeLayer = () => this.setState({
+        viewTheme: false,
+      });
+      layer = (
+        <Layer onEsc={closeLayer} onClickOutside={closeLayer} full={true} responsive={true} margin='medium'>
+          <Box overflow='auto'>
+            <JSONPretty json={theme} />
+          </Box>
+        </Layer>
+      );
+    }
+    return (
+      <Page title='Theme'>
+        <Box pad='large'>
+          <Heading level={1}>
+            <strong>{`Theme "${name}"`}</strong>
+          </Heading>
+        </Box>
 
-       <Box>
-         <Box margin={{ bottom: 'large' }}>
-           <Box gap='small'>
-             <Box gap='small' direction='row-responsive'>
-               <FormField
-                 label='Brand Color'
-                 help='hex RGB'
-                 error={errors.color}
-               >
-                 <ColorInput
-                   plain={true}
-                   colors={materialColors}
-                   value={color}
-                   onChange={this.onChangeColor}
-                 />
-               </FormField>
-               <FormField
-                 label='Background Color'
-                 help='hex RGB'
-                 error={errors.background}
-               >
-                 <ColorInput
-                   plain={true}
-                   colors={materialColors}
-                   value={background}
-                   onChange={this.onChangeBackground}
-                 />
-               </FormField>
-               <FormField
-                 label='Font Name'
-                 help={<Anchor href='https://fonts.google.com/' label='google fonts' />}
-               >
-                 <DropButton
-                   plain={true}
-                   label={font.family}
-                   open={open}
-                   dropAlign={{ top: 'bottom', right: 'right' }}
-                   dropContent={
-                     <Box>
-                       <TextInput placeholder='Search' onChange={this.onFontSearch} />
-                       <ThemeFonts fonts={fonts} search={fontSearch} onSelect={this.onSelectFont} />
-                     </Box>
-                  }
-                 />
-               </FormField>
-             </Box>
-             <Box gap='small' direction='row-responsive'>
-               <FormField label='Border sharpness'>
-                 <Select
-                   plain={true}
-                   value={sharpness}
-                   options={SHARPNESSES}
-                   onChange={this.onChangeSharpness}
-                 />
-               </FormField>
-               <FormField label='Color scheme'>
-                 <Select
-                   plain={true}
-                   value={scheme}
-                   options={SCHEMES}
-                   onChange={this.onChangeScheme}
-                 />
-               </FormField>
-               <FormField label='Color variation'>
-                 <Select
-                   plain={true}
-                   value={mood}
-                   options={MOODS}
-                   onChange={this.onChangeMood}
-                 />
-               </FormField>
-             </Box>
-           </Box>
-           <AppThemeContextConsumer>
-             {({ updateTheme }) => (
-               <Box align='start' gap='small' direction='row-responsive'>
-                 <Button label='Apply' primary={true} onClick={() => this.onApply(updateTheme)} />
-                 <Button label='View theme' onClick={() => this.setState({ viewTheme: true })} />
-               </Box>
-               )}
-           </AppThemeContextConsumer>
-         </Box>
+        <Box>
+          <Box
+            margin={{
+              bottom: 'large',
+            }}
+          >
+            <Box gap='small'>
+              <Box gap='small' direction='row-responsive'>
+                <FormField
+                  label='Brand Color'
+                  help='hex RGB'
+                  error={errors.color}
+                >
+                  <ColorInput
+                    plain={true}
+                    colors={materialColors}
+                    value={color}
+                    onChange={this.onChangeColor}
+                  />
+                </FormField>
+                <FormField
+                  label='Background Color'
+                  help='hex RGB'
+                  error={errors.background}
+                >
+                  <ColorInput
+                    plain={true}
+                    colors={materialColors}
+                    value={background}
+                    onChange={this.onChangeBackground}
+                  />
+                </FormField>
+                <FormField
+                  label='Font Name'
+                  help={<Anchor href='https://fonts.google.com/' label='google fonts' />}
+                >
+                  <DropButton
+                    plain={true}
+                    label={font.family}
+                    open={open}
+                    dropAlign={{
+                      top: 'bottom', right: 'right',
+                    }}
+                    dropContent={(
+                      <Box>
+                        <TextInput placeholder='Search' onChange={this.onFontSearch} />
+                        <ThemeFonts
+                          fonts={fonts}
+                          search={fontSearch}
+                          onSelect={this.onSelectFont}
+                        />
+                      </Box>
+)}
+                  />
+                </FormField>
+              </Box>
+              <Box gap='small' direction='row-responsive'>
+                <FormField label='Border sharpness'>
+                  <Select
+                    plain={true}
+                    value={sharpness}
+                    options={SHARPNESSES}
+                    onChange={this.onChangeSharpness}
+                  />
+                </FormField>
+                <FormField label='Color scheme'>
+                  <Select
+                    plain={true}
+                    value={scheme}
+                    options={SCHEMES}
+                    onChange={this.onChangeScheme}
+                  />
+                </FormField>
+                <FormField label='Color variation'>
+                  <Select
+                    plain={true}
+                    value={mood}
+                    options={MOODS}
+                    onChange={this.onChangeMood}
+                  />
+                </FormField>
+              </Box>
+            </Box>
+            <AppThemeContextConsumer>
+              {({ updateTheme }) => (
+                <Box align='start' gap='small' direction='row-responsive'>
+                  <Button label='Apply' primary={true} onClick={() => this.onApply(updateTheme)} />
+                  <Button
+                    label='View theme'
+                    onClick={() => this.setState({
+                      viewTheme: true,
+                    })}
+                  />
+                </Box>
+              )}
+            </AppThemeContextConsumer>
+          </Box>
 
-         <Box
-           flex='grow'
-         >
-           <Grommet key={key} theme={theme}>
-             <ThemePreview />
-           </Grommet>
-         </Box>
-         {layer}
-       </Box>
-     </Page>
-   );
- }
+          <Box
+            flex='grow'
+          >
+            <Grommet key={key} theme={theme}>
+              <ThemePreview />
+            </Grommet>
+          </Box>
+          {layer}
+        </Box>
+      </Page>
+    );
+  }
 }
 
 

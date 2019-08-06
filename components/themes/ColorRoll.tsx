@@ -19,7 +19,13 @@ interface ColorsBoxProps {
 }
 const ColorsBox: React.FC<ColorsBoxProps> = ({ colors, theme, title }) => (
   <Box fill='horizontal'>
-    <Text weight='bold' size='large' margin={{ vertical: 'small' }}>
+    <Text
+      weight='bold'
+      size='large'
+      margin={{
+        vertical: 'small',
+      }}
+    >
       {title}
     </Text>
     <Grid columns='small' rows='small' gap='xsmall'>
@@ -54,7 +60,7 @@ const SmallColorsBox = ({ colors }) => (
           <Text weight='bold'>{color}</Text>
         </Box>
       </Box>
-      ))
+    ))
     }
   </Grid>
 );

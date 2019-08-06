@@ -1,11 +1,12 @@
 import React from 'react';
+// eslint-disable-next-line no-unused-vars
 import Component, { ComponentInterface } from './Component';
 import Section from '../app/Section';
 
 interface ComponentsGroupProps {
   group: string,
   examples: ComponentInterface[],
-};
+}
 
 const ComponentsGroup: React.FC<ComponentsGroupProps> = ({ examples, group }) => (
   <Section name={group}>

@@ -19,7 +19,12 @@ const TemplateCard: React.FC<TemplateCardProps> = ({ name, group, ...rest }) => 
       {...rest}
     >
       <Card.CardTitle>
-        <RoutedButton route='template' params={{ folder: group, file: name }}>
+        <RoutedButton
+          route='template'
+          params={{
+            folder: group, file: name,
+          }}
+        >
           <Heading margin='none' level={3}>
             {parsed[parsed.length - 1]}
           </Heading>
@@ -35,7 +40,9 @@ const TemplateCard: React.FC<TemplateCardProps> = ({ name, group, ...rest }) => 
         <Box direction='row' justify='between' fill='horizontal'>
           <RoutedButton
             route='template'
-            params={{ folder: group, file: name }}
+            params={{
+              folder: group, file: name,
+            }}
           >
             <Box direction='row' gap='xsmall' pad='xsmall'>
               <Code />

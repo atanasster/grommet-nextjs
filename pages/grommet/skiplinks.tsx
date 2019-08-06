@@ -1,4 +1,6 @@
-import { Box, Button, SkipLinks, Heading, SkipLinkTarget, SkipLink } from 'grommet';
+import {
+  Box, Button, SkipLinks, Heading, SkipLinkTarget, SkipLink,
+} from 'grommet';
 import { doc } from 'grommet/components/SkipLinks/doc';
 
 import Doc from '../../components/documentation/Doc';
@@ -7,8 +9,21 @@ const desc = doc(SkipLinks).toJSON();
 
 export default () => (
   <Doc name='SkipLinks' desc={desc}>
-    <Box basis='large' pad={{ horizontal: 'large', bottom: 'xlarge' }} align='start'>
-      <Heading level={2} margin={{ top: 'none' }}><strong>Examples</strong></Heading>
+    <Box
+      basis='large'
+      pad={{
+        horizontal: 'large', bottom: 'xlarge',
+      }}
+      align='start'
+    >
+      <Heading
+        level={2}
+        margin={{
+          top: 'none',
+        }}
+      >
+        <strong>Examples</strong>
+      </Heading>
       <SkipLinks>
         <SkipLink id='main' label='Main Content' />
         <SkipLink id='footer' label='Footer' />

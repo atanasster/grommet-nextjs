@@ -7,7 +7,9 @@ export default class MyDocument extends Document {
     const sheet = new ServerStyleSheet();
     const page = renderPage(App => props => sheet.collectStyles(<App {...props} />));
     const styleTags = sheet.getStyleElement();
-    return { ...page, styleTags };
+    return {
+      ...page, styleTags,
+    };
   }
 
   render() {
@@ -21,7 +23,11 @@ export default class MyDocument extends Document {
           <link rel='shortcut icon' type='image/png' href='/static/img/shortcut-icon.png' />
           <link rel='apple-touch-icon' sizes='196x196' type='image/png' href='/static/img/mobile-app-icon.png' />
         </Head>
-        <body style={{ margin: 0 }} >
+        <body
+          style={{
+            margin: 0,
+          }}
+        >
           <Main />
           <NextScript />
         </body>

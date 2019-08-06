@@ -5,12 +5,12 @@ import { Box, Text, TextInput } from 'grommet';
 interface OnChangeInterface {
   component: string,
   library: string
-};
+}
 
 interface SearchComponentProps {
   value?: string,
   onChange(OnChangeInterface) : void,
-};
+}
 
 interface ComponentSearchInterface {
   name: string,
@@ -29,7 +29,9 @@ class SearchComponent extends React.Component<SearchComponentProps, SearchCompon
   onSearch = async (e) => {
     fetch(`/api/components/search/${e.target.value}`)
       .then(res => res.json())
-      .then(res => this.setState({ data: res }));
+      .then(res => this.setState({
+        data: res,
+      }));
   };
 
   onSelect = ({ suggestion }) => {
@@ -37,7 +39,9 @@ class SearchComponent extends React.Component<SearchComponentProps, SearchCompon
     if (onChange) {
       const selected: string[] = suggestion.value.split('_');
       if (selected.length === 2) {
-        onChange({ component: selected[0], library: selected[1] });
+        onChange({
+          component: selected[0], library: selected[1],
+        });
       }
     }
   };

@@ -24,7 +24,12 @@ interface ModalProps {
 
 }
 export const Modal: React.FC<ModalProps> = ({
-  title, children, position, onClose, onConfirm, ...rest
+  title,
+  children,
+  position,
+  onClose,
+  onConfirm,
+  ...rest
 }) => (
   <Layer
     position={position}
@@ -34,14 +39,26 @@ export const Modal: React.FC<ModalProps> = ({
     responsive={false}
     {...rest}
   >
-    <Box pad={{ horizontal: 'medium' }} gap='medium'>
+    <Box
+      pad={{
+        horizontal: 'medium',
+      }}
+      gap='medium'
+    >
       {title && (
         <Box pad='small' border='bottom'>
           <Heading margin='none' level={2}>{title}</Heading>
         </Box>
       )}
       {children}
-      <Box direction='row-responsive' align='center' margin={{ vertical: 'medium' }} gap='small'>
+      <Box
+        direction='row-responsive'
+        align='center'
+        margin={{
+          vertical: 'medium',
+        }}
+        gap='small'
+      >
         {onConfirm && <Button primary={true} label='OK' onClick={onConfirm} />}
         <Button primary={true} label='Close' onClick={onClose} />
       </Box>

@@ -22,12 +22,24 @@ interface DocPropertyProps {
 
 }
 const DocProperty: React.FC<DocPropertyProps> = ({
-    property, code, library, component, example, basis, defaultExample,
-  }) => {
+  property,
+  code,
+  library,
+  component,
+  example,
+  basis,
+  defaultExample,
+}) => {
   let sample;
   if (code) {
     sample = (
-      <Box flex={true} align='end' margin={{ vertical: 'medium' }}>
+      <Box
+        flex={true}
+        align='end'
+        margin={{
+          vertical: 'medium',
+        }}
+      >
         <Example
           library={library}
           component={component}
@@ -52,14 +64,24 @@ const DocProperty: React.FC<DocPropertyProps> = ({
       align='start'
       border='bottom'
     >
-      <Box basis={basis} margin={{ right: 'large' }}>
+      <Box
+        basis={basis}
+        margin={{
+          right: 'large',
+        }}
+      >
         <Heading level={3} size='small'>
           <strong>{`${property.name}${property.required ? ' *' : ''}`}</strong>
         </Heading>
         {property.description}
       </Box>
       <Box flex={true} align='start'>
-        <Text><pre>{property.format || property.type}{defaultValue}</pre></Text>
+        <Text>
+          <pre>
+            {property.format || property.type}
+            {defaultValue}
+          </pre>
+        </Text>
 
       </Box>
       <Box>

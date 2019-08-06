@@ -1,5 +1,7 @@
 import URLSearchParams from 'url-search-params';
-import { Router } from "next/router";
+// eslint-disable-next-line no-unused-vars
+import { Router } from 'next/router';
+// eslint-disable-next-line no-unused-vars
 import { PreserveParams } from './Link.interface';
 
 export default (newPath: string, router: Router, preserveParams?: PreserveParams): string => {

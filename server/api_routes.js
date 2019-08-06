@@ -25,8 +25,8 @@ router.get('/examples/list', (req, res) => {
 router.get('/examples/:package?/:component?', (req, res) => {
   if (req.params.component || req.params.package) {
     const item = examples
-      .filter(e => (!req.params.package || e.package === req.params.package) &&
-        (!req.params.component || e.name === req.params.component));
+      .filter(e => (!req.params.package || e.package === req.params.package)
+        && (!req.params.component || e.name === req.params.component));
     res.json(item);
   } else {
     res.json(examples);
@@ -39,7 +39,9 @@ router.get('/components/search/:search?/:limit?', (req, res) => {
   const items = examples
     .filter(e => e.name.toLowerCase().match(searchLower))
     .slice(0, limit)
-    .map(e => ({ name: e.name, package: e.package, category: e.category }));
+    .map(e => ({
+      name: e.name, package: e.package, category: e.category,
+    }));
   res.json(items);
 });
 
@@ -51,7 +53,9 @@ router.get('/fonts', (req, res) => {
     fetch('https://www.googleapis.com/webfonts/v1/webfonts?key=AIzaSyCLZDrp4KclCHz0Y39_BP0t7MRKo_5_ZBo&sort=popularity')
       .then(r => r.json())
       .then(json => (json.items ? json.items.filter(item => item.subsets.indexOf('latin') !== -1) : []))
-      .then(items => items.map(item => ({ family: item.family, category: item.category })))
+      .then(items => items.map(item => ({
+        family: item.family, category: item.category,
+      })))
       .then((result) => {
         fonts = result;
         res.json(fonts);
@@ -64,16 +68,22 @@ router.get('/package/:package/:field?', cache('5 minutes'), (req, res) => {
   fetch(`https://registry.npmjs.org/${encodeURIComponent(req.params.package)}`)
     .then(r => r.json())
     .then((data) => {
-      let json = { status: 'ok' };
+      let json = {
+        status: 'ok',
+      };
       const { field } = req.params;
       switch (field) {
         case 'latest':
           const version = (data['dist-tags']) ? data['dist-tags'].latest : 'error';
           const time = (data.time && data.time[version]) ? data.time[version] : undefined;
-          json = { ...json, version, time };
+          json = {
+            ...json, version, time,
+          };
           break;
         default:
-          json = { ...json, ...data };
+          json = {
+            ...json, ...data,
+          };
           break;
       }
       res.json(json);
@@ -85,12 +95,18 @@ router.get('/github/:owner/:repo/:path', cache('5 minutes'), (req, res) => {
   const { owner, repo, path } = req.params;
   fetch(`https://api.github.com/repos/${owner}/${repo}/contents/${path}`)
     .then(r => r.json())
-    .catch(err => res.json({ markdown: err }))
+    .catch(err => res.json({
+      markdown: err,
+    }))
     .then((content) => {
       fetch(content.download_url)
         .then(r => r.text())
-        .then(markdown => res.json({ content, markdown }))
-        .catch(err => res.json({ markdown: err }));
+        .then(markdown => res.json({
+          content, markdown,
+        }))
+        .catch(err => res.json({
+          markdown: err,
+        }));
     });
 });
 
@@ -98,8 +114,12 @@ router.get('/wiki/:owner/:repo/:path', cache('5 minutes'), (req, res) => {
   const { owner, repo, path } = req.params;
   fetch(`https://raw.githubusercontent.com/wiki/${owner}/${repo}/${path}.md`)
     .then(r => r.text())
-    .then(markdown => res.json({ markdown }))
-    .catch(err => res.json({ markdown: err }));
+    .then(markdown => res.json({
+      markdown,
+    }))
+    .catch(err => res.json({
+      markdown: err,
+    }));
 });
 
 router.get('/file/:owner?/:repo?/:file', (req, res) => {
@@ -109,7 +129,9 @@ router.get('/file/:owner?/:repo?/:file', (req, res) => {
     (err, data) => {
       res.json({
         markdown: (err && JSON.stringify(err)) || (data && data.toString()),
-        content: { html_url: `https://github.com/atanasster/grommet-nextjs/tree/master/docs/${file}` },
+        content: {
+          htmlUrl: `https://github.com/atanasster/grommet-nextjs/tree/master/docs/${file}`,
+        },
       });
     });
 });

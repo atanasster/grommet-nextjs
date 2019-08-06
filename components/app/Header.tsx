@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import { Box, Heading } from 'grommet';
 import { Header as AppBar } from 'grommet-controls';
 import RoutedButton from './RoutedButton';
@@ -22,12 +21,18 @@ class Header extends React.Component<HeaderProps, HeaderState> {
   };
 
   onResponsiveMenu = () => {
-    this.setState({ activeMenu: !this.state.activeMenu });
+    const { activeMenu } = this.state;
+    this.setState({
+      activeMenu: !activeMenu,
+    });
   };
 
   onCloseMenu = () => {
-    this.setState({ activeMenu: false });
+    this.setState({
+      activeMenu: false,
+    });
   };
+
   onSearchSelect = ({ component, library }) => {
     pushRoute({
       route: 'documentation',

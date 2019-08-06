@@ -1,7 +1,8 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import colorParse from 'color-parse';
-import { Box, Button, Text, Select, RadioButton, FormField } from 'grommet';
+import {
+  Box, Button, Text, Select, RadioButton, FormField,
+} from 'grommet';
 import { base } from 'grommet/themes';
 import { normalizeColor, getRGBA } from 'grommet/utils/colors';
 import { ColorInput, materialColors, NumberInput } from 'grommet-controls';
@@ -22,7 +23,7 @@ interface ColorSelectProps {
   dark: boolean,
   theme: object,
   path: string,
-};
+}
 
 class ColorSelect extends React.Component<ColorSelectProps> {
   state = {
@@ -34,7 +35,9 @@ class ColorSelect extends React.Component<ColorSelectProps> {
 
   stateFromProps(props) {
     const { color, theme, dark } = props;
-    const colorValue = normalizeColor(color, { ...theme, dark });
+    const colorValue = normalizeColor(color, {
+      ...theme, dark,
+    });
     const rgbArray = colorParse(colorValue);
     const themeColors = Object.keys(base.global.colors);
     // eslint-disable-next-line react/no-did-mount-set-state
@@ -44,20 +47,21 @@ class ColorSelect extends React.Component<ColorSelectProps> {
       opacity: rgbArray.alpha || 1,
     });
   }
+
   componentDidMount() {
     this.stateFromProps(this.props);
   }
+
   componentWillReceiveProps(newProps) {
     this.stateFromProps(newProps);
   }
+
   render() {
-    const {
-      label, onChange, theme, dark, color: initial, path,
-    } = this.props;
-    const {
-      color, isNamedColor, open, opacity,
-    } = this.state;
-    const colorValue = normalizeColor(color, { ...theme, dark });
+    const { label, onChange, theme, dark, color: initial, path } = this.props;
+    const { color, isNamedColor, open, opacity } = this.state;
+    const colorValue = normalizeColor(color, {
+      ...theme, dark,
+    });
     const rgbArray = colorParse(colorValue);
     let colorRGB = getRGBA(color);
     let colorHex = colorValue;
@@ -68,7 +72,7 @@ class ColorSelect extends React.Component<ColorSelectProps> {
     const colorForTheme = () => {
       if (isNamedColor) {
         return color;
-      } else if (opacity !== 1) {
+      } if (opacity !== 1) {
         return colorRGB;
       }
       return colorHex;
@@ -79,9 +83,13 @@ class ColorSelect extends React.Component<ColorSelectProps> {
       layer = (
         <Modal
           title={`${path.replace(/-/g, '.')}${label === 'color' ? '' : `.${label}`}`}
-          onClose={() => this.setState({ open: false })}
+          onClose={() => this.setState({
+            open: false,
+          })}
           onConfirm={() => {
-            this.setState({ open: false });
+            this.setState({
+              open: false,
+            });
             onChange(colorForTheme());
           }}
         >
@@ -89,7 +97,9 @@ class ColorSelect extends React.Component<ColorSelectProps> {
             <Box width='1/2' gap='medium'>
               <RadioButton
                 checked={isNamedColor}
-                onChange={() => this.setState({ isNamedColor: true })}
+                onChange={() => this.setState({
+                  isNamedColor: true,
+                })}
                 name='color_trype'
                 label='color name'
               />
@@ -107,7 +117,9 @@ class ColorSelect extends React.Component<ColorSelectProps> {
                     </Box>
                   )}
                   options={Object.keys(base.global.colors)}
-                  onChange={({ option }) => this.setState({ color: option })}
+                  onChange={({ option }) => this.setState({
+                    color: option,
+                  })}
                 >
                   {option => (
                     <Box key={`option_${option}`} direction='row' justify='between' align='center' pad='xsmall'>
@@ -115,14 +127,17 @@ class ColorSelect extends React.Component<ColorSelectProps> {
                         {option}
                       </Text>
                       <ColorBox theme={theme} color={option} />
-                    </Box>)}
+                    </Box>
+                  )}
                 </Select>
               </FormField>
             </Box>
             <Box width='1/2' gap='medium'>
               <RadioButton
                 checked={!isNamedColor}
-                onChange={() => this.setState({ isNamedColor: false })}
+                onChange={() => this.setState({
+                  isNamedColor: false,
+                })}
                 name='color_trype'
                 label='color value'
               />
@@ -131,7 +146,9 @@ class ColorSelect extends React.Component<ColorSelectProps> {
               >
                 <ColorInput
                   value={colorHex || ''}
-                  onChange={({ target: { value } }) => this.setState({ color: value })}
+                  onChange={({ target: { value } }) => this.setState({
+                    color: value,
+                  })}
                   colors={materialColors}
                   mask={null}
                   disabled={isNamedColor}
@@ -146,15 +163,22 @@ class ColorSelect extends React.Component<ColorSelectProps> {
                   min={0}
                   max={1}
                   step={0.05}
-                  onChange={({ target: { value } }) =>
-                    this.setState({ opacity: parseFloat(value) })}
+                  onChange={({ target: { value } }) => this.setState({
+                    opacity: parseFloat(value),
+                  })}
                   value={opacity}
                 />
               </FormField>
             </Box>
           </Box>
           <Box>
-            <Box border={{ color: 'white', size: 'medium' }} background={colorRGB} pad='medium'>
+            <Box
+              border={{
+                color: 'white', size: 'medium',
+              }}
+              background={colorRGB}
+              pad='medium'
+            >
               <Text>
                 {colorForTheme()}
               </Text>
@@ -183,7 +207,9 @@ class ColorSelect extends React.Component<ColorSelectProps> {
               </Box>
             </Box>
           )}
-          onClick={() => this.setState({ open: true })}
+          onClick={() => this.setState({
+            open: true,
+          })}
         />
         {layer}
       </React.Fragment>

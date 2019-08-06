@@ -1,5 +1,5 @@
-/* eslint-disable import/no-duplicates */
 import React from 'react';
+// eslint-disable-next-line no-unused-vars
 import { withRouter, Router } from 'next/router';
 import 'isomorphic-fetch';
 import Page from '../components/app/Page';
@@ -22,8 +22,11 @@ class Templates extends React.Component<TemplatesProps> {
       (rv[group] = rv[group] || []).push(x);
       return rv;
     }, {});
-    return { grouped };
+    return {
+      grouped,
+    };
   }
+
   render() {
     const { grouped, router } = this.props;
     const { category } = router.query;

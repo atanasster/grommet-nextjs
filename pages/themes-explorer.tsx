@@ -9,7 +9,9 @@ export default withArticle(class ThemesExplorer extends React.Component {
     const themeDocs = await r.json();
     const f = await fetch(`${baseUrl}/api/fonts`);
     const fonts = await f.json();
-    return { themeDocs, fonts };
+    return {
+      themeDocs, fonts,
+    };
   }
 }, {
   title: 'theme explorer',

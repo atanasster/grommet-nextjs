@@ -1,5 +1,4 @@
 import React, { useContext } from 'react';
-import PropTypes from 'prop-types';
 import { Select } from 'grommet';
 import { AppThemeContext } from '../app/AppThemeContext';
 
@@ -7,8 +6,8 @@ interface ThemeSelectProps {
   theme: string,
   onChange(value: string): void,
 }
-const ThemeSelect: React.FC<ThemeSelectProps> = ({ theme,  onChange }) => {
-  const { themes } =  useContext(AppThemeContext);
+const ThemeSelect: React.FC<ThemeSelectProps> = ({ theme, onChange }) => {
+  const { themes } = useContext(AppThemeContext);
   return (
 
     <Select

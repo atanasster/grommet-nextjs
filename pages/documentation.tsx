@@ -6,14 +6,17 @@ interface DocumentationProps {
     component: string,
     library: string,
   }
-};
+}
 
 class Documentation extends React.Component<DocumentationProps> {
   static async getInitialProps({ query }) {
-    return { query }
+    return {
+      query,
+    };
   }
+
   render() {
-    const { query: {component, library }} = this.props;
+    const { query: { component, library } } = this.props;
     console.log(this.props);
     return (
       <Doc

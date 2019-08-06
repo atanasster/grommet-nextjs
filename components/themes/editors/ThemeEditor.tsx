@@ -20,9 +20,7 @@ interface ThemeEditorProps {
 }
 
 
-const ThemeEditor: React.FC<ThemeEditorProps> = ({
-  theme, onChange, path, ...rest
-}) => {
+const ThemeEditor: React.FC<ThemeEditorProps> = ({ theme, onChange, path, ...rest }) => {
   const mergedTheme = deepMerge(base, theme);
   const object: any = getProp(mergedTheme, path);
   const parts = path.split('-');
@@ -59,7 +57,13 @@ const ThemeEditor: React.FC<ThemeEditorProps> = ({
       code = object;
     }
 
-    editor = <CodeEditor {...{ ...props, object: code }} />;
+    editor = (
+      <CodeEditor
+        {...{
+          ...props, object: code,
+        }}
+      />
+    );
   }
   return (
     <Box direction='row' justify='between' fill='horizontal'>

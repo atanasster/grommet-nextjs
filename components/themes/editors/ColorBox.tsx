@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { StopFill } from 'grommet-icons';
 import { normalizeColor } from 'grommet/utils';
@@ -18,12 +17,14 @@ interface ColorBoxProps {
   theme: object,
   dark?: boolean,
   color?: string | { dark?: string; light?: string },
-};
+}
 
 const ColorBox: React.FC<ColorBoxProps> = ({ color, theme, dark }) => (
   <StyledColorButton
     theme={theme}
-    selectedColor={color ? normalizeColor(color, { ...theme, dark }) : undefined}
+    selectedColor={color ? normalizeColor(color, {
+      ...theme, dark,
+    }) : undefined}
   >
     <StopFill />
   </StyledColorButton>

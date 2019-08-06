@@ -9,16 +9,19 @@ interface TemplatesGroupProps {
   category: string,
   templates: object,
   limit?: number,
-};
+}
 
-const TemplatesGroup: React.FC<TemplatesGroupProps> = ({
-  templates, group, category, limit,
-}) => {
+const TemplatesGroup: React.FC<TemplatesGroupProps> = ({ templates, group, category, limit }) => {
   const examples = templates[group];
   if (examples === undefined) {
     return null;
   }
-  const link = (group && !category) ? { route: 'templates', params: { category: group } } : undefined;
+  const link = (group && !category) ? {
+    route: 'templates',
+    params: {
+      category: group,
+    },
+  } : undefined;
   return (
     <Section name={group ? group.replace(/_/g, '') : 'featured'} link={link}>
       <Grid columns='medium' rows='medium' gap='small' fill={true}>
