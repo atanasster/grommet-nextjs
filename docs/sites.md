@@ -53,7 +53,7 @@ A list of sites developed with grommet v2. You can submit your own site, just cl
     authorName='Ivan Ganev'
     github='https://github.com/ganevru/gatsby-starter-blog-grommet'
     authorLink='https://github.com/Ganevru'
-    path='https://ganevru.github.io/gatsby-starter-blog-grommet/'
+    path='https://gatsby-starter-blog-grommet.netlify.com/'
     excerpt='GatsbyJS v2 starter for creating a blog. Based on Grommet v2 UI.'
   />  
   <card
