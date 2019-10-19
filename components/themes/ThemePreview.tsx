@@ -55,16 +55,16 @@ export default class ThemePreview extends React.Component<{}, ThemePreviewState>
           <Select
             options={stringOptions}
             value={size}
-            onChange={({ option }) => this.setState({
-              size: option,
+            onChange={({ target: { value } }) => this.setState({
+              size: value,
             })}
           />
           <Select
             options={stringOptions}
             disabled={true}
             value='disabled'
-            onChange={({ option }) => this.setState({
-              size: option,
+            onChange={({ target: { value } }) => this.setState({
+              size: value,
             })}
           />
         </Box>

@@ -14,7 +14,7 @@ const ThemeSelect: React.FC<ThemeSelectProps> = ({ theme, onChange }) => {
       a11yTitle='Select theme'
       value={theme}
       options={Object.keys(themes)}
-      onChange={({ option: newTheme }) => onChange(newTheme)}
+      onChange={({ target: { value: newTheme } }) => onChange(newTheme)}
     />
   );
 };

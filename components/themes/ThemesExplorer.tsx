@@ -180,7 +180,7 @@ const ThemesExplorer: React.FC<ThemesExplorerProps> = ({
   } else {
     view = (
       <Grommet
-        theme={theme}
+        theme={theme as any}
         style={{
           background: 'transparent',
         }}

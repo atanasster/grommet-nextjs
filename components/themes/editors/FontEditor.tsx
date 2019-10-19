@@ -24,7 +24,7 @@ const FontEditor: React.FC<FontEditorProps> = ({ theme, object, onChange, fonts 
       value={(object && object.family) || ''}
       options={fonts.filter(font => (font.family.toLowerCase().match(search)))}
       onClose={() => setSearch('')}
-      onChange={({ option: font }) => onChange({
+      onChange={({ target: { value: font } }) => onChange({
         family: fontString(font),
       })}
       onSearch={(text) => {
@@ -40,7 +40,7 @@ const FontEditor: React.FC<FontEditorProps> = ({ theme, object, onChange, fonts 
                 family: fontString(font),
               },
             },
-          })}
+          }) as any}
         >
           <Box
             direction='row-responsive'

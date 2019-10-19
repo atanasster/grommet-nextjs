@@ -117,8 +117,8 @@ class ColorSelect extends React.Component<ColorSelectProps> {
                     </Box>
                   )}
                   options={Object.keys(base.global.colors)}
-                  onChange={({ option }) => this.setState({
-                    color: option,
+                  onChange={({ target: { value } }) => this.setState({
+                    color: value,
                   })}
                 >
                   {option => (

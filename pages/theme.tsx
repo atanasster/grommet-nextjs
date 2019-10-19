@@ -82,7 +82,7 @@ class Fonts extends React.Component<FontsProps> {
                global: {
                  font: font.theme,
                },
-             })}
+             }) as any}
            >
              <Box
                direction='row-responsive'
@@ -222,7 +222,7 @@ class Theme extends React.Component<ThemeProps, ThemeState> {
       }
     };
 
-  onChangeSharpness = ({ option: sharpness }) => {
+  onChangeSharpness = ({ target: { value: sharpness } }) => {
     const { key, color, background, mood, scheme, font } = this.state;
     this.setState({
       key: key + 1,
@@ -233,7 +233,7 @@ class Theme extends React.Component<ThemeProps, ThemeState> {
     });
   };
 
-  onChangeMood = ({ option: mood }) => {
+  onChangeMood = ({ target: { value: mood } }) => {
     const { key, color, background, sharpness, font, scheme } = this.state;
     this.setState({
       key: key + 1,
@@ -244,7 +244,7 @@ class Theme extends React.Component<ThemeProps, ThemeState> {
     });
   };
 
-  onChangeScheme = ({ option: scheme }) => {
+  onChangeScheme = ({ target: { value: scheme } }) => {
     const { key, color, background, sharpness, font, mood } = this.state;
     this.setState({
       key: key + 1,
@@ -417,7 +417,7 @@ class Theme extends React.Component<ThemeProps, ThemeState> {
           <Box
             flex='grow'
           >
-            <Grommet key={key} theme={theme}>
+            <Grommet key={key} theme={theme as any}>
               <ThemePreview />
             </Grommet>
           </Box>

@@ -10,7 +10,6 @@ import ThemePreview from '../themes/ThemePreview';
 import ColorRoll from '../themes/ColorRoll';
 import TemplateCard from './TemplateCard';
 import FlexBox from './FlexBox';
-import ThemesStatus from './ThemesStatus';
 
 const MarkdownImage = styled(Image)`
   max-width: 100%;
@@ -79,9 +78,6 @@ export default withTheme(({ children, theme, ...rest }) => (
       },
       flexbox: {
         component: FlexBox,
-      },
-      themesstatus: {
-        component: ThemesStatus,
       },
       box: {
         component: BoxRow,
