@@ -3,7 +3,7 @@
   "version": "1.15.0",
   "type": "module",
   "engines": {
-    "node": "12.09",
+    "node": "12.10.0",
     "npm": ">=6.0.1"
   },
   "keywords": [
