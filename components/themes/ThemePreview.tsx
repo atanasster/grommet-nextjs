@@ -55,7 +55,7 @@ export default class ThemePreview extends React.Component<{}, ThemePreviewState>
           <Select
             options={stringOptions}
             value={size}
-            onChange={({ target: { value } }) => this.setState({
+            onChange={({ value }: any) => this.setState({
               size: value,
             })}
           />
@@ -63,7 +63,7 @@ export default class ThemePreview extends React.Component<{}, ThemePreviewState>
             options={stringOptions}
             disabled={true}
             value='disabled'
-            onChange={({ target: { value } }) => this.setState({
+            onChange={({ value }: any) => this.setState({
               size: value,
             })}
           />

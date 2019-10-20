@@ -24,7 +24,7 @@ const FontEditor: React.FC<FontEditorProps> = ({ theme, object, onChange, fonts 
       value={(object && object.family) || ''}
       options={fonts.filter(font => (font.family.toLowerCase().match(search)))}
       onClose={() => setSearch('')}
-      onChange={({ target: { value: font } }) => onChange({
+      onChange={({ value: font }: any) => onChange({
         family: fontString(font),
       })}
       onSearch={(text) => {

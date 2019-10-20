@@ -122,7 +122,7 @@ export default () => {
             <Select
               options={valuesToOptions(['row', 'column', 'row-responsive', 'row-reverse', 'column-reverse'])}
               value={valueToOption(state.container.direction)}
-              onChange={({ target: { value } }) => setState({
+              onChange={({ value }: any) => setState({
                 ...state,
                 container: {
                   ...state.container, direction: optionToValue(value),
@@ -136,7 +136,7 @@ export default () => {
             <Select
               options={valuesToOptions([undefined, 'start', 'center', 'between', 'around', 'evenly', 'end'])}
               value={valueToOption(state.container.justify)}
-              onChange={({ target: { value } }) => setState({
+              onChange={({ value }: any) => setState({
                 ...state,
                 container: {
                   ...state.container, justify: optionToValue(value),
@@ -150,7 +150,7 @@ export default () => {
             <Select
               options={valuesToOptions([undefined, 'start', 'center', 'end', 'baseline', 'stretch'])}
               value={valueToOption(state.container.align)}
-              onChange={({ target: { value } }) => setState({
+              onChange={({ value }: any) => setState({
                 ...state,
                 container: {
                   ...state.container, align: optionToValue(value),
@@ -164,7 +164,7 @@ export default () => {
             <Select
               options={valuesToOptions([undefined, 'start', 'center', 'end', 'between', 'around', 'stretch'])}
               value={valueToOption(state.container.alignContent)}
-              onChange={({ target: { value } }) => setState({
+              onChange={({ value }: any) => setState({
                 ...state,
                 container: {
                   ...state.container, alignContent: optionToValue(value),
@@ -178,7 +178,7 @@ export default () => {
             <Select
               options={valuesToOptions([undefined, 'xxsmall', 'xsmall', 'small', 'medium', 'large', 'xlarge'])}
               value={valueToOption(state.container.gap)}
-              onChange={({ target: { value } }) => setState({
+              onChange={({ value }: any) => setState({
                 ...state,
                 container: {
                   ...state.container, gap: optionToValue(value),
@@ -192,7 +192,7 @@ export default () => {
             <Select
               options={valuesToOptions([undefined, 'xxsmall', 'xsmall', 'small', 'medium', 'large', 'xlarge'])}
               value={valueToOption(state.container.pad)}
-              onChange={({ target: { value } }) => setState({
+              onChange={({ value }: any) => setState({
                 ...state,
                 container: {
                   ...state.container, pad: optionToValue(value),
@@ -206,7 +206,7 @@ export default () => {
             <Select
               options={valuesToOptions([undefined, true, false, 'reverse'])}
               value={valueToOption(state.container.wrap)}
-              onChange={({ target: { value } }) => setState({
+              onChange={({ value }: any) => setState({
                 ...state,
                 container: {
                   ...state.container, wrap: optionToValue(value),
@@ -235,7 +235,7 @@ export default () => {
                 'full', '1/2', '1/3', '2/3', '1/4', '2/4', '3/4', 'auto',
               ])}
               value={valueToOption(state.child.basis)}
-              onChange={({ target: { value } }) => setState({
+              onChange={({ value }: any) => setState({
                 ...state,
                 child: {
                   ...state.child, basis: optionToValue(value),
@@ -249,7 +249,7 @@ export default () => {
             <Select
               options={valuesToOptions([undefined, 'xxsmall', 'xsmall', 'small', 'medium', 'large', 'xlarge', 'xxlarge'])}
               value={valueToOption(state.child.height)}
-              onChange={({ target: { value } }) => setState({
+              onChange={({ value }: any) => setState({
                 ...state,
                 child: {
                   ...state.child, height: optionToValue(value),
@@ -263,7 +263,7 @@ export default () => {
             <Select
               options={valuesToOptions([undefined, 'xxsmall', 'xsmall', 'small', 'medium', 'large', 'xlarge', 'xxlarge'])}
               value={valueToOption(state.child.width)}
-              onChange={({ target: { value } }) => setState({
+              onChange={({ value }: any) => setState({
                 ...state,
                 child: {
                   ...state.child, width: optionToValue(value),
@@ -277,7 +277,7 @@ export default () => {
             <Select
               options={valuesToOptions([undefined, 'start', 'center', 'end', 'stretch'])}
               value={valueToOption(state.child.alignSelf)}
-              onChange={({ target: { value } }) => setState({
+              onChange={({ value }: any) => setState({
                 ...state,
                 child: {
                   ...state.child, alignSelf: optionToValue(value),
@@ -291,7 +291,7 @@ export default () => {
             <Select
               options={valuesToOptions([undefined, true, false, 'grow', 'shrink'])}
               value={valueToOption(state.child.flex)}
-              onChange={({ target: { value } }) => setState({
+              onChange={({ value }: any) => setState({
                 ...state,
                 child: {
                   ...state.child, flex: optionToValue(value),

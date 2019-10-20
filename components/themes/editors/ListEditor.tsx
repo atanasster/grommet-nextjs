@@ -10,7 +10,7 @@ const ListEditor: React.FC<ListEditorProps> = ({ object, onChange, items }) => (
   <Select
     value={typeof object === 'number' ? object.toString() : object}
     options={items}
-    onChange={({ target: { value } }) => onChange(value)}
+    onChange={({ value }: any) => onChange(value)}
   />
 
 );
