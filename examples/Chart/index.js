@@ -1,5 +1,5 @@
 /* eslint-disable import/extensions,import/no-unresolved */
-import doc from 'grommet/components/Chart/doc.js';
+import { doc } from 'grommet/components/Chart/doc.js';
 import { packages, categories } from '../lookups.js';
 import { _starter } from './_starter.js';
 import { color } from './color.js';
@@ -15,7 +15,7 @@ export const Chart = {
   name: 'Chart',
   category: categories.visualization,
   package: packages.grommet,
-  doc: doc.doc({}).toJSON(),
+  doc: doc({}).toJSON(),
   themeDoc: doc.themeDoc,
   examples: {
     _starter,

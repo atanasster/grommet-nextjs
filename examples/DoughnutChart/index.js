@@ -7,7 +7,7 @@ export const DoughnutChart = {
   name: 'DoughnutChart',
   category: categories.charts,
   package: packages.grommetControls,
-  doc: doc.default({}).toJSON(),
+  doc: doc({}).toJSON(),
   examples: {
     _starter,
   },

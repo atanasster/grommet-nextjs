@@ -3,7 +3,7 @@ import express from 'express';
 import grommet from 'grommet';
 import grommetControls from 'grommet-controls';
 import { examples } from '../examples/index.js';
-import tests from './theme_doc.js';
+import tests from './theme_doc';
 
 const router = express.Router();
 
@@ -51,7 +51,7 @@ router.get('/component/:library/:component', (req, res) => {
     if (library === 'grommet-controls') {
       lib = grommetControls;
     }
-    res.json(tests.testComponent({
+    res.json(tests({
       baseTheme: grommet.base,
       Grommet: grommet.Grommet,
       Component: lib[items[0].name],

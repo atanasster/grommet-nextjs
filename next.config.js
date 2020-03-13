@@ -25,22 +25,22 @@ const initExport = {
           analyzerMode: 'server',
           analyzerPort: 8888,
           openAnalyzer: true,
-        })
+        }),
       );
     }
     if (process.env.NODE_ENV === 'alias') {
       config.resolve.alias = dedupeDependencies(
-        ['@babel', 'styled-components', 'grommet', 'grommet-icons', 'react', 'react-dom', 'polished'], config.resolve.alias
+        ['@babel', 'styled-components', 'grommet', 'grommet-icons', 'react', 'react-dom', 'polished'], config.resolve.alias,
       );
     }
     if (process.env.NODE_ENV === 'dx-grid') {
       config.resolve.alias = dedupeDependencies(
-        ['@babel', '@devexpress', 'styled-components', 'grommet', 'grommet-controls', 'grommet-icons', 'react', 'react-dom', 'polished'], config.resolve.alias
+        ['@babel', '@devexpress', 'styled-components', 'grommet', 'grommet-controls', 'grommet-icons', 'react', 'react-dom', 'polished'], config.resolve.alias,
       );
     }
     if (process.env.NODE_ENV === 'grommet') {
       config.resolve.alias = dedupeDependencies(
-        ['@babel', 'styled-components', 'grommet-icons', 'react', 'react-dom', 'polished'], config.resolve.alias
+        ['@babel', 'styled-components', 'grommet-icons', 'react', 'react-dom', 'polished'], config.resolve.alias,
       );
     }
     return config;

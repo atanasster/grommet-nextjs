@@ -17,7 +17,7 @@ export const DropInput = {
   name: 'DropInput',
   category: categories.input,
   package: packages.grommetControls,
-  doc: doc.default({}).toJSON(),
+  doc: doc({}).toJSON(),
   examples: {
     _starter,
     a11yTitle,

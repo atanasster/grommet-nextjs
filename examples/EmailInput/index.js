@@ -8,7 +8,7 @@ export const EmailInput = {
   name: 'EmailInput',
   category: categories.input,
   package: packages.grommetControls,
-  doc: doc.default({}).toJSON(),
+  doc: doc({}).toJSON(),
   examples: {
     _starter,
   },

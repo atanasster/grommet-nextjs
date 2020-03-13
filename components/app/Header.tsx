@@ -56,7 +56,7 @@ class Header extends React.Component<HeaderProps, HeaderState> {
         {size !== 'small' && (
           <Heading margin='none'>
             <RoutedButton path='/'>
-                grommet-controls
+              grommet-controls
             </RoutedButton>
           </Heading>
         )}

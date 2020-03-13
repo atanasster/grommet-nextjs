@@ -1,7 +1,6 @@
 {
   "name": "grommet-nextjs",
   "version": "1.15.0",
-  "type": "module",
   "engines": {
     "node": "12.10.0",
     "npm": ">=6.0.1"
@@ -12,16 +11,16 @@
     "react"
   ],
   "scripts": {
-    "dev": "PORT=8444 node --experimental-modules server/server.js ",
-    "alias": "NODE_ENV=alias PORT=8444 node --experimental-modules server/server.js ",
-    "grommet": "NODE_ENV=grommet PORT=8444 node --experimental-modules server/server.js ",
-    "dx-grid": "NODE_ENV=dx-grid PORT=8444 node --experimental-modules server/server.js ",
-    "build": "NODE_ENV=production next build",
+    "dev": "PORT=8444 ts-node --project tsconfig.server.json server/server.ts ",
+    "alias": "NODE_ENV=alias PORT=8444 ts-node --project tsconfig.server.json server/server.ts ",
+    "grommet": "NODE_ENV=grommet PORT=8444 ts-node --project tsconfig.server.json server/server.ts ",
+    "dx-grid": "NODE_ENV=dx-grid PORT=8444 ts-node --project tsconfig.server.json server/server.ts ",
+    "build": "next build && tsc --project tsconfig.server.json",
     "check": "./node_modules/.bin/eslint --ext .js,.jsx,.ts,.tsx .",
     "heroku-postbuild": "npm run build",
     "analyze": "ANALYZE_BUILD=true npm run build",
-    "start": "NODE_ENV=production node --experimental-modules server/server.js",
-    "start-server": "NODE_ENV=production PORT=8444 node --experimental-modules server/server.js"
+    "start": "NODE_ENV=production node dist/server/server.js",
+    "start-server": "NODE_ENV=production PORT=8444 node dist/server/server.js"
   },
   "dependencies": {
     "@devexpress/dx-react-core": "^1.10.4",

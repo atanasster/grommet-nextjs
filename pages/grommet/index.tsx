@@ -42,19 +42,19 @@ export default class GrommetHome extends React.Component<GrommetHomeProps> {
                 <strong>Grommet 2.0 core</strong>
               </Heading>
               <Paragraph size='large' margin='none'>
-This is an experimental site built with
+                This is an experimental site built with
                 {' '}
                 <strong>Grommet 2</strong>
                 {' '}
-and
+                and
                 {' '}
                 <strong>Next.js</strong>
-.
-Visit the official
+                .
+                Visit the official
                 {' '}
                 <Anchor href='https://v2.grommet.io/' target='_blank'>Grommet site</Anchor>
                 {' '}
-for the latest updates.
+                for the latest updates.
               </Paragraph>
             </Box>
           </Box>

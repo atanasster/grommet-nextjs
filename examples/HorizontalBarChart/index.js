@@ -8,7 +8,7 @@ export const HorizontalBarChart = {
   name: 'HorizontalBarChart',
   category: categories.charts,
   package: packages.grommetControls,
-  doc: doc.default({}).toJSON(),
+  doc: doc({}).toJSON(),
   examples: {
     _starter,
   },

@@ -1,5 +1,5 @@
 /* eslint-disable import/extensions,import/no-unresolved */
-import doc from 'grommet/components/MaskedInput/doc.js';
+import { doc } from 'grommet/components/MaskedInput/doc.js';
 import { packages, categories } from '../lookups.js';
 import { _starter } from './_starter.js';
 import { phone } from './phone.js';
@@ -12,7 +12,7 @@ export const MaskedInputGrommet = {
   name: 'MaskedInput',
   category: categories.input,
   package: packages.grommet,
-  doc: doc.doc({}).toJSON(),
+  doc: doc({}).toJSON(),
   examples: {
     _starter,
     email,

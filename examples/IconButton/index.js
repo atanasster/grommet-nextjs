@@ -8,7 +8,7 @@ export const IconButton = {
   name: 'IconButton',
   category: categories.controls,
   package: packages.grommetControls,
-  doc: doc.default({}).toJSON(),
+  doc: doc({}).toJSON(),
   examples: {
     _starter,
   },

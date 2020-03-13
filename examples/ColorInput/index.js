@@ -9,7 +9,7 @@ export const ColorInput = {
   name: 'ColorInput',
   category: categories.input,
   package: packages.grommetControls,
-  doc: doc.default({}).toJSON(),
+  doc: doc({}).toJSON(),
   examples: {
     _starter,
     colors,

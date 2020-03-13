@@ -11,7 +11,7 @@ export const Sidebar = {
   name: 'Sidebar',
   category: categories.layout,
   package: packages.grommetControls,
-  doc: doc.default({}).toJSON(),
+  doc: doc({}).toJSON(),
   examples: {
     _starter,
     collapsible,

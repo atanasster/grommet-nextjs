@@ -48,7 +48,7 @@ const Component: React.FC<ComponentProps> = ({ component, example }) => (
             >
               <Box direction='row' gap='xsmall' pad='xsmall'>
                 <Document />
-                            Docs
+                Docs
               </Box>
             </RoutedButton>
             <RoutedButton
@@ -59,7 +59,7 @@ const Component: React.FC<ComponentProps> = ({ component, example }) => (
             >
               <Box direction='row' gap='xsmall' pad='xsmall'>
                 <Code />
-                    Code
+                Code
               </Box>
             </RoutedButton>
           </Box>

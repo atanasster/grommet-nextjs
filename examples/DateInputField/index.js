@@ -11,7 +11,7 @@ export const DateInputField = {
   name: 'DateInputField',
   category: categories.validation,
   package: packages.grommetControls,
-  doc: doc.default({}, 'DateInputField', 'A Date input field with form validation.').toJSON(),
+  doc: doc({}, 'DateInputField', 'A Date input field with form validation.').toJSON(),
   examples: {
     _starter,
     inField,

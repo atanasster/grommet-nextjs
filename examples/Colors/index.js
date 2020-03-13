@@ -13,7 +13,7 @@ export const Colors = {
   name: 'Colors',
   category: categories.controls,
   package: packages.grommetControls,
-  doc: doc.default({}).toJSON(),
+  doc: doc({}).toJSON(),
   examples: {
     _starter,
     colors,

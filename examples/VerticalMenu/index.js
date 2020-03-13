@@ -9,7 +9,7 @@ export const VerticalMenu = {
   name: 'VerticalMenu',
   category: categories.navigation,
   package: packages.grommetControls,
-  doc: doc.default({}).toJSON(),
+  doc: doc({}).toJSON(),
   examples: {
     _starter,
     items,

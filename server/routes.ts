@@ -1,4 +1,4 @@
-import nr from 'next-routes';
+const nr = require('next-routes');
 
 const routes = nr();
 

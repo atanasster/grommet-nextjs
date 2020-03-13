@@ -14,7 +14,7 @@ export const Form = {
   name: 'Form',
   category: categories.validation,
   package: packages.grommetControls,
-  doc: doc.default({}).toJSON(),
+  doc: doc({}).toJSON(),
   examples: {
     _starter,
     advanced,

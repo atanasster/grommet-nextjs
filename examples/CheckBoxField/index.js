@@ -10,7 +10,7 @@ export const CheckBoxField = {
   name: 'CheckBoxField',
   category: categories.validation,
   package: packages.grommetControls,
-  doc: doc.default({}, 'CheckBoxField', 'A CheckBox field with form validation.').toJSON(),
+  doc: doc({}, 'CheckBoxField', 'A CheckBox field with form validation.').toJSON(),
   examples: {
     _starter,
     controlLabel,

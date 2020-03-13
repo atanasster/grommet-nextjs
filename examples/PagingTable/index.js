@@ -9,7 +9,7 @@ export const PagingTable = {
   name: 'PagingTable',
   category: categories.controls,
   package: packages.grommetControls,
-  doc: doc.default({}).toJSON(),
+  doc: doc({}).toJSON(),
   examples: {
     _starter,
     advanced,

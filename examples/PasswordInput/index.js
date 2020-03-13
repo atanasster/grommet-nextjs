@@ -9,7 +9,7 @@ export const PasswordInput = {
   name: 'PasswordInput',
   category: categories.input,
   package: packages.grommetControls,
-  doc: doc.default({}).toJSON(),
+  doc: doc({}).toJSON(),
   examples: {
     _starter,
     hideIcon: viewIcon,
