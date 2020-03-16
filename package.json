@@ -23,10 +23,10 @@
     "start-server": "NODE_ENV=production PORT=8444 node dist/server/server.js"
   },
   "dependencies": {
-    "@devexpress/dx-react-core": "^1.10.4",
-    "@devexpress/dx-react-grid": "^1.10.4",
-    "@material-ui/core": "^3.9.1",
-    "@material-ui/icons": "^3.0.2",
+    "@devexpress/dx-react-core": "^2.5.1",
+    "@devexpress/dx-react-grid": "^2.5.1",
+    "@material-ui/core": "^4.9.5",
+    "@material-ui/icons": "^4.9.1",
     "apicache": "^1.2.3",
     "babel-plugin-module-resolver": "^3.2.0",
     "babel-plugin-styled-components": "1.7.1",
@@ -39,7 +39,7 @@
     "compression": "^1.7.3",
     "dotenv": "^5.0.1",
     "dotenv-webpack": "^1.5.5",
-    "dx-react-grid-grommet": "^1.0.16",
+    "dx-react-grid-grommet": "^1.0.18",
     "express": "^4.16.3",
     "fs": "0.0.1-security",
     "grommet": "^2.7.10",
