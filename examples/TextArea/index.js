@@ -1,5 +1,5 @@
 /* eslint-disable import/extensions,import/no-unresolved */
-import doc from 'grommet/components/TextArea/doc.js';
+import { doc } from 'grommet/components/TextArea/doc.js';
 import { packages, categories } from '../lookups.js';
 import { _starter } from './_starter.js';
 import { focusIndicator } from './focusIndicator.js';
@@ -12,7 +12,7 @@ export const TextArea = {
   name: 'TextArea',
   category: categories.input,
   package: packages.grommet,
-  doc: doc.doc({}).toJSON(),
+  doc: doc({}).toJSON(),
   themeDoc: doc.themeDoc,
   examples: {
     _starter,

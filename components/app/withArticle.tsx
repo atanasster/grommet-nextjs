@@ -23,7 +23,7 @@ interface ArticleProps {
 }
 export default (ComposedComponent, { location = 'github', owner = 'default', repo = 'default', path, title, url } : ArticleProps) => class withArticle extends Component<WithArticleProps, {}> {
     static displayName = `withArticle(${getDisplayName(
-      ComposedComponent
+      ComposedComponent,
     )})`;
 
     static async getInitialProps(ctx) {

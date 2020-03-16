@@ -10,7 +10,7 @@ export const NumberInputField = {
   name: 'NumberInputField',
   category: categories.validation,
   package: packages.grommetControls,
-  doc: doc.default({}, 'NumberInputField', 'A numeric input field with form validation.').toJSON(),
+  doc: doc({}, 'NumberInputField', 'A numeric input field with form validation.').toJSON(),
   examples: {
     _starter,
     inField,

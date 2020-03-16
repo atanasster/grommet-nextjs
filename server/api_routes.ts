@@ -5,8 +5,8 @@ import fs from 'fs';
 import npath from 'path';
 import fetch from 'isomorphic-unfetch';
 import { examples } from '../examples/index.js';
-import templateRoutes from './api_templates.js';
-import themeRoutes from './api_themes.js';
+import templateRoutes from './api_templates';
+import themeRoutes from './api_themes';
 
 const router = express.Router();
 const cache = apicache.middleware;
@@ -70,6 +70,8 @@ router.get('/package/:package/:field?', cache('5 minutes'), (req, res) => {
     .then((data) => {
       let json = {
         status: 'ok',
+        version: undefined,
+        time: undefined,
       };
       const { field } = req.params;
       switch (field) {

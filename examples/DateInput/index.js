@@ -16,7 +16,7 @@ export const DateInput = {
   name: 'DateInput',
   category: categories.input,
   package: packages.grommetControls,
-  doc: doc.default({}).toJSON(),
+  doc: doc({}).toJSON(),
   examples: {
     _starter,
     autocorrect,

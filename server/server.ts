@@ -5,8 +5,8 @@ import fs from 'fs';
 import url from 'url';
 import nextjs from 'next';
 import compression from 'compression';
-import routes from './routes.js';
-import apiRoutes from './api_routes.js';
+import routes from './routes';
+import apiRoutes from './api_routes';
 
 const port = parseInt(process.env.PORT, 10) || 8444;
 const dev = process.env.NODE_ENV !== 'production';

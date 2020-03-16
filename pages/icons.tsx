@@ -44,7 +44,7 @@ export default class IconsPage extends React.Component<IconsPageProps, IconsPage
         Icon: Icons[icon],
         label: search ? icon.replace(
           new RegExp(search, 'ig'),
-          text => (text ? `<strong>${text}</strong>` : '')
+          text => (text ? `<strong>${text}</strong>` : ''),
         ) : icon,
       }));
     return (

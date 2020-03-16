@@ -8,7 +8,7 @@ export const PolarChart = {
   name: 'PolarChart',
   category: categories.charts,
   package: packages.grommetControls,
-  doc: doc.default({}).toJSON(),
+  doc: doc({}).toJSON(),
   examples: {
     _starter,
   },

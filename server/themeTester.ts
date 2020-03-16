@@ -1,9 +1,8 @@
 /* eslint-disable */
-import polished from 'polished';
+import { rgba } from 'polished';
 // eslint-disable-next-line import/extensions
-import icon from 'grommet-icons/icons/Blank.js';
+import { Blank } from 'grommet-icons/icons/Blank.js';
 
-const { rgba } = polished;
 const brandColor = '#757575';
 const color = '#123456';
 const objColor = {
@@ -13,7 +12,7 @@ const objColor = {
 
 const borderWidth = 4;
 
-const Icon = icon.Blank;
+const Icon = Blank;
 const rgbColor = rgba(1, 2, 3, 0.33);
 
 const baseSpacing = 46;

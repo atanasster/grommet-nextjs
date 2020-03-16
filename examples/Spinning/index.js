@@ -11,7 +11,7 @@ export const Spinning = {
   name: 'Spinning',
   category: categories.controls,
   package: packages.grommetControls,
-  doc: doc.default({}).toJSON(),
+  doc: doc({}).toJSON(),
   examples: {
     _starter,
     color,

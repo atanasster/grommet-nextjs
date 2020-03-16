@@ -1,5 +1,5 @@
 /* eslint-disable import/extensions,import/no-unresolved */
-import doc from 'grommet/components/Button/doc.js';
+import { doc } from 'grommet/components/Button/doc.js';
 import { packages, categories } from '../lookups.js';
 import { _starter } from './_starter.js';
 import { active } from './active.js';
@@ -13,7 +13,7 @@ export const Button = {
   name: 'Button',
   category: categories.navigation,
   package: packages.grommet,
-  doc: doc.doc({}).toJSON(),
+  doc: doc({}).toJSON(),
   themeDoc: doc.themeDoc,
   examples: {
     _starter,

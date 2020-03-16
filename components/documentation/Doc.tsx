@@ -205,7 +205,7 @@ export default class Doc extends React.Component<DocProps, DocState> {
                   const props = key.split('.');
                   const themeValue = props.reduce(
                     (branch, prop) => (branch ? branch[prop] : null),
-                    theme
+                    theme,
                   );
                   return (
                     <DocProperty

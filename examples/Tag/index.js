@@ -19,7 +19,7 @@ export const Tag = {
   name: 'Tag',
   category: categories.controls,
   package: packages.grommetControls,
-  doc: doc.default({}).toJSON(),
+  doc: doc({}).toJSON(),
   examples: {
     _starter,
     a11yTitle,

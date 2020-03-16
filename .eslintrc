@@ -55,7 +55,17 @@
     "react/sort-comp": 0,
     "react/no-array-index-key": 0,
     "import/no-extraneous-dependencies": 0,
-    "no-alert": 0
+    "no-alert": 0,
+    "import/extensions": [
+      "error",
+      "ignorePackages",
+      {
+        "js": "never",
+        "jsx": "never",
+        "ts": "never",
+        "tsx": "never"
+      }
+    ]
   },
   "settings": {
     "import/resolver": {

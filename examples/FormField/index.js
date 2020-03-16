@@ -1,5 +1,5 @@
 /* eslint-disable import/extensions,import/no-unresolved */
-import doc from 'grommet/components/FormField/doc.js';
+import { doc } from 'grommet/components/FormField/doc.js';
 import { packages, categories } from '../lookups.js';
 import { _starter } from './_starter.js';
 import { border } from './border.js';
@@ -12,7 +12,7 @@ export const FormField = {
   name: 'FormField',
   category: categories.input,
   package: packages.grommet,
-  doc: doc.doc({}).toJSON(),
+  doc: doc({}).toJSON(),
   examples: {
     _starter,
     border,

@@ -10,7 +10,7 @@ export const EmailInputField = {
   name: 'EmailInputField',
   category: categories.validation,
   package: packages.grommetControls,
-  doc: doc.default({}, 'EmailInputField', 'An email input field with form validation.').toJSON(),
+  doc: doc({}, 'EmailInputField', 'An email input field with form validation.').toJSON(),
   examples: {
     _starter,
     inField,

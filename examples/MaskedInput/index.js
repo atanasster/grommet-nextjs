@@ -23,7 +23,7 @@ export const MaskedInput = {
   name: 'MaskedInput',
   category: categories.input,
   package: packages.grommetControls,
-  doc: doc.default({}).toJSON(),
+  doc: doc({}).toJSON(),
   examples: {
     _starter,
     a11yTitle,

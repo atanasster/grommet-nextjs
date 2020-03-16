@@ -4,7 +4,7 @@ import cheerio from 'cheerio';
 import cssjs from 'jotform-css.js';
 import server from 'react-dom/server.js';
 import sc from 'styled-components';
-import testerTheme from './themeTester.js';
+import testerTheme from './themeTester';
 
 const { renderToString } = server;
 const { ServerStyleSheet } = sc;
