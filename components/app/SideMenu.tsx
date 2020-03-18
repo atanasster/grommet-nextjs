@@ -2,7 +2,7 @@ import React, { useState, useContext, useEffect } from 'react';
 // eslint-disable-next-line no-unused-vars
 import { withRouter, Router } from 'next/router';
 import 'isomorphic-fetch';
-import { Box, Button, FormField } from 'grommet';
+import { Box, FormField } from 'grommet';
 import { Sidebar, VerticalMenu } from 'grommet-controls';
 import RoutedButton from './RoutedButton';
 import { queryParams } from '../nextjs/urlParams';
@@ -246,15 +246,7 @@ const SideMenu : React.FC<SideMenuProps> = ({ router }) => {
             activeItem={activeItem}
             buttonClass={RoutedButton}
             items={menuItems}
-          >
-            <Box pad='medium' flex={false} fill='horizontal'>
-              <Button
-                primary={true}
-                label='Compose new email'
-                onClick={() => alert('New email')}
-              />
-            </Box>
-          </VerticalMenu>
+          />
         </Box>
       </Sidebar>
     </Box>
